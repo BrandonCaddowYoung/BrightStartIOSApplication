@@ -164,7 +164,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Tweet", forIndexPath: indexPath) as! CustomTableViewCell
         
-        print(tweets)
+        //print(tweets)
         
         let section = indexPath.section;
         let row = indexPath.row;

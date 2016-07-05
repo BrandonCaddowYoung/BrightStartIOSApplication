@@ -18,8 +18,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         {
             print("its an IPad")
             
-            self.selectedIndex = 0
-            tabBar.hidden = false;
+            self.selectedIndex = 1
+            tabBar.hidden = true;
         }
         
         if( UIDevice.currentDevice().userInterfaceIdiom == .Phone)

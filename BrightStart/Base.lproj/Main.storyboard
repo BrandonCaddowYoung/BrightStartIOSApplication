@@ -540,7 +540,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" badgeValue="new" selectedImage="3F1858EB-B7BD-45B5-A67A-22EE015C2344" systemItem="mostRecent" id="g5D-iJ-PXL"/>
+                    <tabBarItem key="tabBarItem" badgeValue="new" selectedImage="DCE381AB-85EB-4F80-8D87-1948ADCD2DBC" systemItem="mostRecent" id="g5D-iJ-PXL"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
@@ -697,7 +697,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="3F1858EB-B7BD-45B5-A67A-22EE015C2344" width="24" height="24">
+        <image name="DCE381AB-85EB-4F80-8D87-1948ADCD2DBC" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
