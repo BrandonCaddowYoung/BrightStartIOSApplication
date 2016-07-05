@@ -14,6 +14,12 @@ class WelcomeController: UIViewController {
     @IBOutlet weak var nurserySchoolIdTextField: UITextField!
     
     
+    @IBAction func goToRegisterButton(sender: AnyObject) {
+        
+        performSegueWithIdentifier("AccessGrantedSegue", sender: self)
+        
+    }
+    
     @IBAction func nurserySchoolIdEditEnd(sender: AnyObject) {
         
         print("Need to confirm the nurssery school Id here!")
