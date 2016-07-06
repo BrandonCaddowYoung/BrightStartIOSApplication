@@ -74,7 +74,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func refreshTable(sender: UIRefreshControl?) {
         
-        print("Starting to refresh")
+        self.showOverlayMessage("Refreshing list...")
         
         self.tweets.removeAll();
         
@@ -126,13 +126,13 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
                     self.tableView.reloadData()
                     sender?.endRefreshing()
                     
+                     self.dismissViewControllerAnimated(false, completion: nil)
+                    
                 })
                 
             }
             
         }
-        
-        print("Finishing to refresh")
         
     }
     
@@ -177,6 +177,21 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
         return cell
     }
     
+    func showOverlayMessage(message: String) {
+        
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        
+        alert.view.tintColor = UIColor.blackColor()
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(10, 5, 50, 50)) as UIActivityIndicatorView
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) ->
         [UITableViewRowAction]? {
             
@@ -184,6 +199,8 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
             cell.tweet = tweets[indexPath.section][indexPath.row];
             
             let signIn = UITableViewRowAction(style: .Normal, title: "Sign in " + ((cell.tweet?.Name)! as String)) { action, index in
+                
+                self.showOverlayMessage("Signing in...")
                 
                 RestApiManager.sharedInstance.signIn((cell.tweet?.Id)! as String, timeOfSignIn: NSDate(),
                                                      onCompletion: {
@@ -196,6 +213,8 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
             signIn.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
             
             let signOut = UITableViewRowAction(style: .Normal, title: "Sign out " + ((cell.tweet?.Name)! as String)) { action, index in
+                
+                self.showOverlayMessage("Signing out...")
                 
                 RestApiManager.sharedInstance.signOut((cell.tweet?.Id)! as String, timeOfSignOut: NSDate(),
                                                       
@@ -212,6 +231,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
             
             let cancel = UITableViewRowAction(style: .Destructive, title: "Cancel previous") { action, index in
                 
+                self.showOverlayMessage("Please wait...")
                 
             }
             cancel.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
