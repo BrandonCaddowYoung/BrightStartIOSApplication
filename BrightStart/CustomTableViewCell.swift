@@ -83,8 +83,8 @@ class CustomTableViewCell: UITableViewCell
             
             tweetScreenNameLabel?.text = "\(tweet.Name)" // tweet.user.description
             
-            let lightBlue = UIColor(red: 126/255, green: 206/255, blue: 253/255, alpha: 0.3)
-            let lightPink = UIColor(red: 243/255, green: 212/255, blue: 226/255, alpha: 0.3)
+            let lightBlue = UIColor(red: 126/255, green: 206/255, blue: 253/255, alpha: 0.5)
+            let lightPink = UIColor(red: 243/255, green: 212/255, blue: 226/255, alpha: 0.7)
             let lightGrey = UIColor(red: 75/255, green: 79/255, blue: 78/255, alpha: 0.3)
             
             NSUserDefaults.standardUserDefaults().setObject(tweet.RegisteredFinishTime, forKey: "finishTime")

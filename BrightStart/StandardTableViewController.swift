@@ -74,7 +74,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func refreshTable(sender: UIRefreshControl?) {
         
-        self.showOverlayMessage("Refreshing list...")
+        self.showOverlayMessage("Refreshing...")
         
         self.tweets.removeAll();
         
