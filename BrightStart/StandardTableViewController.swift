@@ -101,6 +101,8 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
                     continue
                     }
                     
+                    //Get last login time, and last logout time.
+                    
                     let startTime = JSON["StartTime"].stringValue;
                     let finishTime = JSON["FinishTime"].stringValue;
                     

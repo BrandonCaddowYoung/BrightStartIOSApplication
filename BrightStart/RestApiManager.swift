@@ -34,8 +34,12 @@ class RestApiManager: NSObject {
         dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
         let DateInFormat:String = dateFormatter.stringFromDate(todaysDate)
         
+        //Change the following stored procedure to return the last login and logout.
+        
         let route = baseURL + "api/FilteredChildLogic/SelectAllChildrenForFrontPage?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(false, path: route, onCompletion: { json, err in
+        makeHTTPGetRequest(false, path: route, onCompletion:
+            {
+                json, err in
             onCompletion(json as JSON)
         })
     }
@@ -122,6 +126,8 @@ class RestApiManager: NSObject {
         let route = baseURL + "api/DayCountLogic/SelectStaffCountsForTargetDate?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
         
         makeHTTPGetRequest(true, path: route, onCompletion: { json, err in
+            
+            print(err!.code)
             
             onCompletion(json as JSON)
             
@@ -211,7 +217,7 @@ class RestApiManager: NSObject {
     
     func makeHTTPGetRequest(encode: Bool, path: String, onCompletion: ServiceResponse) {
         
-        print("Making a call to: " + path)
+        //print("Making a call to: " + path)
         
         // set up the base64-encoded credentials
         let username = "byoung"
@@ -232,18 +238,51 @@ class RestApiManager: NSObject {
         
         let request = NSMutableURLRequest(URL:URL)
         
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        //Setting the basic auth credentials
+       request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
         
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             
             let json:JSON = JSON(data: data!)
-            onCompletion(json, error)
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+                
+                //Here we are checking the response code, its its not a code starting with 2 then something has gone wrong.
+                let remaining = httpResponse.statusCode % 200
+                let hundredStatusCode = httpResponse.statusCode - remaining
+                
+                if(hundredStatusCode != 200)
+                {
+                    //If the status code is something other than 2xx then we should recall.
+                    
+                    //This happens as azure goes to sleep and needs waking up sometimes.
+                    
+                    let task2 = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                        
+                        let json:JSON = JSON(data: data!)
+                        
+                        onCompletion(json, error)
+                        
+                    })
+                    
+                     task2.resume()
+                }
+                else
+                {
+                    onCompletion(json, error)
+                }
+                
+            }
         })
+        
         task.resume()
+        
     }
     
+    
+    //This is not being used!
     func makeHTTPPostRequest(path: String, body: [String: AnyObject], onCompletion: ServiceResponse) {
         var err: NSError?
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
@@ -257,7 +296,7 @@ class RestApiManager: NSObject {
     }
         catch
     {
-    print(error)
+    
     request.HTTPBody = nil
     }
     
