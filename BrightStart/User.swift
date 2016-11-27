@@ -14,7 +14,7 @@ public struct User: CustomStringConvertible
 {
     public var screenName: String
     public var name: String
-    public var profileImageURL: NSURL?
+    public var profileImageURL: URL?
     public var verified: Bool = false
     public var id: String!
     
@@ -23,17 +23,17 @@ public struct User: CustomStringConvertible
     // MARK: - Private Implementation
 
     init?(data: NSDictionary?) {
-        let name = data?.valueForKeyPath(TwitterKey.Name) as? String
-        let screenName = data?.valueForKeyPath(TwitterKey.ScreenName) as? String
+        let name = data?.value(forKeyPath: TwitterKey.Name) as? String
+        let screenName = data?.value(forKeyPath: TwitterKey.ScreenName) as? String
         if name != nil && screenName != nil {
             self.name = name!
             self.screenName = screenName!
-            self.id = data?.valueForKeyPath(TwitterKey.ID) as? String
-            if let verified = data?.valueForKeyPath(TwitterKey.Verified)?.boolValue {
+            self.id = data?.value(forKeyPath: TwitterKey.ID) as? String
+            if let verified = (data?.value(forKeyPath: TwitterKey.Verified) as AnyObject).boolValue {
                 self.verified = verified
             }
-            if let urlString = data?.valueForKeyPath(TwitterKey.ProfileImageURL) as? String {
-                self.profileImageURL = NSURL(string: urlString)
+            if let urlString = data?.value(forKeyPath: TwitterKey.ProfileImageURL) as? String {
+                self.profileImageURL = URL(string: urlString)
             }
         } else {
             return nil
@@ -47,7 +47,7 @@ public struct User: CustomStringConvertible
         dictionary[TwitterKey.ID] = self.id
         dictionary[TwitterKey.Verified] = verified ? "YES" : "NO"
         dictionary[TwitterKey.ProfileImageURL] = profileImageURL?.absoluteString
-        return dictionary
+        return dictionary as AnyObject
     }
 
     

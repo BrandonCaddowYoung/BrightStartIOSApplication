@@ -14,21 +14,21 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.delegate = self
         
-        if( UIDevice.currentDevice().userInterfaceIdiom == .Pad)
+        if( UIDevice.current.userInterfaceIdiom == .pad)
         {
             print("its an IPad")
             
             self.selectedIndex = 1
-            tabBar.hidden = true;
+            tabBar.isHidden = true;
         }
         
-        if( UIDevice.currentDevice().userInterfaceIdiom == .Phone)
+        if( UIDevice.current.userInterfaceIdiom == .phone)
         {
             
             print("Its an Iphone")
             
             self.selectedIndex = 1
-            tabBar.hidden = true;
+            tabBar.isHidden = true;
         }
        
         
@@ -37,18 +37,18 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     
     // UITabBarDelegate
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
         if(self.selectedIndex==0)
         {
-            tabBar.hidden = true;
+            tabBar.isHidden = true;
         }
         
         print("Selected item")
     }
     
     // UITabBarControllerDelegate
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         print("Selected view controller")
     }
     

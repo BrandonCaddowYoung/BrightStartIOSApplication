@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class RegisteredCount
+open class RegisteredCount
 {
-    public var NumberOfPersonWithRegisteredHours: Int = 0
-    public var TargetDate: NSDate = NSDate()
+    open var NumberOfPersonWithRegisteredHours: Int = 0
+    open var TargetDate: Date = Date()
     
-    init (numberOfChildrenWithRegisteredHours: Int, targetDate: NSDate) {
+    init (numberOfChildrenWithRegisteredHours: Int, targetDate: Date) {
         self.NumberOfPersonWithRegisteredHours = numberOfChildrenWithRegisteredHours
         self.TargetDate = targetDate
     }

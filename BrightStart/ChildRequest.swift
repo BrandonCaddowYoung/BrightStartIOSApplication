@@ -22,7 +22,7 @@ import CoreLocation
 
 private var twitterAccount: ACAccount?
 
-public class ChildRequest
+open class ChildRequest
 {
   
 }

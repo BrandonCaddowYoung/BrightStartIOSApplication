@@ -16,7 +16,7 @@ class CustomTableViewCell: UITableViewCell
     @IBOutlet weak var currentStatusText: UILabel!
     
     
-    func IsTimeNowAfterRegisteredFinishTime(registeredFinishTime: NSDate) -> Bool
+    func IsTimeNowAfterRegisteredFinishTime(_ registeredFinishTime: Date) -> Bool
     {
         let minutesElapsed = GetTimeLapsedInMinutes(registeredFinishTime)
         
@@ -32,7 +32,7 @@ class CustomTableViewCell: UITableViewCell
         
     }
     
-    func IsTimeNowBeforeRegisteredStartTime(registeredStartTime: NSDate)-> Bool
+    func IsTimeNowBeforeRegisteredStartTime(_ registeredStartTime: Date)-> Bool
     {
         let minutesElapsed = GetTimeLapsedInMinutes(registeredStartTime)
         
@@ -48,13 +48,13 @@ class CustomTableViewCell: UITableViewCell
         
     }
     
-    func GetTimeLapsedInMinutes(time: NSDate) -> Double
+    func GetTimeLapsedInMinutes(_ time: Date) -> Double
     {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         
-        let currentDate = NSDate()
-        let distanceBetweenDates = currentDate.timeIntervalSinceDate(time)
+        let currentDate = Date()
+        let distanceBetweenDates = currentDate.timeIntervalSince(time)
         let secondsInAnMinute = 60.0;
         let minutesElapsed = distanceBetweenDates / secondsInAnMinute;
         
@@ -87,20 +87,20 @@ class CustomTableViewCell: UITableViewCell
             let lightPink = UIColor(red: 243/255, green: 212/255, blue: 226/255, alpha: 0.7)
             let lightGrey = UIColor(red: 75/255, green: 79/255, blue: 78/255, alpha: 0.3)
             
-            NSUserDefaults.standardUserDefaults().setObject(tweet.RegisteredFinishTime, forKey: "finishTime")
-            NSUserDefaults.standardUserDefaults().setObject(tweet.RegisteredStartTime, forKey: "dateKey")
+            UserDefaults.standard.set(tweet.RegisteredFinishTime, forKey: "finishTime")
+            UserDefaults.standard.set(tweet.RegisteredStartTime, forKey: "dateKey")
             
             if(tweet.CurrentlySignedIn==true)
             {
-                if let savedDate = NSUserDefaults.standardUserDefaults().objectForKey("finishTime")  as? NSDate
+                if let savedDate = UserDefaults.standard.object(forKey: "finishTime")  as? Date
                 {
                     //Getting Registered Finish time as string
-                    let dateFormatter = NSDateFormatter()
+                    let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm"
-                    let registeredFinishTime = dateFormatter.stringFromDate(tweet.RegisteredFinishTime)
+                    let registeredFinishTime = dateFormatter.string(from: tweet.RegisteredFinishTime as Date)
                     
-                    let currentDate = NSDate()
-                    let distanceBetweenDates = currentDate.timeIntervalSinceDate(savedDate)
+                    let currentDate = Date()
+                    let distanceBetweenDates = currentDate.timeIntervalSince(savedDate)
                     let secondsInAnMinute = 60.0;
                     let minutesElapsed = distanceBetweenDates / secondsInAnMinute;
                     
@@ -146,15 +146,15 @@ class CustomTableViewCell: UITableViewCell
                 
                 self.takeActionText.text = ""
                 
-                if let savedDate = NSUserDefaults.standardUserDefaults().objectForKey("dateKey")  as? NSDate
+                if let savedDate = UserDefaults.standard.object(forKey: "dateKey")  as? Date
                 {
                     //Getting Registered Finish time as string
-                    let dateFormatter = NSDateFormatter()
+                    let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm"
-                    let registeredStartTime = dateFormatter.stringFromDate(tweet.RegisteredStartTime)
+                    let registeredStartTime = dateFormatter.string(from: tweet.RegisteredStartTime as Date)
                     
-                    let currentDate = NSDate()
-                    let distanceBetweenDates = currentDate.timeIntervalSinceDate(savedDate)
+                    let currentDate = Date()
+                    let distanceBetweenDates = currentDate.timeIntervalSince(savedDate)
                     let secondsInAnMinute = 60.0;
                     let minutesElapsed = distanceBetweenDates / secondsInAnMinute;
                     
@@ -187,7 +187,7 @@ class CustomTableViewCell: UITableViewCell
                             //          If the child has a sign in/out stamp for today, we know that the child was in.
                             //          If the child does not have a sign in/out stamp for today, we know that the child never arrived.
                             
-                            if let registeredFinTime = NSUserDefaults.standardUserDefaults().objectForKey("finishTime")  as? NSDate
+                            if let registeredFinTime = UserDefaults.standard.object(forKey: "finishTime")  as? Date
                             {
                                 let isCurrentTimeAfterRegFinishTime = IsTimeNowAfterRegisteredFinishTime(registeredFinTime)
                                 let isCurrentTimeBeforeRegFinishTime = !isCurrentTimeAfterRegFinishTime
@@ -248,7 +248,7 @@ class CustomTableViewCell: UITableViewCell
                         //Child not signed in.
                         //Child does not have registered hours.
                         
-                        self.backgroundColor = UIColor.whiteColor()
+                        self.backgroundColor = UIColor.white
                         self.takeActionText.text = "Not expected in."
                         self.currentStatusText.text = ""
                     }

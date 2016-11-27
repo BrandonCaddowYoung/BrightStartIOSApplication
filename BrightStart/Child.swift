@@ -14,16 +14,16 @@ import Foundation
 // note carefully the comments on the two range properties in an IndexedKeyword
 // Tweet instances re created by fetching from Twitter using a TwitterRequest
 
-public class Child
+open class Child
 {
-    public var Name: NSString = ""
-    public var Id: NSString = ""
-    public var CurrentlySignedIn: Bool = false
+    open var Name: NSString = ""
+    open var Id: NSString = ""
+    open var CurrentlySignedIn: Bool = false
     
-    public var RegisteredStartTime: NSDate = NSDate()
-    public var RegisteredFinishTime: NSDate = NSDate()
+    open var RegisteredStartTime: Date = Date()
+    open var RegisteredFinishTime: Date = Date()
     
-    init (name: NSString, id: NSString, currentlySignedIn: Bool, startTime: NSDate, endTime: NSDate) {
+    init (name: NSString, id: NSString, currentlySignedIn: Bool, startTime: Date, endTime: Date) {
         self.Name = name
         self.Id = id
         self.CurrentlySignedIn = currentlySignedIn

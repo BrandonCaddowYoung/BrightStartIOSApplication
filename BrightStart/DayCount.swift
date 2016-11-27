@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class DayCount
+open class DayCount
 {
-    public var YetToArriveCount: Int = 0
-   public var TotalExpectedInCount: Int = 0
-    public var CurrentlySignedInCount: Int = 0
-    public var NotCurrentlySignedInCount: Int = 0
+    open var YetToArriveCount: Int = 0
+   open var TotalExpectedInCount: Int = 0
+    open var CurrentlySignedInCount: Int = 0
+    open var NotCurrentlySignedInCount: Int = 0
     
     init (yetToArriveCount: Int, totalExpectedInCount: Int, currentlySignedInCount: Int, notCurrentlySignedInCount: Int) {
         

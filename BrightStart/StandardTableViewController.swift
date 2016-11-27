@@ -61,10 +61,10 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     
-    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
-        if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
+    func convertStringToDictionary(_ text: String) -> [String:AnyObject]? {
+        if let data = text.data(using: String.Encoding.utf8) {
             do {
-                return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String:AnyObject]
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
             } catch let error as NSError {
                 print(error)
             }
@@ -72,7 +72,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
         return nil
     }
     
-    @IBAction func refreshTable(sender: UIRefreshControl?) {
+    @IBAction func refreshTable(_ sender: UIRefreshControl?) {
         
         self.showOverlayMessage("Refreshing...")
         
@@ -87,7 +87,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
                     let name = JSON["Name"].stringValue
                     
                     if(self.searchText! != ""){
-                        if(!name.containsString(self.searchText!))
+                        if(!name.contains(self.searchText!))
                         {
                             continue
                         }
@@ -106,29 +106,29 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
                     let startTime = JSON["StartTime"].stringValue;
                     let finishTime = JSON["FinishTime"].stringValue;
                     
-                    let dateFormatter = NSDateFormatter()
+                    let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                     
-                    let start = dateFormatter.dateFromString(startTime)
+                    let start = dateFormatter.date(from: startTime)
                     
-                    let end = dateFormatter.dateFromString(finishTime)
+                    let end = dateFormatter.date(from: finishTime)
                     
-                    let child = Child(name: name, id: id,  currentlySignedIn: currentlySignedIn,startTime: start!, endTime: end!);
+                    let child = Child(name: name as NSString, id: id as NSString,  currentlySignedIn: currentlySignedIn,startTime: start!, endTime: end!);
                     
-                    self.tweets.insert([child], atIndex: 0)
+                    self.tweets.insert([child], at: 0)
                     
                     self.tableView.reloadData()
                     
                 }
                 
-                dispatch_async(dispatch_get_main_queue(),{
+                DispatchQueue.main.async(execute: {
                     
-                    self.tweets = self.tweets.reverse()
+                    self.tweets = self.tweets.reversed()
                     
                     self.tableView.reloadData()
                     sender?.endRefreshing()
                     
-                     self.dismissViewControllerAnimated(false, completion: nil)
+                     self.dismiss(animated: false, completion: nil)
                     
                 })
                 
@@ -138,7 +138,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
         
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchTextField
         {
             textField.resignFirstResponder()
@@ -150,26 +150,26 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return tweets.count;
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return tweets[section].count
     }
     
     //Make sure the word tweet is linked up using the storboard, go to the view and clikc on the cell then set the identifier to tweet.
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Tweet", forIndexPath: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! CustomTableViewCell
         
         //print(tweets)
         
-        let section = indexPath.section;
-        let row = indexPath.row;
+        let section = (indexPath as NSIndexPath).section;
+        let row = (indexPath as NSIndexPath).row;
         
       if tweets.count > section && tweets[section].count > row {
             print(tweets[section][row])
@@ -179,34 +179,34 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
         return cell
     }
     
-    func showOverlayMessage(message: String) {
+    func showOverlayMessage(_ message: String) {
         
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
-        alert.view.tintColor = UIColor.blackColor()
-        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(10, 5, 50, 50)) as UIActivityIndicatorView
+        alert.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         loadingIndicator.startAnimating();
         
         alert.view.addSubview(loadingIndicator)
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) ->
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->
         [UITableViewRowAction]? {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("Tweet", forIndexPath: indexPath) as! CustomTableViewCell
-            cell.tweet = tweets[indexPath.section][indexPath.row];
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! CustomTableViewCell
+            cell.tweet = tweets[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
-            let signIn = UITableViewRowAction(style: .Normal, title: "Sign in " + ((cell.tweet?.Name)! as String)) { action, index in
+            let signIn = UITableViewRowAction(style: .normal, title: "Sign in " + ((cell.tweet?.Name)! as String)) { action, index in
                 
                 self.showOverlayMessage("Signing in...")
                 
-                RestApiManager.sharedInstance.signIn((cell.tweet?.Id)! as String, timeOfSignIn: NSDate(),
+                RestApiManager.sharedInstance.signIn(personId: (cell.tweet?.Id)! as String, timeOfSignIn: Date() as NSDate,
                                                      onCompletion: {
-                                                        dispatch_async(dispatch_get_main_queue(),{
+                                                        DispatchQueue.main.async(execute: {
                                                             self.searchText = ""
                                                         })
                     }
@@ -214,15 +214,15 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
             }
             signIn.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
             
-            let signOut = UITableViewRowAction(style: .Normal, title: "Sign out " + ((cell.tweet?.Name)! as String)) { action, index in
+            let signOut = UITableViewRowAction(style: .normal, title: "Sign out " + ((cell.tweet?.Name)! as String)) { action, index in
                 
                 self.showOverlayMessage("Signing out...")
                 
-                RestApiManager.sharedInstance.signOut((cell.tweet?.Id)! as String, timeOfSignOut: NSDate(),
+                RestApiManager.sharedInstance.signOut(personId: (cell.tweet?.Id)! as String, timeOfSignOut: Date() as NSDate,
                                                       
                                                       onCompletion: {
                                                         
-                                                        dispatch_async(dispatch_get_main_queue(),{
+                                                        DispatchQueue.main.async(execute: {
                                                             self.searchText = ""
                                                         })
                                                         
@@ -231,7 +231,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
             }
             signOut.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
             
-            let cancel = UITableViewRowAction(style: .Destructive, title: "Cancel previous") { action, index in
+            let cancel = UITableViewRowAction(style: .default,  title:"Cancel previous") { action, index in
                 
                 self.showOverlayMessage("Please wait...")
                 
@@ -247,12 +247,12 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
             }
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // the cells you would like the actions to appear needs to be editable
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         // you need to implement this method too or you can't swipe to display the actions
     }
     

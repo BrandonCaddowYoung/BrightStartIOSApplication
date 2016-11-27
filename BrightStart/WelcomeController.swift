@@ -14,17 +14,17 @@ class WelcomeController: UIViewController {
     @IBOutlet weak var nurserySchoolIdTextField: UITextField!
     
     
-    @IBAction func goToRegisterButton(sender: AnyObject) {
+    @IBAction func goToRegisterButton(_ sender: AnyObject) {
         
-        performSegueWithIdentifier("AccessGrantedSegue", sender: self)
+        performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
         
     }
     
-    @IBAction func nurserySchoolIdEditEnd(sender: AnyObject) {
+    @IBAction func nurserySchoolIdEditEnd(_ sender: AnyObject) {
         
         print("Need to confirm the nurssery school Id here!")
         
-        performSegueWithIdentifier("AccessGrantedSegue", sender: self)
+        performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
         
     }
     
@@ -32,10 +32,10 @@ class WelcomeController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
         // Receive
-        if let id = defaults.stringForKey("NurserySchoolId")
+        if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolIdTextField.text = id;
             
@@ -54,7 +54,7 @@ class WelcomeController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         print("Closing keyboard")
         
@@ -62,16 +62,16 @@ class WelcomeController: UIViewController {
         return false
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if (segue.identifier == "AccessGrantedSegue") {
             
-            let defaults = NSUserDefaults.standardUserDefaults()
+            let defaults = UserDefaults.standard
             
             print("Storing the following id in the storage: " + nurserySchoolIdTextField.text!)
             
             // Store
-            defaults.setObject(nurserySchoolIdTextField.text!, forKey: "NurserySchoolId")
+            defaults.set(nurserySchoolIdTextField.text!, forKey: "NurserySchoolId")
             
         }
     }

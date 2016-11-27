@@ -10,6 +10,8 @@
 
 import Foundation
 
+import Alamofire
+
 typealias ServiceResponse = (JSON, NSError?) -> Void
 
 class RestApiManager: NSObject {
@@ -20,89 +22,89 @@ class RestApiManager: NSObject {
     
     var nurserySchoolId = "";
     
-    func getPeople(onCompletion: (JSON) -> Void) {
+    func getPeople(onCompletion: @escaping (JSON) -> Void) {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let id = defaults.stringForKey("NurserySchoolId")
+        if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolId = id;
         }
         
         let todaysDate:NSDate = NSDate()
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        let dateFormatter:DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
-        let DateInFormat:String = dateFormatter.stringFromDate(todaysDate)
+        let DateInFormat:String = dateFormatter.string(from: todaysDate as Date)
         
         //Change the following stored procedure to return the last login and logout.
         
         let route = baseURL + "api/FilteredChildLogic/SelectAllChildrenForFrontPage?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(false, path: route, onCompletion:
+        makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
                 json, err in
             onCompletion(json as JSON)
         })
     }
     
-    func signIn(personId: String, timeOfSignIn: NSDate, onCompletion: () -> Void) {
+    func signIn(personId: String, timeOfSignIn: NSDate, onCompletion: @escaping () -> Void) {
        
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let id = defaults.stringForKey("NurserySchoolId")
+        if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolId = id;
         }
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
-        let dateString = dateFormatter.stringFromDate(timeOfSignIn)
+        let dateString = dateFormatter.string(from: timeOfSignIn as Date)
         
         let route = baseURL + "api/GeneralHelper/SignPersonIn?personId="+personId+"&targetStamp="+dateString+"&nurserySchoolId=" + nurserySchoolId
        
-        makeHTTPGetRequest(false, path: route, onCompletion: { json, err in
+        makeHTTPGetRequest(encode: false, path: route, onCompletion: { json, err in
             onCompletion()
         })
         
     }
     
-    func signOut(personId: String, timeOfSignOut: NSDate, onCompletion: () -> Void) {
+    func signOut(personId: String, timeOfSignOut: NSDate, onCompletion: @escaping () -> Void) {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let id = defaults.stringForKey("NurserySchoolId")
+        if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolId = id;
         }
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
-        let dateString = dateFormatter.stringFromDate(timeOfSignOut)
+        let dateString = dateFormatter.string(from: timeOfSignOut as Date)
         
         let route = baseURL + "api/GeneralHelper/SignPersonOut?personId="+personId+"&targetStamp="+dateString+"&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(false, path: route, onCompletion: { json, err in
+        makeHTTPGetRequest(encode: false, path: route, onCompletion: { json, err in
             onCompletion()
         })
     }
    
-    func SelectChildrenCountsForTargetDate(targetDate: NSDate, onCompletion: (JSON) -> Void) {
+    func SelectChildrenCountsForTargetDate(targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let id = defaults.stringForKey("NurserySchoolId")
+        if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolId = id;
         }
         
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        let dateFormatter:DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let DateInFormat:String = dateFormatter.stringFromDate(targetDate)
+        let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
         
         let route = baseURL + "api/DayCountLogic/SelectChildrenCountsForTargetDate?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
         
          print("Id is: " + nurserySchoolId)
         
-        makeHTTPGetRequest(true, path: route, onCompletion: { json, err in
+        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
             
             onCompletion(json as JSON)
             
@@ -110,22 +112,22 @@ class RestApiManager: NSObject {
         
     }
     
-    func SelectStaffCountsForTargetDate(targetDate: NSDate, onCompletion: (JSON) -> Void) {
+    func SelectStaffCountsForTargetDate(targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let id = defaults.stringForKey("NurserySchoolId")
+        if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolId = id;
         }
         
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        let dateFormatter:DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let DateInFormat:String = dateFormatter.stringFromDate(targetDate)
+        let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
         
         let route = baseURL + "api/DayCountLogic/SelectStaffCountsForTargetDate?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(true, path: route, onCompletion: { json, err in
+        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
             
             print(err!.code)
             
@@ -135,146 +137,246 @@ class RestApiManager: NSObject {
         
     }
     
-    func GetNumberOfChildrenWithRegisteredHoursAtSpecificTime(targetDate: NSDate, onCompletion: (JSON) -> Void) {
+    func GetNumberOfChildrenWithRegisteredHoursAtSpecificTime(targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
        
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let id = defaults.stringForKey("NurserySchoolId")
+        if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolId = id;
         }
         
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        let dateFormatter:DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let DateInFormat:String = dateFormatter.stringFromDate(targetDate)
+        let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
         
         let route = baseURL + "api/RegisteredCountLogic/GetNumberOfChildrenWithRegisteredHoursAtSpecificTime?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(true, path: route, onCompletion: { json, err in
+        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
     
-    func GetNumberOfStaffWithRegisteredHoursAtSpecificTime(targetDate: NSDate, onCompletion: (JSON) -> Void) {
+    func GetNumberOfStaffWithRegisteredHoursAtSpecificTime(targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let id = defaults.stringForKey("NurserySchoolId")
+        if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolId = id;
         }
         
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        let dateFormatter:DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let DateInFormat:String = dateFormatter.stringFromDate(targetDate)
+        let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
         
         let route = baseURL + "api/RegisteredCountLogic/GetNumberOfStaffWithRegisteredHoursAtSpecificTime?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(true, path: route, onCompletion: { json, err in
+        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
     
-    func GetNumberOfChildrenWithRegisteredHoursForEntireDay(year: String, month: String, day:String, onCompletion: (JSON) -> Void) {
+    func GetNumberOfChildrenWithRegisteredHoursForEntireDay(year: String, month: String, day:String, onCompletion: @escaping (JSON) -> Void) {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let id = defaults.stringForKey("NurserySchoolId")
+        if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolId = id;
         }
         
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        let dateFormatter:DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         let route = baseURL + "api/RegisteredCountLogic/GetNumberOfChildrenWithRegisteredHoursForEntireDay?year="+year+"&month="+month+"&day=" + day + "&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(true, path: route, onCompletion: { json, err in
+        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
         
     }
     
     
-    func GetNumberOfStaffWithRegisteredHoursForEntireDay(year: String, month: String, day:String, onCompletion: (JSON) -> Void) {
+    func GetNumberOfStaffWithRegisteredHoursForEntireDay(year: String, month: String, day:String, onCompletion: @escaping (JSON) -> Void) {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let id = defaults.stringForKey("NurserySchoolId")
+        if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolId = id;
         }
         
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        let dateFormatter:DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         let route = baseURL + "api/RegisteredCountLogic/GetNumberOfStaffWithRegisteredHoursForEntireDay?year="+year+"&month="+month+"&day=" + day + "&nurserySchoolId=" + nurserySchoolId
         
         
-        makeHTTPGetRequest(true, path: route, onCompletion: { json, err in
+        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
         
     }
-    
-    func makeHTTPGetRequest(encode: Bool, path: String, onCompletion: ServiceResponse) {
-        
-        //print("Making a call to: " + path)
-        
-        // set up the base64-encoded credentials
+ 
+    func getMyIP()
+    {
         let username = "byoung"
         let password = "P@ssw0rd.1"
         let loginString = NSString(format: "%@:%@", username, password)
-        let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
-        let base64LoginString = loginData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
+        let base64LoginString = loginData.base64EncodedData()
         
-        var URL = NSURL()
+        let url:URL = URL(string: "https://microsoft-apiappce8388460f4f40a6bdcea26f938e44fb.azurewebsites.net/api/FilteredChildLogic/SelectAllChildrenForFrontPage?targetDate=2016-11-27%2018:40:10&nurserySchoolId=5BFFDA7E-05A8-43C2-BD98-BAC4652419A1")!
+        let session = URLSession.shared
         
-        if(encode==true){
-            URL = NSURL(string: path.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
+        
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        
+        
+       // let paramString = "data=Hello"
+        // request.httpBody = paramString.data(using: String.Encoding.utf8)
+        
+        let task = session.dataTask(with: request as URLRequest) {
+            (
+            data, response, error) in
+            
+            guard let data = data, let _:URLResponse = response  , error == nil else {
+                print("error")
+                return
+            }
+            
+            let dataString =  String(data: data, encoding: String.Encoding.utf8)
+            print(dataString)
+            
         }
-        else
-        {
-            URL = NSURL(string: path)!
+        
+        task.resume()
+    
+    }
+    
+    
+    func makeHTTPGetRequest(encode: Bool, path: String, onCompletion: @escaping ServiceResponse) {
+        
+        let user = "byoung"
+        let password = "P@ssw0rd.1"
+        
+        var headers: HTTPHeaders = [:]
+        
+        if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
+            headers[authorizationHeader.key] = authorizationHeader.value
         }
         
-        let request = NSMutableURLRequest(URL:URL)
+        var error: NSError?
+        
+        Alamofire.request(path, headers: headers)
+            .responseJSON { response in
+                
+                let json = JSON(response)
+                
+               //onCompletion(json, error)
+        }
+        
+        Alamofire.request(path, headers: headers)
+            .responseJSON { response in
+           
+                switch response.result {
+            
+                case .success(let data):
+                
+                    let json = JSON(data)
+                onCompletion(json, error)
+           
+                case .failure(let error):
+                print("Request failed with error: \(error)")
+                    
+            }
+        }
+        
+        return;
+        
+        // getMyIP()
+        
+        // set up the base64-encoded credentials
+        let username1 = "byoung"
+        let password1 = "P@ssw0rd.1"
+        let loginString = NSString(format: "%@:%@", username1, password1)
+        let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
+        let base64LoginString = loginData.base64EncodedData()
+        
+        let URL = NSURL(string: path)!
+        
+        var request = URLRequest(url:URL as URL)
         
         //Setting the basic auth credentials
-       request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
         
-        let session = NSURLSession.sharedSession()
         
-        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+        
+        
+        
+        
+        
+        let sessionConfiguration = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfiguration)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             
             let json:JSON = JSON(data: data!)
             
-            if let httpResponse = response as? NSHTTPURLResponse {
-                
-                //Here we are checking the response code, its its not a code starting with 2 then something has gone wrong.
-                let remaining = httpResponse.statusCode % 200
-                let hundredStatusCode = httpResponse.statusCode - remaining
-                
-                if(hundredStatusCode != 200)
-                {
-                    //If the status code is something other than 2xx then we should recall.
+            print(data)
+            print(response)
+            print(error)
+            print(json)
+
+            
+                if let httpResponse = response as? HTTPURLResponse {
                     
-                    //This happens as azure goes to sleep and needs waking up sometimes.
+                    //Here we are checking the response code, its its not a code starting with 2 then something has gone wrong.
+                    let remaining = httpResponse.statusCode % 200
+                    let hundredStatusCode = httpResponse.statusCode - remaining
                     
-                    let task2 = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                    if(hundredStatusCode != 200)
+                    {
+                        //If the status code is something other than 2xx then we should recall.
                         
-                        let json:JSON = JSON(data: data!)
+                        //This happens as azure goes to sleep and needs waking up sometimes.
                         
-                        onCompletion(json, error)
+                        let task2 = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+                            
+                            let json:JSON = JSON(data: data!)
+                            
+                            onCompletion(json, error as NSError?)
+                            
+                        })
                         
-                    })
+                        task2.resume()
+                    }
+                    else
+                    {
+                        onCompletion(json , error as NSError?)
+                    }
                     
-                     task2.resume()
                 }
-                else
-                {
-                    onCompletion(json, error)
-                }
                 
-            }
+            
+            
+            
+            
+           
         })
         
         task.resume()
@@ -282,30 +384,4 @@ class RestApiManager: NSObject {
     }
     
     
-    //This is not being used!
-    func makeHTTPPostRequest(path: String, body: [String: AnyObject], onCompletion: ServiceResponse) {
-        var err: NSError?
-        let request = NSMutableURLRequest(URL: NSURL(string: path)!)
-        
-        // Set the method to POST
-        request.HTTPMethod = "POST"
-        
-        do {
-        // Set the POST body for the request
-        request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: [])
-    }
-        catch
-    {
-    
-    request.HTTPBody = nil
-    }
-    
-        let session = NSURLSession.sharedSession()
-        
-        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            let json:JSON = JSON(data: data!)
-            onCompletion(json, err)
-        })
-        task.resume()
-    }
-}
+   }

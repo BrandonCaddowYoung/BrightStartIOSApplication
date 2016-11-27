@@ -28,7 +28,7 @@ class NumbersController: UIViewController {
     @IBOutlet weak var numberOfChilrenAtGivenTime: UILabel!
     @IBOutlet weak var numberOfStaffAtGivenTime: UILabel!
     
-    @IBAction func SliderValueChanged(sender: AnyObject) {
+    @IBAction func SliderValueChanged(_ sender: AnyObject) {
         
         var currentValue = Int(numbersSlider.value)
         
@@ -64,7 +64,7 @@ class NumbersController: UIViewController {
         super.viewDidLoad()
         
         
-        RestApiManager.sharedInstance.SelectChildrenCountsForTargetDate(NSDate(), onCompletion: { json in
+        RestApiManager.sharedInstance.SelectChildrenCountsForTargetDate(targetDate: Date() as NSDate, onCompletion: { json in
             
             let signedInChildren = json["CurrentlySignedInCount"].stringValue
             
@@ -72,7 +72,7 @@ class NumbersController: UIViewController {
             
             let totalExpectedchildren = json["TotalExpectedInCount"].stringValue;
            
-            dispatch_async(dispatch_get_main_queue(),{
+            DispatchQueue.main.async(execute: {
                 
                 self.signedInChildren.text = signedInChildren
                 
@@ -85,7 +85,7 @@ class NumbersController: UIViewController {
         })
         
         
-        RestApiManager.sharedInstance.SelectStaffCountsForTargetDate(NSDate(), onCompletion: { json in
+        RestApiManager.sharedInstance.SelectStaffCountsForTargetDate(targetDate: Date() as NSDate, onCompletion: { json in
             
             let signedInStaff = json["CurrentlySignedInCount"].stringValue
            
@@ -93,7 +93,7 @@ class NumbersController: UIViewController {
             
             let totalExpectedStaff = json["TotalExpectedInCount"].stringValue;
             
-            dispatch_async(dispatch_get_main_queue(),{
+            DispatchQueue.main.async(execute: {
                
                 self.signedInStaff.text = signedInStaff
                
@@ -106,21 +106,21 @@ class NumbersController: UIViewController {
         })
 
         
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        let date = Date()
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.day , .month , .year], from: date)
         
-        RestApiManager.sharedInstance.GetNumberOfChildrenWithRegisteredHoursForEntireDay(String(components.year), month: String(components.month), day: String(components.day), onCompletion: { json in
+        RestApiManager.sharedInstance.GetNumberOfChildrenWithRegisteredHoursForEntireDay(year: String(describing: components.year), month: String(describing: components.month), day: String(describing: components.day), onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
 
                 let signedInChildren = Int(JSON["NumberOfPersonWithRegisteredHours"].stringValue)
                 let targetDate = JSON["TargetDate"].stringValue
                 
-                let dateFormatter = NSDateFormatter()
+                let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                 
-                let curDate = dateFormatter.dateFromString(targetDate)
+                let curDate = dateFormatter.date(from: targetDate)
                 
                 let regCount:RegisteredCount = RegisteredCount(numberOfChildrenWithRegisteredHours: signedInChildren!, targetDate: curDate!)
             
@@ -129,7 +129,7 @@ class NumbersController: UIViewController {
             }
 
             
-            dispatch_async(dispatch_get_main_queue(),{
+            DispatchQueue.main.async(execute: {
                 
                 
                 
@@ -137,24 +137,24 @@ class NumbersController: UIViewController {
             
         })
         
-        RestApiManager.sharedInstance.GetNumberOfStaffWithRegisteredHoursForEntireDay(String(components.year), month: String(components.month), day: String(components.day), onCompletion: { json in
+        RestApiManager.sharedInstance.GetNumberOfStaffWithRegisteredHoursForEntireDay(year: String(describing: components.year), month: String(describing: components.month), day: String(describing: components.day), onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
                 
                 let signedInStaff = Int(JSON["NumberOfPersonWithRegisteredHours"].stringValue)
                 let targetDate = JSON["TargetDate"].stringValue
                 
-                let dateFormatter = NSDateFormatter()
+                let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                 
-                let curDate = dateFormatter.dateFromString(targetDate)
+                let curDate = dateFormatter.date(from: targetDate)
                 
                 let regCount:RegisteredCount = RegisteredCount(numberOfChildrenWithRegisteredHours: signedInStaff!, targetDate: curDate!)
                 
                 self._StaffRegisterdHoursCounts.append(regCount)
             }
             
-            dispatch_async(dispatch_get_main_queue(),{
+            DispatchQueue.main.async(execute: {
                 
                 
             })
