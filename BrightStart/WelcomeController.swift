@@ -1,10 +1,3 @@
-//
-//  WelcomeController.swift
-//  BrightStart
-//
-//  Created by dev on 16/04/2016.
-//  Copyright © 2016 dev. All rights reserved.
-//
 
 import UIKit
 
@@ -15,14 +8,12 @@ class WelcomeController: UIViewController {
     
     
     @IBAction func goToRegisterButton(_ sender: AnyObject) {
-        
         performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
-        
     }
     
     @IBAction func nurserySchoolIdEditEnd(_ sender: AnyObject) {
         
-        print("Need to confirm the nurssery school Id here!")
+        //print("Need to confirm the nurssery school Id here!")
         
         performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
         
@@ -39,12 +30,12 @@ class WelcomeController: UIViewController {
         {
             nurserySchoolIdTextField.text = id;
             
-           print("Found a nursery school id and it is: ")
-            print(id)
+           //print("Found a nursery school id and it is: ")
+           // print(id)
         }
         else
         {
-            print("Not found a nursery school id")
+            //print("Not found a nursery school id")
         }
         
     }
@@ -56,7 +47,7 @@ class WelcomeController: UIViewController {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        print("Closing keyboard")
+        //print("Closing keyboard")
         
         self.view.endEditing(true)
         return false
@@ -68,7 +59,7 @@ class WelcomeController: UIViewController {
             
             let defaults = UserDefaults.standard
             
-            print("Storing the following id in the storage: " + nurserySchoolIdTextField.text!)
+            //print("Storing the following id in the storage: " + nurserySchoolIdTextField.text!)
             
             // Store
             defaults.set(nurserySchoolIdTextField.text!, forKey: "NurserySchoolId")

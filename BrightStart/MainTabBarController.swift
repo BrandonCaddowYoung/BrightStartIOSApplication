@@ -16,7 +16,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         if( UIDevice.current.userInterfaceIdiom == .pad)
         {
-            print("its an IPad")
+            //print("its an IPad")
             
             self.selectedIndex = 1
             tabBar.isHidden = true;
@@ -25,13 +25,11 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         if( UIDevice.current.userInterfaceIdiom == .phone)
         {
             
-            print("Its an Iphone")
+            //print("Its an Iphone")
             
             self.selectedIndex = 1
             tabBar.isHidden = true;
         }
-       
-        
         
     }
     
@@ -44,12 +42,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             tabBar.isHidden = true;
         }
         
-        print("Selected item")
+        //print("Selected item")
     }
     
     // UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("Selected view controller")
+        //print("Selected view controller")
     }
     
     
