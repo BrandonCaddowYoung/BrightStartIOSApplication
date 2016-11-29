@@ -25,10 +25,6 @@
 		D7F995741C9EF4A1001802EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7F995721C9EF4A1001802EC /* LaunchScreen.storyboard */; };
 		D7F9957F1C9EF4A2001802EC /* BrightStartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9957E1C9EF4A2001802EC /* BrightStartTests.swift */; };
 		D7F9958A1C9EF4A2001802EC /* BrightStartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995891C9EF4A2001802EC /* BrightStartUITests.swift */; };
-		D7F995BE1C9EFAB7001802EC /* MediaAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995BA1C9EFAB7001802EC /* MediaAsset.swift */; };
-		D7F995BF1C9EFAB7001802EC /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995BB1C9EFAB7001802EC /* Person.swift */; };
-		D7F995C01C9EFAB7001802EC /* TwitterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995BC1C9EFAB7001802EC /* TwitterRequest.swift */; };
-		D7F995C11C9EFAB7001802EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995BD1C9EFAB7001802EC /* User.swift */; };
 		D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */; };
 		D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995C71C9EFE30001802EC /* ClockingTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -244,10 +240,6 @@
 		D7F995851C9EF4A2001802EC /* BrightStartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrightStartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F995891C9EF4A2001802EC /* BrightStartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightStartUITests.swift; sourceTree = "<group>"; };
 		D7F9958B1C9EF4A2001802EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7F995BA1C9EFAB7001802EC /* MediaAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaAsset.swift; sourceTree = "<group>"; };
-		D7F995BB1C9EFAB7001802EC /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		D7F995BC1C9EFAB7001802EC /* TwitterRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterRequest.swift; sourceTree = "<group>"; };
-		D7F995BD1C9EFAB7001802EC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockingTableViewController.swift; sourceTree = "<group>"; };
 		D7F995C71C9EFE30001802EC /* ClockingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -404,7 +396,6 @@
 				D7387E991CAF1A2B00948DE5 /* Child */,
 				D7F995C71C9EFE30001802EC /* ClockingTableViewCell.swift */,
 				D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */,
-				D7F995C21C9EFAC7001802EC /* Twitter */,
 				D7F995691C9EF4A1001802EC /* AppDelegate.swift */,
 				D7F9956D1C9EF4A1001802EC /* Main.storyboard */,
 				D7F995701C9EF4A1001802EC /* Assets.xcassets */,
@@ -432,17 +423,6 @@
 				D7F9958B1C9EF4A2001802EC /* Info.plist */,
 			);
 			path = BrightStartUITests;
-			sourceTree = "<group>";
-		};
-		D7F995C21C9EFAC7001802EC /* Twitter */ = {
-			isa = PBXGroup;
-			children = (
-				D7F995BA1C9EFAB7001802EC /* MediaAsset.swift */,
-				D7F995BB1C9EFAB7001802EC /* Person.swift */,
-				D7F995BC1C9EFAB7001802EC /* TwitterRequest.swift */,
-				D7F995BD1C9EFAB7001802EC /* User.swift */,
-			);
-			name = Twitter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -543,16 +523,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -748,19 +728,15 @@
 			files = (
 				D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */,
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,
-				D7F995C01C9EFAB7001802EC /* TwitterRequest.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,
 				D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */,
-				D7F995C11C9EFAB7001802EC /* User.swift in Sources */,
 				7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */,
 				D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */,
 				D7387E9D1CAF1B1100948DE5 /* ChildRequest.OLD.swift in Sources */,
-				D7F995BE1C9EFAB7001802EC /* MediaAsset.swift in Sources */,
 				D739E86B1CD3FACF0084ECE4 /* MainTabBarController.swift in Sources */,
 				D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */,
 				D78607E21CC2B78200BE37C3 /* WelcomeController.swift in Sources */,
-				D7F995BF1C9EFAB7001802EC /* Person.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,
 			);
