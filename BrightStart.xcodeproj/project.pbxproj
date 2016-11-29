@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7B1772981DEB8065002992C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772701DEB7F8F002992C9 /* Alamofire.framework */; };
+		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9A1CAF1A7100948DE5 /* Child.swift */; };
 		D7387E9D1CAF1B1100948DE5 /* ChildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9C1CAF1B1100948DE5 /* ChildRequest.swift */; };
 		D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8661CC981530084ECE4 /* RegisteredCount.swift */; };
@@ -201,6 +202,20 @@
 			remoteInfo = BrightStart;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7B26180F1DEDB912005B4B20 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
@@ -421,6 +436,7 @@
 				D7F995621C9EF4A1001802EC /* Sources */,
 				D7F995631C9EF4A1001802EC /* Frameworks */,
 				D7F995641C9EF4A1001802EC /* Resources */,
+				7B26180F1DEDB912005B4B20 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -508,16 +524,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
