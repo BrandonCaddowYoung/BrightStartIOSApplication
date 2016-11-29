@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class StandardTableViewController: UITableViewController, UITextFieldDelegate {
+class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     
     var tweets: [[Child]] = [];
     
@@ -164,7 +164,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! ClockingTableViewCell
         
         //print(tweets)
         
@@ -197,7 +197,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->
         [UITableViewRowAction]? {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! CustomTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! ClockingTableViewCell
             cell.tweet = tweets[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
             let signIn = UITableViewRowAction(style: .normal, title: "Sign in " + ((cell.tweet?.Name)! as String)) { action, index in

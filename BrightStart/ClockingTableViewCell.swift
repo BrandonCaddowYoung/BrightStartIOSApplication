@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomTableViewCell: UITableViewCell
+class ClockingTableViewCell: UITableViewCell
 {
     var tweet: Child? {
         didSet {

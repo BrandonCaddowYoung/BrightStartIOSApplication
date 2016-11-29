@@ -29,8 +29,8 @@
 		D7F995BF1C9EFAB7001802EC /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995BB1C9EFAB7001802EC /* Tweet.swift */; };
 		D7F995C01C9EFAB7001802EC /* TwitterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995BC1C9EFAB7001802EC /* TwitterRequest.swift */; };
 		D7F995C11C9EFAB7001802EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995BD1C9EFAB7001802EC /* User.swift */; };
-		D7F995C61C9EFCE3001802EC /* StandardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995C51C9EFCE3001802EC /* StandardTableViewController.swift */; };
-		D7F995C81C9EFE30001802EC /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995C71C9EFE30001802EC /* CustomTableViewCell.swift */; };
+		D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */; };
+		D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995C71C9EFE30001802EC /* ClockingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,8 +248,8 @@
 		D7F995BB1C9EFAB7001802EC /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		D7F995BC1C9EFAB7001802EC /* TwitterRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterRequest.swift; sourceTree = "<group>"; };
 		D7F995BD1C9EFAB7001802EC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		D7F995C51C9EFCE3001802EC /* StandardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableViewController.swift; sourceTree = "<group>"; };
-		D7F995C71C9EFE30001802EC /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockingTableViewController.swift; sourceTree = "<group>"; };
+		D7F995C71C9EFE30001802EC /* ClockingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,8 +402,8 @@
 				D7EEEDBB1CC2E005001424FE /* NumbersController.swift */,
 				D74311461CB39AE600C72655 /* API */,
 				D7387E991CAF1A2B00948DE5 /* Child */,
-				D7F995C71C9EFE30001802EC /* CustomTableViewCell.swift */,
-				D7F995C51C9EFCE3001802EC /* StandardTableViewController.swift */,
+				D7F995C71C9EFE30001802EC /* ClockingTableViewCell.swift */,
+				D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */,
 				D7F995C21C9EFAC7001802EC /* Twitter */,
 				D7F995691C9EF4A1001802EC /* AppDelegate.swift */,
 				D7F9956D1C9EF4A1001802EC /* Main.storyboard */,
@@ -750,7 +750,7 @@
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,
 				D7F995C01C9EFAB7001802EC /* TwitterRequest.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
-				D7F995C81C9EFE30001802EC /* CustomTableViewCell.swift in Sources */,
+				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,
 				D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */,
 				D7F995C11C9EFAB7001802EC /* User.swift in Sources */,
 				7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */,
@@ -762,7 +762,7 @@
 				D78607E21CC2B78200BE37C3 /* WelcomeController.swift in Sources */,
 				D7F995BF1C9EFAB7001802EC /* Tweet.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
-				D7F995C61C9EFCE3001802EC /* StandardTableViewController.swift in Sources */,
+				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
