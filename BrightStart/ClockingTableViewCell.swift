@@ -10,7 +10,7 @@ import UIKit
 
 class ClockingTableViewCell: UITableViewCell
 {
-    var tweet: Child? {
+    var child: Child? {
         didSet {
             updateUI()
         }
@@ -75,7 +75,7 @@ class ClockingTableViewCell: UITableViewCell
         // tweetCreatedLabel?.text = nil
         
         // load new information from our tweet (if any)
-        if let tweet = self.tweet
+        if let tweet = self.child
         {
             tweetScreenNameLabel?.text = "\(tweet.Name)" // tweet.user.description
             

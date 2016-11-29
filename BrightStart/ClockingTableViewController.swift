@@ -173,7 +173,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         
       if tweets.count > section && tweets[section].count > row {
             print(tweets[section][row])
-            cell.tweet = tweets[section][row];
+            cell.child = tweets[section][row];
         }
         
         return cell
@@ -198,13 +198,13 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         [UITableViewRowAction]? {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! ClockingTableViewCell
-            cell.tweet = tweets[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
+            cell.child = tweets[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
-            let signIn = UITableViewRowAction(style: .normal, title: "Sign in " + ((cell.tweet?.Name)! as String)) { action, index in
+            let signIn = UITableViewRowAction(style: .normal, title: "Sign in " + ((cell.child?.Name)! as String)) { action, index in
                 
                 self.showOverlayMessage("Signing in...")
                 
-                CommonRequests.sharedInstance.signIn(personId: (cell.tweet?.Id)! as String, timeOfSignIn: Date() as NSDate,
+                CommonRequests.sharedInstance.signIn(personId: (cell.child?.Id)! as String, timeOfSignIn: Date() as NSDate,
                                                      onCompletion: {
                                                         DispatchQueue.main.async(execute: {
                                                             self.searchText = ""
@@ -214,11 +214,11 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             }
             signIn.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
             
-            let signOut = UITableViewRowAction(style: .normal, title: "Sign out " + ((cell.tweet?.Name)! as String)) { action, index in
+            let signOut = UITableViewRowAction(style: .normal, title: "Sign out " + ((cell.child?.Name)! as String)) { action, index in
                 
                 self.showOverlayMessage("Signing out...")
                 
-                CommonRequests.sharedInstance.signOut(personId: (cell.tweet?.Id)! as String, timeOfSignOut: Date() as NSDate,
+                CommonRequests.sharedInstance.signOut(personId: (cell.child?.Id)! as String, timeOfSignOut: Date() as NSDate,
                                                       
                                                       onCompletion: {
                                                         
@@ -238,7 +238,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             }
             cancel.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
             
-            if(cell.tweet?.CurrentlySignedIn == true){
+            if(cell.child?.CurrentlySignedIn == true){
                 return [signOut]
             }
             else
