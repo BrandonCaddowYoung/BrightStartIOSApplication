@@ -1,17 +1,8 @@
-//
-//  MediaItem.swift
-//  Twitter
-//
-//  Created by CS193p Instructor.
-//  Copyright (c) 2015 Stanford University. All rights reserved.
-//
+
 
 import Foundation
 
-// holds the network url and aspectRatio of an image attached to a Tweet
-// created automatically when a Tweet object is created
-
-public struct MediaItem
+public struct MediaAsset
 {
     public var url: URL!
     public var aspectRatio: Double = 0

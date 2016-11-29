@@ -1,10 +1,3 @@
-//
-//  Tweet.swift
-//  Twitter
-//
-//  Created by CS193p Instructor.
-//  Copyright (c) 2015 Stanford University. All rights reserved.
-//
 
 import Foundation
 
@@ -14,13 +7,13 @@ import Foundation
 // note carefully the comments on the two range properties in an IndexedKeyword
 // Tweet instances re created by fetching from Twitter using a TwitterRequest
 
-open class Tweet : CustomStringConvertible
+open class Person : CustomStringConvertible
 {
     open var text: String
     open var user: User
     open var created: Date
     open var id: String?
-    open var media = [MediaItem]()
+    open var media = [MediaAsset]()
     open var mediaMentions = [IndexedKeyword]()
     open var hashtags = [IndexedKeyword]()
     open var urls = [IndexedKeyword]()
@@ -77,7 +70,7 @@ open class Tweet : CustomStringConvertible
                     id = data?.value(forKeyPath: TwitterKey.ID) as? String
                     if let mediaEntities = data?.value(forKeyPath: TwitterKey.Media) as? NSArray {
                         for mediaData in mediaEntities {
-                            if let mediaItem = MediaItem(data: mediaData as? NSDictionary) {
+                            if let mediaItem = MediaAsset(data: mediaData as? NSDictionary) {
                                 media.append(mediaItem)
                             }
                         }
