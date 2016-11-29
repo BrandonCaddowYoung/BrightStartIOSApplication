@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B1772981DEB8065002992C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772701DEB7F8F002992C9 /* Alamofire.framework */; };
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9A1CAF1A7100948DE5 /* Child.swift */; };
 		D7387E9D1CAF1B1100948DE5 /* ChildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9C1CAF1B1100948DE5 /* ChildRequest.swift */; };
 		D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8661CC981530084ECE4 /* RegisteredCount.swift */; };
@@ -221,6 +222,7 @@
 		7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
+		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		D7387E9A1CAF1A7100948DE5 /* Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
 		D7387E9C1CAF1B1100948DE5 /* ChildRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildRequest.swift; sourceTree = "<group>"; };
 		D739E8661CC981530084ECE4 /* RegisteredCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCount.swift; sourceTree = "<group>"; };
@@ -327,6 +329,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7B2618281DEE07C4005B4B20 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */,
+			);
+			name = HTTP;
+			sourceTree = "<group>";
+		};
 		D7387E991CAF1A2B00948DE5 /* Child */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +389,7 @@
 		D7F995681C9EF4A1001802EC /* BrightStart */ = {
 			isa = PBXGroup;
 			children = (
+				7B2618281DEE07C4005B4B20 /* HTTP */,
 				D739E8651CC981270084ECE4 /* Models */,
 				D7EEEDBB1CC2E005001424FE /* NumbersController.swift */,
 				D74311461CB39AE600C72655 /* API */,
@@ -734,6 +745,7 @@
 				D7F995C81C9EFE30001802EC /* CustomTableViewCell.swift in Sources */,
 				D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */,
 				D7F995C11C9EFAB7001802EC /* User.swift in Sources */,
+				7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */,
 				D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */,
 				D7387E9D1CAF1B1100948DE5 /* ChildRequest.swift in Sources */,
 				D7F995BE1C9EFAB7001802EC /* MediaItem.swift in Sources */,

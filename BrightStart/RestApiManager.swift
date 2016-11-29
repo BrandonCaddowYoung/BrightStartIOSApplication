@@ -6,22 +6,20 @@
 //  Copyright © 2016 dev. All rights reserved.
 //
 
-//TBD: Need to add arguments to each method here.
 
 import Foundation
-
-import Alamofire
 
 typealias ServiceResponse = (JSON, NSError?) -> Void
 
 class RestApiManager: NSObject {
     
     static let sharedInstance = RestApiManager()
-    
     let baseURL = "https://microsoft-apiappce8388460f4f40a6bdcea26f938e44fb.azurewebsites.net/"
-    
     var nurserySchoolId = "";
     
+    /*!
+     @brief Retrieves a list of children that will be displayed to the user for signing in and out.
+    */
     func getPeople(onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
@@ -42,12 +40,15 @@ class RestApiManager: NSObject {
         makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
                 json, err in
-            onCompletion(json as JSON)
+                onCompletion(json as JSON)
         })
     }
     
+    /*!
+     @brief Signs in the selected person.
+     */
     func signIn(personId: String, timeOfSignIn: NSDate, onCompletion: @escaping () -> Void) {
-       
+        
         let defaults = UserDefaults.standard
         
         if let id = defaults.string(forKey: "NurserySchoolId")
@@ -60,13 +61,16 @@ class RestApiManager: NSObject {
         let dateString = dateFormatter.string(from: timeOfSignIn as Date)
         
         let route = baseURL + "api/GeneralHelper/SignPersonIn?personId="+personId+"&targetStamp="+dateString+"&nurserySchoolId=" + nurserySchoolId
-       
+        
         makeHTTPGetRequest(encode: false, path: route, onCompletion: { json, err in
             onCompletion()
         })
         
     }
     
+    /*!
+     @brief Signs out the selected person.
+     */
     func signOut(personId: String, timeOfSignOut: NSDate, onCompletion: @escaping () -> Void) {
         
         let defaults = UserDefaults.standard
@@ -86,7 +90,10 @@ class RestApiManager: NSObject {
             onCompletion()
         })
     }
-   
+    
+    /*!
+     @brief Returns various information relating to how many children are present for any given day.
+     */
     func SelectChildrenCountsForTargetDate(targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
@@ -102,16 +109,16 @@ class RestApiManager: NSObject {
         
         let route = baseURL + "api/DayCountLogic/SelectChildrenCountsForTargetDate?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
         
-         print("Id is: " + nurserySchoolId)
-        
         makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
-            
             onCompletion(json as JSON)
-            
         })
         
     }
     
+    
+    /*!
+     @brief Returns various information relating to how many staff members are present for any given day.
+     */
     func SelectStaffCountsForTargetDate(targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
@@ -129,16 +136,17 @@ class RestApiManager: NSObject {
         
         makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
             
-            print(err!.code)
-            
             onCompletion(json as JSON)
             
         })
         
     }
     
+    /*!
+     @brief Returns the number of children whom have registered hours for any given specific time of any given day.
+     */
     func GetNumberOfChildrenWithRegisteredHoursAtSpecificTime(targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
-       
+        
         let defaults = UserDefaults.standard
         
         if let id = defaults.string(forKey: "NurserySchoolId")
@@ -156,6 +164,10 @@ class RestApiManager: NSObject {
         })
     }
     
+    /*!
+     @brief Returns the number of staff members whom have registered hours for any given specific time of any given day.
+
+     */
     func GetNumberOfStaffWithRegisteredHoursAtSpecificTime(targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
@@ -175,6 +187,9 @@ class RestApiManager: NSObject {
         })
     }
     
+    /*!
+     @brief Returns the number of children whom have registered hours for any given day.
+     */
     func GetNumberOfChildrenWithRegisteredHoursForEntireDay(year: String, month: String, day:String, onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
@@ -195,7 +210,9 @@ class RestApiManager: NSObject {
         
     }
     
-    
+    /*!
+     @brief Returns the number of staff members whom have registered hours for any given day.
+     */
     func GetNumberOfStaffWithRegisteredHoursForEntireDay(year: String, month: String, day:String, onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
@@ -216,172 +233,9 @@ class RestApiManager: NSObject {
         })
         
     }
- 
-    func getMyIP()
-    {
-        let username = "byoung"
-        let password = "P@ssw0rd.1"
-        let loginString = NSString(format: "%@:%@", username, password)
-        let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
-        let base64LoginString = loginData.base64EncodedData()
-        
-        let url:URL = URL(string: "https://microsoft-apiappce8388460f4f40a6bdcea26f938e44fb.azurewebsites.net/api/FilteredChildLogic/SelectAllChildrenForFrontPage?targetDate=2016-11-27%2018:40:10&nurserySchoolId=5BFFDA7E-05A8-43C2-BD98-BAC4652419A1")!
-        let session = URLSession.shared
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
-        
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        
-        
-       // let paramString = "data=Hello"
-        // request.httpBody = paramString.data(using: String.Encoding.utf8)
-        
-        let task = session.dataTask(with: request as URLRequest) {
-            (
-            data, response, error) in
-            
-            guard let data = data, let _:URLResponse = response  , error == nil else {
-                print("error")
-                return
-            }
-            
-            let dataString =  String(data: data, encoding: String.Encoding.utf8)
-            print(dataString)
-            
-        }
-        
-        task.resume()
-    
-    }
     
     
-    func makeHTTPGetRequest(encode: Bool, path: String, onCompletion: @escaping ServiceResponse) {
         
-        let user = "byoung"
-        let password = "P@ssw0rd.1"
-        
-        var headers: HTTPHeaders = [:]
-        
-        if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
-            headers[authorizationHeader.key] = authorizationHeader.value
-        }
-        
-        var error: NSError?
-        
-        Alamofire.request(path, headers: headers)
-            .responseJSON { response in
-                
-                let json = JSON(response)
-                
-               //onCompletion(json, error)
-        }
-        
-        Alamofire.request(path, headers: headers)
-            .responseJSON { response in
-           
-                switch response.result {
-            
-                case .success(let data):
-                
-                    let json = JSON(data)
-                onCompletion(json, error)
-           
-                case .failure(let error):
-                print("Request failed with error: \(error)")
-                    
-            }
-        }
-        
-        return;
-        
-        // getMyIP()
-        
-        // set up the base64-encoded credentials
-        let username1 = "byoung"
-        let password1 = "P@ssw0rd.1"
-        let loginString = NSString(format: "%@:%@", username1, password1)
-        let loginData = loginString.data(using: String.Encoding.utf8.rawValue)!
-        let base64LoginString = loginData.base64EncodedData()
-        
-        let URL = NSURL(string: path)!
-        
-        var request = URLRequest(url:URL as URL)
-        
-        //Setting the basic auth credentials
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-        
-        
-        
-        
-        
-        
-        
-        let sessionConfiguration = URLSessionConfiguration.default
-        let session = URLSession(configuration: sessionConfiguration)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
-            
-            let json:JSON = JSON(data: data!)
-            
-            print(data)
-            print(response)
-            print(error)
-            print(json)
-
-            
-                if let httpResponse = response as? HTTPURLResponse {
-                    
-                    //Here we are checking the response code, its its not a code starting with 2 then something has gone wrong.
-                    let remaining = httpResponse.statusCode % 200
-                    let hundredStatusCode = httpResponse.statusCode - remaining
-                    
-                    if(hundredStatusCode != 200)
-                    {
-                        //If the status code is something other than 2xx then we should recall.
-                        
-                        //This happens as azure goes to sleep and needs waking up sometimes.
-                        
-                        let task2 = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
-                            
-                            let json:JSON = JSON(data: data!)
-                            
-                            onCompletion(json, error as NSError?)
-                            
-                        })
-                        
-                        task2.resume()
-                    }
-                    else
-                    {
-                        onCompletion(json , error as NSError?)
-                    }
-                    
-                }
-                
-            
-            
-            
-            
-           
-        })
-        
-        task.resume()
-        
-    }
     
     
-   }
+}
