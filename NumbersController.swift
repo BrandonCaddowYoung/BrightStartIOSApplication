@@ -11,7 +11,7 @@ import UIKit
 class NumbersController: UIViewController {
     
     var _ChildrenRegisterdHoursCounts:[RegisteredCount] = [RegisteredCount]()
-     var _StaffRegisterdHoursCounts:[RegisteredCount] = [RegisteredCount]()
+    var _StaffRegisterdHoursCounts:[RegisteredCount] = [RegisteredCount]()
     
     @IBOutlet weak var signedInChildren: UILabel!
     @IBOutlet weak var signedInStaff: UILabel!
@@ -28,6 +28,9 @@ class NumbersController: UIViewController {
     @IBOutlet weak var numberOfChilrenAtGivenTime: UILabel!
     @IBOutlet weak var numberOfStaffAtGivenTime: UILabel!
     
+    /*!
+     @brief Deals with collecting the appropriate infomration when the user changes the time on the slider.
+     */
     @IBAction func SliderValueChanged(_ sender: AnyObject) {
         
         var currentValue = Int(numbersSlider.value)
@@ -63,8 +66,7 @@ class NumbersController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        RestApiManager.sharedInstance.SelectChildrenCountsForTargetDate(targetDate: Date() as NSDate, onCompletion: { json in
+        CommonRequests.sharedInstance.SelectChildrenCountsForTargetDate(targetDate: Date() as NSDate, onCompletion: { json in
             
             let signedInChildren = json["CurrentlySignedInCount"].stringValue
             
@@ -85,7 +87,7 @@ class NumbersController: UIViewController {
         })
         
         
-        RestApiManager.sharedInstance.SelectStaffCountsForTargetDate(targetDate: Date() as NSDate, onCompletion: { json in
+        CommonRequests.sharedInstance.SelectStaffCountsForTargetDate(targetDate: Date() as NSDate, onCompletion: { json in
             
             let signedInStaff = json["CurrentlySignedInCount"].stringValue
            
@@ -110,7 +112,7 @@ class NumbersController: UIViewController {
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.day , .month , .year], from: date)
         
-        RestApiManager.sharedInstance.GetNumberOfChildrenWithRegisteredHoursForEntireDay(year: String(describing: components.year), month: String(describing: components.month), day: String(describing: components.day), onCompletion: { json in
+        CommonRequests.sharedInstance.GetNumberOfChildrenWithRegisteredHoursForEntireDay(year: String(describing: components.year), month: String(describing: components.month), day: String(describing: components.day), onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
 
@@ -137,7 +139,7 @@ class NumbersController: UIViewController {
             
         })
         
-        RestApiManager.sharedInstance.GetNumberOfStaffWithRegisteredHoursForEntireDay(year: String(describing: components.year), month: String(describing: components.month), day: String(describing: components.day), onCompletion: { json in
+        CommonRequests.sharedInstance.GetNumberOfStaffWithRegisteredHoursForEntireDay(year: String(describing: components.year), month: String(describing: components.month), day: String(describing: components.day), onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
                 

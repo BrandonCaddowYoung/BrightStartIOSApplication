@@ -11,11 +11,11 @@
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9A1CAF1A7100948DE5 /* Child.swift */; };
-		D7387E9D1CAF1B1100948DE5 /* ChildRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9C1CAF1B1100948DE5 /* ChildRequest.swift */; };
+		D7387E9D1CAF1B1100948DE5 /* ChildRequest.OLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9C1CAF1B1100948DE5 /* ChildRequest.OLD.swift */; };
 		D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8661CC981530084ECE4 /* RegisteredCount.swift */; };
 		D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8681CC9829C0084ECE4 /* DayCount.swift */; };
 		D739E86B1CD3FACF0084ECE4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E86A1CD3FACF0084ECE4 /* MainTabBarController.swift */; };
-		D74311481CB39B1900C72655 /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74311471CB39B1900C72655 /* RestApiManager.swift */; };
+		D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74311471CB39B1900C72655 /* CommonRequests.swift */; };
 		D78607E21CC2B78200BE37C3 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78607E11CC2B78200BE37C3 /* WelcomeController.swift */; };
 		D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEEDBB1CC2E005001424FE /* NumbersController.swift */; };
 		D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F6A4E61CAF2C3000534722 /* SwiftyJSON.swift */; };
@@ -224,11 +224,11 @@
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		D7387E9A1CAF1A7100948DE5 /* Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
-		D7387E9C1CAF1B1100948DE5 /* ChildRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildRequest.swift; sourceTree = "<group>"; };
+		D7387E9C1CAF1B1100948DE5 /* ChildRequest.OLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildRequest.OLD.swift; sourceTree = "<group>"; };
 		D739E8661CC981530084ECE4 /* RegisteredCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCount.swift; sourceTree = "<group>"; };
 		D739E8681CC9829C0084ECE4 /* DayCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCount.swift; sourceTree = "<group>"; };
 		D739E86A1CD3FACF0084ECE4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		D74311471CB39B1900C72655 /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
+		D74311471CB39B1900C72655 /* CommonRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonRequests.swift; sourceTree = "<group>"; };
 		D78607E11CC2B78200BE37C3 /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
 		D7EEEDBB1CC2E005001424FE /* NumbersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumbersController.swift; path = ../NumbersController.swift; sourceTree = "<group>"; };
 		D7F6A4E61CAF2C3000534722 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -337,11 +337,19 @@
 			name = HTTP;
 			sourceTree = "<group>";
 		};
+		7B26182B1DEE0E6C005B4B20 /* ThirdPartyTools */ = {
+			isa = PBXGroup;
+			children = (
+				D7F6A4E61CAF2C3000534722 /* SwiftyJSON.swift */,
+			);
+			name = ThirdPartyTools;
+			sourceTree = "<group>";
+		};
 		D7387E991CAF1A2B00948DE5 /* Child */ = {
 			isa = PBXGroup;
 			children = (
 				D7387E9A1CAF1A7100948DE5 /* Child.swift */,
-				D7387E9C1CAF1B1100948DE5 /* ChildRequest.swift */,
+				D7387E9C1CAF1B1100948DE5 /* ChildRequest.OLD.swift */,
 			);
 			name = Child;
 			sourceTree = "<group>";
@@ -358,8 +366,7 @@
 		D74311461CB39AE600C72655 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				D7F6A4E61CAF2C3000534722 /* SwiftyJSON.swift */,
-				D74311471CB39B1900C72655 /* RestApiManager.swift */,
+				D74311471CB39B1900C72655 /* CommonRequests.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -389,6 +396,7 @@
 		D7F995681C9EF4A1001802EC /* BrightStart */ = {
 			isa = PBXGroup;
 			children = (
+				7B26182B1DEE0E6C005B4B20 /* ThirdPartyTools */,
 				7B2618281DEE07C4005B4B20 /* HTTP */,
 				D739E8651CC981270084ECE4 /* Models */,
 				D7EEEDBB1CC2E005001424FE /* NumbersController.swift */,
@@ -741,13 +749,13 @@
 				D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */,
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,
 				D7F995C01C9EFAB7001802EC /* TwitterRequest.swift in Sources */,
-				D74311481CB39B1900C72655 /* RestApiManager.swift in Sources */,
+				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				D7F995C81C9EFE30001802EC /* CustomTableViewCell.swift in Sources */,
 				D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */,
 				D7F995C11C9EFAB7001802EC /* User.swift in Sources */,
 				7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */,
 				D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */,
-				D7387E9D1CAF1B1100948DE5 /* ChildRequest.swift in Sources */,
+				D7387E9D1CAF1B1100948DE5 /* ChildRequest.OLD.swift in Sources */,
 				D7F995BE1C9EFAB7001802EC /* MediaItem.swift in Sources */,
 				D739E86B1CD3FACF0084ECE4 /* MainTabBarController.swift in Sources */,
 				D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */,

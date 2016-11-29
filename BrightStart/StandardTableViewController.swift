@@ -80,7 +80,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
         
         if searchText != nil{
             
-            RestApiManager.sharedInstance.getPeople { json in
+            CommonRequests.sharedInstance.getPeople { json in
                 
                 for (index: _, subJson: JSON) in json {
                     
@@ -204,7 +204,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
                 
                 self.showOverlayMessage("Signing in...")
                 
-                RestApiManager.sharedInstance.signIn(personId: (cell.tweet?.Id)! as String, timeOfSignIn: Date() as NSDate,
+                CommonRequests.sharedInstance.signIn(personId: (cell.tweet?.Id)! as String, timeOfSignIn: Date() as NSDate,
                                                      onCompletion: {
                                                         DispatchQueue.main.async(execute: {
                                                             self.searchText = ""
@@ -218,7 +218,7 @@ class StandardTableViewController: UITableViewController, UITextFieldDelegate {
                 
                 self.showOverlayMessage("Signing out...")
                 
-                RestApiManager.sharedInstance.signOut(personId: (cell.tweet?.Id)! as String, timeOfSignOut: Date() as NSDate,
+                CommonRequests.sharedInstance.signOut(personId: (cell.tweet?.Id)! as String, timeOfSignOut: Date() as NSDate,
                                                       
                                                       onCompletion: {
                                                         

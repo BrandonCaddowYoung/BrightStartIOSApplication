@@ -11,9 +11,9 @@ import Foundation
 
 typealias ServiceResponse = (JSON, NSError?) -> Void
 
-class RestApiManager: NSObject {
+class CommonRequests: NSObject {
     
-    static let sharedInstance = RestApiManager()
+    static let sharedInstance = CommonRequests()
     let baseURL = "https://microsoft-apiappce8388460f4f40a6bdcea26f938e44fb.azurewebsites.net/"
     var nurserySchoolId = "";
     
@@ -227,6 +227,26 @@ class RestApiManager: NSObject {
         
         let route = baseURL + "api/RegisteredCountLogic/GetNumberOfStaffWithRegisteredHoursForEntireDay?year="+year+"&month="+month+"&day=" + day + "&nurserySchoolId=" + nurserySchoolId
         
+        
+        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+        
+    }
+    
+    /*!
+     @brief Given a username and password, retrieves a NurserySchoolId(if it exists).
+     */
+    func RetrieveNurserySchoolId(userName: String, passWord: String, onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let route = baseURL + "api/RegisteredCountLogic/GetNurserySchooolId?userName="+userName+"&passWord="+passWord
         
         makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
             onCompletion(json as JSON)

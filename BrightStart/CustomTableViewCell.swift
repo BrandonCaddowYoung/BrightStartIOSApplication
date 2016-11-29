@@ -1,4 +1,10 @@
-
+//
+//  CustomTableViewCell.swift
+//  BrightStart
+//
+//  Created by Colleen Caddow on 29/11/2016.
+//  Copyright © 2016 dev. All rights reserved.
+//
 
 import UIKit
 
@@ -14,7 +20,6 @@ class CustomTableViewCell: UITableViewCell
     @IBOutlet weak var tweetScreenNameLabel: UILabel!
     @IBOutlet weak var takeActionText: UILabel!
     @IBOutlet weak var currentStatusText: UILabel!
-    
     
     func IsTimeNowAfterRegisteredFinishTime(_ registeredFinishTime: Date) -> Bool
     {
@@ -61,8 +66,6 @@ class CustomTableViewCell: UITableViewCell
         return minutesElapsed
     }
     
-    
-    
     func updateUI() {
         
         // reset any existing tweet information that may exist from a previus load.
@@ -74,13 +77,6 @@ class CustomTableViewCell: UITableViewCell
         // load new information from our tweet (if any)
         if let tweet = self.tweet
         {
-            //tweetTextLabel?.text = tweet.Id
-            //if tweetTextLabel?.text != nil  {
-            //  for _ in tweet.media {
-            //    tweetTextLabel.text! += " 📷"
-            // }
-            // }
-            
             tweetScreenNameLabel?.text = "\(tweet.Name)" // tweet.user.description
             
             let lightBlue = UIColor(red: 126/255, green: 206/255, blue: 253/255, alpha: 0.5)
@@ -138,7 +134,6 @@ class CustomTableViewCell: UITableViewCell
                         self.backgroundColor = lightBlue
                     }
                 }
-                
             }
             else //Not signed in
             {
