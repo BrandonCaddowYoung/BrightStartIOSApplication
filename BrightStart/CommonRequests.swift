@@ -114,7 +114,6 @@ class CommonRequests: NSObject {
         
     }
     
-    
     /*!
      @brief Returns various information relating to how many staff members are present for any given day.
      */

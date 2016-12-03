@@ -29,7 +29,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var signInButton: UIImageView!
+    @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signInButtonLabl: UILabel!
     
     override func viewDidLoad() {
@@ -38,6 +38,17 @@ class SignInViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         setupConstraints()
+        
+        let defaults = UserDefaults.standard
+        
+        //Check for existing username.
+        if let username = defaults.string(forKey: "NurserySchoolUsername")
+        {
+            usernameTextField.text = username;
+        }
+        
+        //We could put the passwod in place if it exists however is a security risk.
+        
     }
 
     func setupConstraints() {
@@ -101,12 +112,6 @@ class SignInViewController: UIViewController {
         signInButton.widthAnchor.constraint(
             equalTo: bottomView.widthAnchor,
             multiplier: 0.10).isActive = true
-
-        
-
-        
-        
-        
         
         //MIDDLE VIEW
         
@@ -201,13 +206,6 @@ class SignInViewController: UIViewController {
             equalTo: middleView.heightAnchor,
             multiplier: 0.10).isActive = true
 
-
-
-        
-        
-        
-        
-        
         //Center all text input and labels horizontally
         
         usernameLabel.centerXAnchor.constraint(
@@ -269,9 +267,6 @@ class SignInViewController: UIViewController {
             equalTo: passwordTextField.leftAnchor
             ).isActive = true
         
-        
-        
-        
         //TOP VIEW
         
         topView.translatesAutoresizingMaskIntoConstraints = false
@@ -310,22 +305,126 @@ class SignInViewController: UIViewController {
         logoImaveView.heightAnchor.constraint(
             equalTo: topView.heightAnchor).isActive = true
         
-        
-        
-        
-        
-        
-        
-        
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    /*!
+     @brief This simply dismisses the keyboard when enter is pressed.
+     */
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+      self.view.endEditing(true)
+      return false
+    }
+    
+    /*!
+     @brief Stores the given Username and NurserySchoolId within the defaults so they can be used later when making API calls.
+     */
+    func storeNurserySchoolIdWithinDefaults(username: String, nurserySchoolId: String)
+    {
+        let defaults = UserDefaults.standard
+        defaults.set(username, forKey: "NurserySchoolUserName")
+        defaults.set(nurserySchoolId, forKey: "NurserySchoolId")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "AccessGrantedSegue") {
+            //Do any work before moving to the next scene.
+        }
+    }
+    
+    /*!
+     @brief The user finished editing the username text field.
+     */
+    @IBAction func userNameEditingEnd(_ sender: Any) {
+        //MoveToNextSceneIfCredentialsAreValid()
+    }
+    
+    /*!
+     @brief The user finished editing the password text field.
+     */
+    @IBAction func passWordEditEnd(_ sender: Any) {
+        //MoveToNextSceneIfCredentialsAreValid()
+    }
+    
+    /*!
+     @brief If the credentials withi the text fields are valid, will move to the next secene.
+     */
+    func MoveToNextSceneIfCredentialsAreValid() -> Bool
+    {
+        let nurserySchoolUserName = usernameTextField.text
+        let nurserySchoolPassword = passwordTextField.text
+        
+        let shouldGrantAccess = shouldGranAccess(username: nurserySchoolUserName!, password: nurserySchoolPassword!)
+        
+        if(shouldGrantAccess)
+        {
+            performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
+            
+            return true
+        }
+        
+        return false
+    }
+    
+    /*!
+     @brief Using the given credentials, makes an API call to retrieve the NurserySchoolId. if valid, stores the NurserySchoolId within the defaults
+     */
+    func shouldGranAccess(username: String, password:String) -> Bool {
+     
+        if username.isEmpty == true || password.isEmpty == true {
+        return false
+        }
+        
+        //Make api call to check if credentials are valid.
+        var nurserySchoolId = ""
+        
+        CommonRequests.sharedInstance.RetrieveNurserySchoolId(userName: username, passWord: password, onCompletion: { json in
+            
+            for (index: _, subJson: JSON) in json {
+                
+                 nurserySchoolId = String(JSON["NurserySchoolId"].stringValue)
+            }
+            
+            DispatchQueue.main.async(execute: {
+                
+                //Go do something on the ui thread???
+                
+            })
+            
+        })
+        
+        if nurserySchoolId.isEmpty == false
+        {
+            //Store the nursery school Id
+            self.storeNurserySchoolIdWithinDefaults(username: username, nurserySchoolId: nurserySchoolId)
+            
+            return true
+        }
+        else
+        {
+            return false
+        }
+        
+    }
 
+    /*!
+     @brief The user has clicked the sign in button so moving to the next scene if the credentials supplied are valid.
+     */
+    @IBAction func signInButtonClicked(_ sender: Any) {
+        
+        if (MoveToNextSceneIfCredentialsAreValid()==false)
+        {
+        //Credentials are invalid, show message to user.
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 
