@@ -237,14 +237,7 @@ class CommonRequests: NSObject {
      */
     func RetrieveNurserySchoolId(userName: String, passWord: String, onCompletion: @escaping (JSON) -> Void) {
         
-        let defaults = UserDefaults.standard
-        
-        if let id = defaults.string(forKey: "NurserySchoolId")
-        {
-            nurserySchoolId = id;
-        }
-        
-        let route = baseURL + "api/RegisteredCountLogic/GetNurserySchooolId?userName="+userName+"&passWord="+passWord
+        let route = baseURL + "api/OnlineLoginDetailsLogic/ValidateCreds?userName="+userName+"&password="+passWord
         
         makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
             onCompletion(json as JSON)

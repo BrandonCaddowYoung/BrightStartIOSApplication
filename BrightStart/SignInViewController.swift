@@ -50,7 +50,33 @@ class SignInViewController: UIViewController {
         //We could put the passwod in place if it exists however is a security risk.
         
     }
+    
+    /*!
+     @brief Retrieves the NurserySchoolId from the defaults.
+     */
+    func retreiveStoredNurserySchoolId() -> String
+    {
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            return id
+        }
+        
+        return ""
+    }
+    
+    /*!
+     @brief Removes the NurserySchoolId from the defaults.
+     */
+    func removeStoredNurserySchoolId()
+    {
+        storeNurserySchoolIdWithinDefaults(username: "",nurserySchoolId: "")
+    }
 
+    /*!
+     @brief Sets up all constraints for the view.
+     */
     func setupConstraints() {
         
         //BOTTOM VIEW
@@ -107,7 +133,7 @@ class SignInViewController: UIViewController {
         
         signInButton.heightAnchor.constraint(
             equalTo: bottomView.heightAnchor,
-            multiplier: 0.25).isActive = true
+            multiplier: 0.40).isActive = true
         
         signInButton.widthAnchor.constraint(
             equalTo: bottomView.widthAnchor,
@@ -331,6 +357,9 @@ class SignInViewController: UIViewController {
         defaults.set(nurserySchoolId, forKey: "NurserySchoolId")
     }
     
+    /*!
+     @brief Preparing to segue.
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if (segue.identifier == "AccessGrantedSegue") {
@@ -349,68 +378,46 @@ class SignInViewController: UIViewController {
      @brief The user finished editing the password text field.
      */
     @IBAction func passWordEditEnd(_ sender: Any) {
-        //MoveToNextSceneIfCredentialsAreValid()
+       // MoveToNextSceneIfCredentialsAreValid()
     }
     
     /*!
      @brief If the credentials withi the text fields are valid, will move to the next secene.
      */
-    func MoveToNextSceneIfCredentialsAreValid() -> Bool
+    func MoveToNextSceneIfCredentialsAreValid()
     {
         let nurserySchoolUserName = usernameTextField.text
         let nurserySchoolPassword = passwordTextField.text
         
-        let shouldGrantAccess = shouldGranAccess(username: nurserySchoolUserName!, password: nurserySchoolPassword!)
-        
-        if(shouldGrantAccess)
-        {
-            performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
-            
-            return true
-        }
-        
-        return false
-    }
-    
-    /*!
-     @brief Using the given credentials, makes an API call to retrieve the NurserySchoolId. if valid, stores the NurserySchoolId within the defaults
-     */
-    func shouldGranAccess(username: String, password:String) -> Bool {
-     
-        if username.isEmpty == true || password.isEmpty == true {
-        return false
+        if nurserySchoolUserName?.isEmpty == true || nurserySchoolPassword?.isEmpty == true {
+            return
         }
         
         //Make api call to check if credentials are valid.
         var nurserySchoolId = ""
         
-        CommonRequests.sharedInstance.RetrieveNurserySchoolId(userName: username, passWord: password, onCompletion: { json in
+        CommonRequests.sharedInstance.RetrieveNurserySchoolId(userName: nurserySchoolUserName!, passWord: nurserySchoolPassword!, onCompletion: { json in
             
-            for (index: _, subJson: JSON) in json {
-                
-                 nurserySchoolId = String(JSON["NurserySchoolId"].stringValue)
-            }
+            nurserySchoolId = json.rawString()!
             
             DispatchQueue.main.async(execute: {
                 
-                //Go do something on the ui thread???
+                if nurserySchoolId.isEmpty == false
+                {
+                    //Store the nursery school Id
+                    self.storeNurserySchoolIdWithinDefaults(username: nurserySchoolUserName!, nurserySchoolId: nurserySchoolId)
+                    
+                    self.performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
+                    
+                }
+                else
+                {
+                //Notify the user that the given credentials were incorrect.
+                }
                 
             })
             
         })
-        
-        if nurserySchoolId.isEmpty == false
-        {
-            //Store the nursery school Id
-            self.storeNurserySchoolIdWithinDefaults(username: username, nurserySchoolId: nurserySchoolId)
-            
-            return true
-        }
-        else
-        {
-            return false
-        }
-        
     }
 
     /*!
@@ -418,10 +425,10 @@ class SignInViewController: UIViewController {
      */
     @IBAction func signInButtonClicked(_ sender: Any) {
         
-        if (MoveToNextSceneIfCredentialsAreValid()==false)
-        {
-        //Credentials are invalid, show message to user.
-        }
+        //Removing incase the user is trying to switch accounts.
+        removeStoredNurserySchoolId()
+        
+        MoveToNextSceneIfCredentialsAreValid()
         
     }
     
