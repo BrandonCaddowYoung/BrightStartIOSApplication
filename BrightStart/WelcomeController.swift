@@ -29,14 +29,8 @@ class WelcomeController: UIViewController {
         if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolIdTextField.text = id;
-            
-           //print("Found a nursery school id and it is: ")
-           // print(id)
         }
-        else
-        {
-            //print("Not found a nursery school id")
-        }
+    
         
     }
     

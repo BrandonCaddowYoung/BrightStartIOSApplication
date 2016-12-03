@@ -6,7 +6,6 @@
 //  Copyright © 2016 dev. All rights reserved.
 //
 
-
 import Foundation
 
 typealias ServiceResponse = (JSON, NSError?) -> Void

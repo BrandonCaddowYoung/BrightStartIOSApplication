@@ -16,10 +16,10 @@ class ClockingTableViewCell: UITableViewCell
         }
     }
     
-    @IBOutlet weak var takeActionImage: UIImageView!
-    @IBOutlet weak var tweetScreenNameLabel: UILabel!
-    @IBOutlet weak var takeActionText: UILabel!
-    @IBOutlet weak var currentStatusText: UILabel!
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var childNameLabel: UILabel!
+    @IBOutlet weak var cellDetailsText: UILabel!
+    @IBOutlet weak var cellInformationText: UILabel!
     
     func IsTimeNowAfterRegisteredFinishTime(_ registeredFinishTime: Date) -> Bool
     {
@@ -67,17 +67,12 @@ class ClockingTableViewCell: UITableViewCell
     }
     
     func updateUI() {
-        
-        // reset any existing tweet information that may exist from a previus load.
-        // tweetTextLabel?.attributedText = nil
-        tweetScreenNameLabel?.text = nil
-        //tweetProfileImageView?.image = nil
-        // tweetCreatedLabel?.text = nil
-        
-        // load new information from our tweet (if any)
-        if let tweet = self.child
+       
+        childNameLabel?.text = nil
+       
+         if let tweet = self.child
         {
-            tweetScreenNameLabel?.text = "\(tweet.Name)" // tweet.user.description
+            childNameLabel?.text = "\(tweet.Name)" // tweet.user.description
             
             let lightBlue = UIColor(red: 126/255, green: 206/255, blue: 253/255, alpha: 0.5)
             let lightPink = UIColor(red: 243/255, green: 212/255, blue: 226/255, alpha: 0.7)
@@ -106,8 +101,8 @@ class ClockingTableViewCell: UITableViewCell
                         //Child has no regisered hours.
                         
                         //self.takeActionImage?.image = UIImage(named: "star")
-                        self.takeActionText.text = "Signed in"
-                        self.currentStatusText.text = "No registerd hours."
+                        self.cellDetailsText.text = "Signed in"
+                        self.cellInformationText.text = "No registerd hours."
                         self.backgroundColor = lightBlue
                         
                     }
@@ -117,11 +112,9 @@ class ClockingTableViewCell: UITableViewCell
                         //Time now is after the childs regisred finish time.
                         
                         //self.takeActionImage?.image = UIImage(named: "priority")
-                        self.takeActionText.text = "Signed in"
-                        self.currentStatusText.text = "Late to leave, expected to go home at: " + registeredFinishTime
+                        self.cellDetailsText.text = "Signed in"
+                        self.cellInformationText.text = "Late to leave, expected to go home at: " + registeredFinishTime
                         self.backgroundColor = lightBlue
-                        
-                        //shouldChildHaveBeenSignedOutAlready = true
                     }
                     else{
                         
@@ -129,17 +122,17 @@ class ClockingTableViewCell: UITableViewCell
                         //Time now is before the childs regisred finish time.
                         
                         //self.takeActionImage?.image = UIImage(named: "star")
-                        self.takeActionText.text = "Signed in"
-                        self.currentStatusText.text = "Expected to go home at " + registeredFinishTime
+                        self.cellDetailsText.text = "Signed in"
+                        self.cellInformationText.text = "Expected to go home at " + registeredFinishTime
                         self.backgroundColor = lightBlue
                     }
                 }
             }
             else //Not signed in
             {
-                self.takeActionImage?.image = nil
+                self.cellImage?.image = nil
                 
-                self.takeActionText.text = ""
+                self.cellDetailsText.text = ""
                 
                 if let savedDate = UserDefaults.standard.object(forKey: "dateKey")  as? Date
                 {
@@ -161,8 +154,8 @@ class ClockingTableViewCell: UITableViewCell
                             //Time now is before the childs regisred start time.
                             
                             self.backgroundColor = lightGrey
-                            self.takeActionText.text = "Expected in"
-                            self.currentStatusText.text = "Expected in " + String(format:"%.0f", abs(minutesElapsed)) + " minutes."
+                            self.cellDetailsText.text = "Expected in"
+                            self.cellInformationText.text = "Expected in " + String(format:"%.0f", abs(minutesElapsed)) + " minutes."
                         }
                         else
                         {
@@ -200,8 +193,8 @@ class ClockingTableViewCell: UITableViewCell
                                     
                                     //Child is yet to arrive/Child is late to sign in
                                     self.backgroundColor = lightGrey
-                                    self.takeActionText.text = "Expected in at " + registeredStartTime
-                                    self.currentStatusText.text = String(format:"%.0f", minutesElapsed) + " minutes late."
+                                    self.cellDetailsText.text = "Expected in at " + registeredStartTime
+                                    self.cellInformationText.text = String(format:"%.0f", minutesElapsed) + " minutes late."
                                     
                                 }
                                 else
@@ -230,8 +223,8 @@ class ClockingTableViewCell: UITableViewCell
                                     
                                     //Child is yet to arrive/Child is late to sign in
                                     self.backgroundColor = lightPink
-                                    self.takeActionText.text = "Gone home."
-                                    self.currentStatusText.text = "Signed out."
+                                    self.cellDetailsText.text = "Gone home."
+                                    self.cellInformationText.text = "Signed out."
                                     
                                 }
                                 
@@ -244,45 +237,12 @@ class ClockingTableViewCell: UITableViewCell
                         //Child does not have registered hours.
                         
                         self.backgroundColor = UIColor.white
-                        self.takeActionText.text = "Not expected in."
-                        self.currentStatusText.text = ""
+                        self.cellDetailsText.text = "Not expected in."
+                        self.cellInformationText.text = ""
                     }
                     
                 }
             }
-            
-            //Study this!
-            
-            // if let profileImageURL = tweet.user.profileImageURL {
-            //   let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
-            // dispatch_async(dispatch_get_global_queue(qos, 0), {()-> Void in
-            
-            //Now we are on a seperate thread.
-            //   if let imageData = NSData(contentsOfURL: profileImageURL) {
-            
-            //     dispatch_async(dispatch_get_main_queue()){
-            
-            //Now we are back on the main UI thread
-            //       if profileImageURL == tweet.user.profileImageURL {
-            //         self.tweetProfileImageView?.image = UIImage(data: imageData)
-            
-            //   }
-            // else {
-            //   self.tweetProfileImageView?.image = nil
-            // }
-            // }
-            // }
-            
-            // })
-            // }
-            
-            //let formatter = NSDateFormatter()
-            //if NSDate().timeIntervalSinceDate(tweet.created) > 24*60*60 {
-            //  formatter.dateStyle = NSDateFormatterStyle.ShortStyle
-            //} else {
-            //  formatter.timeStyle = NSDateFormatterStyle.ShortStyle
-            // }
-            //tweetCreatedLabel?.text = formatter.stringFromDate(tweet.Id)
         }
         
     }

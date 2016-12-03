@@ -28,7 +28,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             //print("Its an Iphone")
             
             self.selectedIndex = 1
-            tabBar.isHidden = true;
+            tabBar.isHidden = false;
         }
         
     }
