@@ -17,7 +17,6 @@
 		D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8681CC9829C0084ECE4 /* DayCount.swift */; };
 		D739E86B1CD3FACF0084ECE4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E86A1CD3FACF0084ECE4 /* MainTabBarController.swift */; };
 		D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74311471CB39B1900C72655 /* CommonRequests.swift */; };
-		D78607E21CC2B78200BE37C3 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78607E11CC2B78200BE37C3 /* WelcomeController.swift */; };
 		D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EEEDBB1CC2E005001424FE /* NumbersController.swift */; };
 		D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F6A4E61CAF2C3000534722 /* SwiftyJSON.swift */; };
 		D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F995691C9EF4A1001802EC /* AppDelegate.swift */; };
@@ -227,7 +226,6 @@
 		D739E8681CC9829C0084ECE4 /* DayCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCount.swift; sourceTree = "<group>"; };
 		D739E86A1CD3FACF0084ECE4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D74311471CB39B1900C72655 /* CommonRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonRequests.swift; sourceTree = "<group>"; };
-		D78607E11CC2B78200BE37C3 /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
 		D7EEEDBB1CC2E005001424FE /* NumbersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumbersController.swift; path = ../NumbersController.swift; sourceTree = "<group>"; };
 		D7F6A4E61CAF2C3000534722 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D7F995661C9EF4A1001802EC /* BrightStart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrightStart.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -345,7 +343,6 @@
 				D739E86A1CD3FACF0084ECE4 /* MainTabBarController.swift */,
 				D7EEEDBB1CC2E005001424FE /* NumbersController.swift */,
 				D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */,
-				D78607E11CC2B78200BE37C3 /* WelcomeController.swift */,
 				7B2E88A41DEF7F73003F7E45 /* CollectionViewController.swift */,
 				7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */,
 			);
@@ -534,16 +531,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -747,7 +744,6 @@
 				D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */,
 				D739E86B1CD3FACF0084ECE4 /* MainTabBarController.swift in Sources */,
 				D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */,
-				D78607E21CC2B78200BE37C3 /* WelcomeController.swift in Sources */,
 				7B2E88A51DEF7F73003F7E45 /* CollectionViewController.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,

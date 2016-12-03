@@ -536,7 +536,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" image="sunny" badgeValue="new" selectedImage="EC42FC82-2457-4EA3-A0EB-5ECCD138B7DC" id="g5D-iJ-PXL"/>
+                    <tabBarItem key="tabBarItem" image="sunny" badgeValue="new" selectedImage="8D055178-A44F-4A4A-8D08-7D1306AF6214" id="g5D-iJ-PXL"/>
                     <connections>
                         <outlet property="numberOfChilrenAtGivenTime" destination="akC-ba-Hs7" id="WY5-3N-zE4"/>
                         <outlet property="numberOfStaffAtGivenTime" destination="Hgq-Tm-bdW" id="qBN-uF-MT4"/>
@@ -923,101 +923,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sy4-Cj-dGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2159.1999999999998" y="646.32683658170924"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="fhV-pK-iw3">
-            <objects>
-                <viewController id="NMK-9o-2FP" customClass="WelcomeController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AfH-ie-bE6"/>
-                        <viewControllerLayoutGuide type="bottom" id="Zwp-pz-Syb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="NGh-vG-3wH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEW-bh-18f">
-                                <rect key="frame" x="192" y="341" width="216" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="216" id="oRT-86-753"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <state key="normal" title="Go to the register."/>
-                                <connections>
-                                    <action selector="goToRegisterButton:" destination="NMK-9o-2FP" eventType="touchUpInside" id="Mix-V8-ZcH"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="BrightStartLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Tti-mK-zrv">
-                                <rect key="frame" x="250" y="83" width="100" height="91"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="91" id="Qq1-Ir-6AM"/>
-                                </constraints>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5BFFDA7E-05A8-43C2-BD98-BAC4652419A1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="Jdz-in-FYh">
-                                <rect key="frame" x="138" y="266" width="324" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="WCb-fK-nvD"/>
-                                    <constraint firstAttribute="width" constant="320" id="hwW-qy-E4O"/>
-                                    <constraint firstAttribute="width" constant="350" id="vbB-D6-Ku4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="hwW-qy-E4O"/>
-                                        <exclude reference="vbB-D6-Ku4"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="nurserySchoolIdEditEnd:" destination="NMK-9o-2FP" eventType="editingDidEndOnExit" id="oJK-Xk-0tM"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="FEW-bh-18f" firstAttribute="centerX" secondItem="NGh-vG-3wH" secondAttribute="centerX" id="4Ef-Oh-lgs"/>
-                            <constraint firstItem="Tti-mK-zrv" firstAttribute="top" secondItem="AfH-ie-bE6" secondAttribute="bottom" constant="63" id="NrI-qi-P0v"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Jdz-in-FYh" secondAttribute="leading" id="QRs-ZC-bYs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Jdz-in-FYh" secondAttribute="trailing" id="TDV-fJ-pO4"/>
-                            <constraint firstItem="Jdz-in-FYh" firstAttribute="top" secondItem="Tti-mK-zrv" secondAttribute="bottom" constant="92" id="Tc9-8n-UGC"/>
-                            <constraint firstItem="Jdz-in-FYh" firstAttribute="centerX" secondItem="NGh-vG-3wH" secondAttribute="centerX" id="TvP-Rf-v5t"/>
-                            <constraint firstItem="FEW-bh-18f" firstAttribute="top" secondItem="Jdz-in-FYh" secondAttribute="bottom" constant="45" id="XD1-6a-1on"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FEW-bh-18f" secondAttribute="trailing" constant="74" id="i2T-mQ-6oi"/>
-                            <constraint firstItem="FEW-bh-18f" firstAttribute="leading" secondItem="NGh-vG-3wH" secondAttribute="leadingMargin" constant="71" id="kWk-vv-F7Q"/>
-                            <constraint firstItem="FEW-bh-18f" firstAttribute="centerX" secondItem="NGh-vG-3wH" secondAttribute="centerX" id="lHW-qz-ykc"/>
-                            <constraint firstItem="Jdz-in-FYh" firstAttribute="centerY" secondItem="NGh-vG-3wH" secondAttribute="centerY" constant="-19" id="nx2-rn-cbA"/>
-                            <constraint firstItem="Tti-mK-zrv" firstAttribute="leading" secondItem="NGh-vG-3wH" secondAttribute="leadingMargin" constant="212" id="o7m-Zw-MpD"/>
-                            <constraint firstItem="FEW-bh-18f" firstAttribute="centerX" secondItem="Tti-mK-zrv" secondAttribute="centerX" id="pTb-h9-6Yh"/>
-                            <constraint firstItem="FEW-bh-18f" firstAttribute="centerX" secondItem="Jdz-in-FYh" secondAttribute="centerX" id="r3k-au-1RQ"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="o7m-Zw-MpD"/>
-                                <exclude reference="QRs-ZC-bYs"/>
-                                <exclude reference="TDV-fJ-pO4"/>
-                                <exclude reference="4Ef-Oh-lgs"/>
-                                <exclude reference="i2T-mQ-6oi"/>
-                                <exclude reference="kWk-vv-F7Q"/>
-                                <exclude reference="r3k-au-1RQ"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="hvQ-zr-lAo"/>
-                    <connections>
-                        <outlet property="nurserySchoolIdTextField" destination="Jdz-in-FYh" id="C4p-ca-EkZ"/>
-                        <segue destination="lSn-Ru-kIy" kind="show" identifier="AccessGrantedSegue" id="uLJ-zE-rxQ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mJs-p6-z81" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2134" y="1330"/>
+            <point key="canvasLocation" x="-1983" y="906"/>
         </scene>
     </scenes>
     <resources>
-        <image name="BrightLogo" width="200" height="105"/>
-        <image name="BrightStartLogo" width="100" height="52"/>
-        <image name="EC42FC82-2457-4EA3-A0EB-5ECCD138B7DC" width="24" height="24">
+        <image name="8D055178-A44F-4A4A-8D08-7D1306AF6214" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1127,10 +1037,8 @@ lACWAJgAnQCgAKIApACmAKgArQDEAMYAyBdqF28XeheDF5YXmhelF64Xsxe7F74XwxfSF9YX3RflF/IX
 9xf5F/sYABgIGAsYEBgYGBsYLRgwGDUAAAAAAAACAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAAYNw
 </mutableData>
         </image>
+        <image name="BrightLogo" width="200" height="105"/>
         <image name="Rocket" width="37" height="37"/>
         <image name="sunny" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="pob-s0-bZQ"/>
-    </inferredMetricsTieBreakers>
 </document>
