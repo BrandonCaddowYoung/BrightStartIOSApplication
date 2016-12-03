@@ -16,15 +16,12 @@ class SignInViewController: UIViewController {
     
     @IBOutlet weak var spacerMiddleBottomView: UIView!
     
-    
-    
     @IBOutlet weak var logoImaveView: UIImageView!
     @IBOutlet weak var topView: UIView!
     
     @IBOutlet weak var middleView: UIView!
     
     @IBOutlet weak var bottomView: UIView!
-    
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -68,16 +65,10 @@ class SignInViewController: UIViewController {
         
         //IMAGE WITHIN BOTTOM VIEW
         
+        //Sign in button and label
+        
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButtonLabl.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        
-        signInButton.centerXAnchor.constraint(
-            equalTo: bottomView.centerXAnchor).isActive = true
-        signInButton.centerYAnchor.constraint(
-            equalTo: bottomView.centerYAnchor).isActive = true
-
         
         signInButton.widthAnchor.constraint(
             equalTo: bottomView.widthAnchor,
@@ -86,16 +77,33 @@ class SignInViewController: UIViewController {
         signInButton.heightAnchor.constraint(
             equalTo: bottomView.heightAnchor,
             multiplier: 0.30).isActive = true
-
         
         
+        signInButton.topAnchor.constraint(
+            equalTo: middleView.bottomAnchor).isActive = true
         
-        signInButtonLabl.centerXAnchor.constraint(
-            equalTo: bottomView.centerXAnchor).isActive = true
+        signInButton.trailingAnchor.constraint(
+            equalTo: passwordTextField.trailingAnchor).isActive = true
         
-        //top
+        //Making sure the label is attached to the button(underneath)
         signInButtonLabl.topAnchor.constraint(
             equalTo: signInButton.bottomAnchor).isActive = true
+        
+        signInButtonLabl.centerXAnchor.constraint(
+            equalTo: signInButton.centerXAnchor).isActive = true
+
+        //Setting height and width of the sign in button
+        
+        signInButton.heightAnchor.constraint(
+            equalTo: bottomView.heightAnchor,
+            multiplier: 0.25).isActive = true
+        
+        signInButton.widthAnchor.constraint(
+            equalTo: bottomView.widthAnchor,
+            multiplier: 0.10).isActive = true
+
+        
+
         
         
         
@@ -287,7 +295,7 @@ class SignInViewController: UIViewController {
             equalTo: view.heightAnchor,
             multiplier: 0.20).isActive = true
         
-        //IMAGE WITHING TOP VIEW
+        //IMAGE WITHIN TOP VIEW
         
         logoImaveView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -295,6 +303,18 @@ class SignInViewController: UIViewController {
             equalTo: topView.centerXAnchor).isActive = true
         logoImaveView.centerYAnchor.constraint(
             equalTo: topView.centerYAnchor).isActive = true
+        
+        logoImaveView.widthAnchor.constraint(
+            equalTo: topView.widthAnchor).isActive = true
+        
+        logoImaveView.heightAnchor.constraint(
+            equalTo: topView.heightAnchor).isActive = true
+        
+        
+        
+        
+        
+        
         
         
     }

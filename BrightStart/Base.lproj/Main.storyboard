@@ -536,7 +536,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" image="sunny" badgeValue="new" selectedImage="93387F81-83B8-4D1D-943C-4FBDB2B4B891" id="g5D-iJ-PXL"/>
+                    <tabBarItem key="tabBarItem" image="sunny" badgeValue="new" selectedImage="7954C676-373B-4B46-B427-1ACA9FA382B5" id="g5D-iJ-PXL"/>
                     <connections>
                         <outlet property="numberOfChilrenAtGivenTime" destination="akC-ba-Hs7" id="WY5-3N-zE4"/>
                         <outlet property="numberOfStaffAtGivenTime" destination="Hgq-Tm-bdW" id="qBN-uF-MT4"/>
@@ -820,8 +820,8 @@
                                 <rect key="frame" x="16" y="20" width="343" height="199"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="BrightStartLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Avx-kh-pTi">
-                                        <rect key="frame" x="121" y="54" width="100" height="91"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="BrightStartLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Avx-kh-pTi">
+                                        <rect key="frame" x="38" y="20" width="267" height="159"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="91" id="lWd-5g-NHY"/>
                                         </constraints>
@@ -1006,7 +1006,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="93387F81-83B8-4D1D-943C-4FBDB2B4B891" width="24" height="24">
+        <image name="7954C676-373B-4B46-B427-1ACA9FA382B5" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
