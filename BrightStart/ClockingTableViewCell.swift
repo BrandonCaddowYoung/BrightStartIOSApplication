@@ -15,11 +15,105 @@ class ClockingTableViewCell: UITableViewCell
             updateUI()
         }
     }
-    
+   
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var childNameLabel: UILabel!
     @IBOutlet weak var cellDetailsText: UILabel!
     @IBOutlet weak var cellInformationText: UILabel!
+    
+    override func awakeFromNib() {
+              setupConstraints()
+    }
+    
+    func setupConstraints() {
+        
+        //PUTTING THE IMAGE IN PLACE ON THE RIGHT
+        
+        cellImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        //right
+        cellImage.trailingAnchor.constraint(
+            equalTo: contentView.trailingAnchor).isActive = true
+        
+        //top
+        cellImage.topAnchor.constraint(
+            equalTo: contentView.topAnchor).isActive = true
+        
+        cellImage.widthAnchor.constraint(
+            equalTo: contentView.heightAnchor).isActive = true
+        
+        cellImage.heightAnchor.constraint(
+        equalTo: contentView.heightAnchor).isActive = true
+        
+        //INFORMATION LABEL
+        
+        cellInformationText.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        cellInformationText.leadingAnchor.constraint(
+        equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        
+        //right
+        cellInformationText.trailingAnchor.constraint(
+            equalTo: cellImage.leadingAnchor).isActive = true
+        
+        //bottom
+        cellInformationText.bottomAnchor.constraint(
+            equalTo: contentView.bottomAnchor, constant: 5).isActive = true
+        
+        //DETIALS LABEL
+        cellDetailsText.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        cellDetailsText.leadingAnchor.constraint(
+            equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        
+        //right
+        cellDetailsText.trailingAnchor.constraint(
+            equalTo: cellImage.leadingAnchor).isActive = true
+        
+        //bottom
+        cellDetailsText.bottomAnchor.constraint(
+            equalTo: cellInformationText.topAnchor).isActive = true
+        
+        //Making sure the info label is the same height as the details label
+        
+        cellInformationText.heightAnchor.constraint(
+            equalTo: cellDetailsText.heightAnchor).isActive = true
+        
+        
+        //NAME LABEL
+        childNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        childNameLabel.leadingAnchor.constraint(
+            equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        
+        //right
+        childNameLabel.trailingAnchor.constraint(
+            equalTo: cellImage.leadingAnchor).isActive = true
+        
+        //bottom
+        childNameLabel.bottomAnchor.constraint(
+            equalTo: cellDetailsText.topAnchor).isActive = true
+        
+        //bottom
+        childNameLabel.topAnchor.constraint(
+            equalTo: contentView.topAnchor).isActive = true
+
+        contentView.addConstraint(NSLayoutConstraint(item: contentView,
+                                                     attribute: .height,
+                                                     relatedBy: .equal,
+                                                     toItem: nil, attribute: .notAnAttribute,
+                                                     multiplier: 1, constant: 140))
+    
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 170.0;//Choose your custom row height
+    }
     
     func IsTimeNowAfterRegisteredFinishTime(_ registeredFinishTime: Date) -> Bool
     {
@@ -83,6 +177,8 @@ class ClockingTableViewCell: UITableViewCell
             
             if(tweet.CurrentlySignedIn==true)
             {
+                self.cellImage?.image = UIImage(named: "SwipeToSignOut")
+                
                 if let savedDate = UserDefaults.standard.object(forKey: "finishTime")  as? Date
                 {
                     //Getting Registered Finish time as string
@@ -130,7 +226,7 @@ class ClockingTableViewCell: UITableViewCell
             }
             else //Not signed in
             {
-                self.cellImage?.image = nil
+                self.cellImage?.image = UIImage(named: "SwipeToSignIn")
                 
                 self.cellDetailsText.text = ""
                 

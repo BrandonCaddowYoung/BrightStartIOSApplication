@@ -27,6 +27,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+                
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -139,7 +140,13 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! ClockingTableViewCell
             cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
-            let signIn = UITableViewRowAction(style: .normal, title: "Sign in " + ((cell.child?.Name)! as String)) { action, index in
+            var rowTitle = "Sign in " + ((cell.child?.Name)! as String)
+           
+             if(UIDevice.current.userInterfaceIdiom == .phone){
+                rowTitle = "Sign in"
+            }
+            
+            let signIn = UITableViewRowAction(style: .normal, title: rowTitle) { action, index in
                 
                 self.showOverlayMessage("Signing in...")
                 
@@ -153,7 +160,13 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             }
             signIn.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
             
-            let signOut = UITableViewRowAction(style: .normal, title: "Sign out " + ((cell.child?.Name)! as String)) { action, index in
+            var rowTitle2 = "Sign out " + ((cell.child?.Name)! as String)
+            
+            if(UIDevice.current.userInterfaceIdiom == .phone){
+                rowTitle2 = "Sign out"
+            }
+            
+            let signOut = UITableViewRowAction(style: .normal, title: rowTitle2) { action, index in
                 
                 self.showOverlayMessage("Signing out...")
                 

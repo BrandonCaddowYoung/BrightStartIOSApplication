@@ -10,7 +10,6 @@
 		7B1772981DEB8065002992C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772701DEB7F8F002992C9 /* Alamofire.framework */; };
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
-		7B2E88A51DEF7F73003F7E45 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88A41DEF7F73003F7E45 /* CollectionViewController.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
 		D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9A1CAF1A7100948DE5 /* Child.swift */; };
 		D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8661CC981530084ECE4 /* RegisteredCount.swift */; };
@@ -219,7 +218,6 @@
 		7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
-		7B2E88A41DEF7F73003F7E45 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D7387E9A1CAF1A7100948DE5 /* Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
 		D739E8661CC981530084ECE4 /* RegisteredCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCount.swift; sourceTree = "<group>"; };
@@ -343,7 +341,6 @@
 				D739E86A1CD3FACF0084ECE4 /* MainTabBarController.swift */,
 				D7EEEDBB1CC2E005001424FE /* NumbersController.swift */,
 				D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */,
-				7B2E88A41DEF7F73003F7E45 /* CollectionViewController.swift */,
 				7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */,
 			);
 			name = Controllers;
@@ -744,7 +741,6 @@
 				D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */,
 				D739E86B1CD3FACF0084ECE4 /* MainTabBarController.swift in Sources */,
 				D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */,
-				7B2E88A51DEF7F73003F7E45 /* CollectionViewController.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,
 			);
