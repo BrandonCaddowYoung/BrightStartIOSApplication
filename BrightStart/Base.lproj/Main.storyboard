@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rpo-Nf-bMu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sDv-xQ-D3l">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -76,7 +76,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEi-4L-zl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="216.80000000000001" y="906.29685157421295"/>
+            <point key="canvasLocation" x="601" y="672"/>
         </scene>
         <!--Numbers Controller-->
         <scene sceneID="wAY-4w-vO5">
@@ -240,7 +240,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" image="sunny" badgeValue="new" selectedImage="67BB6332-F9B6-48ED-A796-1EBC07EA54D6" id="g5D-iJ-PXL"/>
+                    <tabBarItem key="tabBarItem" image="sunny" badgeValue="new" selectedImage="9662CFA2-9992-4761-A926-1D073A7FD42C" id="g5D-iJ-PXL"/>
                     <connections>
                         <outlet property="numberOfChilrenAtGivenTime" destination="akC-ba-Hs7" id="WY5-3N-zE4"/>
                         <outlet property="numberOfStaffAtGivenTime" destination="Hgq-Tm-bdW" id="qBN-uF-MT4"/>
@@ -257,42 +257,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gyb-Pq-aJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1196" y="1673"/>
-        </scene>
-        <!--Main Tab Bar Controller-->
-        <scene sceneID="Wgr-q3-f7o">
-            <objects>
-                <tabBarController id="lSn-Ru-kIy" customClass="MainTabBarController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Ymy-mK-ZjS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="G2i-Zo-R4i" kind="relationship" relationship="viewControllers" id="bsm-Zz-hbl"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ncI-tx-MjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1196" y="907"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="nCb-Pf-eTl">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G2i-Zo-R4i" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="bMS-pe-2XN"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pQR-0f-K0r">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="xZG-mU-XJf" kind="relationship" relationship="rootViewController" id="fgG-6U-UMf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J5Y-JV-LDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-481" y="907"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="wYL-Rx-9lI">
@@ -380,7 +344,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xky-Qx-Dix">
-                                        <rect key="frame" x="149" y="81" width="40" height="37"/>
+                                        <rect key="frame" x="151" y="72" width="40" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button" image="Rocket"/>
                                         <connections>
@@ -392,6 +356,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="7Wl-qq-eLF"/>
                     <connections>
                         <outlet property="bottomView" destination="Izb-il-jXN" id="dzC-pE-weB"/>
                         <outlet property="logoImaveView" destination="Avx-kh-pTi" id="to4-Dm-JYH"/>
@@ -406,16 +371,34 @@
                         <outlet property="topView" destination="KlC-xP-8IB" id="GHJ-18-gSm"/>
                         <outlet property="usernameLabel" destination="1f7-bB-moC" id="PID-KX-UYg"/>
                         <outlet property="usernameTextField" destination="GvP-Kz-dC0" id="ULa-lA-2Yo"/>
-                        <segue destination="lSn-Ru-kIy" kind="show" identifier="AccessGrantedSegue" id="pob-s0-bZQ"/>
+                        <segue destination="xZG-mU-XJf" kind="show" identifier="AccessGrantedSegue" id="ZxB-BT-M4Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sy4-Cj-dGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1983" y="906"/>
+            <point key="canvasLocation" x="-364" y="672"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="i2B-E7-57G">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sDv-xQ-D3l" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4dk-qY-sh4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rpo-Nf-bMu" kind="relationship" relationship="rootViewController" id="aGk-E9-pQS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sgT-J7-xBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1338" y="672"/>
         </scene>
     </scenes>
     <resources>
-        <image name="67BB6332-F9B6-48ED-A796-1EBC07EA54D6" width="24" height="24">
+        <image name="9662CFA2-9992-4761-A926-1D073A7FD42C" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
