@@ -32,12 +32,18 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signInButtonLabl: UILabel!
     
+    override func viewDidLayoutSubviews() {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
         setupConstraints()
+        
+        passwordTextField.isSecureTextEntry = true;
         
         let defaults = UserDefaults.standard
         
@@ -114,7 +120,6 @@ class SignInViewController: UIViewController {
         signInButton.heightAnchor.constraint(
             equalTo: bottomView.heightAnchor,
             multiplier: 0.30).isActive = true
-        
         
         signInButton.topAnchor.constraint(
             equalTo: middleView.bottomAnchor).isActive = true
@@ -255,12 +260,16 @@ class SignInViewController: UIViewController {
         usernameTextField.widthAnchor.constraint(
             equalTo: view.widthAnchor,
             multiplier: 0.70).isActive = true
+        
+        usernameTextField.heightAnchor.constraint(
+            equalTo: middleView.heightAnchor,
+            multiplier: 0.15).isActive = true
 
         //USER LABEL
         
         //bottom
         usernameLabel.bottomAnchor.constraint(
-            equalTo: usernameTextField.topAnchor
+            equalTo: usernameTextField.topAnchor, constant: -5
             ).isActive = true
         
         //left
@@ -280,13 +289,18 @@ class SignInViewController: UIViewController {
         
         //top
         passwordTextField.topAnchor.constraint(
-            equalTo: passwordLabel.bottomAnchor
+            equalTo: passwordLabel.bottomAnchor, constant: 5
             ).isActive = true
         
         
         passwordTextField.widthAnchor.constraint(
             equalTo: view.widthAnchor,
             multiplier: 0.70).isActive = true
+        
+        passwordTextField.heightAnchor.constraint(
+            equalTo: middleView.heightAnchor,
+            multiplier: 0.15).isActive = true
+        
 
         //top
         passwordLabel.leftAnchor.constraint(
@@ -306,10 +320,6 @@ class SignInViewController: UIViewController {
         //bottom
         topView.bottomAnchor.constraint(
             equalTo: middleView.topAnchor).isActive = true
-        //top
-        //topView.topAnchor.constraint(
-          //  equalTo: view.topAnchor,
-            //constant: -20).isActive = true
         
         //height
         topView.heightAnchor.constraint(
