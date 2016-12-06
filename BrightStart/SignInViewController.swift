@@ -30,7 +30,6 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var signInButtonLabl: UILabel!
     
     override func viewDidLayoutSubviews() {
         
@@ -43,6 +42,16 @@ class SignInViewController: UIViewController {
         
         setupConstraints()
         
+        //Styling the sign in button
+        signInButton.backgroundColor = .clear
+        signInButton.layer.cornerRadius = 5
+        signInButton.layer.borderWidth = 1
+        signInButton.layer.borderColor = UIColor.white.cgColor
+        
+        let commonHelper = CommonHelper()
+        view.backgroundColor = commonHelper.hexStringToUIColor(hex: "#37A0e6")
+       
+        //Making the pasword textfield secure
         passwordTextField.isSecureTextEntry = true;
         
         let defaults = UserDefaults.standard
@@ -108,41 +117,22 @@ class SignInViewController: UIViewController {
         
         //IMAGE WITHIN BOTTOM VIEW
         
-        //Sign in button and label
+        //Sign in button
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButtonLabl.translatesAutoresizingMaskIntoConstraints = false
-        
-        signInButton.widthAnchor.constraint(
-            equalTo: bottomView.widthAnchor,
-            multiplier: 0.20).isActive = true
-        
-        signInButton.heightAnchor.constraint(
-            equalTo: bottomView.heightAnchor,
-            multiplier: 0.30).isActive = true
-        
-        signInButton.topAnchor.constraint(
-            equalTo: middleView.bottomAnchor).isActive = true
-        
-        signInButton.trailingAnchor.constraint(
-            equalTo: passwordTextField.trailingAnchor).isActive = true
-        
-        //Making sure the label is attached to the button(underneath)
-        signInButtonLabl.topAnchor.constraint(
-            equalTo: signInButton.bottomAnchor).isActive = true
-        
-        signInButtonLabl.centerXAnchor.constraint(
-            equalTo: signInButton.centerXAnchor).isActive = true
-
-        //Setting height and width of the sign in button
         
         signInButton.heightAnchor.constraint(
             equalTo: bottomView.heightAnchor,
             multiplier: 0.40).isActive = true
         
-        signInButton.widthAnchor.constraint(
-            equalTo: bottomView.widthAnchor,
-            multiplier: 0.10).isActive = true
+        signInButton.topAnchor.constraint(
+            equalTo: middleView.bottomAnchor).isActive = true
+        
+        signInButton.trailingAnchor.constraint(
+            equalTo: bottomView.trailingAnchor, constant: -15).isActive = true
+        
+        signInButton.leadingAnchor.constraint(
+            equalTo: bottomView.leadingAnchor, constant: 15).isActive = true
         
         //MIDDLE VIEW
         
@@ -263,7 +253,7 @@ class SignInViewController: UIViewController {
         
         usernameTextField.heightAnchor.constraint(
             equalTo: middleView.heightAnchor,
-            multiplier: 0.15).isActive = true
+            multiplier: 0.10).isActive = true
 
         //USER LABEL
         
@@ -299,7 +289,7 @@ class SignInViewController: UIViewController {
         
         passwordTextField.heightAnchor.constraint(
             equalTo: middleView.heightAnchor,
-            multiplier: 0.15).isActive = true
+            multiplier: 0.10).isActive = true
         
 
         //top
@@ -451,5 +441,17 @@ class SignInViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    
 
 }
