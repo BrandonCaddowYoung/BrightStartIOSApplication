@@ -49,6 +49,7 @@ class SignInViewController: UIViewController {
         signInButton.layer.borderColor = UIColor.white.cgColor
         
         let commonHelper = CommonHelper()
+        
         view.backgroundColor = commonHelper.hexStringToUIColor(hex: "#37A0e6")
        
         //Making the pasword textfield secure
@@ -442,6 +443,7 @@ class SignInViewController: UIViewController {
     }
     */
     
+    //Removes the navigation bar from the top
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
         super.viewWillDisappear(animated)
