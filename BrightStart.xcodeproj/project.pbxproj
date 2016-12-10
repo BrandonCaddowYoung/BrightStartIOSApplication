@@ -11,6 +11,7 @@
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
+		7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */; };
 		7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */; };
 		7BCAD8131DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAD8121DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift */; };
 		7BCAD8151DF7617E0056AC9C /* CommonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAD8141DF7617E0056AC9C /* CommonHelper.swift */; };
@@ -221,6 +222,7 @@
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		7BCAD8121DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		7BCAD8141DF7617E0056AC9C /* CommonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonHelper.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */,
 				7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */,
 				7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */,
+				7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -534,16 +537,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -740,6 +743,7 @@
 				7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */,
 				7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */,
 				D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */,
+				7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */,
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,

@@ -28,6 +28,7 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         
         label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.adjustsFontSizeToFitWidth = true
         
         contentView.addSubview(label) //Remember to add ui elements to the content view not the cell iteslf.
         
@@ -42,12 +43,14 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(button) //Remember to add ui elements to the content view not the cell iteslf.
         
+        setupConstraints()
+        
     }
     
     func setDisplayText(newDisplayText: String)
     {
      //button.setTitle(newDisplayText, for: .normal)
-        label.text = newDisplayText + "Boom"
+        label.text = newDisplayText
     }
     
     func changeColor() {
@@ -58,6 +61,40 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         
         delegate?.performSegue(segueId: segueText)
 
+    }
+    
+    func setupConstraints()
+    {
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        //label to the botom
+        label.bottomAnchor .constraint(
+            equalTo: contentView.layoutMarginsGuide.bottomAnchor).isActive = true
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        //Button to the top
+        button.topAnchor .constraint(
+            equalTo: contentView.layoutMarginsGuide.topAnchor).isActive = true
+        
+        //button 50% of heght
+        button.heightAnchor .constraint(
+            equalTo: contentView.heightAnchor, multiplier: 0.50).isActive = true
+        
+        button.widthAnchor.constraint(
+            equalTo: button.heightAnchor).isActive = true
+        
+        button.centerXAnchor.constraint(
+            equalTo: contentView.centerXAnchor).isActive = true
+
+        label.centerXAnchor.constraint(
+            equalTo: contentView.centerXAnchor).isActive = true
+        
+
+
+
+        
     }
     
 }

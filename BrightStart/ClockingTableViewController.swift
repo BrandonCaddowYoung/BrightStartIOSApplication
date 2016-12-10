@@ -5,6 +5,7 @@ import UIKit
 class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     
     var children: [[Child]] = [];
+    var _CommonHelper: CommonHelper!
     
     func refreshTable()
     {
@@ -27,9 +28,20 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-                
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        _CommonHelper = CommonHelper()
+        
+        view.backgroundColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
+        //view.backgroundColor?.withAlphaComponent(0.1)
+        
+        //Changes the color of the backgorund within the nav bar.
+        navigationController?.navigationBar.barTintColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
+        
+        //Changes the color of the text within the nav bar
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        navigationController?.navigationBar.tintColor = UIColor.white
         
         refresh()
         
@@ -43,8 +55,9 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
-        
-        self.showOverlayMessage("Refreshing...")
+       
+        let alert = _CommonHelper.showOverlayMessage("Refreshing...")
+        self.present(alert, animated: true, completion: nil)
         
         self.children.removeAll();
         
@@ -119,20 +132,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         return cell
     }
     
-    func showOverlayMessage(_ message: String) {
-        
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        
-        alert.view.tintColor = UIColor.black
-        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50)) as UIActivityIndicatorView
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        loadingIndicator.startAnimating();
-        
-        alert.view.addSubview(loadingIndicator)
-        self.present(alert, animated: true, completion: nil)
-        
-    }
+    
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->
         [UITableViewRowAction]? {
@@ -148,7 +148,8 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             
             let signIn = UITableViewRowAction(style: .normal, title: rowTitle) { action, index in
                 
-                self.showOverlayMessage("Signing in...")
+                let alert = self._CommonHelper.showOverlayMessage("Signing in...")
+                self.present(alert, animated: true, completion: nil)
                 
                 CommonRequests.sharedInstance.signIn(personId: (cell.child?.Id)! as String, timeOfSignIn: Date() as NSDate,
                                                      onCompletion: {
@@ -168,8 +169,9 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             
             let signOut = UITableViewRowAction(style: .normal, title: rowTitle2) { action, index in
                 
-                self.showOverlayMessage("Signing out...")
-                
+                let alert = self._CommonHelper.showOverlayMessage("Signing out...")
+                self.present(alert, animated: true, completion: nil)
+                    
                 CommonRequests.sharedInstance.signOut(personId: (cell.child?.Id)! as String, timeOfSignOut: Date() as NSDate,
                                                       
                                                       onCompletion: {
@@ -185,7 +187,9 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             
             let cancel = UITableViewRowAction(style: .default,  title:"Cancel previous") { action, index in
                 
-                self.showOverlayMessage("Please wait...")
+                let alert = self._CommonHelper.showOverlayMessage("Please wait...")
+                self.present(alert, animated: true, completion: nil)
+                
                 
             }
             cancel.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)

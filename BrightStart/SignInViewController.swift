@@ -10,6 +10,9 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
+    var _CommonHelper: CommonHelper!
+    var _PopUpAlert: UIAlertController!
+    
     @IBOutlet weak var spacerMiddleTopView: UIView!
     
     @IBOutlet weak var spacerMiddleMiddleView: UIView!
@@ -38,7 +41,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        _CommonHelper = CommonHelper()
         
         setupConstraints()
         
@@ -48,9 +51,7 @@ class SignInViewController: UIViewController {
         signInButton.layer.borderWidth = 1
         signInButton.layer.borderColor = UIColor.white.cgColor
         
-        let commonHelper = CommonHelper()
-        
-        view.backgroundColor = commonHelper.hexStringToUIColor(hex: "#37A0e6")
+        view.backgroundColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
        
         //Making the pasword textfield secure
         passwordTextField.isSecureTextEntry = true;
@@ -252,10 +253,6 @@ class SignInViewController: UIViewController {
             equalTo: view.widthAnchor,
             multiplier: 0.70).isActive = true
         
-        usernameTextField.heightAnchor.constraint(
-            equalTo: middleView.heightAnchor,
-            multiplier: 0.10).isActive = true
-
         //USER LABEL
         
         //bottom
@@ -287,12 +284,7 @@ class SignInViewController: UIViewController {
         passwordTextField.widthAnchor.constraint(
             equalTo: view.widthAnchor,
             multiplier: 0.70).isActive = true
-        
-        passwordTextField.heightAnchor.constraint(
-            equalTo: middleView.heightAnchor,
-            multiplier: 0.10).isActive = true
-        
-
+       
         //top
         passwordLabel.leftAnchor.constraint(
             equalTo: passwordTextField.leftAnchor
@@ -405,15 +397,29 @@ class SignInViewController: UIViewController {
                 
                 if nurserySchoolId.isEmpty == false
                 {
-                    //Store the nursery school Id
-                    self.storeNurserySchoolIdWithinDefaults(username: nurserySchoolUserName!, nurserySchoolId: nurserySchoolId)
                     
-                    self.performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
+                    let callActionHandler = { () -> Void in
+                        
+                        //Store the nursery school Id
+                        self.storeNurserySchoolIdWithinDefaults(username: nurserySchoolUserName!, nurserySchoolId: nurserySchoolId)
+                        
+                        self.performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
+                        
+                    }
+                    
+                    //Removing the message we showed the user when they attempted to sign in.
+                    self._PopUpAlert.dismiss(animated: false, completion: callActionHandler)
+                    
+                    
                     
                 }
                 else
                 {
                 //Notify the user that the given credentials were incorrect.
+                    
+                    //Removing the message we showed the user when they attempted to sign in.
+                    self._PopUpAlert.dismiss(animated: false, completion: nil)
+                    
                 }
                 
             })
@@ -425,6 +431,9 @@ class SignInViewController: UIViewController {
      @brief The user has clicked the sign in button so moving to the next scene if the credentials supplied are valid.
      */
     @IBAction func signInButtonClicked(_ sender: Any) {
+        
+        _PopUpAlert = self._CommonHelper.showOverlayMessage("Checking your credentials....")
+        self.present(_PopUpAlert, animated: true, completion: nil)
         
         //Removing incase the user is trying to switch accounts.
         removeStoredNurserySchoolId()

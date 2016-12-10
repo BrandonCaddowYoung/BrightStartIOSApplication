@@ -168,9 +168,11 @@ class ClockingTableViewCell: UITableViewCell
         {
             childNameLabel?.text = "\(tweet.Name)" // tweet.user.description
             
-            let lightBlue = UIColor(red: 126/255, green: 206/255, blue: 253/255, alpha: 0.5)
-            let lightPink = UIColor(red: 243/255, green: 212/255, blue: 226/255, alpha: 0.7)
-            let lightGrey = UIColor(red: 75/255, green: 79/255, blue: 78/255, alpha: 0.3)
+            let commonHelper = CommonHelper()
+            
+            let lightBlue = commonHelper.hexStringToUIColor(hex: "#69BAE4")
+            let lightPink = commonHelper.hexStringToUIColor(hex: "#DD95B7")
+            let lightGrey = commonHelper.hexStringToUIColor(hex: "#3F3F3F")
             
             UserDefaults.standard.set(tweet.RegisteredFinishTime, forKey: "finishTime")
             UserDefaults.standard.set(tweet.RegisteredStartTime, forKey: "dateKey")
@@ -199,7 +201,7 @@ class ClockingTableViewCell: UITableViewCell
                         //self.takeActionImage?.image = UIImage(named: "star")
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "No registerd hours."
-                        self.backgroundColor = lightBlue
+                        self.backgroundColor = lightBlue.withAlphaComponent(1)
                         
                     }
                     else if(minutesElapsed > 0 && minutesElapsed < 1440)
@@ -210,7 +212,7 @@ class ClockingTableViewCell: UITableViewCell
                         //self.takeActionImage?.image = UIImage(named: "priority")
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "Late to leave, expected to go home at: " + registeredFinishTime
-                        self.backgroundColor = lightBlue
+                        self.backgroundColor = lightBlue.withAlphaComponent(1)
                     }
                     else{
                         
@@ -220,7 +222,7 @@ class ClockingTableViewCell: UITableViewCell
                         //self.takeActionImage?.image = UIImage(named: "star")
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "Expected to go home at " + registeredFinishTime
-                        self.backgroundColor = lightBlue
+                        self.backgroundColor = lightBlue.withAlphaComponent(1)
                     }
                 }
             }
@@ -249,7 +251,7 @@ class ClockingTableViewCell: UITableViewCell
                             //Child not signed in.
                             //Time now is before the childs regisred start time.
                             
-                            self.backgroundColor = lightGrey
+                            self.backgroundColor = lightGrey.withAlphaComponent(1)
                             self.cellDetailsText.text = "Expected in"
                             self.cellInformationText.text = "Expected in " + String(format:"%.0f", abs(minutesElapsed)) + " minutes."
                         }
@@ -288,7 +290,7 @@ class ClockingTableViewCell: UITableViewCell
                                     //TBD: IT MAY BE THAT THE CHILD HAS SIGNED OUT EARLY, WE NEED TO CHECK FOR A SIGN OUT STAMP HERE.
                                     
                                     //Child is yet to arrive/Child is late to sign in
-                                    self.backgroundColor = lightGrey
+                                    self.backgroundColor = lightGrey.withAlphaComponent(1)
                                     self.cellDetailsText.text = "Expected in at " + registeredStartTime
                                     self.cellInformationText.text = String(format:"%.0f", minutesElapsed) + " minutes late."
                                     
@@ -318,7 +320,9 @@ class ClockingTableViewCell: UITableViewCell
                                     //For now I am just going to assume that the child came in and left, ie has time stamps for today
                                     
                                     //Child is yet to arrive/Child is late to sign in
-                                    self.backgroundColor = lightPink
+                                    self.backgroundColor = lightPink.withAlphaComponent(1)
+                                    //self.backgroundColor.backgroundColor?.withAlphaComponent(0.5)
+                                    
                                     self.cellDetailsText.text = "Gone home."
                                     self.cellInformationText.text = "Signed out."
                                     

@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="366"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TeW-Ew-k6r" id="Hab-Va-3sg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="366"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="365"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QlO-Hq-Bmd">
@@ -76,7 +76,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEi-4L-zl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1393" y="690"/>
+            <point key="canvasLocation" x="1353" y="672"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="Bfe-cQ-GSZ">
+            <objects>
+                <viewController id="SU0-sR-NYn" customClass="AboutViewController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gIM-9q-Uw4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gon-sN-dhG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JSo-cj-s9h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OJx-Am-01B"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L0A-4K-bvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2889" y="672"/>
         </scene>
         <!--Numbers Controller-->
         <scene sceneID="wAY-4w-vO5">
@@ -240,7 +259,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" image="sunny" badgeValue="new" selectedImage="6230B92A-BAA1-448D-AA07-F648E0416032" id="g5D-iJ-PXL"/>
+                    <tabBarItem key="tabBarItem" image="sunny" badgeValue="new" selectedImage="6A9107A1-0DAC-4FAE-95EB-3FEF16D9C842" id="g5D-iJ-PXL"/>
                     <connections>
                         <outlet property="numberOfChilrenAtGivenTime" destination="akC-ba-Hs7" id="WY5-3N-zE4"/>
                         <outlet property="numberOfStaffAtGivenTime" destination="Hgq-Tm-bdW" id="qBN-uF-MT4"/>
@@ -387,6 +406,8 @@
                     </view>
                     <connections>
                         <segue destination="xZG-mU-XJf" kind="show" identifier="GoToRegister" id="Oof-ta-u3p"/>
+                        <segue destination="rpo-Nf-bMu" kind="show" identifier="GoToSignIn" id="2qs-QS-n86"/>
+                        <segue destination="WbN-Yw-pd6" kind="show" identifier="GoToInformation" id="125-Tk-pTE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWk-wx-plk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -411,9 +432,27 @@
             </objects>
             <point key="canvasLocation" x="-1338" y="672"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lA9-aB-8Ml">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WbN-Yw-pd6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fW7-9u-9DK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SU0-sR-NYn" kind="relationship" relationship="rootViewController" id="u3m-oH-WOF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O8T-kY-acX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2196" y="672"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="6230B92A-BAA1-448D-AA07-F648E0416032" width="24" height="24">
+        <image name="6A9107A1-0DAC-4FAE-95EB-3FEF16D9C842" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -526,4 +565,7 @@ lACWAJgAnQCgAKIApACmAKgArQDEAMYAyBdqF28XeheDF5YXmhelF64Xsxe7F74XwxfSF9YX3RflF/IX
         <image name="BrightLogo" width="200" height="105"/>
         <image name="sunny" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="2qs-QS-n86"/>
+    </inferredMetricsTieBreakers>
 </document>
