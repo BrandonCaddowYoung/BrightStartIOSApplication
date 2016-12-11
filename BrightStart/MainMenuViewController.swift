@@ -10,7 +10,7 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
-    var _CommonHelper: CommonHelper!
+    var _ApplicatoinColours: ApplicatoinColours!
     
     var collectionView: UICollectionView!
     var topThirdView: UIView!
@@ -32,18 +32,16 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        _CommonHelper = CommonHelper()
+        _ApplicatoinColours = ApplicatoinColours()
         
         setupCollectionView()
         
-        
-        
         //Changes the color of the backgorund within the nav bar.
-        navigationController?.navigationBar.barTintColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.BackGroundColour
         
         //Changes the color of the text within the nav bar
         navigationController?.navigationBar.barStyle = UIBarStyle.black
-        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = _ApplicatoinColours.FontColour
         
     }
 
@@ -61,8 +59,6 @@ class MainMenuViewController: UIViewController {
         rightSpacer = UIView()
         view.addSubview(rightSpacer)
         
-        let commonHelper = CommonHelper()
-        
         let layout = UICollectionViewFlowLayout()
         
         layout.minimumLineSpacing = 20
@@ -75,7 +71,7 @@ class MainMenuViewController: UIViewController {
         collectionView.contentInset.left = 25
         collectionView.contentInset.right = 25
         
-        collectionView.backgroundColor = commonHelper.hexStringToUIColor(hex: "#37A0e6")
+        collectionView.backgroundColor = _ApplicatoinColours.BackGroundColour
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -97,7 +93,7 @@ class MainMenuViewController: UIViewController {
         headingLabel.text = "HOW CAN WE HELP?"
          headingLabel.font = headingLabel.font.withSize(20)
         
-        headingLabel.textColor = .white
+        headingLabel.textColor = _ApplicatoinColours.FontColour
         
         view.addSubview(headingLabel)
         
@@ -106,7 +102,7 @@ class MainMenuViewController: UIViewController {
         
         bodyLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
         bodyLabel.numberOfLines = 3
-        bodyLabel.textColor = .white
+        bodyLabel.textColor = _ApplicatoinColours.FontColour
         
         view.addSubview(bodyLabel)
         
@@ -117,10 +113,9 @@ class MainMenuViewController: UIViewController {
     func setupConstraints()
     {
         //The first view takes up a third of the screen.
+    
         
-        let commonHelper = CommonHelper()
-        
-        leftSpacer.backgroundColor = commonHelper.hexStringToUIColor(hex: "#37A0e6")
+        leftSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
         leftSpacer.translatesAutoresizingMaskIntoConstraints = false
         
         //left
@@ -138,7 +133,7 @@ class MainMenuViewController: UIViewController {
         
         //leftSpacer.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
-        rightSpacer.backgroundColor = commonHelper.hexStringToUIColor(hex: "#37A0e6")
+        rightSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
         rightSpacer.translatesAutoresizingMaskIntoConstraints = false
         
         //right
@@ -158,7 +153,7 @@ class MainMenuViewController: UIViewController {
         //rightSpacer.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
         topThirdView.translatesAutoresizingMaskIntoConstraints = false
-        topThirdView.backgroundColor = commonHelper.hexStringToUIColor(hex: "#37A0e6")
+        topThirdView.backgroundColor = _ApplicatoinColours.BackGroundColour
 
         //left
         topThirdView.leadingAnchor.constraint(
@@ -178,7 +173,7 @@ class MainMenuViewController: UIViewController {
         //topThirdView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         
         topThirdViewTopSpacer.translatesAutoresizingMaskIntoConstraints = false
-        topThirdViewTopSpacer.backgroundColor = commonHelper.hexStringToUIColor(hex: "#37A0e6")
+        topThirdViewTopSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         //left
         topThirdViewTopSpacer.leadingAnchor.constraint(
@@ -215,7 +210,7 @@ class MainMenuViewController: UIViewController {
         headingLabel.addConstraint(NSLayoutConstraint(item: headingLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 21))
         
         topThirdViewMiddleSpacer.translatesAutoresizingMaskIntoConstraints = false
-        topThirdViewMiddleSpacer.backgroundColor = commonHelper.hexStringToUIColor(hex: "#37A0e6")
+        topThirdViewMiddleSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         //left
         topThirdViewMiddleSpacer.leadingAnchor.constraint(

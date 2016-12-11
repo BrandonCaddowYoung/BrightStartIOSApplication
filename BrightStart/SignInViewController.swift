@@ -10,7 +10,9 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
+    var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
+    
     var _PopUpAlert: UIAlertController!
     
     @IBOutlet weak var spacerMiddleTopView: UIView!
@@ -41,6 +43,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
         setupConstraints()
@@ -49,9 +52,9 @@ class SignInViewController: UIViewController {
         signInButton.backgroundColor = .clear
         signInButton.layer.cornerRadius = 5
         signInButton.layer.borderWidth = 1
-        signInButton.layer.borderColor = UIColor.white.cgColor
+        signInButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
         
-        view.backgroundColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
+        view.backgroundColor = _ApplicatoinColours.BackGroundColour
        
         //Making the pasword textfield secure
         passwordTextField.isSecureTextEntry = true;

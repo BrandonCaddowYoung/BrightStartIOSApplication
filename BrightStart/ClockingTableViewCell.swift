@@ -6,6 +6,7 @@
 //  Copyright © 2016 dev. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class ClockingTableViewCell: UITableViewCell
@@ -16,12 +17,20 @@ class ClockingTableViewCell: UITableViewCell
         }
     }
    
+    var _CommonHelper: CommonHelper!
+    var _ApplicationColours: ApplicatoinColours!
+    
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var childNameLabel: UILabel!
     @IBOutlet weak var cellDetailsText: UILabel!
     @IBOutlet weak var cellInformationText: UILabel!
     
     override func awakeFromNib() {
+        
+        _CommonHelper = CommonHelper()
+        _ApplicationColours = ApplicatoinColours()
+
+        
               setupConstraints()
     }
     
@@ -164,20 +173,18 @@ class ClockingTableViewCell: UITableViewCell
        
         childNameLabel?.text = nil
        
-         if let tweet = self.child
+         if let child = self.child
         {
-            childNameLabel?.text = "\(tweet.Name)" // tweet.user.description
+            childNameLabel?.text = "\(child.Name)" 
             
-            let commonHelper = CommonHelper()
+            let lightBlue = _ApplicationColours.LightBlue
+            let lightPink = _ApplicationColours.LightPink
+            let lightGrey = _ApplicationColours.Grey
             
-            let lightBlue = commonHelper.hexStringToUIColor(hex: "#69BAE4")
-            let lightPink = commonHelper.hexStringToUIColor(hex: "#DD95B7")
-            let lightGrey = commonHelper.hexStringToUIColor(hex: "#3F3F3F")
+            UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
+            UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")
             
-            UserDefaults.standard.set(tweet.RegisteredFinishTime, forKey: "finishTime")
-            UserDefaults.standard.set(tweet.RegisteredStartTime, forKey: "dateKey")
-            
-            if(tweet.CurrentlySignedIn==true)
+            if(child.CurrentlySignedIn==true)
             {
                 self.cellImage?.image = UIImage(named: "SwipeToSignOut")
                 
@@ -186,7 +193,7 @@ class ClockingTableViewCell: UITableViewCell
                     //Getting Registered Finish time as string
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm"
-                    let registeredFinishTime = dateFormatter.string(from: tweet.RegisteredFinishTime as Date)
+                    let registeredFinishTime = dateFormatter.string(from: child.RegisteredFinishTime as Date)
                     
                     let currentDate = Date()
                     let distanceBetweenDates = currentDate.timeIntervalSince(savedDate)
@@ -201,7 +208,7 @@ class ClockingTableViewCell: UITableViewCell
                         //self.takeActionImage?.image = UIImage(named: "star")
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "No registerd hours."
-                        self.backgroundColor = lightBlue.withAlphaComponent(1)
+                        self.backgroundColor = lightBlue?.withAlphaComponent(1)
                         
                     }
                     else if(minutesElapsed > 0 && minutesElapsed < 1440)
@@ -212,7 +219,7 @@ class ClockingTableViewCell: UITableViewCell
                         //self.takeActionImage?.image = UIImage(named: "priority")
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "Late to leave, expected to go home at: " + registeredFinishTime
-                        self.backgroundColor = lightBlue.withAlphaComponent(1)
+                        self.backgroundColor = lightBlue?.withAlphaComponent(1)
                     }
                     else{
                         
@@ -222,7 +229,7 @@ class ClockingTableViewCell: UITableViewCell
                         //self.takeActionImage?.image = UIImage(named: "star")
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "Expected to go home at " + registeredFinishTime
-                        self.backgroundColor = lightBlue.withAlphaComponent(1)
+                        self.backgroundColor = lightBlue?.withAlphaComponent(1)
                     }
                 }
             }
@@ -237,7 +244,7 @@ class ClockingTableViewCell: UITableViewCell
                     //Getting Registered Finish time as string
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm"
-                    let registeredStartTime = dateFormatter.string(from: tweet.RegisteredStartTime as Date)
+                    let registeredStartTime = dateFormatter.string(from: child.RegisteredStartTime as Date)
                     
                     let currentDate = Date()
                     let distanceBetweenDates = currentDate.timeIntervalSince(savedDate)
@@ -251,7 +258,7 @@ class ClockingTableViewCell: UITableViewCell
                             //Child not signed in.
                             //Time now is before the childs regisred start time.
                             
-                            self.backgroundColor = lightGrey.withAlphaComponent(1)
+                            self.backgroundColor = lightGrey?.withAlphaComponent(1)
                             self.cellDetailsText.text = "Expected in"
                             self.cellInformationText.text = "Expected in " + String(format:"%.0f", abs(minutesElapsed)) + " minutes."
                         }
@@ -290,7 +297,7 @@ class ClockingTableViewCell: UITableViewCell
                                     //TBD: IT MAY BE THAT THE CHILD HAS SIGNED OUT EARLY, WE NEED TO CHECK FOR A SIGN OUT STAMP HERE.
                                     
                                     //Child is yet to arrive/Child is late to sign in
-                                    self.backgroundColor = lightGrey.withAlphaComponent(1)
+                                    self.backgroundColor = lightGrey?.withAlphaComponent(1)
                                     self.cellDetailsText.text = "Expected in at " + registeredStartTime
                                     self.cellInformationText.text = String(format:"%.0f", minutesElapsed) + " minutes late."
                                     
@@ -320,7 +327,7 @@ class ClockingTableViewCell: UITableViewCell
                                     //For now I am just going to assume that the child came in and left, ie has time stamps for today
                                     
                                     //Child is yet to arrive/Child is late to sign in
-                                    self.backgroundColor = lightPink.withAlphaComponent(1)
+                                    self.backgroundColor = lightPink?.withAlphaComponent(1)
                                     //self.backgroundColor.backgroundColor?.withAlphaComponent(0.5)
                                     
                                     self.cellDetailsText.text = "Gone home."

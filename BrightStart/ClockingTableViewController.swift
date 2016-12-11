@@ -6,6 +6,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     
     var children: [[Child]] = [];
     var _CommonHelper: CommonHelper!
+    var _ApplicatoinColours: ApplicatoinColours!
     
     func refreshTable()
     {
@@ -32,9 +33,9 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         _CommonHelper = CommonHelper()
+        _ApplicatoinColours = ApplicatoinColours()
         
-        view.backgroundColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
-        //view.backgroundColor?.withAlphaComponent(0.1)
+        view.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         refresh()
         
@@ -109,10 +110,9 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         return children[section].count
     }
     
-    //Make sure the word tweet is linked up using the storboard, go to the view and clikc on the cell then set the identifier to tweet.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! ClockingTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Child", for: indexPath) as! ClockingTableViewCell
         
         let section = (indexPath as NSIndexPath).section;
         let row = (indexPath as NSIndexPath).row;
@@ -125,12 +125,10 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         return cell
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->
         [UITableViewRowAction]? {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath) as! ClockingTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Child", for: indexPath) as! ClockingTableViewCell
             cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
             var rowTitle = "Sign in " + ((cell.child?.Name)! as String)

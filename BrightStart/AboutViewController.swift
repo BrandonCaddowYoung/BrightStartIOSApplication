@@ -10,22 +10,23 @@ import UIKit
 
 class AboutViewController: UIViewController {
 
-    var _CommonHelper: CommonHelper!
+    var _ApplicatoinColours: ApplicatoinColours!
     
     var TopSpacer: UIView!
     var BottomSpacer: UIView!
     var RightSpacer: UIView!
     var LeftSpacer: UIView!
-    
-    var headingLabel: UILabel!
-    
+  
     var bodyLabel: UILabel!
     
     var backButton: UILabel!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
+        _ApplicatoinColours = ApplicatoinColours()
+        
         TopSpacer = UIView()
         view.addSubview(TopSpacer)
         
@@ -38,37 +39,25 @@ class AboutViewController: UIViewController {
         LeftSpacer = UIView()
         view.addSubview(LeftSpacer)
         
-        headingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        headingLabel.text = "ABOUT US."
-        headingLabel.font = headingLabel.font.withSize(20)
-        
-        headingLabel.textColor = .white
-        
-        view.addSubview(headingLabel)
-        
         bodyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         bodyLabel.text = "We use Icons8 for our images. If your like our artwork, please pay them a visit."
         
         bodyLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
         bodyLabel.numberOfLines = 3
-        bodyLabel.textColor = .white
+        bodyLabel.textColor = _ApplicatoinColours.FontColour
         
         view.addSubview(bodyLabel)
         
-               
-        // Do any additional setup after loading the view.
-    _CommonHelper = CommonHelper()
-    
     setupConstraints()
         
 }
 
 func setupConstraints()
 {
-    view.backgroundColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
+    view.backgroundColor = _ApplicatoinColours.BackGroundColour
     
     LeftSpacer.translatesAutoresizingMaskIntoConstraints = false
-    LeftSpacer.backgroundColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
+    LeftSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
     
     //left
     LeftSpacer.leadingAnchor.constraint(
@@ -85,7 +74,7 @@ func setupConstraints()
     
     
         RightSpacer.translatesAutoresizingMaskIntoConstraints = false
-    RightSpacer.backgroundColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
+    RightSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
 
     
     //right
@@ -101,13 +90,10 @@ func setupConstraints()
     RightSpacer.widthAnchor.constraint(
         equalTo: view.widthAnchor, multiplier: 0.10).isActive = true
     
-    
-    
-    
+    //Positioning the top spacer
     
         TopSpacer.translatesAutoresizingMaskIntoConstraints = false
-    TopSpacer.backgroundColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
-
+    TopSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
     
     //right
     TopSpacer.trailingAnchor.constraint(
@@ -124,14 +110,10 @@ func setupConstraints()
     TopSpacer.heightAnchor.constraint(
         equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
 
-   
-
-    
-    
+   //Positioning the bottom spacer
     
     BottomSpacer.translatesAutoresizingMaskIntoConstraints = false
-    BottomSpacer.backgroundColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
-    
+    BottomSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
     //right
     BottomSpacer.trailingAnchor.constraint(
         equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
@@ -147,10 +129,7 @@ func setupConstraints()
     BottomSpacer.heightAnchor.constraint(
         equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
     
-    
-    
-    
-    
+    //Poisitioning the body label
     
     bodyLabel.translatesAutoresizingMaskIntoConstraints = false
     
@@ -168,44 +147,6 @@ func setupConstraints()
   
     bodyLabel.centerXAnchor.constraint(
         equalTo: view.centerXAnchor).isActive = true
-    
-
-    
-    
-    
-    
-    
-    headingLabel.translatesAutoresizingMaskIntoConstraints = false
-    
-    //right
-    headingLabel.trailingAnchor.constraint(
-    equalTo: RightSpacer.leadingAnchor).isActive = true
-    
-    //left
-    headingLabel.leadingAnchor.constraint(
-    equalTo: LeftSpacer.trailingAnchor).isActive = true
-    
-    //left
-    headingLabel.topAnchor.constraint(
-    equalTo: TopSpacer.bottomAnchor).isActive = true
-    
-    headingLabel.centerXAnchor.constraint(
-    equalTo: view.centerXAnchor).isActive = true
-    
-    
-    
-    //backButton.translatesAutoresizingMaskIntoConstraints = false
-    
-    
-    //left
-   // headingLabel.leadingAnchor.constraint(
-     //   equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
-    
-    //top
-    //headingLabel.topAnchor.constraint(
-      //  equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
-    
-    
     
     
 }
