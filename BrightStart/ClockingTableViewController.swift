@@ -36,13 +36,6 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         view.backgroundColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
         //view.backgroundColor?.withAlphaComponent(0.1)
         
-        //Changes the color of the backgorund within the nav bar.
-        navigationController?.navigationBar.barTintColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
-        
-        //Changes the color of the text within the nav bar
-        navigationController?.navigationBar.barStyle = UIBarStyle.black
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
         refresh()
         
     }

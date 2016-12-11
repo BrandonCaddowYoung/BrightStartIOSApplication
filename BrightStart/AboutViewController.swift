@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutViewController: UINavigationController {
+class AboutViewController: UIViewController {
 
     var _CommonHelper: CommonHelper!
     
@@ -20,6 +20,8 @@ class AboutViewController: UINavigationController {
     var headingLabel: UILabel!
     
     var bodyLabel: UILabel!
+    
+    var backButton: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +55,12 @@ class AboutViewController: UINavigationController {
         
         view.addSubview(bodyLabel)
         
+               
         // Do any additional setup after loading the view.
     _CommonHelper = CommonHelper()
     
     setupConstraints()
-    
+        
 }
 
 func setupConstraints()
@@ -188,6 +191,22 @@ func setupConstraints()
     
     headingLabel.centerXAnchor.constraint(
     equalTo: view.centerXAnchor).isActive = true
+    
+    
+    
+    //backButton.translatesAutoresizingMaskIntoConstraints = false
+    
+    
+    //left
+   // headingLabel.leadingAnchor.constraint(
+     //   equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
+    
+    //top
+    //headingLabel.topAnchor.constraint(
+      //  equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+    
+    
+    
     
 }
 

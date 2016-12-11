@@ -10,6 +10,8 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
+    var _CommonHelper: CommonHelper!
+    
     var collectionView: UICollectionView!
     var topThirdView: UIView!
     
@@ -30,9 +32,19 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        _CommonHelper = CommonHelper()
+        
         setupCollectionView()
         
-        // Do any additional setup after loading the view.
+        
+        
+        //Changes the color of the backgorund within the nav bar.
+        navigationController?.navigationBar.barTintColor = _CommonHelper.hexStringToUIColor(hex: "#37A0e6")
+        
+        //Changes the color of the text within the nav bar
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -275,6 +287,9 @@ class MainMenuViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
 
 }
 
