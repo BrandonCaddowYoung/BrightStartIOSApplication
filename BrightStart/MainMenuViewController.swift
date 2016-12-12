@@ -24,10 +24,10 @@ class MainMenuViewController: UIViewController {
     var headingLabel: UILabel!
     var bodyLabel: UILabel!
     
-    var images = [UIImage(named: "Register"), UIImage(named: "Information"),UIImage(named: "Settings"), UIImage(named: "SignOut")]
-    let DisplayTextList = ["Register", "Informaiton", "Settings", "Sign Out"]
+    var images = [UIImage(named: "Register"), UIImage(named: "Forecast"), UIImage(named: "Information"),UIImage(named: "Settings"), UIImage(named: "SignOut")]
+    let DisplayTextList = ["Register",  "Forecast", "Informaiton", "Settings", "Sign Out"]
 
-    let segueIdList = ["GoToRegister", "GoToInformation", "GoToSettings", "GoToSignIn"]
+    let segueIdList = ["GoToRegister", "GoToForecast", "GoToInformation", "GoToSettings", "GoToSignIn"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

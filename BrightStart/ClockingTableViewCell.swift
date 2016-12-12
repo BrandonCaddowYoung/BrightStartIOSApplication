@@ -21,6 +21,7 @@ class ClockingTableViewCell: UITableViewCell
     var _ApplicationColours: ApplicatoinColours!
     
     @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var cellImage2: UIImageView!
     @IBOutlet weak var childNameLabel: UILabel!
     @IBOutlet weak var cellDetailsText: UILabel!
     @IBOutlet weak var cellInformationText: UILabel!
@@ -36,62 +37,9 @@ class ClockingTableViewCell: UITableViewCell
     
     func setupConstraints() {
         
-        //PUTTING THE IMAGE IN PLACE ON THE RIGHT
         
-        cellImage.translatesAutoresizingMaskIntoConstraints = false
+        //Positioning the name label
         
-        //right
-        cellImage.trailingAnchor.constraint(
-            equalTo: contentView.trailingAnchor).isActive = true
-        
-        //top
-        cellImage.topAnchor.constraint(
-            equalTo: contentView.topAnchor).isActive = true
-        
-        cellImage.widthAnchor.constraint(
-            equalTo: contentView.heightAnchor).isActive = true
-        
-        cellImage.heightAnchor.constraint(
-        equalTo: contentView.heightAnchor).isActive = true
-        
-        //INFORMATION LABEL
-        
-        cellInformationText.translatesAutoresizingMaskIntoConstraints = false
-        
-        //left
-        cellInformationText.leadingAnchor.constraint(
-        equalTo: contentView.leadingAnchor, constant: 5).isActive = true
-        
-        //right
-        cellInformationText.trailingAnchor.constraint(
-            equalTo: cellImage.leadingAnchor).isActive = true
-        
-        //bottom
-        cellInformationText.bottomAnchor.constraint(
-            equalTo: contentView.bottomAnchor, constant: 5).isActive = true
-        
-        //DETIALS LABEL
-        cellDetailsText.translatesAutoresizingMaskIntoConstraints = false
-        
-        //left
-        cellDetailsText.leadingAnchor.constraint(
-            equalTo: contentView.leadingAnchor, constant: 5).isActive = true
-        
-        //right
-        cellDetailsText.trailingAnchor.constraint(
-            equalTo: cellImage.leadingAnchor).isActive = true
-        
-        //bottom
-        cellDetailsText.bottomAnchor.constraint(
-            equalTo: cellInformationText.topAnchor).isActive = true
-        
-        //Making sure the info label is the same height as the details label
-        
-        cellInformationText.heightAnchor.constraint(
-            equalTo: cellDetailsText.heightAnchor).isActive = true
-        
-        
-        //NAME LABEL
         childNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //left
@@ -100,22 +48,99 @@ class ClockingTableViewCell: UITableViewCell
         
         //right
         childNameLabel.trailingAnchor.constraint(
-            equalTo: cellImage.leadingAnchor).isActive = true
-        
-        //bottom
-        childNameLabel.bottomAnchor.constraint(
-            equalTo: cellDetailsText.topAnchor).isActive = true
-        
-        //bottom
-        childNameLabel.topAnchor.constraint(
-            equalTo: contentView.topAnchor).isActive = true
+            equalTo: contentView.trailingAnchor, constant: -5).isActive = true
 
-        contentView.addConstraint(NSLayoutConstraint(item: contentView,
-                                                     attribute: .height,
-                                                     relatedBy: .equal,
-                                                     toItem: nil, attribute: .notAnAttribute,
-                                                     multiplier: 1, constant: 140))
-    
+        
+        //top
+        childNameLabel.topAnchor.constraint(
+            equalTo: contentView.topAnchor, constant: 10).isActive = true
+        
+        
+        //Positioning image number 1(the right image)
+        
+        //Making sure the image doesnt lose its width to the name when it gets bigger.
+        self.cellImage?.setContentCompressionResistancePriority(1000, for: UILayoutConstraintAxis.vertical);
+        self.cellImage?.setContentCompressionResistancePriority(1000, for: UILayoutConstraintAxis.horizontal);
+        
+        cellImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        //right
+        cellImage.trailingAnchor.constraint(
+            equalTo: contentView.trailingAnchor).isActive = true
+        
+        cellImage.widthAnchor.constraint(
+            equalToConstant: 50).isActive = true
+        
+        cellImage.heightAnchor.constraint(
+            equalToConstant: 50).isActive = true
+        
+               //top
+        cellImage.topAnchor.constraint(
+            equalTo: childNameLabel.bottomAnchor).isActive = true
+        
+        //Positioning image number 2(the left image)
+        
+        cellImage2.translatesAutoresizingMaskIntoConstraints = false
+        
+        //right
+        //cellImage2.trailingAnchor.constraint(
+          //  equalTo: cellImage.leadingAnchor).isActive = true
+        
+        //left
+        cellImage2.leadingAnchor.constraint(
+            equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        
+        //top
+        cellImage2.topAnchor.constraint(
+            equalTo: childNameLabel.bottomAnchor).isActive = true
+        
+        self.cellImage2?.setContentCompressionResistancePriority(1000, for: UILayoutConstraintAxis.vertical);
+        self.cellImage2?.setContentCompressionResistancePriority(1000, for: UILayoutConstraintAxis.horizontal);
+
+        cellImage2.widthAnchor.constraint(
+            equalToConstant: 50).isActive = true
+        
+        cellImage2.heightAnchor.constraint(
+            equalToConstant: 50).isActive = true
+        
+        
+        
+        //INFORMATION LABEL
+        
+        cellInformationText.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        cellInformationText.leadingAnchor.constraint(
+            equalTo: cellImage2.trailingAnchor, constant: 5).isActive = true
+        
+        //top
+        cellInformationText.topAnchor.constraint(
+            equalTo: childNameLabel.bottomAnchor).isActive = true
+        
+        //right
+        cellInformationText.trailingAnchor.constraint(
+            equalTo: cellImage.leadingAnchor, constant: -5).isActive = true
+        
+        //Positioning the DETIALS LABEL
+        cellDetailsText.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        cellDetailsText.leadingAnchor.constraint(
+            equalTo: cellImage2.trailingAnchor, constant: 5).isActive = true
+        
+        //right
+        cellInformationText.trailingAnchor.constraint(
+            equalTo: cellImage.leadingAnchor, constant: -5).isActive = true
+
+        
+        
+        //bottom
+        cellDetailsText.bottomAnchor.constraint(
+            equalTo: cellImage2.bottomAnchor).isActive = true
+        
+        //bottomAnchor
+        cellDetailsText.bottomAnchor.constraint(
+            equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         
     }
     
@@ -170,6 +195,10 @@ class ClockingTableViewCell: UITableViewCell
     }
     
     func updateUI() {
+        
+        self.childNameLabel.textColor = .black
+        self.cellInformationText.textColor = .black
+        self.cellDetailsText.textColor = .black
        
         childNameLabel?.text = nil
        
@@ -186,7 +215,8 @@ class ClockingTableViewCell: UITableViewCell
             
             if(child.CurrentlySignedIn==true)
             {
-                self.cellImage?.image = UIImage(named: "SwipeToSignOut")
+                self.cellImage?.image = UIImage(named: "SwipeLeft")
+                self.cellImage2?.image = UIImage(named: "SignedIn")
                 
                 if let savedDate = UserDefaults.standard.object(forKey: "finishTime")  as? Date
                 {
@@ -235,7 +265,9 @@ class ClockingTableViewCell: UITableViewCell
             }
             else //Not signed in
             {
-                self.cellImage?.image = UIImage(named: "SwipeToSignIn")
+                self.cellImage?.image = UIImage(named: "SwipeLeft")
+                self.cellImage2?.image = UIImage(named: "SignedOut")
+
                 
                 self.cellDetailsText.text = ""
                 
@@ -261,6 +293,11 @@ class ClockingTableViewCell: UITableViewCell
                             self.backgroundColor = lightGrey?.withAlphaComponent(1)
                             self.cellDetailsText.text = "Expected in"
                             self.cellInformationText.text = "Expected in " + String(format:"%.0f", abs(minutesElapsed)) + " minutes."
+                            
+                            self.childNameLabel.textColor = .white
+                            self.cellInformationText.textColor = lightBlue
+                            self.cellDetailsText.textColor = lightPink
+                            
                         }
                         else
                         {
@@ -352,5 +389,12 @@ class ClockingTableViewCell: UITableViewCell
             }
         }
         
+        
+        
     }
+    
+    
+    
 }
+
+

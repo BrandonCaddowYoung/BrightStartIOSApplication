@@ -13,6 +13,7 @@ class ApplicatoinColours {
     
     //DEFAULTS
     var BackGroundColour: UIColor!
+    var FontHeadingColour: UIColor!
     var FontColour: UIColor!
     
     var LightBlue: UIColor!
@@ -22,6 +23,8 @@ class ApplicatoinColours {
     init() {
         BackGroundColour = hexStringToUIColor(hex: "#37A0e6") //BLUE
         FontColour = hexStringToUIColor(hex: "#FFFFFF") //WHITE
+        FontHeadingColour = hexStringToUIColor(hex: "#000000") //Black
+
         
         LightBlue = hexStringToUIColor(hex: "#69BAE4")
         LightPink = hexStringToUIColor(hex: "#DD95B7")

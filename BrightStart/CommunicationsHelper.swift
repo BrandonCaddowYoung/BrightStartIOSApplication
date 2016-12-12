@@ -14,6 +14,14 @@ import Alamofire
  */
 func makeHTTPGetRequest(encode: Bool, path: String, onCompletion: @escaping ServiceResponse) {
     
+    var url = path
+    
+    if(encode){
+     url = path.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+    }
+    
+    
+    
     let user = "byoung"
     let password = "P@ssw0rd.1"
     
@@ -23,7 +31,7 @@ func makeHTTPGetRequest(encode: Bool, path: String, onCompletion: @escaping Serv
         headers[authorizationHeader.key] = authorizationHeader.value
     }
     
-    Alamofire.request(path, headers: headers)
+    Alamofire.request(url, headers: headers)
         .responseJSON { response in
             
             switch response.result {

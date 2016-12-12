@@ -126,18 +126,26 @@ class SignInViewController: UIViewController {
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         
-        signInButton.heightAnchor.constraint(
-            equalTo: bottomView.heightAnchor,
-            multiplier: 0.40).isActive = true
+        //signInButton.heightAnchor.constraint(
+          //  equalTo: bottomView.heightAnchor,
+           // multiplier: 0.40).isActive = true
         
         signInButton.topAnchor.constraint(
             equalTo: middleView.bottomAnchor).isActive = true
         
-        signInButton.trailingAnchor.constraint(
-            equalTo: bottomView.trailingAnchor, constant: -15).isActive = true
+       
+        //width
+         signInButton.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.70).isActive = true
+
         
-        signInButton.leadingAnchor.constraint(
-            equalTo: bottomView.leadingAnchor, constant: 15).isActive = true
+        signInButton.centerXAnchor.constraint(
+           equalTo: bottomView.centerXAnchor).isActive = true
+        
+        
+        
+        
         
         //MIDDLE VIEW
         

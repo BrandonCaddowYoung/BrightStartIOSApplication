@@ -59,6 +59,15 @@ class NumbersController: UIViewController {
         
         var currentValue = Int(numbersSlider.value)
         
+        var amOrPm = "AM"
+        if(currentValue > 12)
+        {
+            currentValue = currentValue - 12
+            amOrPm = "PM"
+        }
+        
+        sliderTimeLabel.text = "\(currentValue):00 " + amOrPm
+        
         if(!self._ChildrenRegisterdHoursCounts.indices.contains(Int(currentValue - 1)) == true)
         {
             //Means the API probably hasnt returned anything yet
@@ -74,15 +83,6 @@ class NumbersController: UIViewController {
         let childrenWithRegisteredhoursCount = self._ChildrenRegisterdHoursCounts[Int(currentValue - 1)]
         let staffWithRegisteredhoursCount = self._StaffRegisterdHoursCounts[Int(currentValue - 1)]
        
-        var amOrPm = "AM"
-        if(currentValue > 12)
-        {
-        currentValue = currentValue - 12
-            amOrPm = "PM"
-        }
-        
-        sliderTimeLabel.text = "\(currentValue):00 " + amOrPm
-        
         numberOfChilrenAtGivenTime.text = "\(childrenWithRegisteredhoursCount.NumberOfPersonWithRegisteredHours)"
         numberOfStaffAtGivenTime.text = "\(staffWithRegisteredhoursCount.NumberOfPersonWithRegisteredHours)"
     }
@@ -109,7 +109,7 @@ class NumbersController: UIViewController {
         //width
         LeftSubView.widthAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.10).isActive = true
+            multiplier: 0.05).isActive = true
         
         
         
@@ -130,7 +130,7 @@ class NumbersController: UIViewController {
         //width
         RightSubView.widthAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.10).isActive = true
+            multiplier: 0.05).isActive = true
         
         
         //Positioning the bottom subview
@@ -165,7 +165,7 @@ class NumbersController: UIViewController {
         
         //top
         topSubView.topAnchor.constraint(
-            equalTo: view.topAnchor).isActive = true
+            equalTo: topLayoutGuide.bottomAnchor).isActive = true
        
         //height
         topSubView.heightAnchor.constraint(
@@ -198,8 +198,11 @@ class NumbersController: UIViewController {
         
         headingLabel.sizeToFit()
         
-        headingLabel.centerXAnchor.constraint(
-            equalTo: topSubView.centerXAnchor).isActive = true
+        headingLabel.leadingAnchor.constraint(
+            equalTo: LeftSubView.trailingAnchor).isActive = true
+        
+        headingLabel.trailingAnchor .constraint(
+            equalTo: RightSubView.leadingAnchor).isActive = true
         
         headingLabel.centerYAnchor.constraint(
             equalTo: topSubView.centerYAnchor).isActive = true
@@ -223,7 +226,7 @@ class NumbersController: UIViewController {
             equalTo: LeftSubView.trailingAnchor).isActive = true
         
         signedInLabel.topAnchor.constraint(
-            equalTo: currentStatusLabel.bottomAnchor).isActive = true
+            equalTo: currentStatusLabel.bottomAnchor, constant: 10).isActive = true
         
         yetToArriveLabel.leadingAnchor.constraint(
             equalTo: LeftSubView.trailingAnchor).isActive = true
@@ -236,16 +239,6 @@ class NumbersController: UIViewController {
         
         totalExpectedInLabel.topAnchor.constraint(
             equalTo: yetToArriveLabel.bottomAnchor).isActive = true
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         signedInStaff.translatesAutoresizingMaskIntoConstraints = false
@@ -295,22 +288,6 @@ class NumbersController: UIViewController {
             equalTo: totalExpectedInLabel.centerYAnchor).isActive = true
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         //Positioning the bottom subview content
         
         sliderTimeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -356,7 +333,7 @@ class NumbersController: UIViewController {
             equalTo: LeftSubView.trailingAnchor).isActive = true
         
         timeLabel.topAnchor.constraint(
-            equalTo: bottomSubViewHeading.bottomAnchor).isActive = true
+            equalTo: bottomSubViewHeading.bottomAnchor, constant: 10).isActive = true
         
         childrenLabel.leadingAnchor.constraint(
             equalTo: LeftSubView.trailingAnchor).isActive = true
@@ -377,8 +354,8 @@ class NumbersController: UIViewController {
         slider.trailingAnchor.constraint(
             equalTo: RightSubView.leadingAnchor).isActive = true
         
-        slider.bottomAnchor.constraint(
-            equalTo: bottomSubView.bottomAnchor).isActive = true
+        slider.topAnchor.constraint(
+            equalTo: staffLabel.bottomAnchor).isActive = true
         
         
         headingLabel.sizeToFit()
@@ -394,6 +371,28 @@ class NumbersController: UIViewController {
         
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
         
+        signedInChildren.textColor = _ApplicatoinColours.FontHeadingColour
+        signedInStaff.textColor = _ApplicatoinColours.FontHeadingColour
+        yetToArriveChildren.textColor = _ApplicatoinColours.FontHeadingColour
+        yetToArriveStaff.textColor = _ApplicatoinColours.FontHeadingColour
+        totalExpectedchildren.textColor = _ApplicatoinColours.FontHeadingColour
+        totalExpectedStaff.textColor = _ApplicatoinColours.FontHeadingColour
+        
+        sliderTimeLabel.textColor = _ApplicatoinColours.FontHeadingColour
+        
+        numberOfChilrenAtGivenTime.textColor = _ApplicatoinColours.FontHeadingColour
+        numberOfStaffAtGivenTime.textColor = _ApplicatoinColours.FontHeadingColour
+        
+        headingLabel.textColor = _ApplicatoinColours.FontColour
+        currentStatusLabel.textColor = _ApplicatoinColours.FontHeadingColour
+        signedInLabel.textColor = _ApplicatoinColours.FontColour
+        yetToArriveLabel.textColor = _ApplicatoinColours.FontColour
+        
+        totalExpectedInLabel.textColor = _ApplicatoinColours.FontColour
+        timeLabel.textColor = _ApplicatoinColours.FontColour
+        childrenLabel.textColor = _ApplicatoinColours.FontColour
+        staffLabel.textColor = _ApplicatoinColours.FontColour
+        bottomSubViewHeading.textColor = _ApplicatoinColours.FontHeadingColour
         
     }
     
@@ -412,6 +411,7 @@ class NumbersController: UIViewController {
             
             let totalExpectedchildren = json["TotalExpectedInCount"].stringValue;
            
+            
             DispatchQueue.main.async(execute: {
                 
                 self.signedInChildren.text = signedInChildren
@@ -419,6 +419,19 @@ class NumbersController: UIViewController {
                 self.yetToArriveChildren.text = yetToArriveChildren
                 
                 self.totalExpectedchildren.text = totalExpectedchildren
+                
+                var hour = Calendar.current.component(.hour, from: Date())
+                
+                self.slider.setValue(Float(hour), animated: true)
+                
+                var amOrPm = "AM"
+                if(hour > 12)
+                {
+                    hour = hour - 12
+                    amOrPm = "PM"
+                }
+                
+                self.sliderTimeLabel.text = "\(hour):00 " + amOrPm
                 
             })
             
