@@ -20,6 +20,7 @@ class AboutViewController: UIViewController {
     var bodyLabel: UILabel!
     
     var backButton: UILabel!
+    var icons8Button: UIButton!
     
     override func viewDidLoad() {
         
@@ -40,17 +41,33 @@ class AboutViewController: UIViewController {
         view.addSubview(LeftSpacer)
         
         bodyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        bodyLabel.text = "We use Icons8 for our images. If your like our artwork, please pay them a visit."
+        bodyLabel.text = "We use Icons8 for our images. If your like our artwork, please pay them a visit. They can be found at www.icons8.com"
         
         bodyLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
         bodyLabel.numberOfLines = 3
         bodyLabel.textColor = _ApplicatoinColours.FontColour
         
+        bodyLabel.font = UIFont(name: "Helvetica Neue", size: 21)
+        bodyLabel.font = UIFont.systemFont(ofSize: 21, weight: UIFontWeightThin)
+        
         view.addSubview(bodyLabel)
+        
+       icons8Button = UIButton(frame: CGRect(x: 20, y: 20, width: 200, height: 60))
+        icons8Button.setTitle("Visit icons8.com", for: .normal)
+        icons8Button.backgroundColor = _ApplicatoinColours.BackGroundColour
+        icons8Button.setTitleColor(UIColor.black, for: .normal)
+        icons8Button.addTarget(self, action: #selector(self.GoToIcons8), for: .touchUpInside)
+        view.addSubview(icons8Button)
+        
         
     setupConstraints()
         
 }
+    func GoToIcons8(){
+    if let url = NSURL(string: "http://www.icons8.com"){
+        UIApplication.shared.openURL(url as URL)
+    }
+    }
 
 func setupConstraints()
 {
@@ -147,6 +164,25 @@ func setupConstraints()
   
     bodyLabel.centerXAnchor.constraint(
         equalTo: view.centerXAnchor).isActive = true
+    
+    
+    
+    
+    //Poisitioning the body label
+    
+    icons8Button.translatesAutoresizingMaskIntoConstraints = false
+    
+    //right
+    icons8Button.trailingAnchor.constraint(
+        equalTo: RightSpacer.leadingAnchor).isActive = true
+    
+    
+    //left
+   icons8Button.leadingAnchor.constraint(
+        equalTo: LeftSpacer.trailingAnchor).isActive = true
+    
+    icons8Button.topAnchor.constraint(
+        equalTo: bodyLabel.bottomAnchor).isActive = true
     
     
 }

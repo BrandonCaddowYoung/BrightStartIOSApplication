@@ -57,7 +57,9 @@ class NumbersController: UIViewController {
      */
     @IBAction func SliderValueChanged(_ sender: AnyObject) {
         
-        var currentValue = Int(numbersSlider.value)
+        var currentValueAs24Hour = Int(numbersSlider.value)
+        
+        var currentValue = currentValueAs24Hour
         
         var amOrPm = "AM"
         if(currentValue > 12)
@@ -68,20 +70,20 @@ class NumbersController: UIViewController {
         
         sliderTimeLabel.text = "\(currentValue):00 " + amOrPm
         
-        if(!self._ChildrenRegisterdHoursCounts.indices.contains(Int(currentValue - 1)) == true)
+        if(!self._ChildrenRegisterdHoursCounts.indices.contains(Int(currentValueAs24Hour - 1)) == true)
         {
             //Means the API probably hasnt returned anything yet
             return
         }
         
-        if(!self._StaffRegisterdHoursCounts.indices.contains(Int(currentValue - 1)) == true)
+        if(!self._StaffRegisterdHoursCounts.indices.contains(Int(currentValueAs24Hour - 1)) == true)
         {
              //Means the API probably hasnt returned anything yet
             return
         }
         
-        let childrenWithRegisteredhoursCount = self._ChildrenRegisterdHoursCounts[Int(currentValue - 1)]
-        let staffWithRegisteredhoursCount = self._StaffRegisterdHoursCounts[Int(currentValue - 1)]
+        let childrenWithRegisteredhoursCount = self._ChildrenRegisterdHoursCounts[Int(currentValueAs24Hour - 1)]
+        let staffWithRegisteredhoursCount = self._StaffRegisterdHoursCounts[Int(currentValueAs24Hour - 1)]
        
         numberOfChilrenAtGivenTime.text = "\(childrenWithRegisteredhoursCount.NumberOfPersonWithRegisteredHours)"
         numberOfStaffAtGivenTime.text = "\(staffWithRegisteredhoursCount.NumberOfPersonWithRegisteredHours)"
@@ -270,19 +272,19 @@ class NumbersController: UIViewController {
         totalExpectedchildren.translatesAutoresizingMaskIntoConstraints = false
         
         signedInChildren.trailingAnchor.constraint(
-            equalTo: signedInStaff.leadingAnchor).isActive = true
+            equalTo: signedInStaff.leadingAnchor, constant: -20).isActive = true
         
         signedInChildren.centerYAnchor.constraint(
             equalTo: signedInLabel.centerYAnchor).isActive = true
         
         yetToArriveChildren.trailingAnchor.constraint(
-            equalTo: yetToArriveStaff.leadingAnchor).isActive = true
+            equalTo: yetToArriveStaff.leadingAnchor,  constant: -20).isActive = true
         
         yetToArriveChildren.centerYAnchor.constraint(
             equalTo: yetToArriveLabel.centerYAnchor).isActive = true
         
         totalExpectedchildren.trailingAnchor.constraint(
-            equalTo: totalExpectedStaff.leadingAnchor).isActive = true
+            equalTo: totalExpectedStaff.leadingAnchor,  constant: -20).isActive = true
         
         totalExpectedchildren.centerYAnchor.constraint(
             equalTo: totalExpectedInLabel.centerYAnchor).isActive = true
@@ -465,7 +467,11 @@ class NumbersController: UIViewController {
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.day , .month , .year], from: date)
         
-        CommonRequests.sharedInstance.GetNumberOfChildrenWithRegisteredHoursForEntireDay(year: String(describing: components.year), month: String(describing: components.month), day: String(describing: components.day), onCompletion: { json in
+        let year = String(Calendar.current.component(.year, from: Date()))
+        let month = String(Calendar.current.component(.month, from: Date()))
+        let day = String(Calendar.current.component(.day, from: Date()))
+        
+        CommonRequests.sharedInstance.GetNumberOfChildrenWithRegisteredHoursForEntireDay(year: year, month: month, day:day, onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
 
@@ -495,13 +501,13 @@ class NumbersController: UIViewController {
             
             DispatchQueue.main.async(execute: {
                 
-                
+                print("Finished fetching staff")
                 
             })
             
         })
         
-        CommonRequests.sharedInstance.GetNumberOfStaffWithRegisteredHoursForEntireDay(year: String(describing: components.year), month: String(describing: components.month), day: String(describing: components.day), onCompletion: { json in
+        CommonRequests.sharedInstance.GetNumberOfStaffWithRegisteredHoursForEntireDay(year: year, month: month, day: day, onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
                 
@@ -533,6 +539,7 @@ class NumbersController: UIViewController {
             
             DispatchQueue.main.async(execute: {
                 
+                print("Finished fetching children")
                 
             })
             

@@ -50,8 +50,8 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
        
-        let alert = _CommonHelper.showOverlayMessage("Refreshing...")
-        self.present(alert, animated: true, completion: nil)
+       // let alert = _CommonHelper.showOverlayMessage("Refreshing...")
+       // self.present(alert, animated: true, completion: nil)
         
         self.children.removeAll();
         
@@ -96,7 +96,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                     self.tableView.reloadData()
                     sender?.endRefreshing()
                     
-                     self.dismiss(animated: false, completion: nil)
+                    // self.dismiss(animated: false, completion: nil)
                     
                 })
             }

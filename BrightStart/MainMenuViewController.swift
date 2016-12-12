@@ -24,10 +24,10 @@ class MainMenuViewController: UIViewController {
     var headingLabel: UILabel!
     var bodyLabel: UILabel!
     
-    var images = [UIImage(named: "Register"), UIImage(named: "Forecast"), UIImage(named: "Information"),UIImage(named: "Settings"), UIImage(named: "SignOut")]
-    let DisplayTextList = ["Register",  "Forecast", "Informaiton", "Settings", "Sign Out"]
+    var images = [UIImage(named: "Register"), UIImage(named: "Forecast"), UIImage(named: "Information"), UIImage(named: "SignOut")]
+    let DisplayTextList = ["Register",  "Forecast", "Informaiton", "Sign Out"]
 
-    let segueIdList = ["GoToRegister", "GoToForecast", "GoToInformation", "GoToSettings", "GoToSignIn"]
+    let segueIdList = ["GoToRegister", "GoToForecast", "GoToInformation", "GoToSignIn"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,14 +95,19 @@ class MainMenuViewController: UIViewController {
         
         headingLabel.textColor = _ApplicatoinColours.FontColour
         
+        headingLabel.font = UIFont(name: "Helvetica Neue", size: 26)
+        
         view.addSubview(headingLabel)
         
         bodyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        bodyLabel.text = "Below are a list of our many features that can help your run your nursery. Choose one by touching the buttons below."
+        bodyLabel.text = "Below is a list of our many features that can help you run your nursery school. To get going, select one from the list."
         
         bodyLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
-        bodyLabel.numberOfLines = 3
+        bodyLabel.numberOfLines = 4
         bodyLabel.textColor = _ApplicatoinColours.FontColour
+        
+        bodyLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+        bodyLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightThin)
         
         view.addSubview(bodyLabel)
         

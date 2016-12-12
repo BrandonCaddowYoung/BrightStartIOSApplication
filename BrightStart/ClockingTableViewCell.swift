@@ -44,11 +44,9 @@ class ClockingTableViewCell: UITableViewCell
         
         //left
         childNameLabel.leadingAnchor.constraint(
-            equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+            equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         
-        //right
-        childNameLabel.trailingAnchor.constraint(
-            equalTo: contentView.trailingAnchor, constant: -5).isActive = true
+       //Right is defined below, after the image is in place
 
         
         //top
@@ -76,23 +74,27 @@ class ClockingTableViewCell: UITableViewCell
         
                //top
         cellImage.topAnchor.constraint(
-            equalTo: childNameLabel.bottomAnchor).isActive = true
+            equalTo: contentView.topAnchor).isActive = true
+        
+        //cellImage.centerYAnchor.constraint(
+          //  equalTo: contentView.centerYAnchor).isActive = true
+
+        
+        //right
+        childNameLabel.trailingAnchor.constraint(
+            equalTo: cellImage.leadingAnchor, constant: -5).isActive = true
         
         //Positioning image number 2(the left image)
         
         cellImage2.translatesAutoresizingMaskIntoConstraints = false
         
-        //right
-        //cellImage2.trailingAnchor.constraint(
-          //  equalTo: cellImage.leadingAnchor).isActive = true
-        
         //left
         cellImage2.leadingAnchor.constraint(
-            equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+            equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         
         //top
         cellImage2.topAnchor.constraint(
-            equalTo: childNameLabel.bottomAnchor).isActive = true
+            equalTo: childNameLabel.bottomAnchor, constant: 10).isActive = true
         
         self.cellImage2?.setContentCompressionResistancePriority(1000, for: UILayoutConstraintAxis.vertical);
         self.cellImage2?.setContentCompressionResistancePriority(1000, for: UILayoutConstraintAxis.horizontal);
@@ -115,7 +117,7 @@ class ClockingTableViewCell: UITableViewCell
         
         //top
         cellInformationText.topAnchor.constraint(
-            equalTo: childNameLabel.bottomAnchor).isActive = true
+            equalTo: cellImage2.topAnchor).isActive = true
         
         //right
         cellInformationText.trailingAnchor.constraint(
@@ -337,6 +339,10 @@ class ClockingTableViewCell: UITableViewCell
                                     self.backgroundColor = lightGrey?.withAlphaComponent(1)
                                     self.cellDetailsText.text = "Expected in at " + registeredStartTime
                                     self.cellInformationText.text = String(format:"%.0f", minutesElapsed) + " minutes late."
+                                    
+                                    self.childNameLabel.textColor = .white
+                                    self.cellInformationText.textColor = lightBlue
+                                    self.cellDetailsText.textColor = lightPink
                                     
                                 }
                                 else

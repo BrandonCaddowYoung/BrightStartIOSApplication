@@ -443,7 +443,7 @@ class SignInViewController: UIViewController {
      */
     @IBAction func signInButtonClicked(_ sender: Any) {
         
-        _PopUpAlert = self._CommonHelper.showOverlayMessage("Checking your credentials....")
+        _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
         self.present(_PopUpAlert, animated: true, completion: nil)
         
         //Removing incase the user is trying to switch accounts.

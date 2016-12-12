@@ -30,6 +30,9 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.adjustsFontSizeToFitWidth = true
         
+        label.font = UIFont(name: "Helvetica Neue", size: 15)
+        label.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightThin)
+        
         contentView.addSubview(label) //Remember to add ui elements to the content view not the cell iteslf.
         
         button = UIButton(frame: contentView.frame)
