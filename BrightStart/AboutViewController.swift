@@ -41,10 +41,10 @@ class AboutViewController: UIViewController {
         view.addSubview(LeftSpacer)
         
         bodyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        bodyLabel.text = "We use Icons8 for our images. If your like our artwork, please pay them a visit. They can be found at www.icons8.com"
+        bodyLabel.text = "We use Icons8 for our images. If your like their artwork, please pay them a visit. They can be found at www.icons8.com"
         
-        bodyLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
-        bodyLabel.numberOfLines = 3
+        bodyLabel.lineBreakMode = .byWordWrapping
+        bodyLabel.numberOfLines = 5
         bodyLabel.textColor = _ApplicatoinColours.FontColour
         
         bodyLabel.font = UIFont(name: "Helvetica Neue", size: 21)

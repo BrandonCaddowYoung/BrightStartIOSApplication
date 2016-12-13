@@ -96,7 +96,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                     self.tableView.reloadData()
                     sender?.endRefreshing()
                     
-                    // self.dismiss(animated: false, completion: nil)
+                    //self.dismiss(animated: false, completion: nil)
                     
                 })
             }
@@ -146,6 +146,8 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                                                      onCompletion: {
                                                         DispatchQueue.main.async(execute: {
                                                             self.refreshTable()
+                                                            
+                                                            self.dismiss(animated: false, completion: nil)
                                                         })
                     }
                 )
@@ -169,6 +171,9 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                                                         
                                                         DispatchQueue.main.async(execute: {
                                                             self.refreshTable()
+                                                            
+                                                            self.dismiss(animated: false, completion: nil)
+                                                            
                                                         })
                                                         
                 })

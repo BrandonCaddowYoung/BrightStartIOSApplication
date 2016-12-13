@@ -44,6 +44,7 @@ class NumbersController: UIViewController {
     @IBOutlet weak var yetToArriveLabel: UILabel!
     @IBOutlet weak var totalExpectedInLabel: UILabel!
     
+    @IBOutlet weak var forecastSpinner: UIActivityIndicatorView!
     
     @IBOutlet weak var bottomSubViewHeading: UILabel!
     
@@ -57,7 +58,7 @@ class NumbersController: UIViewController {
      */
     @IBAction func SliderValueChanged(_ sender: AnyObject) {
         
-        var currentValueAs24Hour = Int(numbersSlider.value)
+        let currentValueAs24Hour = Int(numbersSlider.value)
         
         var currentValue = currentValueAs24Hour
         
@@ -324,12 +325,25 @@ class NumbersController: UIViewController {
         childrenLabel.translatesAutoresizingMaskIntoConstraints = false
         staffLabel.translatesAutoresizingMaskIntoConstraints = false
          slider.translatesAutoresizingMaskIntoConstraints = false
+        forecastSpinner.translatesAutoresizingMaskIntoConstraints = false
         
         bottomSubViewHeading.leadingAnchor  .constraint(
             equalTo: LeftSubView.trailingAnchor).isActive = true
         
         bottomSubViewHeading.topAnchor.constraint(
             equalTo: bottomSubView.topAnchor).isActive = true
+        
+        
+        //Positioning the spinner to the right of the heading label
+        forecastSpinner.leadingAnchor.constraint(
+            equalTo: bottomSubViewHeading.trailingAnchor, constant: 10).isActive = true
+        
+        forecastSpinner.bottomAnchor.constraint(
+            equalTo: bottomSubViewHeading.bottomAnchor).isActive = true
+        
+
+        
+        
         
         timeLabel.leadingAnchor.constraint(
             equalTo: LeftSubView.trailingAnchor).isActive = true
@@ -405,6 +419,11 @@ class NumbersController: UIViewController {
         
         setupConstraints()
         
+        self.forecastSpinner.hidesWhenStopped = true;
+        self.forecastSpinner.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
+        
+        self.forecastSpinner.startAnimating()
+        
         CommonRequests.sharedInstance.SelectChildrenCountsForTargetDate(targetDate: Date() as NSDate, onCompletion: { json in
             
             let signedInChildren = json["CurrentlySignedInCount"].stringValue
@@ -465,7 +484,7 @@ class NumbersController: UIViewController {
         
         let date = Date()
         let calendar = Calendar.current
-        let components = (calendar as NSCalendar).components([.day , .month , .year], from: date)
+        _ = (calendar as NSCalendar).components([.day , .month , .year], from: date)
         
         let year = String(Calendar.current.component(.year, from: Date()))
         let month = String(Calendar.current.component(.month, from: Date()))
@@ -503,6 +522,14 @@ class NumbersController: UIViewController {
                 
                 print("Finished fetching staff")
                 
+                if(self._StaffRegisterdHoursCounts.count > 0)
+                {
+                    self.forecastSpinner.stopAnimating()
+                    
+                    self.showForeCastLabels()
+                    
+                }
+                
             })
             
         })
@@ -519,8 +546,6 @@ class NumbersController: UIViewController {
                 
                 var curDate = dateFormatter.date(from: targetDate)
                 
-                
-                
                 if(signedInStaff == nil){
                     signedInStaff = 0
                 }
@@ -528,9 +553,6 @@ class NumbersController: UIViewController {
                 if(curDate == nil){
                     curDate = Date()
                 }
-
-                
-                
                 
                 let regCount:RegisteredCount = RegisteredCount(numberOfChildrenWithRegisteredHours: signedInStaff!, targetDate: curDate!)
                 
@@ -539,7 +561,13 @@ class NumbersController: UIViewController {
             
             DispatchQueue.main.async(execute: {
                 
-                print("Finished fetching children")
+                if(self._ChildrenRegisterdHoursCounts.count > 0)
+                {
+                 self.forecastSpinner.stopAnimating()
+                    
+                    self.showForeCastLabels()
+                    
+                }
                 
             })
             
@@ -562,6 +590,22 @@ class NumbersController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showForeCastLabels()
+    {
+    timeLabel.isHidden = false
+        childrenLabel.isHidden = false
+        staffLabel.isHidden = false
+        
+        numberOfStaffAtGivenTime.isHidden = false
+        numberOfChilrenAtGivenTime.isHidden = false
+        timeLabel.isHidden = false
+        
+        bottomSubViewHeading.isHidden = false
+        slider.isHidden = false;
+        sliderTimeLabel.isHidden = false
+        
     }
     
 
