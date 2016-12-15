@@ -2,8 +2,8 @@
 //  RegisteredCount.swift
 //  BrightStart
 //
-//  Created by dev on 21/04/2016.
-//  Copyright © 2016 dev. All rights reserved.
+//  Created by Brandon Young on 16/11/2016.
+//  Copyright © 2016 Bright Start Software All rights reserved.
 //
 
 import Foundation
