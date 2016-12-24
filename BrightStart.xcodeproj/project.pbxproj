@@ -540,16 +540,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -910,13 +910,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BrightStart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cognisec.BrightStart;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brightstartsoftware.brightstart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3a3b1cb5-ff9b-4e8a-b282-668617c265ff";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -925,13 +925,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BrightStart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cognisec.BrightStart;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brightstartsoftware.brightstart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3a3b1cb5-ff9b-4e8a-b282-668617c265ff";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

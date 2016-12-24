@@ -20,8 +20,6 @@ func makeHTTPGetRequest(encode: Bool, path: String, onCompletion: @escaping Serv
      url = path.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
     }
     
-    
-    
     let user = "byoung"
     let password = "P@ssw0rd.1"
     

@@ -125,7 +125,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         let row = (indexPath as NSIndexPath).row;
         
       if children.count > section && children[section].count > row {
-            print(children[section][row])
+            //print(children[section][row])
             cell.child = children[section][row];
         }
         

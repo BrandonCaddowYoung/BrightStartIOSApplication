@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, UITextFieldDelegate {
 
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -43,9 +43,13 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //We need this so that we can dismess the keyboard on enter.
+        passwordTextField.delegate = self
+        usernameTextField.delegate = self
+        
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
-        
+      
         setupConstraints()
         
         //Styling the sign in button
@@ -394,6 +398,19 @@ class SignInViewController: UIViewController {
         let nurserySchoolPassword = passwordTextField.text
         
         if nurserySchoolUserName?.isEmpty == true || nurserySchoolPassword?.isEmpty == true {
+            
+            //Removing the message we showed the user when they attempted to sign in.
+            self._PopUpAlert.dismiss(animated: false, completion:
+                {
+                    let alert = UIAlertController(title: "Login failed.", message:
+                        "In order to login, you will need to supply both a username and a password.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+                    
+                    self.present(alert, animated: true, completion: nil)
+      
+            })
+            
+            
             return
         }
         
@@ -426,10 +443,18 @@ class SignInViewController: UIViewController {
                 }
                 else
                 {
+                    
                 //Notify the user that the given credentials were incorrect.
                     
                     //Removing the message we showed the user when they attempted to sign in.
-                    self._PopUpAlert.dismiss(animated: false, completion: nil)
+                    self._PopUpAlert.dismiss(animated: false, completion: {  let alert = UIAlertController(title: "Login failed.", message:
+                        "Invalid credentials were supplied. Please try again making sure both your username and password are spelt correctly.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+                        
+                        self.present(alert, animated: true, completion: nil)
+})
+                    
+                    
                     
                 }
                 
@@ -472,6 +497,11 @@ class SignInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     

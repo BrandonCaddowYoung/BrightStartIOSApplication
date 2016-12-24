@@ -519,9 +519,7 @@ class NumbersController: UIViewController {
 
             
             DispatchQueue.main.async(execute: {
-                
-                print("Finished fetching staff")
-                
+               
                 if(self._StaffRegisterdHoursCounts.count > 0)
                 {
                     self.forecastSpinner.stopAnimating()
