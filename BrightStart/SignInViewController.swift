@@ -28,10 +28,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var bottomView: UIView!
     
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var usernameTextField: UITextField!
     
-    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var signInButton: UIButton!
@@ -73,6 +71,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         //We could put the passwod in place if it exists however is a security risk.
         
+        #if DEBUG
+            usernameTextField.text = "user1"
+            passwordTextField.text = "user1"
+        #endif
     }
     
     /*!
@@ -147,10 +149,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         signInButton.centerXAnchor.constraint(
            equalTo: bottomView.centerXAnchor).isActive = true
         
-        
-        
-        
-        
         //MIDDLE VIEW
         
         middleView.translatesAutoresizingMaskIntoConstraints = false
@@ -174,9 +172,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         //TEXT INPUT FIELDS WITHIN MIDDLE VIEW
         
-        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
+       // usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordLabel.translatesAutoresizingMaskIntoConstraints = false
+       // passwordLabel.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         
         //Setting up the MIDDLE spacer views
@@ -203,8 +201,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         spacerMiddleTopView.heightAnchor.constraint(
             equalTo: middleView.heightAnchor,
             multiplier: 0.10).isActive = true
-
-        
         
         //MIDDLE SPACER
         
@@ -221,8 +217,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //height
         spacerMiddleMiddleView.heightAnchor.constraint(
             equalTo: middleView.heightAnchor,
-            multiplier: 0.10).isActive = true
+            multiplier: 0.0).isActive = true
 
+        //spacerMiddleMiddleView.backgroundColor = UIColor.red
         
         //BOTTOM SPACER
         
@@ -246,12 +243,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
         //Center all text input and labels horizontally
         
-        usernameLabel.centerXAnchor.constraint(
-            equalTo: middleView.centerXAnchor).isActive = true
+     //   usernameLabel.centerXAnchor.constraint(
+       //     equalTo: middleView.centerXAnchor).isActive = true
         usernameTextField.centerXAnchor.constraint(
             equalTo: middleView.centerXAnchor).isActive = true
-        passwordLabel.centerXAnchor.constraint(
-            equalTo: middleView.centerXAnchor).isActive = true
+       // passwordLabel.centerXAnchor.constraint(
+         //   equalTo: middleView.centerXAnchor).isActive = true
         passwordTextField.centerXAnchor.constraint(
             equalTo: middleView.centerXAnchor).isActive = true
         
@@ -271,28 +268,28 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //USER LABEL
         
         //bottom
-        usernameLabel.bottomAnchor.constraint(
-            equalTo: usernameTextField.topAnchor, constant: -5
-            ).isActive = true
+       // usernameLabel.bottomAnchor.constraint(
+        //    equalTo: usernameTextField.topAnchor, constant: -5
+         //   ).isActive = true
         
         //left
-        usernameLabel.leftAnchor.constraint(
-            equalTo: usernameTextField.leftAnchor
-            ).isActive = true
+      //  usernameLabel.leftAnchor.constraint(
+        //    equalTo: usernameTextField.leftAnchor
+          //  ).isActive = true
         
         //PASSWORD TEXT LABEL
         
         //top
-        passwordLabel.topAnchor.constraint(
-            equalTo: spacerMiddleMiddleView.bottomAnchor
-            ).isActive = true
+       // passwordLabel.topAnchor.constraint(
+         //   equalTo: spacerMiddleMiddleView.bottomAnchor
+           // ).isActive = true
         
         
         //PASSSWORD TEXT FIELD
         
         //top
         passwordTextField.topAnchor.constraint(
-            equalTo: passwordLabel.bottomAnchor, constant: 5
+            equalTo: spacerMiddleMiddleView.bottomAnchor, constant: 5
             ).isActive = true
         
         
@@ -300,10 +297,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             equalTo: view.widthAnchor,
             multiplier: 0.70).isActive = true
        
-        //top
-        passwordLabel.leftAnchor.constraint(
-            equalTo: passwordTextField.leftAnchor
-            ).isActive = true
+        //left
+        //passwordLabel.leftAnchor.constraint(
+          //  equalTo: passwordTextField.leftAnchor
+           // ).isActive = true
         
         //TOP VIEW
         
@@ -371,7 +368,23 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if (segue.identifier == "AccessGrantedSegue") {
-            //Do any work before moving to the next scene.
+            
+            //Settings the menu details.
+            
+            if let navController = segue.destination as? UINavigationController {
+                
+                if let chidVC = navController.topViewController as? MainMenuViewController {
+                    //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
+                    
+                    chidVC.images = [UIImage(named: "Register"), UIImage(named: "Forecast"), UIImage(named: "TimeCard"), UIImage(named: "Information"), UIImage(named: "SignOut")]
+                    
+                    chidVC.segueIdList = ["GoToRegister", "GoToForecast", "GoToTimeStampsMenu", "GoToInformation", "GoToSignIn"]
+                    
+                    chidVC.DisplayTextList = ["Register",  "Forecast", "Time Stamps", "Informaiton", "Sign Out"]
+                    
+                }
+            }
+            
         }
     }
     

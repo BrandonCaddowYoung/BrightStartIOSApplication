@@ -11,6 +11,7 @@
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
+		7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */; };
 		7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */; };
 		7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99CDC41DFDA6F4007EF4FC /* ApplicationColours.swift */; };
 		7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */; };
@@ -223,6 +224,7 @@
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampsMenuController.swift; sourceTree = "<group>"; };
 		7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		7B99CDC41DFDA6F4007EF4FC /* ApplicationColours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationColours.swift; sourceTree = "<group>"; };
 		7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 		7B2E88BD1DEF7FA2003F7E45 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7B8BDBAB1E0E8471009F3EAF /* Menus */,
 				D7EEEDBB1CC2E005001424FE /* NumbersController.swift */,
 				D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */,
 				7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */,
@@ -353,6 +356,14 @@
 				7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		7B8BDBAB1E0E8471009F3EAF /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */,
+			);
+			name = Menus;
 			sourceTree = "<group>";
 		};
 		D7387E991CAF1A2B00948DE5 /* Child */ = {
@@ -514,6 +525,7 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = V699D4BAW5;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					D7F995791C9EF4A2001802EC = {
 						CreatedOnToolsVersion = 7.2;
@@ -540,16 +552,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -748,6 +760,7 @@
 				D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */,
 				7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */,
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,
+				7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,
 				7BCAD8151DF7617E0056AC9C /* CommonHelper.swift in Sources */,
@@ -837,7 +850,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Brandon Young (VG8FUK9923)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -910,14 +924,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BrightStart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brightstartsoftware.brightstart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3a3b1cb5-ff9b-4e8a-b282-668617c265ff";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -925,14 +942,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BrightStart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brightstartsoftware.brightstart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3a3b1cb5-ff9b-4e8a-b282-668617c265ff";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};

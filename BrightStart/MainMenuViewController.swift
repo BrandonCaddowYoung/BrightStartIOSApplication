@@ -25,9 +25,12 @@ class MainMenuViewController: UIViewController {
     var bodyLabel: UILabel!
     
     var images = [UIImage(named: "Register"), UIImage(named: "Forecast"), UIImage(named: "Information"), UIImage(named: "SignOut")]
-    let DisplayTextList = ["Register",  "Forecast", "Informaiton", "Sign Out"]
+    
+    var DisplayTextList = ["Register",  "Forecast", "Informaiton", "Sign Out"]
 
-    let segueIdList = ["GoToRegister", "GoToForecast", "GoToInformation", "GoToSignIn"]
+    var segueIdList = ["GoToRegister", "GoToForecast", "GoToInformation", "GoToSignIn"]
+    
+    var showNavigationBar = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,8 +120,9 @@ class MainMenuViewController: UIViewController {
     
     func setupConstraints()
     {
+        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        
         //The first view takes up a third of the screen.
-    
         
         leftSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
         leftSpacer.translatesAutoresizingMaskIntoConstraints = false
@@ -168,7 +172,7 @@ class MainMenuViewController: UIViewController {
             equalTo: rightSpacer.leadingAnchor).isActive = true
         //top
         topThirdView.topAnchor .constraint(
-            equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+            equalTo: topLayoutGuide.bottomAnchor).isActive = true
         //height
         topThirdView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
@@ -186,6 +190,7 @@ class MainMenuViewController: UIViewController {
         //right
         topThirdViewTopSpacer.trailingAnchor.constraint(
             equalTo: rightSpacer.leadingAnchor).isActive = true
+       
         //top
         topThirdViewTopSpacer.topAnchor .constraint(
             equalTo: topThirdView.topAnchor).isActive = true
@@ -278,15 +283,28 @@ class MainMenuViewController: UIViewController {
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    /*!
+     @brief Preparing to segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToTimeStampsMenu") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? TimeStampsMenuController {
+                
+                vc.images = [UIImage(named: "Search"), UIImage(named: "Edit"), UIImage(named: "Delete"), UIImage(named: "Question"), UIImage(named: "SignOut")]
+                
+                vc.segueIdList = ["GoToSearchTimeStamps", "GoToEditTimeStamps", "GoToDeleteTimeStamps", "GoToMissingTimeStamps", "GoToSignIn"]
+                
+                vc.DisplayTextList = ["Search",  "Edit", "Delete", "Missing Time Stamps", "Sign Out"]
+                
+                vc.showNavigationBar = true
+                
+            }
+        }
     }
-    */
     
     
     
@@ -331,13 +349,21 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     
     //Removes the navigation bar from the top
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated);
-        super.viewWillDisappear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(false, animated: animated);
+            super.viewWillDisappear(animated)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+         if(!showNavigationBar){
+            super.viewWillAppear(animated)
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        
     }
     
 }
