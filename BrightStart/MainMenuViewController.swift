@@ -22,7 +22,7 @@ class MainMenuViewController: UIViewController {
     var rightSpacer: UIView!
     
     var headingLabel: UILabel!
-    var bodyLabel: UILabel!
+    //var bodyLabel: UILabel!
     
     var images = [UIImage(named: "Register"), UIImage(named: "Forecast"), UIImage(named: "Information"), UIImage(named: "SignOut")]
     
@@ -40,7 +40,7 @@ class MainMenuViewController: UIViewController {
         setupCollectionView()
         
         //Changes the color of the backgorund within the nav bar.
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.BackGroundColour
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor
         
         //Changes the color of the text within the nav bar
         navigationController?.navigationBar.barStyle = UIBarStyle.black
@@ -102,17 +102,17 @@ class MainMenuViewController: UIViewController {
         
         view.addSubview(headingLabel)
         
-        bodyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        bodyLabel.text = "Below is a list of our many features that can help you run your nursery school. To get going, select one from the list."
+        //bodyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        //bodyLabel.text = "Below is a list of our many features that can help you run your nursery school. To get going, select one from the list."
         
-        bodyLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
-        bodyLabel.numberOfLines = 4
-        bodyLabel.textColor = _ApplicatoinColours.FontColour
+        //bodyLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
+        //bodyLabel.numberOfLines = 4
+        //bodyLabel.textColor = _ApplicatoinColours.FontColour
         
-        bodyLabel.font = UIFont(name: "Helvetica Neue", size: 17)
-        bodyLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightThin)
+        //bodyLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+        //bodyLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightThin)
         
-        view.addSubview(bodyLabel)
+        //view.addSubview(bodyLabel)
         
         setupConstraints()
         
@@ -176,10 +176,10 @@ class MainMenuViewController: UIViewController {
         //height
         topThirdView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.33).isActive = true
+            multiplier: 0.10).isActive = true
         
         
-        //topThirdView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+       //topThirdView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         
         topThirdViewTopSpacer.translatesAutoresizingMaskIntoConstraints = false
         topThirdViewTopSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
@@ -211,11 +211,13 @@ class MainMenuViewController: UIViewController {
             equalTo: topThirdViewTopSpacer.bottomAnchor).isActive = true
         
         //left
-        headingLabel.leadingAnchor.constraint(
-            equalTo: leftSpacer.trailingAnchor).isActive = true
+        //headingLabel.leadingAnchor.constraint(
+          //  equalTo: leftSpacer.trailingAnchor).isActive = true
         //right
-        headingLabel.trailingAnchor.constraint(
-            equalTo: rightSpacer.leadingAnchor).isActive = true
+        //headingLabel.trailingAnchor.constraint(
+          //  equalTo: rightSpacer.leadingAnchor).isActive = true
+        
+        headingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         headingLabel.addConstraint(NSLayoutConstraint(item: headingLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 21))
         
@@ -239,32 +241,30 @@ class MainMenuViewController: UIViewController {
         
         //Now adding the body label the top left
         
-        bodyLabel.translatesAutoresizingMaskIntoConstraints = false
+       // bodyLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //top
-        bodyLabel.topAnchor .constraint(
-            equalTo: topThirdViewMiddleSpacer.bottomAnchor).isActive = true
+       // bodyLabel.topAnchor .constraint(
+         //   equalTo: topThirdViewMiddleSpacer.bottomAnchor).isActive = true
 
         
         //bottom
-       bodyLabel.centerXAnchor.constraint(
-            equalTo: topThirdView.centerXAnchor).isActive = true
+      // bodyLabel.centerXAnchor.constraint(
+        //    equalTo: topThirdView.centerXAnchor).isActive = true
         
         //bodyLabel.centerYAnchor.constraint(
           //  equalTo: topThirdView.centerYAnchor).isActive = true
         
         
-        bodyLabel.widthAnchor.constraint(
-            equalTo: topThirdView.widthAnchor).isActive = true
+       // bodyLabel.widthAnchor.constraint(
+         //   equalTo: topThirdView.widthAnchor).isActive = true
         
         //bodyLabel.addConstraint(NSLayoutConstraint(item: bodyLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 400))
         
         //The second view takes up the remining 66% of the screen
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        //collectionView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        
-        //left
+                //left
         collectionView.leadingAnchor.constraint(
             equalTo: leftSpacer.trailingAnchor).isActive = true
         //right
@@ -279,7 +279,7 @@ class MainMenuViewController: UIViewController {
         
         //Adding the heading label to the top left
         
-         //collectionView.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        // collectionView.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
         
     }
     

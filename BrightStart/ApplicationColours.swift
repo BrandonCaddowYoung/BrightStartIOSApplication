@@ -12,23 +12,56 @@ import UIKit
 class ApplicatoinColours {
     
     //DEFAULTS
+    var NavigationBarBackGroundColor: UIColor!
     var BackGroundColour: UIColor!
     var FontHeadingColour: UIColor!
     var FontColour: UIColor!
+    var LabelColour: UIColor!
+    
+    var ButtonBackGroundColor: UIColor!
+    var ButtonForeGroundColor: UIColor!
+
     
     var LightBlue: UIColor!
     var LightPink: UIColor!
     var Grey: UIColor!
     
+    var AppleLightGrey: UIColor!
+    var AppledGrey: UIColor!
+    
+    var Blue: UIColor!
+    var White: UIColor!
+    var Black: UIColor!
+    
     init() {
-        BackGroundColour = hexStringToUIColor(hex: "#37A0e6") //BLUE
-        FontColour = hexStringToUIColor(hex: "#FFFFFF") //WHITE
-        FontHeadingColour = hexStringToUIColor(hex: "#000000") //Black
-
         
-        LightBlue = hexStringToUIColor(hex: "#69BAE4")
-        LightPink = hexStringToUIColor(hex: "#DD95B7")
-        Grey = hexStringToUIColor(hex: "#3F3F3F")
+        //Apple Colours
+        
+        AppleLightGrey = hexStringToUIColor(hex: "#F7F7F7")
+        AppledGrey = hexStringToUIColor(hex: "#C7C7CC")
+        
+        //Bright Start Colours
+        
+        Blue = hexStringToUIColor(hex: "#37A0e6")
+        White = hexStringToUIColor(hex: "#FFFFFF")
+        Black = hexStringToUIColor(hex: "#000000")
+        
+        LightBlue = hexStringToUIColor(hex: "#D1EEFC")
+        LightPink = hexStringToUIColor(hex: "#FD3E0")
+        Grey = hexStringToUIColor(hex: "#34AADC")
+        
+        //Applicaiton Elements
+        
+        BackGroundColour = White
+        
+        FontColour = Black
+        LabelColour = Black
+        FontHeadingColour = White
+        
+        ButtonBackGroundColor = White
+        ButtonForeGroundColor = Black
+        
+        NavigationBarBackGroundColor = AppleLightGrey
         
     }
     

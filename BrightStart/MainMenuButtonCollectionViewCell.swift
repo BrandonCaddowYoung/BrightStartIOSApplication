@@ -18,6 +18,8 @@ protocol MainMenuButtonCollectionViewCellDelegate {
 
 class MainMenuButtonCollectionViewCell: UICollectionViewCell {
  
+    var _ApplicatoinColours: ApplicatoinColours!
+    
     var segueText: String = "intial segue text"
     var displayText: String = "BILLING"
     var button: UIButton!
@@ -26,8 +28,10 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         
+        _ApplicatoinColours = ApplicatoinColours()
+        
         label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = _ApplicatoinColours.LabelColour
         label.adjustsFontSizeToFitWidth = true
         
         label.font = UIFont(name: "Helvetica Neue", size: 15)
@@ -44,6 +48,8 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         
         button.addTarget(self, action: #selector(changeColor), for: .touchUpInside)
         
+        button.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        
         contentView.addSubview(button) //Remember to add ui elements to the content view not the cell iteslf.
         
         setupConstraints()
@@ -58,7 +64,7 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
     
     func changeColor() {
         
-        print("segue to: " + segueText)
+        //print("segue to: " + segueText)
         
         delegate?.changeColorOfButton(forCell: self)
         

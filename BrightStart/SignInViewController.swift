@@ -51,10 +51,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         setupConstraints()
         
         //Styling the sign in button
-        signInButton.backgroundColor = .clear
         signInButton.layer.cornerRadius = 5
         signInButton.layer.borderWidth = 1
         signInButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
+        signInButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        
+        signInButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
        
