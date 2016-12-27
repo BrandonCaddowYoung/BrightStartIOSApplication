@@ -151,9 +151,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         signInButton.centerXAnchor.constraint(
            equalTo: bottomView.centerXAnchor).isActive = true
         
+        //bottomView.backgroundColor = .red
+        
         //MIDDLE VIEW
         
         middleView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // middleView.backgroundColor = .yellow
         
         //left
         middleView.leadingAnchor.constraint(

@@ -94,11 +94,10 @@ class MainMenuViewController: UIViewController {
         
         headingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         headingLabel.text = "HOW CAN WE HELP?"
-         headingLabel.font = headingLabel.font.withSize(20)
+        
+       headingLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightLight)
         
         headingLabel.textColor = _ApplicatoinColours.FontColour
-        
-        headingLabel.font = UIFont(name: "Helvetica Neue", size: 26)
         
         view.addSubview(headingLabel)
         
@@ -296,7 +295,7 @@ class MainMenuViewController: UIViewController {
                 
                 vc.images = [UIImage(named: "Search"), UIImage(named: "Edit"), UIImage(named: "Delete"), UIImage(named: "Question"), UIImage(named: "SignOut")]
                 
-                vc.segueIdList = ["GoToSearchTimeStamps", "GoToEditTimeStamps", "GoToDeleteTimeStamps", "GoToMissingTimeStamps", "GoToSignIn"]
+                vc.segueIdList = ["GoToSearchPerson", "GoToSearchPerson", "GoToSearchPerson", "GoToMissingTimeStamps", "GoToSignIn"]
                 
                 vc.DisplayTextList = ["Search",  "Edit", "Delete", "Missing Time Stamps", "Sign Out"]
                 

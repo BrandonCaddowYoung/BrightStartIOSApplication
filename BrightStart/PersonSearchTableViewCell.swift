@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-class ClockingTableViewCell: UITableViewCell
+class PersonSearchTableViewCell: UITableViewCell
 {
     var child: Child? {
         didSet {
             updateUI()
         }
     }
-   
+    
     var _CommonHelper: CommonHelper!
     var _ApplicationColours: ApplicatoinColours!
     
@@ -31,10 +31,12 @@ class ClockingTableViewCell: UITableViewCell
         _CommonHelper = CommonHelper()
         _ApplicationColours = ApplicatoinColours()
         
-              setupConstraints()
+        
+        setupConstraints()
     }
     
     func setupConstraints() {
+        
         
         //Positioning the name label
         
@@ -44,12 +46,13 @@ class ClockingTableViewCell: UITableViewCell
         childNameLabel.leadingAnchor.constraint(
             equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         
-       //Right is defined below, after the image is in place
-
+        //Right is defined below, after the image is in place
+        
         
         //top
         childNameLabel.topAnchor.constraint(
             equalTo: contentView.topAnchor, constant: 10).isActive = true
+        
         
         //Positioning image number 1(the right image)
         
@@ -69,13 +72,13 @@ class ClockingTableViewCell: UITableViewCell
         cellImage.heightAnchor.constraint(
             equalToConstant: 50).isActive = true
         
-               //top
+        //top
         cellImage.topAnchor.constraint(
             equalTo: contentView.topAnchor).isActive = true
         
         //cellImage.centerYAnchor.constraint(
-          //  equalTo: contentView.centerYAnchor).isActive = true
-
+        //  equalTo: contentView.centerYAnchor).isActive = true
+        
         
         //right
         childNameLabel.trailingAnchor.constraint(
@@ -95,7 +98,7 @@ class ClockingTableViewCell: UITableViewCell
         
         self.cellImage2?.setContentCompressionResistancePriority(1000, for: UILayoutConstraintAxis.vertical);
         self.cellImage2?.setContentCompressionResistancePriority(1000, for: UILayoutConstraintAxis.horizontal);
-
+        
         cellImage2.widthAnchor.constraint(
             equalToConstant: 50).isActive = true
         
@@ -130,7 +133,7 @@ class ClockingTableViewCell: UITableViewCell
         //right
         cellInformationText.trailingAnchor.constraint(
             equalTo: cellImage.leadingAnchor, constant: -5).isActive = true
-
+        
         
         
         //bottom
@@ -198,12 +201,12 @@ class ClockingTableViewCell: UITableViewCell
         self.childNameLabel.textColor = .black
         self.cellInformationText.textColor = .black
         self.cellDetailsText.textColor = .black
-       
+        
         childNameLabel?.text = nil
-       
-         if let child = self.child
+        
+        if let child = self.child
         {
-            childNameLabel?.text = "\(child.Name)" 
+            childNameLabel?.text = "\(child.Name)"
             
             let lightBlue = _ApplicationColours.LightBlue
             let lightPink = _ApplicationColours.LightPink
@@ -266,7 +269,7 @@ class ClockingTableViewCell: UITableViewCell
             {
                 self.cellImage?.image = UIImage(named: "SwipeLeft")
                 self.cellImage2?.image = UIImage(named: "SignedOut")
-
+                
                 
                 self.cellDetailsText.text = ""
                 
@@ -391,7 +394,13 @@ class ClockingTableViewCell: UITableViewCell
                 }
             }
         }
+        
+        
+        
     }
+    
+    
+    
 }
 
 

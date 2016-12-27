@@ -12,6 +12,10 @@
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
 		7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */; };
+		7B8BDBCA1E12B5F1009F3EAF /* TimeStampSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */; };
+		7B8BDBCC1E12ED9F009F3EAF /* PersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */; };
+		7B8BDBCF1E12F017009F3EAF /* PersonSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBCE1E12F017009F3EAF /* PersonSearchTableViewCell.swift */; };
+		7B8BDBD11E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBD01E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift */; };
 		7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */; };
 		7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99CDC41DFDA6F4007EF4FC /* ApplicationColours.swift */; };
 		7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */; };
@@ -225,6 +229,10 @@
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampsMenuController.swift; sourceTree = "<group>"; };
+		7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampSearchTableViewController.swift; sourceTree = "<group>"; };
+		7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSearchTableViewController.swift; sourceTree = "<group>"; };
+		7B8BDBCE1E12F017009F3EAF /* PersonSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSearchTableViewCell.swift; sourceTree = "<group>"; };
+		7B8BDBD01E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampSearchTableViewCell.swift; sourceTree = "<group>"; };
 		7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		7B99CDC41DFDA6F4007EF4FC /* ApplicationColours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationColours.swift; sourceTree = "<group>"; };
 		7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -350,9 +358,7 @@
 			children = (
 				7B8BDBAB1E0E8471009F3EAF /* Menus */,
 				D7EEEDBB1CC2E005001424FE /* NumbersController.swift */,
-				D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */,
 				7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */,
-				7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */,
 				7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */,
 			);
 			name = Controllers;
@@ -361,9 +367,31 @@
 		7B8BDBAB1E0E8471009F3EAF /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */,
 				7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */,
 			);
 			name = Menus;
+			sourceTree = "<group>";
+		};
+		7B8BDBCD1E12EFC5009F3EAF /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				D7F995C71C9EFE30001802EC /* ClockingTableViewCell.swift */,
+				7BCAD8121DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift */,
+				7B8BDBCE1E12F017009F3EAF /* PersonSearchTableViewCell.swift */,
+				7B8BDBD01E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		7B8BDBD21E12F205009F3EAF /* TablieViews */ = {
+			isa = PBXGroup;
+			children = (
+				D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */,
+				7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */,
+				7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */,
+			);
+			name = TablieViews;
 			sourceTree = "<group>";
 		};
 		D7387E991CAF1A2B00948DE5 /* Child */ = {
@@ -416,19 +444,19 @@
 		D7F995681C9EF4A1001802EC /* BrightStart */ = {
 			isa = PBXGroup;
 			children = (
+				7B8BDBD21E12F205009F3EAF /* TablieViews */,
+				7B8BDBCD1E12EFC5009F3EAF /* TableViewCells */,
 				7B2E88BD1DEF7FA2003F7E45 /* Controllers */,
 				7B26182B1DEE0E6C005B4B20 /* ThirdPartyTools */,
 				7B2618281DEE07C4005B4B20 /* HTTP */,
 				D739E8651CC981270084ECE4 /* Models */,
 				D74311461CB39AE600C72655 /* API */,
 				D7387E991CAF1A2B00948DE5 /* Child */,
-				D7F995C71C9EFE30001802EC /* ClockingTableViewCell.swift */,
 				D7F995691C9EF4A1001802EC /* AppDelegate.swift */,
 				D7F9956D1C9EF4A1001802EC /* Main.storyboard */,
 				D7F995701C9EF4A1001802EC /* Assets.xcassets */,
 				D7F995721C9EF4A1001802EC /* LaunchScreen.storyboard */,
 				D7F995751C9EF4A1001802EC /* Info.plist */,
-				7BCAD8121DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift */,
 				7BCAD8141DF7617E0056AC9C /* CommonHelper.swift */,
 				7B99CDC41DFDA6F4007EF4FC /* ApplicationColours.swift */,
 			);
@@ -755,6 +783,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B8BDBCA1E12B5F1009F3EAF /* TimeStampSearchTableViewController.swift in Sources */,
 				7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */,
 				7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */,
 				D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */,
@@ -765,8 +794,11 @@
 				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,
 				7BCAD8151DF7617E0056AC9C /* CommonHelper.swift in Sources */,
 				D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */,
+				7B8BDBCC1E12ED9F009F3EAF /* PersonSearchTableViewController.swift in Sources */,
+				7B8BDBD11E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift in Sources */,
 				7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */,
 				7BCAD8131DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift in Sources */,
+				7B8BDBCF1E12F017009F3EAF /* PersonSearchTableViewCell.swift in Sources */,
 				D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */,
 				D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,

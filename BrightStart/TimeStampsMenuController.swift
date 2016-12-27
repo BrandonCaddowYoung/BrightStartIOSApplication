@@ -10,5 +10,23 @@ import UIKit
 
 class TimeStampsMenuController: MainMenuViewController {
 
-
+    /*!
+     @brief Preparing to segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToSearchPerson") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? TimeStampSearchTableViewController {
+                
+                vc.TargetDate = Date()
+                vc.TargetPerson = 2002
+                
+            }
+        }
+    }
+    
+    
 }
