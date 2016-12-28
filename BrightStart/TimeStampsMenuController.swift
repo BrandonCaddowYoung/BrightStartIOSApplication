@@ -19,12 +19,9 @@ class TimeStampsMenuController: MainMenuViewController {
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? TimeStampSearchTableViewController {
+          //  if let vc = segue.destination as? PersonSearchTableViewController {
                 
-                vc.TargetDate = Date()
-                vc.TargetPerson = 2002
-                
-            }
+            //}
         }
     }
     

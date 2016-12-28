@@ -11,7 +11,7 @@ import UIKit
 class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDelegate {
 
     var TargetDate: Date!
-    var TargetPerson: CLongLong!
+    var TargetPersonId: NSString!
     
     var children: [[Child]] = [];
     var _CommonHelper: CommonHelper!

@@ -10,8 +10,10 @@ import UIKit
 
 class PersonSearchTableViewController:  UITableViewController, UITextFieldDelegate {
     
-    var TargetDate: Date!
-    var TargetPerson: CLongLong!
+    //var TargetDate: Date!
+    //var TargetPersonId: NSString!
+    
+    var SelectedPersonId: NSString!
     
     var children: [[Child]] = [];
     var _CommonHelper: CommonHelper!
@@ -130,72 +132,27 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             let cell = tableView.dequeueReusableCell(withIdentifier: "Child", for: indexPath) as! PersonSearchTableViewCell
             cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
-            var rowTitle = "Sign in " + ((cell.child?.Name)! as String)
+            var rowTitle = "Find time stamps for " + ((cell.child?.Name)! as String)
             
             if(UIDevice.current.userInterfaceIdiom == .phone){
-                rowTitle = "Sign in"
+                rowTitle = "Find time samps."
             }
             
-            let signIn = UITableViewRowAction(style: .normal, title: rowTitle) { action, index in
+            let findTimeStamps = UITableViewRowAction(style: .normal, title: rowTitle) { action, index in
                 
-                let alert = self._CommonHelper.showOverlayMessage("Signing in...")
-                self.present(alert, animated: true, completion: nil)
+                //let alert = self._CommonHelper.showOverlayMessage("Fetching time stamps.")
+                //self.present(alert, animated: true, completion: nil)
                 
-                CommonRequests.sharedInstance.signIn(personId: (cell.child?.Id)! as String, timeOfSignIn: Date() as NSDate,
-                                                     onCompletion: {
-                                                        DispatchQueue.main.async(execute: {
-                                                            self.refreshTable()
-                                                            
-                                                            self.dismiss(animated: false, completion: nil)
-                                                        })
-                }
-                )
+                self.SelectedPersonId = ((cell.child?.Id)! as String as String as NSString!)
+                
+                self.performSegue(withIdentifier: "GoToTimeStampSearch", sender: nil)
+                
+               // self.dismiss(animated: false, completion: nil)
+                
             }
-            signIn.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
+            findTimeStamps.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
             
-            var rowTitle2 = "Sign out " + ((cell.child?.Name)! as String)
-            
-            if(UIDevice.current.userInterfaceIdiom == .phone){
-                rowTitle2 = "Sign out"
-            }
-            
-            let signOut = UITableViewRowAction(style: .normal, title: rowTitle2) { action, index in
-                
-                let alert = self._CommonHelper.showOverlayMessage("Signing out...")
-                self.present(alert, animated: true, completion: nil)
-                
-                CommonRequests.sharedInstance.signOut(personId: (cell.child?.Id)! as String, timeOfSignOut: Date() as NSDate,
-                                                      
-                                                      onCompletion: {
-                                                        
-                                                        DispatchQueue.main.async(execute: {
-                                                            self.refreshTable()
-                                                            
-                                                            self.dismiss(animated: false, completion: nil)
-                                                            
-                                                        })
-                                                        
-                })
-                
-            }
-            signOut.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
-            
-            let cancel = UITableViewRowAction(style: .default,  title:"Cancel previous") { action, index in
-                
-                let alert = self._CommonHelper.showOverlayMessage("Please wait...")
-                self.present(alert, animated: true, completion: nil)
-                
-                
-            }
-            cancel.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
-            
-            if(cell.child?.CurrentlySignedIn == true){
-                return [signOut]
-            }
-            else
-            {
-                return [signIn]
-            }
+            return [findTimeStamps]
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -203,5 +160,28 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    }
+    
+    /*!
+     @brief Preparing to segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToTimeStampSearch") {
+            
+            //Settings the menu details.
+            
+            if let navController = segue.destination as? UINavigationController {
+                
+                if let chidVC = navController.topViewController as? TimeStampSearchTableViewController {
+                    //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
+                    
+                    chidVC.TargetDate = Date()
+                    chidVC.TargetPersonId = self.SelectedPersonId
+                    
+                }
+            }
+            
+        }
     }
 }
