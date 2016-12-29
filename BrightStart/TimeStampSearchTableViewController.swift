@@ -13,6 +13,8 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     var TargetDate: Date!
     var TargetPersonId: NSString!
     
+    var OptionText: NSString!
+    
     var children: [[Child]] = [];
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
@@ -133,73 +135,25 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             let cell = tableView.dequeueReusableCell(withIdentifier: "Child", for: indexPath) as! TimeStampSearchTableViewCell
             cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
-            var rowTitle = "Sign in " + ((cell.child?.Name)! as String)
+            let rowTitle2 = OptionText
             
-            if(UIDevice.current.userInterfaceIdiom == .phone){
-                rowTitle = "Sign in"
-            }
-            
-            let signIn = UITableViewRowAction(style: .normal, title: rowTitle) { action, index in
+            let optionText = UITableViewRowAction(style: .normal, title: rowTitle2 as String?) { action, index in
                 
-                let alert = self._CommonHelper.showOverlayMessage("Signing in...")
-                self.present(alert, animated: true, completion: nil)
-                
-                CommonRequests.sharedInstance.signIn(personId: (cell.child?.Id)! as String, timeOfSignIn: Date() as NSDate,
-                                                     onCompletion: {
-                                                        DispatchQueue.main.async(execute: {
-                                                            self.refreshTable()
-                                                            
-                                                            self.dismiss(animated: false, completion: nil)
-                                                        })
-                }
-                )
-            }
-            signIn.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
-            
-            var rowTitle2 = "Sign out " + ((cell.child?.Name)! as String)
-            
-            if(UIDevice.current.userInterfaceIdiom == .phone){
-                rowTitle2 = "Sign out"
-            }
-            
-            let signOut = UITableViewRowAction(style: .normal, title: rowTitle2) { action, index in
-                
-                let alert = self._CommonHelper.showOverlayMessage("Signing out...")
-                self.present(alert, animated: true, completion: nil)
-                
-                CommonRequests.sharedInstance.signOut(personId: (cell.child?.Id)! as String, timeOfSignOut: Date() as NSDate,
-                                                      
-                                                      onCompletion: {
-                                                        
-                                                        DispatchQueue.main.async(execute: {
-                                                            self.refreshTable()
-                                                            
-                                                            self.dismiss(animated: false, completion: nil)
-                                                            
-                                                        })
-                                                        
-                })
-                
-            }
-            signOut.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
-            
-            let cancel = UITableViewRowAction(style: .default,  title:"Cancel previous") { action, index in
-                
-                let alert = self._CommonHelper.showOverlayMessage("Please wait...")
-                self.present(alert, animated: true, completion: nil)
+                self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
                 
                 
             }
-            cancel.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
+            optionText.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour
+
             
-            if(cell.child?.CurrentlySignedIn == true){
-                return [signOut]
+            if(rowTitle2==""){
+                return[]
             }
-            else
-            {
-                return [signIn]
+            else{
+                return [optionText]
             }
     }
+    
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -207,4 +161,24 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
+    
+    /*!
+     @brief Preparing to segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToTimeStampsEditor") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? TimeStampsEditorViewController {
+                
+                  //PAss through time stamp id here.!
+                    
+                
+            }
+            
+        }
+    }
+    
 }

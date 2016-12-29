@@ -15,14 +15,54 @@ class TimeStampsMenuController: MainMenuViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "GoToSearchPerson") {
+        if (segue.identifier == "GoToSearchPerson_Edit") {
             
             //Settings the menu details.
             
-          //  if let vc = segue.destination as? PersonSearchTableViewController {
+            if let vc = segue.destination as? PersonSearchTableViewController {
                 
-            //}
+                vc.OptionText = "Edit time stmaps."
+                
+            }
         }
+        
+        if (segue.identifier == "GoToSearchPerson_Delete") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? PersonSearchTableViewController {
+                
+                vc.OptionText = "Delete time stamps."
+                
+            }
+        }
+        
+        if (segue.identifier == "GoToSearchPerson_Search") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? PersonSearchTableViewController {
+                
+                vc.OptionText = "Search for time stamps."
+                
+            }
+        }
+
+        if (segue.identifier == "GoToSearchPerson_Missing") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? PersonSearchTableViewController {
+                
+                vc.OptionText = "Search for missing time stamps."
+                
+            }
+        }
+        
+
+        
+
+        
     }
     
     

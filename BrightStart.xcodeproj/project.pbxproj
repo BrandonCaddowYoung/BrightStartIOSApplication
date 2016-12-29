@@ -16,6 +16,7 @@
 		7B8BDBCC1E12ED9F009F3EAF /* PersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */; };
 		7B8BDBCF1E12F017009F3EAF /* PersonSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBCE1E12F017009F3EAF /* PersonSearchTableViewCell.swift */; };
 		7B8BDBD11E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBD01E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift */; };
+		7B8BDBD61E1508B5009F3EAF /* TimeStampsEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBD51E1508B5009F3EAF /* TimeStampsEditorViewController.swift */; };
 		7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */; };
 		7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99CDC41DFDA6F4007EF4FC /* ApplicationColours.swift */; };
 		7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */; };
@@ -233,6 +234,7 @@
 		7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSearchTableViewController.swift; sourceTree = "<group>"; };
 		7B8BDBCE1E12F017009F3EAF /* PersonSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSearchTableViewCell.swift; sourceTree = "<group>"; };
 		7B8BDBD01E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampSearchTableViewCell.swift; sourceTree = "<group>"; };
+		7B8BDBD51E1508B5009F3EAF /* TimeStampsEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampsEditorViewController.swift; sourceTree = "<group>"; };
 		7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		7B99CDC41DFDA6F4007EF4FC /* ApplicationColours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationColours.swift; sourceTree = "<group>"; };
 		7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				D7EEEDBB1CC2E005001424FE /* NumbersController.swift */,
 				7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */,
 				7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */,
+				7B8BDBD51E1508B5009F3EAF /* TimeStampsEditorViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */,
 				7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */,
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,
+				7B8BDBD61E1508B5009F3EAF /* TimeStampsEditorViewController.swift in Sources */,
 				7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,

@@ -53,6 +53,10 @@ class MainMenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+
+
     //Initialising a collection view and addit it to the view controllers current view
     func setupCollectionView()
     {
@@ -74,6 +78,11 @@ class MainMenuViewController: UIViewController {
         collectionView.contentInset.left = 25
         collectionView.contentInset.right = 25
         
+       // collectionView.layer.borderColor = UIColor.black.cgColor
+        //collectionView.layer.borderWidth = 10
+        //collectionView.backgroundColor = .red
+        
+        
         collectionView.backgroundColor = _ApplicatoinColours.BackGroundColour
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -93,7 +102,7 @@ class MainMenuViewController: UIViewController {
         view.addSubview(topThirdViewMiddleSpacer)
         
         headingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        headingLabel.text = "HOW CAN WE HELP?"
+        headingLabel.text = "How can we help?"
         
        headingLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightLight)
         
@@ -295,7 +304,7 @@ class MainMenuViewController: UIViewController {
                 
                 vc.images = [UIImage(named: "Search"), UIImage(named: "Edit"), UIImage(named: "Delete"), UIImage(named: "Question"), UIImage(named: "SignOut")]
                 
-                vc.segueIdList = ["GoToSearchPerson", "GoToSearchPerson", "GoToSearchPerson", "GoToMissingTimeStamps", "GoToSignIn"]
+                vc.segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToSearchPerson_Missing", "GoToSignIn"]
                 
                 vc.DisplayTextList = ["Search",  "Edit", "Delete", "Missing Time Stamps", "Sign Out"]
                 

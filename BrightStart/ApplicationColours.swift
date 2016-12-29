@@ -18,6 +18,11 @@ class ApplicatoinColours {
     var FontColour: UIColor!
     var LabelColour: UIColor!
     
+    var TableBackGroundOptionColour: UIColor!
+    var TableBackGroundOptionColour2: UIColor!
+    
+    var TableForeGroundOptionColour: UIColor!
+    
     var ButtonBackGroundColor: UIColor!
     var ButtonForeGroundColor: UIColor!
 
@@ -28,6 +33,7 @@ class ApplicatoinColours {
     
     var AppleLightGrey: UIColor!
     var AppledGrey: UIColor!
+    var AppleLightBlue: UIColor!
     
     var Blue: UIColor!
     var White: UIColor!
@@ -39,6 +45,7 @@ class ApplicatoinColours {
         
         AppleLightGrey = hexStringToUIColor(hex: "#F7F7F7")
         AppledGrey = hexStringToUIColor(hex: "#C7C7CC")
+        AppleLightBlue = hexStringToUIColor(hex: "#D1EEFC")
         
         //Bright Start Colours
         
@@ -52,16 +59,21 @@ class ApplicatoinColours {
         
         //Applicaiton Elements
         
-        BackGroundColour = White
+        BackGroundColour = AppledGrey
         
         FontColour = Black
         LabelColour = Black
-        FontHeadingColour = White
+        FontHeadingColour = Black
         
         ButtonBackGroundColor = White
         ButtonForeGroundColor = Black
         
         NavigationBarBackGroundColor = AppleLightGrey
+        
+        TableBackGroundOptionColour = Blue?.withAlphaComponent(1);
+        TableBackGroundOptionColour2 = AppledGrey;
+
+        TableForeGroundOptionColour = Black
         
     }
     

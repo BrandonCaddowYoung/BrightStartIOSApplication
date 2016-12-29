@@ -48,10 +48,10 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         
         button.addTarget(self, action: #selector(changeColor), for: .touchUpInside)
         
-        button.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        button.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         contentView.addSubview(button) //Remember to add ui elements to the content view not the cell iteslf.
-        
+       
         setupConstraints()
         
     }

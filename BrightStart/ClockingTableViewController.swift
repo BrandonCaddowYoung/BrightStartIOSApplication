@@ -159,7 +159,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                     }
                 )
             }
-            signIn.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
+            signIn.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour2
             
             var rowTitle2 = "Sign out " + ((cell.child?.Name)! as String)
             
@@ -186,16 +186,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                 })
                 
             }
-            signOut.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
-            
-            let cancel = UITableViewRowAction(style: .default,  title:"Cancel previous") { action, index in
-                
-                let alert = self._CommonHelper.showOverlayMessage("Please wait...")
-                self.present(alert, animated: true, completion: nil)
-                
-                
-            }
-            cancel.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
+            signOut.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour
             
             if(cell.child?.CurrentlySignedIn == true){
                 return [signOut]

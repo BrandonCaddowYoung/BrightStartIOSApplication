@@ -14,6 +14,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     //var TargetPersonId: NSString!
     
     var SelectedPersonId: NSString!
+    var OptionText: NSString!
     
     var children: [[Child]] = [];
     var _CommonHelper: CommonHelper!
@@ -97,8 +98,6 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 self.tableView.reloadData()
                 sender?.endRefreshing()
                 
-                //self.dismiss(animated: false, completion: nil)
-                
             })
         }
     }
@@ -119,7 +118,6 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         let row = (indexPath as NSIndexPath).row;
         
         if children.count > section && children[section].count > row {
-            //print(children[section][row])
             cell.child = children[section][row];
         }
         
@@ -132,25 +130,16 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             let cell = tableView.dequeueReusableCell(withIdentifier: "Child", for: indexPath) as! PersonSearchTableViewCell
             cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
-            var rowTitle = "Find time stamps for " + ((cell.child?.Name)! as String)
+            let rowTitle = OptionText
             
-            if(UIDevice.current.userInterfaceIdiom == .phone){
-                rowTitle = "Find time samps."
-            }
-            
-            let findTimeStamps = UITableViewRowAction(style: .normal, title: rowTitle) { action, index in
-                
-                //let alert = self._CommonHelper.showOverlayMessage("Fetching time stamps.")
-                //self.present(alert, animated: true, completion: nil)
+            let findTimeStamps = UITableViewRowAction(style: .normal, title: rowTitle as String?) { action, index in
                 
                 self.SelectedPersonId = ((cell.child?.Id)! as String as String as NSString!)
                 
                 self.performSegue(withIdentifier: "GoToTimeStampSearch", sender: nil)
                 
-               // self.dismiss(animated: false, completion: nil)
-                
             }
-            findTimeStamps.backgroundColor = UIColor(red: 253/255, green: 126/255, blue: 143/255, alpha: 1.0)
+            findTimeStamps.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour
             
             return [findTimeStamps]
     }
@@ -171,17 +160,27 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             
             //Settings the menu details.
             
-            if let navController = segue.destination as? UINavigationController {
+            
+             if let vc = segue.destination as? TimeStampSearchTableViewController {
                 
-                if let chidVC = navController.topViewController as? TimeStampSearchTableViewController {
-                    //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
+                    vc.TargetDate = Date()
+                    vc.TargetPersonId = self.SelectedPersonId
                     
-                    chidVC.TargetDate = Date()
-                    chidVC.TargetPersonId = self.SelectedPersonId
+                    if(self.OptionText == "Edit time stmaps.")
+                    {
+                        vc.OptionText = "Edit"
+                    }
+                    else if(self.OptionText == "Delete time stamps.")
+                    {
+                        vc.OptionText = "Delete"
+                    }
+                    else
+                    {
+                     vc.OptionText = ""
+                    }
                     
                 }
             }
-            
-        }
+        
     }
 }

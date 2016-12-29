@@ -28,12 +28,10 @@ class PersonSearchTableViewCell: UITableViewCell
         _CommonHelper = CommonHelper()
         _ApplicationColours = ApplicatoinColours()
         
-        
         setupConstraints()
     }
     
     func setupConstraints() {
-        
         
         //Positioning the name label
         
@@ -54,8 +52,6 @@ class PersonSearchTableViewCell: UITableViewCell
         //Positioning the birthday label
         
          birthdayText.translatesAutoresizingMaskIntoConstraints = false
-        
-       
         
         //left
         birthdayText.leadingAnchor.constraint(
@@ -81,6 +77,8 @@ class PersonSearchTableViewCell: UITableViewCell
     }
     
     func updateUI() {
+        
+        self.backgroundColor = _ApplicationColours.BackGroundColour
         
         self.childNameLabel.textColor = .black
         self.birthdayText.textColor = .black
