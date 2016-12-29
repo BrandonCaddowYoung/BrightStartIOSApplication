@@ -16,7 +16,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     var SelectedPersonId: NSString!
     var OptionText: NSString!
     
-    var children: [[Child]] = [];
+    var children: [[BrightStartChild]] = [];
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
     
@@ -57,38 +57,32 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         
         self.children.removeAll();
         
-        CommonRequests.sharedInstance.getPeople { json in
+        
+        
+        
+        
+       
+        
+        ChildRequests.sharedInstance.GetAllEnrolledChilren(onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
                 
-                let name = JSON["Name"].stringValue
+                let child = BrightStartChild()
                 
-                let currentlySignedIn = NSString(string:JSON["CurrentlySignedIn"].stringValue).boolValue
-                
-                let id = JSON["Id"].stringValue
-                
-                if id.isEmpty{
-                    continue
-                }
-                
-                //Get last login time, and last logout time.
-                
-                let startTime = JSON["StartTime"].stringValue;
-                let finishTime = JSON["FinishTime"].stringValue;
+                child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
+                child.ChildId = JSON["ChildFullName"].stringValue as NSString
                 
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+               //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
                 
-                let start = dateFormatter.date(from: startTime)
+                var dateOfBirth = JSON["ChildDOB"].stringValue
                 
-                let end = dateFormatter.date(from: finishTime)
+                let newDate = dateFormatter.date(from: dateOfBirth)
                 
-                let child = Child(name: name as NSString, id: id as NSString,  currentlySignedIn: currentlySignedIn,startTime: start!, endTime: end!);
+                child.ChildDOB = newDate!
                 
                 self.children.insert([child], at: 0)
-                
-                self.tableView.reloadData()
-                
             }
             
             DispatchQueue.main.async(execute: {
@@ -99,9 +93,12 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 sender?.endRefreshing()
                 
             })
-        }
+            
+        })
     }
     
+  
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return children.count;
     }
@@ -112,7 +109,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Child", for: indexPath) as! PersonSearchTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BrightStartChild", for: indexPath) as! PersonSearchTableViewCell
         
         let section = (indexPath as NSIndexPath).section;
         let row = (indexPath as NSIndexPath).row;
@@ -127,14 +124,14 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->
         [UITableViewRowAction]? {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Child", for: indexPath) as! PersonSearchTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BrightStartChild", for: indexPath) as! PersonSearchTableViewCell
             cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
             let rowTitle = OptionText
             
             let findTimeStamps = UITableViewRowAction(style: .normal, title: rowTitle as String?) { action, index in
                 
-                self.SelectedPersonId = ((cell.child?.Id)! as String as String as NSString!)
+                self.SelectedPersonId = ((cell.child?.ChildId)! as String as String as NSString!)
                 
                 self.performSegue(withIdentifier: "GoToTimeStampSearch", sender: nil)
                 

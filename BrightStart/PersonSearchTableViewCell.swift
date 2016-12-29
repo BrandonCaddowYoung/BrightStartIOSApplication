@@ -11,7 +11,7 @@ import UIKit
 
 class PersonSearchTableViewCell: UITableViewCell
 {
-    var child: Child? {
+    var child: BrightStartChild? {
         didSet {
             updateUI()
         }
@@ -87,10 +87,10 @@ class PersonSearchTableViewCell: UITableViewCell
         
         if let child = self.child
         {
-            childNameLabel?.text = "\(child.Name)"
+            childNameLabel?.text = "\(child.ChildFullName)"
             
-            UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
-            UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")
+            //UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
+            //UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")
         }
     }
 }
