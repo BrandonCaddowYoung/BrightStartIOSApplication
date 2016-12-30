@@ -22,4 +22,6 @@ open class PersonLog
         self.Action = action
     }
     
+    init (){}
+    
 }

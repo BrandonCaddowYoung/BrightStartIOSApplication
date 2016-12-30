@@ -13,7 +13,7 @@ import Foundation
 
 class PersonLogRequests: NSObject {
     
-    static let sharedInstance = CommonRequests()
+    static let sharedInstance = PersonLogRequests()
     let baseURL = "https://microsoft-apiappce8388460f4f40a6bdcea26f938e44fb.azurewebsites.net/"
     var nurserySchoolId = "";
     
@@ -21,6 +21,9 @@ class PersonLogRequests: NSObject {
      @brief Retrieves a list of logins.
      */
     func GetLoginLogsByDateAndId(personId: String, targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
+        
+        var id = personId
+        id = id.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         let defaults = UserDefaults.standard
         
@@ -33,7 +36,7 @@ class PersonLogRequests: NSObject {
         dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
         let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
        
-        let route = baseURL + "api/PersonLogLogic/GetLoginLogsByDateAndId?persondId="+personId + "&stamp=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/PersonLogLogic/GetLogByDateAndId?personId="+id + "&stamp=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId
         makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
                 json, err in

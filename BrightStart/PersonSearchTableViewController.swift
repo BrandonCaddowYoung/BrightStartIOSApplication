@@ -70,15 +70,26 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 let child = BrightStartChild()
                 
                 child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
-                child.ChildId = JSON["ChildFullName"].stringValue as NSString
+                child.ChildId = JSON["ChildId"].stringValue as NSString
                 
                 let dateFormatter = DateFormatter()
                //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
                 
-                var dateOfBirth = JSON["ChildDOB"].stringValue
+                let dateOfBirth = JSON["ChildDOB"].stringValue
                 
-                let newDate = dateFormatter.date(from: dateOfBirth)
+                var newDate = dateFormatter.date(from: dateOfBirth)
+                
+                if(newDate == nil){
+                    
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+
+                    newDate = dateFormatter.date(from: dateOfBirth)
+                    
+                    if(newDate == nil){
+                    continue
+                    }
+                }
                 
                 child.ChildDOB = newDate!
                 

@@ -15,13 +15,13 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     
     var OptionText: NSString!
     
-    var children: [[Child]] = [];
+    var timeStamps: [[PersonLog]] = [];
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
     
     func refreshTable()
     {
-        children.removeAll()
+        timeStamps.removeAll()
         tableView.reloadData()
         refresh()
     }
@@ -57,37 +57,41 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         // let alert = _CommonHelper.showOverlayMessage("Refreshing...")
         // self.present(alert, animated: true, completion: nil)
         
-        self.children.removeAll();
+        self.timeStamps.removeAll();
         
-        CommonRequests.sharedInstance.getPeople { json in
+        PersonLogRequests.sharedInstance.GetLoginLogsByDateAndId(personId: TargetPersonId as String, targetDate: TargetDate as NSDate, onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
                 
-                let name = JSON["Name"].stringValue
+                let log = PersonLog()
                 
-                let currentlySignedIn = NSString(string:JSON["CurrentlySignedIn"].stringValue).boolValue
+                log.PersonId = JSON["PersonId"].stringValue as NSString
+                log.Id = JSON["Id"].stringValue as NSString
                 
-                let id = JSON["Id"].stringValue
-                
-                if id.isEmpty{
-                    continue
-                }
-                
-                //Get last login time, and last logout time.
-                
-                let startTime = JSON["StartTime"].stringValue;
-                let finishTime = JSON["FinishTime"].stringValue;
+                log.Action = JSON["Action"].stringValue as NSString
                 
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                 
-                let start = dateFormatter.date(from: startTime)
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
                 
-                let end = dateFormatter.date(from: finishTime)
+                let timeStamp = JSON["TimeStamp"].stringValue
                 
-                let child = Child(name: name as NSString, id: id as NSString,  currentlySignedIn: currentlySignedIn,startTime: start!, endTime: end!);
+                var newDate = dateFormatter.date(from: timeStamp)
                 
-                self.children.insert([child], at: 0)
+                if(newDate == nil){
+                    
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    
+                    newDate = dateFormatter.date(from: timeStamp)
+                    
+                    if(newDate == nil){
+                        continue
+                    }
+                }
+                
+                log.TimeStamp = newDate!
+               
+                self.timeStamps.insert([log], at: 0)
                 
                 self.tableView.reloadData()
                 
@@ -95,7 +99,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             
             DispatchQueue.main.async(execute: {
                 
-                self.children = self.children.reversed()
+                self.timeStamps = self.timeStamps.reversed()
                 
                 self.tableView.reloadData()
                 sender?.endRefreshing()
@@ -103,27 +107,28 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
                 //self.dismiss(animated: false, completion: nil)
                 
             })
-        }
+            
+        })
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return children.count;
+        return timeStamps.count;
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return children[section].count
+        return timeStamps[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Child", for: indexPath) as! TimeStampSearchTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TimeStamp", for: indexPath) as! TimeStampSearchTableViewCell
         
         let section = (indexPath as NSIndexPath).section;
         let row = (indexPath as NSIndexPath).row;
         
-        if children.count > section && children[section].count > row {
+        if timeStamps.count > section && timeStamps[section].count > row {
             //print(children[section][row])
-            cell.child = children[section][row];
+            cell.log = timeStamps[section][row];
         }
         
         return cell
@@ -132,8 +137,8 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->
         [UITableViewRowAction]? {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Child", for: indexPath) as! TimeStampSearchTableViewCell
-            cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TimeStamp", for: indexPath) as! TimeStampSearchTableViewCell
+            cell.log = timeStamps[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
             let rowTitle2 = OptionText
             

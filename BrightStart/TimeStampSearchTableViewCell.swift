@@ -11,7 +11,7 @@ import UIKit
 
 class TimeStampSearchTableViewCell: UITableViewCell
 {
-    var child: Child? {
+    var log: PersonLog? {
         didSet {
             updateUI()
         }
@@ -85,11 +85,11 @@ class TimeStampSearchTableViewCell: UITableViewCell
         
         //titleLabel?.text = nil
         
-        if let child = self.child
+        if let log = self.log
         {
-            //titleLabel?.text = "\(child.Name)"
+            titleLabel?.text = "\(log.Action)"
             
-            //titleLabel?.text = "Signed in."
+            timeLabel?.text = "\(log.TimeStamp)"
             
            // UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
             //UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")
