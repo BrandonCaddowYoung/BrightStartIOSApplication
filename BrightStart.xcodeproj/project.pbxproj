@@ -11,6 +11,7 @@
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
+		7B8808A21E19B9A500C88CD0 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8808A11E19B9A500C88CD0 /* ForecastViewController.swift */; };
 		7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */; };
 		7B8BDBCA1E12B5F1009F3EAF /* TimeStampSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */; };
 		7B8BDBCC1E12ED9F009F3EAF /* PersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */; };
@@ -233,6 +234,7 @@
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		7B8808A11E19B9A500C88CD0 /* ForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 		7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampsMenuController.swift; sourceTree = "<group>"; };
 		7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampSearchTableViewController.swift; sourceTree = "<group>"; };
 		7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSearchTableViewController.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */,
 				7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */,
 				7B8BDBD51E1508B5009F3EAF /* TimeStampsEditorViewController.swift */,
+				7B8808A11E19B9A500C88CD0 /* ForecastViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -603,16 +606,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -817,6 +820,7 @@
 				7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,
+				7B8808A21E19B9A500C88CD0 /* ForecastViewController.swift in Sources */,
 				7BCAD8151DF7617E0056AC9C /* CommonHelper.swift in Sources */,
 				D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */,
 				7B8BDBDD1E156FE1009F3EAF /* PersonLogRequests.swift in Sources */,

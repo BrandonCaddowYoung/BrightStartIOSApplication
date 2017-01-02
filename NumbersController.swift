@@ -15,48 +15,96 @@ class NumbersController: UIViewController {
     var _ChildrenRegisterdHoursCounts:[RegisteredCount] = [RegisteredCount]()
     var _StaffRegisterdHoursCounts:[RegisteredCount] = [RegisteredCount]()
     
+    
+    //These are all the containers!
+    @IBOutlet weak var TopLeftView: UIView!
+    @IBOutlet weak var TopLeftSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var YetToArriveLabel: UILabel!
+    
+    @IBOutlet weak var TopRightView: UIView!
+    @IBOutlet weak var TopRightSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var SignedInLabel: UILabel!
+    
+    @IBOutlet weak var MiddleLeftView: UIView!
+    @IBOutlet weak var MiddleLeftSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var TotalLabel: UILabel!
+    
+    
+    @IBOutlet weak var MiddleRightView: UIView!
+    @IBOutlet weak var MiddleRightSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var GoneHomeLabel: UILabel!
+    
+    @IBOutlet weak var MiddleView: UIView!
+    
+    @IBOutlet weak var BottomLeftView: UIView!
+    @IBOutlet weak var BottomLeftSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var ChilrenLabel: UILabel!
+    
+    @IBOutlet weak var BottomRightView: UIView!
+    @IBOutlet weak var BottomRightSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var StaffLabel: UILabel!
+    
+    @IBOutlet weak var BottomView: UIView!
+    
     @IBOutlet weak var LeftSubView: UIView!
     @IBOutlet weak var RightSubView: UIView!
     
-    @IBOutlet weak var topSubView: UIView!
-    @IBOutlet weak var middleSubView: UIView!
-    @IBOutlet weak var bottomSubView: UIView!
+    //There are all the elements that go within the containers!
     
-    @IBOutlet weak var signedInChildren: UILabel!
-    @IBOutlet weak var signedInStaff: UILabel!
-    
+    //Top left
     @IBOutlet weak var yetToArriveChildren: UILabel!
     @IBOutlet weak var yetToArriveStaff: UILabel!
     
+    //Top Right
+    @IBOutlet weak var signedInChildren: UILabel!
+    @IBOutlet weak var signedInStaff: UILabel!
+    
+    //Middle left
     @IBOutlet weak var totalExpectedchildren: UILabel!
     @IBOutlet weak var totalExpectedStaff: UILabel!
     
+    //Middle
     @IBOutlet weak var sliderTimeLabel: UILabel!
+    @IBOutlet weak var Switch: UISwitch!
+    
+    //Bototm left
+    @IBOutlet weak var numberOfChilrenAtGivenTime: UILabel!
+    
+    //Bottom Right
+    @IBOutlet weak var numberOfStaffAtGivenTime: UILabel!
+   
+    //Bottom
     @IBOutlet weak var numbersSlider: UISlider!
     
-    @IBOutlet weak var numberOfChilrenAtGivenTime: UILabel!
-    @IBOutlet weak var numberOfStaffAtGivenTime: UILabel!
-    
-    @IBOutlet weak var headingLabel: UILabel!
-    
-    @IBOutlet weak var currentStatusLabel: UILabel!
-    @IBOutlet weak var signedInLabel: UILabel!
-    @IBOutlet weak var yetToArriveLabel: UILabel!
-    @IBOutlet weak var totalExpectedInLabel: UILabel!
-    
+    //Spinner
     @IBOutlet weak var forecastSpinner: UIActivityIndicatorView!
     
-    @IBOutlet weak var bottomSubViewHeading: UILabel!
     
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var childrenLabel: UILabel!
-    @IBOutlet weak var staffLabel: UILabel!
-    @IBOutlet weak var slider: UISlider!
+    @IBAction func SwitchSwitched(_ sender: Any) {
+        
+        if(Switch.isOn)
+        {
+        //Show children counts
+            
+           signedInChildren.text = signedInChildrenCount
+            yetToArriveChildren.text =  yetToArriveChildrenCount
+            totalExpectedchildren.text =  totalExpectedChildrenCount
+            
+        }
+        else
+        {
+        //Show staff counts
+            
+            signedInChildren.text = signedInStaffCount
+            yetToArriveChildren.text = yetToArriveStaffCount
+            totalExpectedchildren.text = totalExpectedStaffCount
+            
+        }
+        
+    }
     
-    /*!
-     @brief Deals with collecting the appropriate infomration when the user changes the time on the slider.
-     */
-    @IBAction func SliderValueChanged(_ sender: AnyObject) {
+    
+    @IBAction func SliderChanged(_ sender: Any) {
         
         let currentValueAs24Hour = Int(numbersSlider.value)
         
@@ -79,15 +127,26 @@ class NumbersController: UIViewController {
         
         if(!self._StaffRegisterdHoursCounts.indices.contains(Int(currentValueAs24Hour - 1)) == true)
         {
-             //Means the API probably hasnt returned anything yet
+            //Means the API probably hasnt returned anything yet
             return
         }
         
         let childrenWithRegisteredhoursCount = self._ChildrenRegisterdHoursCounts[Int(currentValueAs24Hour - 1)]
         let staffWithRegisteredhoursCount = self._StaffRegisterdHoursCounts[Int(currentValueAs24Hour - 1)]
-       
+        
         numberOfChilrenAtGivenTime.text = "\(childrenWithRegisteredhoursCount.NumberOfPersonWithRegisteredHours)"
         numberOfStaffAtGivenTime.text = "\(staffWithRegisteredhoursCount.NumberOfPersonWithRegisteredHours)"
+        
+    }
+    
+    
+    
+        /*!
+     @brief Deals with collecting the appropriate infomration when the user changes the time on the slider.
+     */
+    @IBAction func SliderValueChanged(_ sender: AnyObject) {
+        
+      
     }
     
     /*!
@@ -97,320 +156,567 @@ class NumbersController: UIViewController {
         
         //Positioning the left subview
         
+        YetToArriveLabel.translatesAutoresizingMaskIntoConstraints = false
+        SignedInLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        TotalLabel.translatesAutoresizingMaskIntoConstraints = false
+        GoneHomeLabel.translatesAutoresizingMaskIntoConstraints = false
+        ChilrenLabel.translatesAutoresizingMaskIntoConstraints = false
+        StaffLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        TopLeftSpinner.translatesAutoresizingMaskIntoConstraints = false
+        TopRightSpinner.translatesAutoresizingMaskIntoConstraints = false
+        
+        MiddleLeftSpinner.translatesAutoresizingMaskIntoConstraints = false
+        MiddleRightSpinner.translatesAutoresizingMaskIntoConstraints = false
+        
+        TopLeftSpinner.isHidden = true
+        TopRightSpinner.isHidden = true
+        
+        MiddleLeftSpinner.isHidden = true
+        MiddleRightSpinner.isHidden = true
+        
+        BottomLeftSpinner.translatesAutoresizingMaskIntoConstraints = false
+        BottomRightSpinner.translatesAutoresizingMaskIntoConstraints = false
+        
+        TopLeftView.translatesAutoresizingMaskIntoConstraints = false
+        TopRightView.translatesAutoresizingMaskIntoConstraints = false
+        MiddleLeftView.translatesAutoresizingMaskIntoConstraints = false
+       MiddleRightView.translatesAutoresizingMaskIntoConstraints = false
+        MiddleView.translatesAutoresizingMaskIntoConstraints = false
+        BottomLeftView.translatesAutoresizingMaskIntoConstraints = false
+        BottomRightView.translatesAutoresizingMaskIntoConstraints = false
+        BottomView.translatesAutoresizingMaskIntoConstraints = false
+        RightSubView.translatesAutoresizingMaskIntoConstraints = false
         LeftSubView.translatesAutoresizingMaskIntoConstraints = false
+        yetToArriveChildren.translatesAutoresizingMaskIntoConstraints = false
+        yetToArriveStaff.translatesAutoresizingMaskIntoConstraints = false
+        signedInChildren.translatesAutoresizingMaskIntoConstraints = false
+        signedInStaff.translatesAutoresizingMaskIntoConstraints = false
+        totalExpectedchildren.translatesAutoresizingMaskIntoConstraints = false
+        totalExpectedStaff.translatesAutoresizingMaskIntoConstraints = false
+        sliderTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        Switch.translatesAutoresizingMaskIntoConstraints = false
+        numberOfChilrenAtGivenTime.translatesAutoresizingMaskIntoConstraints = false
+        numberOfStaffAtGivenTime.translatesAutoresizingMaskIntoConstraints = false
+        numbersSlider.translatesAutoresizingMaskIntoConstraints = false
+        forecastSpinner.translatesAutoresizingMaskIntoConstraints = false
         
         //left
         LeftSubView.leadingAnchor.constraint(
-            equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
+            equalTo: view.leadingAnchor).isActive = true
         //bottom
         LeftSubView.bottomAnchor.constraint(
-            equalTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
+            equalTo: view.bottomAnchor).isActive = true
         //top
         LeftSubView.topAnchor.constraint(
-            equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+            equalTo: view.topAnchor).isActive = true
 
         //width
         LeftSubView.widthAnchor.constraint(
             equalTo: view.heightAnchor,
             multiplier: 0.05).isActive = true
         
+        //LeftSubView.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         
+        LeftSubView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        
+
         
         //Positioning the right subview
-        
-        RightSubView.translatesAutoresizingMaskIntoConstraints = false
-        
+       
         //right
         RightSubView.trailingAnchor.constraint(
-            equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
+            equalTo: view.trailingAnchor).isActive = true
         //bottom
         RightSubView.bottomAnchor.constraint(
-            equalTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
+            equalTo: view.bottomAnchor).isActive = true
         //top
         RightSubView.topAnchor.constraint(
-            equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+            equalTo: view.topAnchor).isActive = true
         
         //width
         RightSubView.widthAnchor.constraint(
             equalTo: view.heightAnchor,
             multiplier: 0.05).isActive = true
         
+       // RightSubView.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+
+        RightSubView.backgroundColor = _ApplicatoinColours.BackGroundColour
         
-        //Positioning the bottom subview
         
-        bottomSubView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        
+        
+        
+        //Positioning the top left subview
         
         //left
-        bottomSubView.leadingAnchor.constraint(
+        TopLeftView.leadingAnchor.constraint(
             equalTo: LeftSubView.trailingAnchor).isActive = true
-        //right
-        bottomSubView.trailingAnchor.constraint(
-            equalTo: RightSubView.leadingAnchor).isActive = true
-        //bottom
-        bottomSubView.bottomAnchor.constraint(
-            equalTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
-        //height
-        bottomSubView.heightAnchor.constraint(
-            equalTo: view.heightAnchor,
+        
+        //top
+        TopLeftView.topAnchor.constraint(
+            equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        
+        //width
+        TopLeftView.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
             multiplier: 0.40).isActive = true
         
-        
-        //Positioning the top subview
-        
-        topSubView.translatesAutoresizingMaskIntoConstraints = false
-        
-        //left
-        topSubView.leadingAnchor.constraint(
-            equalTo: LeftSubView.trailingAnchor).isActive = true
-        //right
-        topSubView.trailingAnchor.constraint(
-            equalTo: RightSubView.leadingAnchor).isActive = true
-        
-        //top
-        topSubView.topAnchor.constraint(
-            equalTo: topLayoutGuide.bottomAnchor).isActive = true
-       
         //height
-        topSubView.heightAnchor.constraint(
-            equalTo: view.heightAnchor,
-            multiplier: 0.20).isActive = true
+        TopLeftView.heightAnchor.constraint(
+            equalTo: (view.readableContentGuide.heightAnchor),
+            multiplier: 0.23).isActive = true
         
-        //Positioning the middle subview
-        
-        middleSubView.translatesAutoresizingMaskIntoConstraints = false
-        
-        //left
-        middleSubView.leadingAnchor.constraint(
-            equalTo: LeftSubView.trailingAnchor).isActive = true
-        
-        //right
-        middleSubView.trailingAnchor.constraint(
-            equalTo: RightSubView.leadingAnchor).isActive = true
-        
-        //top
-        middleSubView.topAnchor.constraint(
-            equalTo: topSubView.bottomAnchor).isActive = true
-        
-        //bottom
-        middleSubView.bottomAnchor.constraint(
-            equalTo: bottomSubView.topAnchor).isActive = true
+        //TopLeftView.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        TopLeftView.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         
-        //Positioning the heading label wihtin the top subview
-        headingLabel.translatesAutoresizingMaskIntoConstraints = false
+        //Positioning label within top left view
         
-        headingLabel.sizeToFit()
-        
-        headingLabel.leadingAnchor.constraint(
-            equalTo: LeftSubView.trailingAnchor).isActive = true
-        
-        headingLabel.trailingAnchor .constraint(
-            equalTo: RightSubView.leadingAnchor).isActive = true
-        
-        headingLabel.centerYAnchor.constraint(
-            equalTo: topSubView.centerYAnchor).isActive = true
-        
-        
-        //Positioning middle sub view content
-        
-        //Positioning the Current Status Label
-        currentStatusLabel.translatesAutoresizingMaskIntoConstraints = false
-        signedInLabel.translatesAutoresizingMaskIntoConstraints = false
-        yetToArriveLabel.translatesAutoresizingMaskIntoConstraints = false
-        totalExpectedInLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        currentStatusLabel.leadingAnchor.constraint(
-            equalTo: LeftSubView.trailingAnchor).isActive = true
-        
-        currentStatusLabel.topAnchor.constraint(
-            equalTo: middleSubView.topAnchor).isActive = true
-        
-        signedInLabel.leadingAnchor.constraint(
-            equalTo: LeftSubView.trailingAnchor).isActive = true
-        
-        signedInLabel.topAnchor.constraint(
-            equalTo: currentStatusLabel.bottomAnchor, constant: 10).isActive = true
-        
-        yetToArriveLabel.leadingAnchor.constraint(
-            equalTo: LeftSubView.trailingAnchor).isActive = true
-        
-        yetToArriveLabel.topAnchor.constraint(
-            equalTo: signedInLabel.bottomAnchor).isActive = true
-        
-        totalExpectedInLabel.leadingAnchor.constraint(
-            equalTo: LeftSubView.trailingAnchor).isActive = true
-        
-        totalExpectedInLabel.topAnchor.constraint(
-            equalTo: yetToArriveLabel.bottomAnchor).isActive = true
-        
-        
-        signedInStaff.translatesAutoresizingMaskIntoConstraints = false
-        yetToArriveStaff.translatesAutoresizingMaskIntoConstraints = false
-        totalExpectedStaff.translatesAutoresizingMaskIntoConstraints = false
-        
-        signedInStaff.trailingAnchor.constraint(
-            equalTo: RightSubView.leadingAnchor).isActive = true
-        
-        signedInStaff.centerYAnchor.constraint(
-            equalTo: signedInLabel.centerYAnchor).isActive = true
-        
-        yetToArriveStaff.trailingAnchor.constraint(
-            equalTo: RightSubView.leadingAnchor).isActive = true
-        
-        yetToArriveStaff.centerYAnchor.constraint(
-            equalTo: yetToArriveLabel.centerYAnchor).isActive = true
-        
-        totalExpectedStaff.trailingAnchor.constraint(
-            equalTo: RightSubView.leadingAnchor).isActive = true
-        
-        totalExpectedStaff.centerYAnchor.constraint(
-            equalTo: totalExpectedInLabel.centerYAnchor).isActive = true
-        
-        
-        
-        signedInChildren.translatesAutoresizingMaskIntoConstraints = false
-        yetToArriveChildren.translatesAutoresizingMaskIntoConstraints = false
-        totalExpectedchildren.translatesAutoresizingMaskIntoConstraints = false
-        
-        signedInChildren.trailingAnchor.constraint(
-            equalTo: signedInStaff.leadingAnchor, constant: -20).isActive = true
-        
-        signedInChildren.centerYAnchor.constraint(
-            equalTo: signedInLabel.centerYAnchor).isActive = true
-        
-        yetToArriveChildren.trailingAnchor.constraint(
-            equalTo: yetToArriveStaff.leadingAnchor,  constant: -20).isActive = true
+        yetToArriveChildren.centerXAnchor.constraint(
+            equalTo: TopLeftView.centerXAnchor
+            ).isActive = true
         
         yetToArriveChildren.centerYAnchor.constraint(
-            equalTo: yetToArriveLabel.centerYAnchor).isActive = true
-        
-        totalExpectedchildren.trailingAnchor.constraint(
-            equalTo: totalExpectedStaff.leadingAnchor,  constant: -20).isActive = true
-        
-        totalExpectedchildren.centerYAnchor.constraint(
-            equalTo: totalExpectedInLabel.centerYAnchor).isActive = true
+            equalTo: TopLeftView.centerYAnchor
+            ).isActive = true
         
         
-        //Positioning the bottom subview content
+        yetToArriveChildren.textColor = _ApplicatoinColours.FontColour
         
-        sliderTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        numberOfChilrenAtGivenTime.translatesAutoresizingMaskIntoConstraints = false
-        numberOfStaffAtGivenTime.translatesAutoresizingMaskIntoConstraints = false
         
-        sliderTimeLabel.trailingAnchor.constraint(
+        
+        //right
+        TopLeftSpinner.trailingAnchor.constraint(
+            equalTo: TopLeftView.trailingAnchor).isActive = true
+        
+        //top
+        TopLeftSpinner.topAnchor.constraint(
+            equalTo: TopLeftView.topAnchor).isActive = true
+
+        //Positioning top left label
+        
+        //left
+        YetToArriveLabel.centerXAnchor.constraint(
+            equalTo: TopLeftView.centerXAnchor).isActive = true
+        
+        YetToArriveLabel.centerYAnchor.constraint(
+            equalTo: TopLeftSpinner.centerYAnchor
+            ).isActive = true
+        
+        YetToArriveLabel.textColor = _ApplicatoinColours.LabelColour
+        
+        //Positioning the top right subview
+        
+        //right
+        TopRightView.trailingAnchor.constraint(
             equalTo: RightSubView.leadingAnchor).isActive = true
         
-        sliderTimeLabel.centerYAnchor.constraint(
-            equalTo: timeLabel.centerYAnchor).isActive = true
+        //top
+        TopRightView.topAnchor.constraint(
+            equalTo: topLayoutGuide.bottomAnchor).isActive = true
         
-        numberOfChilrenAtGivenTime.trailingAnchor.constraint(
-            equalTo: RightSubView.leadingAnchor).isActive = true
+        //width
+        TopRightView.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.40).isActive = true
         
-        numberOfChilrenAtGivenTime.centerYAnchor.constraint(
-            equalTo: childrenLabel.centerYAnchor).isActive = true
+        //height
+        TopRightView.heightAnchor.constraint(
+            equalTo: view.readableContentGuide.heightAnchor,
+            multiplier: 0.23).isActive = true
         
-        numberOfStaffAtGivenTime.trailingAnchor.constraint(
-            equalTo: RightSubView.leadingAnchor).isActive = true
-        
-        numberOfStaffAtGivenTime.centerYAnchor.constraint(
-            equalTo: staffLabel.centerYAnchor).isActive = true
-        
+       // TopRightView.backgroundColor =  #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        TopRightView.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         
-        //Positioning bottom sub view content
+        //Positioning label within top left view
         
-        //Positioning the Current Status Label
-        bottomSubViewHeading.translatesAutoresizingMaskIntoConstraints = false
-        timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        childrenLabel.translatesAutoresizingMaskIntoConstraints = false
-        staffLabel.translatesAutoresizingMaskIntoConstraints = false
-         slider.translatesAutoresizingMaskIntoConstraints = false
-        forecastSpinner.translatesAutoresizingMaskIntoConstraints = false
+       signedInChildren.centerXAnchor.constraint(
+            equalTo: TopRightView.centerXAnchor
+            ).isActive = true
         
-        bottomSubViewHeading.leadingAnchor  .constraint(
+        signedInChildren.centerYAnchor.constraint(
+            equalTo: TopRightView.centerYAnchor
+            ).isActive = true
+        
+        
+           signedInChildren.textColor = _ApplicatoinColours.FontColour
+        
+        
+        //right
+        TopRightSpinner.trailingAnchor.constraint(
+            equalTo: TopRightView.trailingAnchor).isActive = true
+        
+        //top
+        TopRightSpinner.topAnchor.constraint(
+            equalTo: TopRightView.topAnchor).isActive = true
+        
+        
+        //left
+        SignedInLabel.centerXAnchor.constraint(
+            equalTo: TopRightView.centerXAnchor).isActive = true
+        
+        //top
+        SignedInLabel.centerYAnchor.constraint(
+            equalTo: TopRightSpinner.centerYAnchor).isActive = true
+
+        SignedInLabel.textColor = _ApplicatoinColours.LabelColour
+        
+        
+        //Positioning the middle left subview
+        
+        
+        
+        //left
+        MiddleLeftView.leadingAnchor.constraint(
             equalTo: LeftSubView.trailingAnchor).isActive = true
         
-        bottomSubViewHeading.topAnchor.constraint(
-            equalTo: bottomSubView.topAnchor).isActive = true
+        //top
+        MiddleLeftView.topAnchor.constraint(
+            equalTo: TopLeftView.bottomAnchor).isActive = true
+        
+        //width
+        MiddleLeftView.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.40).isActive = true
+        
+        //height
+        MiddleLeftView.heightAnchor.constraint(
+            equalTo: view.readableContentGuide.heightAnchor,
+            multiplier: 0.23).isActive = true
+        
+       // MiddleLeftView.backgroundColor =  #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        MiddleLeftView.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         
-        //Positioning the spinner to the right of the heading label
-        forecastSpinner.leadingAnchor.constraint(
-            equalTo: bottomSubViewHeading.trailingAnchor, constant: 10).isActive = true
+        //Positioning label within top left view
         
-        forecastSpinner.bottomAnchor.constraint(
-            equalTo: bottomSubViewHeading.bottomAnchor).isActive = true
+        totalExpectedchildren.centerXAnchor.constraint(
+            equalTo: MiddleLeftView.centerXAnchor
+            ).isActive = true
+        
+        totalExpectedchildren.centerYAnchor.constraint(
+            equalTo: MiddleLeftView.centerYAnchor
+            ).isActive = true
+
+        
+         totalExpectedchildren.textColor = _ApplicatoinColours.FontColour
+        
+        //right
+        MiddleLeftSpinner.trailingAnchor.constraint(
+            equalTo: MiddleLeftView.trailingAnchor).isActive = true
+        
+        //top
+        MiddleLeftSpinner.topAnchor.constraint(
+            equalTo: MiddleLeftView.topAnchor).isActive = true
+        
+        
+        
+        //left
+        TotalLabel.centerXAnchor.constraint(
+            equalTo: MiddleLeftView.centerXAnchor).isActive = true
+        
+        //top
+        TotalLabel.centerYAnchor.constraint(
+            equalTo: MiddleLeftSpinner.centerYAnchor).isActive = true
+        
+        TotalLabel.textColor = _ApplicatoinColours.LabelColour
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //Positioning the middle right subview
+       
+        //right
+        MiddleRightView.trailingAnchor.constraint(
+            equalTo: RightSubView.leadingAnchor).isActive = true
+        
+        //top
+        MiddleRightView.topAnchor.constraint(
+            equalTo: TopRightView.bottomAnchor).isActive = true
+        
+        //width
+        MiddleRightView.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.40).isActive = true
+        
+        //height
+        MiddleRightView.heightAnchor.constraint(
+            equalTo: view.readableContentGuide.heightAnchor,
+            multiplier: 0.23).isActive = true
+        
+       // MiddleRightView.backgroundColor =  #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        MiddleRightView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        
+        //right
+        MiddleRightSpinner.trailingAnchor.constraint(
+            equalTo: MiddleRightView.trailingAnchor).isActive = true
+        
+        //top
+        MiddleRightSpinner.topAnchor.constraint(
+            equalTo: MiddleRightView.topAnchor).isActive = true
+        
+        //Positioning label within top left view
+        
+       // yetToArriveChildren.centerXAnchor.constraint(
+         //   equalTo: TopLeftView.centerXAnchor
+           // ).isActive = true
+        
+       // yetToArriveChildren.centerYAnchor.constraint(
+         //   equalTo: TopLeftView.centerYAnchor
+           // ).isActive = true
+
+        
+         yetToArriveChildren.textColor = _ApplicatoinColours.FontColour
+        
+        
+        
+        
+        //Positioning the middle subview
+
+        //right
+        MiddleView.trailingAnchor.constraint(
+            equalTo: RightSubView.leadingAnchor).isActive = true
+        
+        //left
+        MiddleView.leadingAnchor.constraint(
+            equalTo: LeftSubView.trailingAnchor).isActive = true
+        
+        //top
+        MiddleView.topAnchor.constraint(
+            equalTo: MiddleRightView.bottomAnchor).isActive = true
+       
+        
+        //height
+        MiddleView.heightAnchor.constraint(
+            equalTo: view.readableContentGuide.heightAnchor,
+            multiplier: 0.11).isActive = true
+        
+       // MiddleView.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+        MiddleView.backgroundColor = _ApplicatoinColours.BackGroundColour
         
 
         
         
         
-        timeLabel.leadingAnchor.constraint(
+        //Positioning the time label
+        
+        sliderTimeLabel.centerYAnchor.constraint(
+            equalTo: MiddleView.centerYAnchor
+            ).isActive = true
+        
+        sliderTimeLabel.leadingAnchor.constraint(
+            equalTo: MiddleView.leadingAnchor).isActive = true
+
+        //Positioning the switch
+       
+        Switch.centerYAnchor.constraint(
+            equalTo: MiddleView.centerYAnchor
+            ).isActive = true
+        
+        Switch.trailingAnchor.constraint(
+            equalTo: MiddleView.trailingAnchor).isActive = true
+        
+        //Positioning the bottom left subview
+       
+        //right
+        BottomLeftView.leadingAnchor.constraint(
             equalTo: LeftSubView.trailingAnchor).isActive = true
         
-        timeLabel.topAnchor.constraint(
-            equalTo: bottomSubViewHeading.bottomAnchor, constant: 10).isActive = true
+        //top
+        BottomLeftView.topAnchor.constraint(
+            equalTo: MiddleView.bottomAnchor).isActive = true
         
-        childrenLabel.leadingAnchor.constraint(
-            equalTo: LeftSubView.trailingAnchor).isActive = true
+        //width
+        BottomLeftView.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.40).isActive = true
         
-        childrenLabel.topAnchor.constraint(
-            equalTo: timeLabel.bottomAnchor).isActive = true
+        //height
+        BottomLeftView.heightAnchor.constraint(
+            equalTo: view.readableContentGuide.heightAnchor,
+            multiplier: 0.23).isActive = true
         
-        staffLabel.leadingAnchor.constraint(
-            equalTo: LeftSubView.trailingAnchor).isActive = true
-        
-        staffLabel.topAnchor.constraint(
-            equalTo: childrenLabel.bottomAnchor).isActive = true
+        //BottomLeftView.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+        BottomLeftView.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         
-        slider.leadingAnchor.constraint(
-            equalTo: LeftSubView.trailingAnchor).isActive = true
+        //right
+        BottomLeftView.trailingAnchor.constraint(
+            equalTo: BottomLeftView.trailingAnchor).isActive = true
         
-        slider.trailingAnchor.constraint(
+        //top
+        BottomLeftView.topAnchor.constraint(
+            equalTo: BottomLeftView.topAnchor).isActive = true
+        
+        //Positioning label within top left view
+        
+        numberOfChilrenAtGivenTime.centerXAnchor.constraint(
+            equalTo: BottomLeftView.centerXAnchor
+            ).isActive = true
+        
+        numberOfChilrenAtGivenTime.centerYAnchor.constraint(
+            equalTo: BottomLeftView.centerYAnchor
+            ).isActive = true
+        
+        
+        numberOfChilrenAtGivenTime.textColor = _ApplicatoinColours.FontColour
+        
+        
+        //right
+        BottomLeftSpinner.trailingAnchor.constraint(
+            equalTo: BottomLeftView.trailingAnchor).isActive = true
+        
+        //top
+        BottomLeftSpinner.topAnchor.constraint(
+            equalTo: BottomLeftView.topAnchor).isActive = true
+        
+        
+        
+        //left
+        ChilrenLabel.centerXAnchor.constraint(
+            equalTo: BottomLeftView.centerXAnchor).isActive = true
+        
+        //top
+        ChilrenLabel.centerYAnchor.constraint(
+            equalTo: BottomLeftSpinner.centerYAnchor).isActive = true
+        
+        StaffLabel.textColor = _ApplicatoinColours.LabelColour
+        
+        TotalLabel.textColor = _ApplicatoinColours.LabelColour
+        
+        
+        //Positioning the bottom right subview
+        
+       // BottomRightView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        BottomRightView.trailingAnchor.constraint(
             equalTo: RightSubView.leadingAnchor).isActive = true
         
-        slider.topAnchor.constraint(
-            equalTo: staffLabel.bottomAnchor).isActive = true
+        //top
+        BottomRightView.topAnchor.constraint(
+            equalTo: MiddleView.bottomAnchor).isActive = true
+        
+        //width
+        BottomRightView.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.40).isActive = true
+        
+        BottomRightView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        
+        //right
+        BottomRightView.trailingAnchor.constraint(
+            equalTo: BottomRightView.trailingAnchor).isActive = true
+        
+        //top
+        BottomRightView.topAnchor.constraint(
+            equalTo: BottomRightView.topAnchor).isActive = true
+        
+        //height
+        BottomRightView.heightAnchor.constraint(
+            equalTo: view.readableContentGuide.heightAnchor,
+            multiplier: 0.23).isActive = true
+
+        
+        numberOfStaffAtGivenTime.centerXAnchor.constraint(
+            equalTo: BottomRightView.centerXAnchor
+            ).isActive = true
+        
+        numberOfStaffAtGivenTime.centerYAnchor.constraint(
+            equalTo: BottomRightView.centerYAnchor
+            ).isActive = true
+        
+        numberOfStaffAtGivenTime.textColor = _ApplicatoinColours.FontColour
         
         
-        headingLabel.sizeToFit()
-        currentStatusLabel.sizeToFit()
-         bottomSubViewHeading.sizeToFit()
+        //right
+        BottomRightSpinner.trailingAnchor.constraint(
+            equalTo: BottomRightView.trailingAnchor).isActive = true
         
-        topSubView.backgroundColor = _ApplicatoinColours.BackGroundColour
-         middleSubView.backgroundColor = _ApplicatoinColours.BackGroundColour
-         bottomSubView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        //top
+        BottomRightSpinner.topAnchor.constraint(
+            equalTo: BottomRightView.topAnchor).isActive = true
         
-        LeftSubView.backgroundColor = _ApplicatoinColours.BackGroundColour
-        RightSubView.backgroundColor = _ApplicatoinColours.BackGroundColour
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        //left
+        StaffLabel.centerXAnchor.constraint(
+            equalTo: BottomRightView.centerXAnchor).isActive = true
         
-        signedInChildren.textColor = _ApplicatoinColours.FontHeadingColour
-        signedInStaff.textColor = _ApplicatoinColours.FontHeadingColour
-        yetToArriveChildren.textColor = _ApplicatoinColours.FontHeadingColour
-        yetToArriveStaff.textColor = _ApplicatoinColours.FontHeadingColour
-        totalExpectedchildren.textColor = _ApplicatoinColours.FontHeadingColour
-        totalExpectedStaff.textColor = _ApplicatoinColours.FontHeadingColour
+        //top
+        StaffLabel.centerYAnchor.constraint(
+            equalTo: BottomRightSpinner.centerYAnchor).isActive = true
         
-        sliderTimeLabel.textColor = _ApplicatoinColours.FontHeadingColour
+        StaffLabel.textColor = _ApplicatoinColours.LabelColour
         
-        numberOfChilrenAtGivenTime.textColor = _ApplicatoinColours.FontHeadingColour
-        numberOfStaffAtGivenTime.textColor = _ApplicatoinColours.FontHeadingColour
+        SignedInLabel.textColor = _ApplicatoinColours.LabelColour
+
         
-        headingLabel.textColor = _ApplicatoinColours.FontColour
-        currentStatusLabel.textColor = _ApplicatoinColours.FontHeadingColour
-        signedInLabel.textColor = _ApplicatoinColours.FontColour
-        yetToArriveLabel.textColor = _ApplicatoinColours.FontColour
+
         
-        totalExpectedInLabel.textColor = _ApplicatoinColours.FontColour
-        timeLabel.textColor = _ApplicatoinColours.FontColour
-        childrenLabel.textColor = _ApplicatoinColours.FontColour
-        staffLabel.textColor = _ApplicatoinColours.FontColour
-        bottomSubViewHeading.textColor = _ApplicatoinColours.FontHeadingColour
+        
+        //Positioning the bottom subview
+        
+       // BottomView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //right
+        BottomView.trailingAnchor.constraint(
+            equalTo: RightSubView.leadingAnchor).isActive = true
+        
+        //left
+        BottomView.leadingAnchor.constraint(
+            equalTo: LeftSubView.trailingAnchor).isActive = true
+        
+        //top
+        BottomView.topAnchor.constraint(
+            equalTo: BottomLeftView.bottomAnchor).isActive = true
+        
+        //height
+        BottomView.heightAnchor.constraint(
+            equalTo: view.readableContentGuide.heightAnchor,
+            multiplier: 0.11).isActive = true
+
+   //  BottomView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        BottomView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        
+        //left
+        numbersSlider.leadingAnchor.constraint(
+            equalTo: BottomView.leadingAnchor).isActive = true
+        
+        //right
+        numbersSlider.trailingAnchor.constraint(
+            equalTo: BottomView.trailingAnchor).isActive = true
+        
+        //top
+        numbersSlider.topAnchor.constraint(
+            equalTo: BottomView.topAnchor).isActive = true
+        
+        //bottom
+        numbersSlider.bottomAnchor.constraint(
+            equalTo: BottomView.bottomAnchor).isActive = true
+
+view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        
         
     }
+    
+    var signedInChildrenCount = "";
+    var yetToArriveChildrenCount = "";
+    var totalExpectedChildrenCount = "";
+    
+    var signedInStaffCount = "";
+    var yetToArriveStaffCount = "";
+    var totalExpectedStaffCount = "";
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -420,9 +726,19 @@ class NumbersController: UIViewController {
         setupConstraints()
         
         self.forecastSpinner.hidesWhenStopped = true;
+        
+        self.BottomLeftSpinner.hidesWhenStopped = true;
+        self.BottomRightSpinner.hidesWhenStopped = true;
+        
         self.forecastSpinner.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
         
+        self.BottomLeftSpinner.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
+        self.BottomRightSpinner.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
+        
         self.forecastSpinner.startAnimating()
+        
+        self.BottomLeftSpinner.startAnimating()
+        self.BottomRightSpinner.startAnimating()
         
         CommonRequests.sharedInstance.SelectChildrenCountsForTargetDate(targetDate: Date() as NSDate, onCompletion: { json in
             
@@ -435,6 +751,10 @@ class NumbersController: UIViewController {
             
             DispatchQueue.main.async(execute: {
                 
+                self.signedInChildrenCount = signedInChildren;
+                self.yetToArriveChildrenCount = yetToArriveChildren;
+                self.totalExpectedChildrenCount = totalExpectedchildren;
+                
                 self.signedInChildren.text = signedInChildren
                 
                 self.yetToArriveChildren.text = yetToArriveChildren
@@ -443,7 +763,7 @@ class NumbersController: UIViewController {
                 
                 var hour = Calendar.current.component(.hour, from: Date())
                 
-                self.slider.setValue(Float(hour), animated: true)
+                self.numbersSlider.setValue(Float(hour), animated: true)
                 
                 var amOrPm = "AM"
                 if(hour > 12)
@@ -471,6 +791,10 @@ class NumbersController: UIViewController {
             
             DispatchQueue.main.async(execute: {
                
+                self.signedInStaffCount = signedInStaff;
+                self.yetToArriveStaffCount = yetToArriveStaff;
+                self.totalExpectedStaffCount = totalExpectedStaff;
+                
                 self.signedInStaff.text = signedInStaff
                
                 self.yetToArriveStaff.text = yetToArriveStaff
@@ -524,6 +848,10 @@ class NumbersController: UIViewController {
                 {
                     self.forecastSpinner.stopAnimating()
                     
+                    self.BottomLeftSpinner.stopAnimating()
+                    self.BottomRightSpinner.stopAnimating()
+
+                    
                     self.showForeCastLabels()
                     
                 }
@@ -561,6 +889,11 @@ class NumbersController: UIViewController {
                 
                 if(self._ChildrenRegisterdHoursCounts.count > 0)
                 {
+                    self.BottomLeftSpinner.stopAnimating()
+                    self.BottomRightSpinner.stopAnimating()
+                    
+
+                    
                  self.forecastSpinner.stopAnimating()
                     
                     self.showForeCastLabels()
@@ -570,18 +903,6 @@ class NumbersController: UIViewController {
             })
             
         })
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
     }
     
@@ -592,17 +913,11 @@ class NumbersController: UIViewController {
     
     func showForeCastLabels()
     {
-    timeLabel.isHidden = false
-        childrenLabel.isHidden = false
-        staffLabel.isHidden = false
+    
         
         numberOfStaffAtGivenTime.isHidden = false
         numberOfChilrenAtGivenTime.isHidden = false
-        timeLabel.isHidden = false
-        
-        bottomSubViewHeading.isHidden = false
-        slider.isHidden = false;
-        sliderTimeLabel.isHidden = false
+             sliderTimeLabel.isHidden = false
         
     }
     

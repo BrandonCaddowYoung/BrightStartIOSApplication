@@ -55,22 +55,22 @@ class ApplicatoinColours {
         
         LightBlue = hexStringToUIColor(hex: "#D1EEFC")
         LightPink = hexStringToUIColor(hex: "#FD3E0")
-        Grey = hexStringToUIColor(hex: "#34AADC")
+        Grey = hexStringToUIColor(hex: "#555555")
         
         //Applicaiton Elements
         
-        BackGroundColour = AppledGrey
+        BackGroundColour = Blue
         
-        FontColour = Black
+        FontColour = White
         LabelColour = Black
-        FontHeadingColour = Black
+        FontHeadingColour = White
         
         ButtonBackGroundColor = White
         ButtonForeGroundColor = Black
         
-        NavigationBarBackGroundColor = AppleLightGrey
+        NavigationBarBackGroundColor = Grey;
         
-        TableBackGroundOptionColour = Blue?.withAlphaComponent(1);
+        TableBackGroundOptionColour = Grey
         TableBackGroundOptionColour2 = AppledGrey;
 
         TableForeGroundOptionColour = Black

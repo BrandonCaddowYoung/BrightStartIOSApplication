@@ -10,6 +10,8 @@ import UIKit
 
 class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDelegate {
 
+    var SelectedPersonLog: PersonLog!
+    
     var TargetDate: Date!
     var TargetPersonId: NSString!
     
@@ -140,6 +142,9 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             let cell = tableView.dequeueReusableCell(withIdentifier: "TimeStamp", for: indexPath) as! TimeStampSearchTableViewCell
             cell.log = timeStamps[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
+            //Saving the selected log so that when we segue we can call on it!
+            SelectedPersonLog = cell.log
+            
             let rowTitle2 = OptionText
             
             let optionText = UITableViewRowAction(style: .normal, title: rowTitle2 as String?) { action, index in
@@ -178,7 +183,22 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             
             if let vc = segue.destination as? TimeStampsEditorViewController {
                 
-                  //PAss through time stamp id here.!
+                let dateFormatter = DateFormatter()
+                
+                //Need to make API call to get name here! For now its just the id that is going to go through!
+                  vc.Name = "Tupac Shakur"
+                
+                vc.PersonId = SelectedPersonLog.PersonId as String
+                
+                vc.Action = SelectedPersonLog.Action as String
+                
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                vc.Date = dateFormatter.string(from: SelectedPersonLog.TimeStamp) as String
+                
+                dateFormatter.dateFormat = "hh:mm:ss"
+                vc.Time = dateFormatter.string(from: SelectedPersonLog.TimeStamp) as String
+                
+                vc.DateAsObject = SelectedPersonLog.TimeStamp
                     
                 
             }

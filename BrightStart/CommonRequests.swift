@@ -91,6 +91,54 @@ class CommonRequests: NSObject {
     }
     
     /*!
+     @brief Updates a time stamp.
+     */
+    func updateTimeStamp(personId: String, action: String, stamp: NSDate, originalAction: String, originalTimeStamp: NSDate, onCompletion: @escaping () -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
+        let stampAsString = dateFormatter.string(from: stamp as Date)
+        let originalTimeStampAsString = dateFormatter.string(from: originalTimeStamp as Date)
+        
+        let route = baseURL + "api/PersonLogLogic/UpdatePersonLog?personId="+personId+"&action="+action+"&stamp=" + stampAsString + "&Original_Action="+originalAction+"&Original_Timestamp="+originalTimeStampAsString+"&nurserySchoolId=" + nurserySchoolId
+        
+        makeHTTPPutRequest(encode: false, path: route, onCompletion: { json, err in
+            onCompletion()
+        })
+    }
+    
+    /*!
+     @brief Delete a time stamp.
+     */
+    func deleteTimeStamp(personId: String, action: String, stamp: NSDate, onCompletion: @escaping () -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
+        let stampAsString = dateFormatter.string(from: stamp as Date)
+        
+        let route = baseURL + "api/PersonLogic/DeletePersonLog?personId="+personId+"&action="+action+"&stamp=" + stampAsString + "&nurserySchoolId=" + nurserySchoolId
+        
+        makeHTTPGetRequest(encode: false, path: route, onCompletion: { json, err in
+            onCompletion()
+        })
+    }
+    
+    
+    /*!
      @brief Returns various information relating to how many children are present for any given day.
      */
     func SelectChildrenCountsForTargetDate(targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {

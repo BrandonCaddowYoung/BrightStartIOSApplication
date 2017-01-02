@@ -188,7 +188,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     }
                     
                 }
-            }
+        }
         
     }
 }

@@ -10,6 +10,16 @@ import UIKit
 
 class TimeStampsEditorViewController: UIViewController {
     
+    var _CommonHelper: CommonHelper!
+    var _ApplicatoinColours: ApplicatoinColours!
+    
+    var Action:String!
+    var PersonId:String!
+    var Name:String!
+    var Date:String!
+    var DateAsObject:Date!
+    var Time:String!
+    
     @IBOutlet weak var DateLabelText: UILabel!
     
     @IBOutlet weak var TimeLabelText: UILabel!
@@ -27,12 +37,71 @@ class TimeStampsEditorViewController: UIViewController {
     
     @IBOutlet weak var RemoveButton: UIButton!
     
+    @IBOutlet weak var SaveTimeStamp: UIButton!
+    @IBOutlet weak var RemoveTimeStamp: UIButton!
+    
+    @IBAction func SaveTimeStampTouched(_ sender: Any) {
+    
+        //Make API call to update time stamp and then return to the time stamps menu.
+        
+        let alert = self._CommonHelper.showOverlayMessage("Updating...")
+        self.present(alert, animated: true, completion: nil)
+        
+        CommonRequests.sharedInstance.updateTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate, originalAction: Action!, originalTimeStamp: DateAsObject as NSDate,
+                                                     
+                                              onCompletion: {
+                                                
+                                                DispatchQueue.main.async(execute: {
+                                                    self.dismiss(animated: false, completion: {
+                                                    
+                                                        self.performSegue(withIdentifier: "GoToTimeStampList", sender: nil)
+                                                    
+                                                    })
+                                                    
+                                                })
+        })
+    }
+    
+    @IBAction func RemoveTimeStampTouched(_ sender: Any) {
+        
+        //Make API call to delete time stamp and then return to the time stamps menu.
+        
+        let alert = self._CommonHelper.showOverlayMessage("Removing...")
+        self.present(alert, animated: true, completion: nil)
+        
+        CommonRequests.sharedInstance.deleteTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate,
+                                                      
+                                                      onCompletion: {
+                                                        
+                                                        DispatchQueue.main.async(execute: {
+                                                            self.dismiss(animated: false, completion: {
+                                                                
+                                                                self.performSegue(withIdentifier: "GoToTimeStampList", sender: nil)
+                                                                
+                                                            })
+                                                            
+                                                        })
+        })
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        _CommonHelper = CommonHelper()
+        _ApplicatoinColours = ApplicatoinColours()
+        
         setupConstraints()
+        
+        TargetPersonName.text = Name
+        TargetDate.text = Date
+        TargetCurrentTime.text = Time
+        DateTimePicker.date = DateAsObject
+        
+        DateTimePicker.datePickerMode = UIDatePickerMode.time
         
     }
 
@@ -182,5 +251,27 @@ class TimeStampsEditorViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    /*!
+     @brief Preparing to segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToTimeStampList") {
+            
+            if let vc = segue.destination as? TimeStampsMenuController {
+                
+                vc.images = [UIImage(named: "Search"), UIImage(named: "Edit"), UIImage(named: "Delete"), UIImage(named: "Question"), UIImage(named: "SignOut")]
+                
+                vc.segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToSearchPerson_Missing", "GoToSignIn"]
+                
+                vc.DisplayTextList = ["Search",  "Edit", "Delete", "Missing Time Stamps", "Sign Out"]
+                
+                vc.showNavigationBar = true
+                
+            }
+            
+        }
+    }
 
 }
