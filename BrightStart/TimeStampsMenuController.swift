@@ -19,10 +19,11 @@ class TimeStampsMenuController: MainMenuViewController {
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? PersonSearchTableViewController {
+            if let vc = segue.destination as? DateSelectionViewController {
                 
                 vc.OptionText = "Edit time stmaps."
-                
+                //vc.targetDate = DatePicker.date
+                vc.Purpose = "GoToSearchPerson_Edit"
             }
         }
         
@@ -30,10 +31,11 @@ class TimeStampsMenuController: MainMenuViewController {
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? PersonSearchTableViewController {
+            if let vc = segue.destination as? DateSelectionViewController {
                 
                 vc.OptionText = "Delete time stamps."
-                
+               // vc.targetDate = DatePicker.date
+                vc.Purpose = "GoToSearchPerson_Delete"
             }
         }
         
@@ -41,29 +43,49 @@ class TimeStampsMenuController: MainMenuViewController {
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? PersonSearchTableViewController {
+            if let vc = segue.destination as? DateSelectionViewController {
                 
                 vc.OptionText = "Search for time stamps."
-                
+               // vc.targetDate = DatePicker.date
+                vc.Purpose = "GoToSearchPerson_Search"
             }
         }
-
+        
         if (segue.identifier == "GoToSearchPerson_Missing") {
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? PersonSearchTableViewController {
+            if let vc = segue.destination as? DateSelectionViewController {
                 
                 vc.OptionText = "Search for missing time stamps."
-                
+               // vc.targetDate = DatePicker.date
+                vc.Purpose = "GoToSearchPerson_Missing"
             }
         }
         
-
+        if (segue.identifier == "GoToMainMenu") {
+            
+            //Settings the menu details.
+            
+            
+            // if let navController = segue.destination as? UINavigationController {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
+                
+                vc.images = [UIImage(named: "Register"), UIImage(named: "Forecast"), UIImage(named: "TimeCard"), UIImage(named: "Information"), UIImage(named: "SignOut")]
+                
+                vc.segueIdList = ["GoToRegister", "GoToForecast", "GoToTimeStampsMenu", "GoToInformation", "GoToSignIn"]
+                
+                vc.DisplayTextList = ["Register",  "Forecast", "Time Stamps", "Informaiton", "Sign Out"]
+                
+            }
+            //}
+        }
         
-
-        
-    }
+            
+        }
     
     
 }

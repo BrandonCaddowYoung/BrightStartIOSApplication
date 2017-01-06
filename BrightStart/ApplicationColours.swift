@@ -65,13 +65,13 @@ class ApplicatoinColours {
         LabelColour = Black
         FontHeadingColour = White
         
-        ButtonBackGroundColor = White
-        ButtonForeGroundColor = Black
+        ButtonBackGroundColor = Grey
+        ButtonForeGroundColor = White
         
         NavigationBarBackGroundColor = Grey;
         
         TableBackGroundOptionColour = Grey
-        TableBackGroundOptionColour2 = AppledGrey;
+        TableBackGroundOptionColour2 = Blue;
 
         TableForeGroundOptionColour = Black
         

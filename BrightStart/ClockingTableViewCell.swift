@@ -367,6 +367,7 @@ class ClockingTableViewCell: UITableViewCell
                                     //For now I am just going to assume that the child came in and left, ie has time stamps for today
                                     
                                     //Child is yet to arrive/Child is late to sign in
+                                    self.childNameLabel.textColor = .white
                                     self.backgroundColor = lightPink?.withAlphaComponent(1)
                                     //self.backgroundColor.backgroundColor?.withAlphaComponent(0.5)
                                     

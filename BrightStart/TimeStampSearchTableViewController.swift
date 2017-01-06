@@ -14,6 +14,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     
     var TargetDate: Date!
     var TargetPersonId: NSString!
+    var SelectedPersonFullName: NSString!
     
     var OptionText: NSString!
     
@@ -189,6 +190,8 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
                   vc.Name = "Tupac Shakur"
                 
                 vc.PersonId = SelectedPersonLog.PersonId as String
+                
+                vc.Name = SelectedPersonFullName as String!;
                 
                 vc.Action = SelectedPersonLog.Action as String
                 

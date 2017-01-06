@@ -87,9 +87,33 @@ class TimeStampSearchTableViewCell: UITableViewCell
         
         if let log = self.log
         {
+            
+            
+            
+            
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateFormat = "HH mm ss"
+           
+            //dateFormatter.dateFormat = "h:mm a 'on' MMMM dd, yyyy"
+            dateFormatter.dateFormat = "h:mm a"
+            
+            dateFormatter.amSymbol = "AM"
+            dateFormatter.pmSymbol = "PM"
+            
+            let convertedDateString = dateFormatter.string(from: log.TimeStamp)
+           
+            var dateField = convertedDateString as String
+            
+            
+            
+            
+            
             titleLabel?.text = "\(log.Action)"
             
-            timeLabel?.text = "\(log.TimeStamp)"
+            
+            
+            timeLabel?.text = "\(dateField)"
             
            // UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
             //UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")

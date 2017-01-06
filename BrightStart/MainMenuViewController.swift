@@ -302,11 +302,11 @@ class MainMenuViewController: UIViewController {
             
             if let vc = segue.destination as? TimeStampsMenuController {
                 
-                vc.images = [UIImage(named: "Search"), UIImage(named: "Edit"), UIImage(named: "Delete"), UIImage(named: "Question"), UIImage(named: "SignOut")]
+                vc.images = [UIImage(named: "Search"), UIImage(named: "Edit"), UIImage(named: "Delete"), UIImage(named: "Home"), UIImage(named: "SignOut")]
                 
-                vc.segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToSearchPerson_Missing", "GoToSignIn"]
+                vc.segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToMainMenu", "GoToSignIn"]
                 
-                vc.DisplayTextList = ["Search",  "Edit", "Delete", "Missing Time Stamps", "Sign Out"]
+                vc.DisplayTextList = ["Search",  "Edit", "Delete", "Home", "Sign Out"]
                 
                 vc.showNavigationBar = true
                 

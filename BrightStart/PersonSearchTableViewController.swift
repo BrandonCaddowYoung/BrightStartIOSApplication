@@ -10,10 +10,18 @@ import UIKit
 
 class PersonSearchTableViewController:  UITableViewController, UITextFieldDelegate {
     
+    var targetDate: Date!
+    
     //var TargetDate: Date!
     //var TargetPersonId: NSString!
     
+    var SelectedPersonFullName: NSString!
     var SelectedPersonId: NSString!
+    
+     var Purpose: NSString!
+    
+   
+    
     var OptionText: NSString!
     
     var children: [[BrightStartChild]] = [];
@@ -25,6 +33,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         children.removeAll()
         tableView.reloadData()
         refresh()
+       
     }
     
     func refresh()
@@ -144,6 +153,9 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 
                 self.SelectedPersonId = ((cell.child?.ChildId)! as String as String as NSString!)
                 
+                self.SelectedPersonFullName = ((cell.child?.ChildFullName)! as String as String as NSString!)
+
+                
                 self.performSegue(withIdentifier: "GoToTimeStampSearch", sender: nil)
                 
             }
@@ -171,8 +183,9 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             
              if let vc = segue.destination as? TimeStampSearchTableViewController {
                 
-                    vc.TargetDate = Date()
+                    vc.TargetDate = targetDate
                     vc.TargetPersonId = self.SelectedPersonId
+                    vc.SelectedPersonFullName = self.SelectedPersonFullName
                     
                     if(self.OptionText == "Edit time stmaps.")
                     {
