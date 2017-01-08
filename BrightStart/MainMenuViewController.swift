@@ -52,10 +52,6 @@ class MainMenuViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-
 
     //Initialising a collection view and addit it to the view controllers current view
     func setupCollectionView()
@@ -77,12 +73,7 @@ class MainMenuViewController: UIViewController {
         collectionView.contentInset  = UIEdgeInsets();
         collectionView.contentInset.left = 25
         collectionView.contentInset.right = 25
-        
-       // collectionView.layer.borderColor = UIColor.black.cgColor
-        //collectionView.layer.borderWidth = 10
-        //collectionView.backgroundColor = .red
-        
-        
+       
         collectionView.backgroundColor = _ApplicatoinColours.BackGroundColour
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -102,25 +93,14 @@ class MainMenuViewController: UIViewController {
         view.addSubview(topThirdViewMiddleSpacer)
         
         headingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        headingLabel.text = "How can we help?"
+        headingLabel.text = "Menu"
         
-       headingLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightLight)
+        headingLabel.font = UIFont(name: "Helvetica Neue", size: _ApplicatoinColours.MenuHeadingFontSize)
+        headingLabel.font = UIFont.systemFont(ofSize: _ApplicatoinColours.MenuHeadingFontSize, weight: UIFontWeightThin)
         
         headingLabel.textColor = _ApplicatoinColours.FontColour
         
         view.addSubview(headingLabel)
-        
-        //bodyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        //bodyLabel.text = "Below is a list of our many features that can help you run your nursery school. To get going, select one from the list."
-        
-        //bodyLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
-        //bodyLabel.numberOfLines = 4
-        //bodyLabel.textColor = _ApplicatoinColours.FontColour
-        
-        //bodyLabel.font = UIFont(name: "Helvetica Neue", size: 17)
-        //bodyLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightThin)
-        
-        //view.addSubview(bodyLabel)
         
         setupConstraints()
         
@@ -247,28 +227,6 @@ class MainMenuViewController: UIViewController {
             equalTo: topThirdView.heightAnchor,
             multiplier: 0.15).isActive = true
         
-        //Now adding the body label the top left
-        
-       // bodyLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        //top
-       // bodyLabel.topAnchor .constraint(
-         //   equalTo: topThirdViewMiddleSpacer.bottomAnchor).isActive = true
-
-        
-        //bottom
-      // bodyLabel.centerXAnchor.constraint(
-        //    equalTo: topThirdView.centerXAnchor).isActive = true
-        
-        //bodyLabel.centerYAnchor.constraint(
-          //  equalTo: topThirdView.centerYAnchor).isActive = true
-        
-        
-       // bodyLabel.widthAnchor.constraint(
-         //   equalTo: topThirdView.widthAnchor).isActive = true
-        
-        //bodyLabel.addConstraint(NSLayoutConstraint(item: bodyLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 400))
-        
         //The second view takes up the remining 66% of the screen
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -314,9 +272,6 @@ class MainMenuViewController: UIViewController {
         }
     }
     
-    
-    
-
 }
 
 extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

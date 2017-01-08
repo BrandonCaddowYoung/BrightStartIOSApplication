@@ -138,9 +138,6 @@ class NumbersController: UIViewController {
         numberOfStaffAtGivenTime.text = "\(staffWithRegisteredhoursCount.NumberOfPersonWithRegisteredHours)"
         
     }
-    
-    
-    
         /*!
      @brief Deals with collecting the appropriate infomration when the user changes the time on the slider.
      */
@@ -245,11 +242,6 @@ class NumbersController: UIViewController {
         RightSubView.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         
-        
-        
-        
-        
-        
         //Positioning the top left subview
         
         //left
@@ -286,8 +278,6 @@ class NumbersController: UIViewController {
         
         
         yetToArriveChildren.textColor = _ApplicatoinColours.FontColour
-        
-        
         
         //right
         TopLeftSpinner.trailingAnchor.constraint(
@@ -343,7 +333,6 @@ class NumbersController: UIViewController {
             equalTo: TopRightView.centerYAnchor
             ).isActive = true
         
-        
            signedInChildren.textColor = _ApplicatoinColours.FontColour
         
         
@@ -366,10 +355,7 @@ class NumbersController: UIViewController {
 
         SignedInLabel.textColor = _ApplicatoinColours.LabelColour
         
-        
         //Positioning the middle left subview
-        
-        
         
         //left
         MiddleLeftView.leadingAnchor.constraint(
@@ -414,8 +400,6 @@ class NumbersController: UIViewController {
         MiddleLeftSpinner.topAnchor.constraint(
             equalTo: MiddleLeftView.topAnchor).isActive = true
         
-        
-        
         //left
         TotalLabel.centerXAnchor.constraint(
             equalTo: MiddleLeftView.centerXAnchor).isActive = true
@@ -425,14 +409,6 @@ class NumbersController: UIViewController {
             equalTo: MiddleLeftSpinner.centerYAnchor).isActive = true
         
         TotalLabel.textColor = _ApplicatoinColours.LabelColour
-        
-        
-        
-        
-        
-        
-        
-        
         
         //Positioning the middle right subview
        
@@ -465,21 +441,7 @@ class NumbersController: UIViewController {
         MiddleRightSpinner.topAnchor.constraint(
             equalTo: MiddleRightView.topAnchor).isActive = true
         
-        //Positioning label within top left view
-        
-       // yetToArriveChildren.centerXAnchor.constraint(
-         //   equalTo: TopLeftView.centerXAnchor
-           // ).isActive = true
-        
-       // yetToArriveChildren.centerYAnchor.constraint(
-         //   equalTo: TopLeftView.centerYAnchor
-           // ).isActive = true
-
-        
          yetToArriveChildren.textColor = _ApplicatoinColours.FontColour
-        
-        
-        
         
         //Positioning the middle subview
 
@@ -504,10 +466,6 @@ class NumbersController: UIViewController {
        // MiddleView.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
         MiddleView.backgroundColor = _ApplicatoinColours.BackGroundColour
         
-
-        
-        
-        
         //Positioning the time label
         
         sliderTimeLabel.centerYAnchor.constraint(
@@ -524,7 +482,7 @@ class NumbersController: UIViewController {
             ).isActive = true
         
         Switch.trailingAnchor.constraint(
-            equalTo: MiddleView.trailingAnchor).isActive = true
+            equalTo: MiddleView.trailingAnchor, constant: -5).isActive = true
         
         //Positioning the bottom left subview
        
@@ -580,8 +538,6 @@ class NumbersController: UIViewController {
         BottomLeftSpinner.topAnchor.constraint(
             equalTo: BottomLeftView.topAnchor).isActive = true
         
-        
-        
         //left
         ChilrenLabel.centerXAnchor.constraint(
             equalTo: BottomLeftView.centerXAnchor).isActive = true
@@ -593,7 +549,6 @@ class NumbersController: UIViewController {
         StaffLabel.textColor = _ApplicatoinColours.LabelColour
         
         TotalLabel.textColor = _ApplicatoinColours.LabelColour
-        
         
         //Positioning the bottom right subview
         
@@ -659,10 +614,6 @@ class NumbersController: UIViewController {
         StaffLabel.textColor = _ApplicatoinColours.LabelColour
         
         SignedInLabel.textColor = _ApplicatoinColours.LabelColour
-
-        
-
-        
         
         //Positioning the bottom subview
         
@@ -778,9 +729,6 @@ view.backgroundColor = _ApplicatoinColours.BackGroundColour
             
         })
         
-   
-        
-        
         CommonRequests.sharedInstance.SelectStaffCountsForTargetDate(targetDate: Date() as NSDate, onCompletion: { json in
             
             let signedInStaff = json["CurrentlySignedInCount"].stringValue
@@ -851,6 +799,7 @@ view.backgroundColor = _ApplicatoinColours.BackGroundColour
                     self.BottomLeftSpinner.stopAnimating()
                     self.BottomRightSpinner.stopAnimating()
 
+                    self.numbersSlider.isHidden = false
                     
                     self.showForeCastLabels()
                     
@@ -892,7 +841,7 @@ view.backgroundColor = _ApplicatoinColours.BackGroundColour
                     self.BottomLeftSpinner.stopAnimating()
                     self.BottomRightSpinner.stopAnimating()
                     
-
+ self.numbersSlider.isHidden = false
                     
                  self.forecastSpinner.stopAnimating()
                     

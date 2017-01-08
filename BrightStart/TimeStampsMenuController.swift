@@ -1,15 +1,24 @@
 //
-//  TimeStampsMenuController.swift
+//  TimeStampsMenuController
 //  BrightStart
 //
-//  Created by Colleen Caddow on 24/12/2016.
-//  Copyright © 2016 dev. All rights reserved.
+//  Created by Brandon Young on 16/12/2016.
+//  Copyright © 2016 Bright Start Software All rights reserved.
 //
 
 import UIKit
 
 class TimeStampsMenuController: MainMenuViewController {
 
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+       headingLabel.text = "Time Stamps"
+        
+    }
+    
     /*!
      @brief Preparing to segue.
      */

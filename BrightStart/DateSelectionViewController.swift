@@ -2,8 +2,8 @@
 //  DateSelectionViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 05/01/2017.
-//  Copyright © 2017 dev. All rights reserved.
+//  Created by Brandon Young on 16/12/2016.
+//  Copyright © 2016 Bright Start Software All rights reserved.
 //
 
 import UIKit
@@ -57,7 +57,7 @@ class DateSelectionViewController: UIViewController {
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         DatePicker.datePickerMode = UIDatePickerMode.date
-        
+       
         DatePicker.maximumDate = NSDate() as Date
         
     }
@@ -108,12 +108,6 @@ class DateSelectionViewController: UIViewController {
             equalTo: TopThirdView.heightAnchor,
             multiplier: 0.25).isActive = true
 
-        
-        
-        
-        
-        
-        
         //Positioning middle view
         
         MiddleThirdView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
@@ -128,10 +122,7 @@ class DateSelectionViewController: UIViewController {
             equalTo: view.heightAnchor,
             multiplier: 0.33).isActive = true
         
-       // MiddleThirdView.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-        
-        
-        
+        //MiddleThirdView.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         
         //Positioning date picker
         
@@ -144,12 +135,7 @@ class DateSelectionViewController: UIViewController {
         
         //height
         DatePicker.heightAnchor.constraint(
-            equalTo: MiddleThirdView.heightAnchor,
-            multiplier: 0.50).isActive = true
-        
-        
-        
-        
+            equalTo: MiddleThirdView.heightAnchor).isActive = true
         
         //Positioning bottom view
         
@@ -186,14 +172,7 @@ class DateSelectionViewController: UIViewController {
         SaveButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         
         SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
-        
-
-        
-        
-        
-        
-        
-        
+                
     }
     
 

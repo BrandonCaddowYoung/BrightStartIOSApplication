@@ -18,6 +18,8 @@ class AboutViewController: UIViewController {
     var LeftSpacer: UIView!
   
     var bodyLabel: UILabel!
+    var HeadingLabel: UILabel!
+
     
     var backButton: UILabel!
     var icons8Button: UIButton!
@@ -39,6 +41,18 @@ class AboutViewController: UIViewController {
         
         LeftSpacer = UIView()
         view.addSubview(LeftSpacer)
+        
+        HeadingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        HeadingLabel.text = "About"
+        
+        HeadingLabel.lineBreakMode = .byWordWrapping
+        HeadingLabel.numberOfLines = 5
+        HeadingLabel.textColor = _ApplicatoinColours.FontColour
+        
+        HeadingLabel.font = UIFont(name: "Helvetica Neue", size: 21)
+        HeadingLabel.font = UIFont.systemFont(ofSize: 21, weight: UIFontWeightThin)
+        
+        view.addSubview(HeadingLabel)
         
         bodyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         bodyLabel.text = "We use Icons8 for our images. If your like their artwork, please pay them a visit. They can be found at www.icons8.com"
@@ -146,6 +160,19 @@ func setupConstraints()
     BottomSpacer.heightAnchor.constraint(
         equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
     
+    
+    //Poisitioning the heading label
+    
+    HeadingLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+    //right
+    HeadingLabel.centerXAnchor.constraint(
+        equalTo: view.centerXAnchor).isActive = true
+    
+    //right
+    HeadingLabel.topAnchor.constraint(
+        equalTo: topLayoutGuide.bottomAnchor, constant: 10).isActive = true
+    
     //Poisitioning the body label
     
     bodyLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -165,9 +192,6 @@ func setupConstraints()
     bodyLabel.centerXAnchor.constraint(
         equalTo: view.centerXAnchor).isActive = true
     
-    
-    
-    
     //Poisitioning the body label
     
     icons8Button.translatesAutoresizingMaskIntoConstraints = false
@@ -182,14 +206,8 @@ func setupConstraints()
         equalTo: LeftSpacer.trailingAnchor).isActive = true
     
     icons8Button.topAnchor.constraint(
-        equalTo: bodyLabel.bottomAnchor).isActive = true
-    
-    
+        equalTo: bodyLabel.bottomAnchor, constant: 15).isActive = true
 }
-
-
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

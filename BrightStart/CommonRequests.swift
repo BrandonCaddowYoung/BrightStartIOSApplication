@@ -130,9 +130,9 @@ class CommonRequests: NSObject {
         dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
         let stampAsString = dateFormatter.string(from: stamp as Date)
         
-        let route = baseURL + "api/PersonLogic/DeletePersonLog?personId="+personId+"&action="+action+"&stamp=" + stampAsString + "&nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/PersonLogLogic/DeletePersonLog?personId=" + personId + "&action=" + action + "&stamp=" + stampAsString + "&Original_Action=" + action + "&Original_Timestamp=" + stampAsString + "&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion: { json, err in
+        makeHTTPDeleteRequest(encode: false, path: route, onCompletion: { json, err in
             onCompletion()
         })
     }

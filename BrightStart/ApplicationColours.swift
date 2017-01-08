@@ -25,7 +25,6 @@ class ApplicatoinColours {
     
     var ButtonBackGroundColor: UIColor!
     var ButtonForeGroundColor: UIColor!
-
     
     var LightBlue: UIColor!
     var LightPink: UIColor!
@@ -35,9 +34,12 @@ class ApplicatoinColours {
     var AppledGrey: UIColor!
     var AppleLightBlue: UIColor!
     
+    var Red: UIColor!
     var Blue: UIColor!
     var White: UIColor!
     var Black: UIColor!
+    
+    var MenuHeadingFontSize: CGFloat!
     
     init() {
         
@@ -49,6 +51,7 @@ class ApplicatoinColours {
         
         //Bright Start Colours
         
+        Red = hexStringToUIColor(hex: "#E53437")
         Blue = hexStringToUIColor(hex: "#37A0e6")
         White = hexStringToUIColor(hex: "#FFFFFF")
         Black = hexStringToUIColor(hex: "#000000")
@@ -74,6 +77,8 @@ class ApplicatoinColours {
         TableBackGroundOptionColour2 = Blue;
 
         TableForeGroundOptionColour = Black
+        
+        MenuHeadingFontSize = 17
         
     }
     

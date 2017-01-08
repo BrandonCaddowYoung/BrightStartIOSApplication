@@ -74,8 +74,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //We could put the passwod in place if it exists however is a security risk.
         
         #if DEBUG
-            usernameTextField.text = "user1"
-            passwordTextField.text = "user1"
+            //usernameTextField.text = "user1"
+            //passwordTextField.text = "user1"
         #endif
     }
     
@@ -134,9 +134,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         
-        //signInButton.heightAnchor.constraint(
-          //  equalTo: bottomView.heightAnchor,
-           // multiplier: 0.40).isActive = true
+        signInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         signInButton.topAnchor.constraint(
             equalTo: middleView.bottomAnchor).isActive = true
@@ -178,9 +176,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         //TEXT INPUT FIELDS WITHIN MIDDLE VIEW
         
-       // usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
-       // passwordLabel.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         
         //Setting up the MIDDLE spacer views
@@ -271,26 +267,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             equalTo: view.widthAnchor,
             multiplier: 0.70).isActive = true
         
-        //USER LABEL
-        
-        //bottom
-       // usernameLabel.bottomAnchor.constraint(
-        //    equalTo: usernameTextField.topAnchor, constant: -5
-         //   ).isActive = true
-        
-        //left
-      //  usernameLabel.leftAnchor.constraint(
-        //    equalTo: usernameTextField.leftAnchor
-          //  ).isActive = true
-        
-        //PASSWORD TEXT LABEL
-        
-        //top
-       // passwordLabel.topAnchor.constraint(
-         //   equalTo: spacerMiddleMiddleView.bottomAnchor
-           // ).isActive = true
-        
-        
         //PASSSWORD TEXT FIELD
         
         //top
@@ -302,11 +278,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.widthAnchor.constraint(
             equalTo: view.widthAnchor,
             multiplier: 0.70).isActive = true
-       
-        //left
-        //passwordLabel.leftAnchor.constraint(
-          //  equalTo: passwordTextField.leftAnchor
-           // ).isActive = true
         
         //TOP VIEW
         

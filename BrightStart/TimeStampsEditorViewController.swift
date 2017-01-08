@@ -2,8 +2,8 @@
 //  TimeStampsEditorViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 29/12/2016.
-//  Copyright © 2016 dev. All rights reserved.
+//  Created by Brandon Young on 16/12/2016.
+//  Copyright © 2016 Bright Start Software All rights reserved.
 //
 
 import UIKit
@@ -19,8 +19,6 @@ class TimeStampsEditorViewController: UIViewController {
     var Date:String!
     var DateAsObject:Date!
     var Time:String!
-    
-    @IBOutlet weak var TopThirdView: UIView!
     
     @IBOutlet weak var TargetPersonName: UILabel!
     @IBOutlet weak var TargetDate: UILabel!
@@ -93,7 +91,6 @@ class TimeStampsEditorViewController: UIViewController {
         setupConstraints()
         
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
-        TopThirdView.backgroundColor  = _ApplicatoinColours.BackGroundColour
         
         SaveTimeStamp.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         
@@ -106,6 +103,10 @@ class TimeStampsEditorViewController: UIViewController {
         
         DateTimePicker.datePickerMode = UIDatePickerMode.time
         
+         DateTimePicker.maximumDate = NSDate() as Date
+        
+       
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,40 +116,24 @@ class TimeStampsEditorViewController: UIViewController {
     
     func setupConstraints() {
         
-        //Poisitioning the top third view
-        TopThirdView.translatesAutoresizingMaskIntoConstraints = false
-        
-        //left
-        TopThirdView.leadingAnchor.constraint(
-            equalTo: view.leadingAnchor, constant: 15).isActive = true
-        //right
-        TopThirdView.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor, constant: -15).isActive = true
-        //top
-        TopThirdView.topAnchor.constraint(
-            equalTo: topLayoutGuide.bottomAnchor,  constant: 15).isActive = true
-        
-        TopThirdView.heightAnchor.constraint(
-            equalTo: view.heightAnchor,
-            multiplier : 0.30).isActive = true
-        
        //Positioning the persons name
         
         TargetPersonName.translatesAutoresizingMaskIntoConstraints = false
         
         //left
         TargetPersonName.leadingAnchor.constraint(
-            equalTo: TopThirdView.leadingAnchor).isActive = true
+            equalTo: view.leadingAnchor, constant: 5).isActive = true
         //right
         TargetPersonName.trailingAnchor.constraint(
-            equalTo: TopThirdView.trailingAnchor).isActive = true
+            equalTo: view.trailingAnchor, constant: -5).isActive = true
         //top
         TargetPersonName.topAnchor.constraint(
-            equalTo: TopThirdView.topAnchor).isActive = true
+            equalTo: topLayoutGuide.bottomAnchor).isActive = true
         
-   
-        
-        
+        //height
+        TargetPersonName.heightAnchor.constraint(
+            equalTo: view.heightAnchor,
+            multiplier : 0.10).isActive = true
         
         //Positioning the current date
         
@@ -156,19 +141,16 @@ class TimeStampsEditorViewController: UIViewController {
         
         //left
         TargetDate.leadingAnchor.constraint(
-            equalTo: TopThirdView.leadingAnchor).isActive = true
-        
+            equalTo: view.leadingAnchor, constant: 5).isActive = true
         //top
         TargetDate.topAnchor.constraint(
             equalTo: TargetPersonName.bottomAnchor).isActive = true
         
         //height
         TargetDate.heightAnchor.constraint(
-            equalTo: TopThirdView.heightAnchor, multiplier: 0.20).isActive = true
-        
+            equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
         
         TargetDate.font.withSize(100)
-        
         
         //Positioning the current time
         
@@ -176,7 +158,7 @@ class TimeStampsEditorViewController: UIViewController {
         
         //left
         TargetCurrentTime.trailingAnchor.constraint(
-            equalTo: TopThirdView.trailingAnchor).isActive = true
+            equalTo: view.trailingAnchor, constant: -5).isActive = true
         
         //top
         TargetCurrentTime.topAnchor.constraint(
@@ -184,36 +166,38 @@ class TimeStampsEditorViewController: UIViewController {
         
         //height
         TargetCurrentTime.heightAnchor.constraint(
-            equalTo: TopThirdView.heightAnchor, multiplier: 0.20).isActive = true
-
+            equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
         
         TargetCurrentTime.font.withSize(100)
-        
-        
-        
         
         
         //Positioning Date Time Picker
         
         DateTimePicker.translatesAutoresizingMaskIntoConstraints = false
         
-        DateTimePicker.topAnchor.constraint(
-            equalTo: TopThirdView.bottomAnchor).isActive = true
+        //DateTimePicker.topAnchor.constraint(
+          //  equalTo: TargetCurrentTime.bottomAnchor).isActive = true
         
         //Center x
         DateTimePicker.centerXAnchor.constraint(
             equalTo: view.centerXAnchor).isActive = true
         
+        //Center y
+        DateTimePicker.centerYAnchor.constraint(
+            equalTo: view.centerYAnchor).isActive = true
+
+        
         //height
-        DateTimePicker.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        //DateTimePicker.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        
+        DateTimePicker.heightAnchor.constraint(
+            equalTo: view.heightAnchor,
+            multiplier : 0.30).isActive = true
+        
         
         //Positioning Delete Button
         
         RemoveButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        //height
-        RemoveButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
         
         //left
         RemoveButton.leadingAnchor.constraint(
@@ -229,12 +213,26 @@ class TimeStampsEditorViewController: UIViewController {
         
         //Positioning Save Button
         
-      
+        //Stlying remove button
+        RemoveButton.layer.cornerRadius = 5
+        RemoveButton.layer.borderWidth = 1
+        RemoveButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
+        RemoveButton.backgroundColor = _ApplicatoinColours.Red
+        
+        RemoveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        
+        RemoveButton.heightAnchor.constraint(
+            equalTo: view.heightAnchor,
+            multiplier : 0.10).isActive = true
         
         SaveButton.translatesAutoresizingMaskIntoConstraints = false
         
         //height
-        SaveButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        //SaveButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        SaveButton.heightAnchor.constraint(
+            equalTo: view.heightAnchor,
+            multiplier : 0.10).isActive = true
         
         //left
         SaveButton.leadingAnchor.constraint(
@@ -256,17 +254,9 @@ class TimeStampsEditorViewController: UIViewController {
         
         SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
-        //Stlying remove button
-        RemoveButton.layer.cornerRadius = 5
-        RemoveButton.layer.borderWidth = 1
-        RemoveButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        RemoveButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+       
         
-        RemoveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
-        
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
-        
-        
+        //view.backgroundColor = _ApplicatoinColours.BackGroundColour
         
     }
 

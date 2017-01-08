@@ -1,9 +1,9 @@
 //
-//  TimeStampSearchTableViewController.swift
+//  PersonSearchTableViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 27/12/2016.
-//  Copyright © 2016 dev. All rights reserved.
+//  Created by Brandon Young on 16/12/2016.
+//  Copyright © 2016 Bright Start Software All rights reserved.
 //
 
 import UIKit
