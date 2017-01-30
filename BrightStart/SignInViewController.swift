@@ -74,8 +74,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //We could put the passwod in place if it exists however is a security risk.
         
         #if DEBUG
-            //usernameTextField.text = "user1"
-            //passwordTextField.text = "user1"
+            usernameTextField.text = "user1"
+            passwordTextField.text = "user1"
         #endif
     }
     

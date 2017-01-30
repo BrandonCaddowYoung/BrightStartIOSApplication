@@ -36,6 +36,18 @@ class TimeStampsMenuController: MainMenuViewController {
             }
         }
         
+        if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? DateSelectionViewController {
+                
+                vc.OptionText = "Late/Early time stamps."
+                //vc.targetDate = DatePicker.date
+                vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+            }
+        }
+        
         if (segue.identifier == "GoToSearchPerson_Delete") {
             
             //Settings the menu details.

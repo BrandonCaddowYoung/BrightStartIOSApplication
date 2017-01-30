@@ -279,11 +279,11 @@ class TimeStampsEditorViewController: UIViewController {
             
             if let vc = segue.destination as? TimeStampsMenuController {
                 
-                vc.images = [UIImage(named: "Search"), UIImage(named: "Edit"), UIImage(named: "Delete"), UIImage(named: "Home"), UIImage(named: "SignOut")]
+                vc.images = [UIImage(named: "Search"), UIImage(named: "Edit"), UIImage(named: "Delete"), UIImage(named: "Expired"), UIImage(named: "Home"), UIImage(named: "SignOut")]
                 
-                vc.segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToMainMenu", "GoToSignIn"]
+                vc.segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToSearchPerson_ExtraMinutes", "GoToMainMenu", "GoToSignIn"]
                 
-                vc.DisplayTextList = ["Search",  "Edit", "Delete", "Home", "Sign Out"]
+                vc.DisplayTextList = ["Search",  "Edit", "Delete", "Late/Early", "Home", "Sign Out"]
                 
                 vc.showNavigationBar = true
                 

@@ -19,9 +19,6 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     var SelectedPersonId: NSString!
     
      var Purpose: NSString!
-    
-   
-    
     var OptionText: NSString!
     
     var children: [[BrightStartChild]] = [];
@@ -66,55 +63,106 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         
         self.children.removeAll();
         
-        
-        
-        
-        
-       
-        
-        ChildRequests.sharedInstance.GetAllEnrolledChilren(onCompletion: { json in
+        if(Purpose=="GoToSearchPerson_ExtraMinutes")
+        {
+        //Get only the children who were late or early.
             
-            for (index: _, subJson: JSON) in json {
+            //Retrieve all children
+            ChildRequests.sharedInstance.GetAllChildrenWhoHaveExtraMinutesForGivenDay(targetDate: targetDate as NSDate, onCompletion:
+                { json in
                 
-                let child = BrightStartChild()
-                
-                child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
-                child.ChildId = JSON["ChildId"].stringValue as NSString
-                
-                let dateFormatter = DateFormatter()
-               //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
-                
-                let dateOfBirth = JSON["ChildDOB"].stringValue
-                
-                var newDate = dateFormatter.date(from: dateOfBirth)
-                
-                if(newDate == nil){
+                for (index: _, subJson: JSON) in json {
                     
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-
-                    newDate = dateFormatter.date(from: dateOfBirth)
+                    let child = BrightStartChild()
+                    
+                    child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
+                    child.ChildId = JSON["ChildId"].stringValue as NSString
+                    
+                    let dateFormatter = DateFormatter()
+                    //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+                    
+                    let dateOfBirth = JSON["ChildDOB"].stringValue
+                    
+                    var newDate = dateFormatter.date(from: dateOfBirth)
                     
                     if(newDate == nil){
-                    continue
+                        
+                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                        
+                        newDate = dateFormatter.date(from: dateOfBirth)
+                        
+                        if(newDate == nil){
+                            continue
+                        }
                     }
+                    
+                    child.ChildDOB = newDate!
+                    
+                    self.children.insert([child], at: 0)
                 }
                 
-                child.ChildDOB = newDate!
-                
-                self.children.insert([child], at: 0)
-            }
-            
-            DispatchQueue.main.async(execute: {
-                
-                self.children = self.children.reversed()
-                
-                self.tableView.reloadData()
-                sender?.endRefreshing()
+                DispatchQueue.main.async(execute: {
+                    
+                    self.children = self.children.reversed()
+                    
+                    self.tableView.reloadData()
+                    sender?.endRefreshing()
+                    
+                })
                 
             })
             
-        })
+        }
+        else
+        {
+            //Retrieve all children
+            ChildRequests.sharedInstance.GetAllEnrolledChilren(onCompletion: { json in
+                
+                for (index: _, subJson: JSON) in json {
+                    
+                    let child = BrightStartChild()
+                    
+                    child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
+                    child.ChildId = JSON["ChildId"].stringValue as NSString
+                    
+                    let dateFormatter = DateFormatter()
+                    //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+                    
+                    let dateOfBirth = JSON["ChildDOB"].stringValue
+                    
+                    var newDate = dateFormatter.date(from: dateOfBirth)
+                    
+                    if(newDate == nil){
+                        
+                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                        
+                        newDate = dateFormatter.date(from: dateOfBirth)
+                        
+                        if(newDate == nil){
+                            continue
+                        }
+                    }
+                    
+                    child.ChildDOB = newDate!
+                    
+                    self.children.insert([child], at: 0)
+                }
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    self.children = self.children.reversed()
+                    
+                    self.tableView.reloadData()
+                    sender?.endRefreshing()
+                    
+                })
+                
+            })
+        }
+        
+        
     }
     
   
