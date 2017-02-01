@@ -12,6 +12,7 @@
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
 		7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */; };
+		7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */; };
 		7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */; };
 		7B8BDBCA1E12B5F1009F3EAF /* TimeStampSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */; };
 		7B8BDBCC1E12ED9F009F3EAF /* PersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */; };
@@ -236,6 +237,7 @@
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyRequests.swift; sourceTree = "<group>"; };
+		7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyPersonSearchTableViewController.swift; sourceTree = "<group>"; };
 		7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampsMenuController.swift; sourceTree = "<group>"; };
 		7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampSearchTableViewController.swift; sourceTree = "<group>"; };
 		7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSearchTableViewController.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				D7F995C51C9EFCE3001802EC /* ClockingTableViewController.swift */,
 				7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */,
 				7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */,
+				7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */,
 			);
 			name = TablieViews;
 			sourceTree = "<group>";
@@ -609,16 +612,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -839,6 +842,7 @@
 				7B8BDBDF1E1572AF009F3EAF /* ChildRequests.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
 				7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */,
+				7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
