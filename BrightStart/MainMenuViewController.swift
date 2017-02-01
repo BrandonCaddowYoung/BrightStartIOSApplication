@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum MenuTypes: Int {
+    case MainMenu
+    case TimeStamps
+    case Authy
+}
+
 class MainMenuViewController: UIViewController {
 
     var _ApplicatoinColours: ApplicatoinColours!
@@ -24,11 +30,13 @@ class MainMenuViewController: UIViewController {
     var headingLabel: UILabel!
     //var bodyLabel: UILabel!
     
-    var images = [UIImage(named: "Register"), UIImage(named: "Forecast"), UIImage(named: "Information"), UIImage(named: "SignOut")]
+    var selectedMenu = MenuTypes.MainMenu
     
-    var DisplayTextList = ["Register",  "Forecast", "Informaiton", "Sign Out"]
+    var images = [UIImage]()
+    
+    var DisplayTextList = ["",  "", "", ""]
 
-    var segueIdList = ["GoToRegister", "GoToForecast", "GoToInformation", "GoToSignIn"]
+    var segueIdList = ["", "", "", ""]
     
     var showNavigationBar = false
     
@@ -46,6 +54,40 @@ class MainMenuViewController: UIViewController {
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         navigationController?.navigationBar.tintColor = _ApplicatoinColours.FontColour
         
+      loadMenuAssets()
+        
+    }
+    
+    func loadMenuAssets()
+    {
+        switch selectedMenu {
+        case .MainMenu:
+            
+            images = [UIImage(named: "Register")!, UIImage(named: "Forecast")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Information")!, UIImage(named: "SignOut")!]
+            
+            segueIdList = ["GoToRegister", "GoToForecast", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToInformation", "GoToSignIn"]
+            
+            DisplayTextList = ["Register",  "Forecast", "Time Stamps", "Auhty", "Informaiton", "Sign Out"]
+            
+        case .TimeStamps:
+            
+            images = [UIImage(named: "Search")!, UIImage(named: "Edit")!, UIImage(named: "Delete")!, UIImage(named: "Expired")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
+            
+            segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToSearchPerson_ExtraMinutes", "GoToMainMenu", "GoToSignIn"]
+            
+            DisplayTextList = ["Search",  "Edit", "Delete", "Late/Early", "Home", "Sign Out"]
+            
+            showNavigationBar = true
+            
+        case .Authy:
+            
+            images = [UIImage(named: "AddUserMale")!, UIImage(named: "RemoveUserMale")!, UIImage(named: "Delete")!, UIImage(named: "TestTube")!, UIImage(named: "Search")!]
+            
+            segueIdList = ["GoToNewAuthyUser", "GoToDisableAuhtyUser", "GoToDeleteAuhtyUser", "GoToTestAuthyUser", "GoToSearchAuthyUsers"]
+            
+            DisplayTextList = ["New User",  "Disable For Child", "Delete User", "Test User", "Search Users"]
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -260,22 +302,11 @@ class MainMenuViewController: UIViewController {
             
             if let vc = segue.destination as? TimeStampsMenuController {
                 
-                //vc.images = [UIImage(named: "Search"), UIImage(named: "Edit"), UIImage(named: "Delete"), UIImage(named: "Home"), UIImage(named: "SignOut")]
-                
-               // vc.segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToMainMenu", "GoToSignIn"]
-                
-                //vc.DisplayTextList = ["Search",  "Edit", "Delete", "Home", "Sign Out"]
-                
-                vc.images = [UIImage(named: "Search"), UIImage(named: "Edit"), UIImage(named: "Delete"), UIImage(named: "Expired"), UIImage(named: "Home"), UIImage(named: "SignOut")]
-                
-                vc.segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToSearchPerson_ExtraMinutes", "GoToMainMenu", "GoToSignIn"]
-                
-                vc.DisplayTextList = ["Search",  "Edit", "Delete", "Late/Early", "Home", "Sign Out"]
-                
-                vc.showNavigationBar = true
+                vc.selectedMenu = .TimeStamps
                 
             }
         }
+        
     }
     
 }
@@ -295,8 +326,11 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     //We use this method to dequeue the cell and set it up
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainMenuButtonCell", for: indexPath) as! MainMenuButtonCollectionViewCell
+        
+        if(cell.label==nil){
         cell.awakeFromNib()
         cell.delegate = self
+        }
         
         cell.setDisplayText(newDisplayText: DisplayTextList[indexPath.row])
         cell.segueText = segueIdList[indexPath.row]
@@ -344,6 +378,18 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
     }
     
     func performSegue(segueId: String) {
-        self.performSegue(withIdentifier: segueId, sender: self)
+            self.performSegue(withIdentifier: segueId, sender: self)
+    }
+    
+    func renderMenuAssets(menuType: MenuTypes) {
+        
+        selectedMenu = menuType
+        
+        loadMenuAssets()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.collectionView.reloadData()
+        }
+       
     }
 }

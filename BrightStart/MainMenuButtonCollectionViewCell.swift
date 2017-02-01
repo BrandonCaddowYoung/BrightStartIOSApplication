@@ -14,6 +14,8 @@ protocol MainMenuButtonCollectionViewCellDelegate {
     func changeColorOfButton(forCell: MainMenuButtonCollectionViewCell)
     
     func performSegue(segueId: String)
+    
+    func renderMenuAssets(menuType: MenuTypes)
 }
 
 class MainMenuButtonCollectionViewCell: UICollectionViewCell {
@@ -58,17 +60,21 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
     
     func setDisplayText(newDisplayText: String)
     {
-     //button.setTitle(newDisplayText, for: .normal)
         label.text = newDisplayText
     }
     
     func changeColor() {
         
-        //print("segue to: " + segueText)
-        
         delegate?.changeColorOfButton(forCell: self)
         
-        delegate?.performSegue(segueId: segueText)
+        //If segueing to another menu, we need to do something differently as we have to segue to ourself!
+        
+        if(segueText=="GoToAuthyMenu"){
+            delegate?.renderMenuAssets(menuType: .Authy)
+        }
+        else{
+            delegate?.performSegue(segueId: segueText)
+        }
 
     }
     
@@ -81,7 +87,6 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
             equalTo: contentView.layoutMarginsGuide.bottomAnchor).isActive = true
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         
         //Button to the top
         button.topAnchor .constraint(
@@ -99,10 +104,6 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
 
         label.centerXAnchor.constraint(
             equalTo: contentView.centerXAnchor).isActive = true
-        
-
-
-
         
     }
     

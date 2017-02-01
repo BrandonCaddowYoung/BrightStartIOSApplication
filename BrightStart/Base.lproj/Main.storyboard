@@ -758,11 +758,30 @@
                         <segue destination="SU0-sR-NYn" kind="show" identifier="GoToInformation" id="EeO-x6-zkh"/>
                         <segue destination="yH9-Lk-dKG" kind="show" identifier="GoToForecast" id="Hwv-hL-FBY"/>
                         <segue destination="oZ9-kI-RDE" kind="show" identifier="GoToTimeStampsMenu" id="Ix8-B2-Zha"/>
+                        <segue destination="xnA-57-HM3" kind="show" identifier="GoToNewAuthyUser" id="fmc-mO-PYm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWk-wx-plk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2087" y="493"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="a4P-tP-ZIE">
+            <objects>
+                <viewController id="xnA-57-HM3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qLz-zi-xnK"/>
+                        <viewControllerLayoutGuide type="bottom" id="DCO-7H-a2H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lwf-MQ-dAP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.92549020049999997" green="0.23529411850000001" blue="0.1019607857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tcv-Sg-m24" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1305" y="-499"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LJc-9E-IFi">
@@ -791,9 +810,9 @@
         <image name="SwipeLeft" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nsv-nL-A1z"/>
         <segue reference="SVZ-eK-9O4"/>
+        <segue reference="Ix8-B2-Zha"/>
         <segue reference="UGs-zv-zra"/>
-        <segue reference="4sU-kP-4aC"/>
+        <segue reference="2qs-QS-n86"/>
     </inferredMetricsTieBreakers>
 </document>

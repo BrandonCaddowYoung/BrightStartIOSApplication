@@ -350,14 +350,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             
             if let navController = segue.destination as? UINavigationController {
                 
-                if let chidVC = navController.topViewController as? MainMenuViewController {
+                if let vc = navController.topViewController as? MainMenuViewController {
                     //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
                     
-                    chidVC.images = [UIImage(named: "Register"), UIImage(named: "Forecast"), UIImage(named: "TimeCard"), UIImage(named: "Information"), UIImage(named: "SignOut")]
+                    vc.images = [UIImage(named: "Register")!, UIImage(named: "Forecast")!, UIImage(named: "TimeCard")!, UIImage(named: "Information")!, UIImage(named: "SignOut")!]
                     
-                    chidVC.segueIdList = ["GoToRegister", "GoToForecast", "GoToTimeStampsMenu", "GoToInformation", "GoToSignIn"]
+                    vc.segueIdList = ["GoToRegister", "GoToForecast", "GoToTimeStampsMenu", "GoToInformation", "GoToSignIn"]
                     
-                    chidVC.DisplayTextList = ["Register",  "Forecast", "Time Stamps", "Informaiton", "Sign Out"]
+                    vc.DisplayTextList = ["Register",  "Forecast", "Time Stamps", "Informaiton", "Sign Out"]
+                    
+                    
+                    
                     
                 }
             }
