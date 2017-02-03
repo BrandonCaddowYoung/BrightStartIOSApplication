@@ -12,10 +12,13 @@ enum MenuTypes: Int {
     case MainMenu
     case TimeStamps
     case Authy
+    case AuthyUsers
 }
 
 class MainMenuViewController: UIViewController {
 
+    var authyUserList = [AuthyUser]()
+    
     var _ApplicatoinColours: ApplicatoinColours!
     
     var collectionView: UICollectionView!
@@ -37,6 +40,8 @@ class MainMenuViewController: UIViewController {
     var DisplayTextList = ["",  "", "", ""]
 
     var segueIdList = ["", "", "", ""]
+    
+    var authyIdList = ["", "", "", ""]
     
     var showNavigationBar = false
     
@@ -87,7 +92,32 @@ class MainMenuViewController: UIViewController {
             
             DisplayTextList = ["New User",  "Disable For Child", "Delete User", "Test User", "Search Users"]
             
+        case .AuthyUsers:
+            
+           for person in authyUserList {
+                images.append(UIImage(named: "UserMale100")!)
+                segueIdList.append("GoToAuthyAuthenticate")
+            DisplayTextList.append(person.Name as String)
+            authyIdList.append(person.AuhtyId as String)
+            //Need to pass auhty in here too!
+            
+            }
+           
+           images.append(UIImage(named: "QuestionMark100")!)
+           images.append(UIImage(named: "PasswordCheck100")!)
+           
+           segueIdList.append("GoToAuthyHelp")
+           segueIdList.append("GoToAuhtyPassword")
+           
+            DisplayTextList.append("help")
+           DisplayTextList.append("Password")
+            
+            authyIdList.append("")
+            authyIdList.append("")
+            
         }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -297,6 +327,17 @@ class MainMenuViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if (segue.identifier == "GoToTimeStampsMenu") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? TimeStampsMenuController {
+                
+                vc.selectedMenu = .TimeStamps
+                
+            }
+        }
+        
+       else if (segue.identifier == "GoToAuthyAuthenticate") {
             
             //Settings the menu details.
             
