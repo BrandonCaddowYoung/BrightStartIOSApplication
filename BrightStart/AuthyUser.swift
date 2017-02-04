@@ -10,17 +10,28 @@ import Foundation
 
 open class AuthyUser
 {
+    open var ChildId: NSString = ""
     open var Name: NSString = ""
     open var Relationship: NSString = ""
-    open var MobileNumber: NSString = ""
+    open var PhoneNumber: NSString = ""
+    open var IsDisabled: Bool = false
     open var CountryCode: NSString = ""
     open var AuhtyId: NSString = ""
+    open var Email: NSString = ""
     
-    init (name: NSString, relationship: NSString, mobileNumber: NSString, countryCode: NSString, authyId: NSString) {
+    init()
+    {
+    
+    }
+    
+    init (name: NSString, relationship: NSString, phoneNumber: NSString, countryCode: NSString, authyId: NSString, isDisabled: Bool, childId: NSString, email: NSString) {
         self.Name = name
         self.Relationship = relationship
-        self.MobileNumber = mobileNumber
+        self.PhoneNumber = phoneNumber
         self.CountryCode = countryCode
         self.AuhtyId = authyId
+        self.IsDisabled = isDisabled
+        self.ChildId = childId
+        self.Email = email
     }
 }

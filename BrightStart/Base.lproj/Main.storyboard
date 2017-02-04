@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KDk-fE-MOK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rpo-Nf-bMu">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -106,10 +106,13 @@
                             <action selector="refreshTable:" destination="xZG-mU-XJf" eventType="valueChanged" id="sLO-Gf-Lha"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToAuthyUsers" id="IcT-2W-qtj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEi-4L-zl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3213.5999999999999" y="165.06746626686657"/>
+            <point key="canvasLocation" x="3943" y="143"/>
         </scene>
         <!--Date Selection View Controller-->
         <scene sceneID="3hl-0z-Pcu">
@@ -759,6 +762,8 @@
                         <segue destination="yH9-Lk-dKG" kind="show" identifier="GoToForecast" id="Hwv-hL-FBY"/>
                         <segue destination="oZ9-kI-RDE" kind="show" identifier="GoToTimeStampsMenu" id="Ix8-B2-Zha"/>
                         <segue destination="GhA-9F-S6O" kind="show" identifier="GoToNewAuthyUser" id="Q5J-dV-oJS"/>
+                        <segue destination="GhA-9F-S6O" kind="show" identifier="GoToTestAuthyUser" id="j5x-qr-qjo"/>
+                        <segue destination="KDk-fE-MOK" kind="show" identifier="GoToAuthyAuthenticate" id="nx9-xO-yGO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWk-wx-plk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -832,11 +837,12 @@
                     </refreshControl>
                     <connections>
                         <segue destination="uCY-vN-CB8" kind="show" identifier="GoToNewAuthyUser" id="dOZ-vg-9hy"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToTestAuthyUser" id="97f-JC-Idr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWW-9d-1hY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1484" y="-1323"/>
+            <point key="canvasLocation" x="-143" y="-1281"/>
         </scene>
         <!--New Auhty View Controller-->
         <scene sceneID="M5n-E9-1H9">
@@ -860,9 +866,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvu-8e-4Fr">
-                                        <rect key="frame" x="41" y="50" width="140" height="64"/>
+                                        <rect key="frame" x="50" y="42" width="140" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="CreateUserClick:" destination="uCY-vN-CB8" eventType="touchUpInside" id="wM0-fF-ufd"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.44551444499999998" green="0.96862745289999996" blue="0.60209264510000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -922,11 +931,12 @@
                         <outlet property="RelationshipTextBox" destination="C34-o6-amh" id="Nli-gb-cEE"/>
                         <outlet property="SubmitButton" destination="Uvu-8e-4Fr" id="J80-S2-dqE"/>
                         <outlet property="TopContainer" destination="Gd2-ce-4OT" id="Odf-lh-JNE"/>
+                        <segue destination="xW4-Ev-DXN" kind="show" identifier="GoToNewUserComplete" id="ue7-cs-Oxd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZP-uA-GjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2346" y="-1460"/>
+            <point key="canvasLocation" x="718" y="-1417"/>
         </scene>
         <!--Authy New User Complete View Controller-->
         <scene sceneID="sEo-II-tL9">
@@ -953,11 +963,17 @@
                                         <rect key="frame" x="68" y="54" width="105" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="OK"/>
+                                        <connections>
+                                            <action selector="OkButtonClick:" destination="xW4-Ev-DXN" eventType="touchUpInside" id="ck9-oJ-nQH"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXN-AI-Vw2">
                                         <rect key="frame" x="127" y="100" width="105" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Test"/>
+                                        <connections>
+                                            <action selector="TestButtonClick:" destination="xW4-Ev-DXN" eventType="touchUpInside" id="VFd-pH-fUY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.44551444499999998" green="0.96862745289999996" blue="0.60209264510000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -991,11 +1007,12 @@
                         <outlet property="TestButton" destination="iXN-AI-Vw2" id="nFR-9Q-DC5"/>
                         <outlet property="TickImage" destination="ZRk-5Q-aNT" id="Y8a-4k-o14"/>
                         <outlet property="TopContainer" destination="Pxu-vU-sei" id="fG3-to-uPv"/>
+                        <segue destination="KDk-fE-MOK" kind="show" identifier="GoToAuthyAuthenticate" id="Eu4-6W-vLY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYb-vH-Jy0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3365.5999999999999" y="-1460.4197901049477"/>
+            <point key="canvasLocation" x="1738" y="-1417"/>
         </scene>
         <!--Authy Test View Controller-->
         <scene sceneID="lol-rh-E0m">
@@ -1045,6 +1062,9 @@
                                         <rect key="frame" x="153" y="21" width="37" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="OKButtonclick:" destination="KDk-fE-MOK" eventType="touchUpInside" id="gTP-zw-zUg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745289999996" green="0.78039217000000005" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1085,11 +1105,13 @@
                         <outlet property="TokenContainer" destination="9d7-3U-avR" id="SZw-yY-iRz"/>
                         <outlet property="TopContainer" destination="ZtS-QN-eof" id="adt-Tz-fbX"/>
                         <outlet property="WaitingLabel" destination="Lsy-B9-ks7" id="9YE-0a-J8g"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="NYq-jD-sEX"/>
+                        <segue destination="xZG-mU-XJf" kind="show" identifier="GoToRegister" id="CaC-2C-xM4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2jh-lc-HA5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4167.1999999999998" y="-1527.8860569715143"/>
+            <point key="canvasLocation" x="2540" y="-1485"/>
         </scene>
     </scenes>
     <resources>
@@ -1103,7 +1125,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="SVZ-eK-9O4"/>
         <segue reference="Ix8-B2-Zha"/>
-        <segue reference="dQm-Sj-sjy"/>
+        <segue reference="NYq-jD-sEX"/>
+        <segue reference="nx9-xO-yGO"/>
+        <segue reference="CaC-2C-xM4"/>
+        <segue reference="Q5J-dV-oJS"/>
         <segue reference="2qs-QS-n86"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,10 +8,25 @@
 
 import UIKit
 
-class AuthyTestViewController: UIViewController {
+class AuthyTestViewController: UIViewController, UITextFieldDelegate {
 
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
+    
+    var timer = Timer()
+    
+    var uuid :NSString!
+    
+    var successSegueIdentifier :NSString!
+    
+    var targetChildId :NSString!
+    
+     var targetAuthyId :NSString!
+    var numberOfSeconsToWait: Int!
+    
+    var selectedAuthyAction = AuhtyActions.ShouldDoNothing
+    
+    var targetAuthyUser = AuthyUser()
     
     @IBOutlet weak var TopContainer: UIView!
     @IBOutlet weak var TokenContainer: UIView!
@@ -33,6 +48,10 @@ class AuthyTestViewController: UIViewController {
         
         self.edgesForExtendedLayout = []
         
+        WaitingLabel.isHidden = true;
+        
+        self.TokeTextBox.delegate = self
+        
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
@@ -53,8 +72,173 @@ class AuthyTestViewController: UIViewController {
         setupConstraints()
 
         // Do any additional setup after loading the view.
+        
+        
+        AuthyRequests.sharedInstance.GetAuhtyUser(auhtyId: targetAuthyId as String, onCompletion:
+            { json in
+                
+                for (index: _, subJson: JSON) in json {
+                    
+                    self.targetAuthyUser.CountryCode = JSON["CountryCode"].stringValue as NSString
+                    self.targetAuthyUser.PhoneNumber = JSON["PhoneNumber"].stringValue as NSString
+                    self.targetAuthyUser.Relationship = JSON["Relationship"].stringValue as NSString
+                    self.targetAuthyUser.ChildId = JSON["ChildId"].stringValue as NSString
+                    self.targetAuthyUser.Email = JSON["Email"].stringValue as NSString
+                    self.targetAuthyUser.Name = JSON["Name"].stringValue as NSString
+                    //targetAuthyUser.IsDisabled = JSON["targetAuthyUser.IsDisabled"].stringValue as NSString
+                    
+                }
+                
+                DispatchQueue.main.async(execute: {
+                    
+                   
+                    
+                })
+                
+    })
+        
+        PhoneNumberLabel.text = targetAuthyUser.PhoneNumber as String
+        
+        AuthyRequests.sharedInstance.SendOneTouchRequest(authyId: targetAuthyId as String, onCompletion:  { json in
+            
+            self.uuid = json.rawString() as NSString!
+        
+        DispatchQueue.main.async(execute: {
+        
+             self.Spinner.isHidden = false
+          self.Spinner.startAnimating()
+            self.WaitingLabel.isHidden = false;
+            self.TickImage.isHidden = true
+        
+            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AuthyTestViewController.checkForUsersAcceptance), userInfo: nil, repeats: true)
+            
+         })
+        
+         })
+        
+    }
+    
+    func checkForUsersAcceptance()
+    {
+        
+        if(numberOfSeconsToWait<1)
+        {
+            self.Spinner.isHidden = true
+            self.Spinner.stopAnimating()
+            self.timer.invalidate()
+            self.WaitingLabel.text = "Sorry you took too long confirming."
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                self.performSegue(withIdentifier: self.successSegueIdentifier as String, sender: self)
+            })
+            
+        }
+        
+        AuthyRequests.sharedInstance.HasOneTouchBeenApproved(uuid: uuid as String, onCompletion:  { json in
+            
+            let approved = json.rawString() as NSString!
+            
+                DispatchQueue.main.async(execute: {
+                    
+                    if(approved=="true")
+                    {
+                        self.Spinner.isHidden = true
+                        self.Spinner.stopAnimating()
+                        self.timer.invalidate()
+                        self.WaitingLabel.text = "Fantastic. That worked."
+                        
+                        self.onSuccss()
+                        
+                    }
+                    
+                })
+        })
+    
+        numberOfSeconsToWait = numberOfSeconsToWait - 1
+        
     }
 
+    
+    func onSuccss()
+    {
+        if(selectedAuthyAction == .ShouldSignOut){
+    
+        let alert = self._CommonHelper.showOverlayMessage("Signing out...")
+        self.present(alert, animated: true, completion: nil)
+        
+        CommonRequests.sharedInstance.signOut(personId: targetChildId as String, timeOfSignOut: Date() as NSDate,
+                                              
+                                              onCompletion: {
+                                                
+                                                DispatchQueue.main.async(execute: {
+                                                    
+                                                    self.dismiss(animated: false, completion:
+                                                        {self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                    }
+                                                    )
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                })
+                                                
+        })
+
+        }
+        else if(selectedAuthyAction == AuhtyActions.ShouldSignIn){
+        
+            let alert = self._CommonHelper.showOverlayMessage("Signing in...")
+            self.present(alert, animated: true, completion: nil)
+            
+            CommonRequests.sharedInstance.signIn(personId: targetChildId as String, timeOfSignIn: Date() as NSDate,
+                                                 onCompletion: {
+                                                    DispatchQueue.main.async(execute: {
+                                                        
+                                                        self.dismiss(animated: false, completion:
+                                                            {self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                        }
+                                                        )
+                                                        
+                                                    })
+            }
+            )
+        
+        }
+    
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        
+        //textField code
+        
+        textField.resignFirstResponder()  //if desired
+        performAction()
+        return true
+    }
+    
+    func performAction() {
+        
+        AuthyRequests.sharedInstance.ValidateToken(auhtyId: targetAuthyId as String, token: TokeTextBox.text!, onCompletion:  { json in
+            
+            let approved = json.rawString() as NSString!
+            
+            DispatchQueue.main.async(execute: {
+                
+                if(approved=="true")
+                {
+                    self.Spinner.isHidden = true
+                    self.Spinner.stopAnimating()
+                    self.timer.invalidate()
+                    self.WaitingLabel.text = "Fantastic. That worked."
+                }
+                
+            })
+            
+        })
+        
+    }
+    
     func setupConstraints() {
         
         //Positioning the left subview
@@ -211,7 +395,39 @@ class AuthyTestViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    @IBAction func OKButtonclick(_ sender: Any) {
+        self.performSegue(withIdentifier: "GoToMainMenu", sender: self)
 
+    }
+    
+
+    /*!
+     @brief Preparing to segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+
+        
+        if (segue.identifier == "GoToMainMenu") {
+            
+            //Settings the menu details.
+            
+            
+            // if let navController = segue.destination as? UINavigationController {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                vc.selectedMenu = .MainMenu
+                
+            }
+            
+        }
+        
+    }
+    
+   
+    
     /*
     // MARK: - Navigation
 

@@ -15,6 +15,9 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
     
+    var selectedChildId: NSString!
+    var selectedAuthyAction = AuhtyActions.ShouldDoNothing
+    
     func refreshTable()
     {
         children.removeAll()
@@ -146,6 +149,24 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             
             let signIn = UITableViewRowAction(style: .normal, title: rowTitle) { action, index in
                 
+                //Check if the nursery is using authy
+                
+                //if they are then redirect to the auhty authentication page
+                
+                if(false){
+                    
+                    self.selectedChildId = (cell.child?.Id)! as String as String as NSString!
+                    
+                    self.selectedAuthyAction = AuhtyActions.ShouldSignIn
+                    
+                    self.performSegue(withIdentifier: "GoToAuthyUsers", sender: self)
+                    
+                    return
+                    
+                }else{
+                
+                
+                
                 let alert = self._CommonHelper.showOverlayMessage("Signing in...")
                 self.present(alert, animated: true, completion: nil)
                 
@@ -158,6 +179,12 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                                                         })
                     }
                 )
+                
+                
+                }
+                
+                
+                
             }
             signIn.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour2
             
@@ -168,6 +195,22 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             }
             
             let signOut = UITableViewRowAction(style: .normal, title: rowTitle2) { action, index in
+                
+                //Check if the nursery is using authy
+                
+                //if they are then redirect to the auhty authentication page
+                
+                if(true){
+                
+                    self.selectedChildId = (cell.child?.Id)! as String as String as NSString!
+                    
+                    self.selectedAuthyAction = AuhtyActions.ShouldSignOut
+                    
+                    self.performSegue(withIdentifier: "GoToAuthyUsers", sender: self)
+                
+                    return
+                    
+                }else{
                 
                 let alert = self._CommonHelper.showOverlayMessage("Signing out...")
                 self.present(alert, animated: true, completion: nil)
@@ -184,6 +227,8 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                                                         })
                                                         
                 })
+                    
+                }
                 
             }
             signOut.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour
@@ -203,6 +248,34 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
+    
+    
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+    
+    if (segue.identifier! == "GoToAuthyUsers") {
+    
+    //Settings the menu details.
+    
+    //Need to get the specific user. so navigate to menu.
+    
+    if let vc = segue.destination as? MainMenuViewController {
+    
+    //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
+    
+        vc.selectedMenu = .AuthyUsers
+        vc.childId = selectedChildId
+        vc.authyUsersOnly = true
+        vc.selectedAuthyAction = selectedAuthyAction
+    }
+    }
+        
+    }
+    
+    
     
 }
 

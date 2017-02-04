@@ -17,6 +17,12 @@ enum MenuTypes: Int {
 
 class MainMenuViewController: UIViewController {
 
+    var selectedAuhtyId: NSString!
+    
+    var childId: NSString!
+    
+    var authyUsersOnly: Bool! = false
+    
     var authyUserList = [AuthyUser]()
     
     var _ApplicatoinColours: ApplicatoinColours!
@@ -34,6 +40,8 @@ class MainMenuViewController: UIViewController {
     //var bodyLabel: UILabel!
     
     var selectedMenu = MenuTypes.MainMenu
+    
+    var selectedAuthyAction = AuhtyActions.ShouldDoNothing
     
     var images = [UIImage]()
     
@@ -61,10 +69,30 @@ class MainMenuViewController: UIViewController {
         
       loadMenuAssets()
         
+        
+    }
+    
+    func fetchAuthyUsersBelongingToChild()
+    {
+    
+        
+        
+    }
+    
+    func setSelectedAuthyId(authyID: NSString)
+    {
+    
+        self.selectedAuhtyId = authyID
+        
     }
     
     func loadMenuAssets()
     {
+        self.images = []
+        self.segueIdList = []
+        self.DisplayTextList = []
+        self.authyIdList = []
+        
         switch selectedMenu {
         case .MainMenu:
             
@@ -74,6 +102,8 @@ class MainMenuViewController: UIViewController {
             
             DisplayTextList = ["Register",  "Forecast", "Time Stamps", "Auhty", "Informaiton", "Sign Out"]
             
+            authyIdList = ["",  "", "", "", "", ""]
+            
         case .TimeStamps:
             
             images = [UIImage(named: "Search")!, UIImage(named: "Edit")!, UIImage(named: "Delete")!, UIImage(named: "Expired")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
@@ -81,6 +111,8 @@ class MainMenuViewController: UIViewController {
             segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToSearchPerson_ExtraMinutes", "GoToMainMenu", "GoToSignIn"]
             
             DisplayTextList = ["Search",  "Edit", "Delete", "Late/Early", "Home", "Sign Out"]
+            
+            authyIdList = ["", "", "", "", "", ""]
             
             showNavigationBar = true
             
@@ -92,28 +124,62 @@ class MainMenuViewController: UIViewController {
             
             DisplayTextList = ["New User",  "Disable For Child", "Delete User", "Test User", "Search Users"]
             
+            authyIdList = ["",  "", "", "", ""]
+            
         case .AuthyUsers:
             
-           for person in authyUserList {
-                images.append(UIImage(named: "UserMale100")!)
-                segueIdList.append("GoToAuthyAuthenticate")
-            DisplayTextList.append(person.Name as String)
-            authyIdList.append(person.AuhtyId as String)
-            //Need to pass auhty in here too!
-            
-            }
-           
-           images.append(UIImage(named: "QuestionMark100")!)
-           images.append(UIImage(named: "PasswordCheck100")!)
-           
-           segueIdList.append("GoToAuthyHelp")
-           segueIdList.append("GoToAuhtyPassword")
-           
-            DisplayTextList.append("help")
-           DisplayTextList.append("Password")
-            
-            authyIdList.append("")
-            authyIdList.append("")
+            //Retrieve all children
+            AuthyRequests.sharedInstance.GetAllAuthyUsersForChild(childId: childId as String, onCompletion:
+                { json in
+                    
+                    for (index: _, subJson: JSON) in json {
+                        
+                        let targetAuthyUser = AuthyUser()
+                        
+                        targetAuthyUser.CountryCode = JSON["CountryCode"].stringValue as NSString
+                        targetAuthyUser.PhoneNumber = JSON["PhoneNumber"].stringValue as NSString
+                        targetAuthyUser.Relationship = JSON["Relationship"].stringValue as NSString
+                        targetAuthyUser.ChildId = JSON["ChildId"].stringValue as NSString
+                        targetAuthyUser.Email = JSON["Email"].stringValue as NSString
+                        targetAuthyUser.Name = JSON["Name"].stringValue as NSString
+                        targetAuthyUser.AuhtyId = JSON["AuthyId"].stringValue as NSString
+                        
+                        self.authyUserList.insert(targetAuthyUser, at: 0)
+                    }
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        for person in self.authyUserList {
+                            self.images.append(UIImage(named: "UserMale100")!)
+                            self.segueIdList.append("GoToAuthyAuthenticate")
+                            self.DisplayTextList.append(person.Name as String)
+                            self.authyIdList.append(person.AuhtyId as String)
+                        }
+                        
+                        if(self.authyUsersOnly==false){
+                            
+                            self.images.append(UIImage(named: "QuestionMark100")!)
+                            self.images.append(UIImage(named: "PasswordCheck100")!)
+                            
+                            self.segueIdList.append("GoToAuthyHelp")
+                            self.segueIdList.append("GoToAuhtyPassword")
+                            
+                            self.DisplayTextList.append("help")
+                            self.DisplayTextList.append("Password")
+                            
+                            self.authyIdList.append("")
+                            self.authyIdList.append("")
+                            
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.collectionView.reloadData()
+                        }
+                        
+                    })
+                    
+            })
+    
             
         }
         
@@ -341,12 +407,40 @@ class MainMenuViewController: UIViewController {
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? TimeStampsMenuController {
+            if let vc = segue.destination as? AuthyTestViewController {
                 
-                vc.selectedMenu = .TimeStamps
+                vc.targetAuthyId =  selectedAuhtyId
+                vc.numberOfSeconsToWait = 60
+                vc.successSegueIdentifier = "GoToMainMenu"
+                vc.selectedAuthyAction = selectedAuthyAction
+                vc.targetChildId = childId
+            }
+            
+        }
+        else if (segue.identifier == "GoToNewAuthyUser") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? AuthyPersonSearchTableViewController {
+                
+                vc.successSeqgueIdentifier = "GoToNewAuthyUser"
                 
             }
         }
+        else if (segue.identifier == "GoToTestAuthyUser") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? AuthyPersonSearchTableViewController {
+                
+                vc.successSeqgueIdentifier = "GoToTestAuthyUser"
+                
+            }
+            
+        }
+        
+        
+        
         
     }
     
@@ -374,6 +468,9 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         cell.setDisplayText(newDisplayText: DisplayTextList[indexPath.row])
+        
+        cell.setAuthyId(auhtyId: authyIdList[indexPath.row])
+        
         cell.segueText = segueIdList[indexPath.row]
         
         

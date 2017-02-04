@@ -12,6 +12,8 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
     
     var targetDate: Date!
     
+    var successSeqgueIdentifier: NSString!
+    
     //var TargetDate: Date!
     //var TargetPersonId: NSString!
     
@@ -151,7 +153,7 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
                 self.SelectedPersonFullName = ((cell.child?.ChildFullName)! as String as String as NSString!)
                 
                 
-                self.performSegue(withIdentifier: "GoToNewAuthyUser", sender: nil)
+                self.performSegue(withIdentifier: self.successSeqgueIdentifier as String, sender: nil)
                 
             }
             findTimeStamps.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour
@@ -171,30 +173,31 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "GoToNewAuthyUser") {
+        if (segue.identifier! == "GoToNewAuthyUser") {
             
             //Settings the menu details.
             
             
-            if let vc = segue.destination as? TimeStampSearchTableViewController {
+            if let vc = segue.destination as? NewAuhtyViewController {
                 
-                vc.TargetDate = targetDate
-                vc.TargetPersonId = self.SelectedPersonId
-                vc.SelectedPersonFullName = self.SelectedPersonFullName
+                vc.selectedChildId = self.SelectedPersonId
                 
-                if(self.OptionText == "Edit time stmaps.")
-                {
-                    vc.OptionText = "Edit"
-                }
-                else if(self.OptionText == "Delete time stamps.")
-                {
-                    vc.OptionText = "Delete"
-                }
-                else
-                {
-                    vc.OptionText = ""
-                }
+            }
+        }
+        
+        if (segue.identifier! == "GoToTestAuthyUser") {
+            
+            //Settings the menu details.
+            
+            //Need to get the specific user. so navigate to menu.
+            
+            if let vc = segue.destination as? MainMenuViewController {
                 
+                //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
+                
+                vc.selectedMenu = .AuthyUsers
+                vc.childId = SelectedPersonId
+                vc.authyUsersOnly = true
             }
         }
         

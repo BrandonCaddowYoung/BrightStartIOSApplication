@@ -13,6 +13,10 @@ class NewAuhtyViewController: UIViewController {
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
+    var createdAuthyId :NSString!
+    
+    var selectedChildId: NSString!
+    
     @IBOutlet weak var TopContainer: UIView!
     
     @IBOutlet weak var MiddleContainer: UIView!
@@ -32,6 +36,40 @@ class NewAuhtyViewController: UIViewController {
     
     @IBOutlet weak var SubmitButton: UIButton!
     
+    @IBAction func CreateUserClick(_ sender: Any) {
+        
+        //Retrieve all children
+        AuthyRequests.sharedInstance.RegisterUser(email: EmailAddresTextBox.text!, phoneNumber: MobileNumberTextBox.text!, countryCode: CountryCodeTextBox.text!, name: NameTextBox.text!, relationship: RelationshipTextBox.text!, childId: selectedChildId as String, onCompletion:  { json in
+            
+           self.createdAuthyId = json.rawString() as NSString!
+            
+            //Should get the authy id back from this create call.
+            //Pass authy id into the new view incase the user wants to do a test.
+            
+            DispatchQueue.main.async(execute: {
+                
+                self.performSegue(withIdentifier: "GoToNewUserComplete", sender: self)
+                
+            })
+            
+        })
+        
+    }
+    
+    /*!
+     @brief Preparing to segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToNewUserComplete") {
+          
+            if let vc = segue.destination as? AuthyNewUserCompleteViewController {
+                
+              vc.targetAuthyId = createdAuthyId
+                
+            }
+                    }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

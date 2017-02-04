@@ -13,6 +13,9 @@ class AuthyNewUserCompleteViewController: UIViewController {
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
+     var targetAuthyId :NSString!
+    
+    
     @IBOutlet weak var TopContainer: UIView!
     @IBOutlet weak var MiddleContainer: UIView!
     @IBOutlet weak var BottomContainer: UIView!
@@ -184,6 +187,35 @@ class AuthyNewUserCompleteViewController: UIViewController {
         
         
     }
+    
+    @IBAction func TestButtonClick(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "GoToAuthyAuthenticate", sender: self)
+        
+    }
+    
+    @IBAction func OkButtonClick(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "??", sender: self)
+        
+    }
+    
+    /*!
+     @brief Preparing to segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToAuthyAuthenticate") {
+            
+            if let vc = segue.destination as? AuthyTestViewController {
+                
+                vc.targetAuthyId =  targetAuthyId
+                vc.numberOfSeconsToWait = 60
+                vc.successSegueIdentifier = "GoToMainMenu"
+            }
+        }
+    }
+    
     
 
     /*

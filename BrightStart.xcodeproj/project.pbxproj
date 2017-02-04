@@ -32,6 +32,7 @@
 		7BD0FFE11E43BF3500472759 /* AuthyNewUserCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0FFE01E43BF3400472759 /* AuthyNewUserCompleteViewController.swift */; };
 		7BD0FFE31E43C95300472759 /* AuthyTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0FFE21E43C95300472759 /* AuthyTestViewController.swift */; };
 		7BD0FFE51E44787600472759 /* AuthyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0FFE41E44787600472759 /* AuthyUser.swift */; };
+		7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0FFE61E4682B400472759 /* AuthyAction.swift */; };
 		7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */; };
 		D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9A1CAF1A7100948DE5 /* Child.swift */; };
 		D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8661CC981530084ECE4 /* RegisteredCount.swift */; };
@@ -261,6 +262,7 @@
 		7BD0FFE01E43BF3400472759 /* AuthyNewUserCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyNewUserCompleteViewController.swift; sourceTree = "<group>"; };
 		7BD0FFE21E43C95300472759 /* AuthyTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyTestViewController.swift; sourceTree = "<group>"; };
 		7BD0FFE41E44787600472759 /* AuthyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyUser.swift; sourceTree = "<group>"; };
+		7BD0FFE61E4682B400472759 /* AuthyAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyAction.swift; sourceTree = "<group>"; };
 		7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		D7387E9A1CAF1A7100948DE5 /* Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
 		D739E8661CC981530084ECE4 /* RegisteredCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCount.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				D739E8661CC981530084ECE4 /* RegisteredCount.swift */,
 				D739E8681CC9829C0084ECE4 /* DayCount.swift */,
 				7BD0FFE41E44787600472759 /* AuthyUser.swift */,
+				7BD0FFE61E4682B400472759 /* AuthyAction.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -864,6 +867,7 @@
 				D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */,
 				7B8BDBDF1E1572AF009F3EAF /* ChildRequests.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
+				7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */,
 				7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */,
 				7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,

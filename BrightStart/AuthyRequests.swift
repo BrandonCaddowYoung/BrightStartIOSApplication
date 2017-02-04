@@ -11,7 +11,7 @@ import Foundation
 
 class AuthyRequests: NSObject {
     
-    static let sharedInstance = PersonLogRequests()
+    static let sharedInstance = AuthyRequests()
     let baseURL = "https://microsoft-apiappce8388460f4f40a6bdcea26f938e44fb.azurewebsites.net/"
     var nurserySchoolId = "";
     
@@ -28,7 +28,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/RegisterUser?email=" + email + "&phoneNumber=" + phoneNumber + "&countryCode=" + countryCode + "&name=" + name + "&relationship=" + relationship + "&childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPGetRequest(encode: true, path: route, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -189,6 +189,26 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/GetAllEnabledAuthyUsers?childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
+        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
+    }
+    
+    /*!
+     @brief Retrieves an Authy user.
+     */
+    func GetAuhtyUser(auhtyId: String, onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let route = baseURL + "api/Authy/GetAuhtyUser?auhtyId=" + auhtyId + "&nurserySchoolId=" + nurserySchoolId
         makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
                 json, err in

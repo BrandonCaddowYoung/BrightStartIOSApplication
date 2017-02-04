@@ -16,14 +16,17 @@ protocol MainMenuButtonCollectionViewCellDelegate {
     func performSegue(segueId: String)
     
     func renderMenuAssets(menuType: MenuTypes)
+    
+     func setSelectedAuthyId(authyID: NSString)
 }
 
 class MainMenuButtonCollectionViewCell: UICollectionViewCell {
  
     var _ApplicatoinColours: ApplicatoinColours!
     
-    var segueText: String = "intial segue text"
-    var displayText: String = "BILLING"
+    var authyId: String = ""
+    var segueText: String = ""
+    var displayText: String = ""
     var button: UIButton!
     var label: UILabel!
     var delegate: MainMenuButtonCollectionViewCellDelegate? = nil
@@ -63,11 +66,18 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         label.text = newDisplayText
     }
     
+    func setAuthyId(auhtyId: String)
+    {
+        authyId = auhtyId
+    }
+    
     func changeColor() {
         
         delegate?.changeColorOfButton(forCell: self)
         
         //If segueing to another menu, we need to do something differently as we have to segue to ourself!
+        
+        delegate?.setSelectedAuthyId(authyID: authyId as NSString)
         
         if(segueText=="GoToAuthyMenu"){
             delegate?.renderMenuAssets(menuType: .Authy)
