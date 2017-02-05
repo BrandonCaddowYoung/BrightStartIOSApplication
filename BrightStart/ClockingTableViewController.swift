@@ -11,12 +11,26 @@ import UIKit
 
 class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     
+    var indicator = UIActivityIndicatorView()
+    
+    func activityIndicator()
+    {
+    indicator = UIActivityIndicatorView(frame: CGRect())
+        
+    }
+    
     var children: [[Child]] = [];
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
     
+     var ShouldUseTapToSelect: Bool! = false
+    
     var selectedChildId: NSString!
     var selectedAuthyAction = AuhtyActions.ShouldDoNothing
+    
+    //var ClockingTableViewController:Bool! = false
+    
+    var showNavigationBar:Bool! = false
     
     func refreshTable()
     {
@@ -36,8 +50,33 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    //Removes the navigation bar from the top
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(false, animated: animated);
+            super.viewWillDisappear(animated)
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if(!showNavigationBar){
+            super.viewWillAppear(animated)
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        self.indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        
+        indicator.startAnimating()
+        indicator.backgroundColor = UIColor.white
         
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -106,7 +145,8 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                     self.tableView.reloadData()
                     sender?.endRefreshing()
                     
-                    //self.dismiss(animated: false, completion: nil)
+                    self.indicator.stopAnimating()
+                    self.indicator.hidesWhenStopped = true
                     
                 })
             }
@@ -133,6 +173,17 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(ShouldUseTapToSelect==true){
+            
+             
+            
+            
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->

@@ -10,10 +10,19 @@ import UIKit
 
 class PersonSearchTableViewController:  UITableViewController, UITextFieldDelegate {
     
+    var indicator = UIActivityIndicatorView()
+    
+    func activityIndicator()
+    {
+        indicator = UIActivityIndicatorView(frame: CGRect())
+        
+    }
+    
     var targetDate: Date!
     
-    //var TargetDate: Date!
-    //var TargetPersonId: NSString!
+     var ShouldUseTapToSelect: Bool! = true
+    
+    var showNavigationBar = true
     
     var SelectedPersonFullName: NSString!
     var SelectedPersonId: NSString!
@@ -44,8 +53,33 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         }
     }
     
+    //Removes the navigation bar from the top
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(false, animated: animated);
+            super.viewWillDisappear(animated)
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if(!showNavigationBar){
+            super.viewWillAppear(animated)
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        
+        indicator.startAnimating()
+        indicator.backgroundColor = UIColor.white
         
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -108,6 +142,9 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     
                     self.tableView.reloadData()
                     sender?.endRefreshing()
+                    
+                    self.indicator.stopAnimating()
+                    self.indicator.hidesWhenStopped = true
                     
                 })
                 
@@ -188,6 +225,23 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(ShouldUseTapToSelect==true){
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BrightStartChild", for: indexPath) as! PersonSearchTableViewCell
+            cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
+            
+            self.SelectedPersonId = ((cell.child?.ChildId)! as String as String as NSString!)
+            
+            self.SelectedPersonFullName = ((cell.child?.ChildFullName)! as String as String as NSString!)
+            
+            self.performSegue(withIdentifier: "GoToTimeStampSearch", sender: nil)
+            
+        }
+    }
+    
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->
         [UITableViewRowAction]? {

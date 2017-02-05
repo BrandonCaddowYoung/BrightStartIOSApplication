@@ -1009,6 +1009,7 @@
                         <outlet property="TickImage" destination="ZRk-5Q-aNT" id="Y8a-4k-o14"/>
                         <outlet property="TopContainer" destination="Pxu-vU-sei" id="fG3-to-uPv"/>
                         <segue destination="KDk-fE-MOK" kind="show" identifier="GoToAuthyAuthenticate" id="Eu4-6W-vLY"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToAuthyMenu" id="rM4-gm-d5A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYb-vH-Jy0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1260,10 +1261,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="SVZ-eK-9O4"/>
         <segue reference="Ix8-B2-Zha"/>
-        <segue reference="4kl-Pv-HT4"/>
-        <segue reference="wG7-yc-5Up"/>
-        <segue reference="nx9-xO-yGO"/>
+        <segue reference="rM4-gm-d5A"/>
         <segue reference="Q5J-dV-oJS"/>
+        <segue reference="Eu4-6W-vLY"/>
+        <segue reference="wG7-yc-5Up"/>
         <segue reference="2qs-QS-n86"/>
     </inferredMetricsTieBreakers>
 </document>

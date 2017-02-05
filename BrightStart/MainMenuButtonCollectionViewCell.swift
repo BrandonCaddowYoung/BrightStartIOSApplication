@@ -82,6 +82,9 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         if(segueText=="GoToAuthyMenu"){
             delegate?.renderMenuAssets(menuType: .Authy)
         }
+        else if(segueText=="GoToMainMenu"){
+            delegate?.renderMenuAssets(menuType: .MainMenu)
+        }
         else{
             delegate?.performSegue(segueId: segueText)
         }

@@ -196,7 +196,7 @@ class AuthyNewUserCompleteViewController: UIViewController {
     
     @IBAction func OkButtonClick(_ sender: Any) {
         
-        self.performSegue(withIdentifier: "??", sender: self)
+        self.performSegue(withIdentifier: "GoToAuthyMenu", sender: self)
         
     }
     
@@ -214,6 +214,18 @@ class AuthyNewUserCompleteViewController: UIViewController {
                 vc.successSegueIdentifier = "GoToMainMenu"
             }
         }
+        
+        if (segue.identifier == "GoToAuthyMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                vc.selectedMenu = .Authy
+            }
+            
+        }
+        
+        
+        
+        
     }
     
     

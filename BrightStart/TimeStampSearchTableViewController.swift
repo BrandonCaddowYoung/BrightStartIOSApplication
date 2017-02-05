@@ -10,7 +10,17 @@ import UIKit
 
 class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDelegate {
 
+    var indicator = UIActivityIndicatorView()
+    
+    func activityIndicator()
+    {
+        indicator = UIActivityIndicatorView(frame: CGRect())
+        
+    }
+    
     var SelectedPersonLog: PersonLog!
+    
+     var ShouldUseTapToSelect: Bool! = true
     
     var TargetDate: Date!
     var TargetPersonId: NSString!
@@ -21,6 +31,8 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     var timeStamps: [[PersonLog]] = [];
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
+    
+    var showNavigationBar: Bool! = true
     
     func refreshTable()
     {
@@ -43,6 +55,12 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        
+        indicator.startAnimating()
+        indicator.backgroundColor = UIColor.white
+        
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -54,6 +72,26 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         refresh()
 
     }
+    
+    //Removes the navigation bar from the top
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(false, animated: animated);
+            super.viewWillDisappear(animated)
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if(!showNavigationBar){
+            super.viewWillAppear(animated)
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        
+    }
+    
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
         
@@ -107,8 +145,8 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
                 self.tableView.reloadData()
                 sender?.endRefreshing()
                 
-                //self.dismiss(animated: false, completion: nil)
-                
+                self.indicator.stopAnimating()
+                self.indicator.hidesWhenStopped = true
             })
             
         })
@@ -135,6 +173,23 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(ShouldUseTapToSelect==true){
+           
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TimeStamp", for: indexPath) as! TimeStampSearchTableViewCell
+            cell.log = timeStamps[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
+            
+            //Saving the selected log so that when we segue we can call on it!
+            SelectedPersonLog = cell.log
+            
+            let rowTitle2 = OptionText
+            self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
+            
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->

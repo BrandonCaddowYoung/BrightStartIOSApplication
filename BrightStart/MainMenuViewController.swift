@@ -118,13 +118,21 @@ class MainMenuViewController: UIViewController {
             
         case .Authy:
             
-            images = [UIImage(named: "AddUserMale")!, UIImage(named: "RemoveUserMale")!, UIImage(named: "Delete")!, UIImage(named: "TestTube")!, UIImage(named: "Search")! , UIImage(named: "Settings")!]
+           // images = [UIImage(named: "AddUserMale")!, UIImage(named: "RemoveUserMale")!, UIImage(named: "Delete")!, UIImage(named: "TestTube")!, UIImage(named: "Search")! , UIImage(named: "Settings")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToNewAuthyUser", "GoToDisableAuhtyUser", "GoToDeleteAuhtyUser", "GoToTestAuthyUser", "GoToSearchAuthyUsers", "GoToAuthySettings"]
+           // segueIdList = ["GoToNewAuthyUser", "GoToDisableAuhtyUser", "GoToDeleteAuhtyUser", "GoToTestAuthyUser", "GoToSearchAuthyUsers", "GoToAuthySettings", "GoToMainMenu", "GoToSignIn"]
             
-            DisplayTextList = ["New User",  "Disable For Child", "Delete User", "Test User", "Search Users", "Settings"]
+          //  DisplayTextList = ["New User",  "Disable For Child", "Delete User", "Test User", "Search Users", "Settings", "Home", "Sign Out"]
             
-            authyIdList = ["",  "", "", "", "", ""]
+          //  authyIdList = ["",  "", "", "", "", "", "", ""]
+            
+            images = [UIImage(named: "AddUserMale")!, UIImage(named: "TestTube")!,  UIImage(named: "Settings")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
+            
+            segueIdList = ["GoToNewAuthyUser", "GoToTestAuthyUser", "GoToAuthySettings", "GoToMainMenu", "GoToSignIn"]
+            
+            DisplayTextList = ["New User",  "Test User", "Settings", "Home", "Sign Out"]
+            
+            authyIdList = ["", "", "", "", ""]
             
         case .AuthyUsers:
             
@@ -149,12 +157,23 @@ class MainMenuViewController: UIViewController {
                     
                     DispatchQueue.main.async(execute: {
                         
+                        
+                        if(self.authyUserList.count == 0)
+                        {
+                            self.images.append(UIImage(named: "Standing Man")!) //Replace with Plus100
+                            self.segueIdList.append("GoToNewAuthyUser")
+                            self.DisplayTextList.append("New User")
+                            self.authyIdList.append("")
+                        }
+                        else{
                         for person in self.authyUserList {
                             self.images.append(UIImage(named: "UserMale100")!)
                             self.segueIdList.append("GoToAuthyAuthenticate")
                             self.DisplayTextList.append(person.Name as String)
                             self.authyIdList.append(person.AuhtyId as String)
                         }
+                        }
+                        
                         
                         if(self.authyUsersOnly==false){
                             
@@ -434,6 +453,17 @@ class MainMenuViewController: UIViewController {
             if let vc = segue.destination as? AuthyPersonSearchTableViewController {
                 
                 vc.successSeqgueIdentifier = "GoToTestAuthyUser"
+                vc.showNavigationBar = true
+                
+            }
+            
+        }
+        else if (segue.identifier == "GoToRegister") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? ClockingTableViewController {
+                
                 
             }
             
