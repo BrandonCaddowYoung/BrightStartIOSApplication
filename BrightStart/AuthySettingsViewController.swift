@@ -62,6 +62,57 @@ class AuthySettingsViewController: UIViewController {
         
         setupConstraints()
         
+        let defaults = UserDefaults.standard
+        
+        let shouldUseAuthy = defaults.bool(forKey: "ShouldUseAuhty") 
+        
+            if(shouldUseAuthy==true)
+            {
+                OnSignInSwitch.isEnabled = true
+                OnSignOutSwitch.isEnabled = true
+                
+                OnSignInLabel.isEnabled = true
+                OnSignOutLabel.isEnabled = true
+                
+                let shouldUseAuhtyOnSignIn = defaults.bool(forKey: "ShouldUseAuhtyOnSignIn")
+                
+                if(shouldUseAuhtyOnSignIn == true)
+                {
+                   OnSignInSwitch.setOn(true, animated: true)
+                }
+                else
+                {
+                    OnSignInSwitch.setOn(false, animated: true)
+                }
+                
+                 let shouldUseAuhtyOnSignOut = defaults.bool(forKey: "ShouldUseAuhtyOnSignOut")
+                
+                 if(shouldUseAuhtyOnSignOut==true)
+                 {
+                    OnSignOutSwitch.setOn(true, animated: true)
+                    
+                }
+                else
+                {
+                    OnSignOutSwitch.setOn(false, animated: true)
+                }
+            
+        }
+        else
+        {
+            OnSignInSwitch.isEnabled = false
+            OnSignOutSwitch.isEnabled = false
+            
+            OnSignInLabel.isEnabled = false
+            OnSignOutLabel.isEnabled = false
+            
+            OnSignInSwitch.setOn(false, animated: true)
+            OnSignOutSwitch.setOn(false, animated: true)
+            UseAuthySwitch.setOn(false, animated: true)
+            
+            
+        }
+        
         // Do any additional setup after loading the view.
     }
 
@@ -343,11 +394,93 @@ class AuthySettingsViewController: UIViewController {
     }
 
     
-    /*!
-     @brief Preparing to segue.
-     */
+    @IBAction func UseAuthyClicked(_ sender: Any) {
+        
+         let defaults = UserDefaults.standard
+        
+        if(self.UseAuthySwitch.isOn)
+        {
+            OnSignInSwitch.isEnabled = true
+            OnSignOutSwitch.isEnabled = true
+            
+            OnSignInLabel.isEnabled = true
+            OnSignOutLabel.isEnabled = true
+            
+            
+              defaults.set(true, forKey: "ShouldUseAuhty")
+
+        }else
+        {
+            OnSignInSwitch.isEnabled = false
+            OnSignOutSwitch.isEnabled = false
+            
+            OnSignInLabel.isEnabled = false
+            OnSignOutLabel.isEnabled = false
+            
+              defaults.set(false, forKey: "ShouldUseAuhty")
+        
+            OnSignInSwitch.setOn(false, animated: true)
+                OnSignOutSwitch.setOn(false, animated: true)
+            
+            defaults.set(false, forKey: "ShouldUseAuhtyOnSignIn")
+            defaults.set(false, forKey: "ShouldUseAuhtyOnSignOut")
+            
+        }
+        
+    }
+    
+    @IBAction func OnSignInSwitched(_ sender: UISwitch) {
+        
+         let defaults = UserDefaults.standard
+        
+        if(self.OnSignInSwitch.isOn)
+        {
+            defaults.set(true, forKey: "ShouldUseAuhtyOnSignIn")
+        }else
+        {
+        defaults.set(false, forKey: "ShouldUseAuhtyOnSignIn")
+        }
+        
+    }
+    
+    @IBAction func OnSignOutSwitched(_ sender: Any) {
+    
+         let defaults = UserDefaults.standard
+        
+        if(self.OnSignOutSwitch.isOn)
+        {
+            defaults.set(true, forKey: "ShouldUseAuhtyOnSignOut")
+        }else
+        {
+            defaults.set(false, forKey: "ShouldUseAuhtyOnSignOut")
+        }
+    
+    }
+    
+    
+   
+    
+    @IBAction func OKClicked(_ sender: Any) {
+        
+         self.performSegue(withIdentifier: "GoToAuthyMenu", sender: self)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
+        
+        if (segue.identifier! == "GoToAuthyMenu") {
+            
+            //Settings the menu details.
+            
+            //Need to get the specific user. so navigate to menu.
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
+                vc.selectedMenu = .Authy
+            }
+        }
         
     }
     

@@ -149,12 +149,12 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             
             let signIn = UITableViewRowAction(style: .normal, title: rowTitle) { action, index in
                 
-                //Check if the nursery is using authy
+                let defaults = UserDefaults.standard
+                let shouldUseAuthy = defaults.bool(forKey: "ShouldUseAuhty")
+                let shouldUseAuhtyOnSignIn = defaults.bool(forKey: "ShouldUseAuhtyOnSignIn")
                 
-                //if they are then redirect to the auhty authentication page
-                
-                if(false){
-                    
+                if(shouldUseAuthy==true && shouldUseAuhtyOnSignIn == true)
+                {
                     self.selectedChildId = (cell.child?.Id)! as String as String as NSString!
                     
                     self.selectedAuthyAction = AuhtyActions.ShouldSignIn
@@ -162,28 +162,24 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                     self.performSegue(withIdentifier: "GoToAuthyUsers", sender: self)
                     
                     return
-                    
-                }else{
-                
-                
-                
-                let alert = self._CommonHelper.showOverlayMessage("Signing in...")
-                self.present(alert, animated: true, completion: nil)
-                
-                CommonRequests.sharedInstance.signIn(personId: (cell.child?.Id)! as String, timeOfSignIn: Date() as NSDate,
-                                                     onCompletion: {
-                                                        DispatchQueue.main.async(execute: {
-                                                            self.refreshTable()
-                                                            
-                                                            self.dismiss(animated: false, completion: nil)
-                                                        })
-                    }
-                )
-                
-                
                 }
+                else
+                {
                 
-                
+                    let alert = self._CommonHelper.showOverlayMessage("Signing in...")
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    CommonRequests.sharedInstance.signIn(personId: (cell.child?.Id)! as String, timeOfSignIn: Date() as NSDate,
+                                                         onCompletion: {
+                                                            DispatchQueue.main.async(execute: {
+                                                                self.refreshTable()
+                                                                
+                                                                self.dismiss(animated: false, completion: nil)
+                                                            })
+                    }
+                    )
+                    
+                }
                 
             }
             signIn.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour2
@@ -196,39 +192,42 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
             
             let signOut = UITableViewRowAction(style: .normal, title: rowTitle2) { action, index in
                 
-                //Check if the nursery is using authy
+                let defaults = UserDefaults.standard
+                let shouldUseAuthy = defaults.bool(forKey: "ShouldUseAuhty")
+                let shouldUseAuhtyOnSignOut = defaults.bool(forKey: "ShouldUseAuhtyOnSignOut")
                 
-                //if they are then redirect to the auhty authentication page
-                
-                if(true){
-                
+                if(shouldUseAuthy==true && shouldUseAuhtyOnSignOut == true)
+                {
                     self.selectedChildId = (cell.child?.Id)! as String as String as NSString!
                     
                     self.selectedAuthyAction = AuhtyActions.ShouldSignOut
                     
                     self.performSegue(withIdentifier: "GoToAuthyUsers", sender: self)
-                
+                    
                     return
                     
-                }else{
-                
-                let alert = self._CommonHelper.showOverlayMessage("Signing out...")
-                self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = self._CommonHelper.showOverlayMessage("Signing out...")
+                    self.present(alert, animated: true, completion: nil)
                     
-                CommonRequests.sharedInstance.signOut(personId: (cell.child?.Id)! as String, timeOfSignOut: Date() as NSDate,
-                                                      
-                                                      onCompletion: {
-                                                        
-                                                        DispatchQueue.main.async(execute: {
-                                                            self.refreshTable()
+                    CommonRequests.sharedInstance.signOut(personId: (cell.child?.Id)! as String, timeOfSignOut: Date() as NSDate,
+                                                          
+                                                          onCompletion: {
                                                             
-                                                            self.dismiss(animated: false, completion: nil)
+                                                            DispatchQueue.main.async(execute: {
+                                                                self.refreshTable()
+                                                                
+                                                                self.dismiss(animated: false, completion: nil)
+                                                                
+                                                            })
                                                             
-                                                        })
-                                                        
-                })
+                    })
                     
                 }
+                
+                
                 
             }
             signOut.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour

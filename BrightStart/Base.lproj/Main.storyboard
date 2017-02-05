@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Xhn-Yw-DuQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rpo-Nf-bMu">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -764,6 +764,7 @@
                         <segue destination="GhA-9F-S6O" kind="show" identifier="GoToNewAuthyUser" id="Q5J-dV-oJS"/>
                         <segue destination="GhA-9F-S6O" kind="show" identifier="GoToTestAuthyUser" id="j5x-qr-qjo"/>
                         <segue destination="KDk-fE-MOK" kind="show" identifier="GoToAuthyAuthenticate" id="nx9-xO-yGO"/>
+                        <segue destination="Xhn-Yw-DuQ" kind="show" identifier="GoToAuthySettings" id="fsy-fY-g8z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWk-wx-plk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1139,7 +1140,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="OK"/>
                                         <connections>
-                                            <action selector="OkButtonClick:" destination="Xhn-Yw-DuQ" eventType="touchUpInside" id="QmL-8s-Y5b"/>
+                                            <action selector="OKClicked:" destination="Xhn-Yw-DuQ" eventType="touchUpInside" id="P7m-0g-flj"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1160,6 +1161,9 @@
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZL1-dd-dyq">
                                                         <rect key="frame" x="113" y="5" width="51" height="31"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="OnSignInSwitched:" destination="Xhn-Yw-DuQ" eventType="valueChanged" id="a9D-Me-6bH"/>
+                                                        </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="On sign in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWY-jG-YDp">
                                                         <rect key="frame" x="3" y="10" width="77" height="21"/>
@@ -1178,6 +1182,9 @@
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHm-M3-b8Q">
                                                         <rect key="frame" x="116" y="8" width="51" height="31"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="UseAuthyClicked:" destination="Xhn-Yw-DuQ" eventType="valueChanged" id="2jB-o9-aYF"/>
+                                                        </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Use Authy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VW-Ni-wv8">
                                                         <rect key="frame" x="6" y="13" width="79" height="21"/>
@@ -1196,6 +1203,9 @@
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tkc-ss-WYh">
                                                         <rect key="frame" x="134" y="0.0" width="51" height="31"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="OnSignOutSwitched:" destination="Xhn-Yw-DuQ" eventType="valueChanged" id="rga-5f-kJv"/>
+                                                        </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="On sign out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys2-PM-q9o">
                                                         <rect key="frame" x="19" y="10" width="88" height="21"/>
@@ -1231,11 +1241,12 @@
                         <outlet property="TopContainer" destination="bws-mX-b1O" id="SLf-kf-WKr"/>
                         <outlet property="UseAuthyLabel" destination="4VW-Ni-wv8" id="558-a3-XIA"/>
                         <outlet property="UseAuthySwitch" destination="PHm-M3-b8Q" id="EUX-MN-cbA"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToAuthyMenu" id="4kl-Pv-HT4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aO-Dh-ghu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-708" y="-113.79310344827587"/>
+            <point key="canvasLocation" x="3564" y="-1486"/>
         </scene>
     </scenes>
     <resources>
@@ -1249,10 +1260,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="SVZ-eK-9O4"/>
         <segue reference="Ix8-B2-Zha"/>
-        <segue reference="NYq-jD-sEX"/>
-        <segue reference="Eu4-6W-vLY"/>
+        <segue reference="4kl-Pv-HT4"/>
+        <segue reference="wG7-yc-5Up"/>
+        <segue reference="nx9-xO-yGO"/>
         <segue reference="Q5J-dV-oJS"/>
-        <segue reference="CaC-2C-xM4"/>
         <segue reference="2qs-QS-n86"/>
     </inferredMetricsTieBreakers>
 </document>

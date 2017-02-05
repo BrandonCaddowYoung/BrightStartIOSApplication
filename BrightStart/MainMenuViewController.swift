@@ -118,13 +118,13 @@ class MainMenuViewController: UIViewController {
             
         case .Authy:
             
-            images = [UIImage(named: "AddUserMale")!, UIImage(named: "RemoveUserMale")!, UIImage(named: "Delete")!, UIImage(named: "TestTube")!, UIImage(named: "Search")!]
+            images = [UIImage(named: "AddUserMale")!, UIImage(named: "RemoveUserMale")!, UIImage(named: "Delete")!, UIImage(named: "TestTube")!, UIImage(named: "Search")! , UIImage(named: "Settings")!]
             
-            segueIdList = ["GoToNewAuthyUser", "GoToDisableAuhtyUser", "GoToDeleteAuhtyUser", "GoToTestAuthyUser", "GoToSearchAuthyUsers"]
+            segueIdList = ["GoToNewAuthyUser", "GoToDisableAuhtyUser", "GoToDeleteAuhtyUser", "GoToTestAuthyUser", "GoToSearchAuthyUsers", "GoToAuthySettings"]
             
-            DisplayTextList = ["New User",  "Disable For Child", "Delete User", "Test User", "Search Users"]
+            DisplayTextList = ["New User",  "Disable For Child", "Delete User", "Test User", "Search Users", "Settings"]
             
-            authyIdList = ["",  "", "", "", ""]
+            authyIdList = ["",  "", "", "", "", ""]
             
         case .AuthyUsers:
             
