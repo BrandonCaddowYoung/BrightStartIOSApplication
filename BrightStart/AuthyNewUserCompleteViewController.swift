@@ -27,6 +27,7 @@ class AuthyNewUserCompleteViewController: UIViewController {
     @IBOutlet weak var TestButton: UIButton!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.edgesForExtendedLayout = []

@@ -15,6 +15,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     var _PopUpAlert: UIAlertController!
     
+    @IBOutlet weak var FooterView: UIView!
+    
     @IBOutlet weak var spacerMiddleTopView: UIView!
     
     @IBOutlet weak var spacerMiddleMiddleView: UIView!
@@ -33,6 +35,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var signInButton: UIButton!
+    
+    @IBOutlet weak var DontHaveAnAccountLabel: UILabel!
+    
+    @IBOutlet weak var SignUpButton: UIButton!
     
     override func viewDidLayoutSubviews() {
         
@@ -119,14 +125,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             equalTo: view.trailingAnchor).isActive = true
         //bottom
         bottomView.bottomAnchor.constraint(
-            equalTo: view.bottomAnchor,
-            constant: -20).isActive = true
+            equalTo: view.bottomAnchor).isActive = true
         // no top
         
         //height
         bottomView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
             multiplier: 0.20).isActive = true
+        
+        bottomView.addSubview(FooterView)
+        
+       // bottomView.backgroundColor = .yellow
         
         //IMAGE WITHIN BOTTOM VIEW
         
@@ -150,6 +159,76 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
            equalTo: bottomView.centerXAnchor).isActive = true
         
         //bottomView.backgroundColor = .red
+        
+        
+        FooterView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //FooterView.backgroundColor = .white
+        
+        //bottom
+        FooterView.bottomAnchor.constraint(
+            equalTo: bottomView.bottomAnchor).isActive = true
+        
+        //left
+        FooterView.leadingAnchor.constraint(
+            equalTo: bottomView.leadingAnchor).isActive = true
+        //right
+        FooterView.trailingAnchor.constraint(
+            equalTo: bottomView.trailingAnchor).isActive = true
+        
+       
+        //left
+        FooterView.topAnchor.constraint(
+            equalTo: signInButton.bottomAnchor).isActive = true
+        //right
+        FooterView.bottomAnchor.constraint(
+            equalTo: bottomView.bottomAnchor).isActive = true
+
+        
+        
+        
+        
+        
+        DontHaveAnAccountLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //bottom
+        DontHaveAnAccountLabel.centerXAnchor.constraint(
+            equalTo: FooterView.centerXAnchor, constant: -25).isActive = true
+        
+        //left
+        DontHaveAnAccountLabel.bottomAnchor.constraint(
+            equalTo: FooterView.bottomAnchor).isActive = true
+        
+        
+        
+        SignUpButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        SignUpButton.leadingAnchor.constraint(
+            equalTo: DontHaveAnAccountLabel.trailingAnchor, constant: 5).isActive = true
+        
+        //left
+       // SignUpButton.trailingAnchor.constraint(
+          //  equalTo: FooterView.trailingAnchor).isActive = true
+
+        
+        
+        //left
+        SignUpButton.topAnchor.constraint(
+            equalTo: DontHaveAnAccountLabel.topAnchor).isActive = true
+        
+        //left
+        SignUpButton.bottomAnchor.constraint(
+            equalTo: DontHaveAnAccountLabel.bottomAnchor).isActive = true
+        
+        
+        
+        //left
+        //SignUpButton.centerYAnchor.constraint(
+          //  equalTo: DontHaveAnAccountLabel.centerYAnchor).isActive = true
+        
+        
+        
         
         //MIDDLE VIEW
         
@@ -381,6 +460,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func passWordEditEnd(_ sender: Any) {
        // MoveToNextSceneIfCredentialsAreValid()
     }
+    
+    
+    @IBAction func SignUpClicked(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "GoToSignUp", sender: self)
+        
+    }
+    
     
     /*!
      @brief If the credentials withi the text fields are valid, will move to the next secene.
