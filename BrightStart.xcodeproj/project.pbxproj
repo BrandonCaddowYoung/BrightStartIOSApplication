@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0257001E4F568C007FED0C /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B0256FF1E4F568C007FED0C /* CellView.xib */; };
+		7B02571A1E4F5762007FED0C /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0257191E4F5762007FED0C /* CellView.swift */; };
+		7B02571C1E4F5919007FED0C /* RegisteredHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B02571B1E4F5919007FED0C /* RegisteredHoursViewController.swift */; };
 		7B1772981DEB8065002992C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772701DEB7F8F002992C9 /* Alamofire.framework */; };
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
 		7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */; };
 		7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */; };
+		7B774F9E1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B774F9D1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib */; };
+		7B774FA01E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B774F9F1E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift */; };
+		7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B774FA11E4FD47700ECDF66 /* CalendarPurpose.swift */; };
 		7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */; };
 		7B8BDBCA1E12B5F1009F3EAF /* TimeStampSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */; };
 		7B8BDBCC1E12ED9F009F3EAF /* PersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */; };
@@ -39,6 +45,7 @@
 		7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0FFE61E4682B400472759 /* AuthyAction.swift */; };
 		7BD0FFEB1E47205100472759 /* AuthySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0FFEA1E47205100472759 /* AuthySettingsViewController.swift */; };
 		7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */; };
+		C53FFE0F4BFF7C5BD7A0E31A /* Pods_BrightStart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5674001169A7EE20DDBCD2 /* Pods_BrightStart.framework */; };
 		D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9A1CAF1A7100948DE5 /* Child.swift */; };
 		D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8661CC981530084ECE4 /* RegisteredCount.swift */; };
 		D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8681CC9829C0084ECE4 /* DayCount.swift */; };
@@ -241,6 +248,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E5674001169A7EE20DDBCD2 /* Pods_BrightStart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrightStart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FCC61C88BB28693CDEAB661 /* Pods-BrightStart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrightStart.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrightStart/Pods-BrightStart.release.xcconfig"; sourceTree = "<group>"; };
+		7B0256FF1E4F568C007FED0C /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
+		7B0257191E4F5762007FED0C /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		7B02571B1E4F5919007FED0C /* RegisteredHoursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursViewController.swift; sourceTree = "<group>"; };
 		7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
@@ -248,6 +260,9 @@
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyRequests.swift; sourceTree = "<group>"; };
 		7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyPersonSearchTableViewController.swift; sourceTree = "<group>"; };
+		7B774F9D1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeStampsSectionHeaderView.xib; sourceTree = "<group>"; };
+		7B774F9F1E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampsSectionHeader.swift; sourceTree = "<group>"; };
+		7B774FA11E4FD47700ECDF66 /* CalendarPurpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPurpose.swift; sourceTree = "<group>"; };
 		7B8BDBC71E0F0419009F3EAF /* TimeStampsMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampsMenuController.swift; sourceTree = "<group>"; };
 		7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampSearchTableViewController.swift; sourceTree = "<group>"; };
 		7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSearchTableViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +289,7 @@
 		7BD0FFE61E4682B400472759 /* AuthyAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyAction.swift; sourceTree = "<group>"; };
 		7BD0FFEA1E47205100472759 /* AuthySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthySettingsViewController.swift; sourceTree = "<group>"; };
 		7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
+		7F04C0F20972BB0831C45083 /* Pods-BrightStart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrightStart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrightStart/Pods-BrightStart.debug.xcconfig"; sourceTree = "<group>"; };
 		D7387E9A1CAF1A7100948DE5 /* Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
 		D739E8661CC981530084ECE4 /* RegisteredCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCount.swift; sourceTree = "<group>"; };
 		D739E8681CC9829C0084ECE4 /* DayCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCount.swift; sourceTree = "<group>"; };
@@ -302,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B1772981DEB8065002992C9 /* Alamofire.framework in Frameworks */,
+				C53FFE0F4BFF7C5BD7A0E31A /* Pods_BrightStart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,11 +339,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B0257181E4F56F9007FED0C /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				7B774F9C1E4FC34C00ECDF66 /* Calendar Headers */,
+				7B0256FF1E4F568C007FED0C /* CellView.xib */,
+				7B0257191E4F5762007FED0C /* CellView.swift */,
+				7B02571B1E4F5919007FED0C /* RegisteredHoursViewController.swift */,
+				7B774FA11E4FD47700ECDF66 /* CalendarPurpose.swift */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
 		7B1772481DEB7B26002992C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */,
 				7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */,
+				4E5674001169A7EE20DDBCD2 /* Pods_BrightStart.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -403,6 +433,15 @@
 				7BB222091E4BB9890069E74D /* Registration2ViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		7B774F9C1E4FC34C00ECDF66 /* Calendar Headers */ = {
+			isa = PBXGroup;
+			children = (
+				7B774F9D1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib */,
+				7B774F9F1E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift */,
+			);
+			name = "Calendar Headers";
 			sourceTree = "<group>";
 		};
 		7B8BDBAB1E0E8471009F3EAF /* Menus */ = {
@@ -498,6 +537,7 @@
 				D7F995881C9EF4A2001802EC /* BrightStartUITests */,
 				D7F995671C9EF4A1001802EC /* Products */,
 				7B1772481DEB7B26002992C9 /* Frameworks */,
+				F059A6DEB8E1A3550D5ACBD8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -514,6 +554,7 @@
 		D7F995681C9EF4A1001802EC /* BrightStart */ = {
 			isa = PBXGroup;
 			children = (
+				7B0257181E4F56F9007FED0C /* Calendar */,
 				7B8BDBD21E12F205009F3EAF /* TablieViews */,
 				7B8BDBCD1E12EFC5009F3EAF /* TableViewCells */,
 				7B2E88BD1DEF7FA2003F7E45 /* Controllers */,
@@ -551,6 +592,15 @@
 			path = BrightStartUITests;
 			sourceTree = "<group>";
 		};
+		F059A6DEB8E1A3550D5ACBD8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F04C0F20972BB0831C45083 /* Pods-BrightStart.debug.xcconfig */,
+				5FCC61C88BB28693CDEAB661 /* Pods-BrightStart.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -558,10 +608,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7F9958E1C9EF4A2001802EC /* Build configuration list for PBXNativeTarget "BrightStart" */;
 			buildPhases = (
+				020B8B22A2F04609EA2B3B08 /* [CP] Check Pods Manifest.lock */,
 				D7F995621C9EF4A1001802EC /* Sources */,
 				D7F995631C9EF4A1001802EC /* Frameworks */,
 				D7F995641C9EF4A1001802EC /* Resources */,
 				7B26180F1DEDB912005B4B20 /* Embed Frameworks */,
+				BEAA6FBDFD2A3B79E9B1431A /* [CP] Embed Pods Frameworks */,
+				A071960B27FC0E7096CF925C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -826,6 +879,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B774F9E1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib in Resources */,
+				7B0257001E4F568C007FED0C /* CellView.xib in Resources */,
 				D7F995741C9EF4A1001802EC /* LaunchScreen.storyboard in Resources */,
 				D7F995711C9EF4A1001802EC /* Assets.xcassets in Resources */,
 				D7F9956F1C9EF4A1001802EC /* Main.storyboard in Resources */,
@@ -847,6 +902,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		020B8B22A2F04609EA2B3B08 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A071960B27FC0E7096CF925C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BrightStart/Pods-BrightStart-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEAA6FBDFD2A3B79E9B1431A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BrightStart/Pods-BrightStart-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D7F995621C9EF4A1001802EC /* Sources */ = {
@@ -870,6 +973,7 @@
 				7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */,
 				7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */,
 				7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */,
+				7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,
 				7BCAD8151DF7617E0056AC9C /* CommonHelper.swift in Sources */,
@@ -880,6 +984,7 @@
 				7BD0FFE51E44787600472759 /* AuthyUser.swift in Sources */,
 				7B8BDBD11E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift in Sources */,
 				7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */,
+				7B774FA01E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift in Sources */,
 				7BCAD8131DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift in Sources */,
 				7B8BDBCF1E12F017009F3EAF /* PersonSearchTableViewCell.swift in Sources */,
 				D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */,
@@ -889,6 +994,8 @@
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
 				7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */,
 				7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */,
+				7B02571A1E4F5762007FED0C /* CellView.swift in Sources */,
+				7B02571C1E4F5919007FED0C /* RegisteredHoursViewController.swift in Sources */,
 				7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,
 				7BC518221E4324BA00F81374 /* NewAuhtyViewController.swift in Sources */,
@@ -1042,6 +1149,7 @@
 		};
 		D7F9958F1C9EF4A2001802EC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F04C0F20972BB0831C45083 /* Pods-BrightStart.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Brandon Young (V699D4BAW5)";
@@ -1060,6 +1168,7 @@
 		};
 		D7F995901C9EF4A2001802EC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FCC61C88BB28693CDEAB661 /* Pods-BrightStart.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Brandon Young (V699D4BAW5)";
