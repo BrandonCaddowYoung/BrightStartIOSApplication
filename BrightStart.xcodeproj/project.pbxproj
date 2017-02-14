@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B0257001E4F568C007FED0C /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B0256FF1E4F568C007FED0C /* CellView.xib */; };
 		7B02571A1E4F5762007FED0C /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0257191E4F5762007FED0C /* CellView.swift */; };
-		7B02571C1E4F5919007FED0C /* RegisteredHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B02571B1E4F5919007FED0C /* RegisteredHoursViewController.swift */; };
+		7B02571C1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B02571B1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift */; };
 		7B1772981DEB8065002992C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772701DEB7F8F002992C9 /* Alamofire.framework */; };
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
@@ -252,7 +252,7 @@
 		5FCC61C88BB28693CDEAB661 /* Pods-BrightStart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrightStart.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrightStart/Pods-BrightStart.release.xcconfig"; sourceTree = "<group>"; };
 		7B0256FF1E4F568C007FED0C /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
 		7B0257191E4F5762007FED0C /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
-		7B02571B1E4F5919007FED0C /* RegisteredHoursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursViewController.swift; sourceTree = "<group>"; };
+		7B02571B1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterdHoursTimeStampsCalendarViewController.swift; sourceTree = "<group>"; };
 		7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
@@ -345,7 +345,7 @@
 				7B774F9C1E4FC34C00ECDF66 /* Calendar Headers */,
 				7B0256FF1E4F568C007FED0C /* CellView.xib */,
 				7B0257191E4F5762007FED0C /* CellView.swift */,
-				7B02571B1E4F5919007FED0C /* RegisteredHoursViewController.swift */,
+				7B02571B1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift */,
 				7B774FA11E4FD47700ECDF66 /* CalendarPurpose.swift */,
 			);
 			name = Calendar;
@@ -703,16 +703,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -995,7 +995,7 @@
 				7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */,
 				7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */,
 				7B02571A1E4F5762007FED0C /* CellView.swift in Sources */,
-				7B02571C1E4F5919007FED0C /* RegisteredHoursViewController.swift in Sources */,
+				7B02571C1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift in Sources */,
 				7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,
 				7BC518221E4324BA00F81374 /* NewAuhtyViewController.swift in Sources */,

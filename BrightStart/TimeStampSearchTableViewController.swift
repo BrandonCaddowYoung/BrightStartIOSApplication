@@ -100,7 +100,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         
         self.timeStamps.removeAll();
         
-        PersonLogRequests.sharedInstance.GetLoginLogsByDateAndId(personId: TargetPersonId as String, targetDate: TargetDate as NSDate, onCompletion: { json in
+        PersonLogRequests.sharedInstance.GetLogByDateAndId(personId: TargetPersonId as String, targetDate: TargetDate as NSDate, onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
                 

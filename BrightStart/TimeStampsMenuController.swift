@@ -26,61 +26,51 @@ class TimeStampsMenuController: MainMenuViewController {
         
         if (segue.identifier == "GoToSearchPerson_Edit") {
             
-            //Settings the menu details.
-            
-            if let vc = segue.destination as? DateSelectionViewController {
+            if let vc = segue.destination as? PersonSearchTableViewController {
                 
-                vc.OptionText = "Edit time stmaps."
-                //vc.targetDate = DatePicker.date
+                vc.successSegueIdentifier = "GoToCalendar"
                 vc.Purpose = "GoToSearchPerson_Edit"
             }
         }
         
         if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
             
-            //Settings the menu details.
-            
-            if let vc = segue.destination as? DateSelectionViewController {
+            if let vc = segue.destination as? PersonSearchTableViewController {
                 
-                vc.OptionText = "Late/Early time stamps."
-                //vc.targetDate = DatePicker.date
+                vc.successSegueIdentifier = "GoToCalendar"
                 vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+                
             }
         }
         
         if (segue.identifier == "GoToSearchPerson_Delete") {
             
-            //Settings the menu details.
-            
-            if let vc = segue.destination as? DateSelectionViewController {
+            if let vc = segue.destination as? PersonSearchTableViewController {
                 
-                vc.OptionText = "Delete time stamps."
-               // vc.targetDate = DatePicker.date
-                vc.Purpose = "GoToSearchPerson_Delete"
+                vc.successSegueIdentifier = "GoToCalendar"
+                 vc.Purpose = "GoToSearchPerson_Delete"
+                
             }
         }
         
         if (segue.identifier == "GoToSearchPerson_Search") {
             
-            //Settings the menu details.
-            
-            if let vc = segue.destination as? DateSelectionViewController {
+            if let vc = segue.destination as? PersonSearchTableViewController {
                 
-                vc.OptionText = "Search for time stamps."
-               // vc.targetDate = DatePicker.date
+                vc.successSegueIdentifier = "GoToCalendar"
                 vc.Purpose = "GoToSearchPerson_Search"
+                
             }
         }
         
         if (segue.identifier == "GoToSearchPerson_Missing") {
             
-            //Settings the menu details.
-            
-            if let vc = segue.destination as? DateSelectionViewController {
+            if let vc = segue.destination as? PersonSearchTableViewController {
                 
-                vc.OptionText = "Search for missing time stamps."
-               // vc.targetDate = DatePicker.date
+                vc.successSegueIdentifier = "GoToCalendar"
                 vc.Purpose = "GoToSearchPerson_Missing"
+
+                
             }
         }
         

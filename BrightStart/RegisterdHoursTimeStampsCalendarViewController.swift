@@ -11,7 +11,7 @@ import UIKit
 
 import JTAppleCalendar
 
-class RegisterdHoursController: UIViewController {
+class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
 
     //Arguments
     
@@ -20,9 +20,15 @@ class RegisterdHoursController: UIViewController {
     var homeSeqgueIdentifier = ""
     
     var childId = ""
-    var childName = ""
+    
+    var OptionText = ""
+    var Purpose = ""
     
     //End of mandatory arguments
+    
+    var childName = ""
+    
+    var hideHeader = true;
     
     var hideFutureDates = false;
     var hidePastDate = false;
@@ -49,6 +55,9 @@ class RegisterdHoursController: UIViewController {
     // We cache our colors because we do not want to be creating
     // a new color every time a cell is displayed. We do not want a laggy
     // scrolling calendar.
+    
+    
+    @IBOutlet weak var TopPadding: UIView!
     
     @IBOutlet weak var yearLabel: UILabel!
     
@@ -112,6 +121,8 @@ class RegisterdHoursController: UIViewController {
         RightTopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         RightTopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         
+        TopPadding.backgroundColor = _ApplicatoinColours.BackGroundColour
+        
         view.backgroundColor =  _ApplicatoinColours.BackGroundColour
         
         bottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
@@ -133,7 +144,7 @@ class RegisterdHoursController: UIViewController {
         }
         if(selectCalendarPurpose == .RegistrationHours)
         {
-            editSegueIdentifier = "GoToRgisterHoursEditor"
+            editSegueIdentifier = "GoToEditTimeStampOrRegisteredHoours"
             
             startLabel.text = "Start"
             finishLabel.text = "Finish"
@@ -156,12 +167,28 @@ class RegisterdHoursController: UIViewController {
         
         // Setup Cell text
         myCustomCell.dayLabel.text = cellState.text
+        
+        
+        //if(cellState.dateBelongsTo == .thisMonth){
+        //myCustomCell.dayLabel.textColor = _ApplicatoinColours.Red
+          //  }
+            //else
+            //{ myCustomCell.dayLabel.textColor = _ApplicatoinColours.Red
+           // }
+        
+        if cellState.dateBelongsTo == .thisMonth {
+            myCustomCell.isUserInteractionEnabled = true
+        } else {
+                       myCustomCell.isUserInteractionEnabled = false
+        }
+        
+        
         myCustomCell.selectedView.backgroundColor = _ApplicatoinColours.White
         
         handleCellTextColor(view: cell, cellState: cellState)
         handleCellSelection(view: cell, cellState: cellState)
         
-         lastSelectedDate = date
+         //lastSelectedDate = date
         
         //makeFutureDatesUnselectable = false
         //makePastDatesUnselectable = false
@@ -193,7 +220,7 @@ class RegisterdHoursController: UIViewController {
         let cellState = calendarView.cellStatus(at: point)
         print(cellState!.date)
         
-       // lastSelectedDate = cellState!.date
+       
         
     }
     
@@ -207,6 +234,8 @@ class RegisterdHoursController: UIViewController {
         //} else {
           //  return false
         //}
+        
+        lastSelectedDate = date
         
         return true
         
@@ -222,6 +251,25 @@ class RegisterdHoursController: UIViewController {
      */
     func setupConstraints() {
     
+        //Top Padding
+        
+        TopPadding.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        TopPadding.leadingAnchor.constraint(
+            equalTo: view.leadingAnchor).isActive = true
+        //right
+        TopPadding.trailingAnchor.constraint(
+            equalTo: view.trailingAnchor).isActive = true
+        
+        //top
+        TopPadding.topAnchor.constraint(
+            equalTo: view.topAnchor).isActive = true
+
+        TopPadding.heightAnchor.constraint(
+            equalTo: view.heightAnchor, multiplier: 0.08).isActive = true
+        
+        
     //Top container
         
         topContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -235,14 +283,17 @@ class RegisterdHoursController: UIViewController {
         
         //top
         topContainer.topAnchor.constraint(
-            equalTo: view.topAnchor, constant: 20).isActive = true
+            equalTo: TopPadding.bottomAnchor).isActive = true
+        
+        topContainer.heightAnchor.constraint(
+            equalTo: view.heightAnchor, multiplier : 0.15).isActive = true
         
         //YEAR label
         yearLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //left
         yearLabel.leadingAnchor.constraint(
-            equalTo: topContainer.leadingAnchor).isActive = true
+            equalTo: topContainer.leadingAnchor, constant: 15 ).isActive = true
         
         //top
         yearLabel.topAnchor.constraint(
@@ -257,7 +308,7 @@ class RegisterdHoursController: UIViewController {
         
         //right
         homeButton.trailingAnchor.constraint(
-            equalTo: topContainer.trailingAnchor).isActive = true
+            equalTo: topContainer.trailingAnchor, constant: -15).isActive = true
         
         homeButton.widthAnchor.constraint(
             equalToConstant: 20).isActive = true
@@ -317,7 +368,7 @@ class RegisterdHoursController: UIViewController {
         
         //height
         calendarView.heightAnchor.constraint(
-            equalTo: view.heightAnchor, multiplier: 0.70).isActive = true
+            equalTo: view.heightAnchor, multiplier: 0.60).isActive = true
         
         bottomContainer.translatesAutoresizingMaskIntoConstraints = false
         
@@ -462,12 +513,13 @@ class RegisterdHoursController: UIViewController {
         }
         
         if cellState.isSelected {
-            myCustomCell.dayLabel.textColor = _ApplicatoinColours.Black
+            myCustomCell.dayLabel.textColor = _ApplicatoinColours.Red
         } else {
             if cellState.dateBelongsTo == .thisMonth {
                 myCustomCell.dayLabel.textColor = _ApplicatoinColours.Black
             } else {
-                myCustomCell.dayLabel.textColor = _ApplicatoinColours.Black
+                 myCustomCell.dayLabel.textColor = _ApplicatoinColours.BackGroundColour
+                
             }
         }
     }
@@ -489,6 +541,9 @@ class RegisterdHoursController: UIViewController {
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
         handleCellSelection(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
+        
+        fetchTimeStamps()
+        
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
@@ -508,19 +563,34 @@ class RegisterdHoursController: UIViewController {
     */
     
     // This sets the height of your header
-    func calendar(_ calendar: JTAppleCalendarView, sectionHeaderSizeFor range: (start: Date, end: Date), belongingTo month: Int) -> CGSize {
-        return CGSize(width: 200, height: 40)
+    func calendar(_ calendar: JTAppleCalendarView, sectionHeaderSizeFor range: (start: Date, end: Date), belongingTo month: Int) ->
+        
+        CGSize {
+            var height = 40
+            
+            if(hideHeader){
+            height = 0
+            }
+            
+        return CGSize(width: 200, height: height)
     }
+    
     // This setups the display of your header
     func calendar(_ calendar: JTAppleCalendarView, willDisplaySectionHeader header: JTAppleHeaderView, range: (start: Date, end: Date), identifier: String) {
         
         let headerCell = (header as? TimeStampsSectionHeaderView)
         headerCell?.title.text = "Registered Hours"
         headerCell?.backgroundColor = _ApplicatoinColours.White
+        
+        if(hideHeader){
+            headerCell?.title.textColor = _ApplicatoinColours.BackGroundColour
+        }
+        else
+        {
+        headerCell?.title.textColor = _ApplicatoinColours.White
+        }
        
     }
-    
-    
     
     // Also add this delegate function.
     // This tells the calendar which headerView you want displayed for a particular date.
@@ -544,17 +614,17 @@ class RegisterdHoursController: UIViewController {
         return "TimeStampsSectionHeaderView"
     }
     
-    
-    
     /*!
      @brief Preparing to segue.
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-         if (segue.identifier == "GoToRgisterHoursEditor") {
+        
+        
+         if (segue.identifier == "GoToEditTimeStampOrRegisteredHoours") {
         }
         
-        if (segue.identifier == "GoToTimeStampsEditor") {
+        if (segue.identifier == "GoToEditTimeStampOrRegisteredHoours") {
             
             //Settings the menu details.
             
@@ -595,9 +665,7 @@ class RegisterdHoursController: UIViewController {
                 vc.Time = dateFormatter.string(from: chosenDate) as String
                 
                vc.DateAsObject = chosenDate
-                
             }
-            
         }
     }
     
@@ -609,7 +677,7 @@ class RegisterdHoursController: UIViewController {
         startSelected = true
         endSelected = false
         
-        selectedStartDate = lastSelectedDate
+        //selectedStartDate = lastSelectedDate
         
         showActionSheet()
 
@@ -623,7 +691,7 @@ class RegisterdHoursController: UIViewController {
         startSelected = false
         endSelected = true
         
-        selectedEndDate = lastSelectedDate
+        //selectedEndDate = lastSelectedDate
         
         showActionSheet()
         
@@ -635,13 +703,14 @@ class RegisterdHoursController: UIViewController {
         let optionMenu = UIAlertController(title: nil, message: "What would you like to do?", preferredStyle: .actionSheet)
         
         // 2
-        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: {
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.performSegue(withIdentifier: self.editSegueIdentifier, sender: nil)
+            
         })
         let saveAction = UIAlertAction(title: "Edit", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            print("File Edited")
+           self.performSegue(withIdentifier: self.editSegueIdentifier, sender: nil)
+            
         })
         
         //
@@ -652,18 +721,124 @@ class RegisterdHoursController: UIViewController {
         
         
         // 4
-        optionMenu.addAction(deleteAction)
         optionMenu.addAction(saveAction)
+              optionMenu.addAction(deleteAction)
         optionMenu.addAction(cancelAction)
         
         // 5
         self.present(optionMenu, animated: true, completion: nil)
     }
     
+    func fetchTimeStamps()
+    {
+        var retrievedStartStamp = ""
+        var retrievedEndStamp = ""
+    
+        self.childId = self.childId.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        PersonLogRequests.sharedInstance.GetLogins(personId: self.childId as String, targetDate: lastSelectedDate as NSDate, onCompletion: { json in
 
+            for (index: _, subJson: JSON) in json {
+                
+                let log = PersonLog()
+                
+                log.PersonId = JSON["PersonId"].stringValue as NSString
+                log.Id = JSON["Id"].stringValue as NSString
+                
+                log.Action = JSON["Action"].stringValue as NSString
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+                
+                let timeStamp = JSON["TimeStamp"].stringValue
+                
+                var newDate = dateFormatter.date(from: timeStamp)
+                
+                if(newDate == nil){
+                    
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    
+                    newDate = dateFormatter.date(from: timeStamp)
+                    
+                    if(newDate == nil){
+                        continue
+                    }
+                }
+                
+                self.selectedStartDate = newDate!
+                
+                log.TimeStamp = newDate!
+                
+                dateFormatter.dateFormat = "HH:mm:ss"
+                retrievedStartStamp = dateFormatter.string(from: log.TimeStamp) as String
+                
+                             }
+            
+            DispatchQueue.main.async(execute: {
+                
+                self.startTime.text = retrievedStartStamp
+                
+            })
+            
+        })
+        
+        
+        //Logouts
+        
+         // print(childId)
+        //print(selectedEndDate)
+        
+        PersonLogRequests.sharedInstance.GetLogouts(personId: self.childId as String, targetDate: lastSelectedDate as NSDate, onCompletion: { json in
+            
+            for (index: _, subJson: JSON) in json {
+                
+                let log = PersonLog()
+                
+                log.PersonId = JSON["PersonId"].stringValue as NSString
+                log.Id = JSON["Id"].stringValue as NSString
+                
+                log.Action = JSON["Action"].stringValue as NSString
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+                
+                let timeStamp = JSON["TimeStamp"].stringValue
+                
+                print(timeStamp)
+                
+                var newDate = dateFormatter.date(from: timeStamp)
+                
+                if(newDate == nil){
+                    
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    
+                    newDate = dateFormatter.date(from: timeStamp)
+                    
+                    if(newDate == nil){
+                        continue
+                    }
+                }
+                
+                self.selectedEndDate = newDate!
+                
+                log.TimeStamp = newDate!
+                
+                dateFormatter.dateFormat = "HH:mm:ss"
+                retrievedEndStamp = dateFormatter.string(from: log.TimeStamp) as String
+                
+            }
+            
+            DispatchQueue.main.async(execute: {
+                
+                self.endTime.text = retrievedEndStamp
+                
+            })
+            
+        })
+    }
 }
 
-extension RegisterdHoursController: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
+extension RegisterdHoursTimeStampsCalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy dd MM"

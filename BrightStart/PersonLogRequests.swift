@@ -20,7 +20,7 @@ class PersonLogRequests: NSObject {
     /*!
      @brief Retrieves a list of logins.
      */
-    func GetLoginLogsByDateAndId(personId: String, targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
+    func GetLogByDateAndId(personId: String, targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
         var id = personId
         id = id.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -44,10 +44,8 @@ class PersonLogRequests: NSObject {
         })
     }
     
-    /*!
-     @brief Retrieves a list of logouts.
-     */
-    func GetLogoutLogsByDateAndId(personId: String,targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
+    
+    func GetLogins(personId: String,targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
         
@@ -60,7 +58,28 @@ class PersonLogRequests: NSObject {
         dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
         let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
         
-        let route = baseURL + "api/PersonLogLogic/GetLogoutLogsByDateAndId?persondId="+personId + "&stamp=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/PersonLogLogic/GetLoginLogsByDateAndId?personId="+personId + "&stamp=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId
+        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
+    }
+    
+    func GetLogouts(personId: String,targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let dateFormatter:DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
+        let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
+        
+        let route = baseURL + "api/PersonLogLogic/GetLogoutLogsByDateAnId?personId="+personId + "&stamp=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId
         makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
                 json, err in
