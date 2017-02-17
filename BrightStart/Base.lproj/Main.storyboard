@@ -9,35 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Time Stamps Menu Controller-->
-        <scene sceneID="ObX-h7-87H">
-            <objects>
-                <viewController id="oZ9-kI-RDE" customClass="TimeStampsMenuController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mTf-93-naQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="VYA-uH-rhk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ECr-tb-PVX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="WIA-Wz-Zy9"/>
-                    <connections>
-                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="UGs-zv-zra"/>
-                        <segue destination="rpo-Nf-bMu" kind="show" identifier="GoToSignIn" id="4sU-kP-4aC"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="" id="pg6-Za-dku"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="" id="CLS-7P-gAG"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="" id="alg-mK-Uqg"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Edit" id="JEL-oz-0qI"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="5Ux-gk-dCa"/>
-                        <segue destination="DxJ-3C-TAj" kind="show" identifier="" id="FfS-Nv-fza"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ucG-df-V9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4098" y="760"/>
-        </scene>
         <!--Clocking Table View Controller-->
         <scene sceneID="zsM-KM-dXk">
             <objects>
@@ -108,11 +79,12 @@
                     </refreshControl>
                     <connections>
                         <segue destination="7jx-4D-Oem" kind="show" identifier="GoToAuthyUsers" id="IcT-2W-qtj"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="rN0-IQ-Pr6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEi-4L-zl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4982" y="64"/>
+            <point key="canvasLocation" x="5318" y="91"/>
         </scene>
         <!--Date Selection View Controller-->
         <scene sceneID="3hl-0z-Pcu">
@@ -134,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FwM-dr-bnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5201" y="-2073"/>
+            <point key="canvasLocation" x="5318" y="-1739"/>
         </scene>
         <!--Person Search Table View Controller-->
         <scene sceneID="YgA-oE-yg2">
@@ -245,7 +217,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyN-uE-Jdv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6145" y="-352"/>
+            <point key="canvasLocation" x="6298" y="-824"/>
         </scene>
         <!--Time Stamps Editor View Controller-->
         <scene sceneID="l6i-UP-z4i">
@@ -338,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWA-ah-eRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6937" y="-824"/>
+            <point key="canvasLocation" x="7210" y="-824"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="Bfe-cQ-GSZ">
@@ -639,7 +611,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gyb-Pq-aJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3213.5999999999999" y="1510.7946026986508"/>
+            <point key="canvasLocation" x="3214" y="1585"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="wYL-Rx-9lI">
@@ -763,7 +735,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sy4-Cj-dGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="392.80000000000001" y="492.50374812593708"/>
+            <point key="canvasLocation" x="-1700" y="493"/>
         </scene>
         <!--Registerd Hours Time Stamps Calendar View Controller-->
         <scene sceneID="JCA-w8-RTd">
@@ -950,7 +922,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PlT-y7-fKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6276" y="-1501"/>
+            <point key="canvasLocation" x="6297" y="-1739"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="qyL-sf-bbz">
@@ -987,7 +959,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWk-wx-plk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2087" y="493"/>
+            <point key="canvasLocation" x="466" y="493"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LJc-9E-IFi">
@@ -1005,7 +977,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="au0-Zz-5rG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1304.8" y="492.50374812593708"/>
+            <point key="canvasLocation" x="-658" y="493"/>
         </scene>
         <!--Authy Person Search Table View Controller-->
         <scene sceneID="GG6-ke-Ws1">
@@ -1061,7 +1033,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWW-9d-1hY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-143" y="-1281"/>
+            <point key="canvasLocation" x="-242" y="-1417"/>
         </scene>
         <!--New Auhty View Controller-->
         <scene sceneID="M5n-E9-1H9">
@@ -1331,7 +1303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2jh-lc-HA5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2540" y="-1485"/>
+            <point key="canvasLocation" x="2662" y="-1417"/>
         </scene>
         <!--Authy Settings View Controller-->
         <scene sceneID="Rnj-5r-bNE">
@@ -1465,7 +1437,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aO-Dh-ghu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3564" y="-1486"/>
+            <point key="canvasLocation" x="3601" y="-1417"/>
         </scene>
         <!--Registration1 View Controller-->
         <scene sceneID="RmC-0B-7sv">
@@ -1702,14 +1674,14 @@
         <image name="ic_check" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4sU-kP-4aC"/>
-        <segue reference="FfS-Nv-fza"/>
-        <segue reference="pg6-Za-dku"/>
+        <segue reference="2qs-QS-n86"/>
+        <segue reference="rN0-IQ-Pr6"/>
+        <segue reference="CaC-2C-xM4"/>
+        <segue reference="nx9-xO-yGO"/>
+        <segue reference="Gez-8g-kB0"/>
+        <segue reference="Q5J-dV-oJS"/>
         <segue reference="1pJ-9N-iMH"/>
         <segue reference="AaN-mO-ooE"/>
-        <segue reference="ULa-J9-Ttu"/>
-        <segue reference="wG7-yc-5Up"/>
-        <segue reference="Q5J-dV-oJS"/>
-        <segue reference="nx9-xO-yGO"/>
+        <segue reference="XfL-MG-fp5"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,7 +15,16 @@ enum MenuTypes: Int {
     case AuthyUsers
 }
 
+enum SearchPersonSegueTypes: Int {
+    case Edit
+    case Delete
+    case Search
+    case Missing
+}
+
 class MainMenuViewController: UIViewController {
+    
+    var loadingSpiiner: ProgressHUD!
     
     var selectedAuhtyId: NSString!
     
@@ -69,11 +78,31 @@ class MainMenuViewController: UIViewController {
         
       loadMenuAssets()
         
+        
+        // Create and add the view to the screen.
+        loadingSpiiner = ProgressHUD(text: "Loading")
+        
+        self.view.addSubview(loadingSpiiner)
+        hideSpinner()
+        
+        
     }
     
     func fetchAuthyUsersBelongingToChild()
     {
         
+    }
+    
+    func showSpinner()
+    {
+        loadingSpiiner.show()
+    }
+    
+    func hideSpinner()
+    {
+        //if(loadingSpiiner!=nil){
+        loadingSpiiner.hide()
+        //}
     }
     
     func setSelectedAuthyId(authyID: NSString)
@@ -91,11 +120,11 @@ class MainMenuViewController: UIViewController {
         switch selectedMenu {
         case .MainMenu:
             
-            images = [UIImage(named: "Register")!, UIImage(named: "Forecast")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Information")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Register")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Information")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRegister", "GoToForecast", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToInformation", "GoToSignIn"]
+            segueIdList = ["GoToRegister", "GoToRegisteredHours", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToInformation", "GoToSignIn"]
             
-            DisplayTextList = ["Register",  "Forecast", "Time Stamps", "Auhty", "Informaiton", "Sign Out"]
+            DisplayTextList = ["Register",  "Registered Hours", "Time Stamps", "Auhty", "Informaiton", "Sign Out"]
             
             authyIdList = ["",  "", "", "", "", ""]
             
@@ -180,22 +209,21 @@ class MainMenuViewController: UIViewController {
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             self.collectionView.reloadData()
+                           
                         }
                         
                     })
                     
             })
-    
-            
         }
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 
     //Initialising a collection view and addit it to the view controllers current view
     func setupCollectionView()
@@ -398,7 +426,6 @@ class MainMenuViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        
         if (segue.identifier == "GoToSearchPerson_Edit") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
@@ -408,15 +435,7 @@ class MainMenuViewController: UIViewController {
             }
         }
             
-        else if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
-            
-            if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
-                
-                vc.Purpose = "GoToSearchPerson_ExtraMinutes"
-                //vc.childId = self.SelectedPersonId as String
-                //vc.childName = self.SelectedPersonFullName as String
-            }
-        }
+        
             
         else if (segue.identifier == "GoToSearchPerson_Delete") {
             
@@ -446,6 +465,16 @@ class MainMenuViewController: UIViewController {
                 vc.Purpose = "GoToSearchPerson_Missing"
                 
                 
+            }
+        }
+            
+        else if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
+            
+            if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                
+                vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+                //vc.childId = self.SelectedPersonId as String
+                //vc.childName = self.SelectedPersonFullName as String
             }
         }
         
@@ -568,6 +597,9 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     
     override func viewWillAppear(_ animated: Bool) {
         
+        hideSpinner()
+
+        
          if(!showNavigationBar){
             super.viewWillAppear(animated)
             self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -596,6 +628,9 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.collectionView.reloadData()
+            
+            self.hideSpinner()
+            
         }
        
     }

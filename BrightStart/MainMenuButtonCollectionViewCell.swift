@@ -18,6 +18,8 @@ protocol MainMenuButtonCollectionViewCellDelegate {
     func renderMenuAssets(menuType: MenuTypes)
     
      func setSelectedAuthyId(authyID: NSString)
+    
+     func showSpinner()
 }
 
 class MainMenuButtonCollectionViewCell: UICollectionViewCell {
@@ -72,6 +74,8 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
     }
     
     func changeColor() {
+        
+        delegate?.showSpinner()
         
         delegate?.changeColorOfButton(forCell: self)
         

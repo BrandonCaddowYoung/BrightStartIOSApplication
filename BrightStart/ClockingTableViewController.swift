@@ -88,6 +88,23 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         
         refresh()
         
+        
+        let threeFingerTap = UITapGestureRecognizer(target: self,
+                                               action: #selector(ClockingTableViewController.tapDetected as
+                                                (ClockingTableViewController) -> () -> ()))
+        threeFingerTap.numberOfTapsRequired = 1
+        threeFingerTap.numberOfTouchesRequired = 3
+        
+        self.view.addGestureRecognizer(threeFingerTap)
+        
+        
+    }
+    
+    func tapDetected() {
+        
+        //Put system password here!
+        
+         self.performSegue(withIdentifier: "GoToMainMenu", sender: self)
     }
     
     @IBOutlet weak var searchTextField: UITextField!{
@@ -299,14 +316,23 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
     
-    
-    
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-    
-    if (segue.identifier! == "GoToAuthyUsers") {
+        if (segue.identifier! == "GoToMainMenu") {
+            
+            //Settings the menu details.
+            
+            //Need to get the specific user. so navigate to menu.
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
+                
+                vc.selectedMenu = .MainMenu
+            }
+        }
+        
+    else if (segue.identifier! == "GoToAuthyUsers") {
     
     //Settings the menu details.
     

@@ -103,9 +103,7 @@ class TimeStampsEditorViewController: UIViewController {
         
         DateTimePicker.datePickerMode = UIDatePickerMode.time
         
-         DateTimePicker.maximumDate = NSDate() as Date
-        
-       
+        DateTimePicker.maximumDate = NSDate() as Date
         
     }
 

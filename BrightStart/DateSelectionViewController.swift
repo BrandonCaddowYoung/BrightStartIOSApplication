@@ -212,11 +212,11 @@ class DateSelectionViewController: UIViewController {
                 
                 //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
                 
-                vc.images = [UIImage(named: "Register")!, UIImage(named: "Forecast")!, UIImage(named: "TimeCard")!, UIImage(named: "Information")!, UIImage(named: "SignOut")!]
+                vc.images = [UIImage(named: "Register")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Information")!, UIImage(named: "SignOut")!]
                 
-                vc.segueIdList = ["GoToRegister", "GoToForecast", "GoToTimeStampsMenu", "GoToInformation", "GoToSignIn"]
+                vc.segueIdList = ["GoToRegister", "GoToRegisteredHours", "GoToTimeStampsMenu", "GoToInformation", "GoToSignIn"]
                 
-                vc.DisplayTextList = ["Register",  "Forecast", "Time Stamps", "Informaiton", "Sign Out"]
+                vc.DisplayTextList = ["Register",  "Registered Hours", "Time Stamps", "Informaiton", "Sign Out"]
                 
             }
             //}
