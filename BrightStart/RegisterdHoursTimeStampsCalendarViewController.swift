@@ -237,6 +237,15 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         lastSelectedDate = date
         
+        if(Purpose == "GoToSearchPerson_Search")
+        {
+         self.performSegue(withIdentifier: "GoToSearchPerson_Search", sender: nil)
+        }
+        else if(Purpose == "GoToSearchPerson_ExtraMinutes")
+        {
+            self.performSegue(withIdentifier: "GoToSearchPerson_ExtraMinutes", sender: nil)
+        }
+        
         return true
         
     }
@@ -619,12 +628,37 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        
-        
-         if (segue.identifier == "GoToEditTimeStampOrRegisteredHoours") {
+        if (segue.identifier == "GoToSearchPerson_Search") {
+            
+            if let vc = segue.destination as? TimeStampSearchTableViewController {
+                
+                vc.TargetDate = lastSelectedDate
+                
+                //Because it was 00:00 it thought it was the next day, so just rewinding the click 60 mintes.
+                 vc.TargetDate = vc.TargetDate.addingTimeInterval(60)
+                
+                
+                vc.TargetPersonId = childId as NSString!
+                vc.SelectedPersonFullName = childName as NSString!
+                
+                vc.OptionText = "Searching time stamps"
+                
+            }
         }
-        
-        if (segue.identifier == "GoToEditTimeStampOrRegisteredHoours") {
+            
+        else if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
+            
+            if let vc = segue.destination as? PersonSearchTableViewController {
+                
+                vc.targetDate = lastSelectedDate
+                
+                vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+                vc.successSegueIdentifier = "GoToTimeStampsMenu"
+                
+            }
+        }
+            
+        else if (segue.identifier == "GoToEditTimeStampOrRegisteredHoours") {
             
             //Settings the menu details.
             

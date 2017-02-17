@@ -26,16 +26,17 @@
                     <connections>
                         <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="UGs-zv-zra"/>
                         <segue destination="rpo-Nf-bMu" kind="show" identifier="GoToSignIn" id="4sU-kP-4aC"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Search" id="pg6-Za-dku"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Delete" id="CLS-7P-gAG"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Missing" id="alg-mK-Uqg"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="" id="pg6-Za-dku"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="" id="CLS-7P-gAG"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="" id="alg-mK-Uqg"/>
                         <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Edit" id="JEL-oz-0qI"/>
                         <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="5Ux-gk-dCa"/>
+                        <segue destination="DxJ-3C-TAj" kind="show" identifier="" id="FfS-Nv-fza"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucG-df-V9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3214" y="-531"/>
+            <point key="canvasLocation" x="3676" y="457"/>
         </scene>
         <!--Clocking Table View Controller-->
         <scene sceneID="zsM-KM-dXk">
@@ -111,7 +112,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEi-4L-zl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3943" y="143"/>
+            <point key="canvasLocation" x="4982" y="64"/>
         </scene>
         <!--Date Selection View Controller-->
         <scene sceneID="3hl-0z-Pcu">
@@ -244,7 +245,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyN-uE-Jdv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6166" y="-576"/>
+            <point key="canvasLocation" x="6145" y="-352"/>
         </scene>
         <!--Time Stamps Editor View Controller-->
         <scene sceneID="l6i-UP-z4i">
@@ -943,11 +944,13 @@
                         <outlet property="topContainer" destination="Rhv-fx-Z9a" id="anv-77-cl6"/>
                         <outlet property="yearLabel" destination="giR-fa-apM" id="7Ct-fF-rG0"/>
                         <segue destination="Ltl-fa-ugS" kind="show" identifier="GoToEditTimeStampOrRegisteredHoours" id="1pJ-9N-iMH"/>
+                        <segue destination="pK2-Kf-PmB" kind="show" identifier="GoToSearchPerson_Search" id="AaN-mO-ooE"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="fQC-lD-NUF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PlT-y7-fKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6166" y="-1233"/>
+            <point key="canvasLocation" x="6276" y="-1501"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="qyL-sf-bbz">
@@ -975,6 +978,12 @@
                         <segue destination="GhA-9F-S6O" kind="show" identifier="GoToTestAuthyUser" id="j5x-qr-qjo"/>
                         <segue destination="KDk-fE-MOK" kind="show" identifier="GoToAuthyAuthenticate" id="nx9-xO-yGO"/>
                         <segue destination="Xhn-Yw-DuQ" kind="show" identifier="GoToAuthySettings" id="fsy-fY-g8z"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Search" id="xMR-cl-oyC"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Delete" id="aF2-xS-JhH"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Missing" id="QYF-Vt-zQG"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Edit" id="8dd-Rc-eUC"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="Vhs-qE-687"/>
+                        <segue destination="DxJ-3C-TAj" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="Gez-8g-kB0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWk-wx-plk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1694,13 +1703,15 @@
         <image name="ic_check" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nsv-nL-A1z"/>
-        <segue reference="1pJ-9N-iMH"/>
-        <segue reference="XfL-MG-fp5"/>
-        <segue reference="dQm-Sj-sjy"/>
+        <segue reference="Ix8-B2-Zha"/>
+        <segue reference="UGs-zv-zra"/>
+        <segue reference="wG7-yc-5Up"/>
         <segue reference="Q5J-dV-oJS"/>
-        <segue reference="Eu4-6W-vLY"/>
-        <segue reference="CaC-2C-xM4"/>
+        <segue reference="Vhs-qE-687"/>
+        <segue reference="nx9-xO-yGO"/>
         <segue reference="4sU-kP-4aC"/>
+        <segue reference="FfS-Nv-fza"/>
+        <segue reference="1pJ-9N-iMH"/>
+        <segue reference="AaN-mO-ooE"/>
     </inferredMetricsTieBreakers>
 </document>

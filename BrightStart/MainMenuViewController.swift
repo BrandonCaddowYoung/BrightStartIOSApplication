@@ -16,7 +16,7 @@ enum MenuTypes: Int {
 }
 
 class MainMenuViewController: UIViewController {
-
+    
     var selectedAuhtyId: NSString!
     
     var childId: NSString!
@@ -69,21 +69,16 @@ class MainMenuViewController: UIViewController {
         
       loadMenuAssets()
         
-        
     }
     
     func fetchAuthyUsersBelongingToChild()
     {
-    
-        
         
     }
     
     func setSelectedAuthyId(authyID: NSString)
     {
-    
         self.selectedAuhtyId = authyID
-        
     }
     
     func loadMenuAssets()
@@ -106,25 +101,17 @@ class MainMenuViewController: UIViewController {
             
         case .TimeStamps:
             
-            images = [UIImage(named: "Search")!, UIImage(named: "Edit")!, UIImage(named: "Delete")!, UIImage(named: "Expired")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Search")!, UIImage(named: "Edit")!, UIImage(named: "Delete")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToSearchPerson_ExtraMinutes", "GoToMainMenu", "GoToSignIn"]
+            segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToMainMenu", "GoToSignIn"]
             
-            DisplayTextList = ["Search",  "Edit", "Delete", "Late/Early", "Home", "Sign Out"]
+            DisplayTextList = ["Search",  "Edit", "Delete", "Home", "Sign Out"]
             
-            authyIdList = ["", "", "", "", "", ""]
+            authyIdList = ["", "", "", "", ""]
             
             showNavigationBar = true
             
         case .Authy:
-            
-           // images = [UIImage(named: "AddUserMale")!, UIImage(named: "RemoveUserMale")!, UIImage(named: "Delete")!, UIImage(named: "TestTube")!, UIImage(named: "Search")! , UIImage(named: "Settings")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
-            
-           // segueIdList = ["GoToNewAuthyUser", "GoToDisableAuhtyUser", "GoToDeleteAuhtyUser", "GoToTestAuthyUser", "GoToSearchAuthyUsers", "GoToAuthySettings", "GoToMainMenu", "GoToSignIn"]
-            
-          //  DisplayTextList = ["New User",  "Disable For Child", "Delete User", "Test User", "Search Users", "Settings", "Home", "Sign Out"]
-            
-          //  authyIdList = ["",  "", "", "", "", "", "", ""]
             
             images = [UIImage(named: "AddUserMale")!, UIImage(named: "TestTube")!,  UIImage(named: "Settings")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
             
@@ -411,7 +398,58 @@ class MainMenuViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "GoToTimeStampsMenu") {
+        
+        if (segue.identifier == "GoToSearchPerson_Edit") {
+            
+            if let vc = segue.destination as? PersonSearchTableViewController {
+                
+                vc.successSegueIdentifier = "GoToCalendar"
+                vc.Purpose = "GoToSearchPerson_Edit"
+            }
+        }
+            
+        else if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
+            
+            if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                
+                vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+                //vc.childId = self.SelectedPersonId as String
+                //vc.childName = self.SelectedPersonFullName as String
+            }
+        }
+            
+        else if (segue.identifier == "GoToSearchPerson_Delete") {
+            
+            if let vc = segue.destination as? PersonSearchTableViewController {
+                
+                vc.successSegueIdentifier = "GoToCalendar"
+                vc.Purpose = "GoToSearchPerson_Delete"
+                
+            }
+        }
+            
+        else if (segue.identifier == "GoToSearchPerson_Search") {
+            
+            if let vc = segue.destination as? PersonSearchTableViewController {
+                
+                vc.successSegueIdentifier = "GoToCalendar"
+                vc.Purpose = "GoToSearchPerson_Search"
+                
+            }
+        }
+            
+        else if (segue.identifier == "GoToSearchPerson_Missing") {
+            
+            if let vc = segue.destination as? PersonSearchTableViewController {
+                
+                vc.successSegueIdentifier = "GoToCalendar"
+                vc.Purpose = "GoToSearchPerson_Missing"
+                
+                
+            }
+        }
+        
+       else if (segue.identifier == "GoToTimeStampsMenu") {
             
             //Settings the menu details.
             
@@ -546,6 +584,7 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
     }
     
     func performSegue(segueId: String) {
+        
             self.performSegue(withIdentifier: segueId, sender: self)
     }
     

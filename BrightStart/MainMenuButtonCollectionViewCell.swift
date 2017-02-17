@@ -85,6 +85,9 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         else if(segueText=="GoToMainMenu"){
             delegate?.renderMenuAssets(menuType: .MainMenu)
         }
+        else if(segueText=="GoToTimeStampsMenu"){
+            delegate?.renderMenuAssets(menuType: .TimeStamps)
+        }
         else{
             delegate?.performSegue(segueId: segueText)
         }

@@ -99,8 +99,9 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         
         self.children.removeAll();
         
-        if(Purpose=="GoToSearchPerson_ExtraMinutes")
+        if(successSegueIdentifier == "GoToTimeStampsMenu" && Purpose=="GoToSearchPerson_ExtraMinutes")
         {
+            
         //Get only the children who were late or early.
             
             //Retrieve all children
@@ -279,9 +280,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
      @brief Preparing to segue.
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        
-        print(segue.identifier)
-        
+       
         if (segue.identifier == "GoToTimeStampSearch") {
             
             //Settings the menu details.

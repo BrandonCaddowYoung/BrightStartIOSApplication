@@ -10,14 +10,14 @@ import UIKit
 
 class TimeStampsMenuController: MainMenuViewController {
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
        headingLabel.text = "Time Stamps"
         
     }
+    
+    var activeSegue = ""
     
     /*!
      @brief Preparing to segue.
@@ -33,17 +33,17 @@ class TimeStampsMenuController: MainMenuViewController {
             }
         }
         
-        if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
+       else if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
             
-            if let vc = segue.destination as? PersonSearchTableViewController {
+            if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                 
-                vc.successSegueIdentifier = "GoToCalendar"
                 vc.Purpose = "GoToSearchPerson_ExtraMinutes"
-                
+                //vc.childId = self.SelectedPersonId as String
+                //vc.childName = self.SelectedPersonFullName as String
             }
         }
         
-        if (segue.identifier == "GoToSearchPerson_Delete") {
+       else if (segue.identifier == "GoToSearchPerson_Delete") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
@@ -53,7 +53,7 @@ class TimeStampsMenuController: MainMenuViewController {
             }
         }
         
-        if (segue.identifier == "GoToSearchPerson_Search") {
+       else if (segue.identifier == "GoToSearchPerson_Search") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
@@ -63,7 +63,7 @@ class TimeStampsMenuController: MainMenuViewController {
             }
         }
         
-        if (segue.identifier == "GoToSearchPerson_Missing") {
+       else if (segue.identifier == "GoToSearchPerson_Missing") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
@@ -74,7 +74,7 @@ class TimeStampsMenuController: MainMenuViewController {
             }
         }
         
-        if (segue.identifier == "GoToMainMenu") {
+       else if (segue.identifier == "GoToMainMenu") {
             
             //Settings the menu details.
             
