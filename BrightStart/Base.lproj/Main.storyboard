@@ -36,7 +36,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucG-df-V9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3676" y="457"/>
+            <point key="canvasLocation" x="4098" y="760"/>
         </scene>
         <!--Clocking Table View Controller-->
         <scene sceneID="zsM-KM-dXk">
@@ -333,7 +333,7 @@
                         <outlet property="TargetCurrentTime" destination="Cyf-fE-vfa" id="8cO-jQ-Esx"/>
                         <outlet property="TargetDate" destination="UFo-ss-fsu" id="Ogr-Gy-SKn"/>
                         <outlet property="TargetPersonName" destination="EEe-tV-LEl" id="xfg-gq-gzW"/>
-                        <segue destination="oZ9-kI-RDE" kind="show" identifier="GoToTimeStampList" id="nsv-nL-A1z"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="ULa-J9-Ttu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWA-ah-eRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -973,7 +973,6 @@
                         <segue destination="xZG-mU-XJf" kind="show" identifier="GoToRegister" id="wG7-yc-5Up"/>
                         <segue destination="SU0-sR-NYn" kind="show" identifier="GoToInformation" id="EeO-x6-zkh"/>
                         <segue destination="yH9-Lk-dKG" kind="show" identifier="GoToForecast" id="Hwv-hL-FBY"/>
-                        <segue destination="oZ9-kI-RDE" kind="show" identifier="GoToTimeStampsMenu" id="Ix8-B2-Zha"/>
                         <segue destination="GhA-9F-S6O" kind="show" identifier="GoToNewAuthyUser" id="Q5J-dV-oJS"/>
                         <segue destination="GhA-9F-S6O" kind="show" identifier="GoToTestAuthyUser" id="j5x-qr-qjo"/>
                         <segue destination="KDk-fE-MOK" kind="show" identifier="GoToAuthyAuthenticate" id="nx9-xO-yGO"/>
@@ -1703,15 +1702,14 @@
         <image name="ic_check" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ix8-B2-Zha"/>
-        <segue reference="UGs-zv-zra"/>
-        <segue reference="wG7-yc-5Up"/>
-        <segue reference="Q5J-dV-oJS"/>
-        <segue reference="Vhs-qE-687"/>
-        <segue reference="nx9-xO-yGO"/>
         <segue reference="4sU-kP-4aC"/>
         <segue reference="FfS-Nv-fza"/>
+        <segue reference="pg6-Za-dku"/>
         <segue reference="1pJ-9N-iMH"/>
         <segue reference="AaN-mO-ooE"/>
+        <segue reference="ULa-J9-Ttu"/>
+        <segue reference="wG7-yc-5Up"/>
+        <segue reference="Q5J-dV-oJS"/>
+        <segue reference="nx9-xO-yGO"/>
     </inferredMetricsTieBreakers>
 </document>

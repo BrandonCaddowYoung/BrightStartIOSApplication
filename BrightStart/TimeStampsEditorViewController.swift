@@ -48,7 +48,7 @@ class TimeStampsEditorViewController: UIViewController {
                                                 DispatchQueue.main.async(execute: {
                                                     self.dismiss(animated: false, completion: {
                                                     
-                                                        self.performSegue(withIdentifier: "GoToTimeStampList", sender: nil)
+                                                        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
                                                     
                                                     })
                                                     
@@ -70,7 +70,7 @@ class TimeStampsEditorViewController: UIViewController {
                                                         DispatchQueue.main.async(execute: {
                                                             self.dismiss(animated: false, completion: {
                                                                 
-                                                                self.performSegue(withIdentifier: "GoToTimeStampList", sender: nil)
+                                                                self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
                                                                 
                                                             })
                                                             
@@ -275,9 +275,9 @@ class TimeStampsEditorViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "GoToTimeStampList") {
+        if (segue.identifier == "GoToMainMenu") {
             
-            if let vc = segue.destination as? TimeStampsMenuController {
+            if let vc = segue.destination as? MainMenuViewController {
                 
                 vc.images = [UIImage(named: "Search")!, UIImage(named: "Edit")!, UIImage(named: "Delete")!, UIImage(named: "Expired")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
                 
