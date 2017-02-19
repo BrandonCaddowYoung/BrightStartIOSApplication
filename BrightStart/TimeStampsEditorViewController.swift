@@ -277,15 +277,9 @@ class TimeStampsEditorViewController: UIViewController {
             
             if let vc = segue.destination as? MainMenuViewController {
                 
-                vc.images = [UIImage(named: "Search")!, UIImage(named: "Edit")!, UIImage(named: "Delete")!, UIImage(named: "Expired")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
+                //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
                 
-                vc.segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToSearchPerson_ExtraMinutes", "GoToMainMenu", "GoToSignIn"]
-                
-                vc.DisplayTextList = ["Search",  "Edit", "Delete", "Late/Early", "Home", "Sign Out"]
-                
-                vc.showNavigationBar = true
-                
-                vc.showNavigationBar = false
+                vc.selectedMenu = .MainMenu
                 
             }
             

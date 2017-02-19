@@ -24,12 +24,12 @@ class TimeStampsMenuController: MainMenuViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "GoToSearchPerson_Edit") {
+        if (segue.identifier == "TimeStamps_Edit") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "GoToSearchPerson_Edit"
+                vc.Purpose = "TimeStamps_Edit"
             }
         }
         
@@ -43,32 +43,32 @@ class TimeStampsMenuController: MainMenuViewController {
             }
         }
         
-       else if (segue.identifier == "GoToSearchPerson_Delete") {
+       else if (segue.identifier == "TimeStamps_Delete") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
-                 vc.Purpose = "GoToSearchPerson_Delete"
+                 vc.Purpose = "TimeStamps_Delete"
                 
             }
         }
         
-       else if (segue.identifier == "GoToSearchPerson_Search") {
+       else if (segue.identifier == "TimeStamps_Search") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "GoToSearchPerson_Search"
+                vc.Purpose = "TimeStamps_Search"
                 
             }
         }
         
-       else if (segue.identifier == "GoToSearchPerson_Missing") {
+       else if (segue.identifier == "TimeStamps_Missing") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "GoToSearchPerson_Missing"
+                vc.Purpose = "TimeStamps_Missing"
 
                 
             }

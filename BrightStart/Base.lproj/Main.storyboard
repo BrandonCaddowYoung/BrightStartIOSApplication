@@ -780,6 +780,10 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PlusMath100" translatesAutoresizingMaskIntoConstraints="NO" id="mf2-xb-nKW">
+                                                        <rect key="frame" x="50" y="74" width="51" height="56"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.1764705926" green="0.01176470611" blue="0.56078433989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
@@ -808,6 +812,10 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PlusMath100" translatesAutoresizingMaskIntoConstraints="NO" id="YLg-Td-nbJ">
+                                                        <rect key="frame" x="50" y="74" width="51" height="56"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.92549020049999997" green="0.23529411850000001" blue="0.1019607857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
@@ -902,6 +910,8 @@
                         <outlet property="LeftTopContainer" destination="RLM-i3-90l" id="zID-8c-xr2"/>
                         <outlet property="RightTopContainer" destination="lfJ-ED-Syj" id="doh-52-bGZ"/>
                         <outlet property="TopPadding" destination="JAQ-tD-wR6" id="XyL-QD-v4e"/>
+                        <outlet property="addNewButtonEnd" destination="mf2-xb-nKW" id="lhb-oM-VrV"/>
+                        <outlet property="addNewButtonStart" destination="YLg-Td-nbJ" id="ncf-xG-IPK"/>
                         <outlet property="bottomContainer" destination="ym3-Yg-y6Q" id="RPN-qZ-LCv"/>
                         <outlet property="calendarView" destination="FSW-9p-Ibt" id="WNT-DC-JrC"/>
                         <outlet property="endTime" destination="atB-9O-FPg" id="ceH-M9-uxM"/>
@@ -922,7 +932,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PlT-y7-fKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6297" y="-1739"/>
+            <point key="canvasLocation" x="6296.8000000000002" y="-1739.2803598200901"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="qyL-sf-bbz">
@@ -949,11 +959,7 @@
                         <segue destination="GhA-9F-S6O" kind="show" identifier="GoToTestAuthyUser" id="j5x-qr-qjo"/>
                         <segue destination="KDk-fE-MOK" kind="show" identifier="GoToAuthyAuthenticate" id="nx9-xO-yGO"/>
                         <segue destination="Xhn-Yw-DuQ" kind="show" identifier="GoToAuthySettings" id="fsy-fY-g8z"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Search" id="xMR-cl-oyC"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Delete" id="aF2-xS-JhH"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Missing" id="QYF-Vt-zQG"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_Edit" id="8dd-Rc-eUC"/>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="Vhs-qE-687"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson" id="xMR-cl-oyC"/>
                         <segue destination="DxJ-3C-TAj" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="Gez-8g-kB0"/>
                     </connections>
                 </viewController>
@@ -1668,6 +1674,7 @@
         <image name="Baby" width="100" height="100"/>
         <image name="BrightLogo" width="200" height="105"/>
         <image name="Home" width="100" height="100"/>
+        <image name="PlusMath100" width="100" height="100"/>
         <image name="SignedOut" width="100" height="100"/>
         <image name="Standing Man" width="100" height="100"/>
         <image name="SwipeLeft" width="100" height="100"/>
@@ -1675,13 +1682,13 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2qs-QS-n86"/>
-        <segue reference="rN0-IQ-Pr6"/>
-        <segue reference="CaC-2C-xM4"/>
-        <segue reference="nx9-xO-yGO"/>
-        <segue reference="Gez-8g-kB0"/>
-        <segue reference="Q5J-dV-oJS"/>
+        <segue reference="ULa-J9-Ttu"/>
         <segue reference="1pJ-9N-iMH"/>
+        <segue reference="Gez-8g-kB0"/>
+        <segue reference="fQC-lD-NUF"/>
         <segue reference="AaN-mO-ooE"/>
-        <segue reference="XfL-MG-fp5"/>
+        <segue reference="nx9-xO-yGO"/>
+        <segue reference="Q5J-dV-oJS"/>
+        <segue reference="CaC-2C-xM4"/>
     </inferredMetricsTieBreakers>
 </document>

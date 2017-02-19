@@ -13,16 +13,36 @@ enum MenuTypes: Int {
     case TimeStamps
     case Authy
     case AuthyUsers
+    case RegisteredHours
 }
 
-enum SearchPersonSegueTypes: Int {
-    case Edit
-    case Delete
-    case Search
-    case Missing
+enum PurposeTypes: Int {
+    
+    case None
+    
+    case Register
+    case information
+    case SignOut
+   
+    case RegisterdHours_Set
+    case RegisterdHours_Edit
+    case RegisteredHours_Delete
+    case RegisteredHours_Search
+    
+    case TimeStamps_Set
+    case TimeStamps_Edit
+    case TimeStamps_Delete
+    case TimeStamps_Search
+    case TimeStamps_Missing
+    
+    case Authy_NewUser
+    case Authy_Test
+    case Authy_Settings
 }
 
 class MainMenuViewController: UIViewController {
+    
+   var targetPurpose: PurposeTypes!
     
     var loadingSpiiner: ProgressHUD!
     
@@ -56,11 +76,18 @@ class MainMenuViewController: UIViewController {
     
     var DisplayTextList = ["",  "", "", ""]
 
+    var PurposeList = [PurposeTypes]()
+    
     var segueIdList = ["", "", "", ""]
     
     var authyIdList = ["", "", "", ""]
     
     var showNavigationBar = false
+    
+    func setTargetPurpose(type: PurposeTypes)
+    {
+        targetPurpose = type
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +149,9 @@ class MainMenuViewController: UIViewController {
             
             images = [UIImage(named: "Register")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Information")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRegister", "GoToRegisteredHours", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToInformation", "GoToSignIn"]
+            segueIdList = ["GoToRegister", "GoToRegisteredHoursMenu", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToInformation", "GoToSignIn"]
+            
+            PurposeList = [PurposeTypes.Register, PurposeTypes.None, PurposeTypes.None, PurposeTypes.None, PurposeTypes.information, PurposeTypes.SignOut]
             
             DisplayTextList = ["Register",  "Registered Hours", "Time Stamps", "Auhty", "Informaiton", "Sign Out"]
             
@@ -132,7 +161,9 @@ class MainMenuViewController: UIViewController {
             
             images = [UIImage(named: "Search")!, UIImage(named: "Edit")!, UIImage(named: "Delete")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToSearchPerson_Search", "GoToSearchPerson_Edit", "GoToSearchPerson_Delete", "GoToMainMenu", "GoToSignIn"]
+            segueIdList = ["GoToSearchPerson", "GoToSearchPerson", "GoToSearchPerson", "GoToMainMenu", "GoToSignIn"]
+            
+             PurposeList = [PurposeTypes.TimeStamps_Search, PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Delete, PurposeTypes.None, PurposeTypes.SignOut]
             
             DisplayTextList = ["Search",  "Edit", "Delete", "Home", "Sign Out"]
             
@@ -140,11 +171,29 @@ class MainMenuViewController: UIViewController {
             
             showNavigationBar = true
             
+            
+        case .RegisteredHours:
+            
+            images = [UIImage(named: "Binoculars100")!, UIImage(named: "Fantasy100")!,UIImage(named: "PencilTip100")!, UIImage(named: "Delete")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
+            
+            segueIdList = ["GoToSearchPerson", "GoToSearchPerson","GoToSearchPerson", "GoToSearchPerson", "GoToMainMenu", "GoToSignIn"]
+            
+            PurposeList = [PurposeTypes.RegisteredHours_Search, PurposeTypes.RegisterdHours_Set, PurposeTypes.RegisterdHours_Edit, PurposeTypes.RegisteredHours_Delete, PurposeTypes.None, PurposeTypes.SignOut]
+            
+            DisplayTextList = ["Search",  "Set", "Edit","Delete", "Home", "Sign Out"]
+            
+            authyIdList = ["", "", "", "","", ""]
+            
+            showNavigationBar = true
+            
+            
         case .Authy:
             
             images = [UIImage(named: "AddUserMale")!, UIImage(named: "TestTube")!,  UIImage(named: "Settings")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
             
             segueIdList = ["GoToNewAuthyUser", "GoToTestAuthyUser", "GoToAuthySettings", "GoToMainMenu", "GoToSignIn"]
+            
+            PurposeList = [PurposeTypes.Authy_NewUser, PurposeTypes.Authy_Test, PurposeTypes.Authy_Settings, PurposeTypes.None, PurposeTypes.SignOut]
             
             DisplayTextList = ["New User",  "Test User", "Settings", "Home", "Sign Out"]
             
@@ -426,58 +475,108 @@ class MainMenuViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "GoToSearchPerson_Edit") {
+        if (segue.identifier == "GoToSearchPerson") {
+            
+            if(targetPurpose == .TimeStamps_Edit)
+            {
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToCalendar"
+                    vc.Purpose = "TimeStamps_Edit"
+                }
+            }
+            
+            
+            else if(targetPurpose == .TimeStamps_Delete)
+            {
+                
+            if let vc = segue.destination as? PersonSearchTableViewController {
+                
+                vc.successSegueIdentifier = "GoToCalendar"
+                vc.Purpose = "TimeStamps_Delete"
+                
+            }
+            }
+            
+            else if(targetPurpose == .TimeStamps_Search)
+            {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "GoToSearchPerson_Edit"
+                vc.Purpose = "TimeStamps_Search"
+                
             }
-        }
+            }
             
-        
-            
-        else if (segue.identifier == "GoToSearchPerson_Delete") {
-            
+            else if(targetPurpose == .TimeStamps_Missing)
+            {
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "GoToSearchPerson_Delete"
-                
-            }
-        }
-            
-        else if (segue.identifier == "GoToSearchPerson_Search") {
-            
-            if let vc = segue.destination as? PersonSearchTableViewController {
-                
-                vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "GoToSearchPerson_Search"
-                
-            }
-        }
-            
-        else if (segue.identifier == "GoToSearchPerson_Missing") {
-            
-            if let vc = segue.destination as? PersonSearchTableViewController {
-                
-                vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "GoToSearchPerson_Missing"
+                vc.Purpose = "TimeStamps_Missing"
                 
                 
             }
-        }
+            }
             
-        else if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
-            
+            else if(targetPurpose == .TimeStamps_Edit)
+            {
             if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                
+                vc.selectCalendarPurpose = .TimeStamps
                 
                 vc.Purpose = "GoToSearchPerson_ExtraMinutes"
                 //vc.childId = self.SelectedPersonId as String
                 //vc.childName = self.SelectedPersonFullName as String
             }
+            }
+            
+           else if(targetPurpose == .RegisterdHours_Edit)
+            {
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToCalendar"
+                    vc.Purpose = "RegisteredHours_Edit"
+                }
+            }
+                
+                
+            else if(targetPurpose == .RegisteredHours_Delete)
+            {
+                
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToCalendar"
+                    vc.Purpose = "RegisteredHours_Delete"
+                    
+                }
+            }
+                
+            else if(targetPurpose == .RegisteredHours_Search)
+            {
+                
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToCalendar"
+                    vc.Purpose = "RegisteredHours_Search"
+                    
+                }
+            }
+                
+            else if(targetPurpose == .RegisterdHours_Set)
+            {
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToCalendar"
+                    vc.Purpose = "RegisteredHours_Missing"
+                    
+                    
+                }
+            }
+            
         }
-        
+       
        else if (segue.identifier == "GoToTimeStampsMenu") {
             
             //Settings the menu details.
@@ -570,6 +669,7 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         
         cell.segueText = segueIdList[indexPath.row]
         
+        cell.targetPurpose = PurposeList[indexPath.row]
         
         return cell
     }

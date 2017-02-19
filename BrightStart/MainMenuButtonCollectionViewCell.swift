@@ -19,7 +19,9 @@ protocol MainMenuButtonCollectionViewCellDelegate {
     
      func setSelectedAuthyId(authyID: NSString)
     
-     func showSpinner()
+    func setTargetPurpose(type: PurposeTypes)
+    
+    func showSpinner()
 }
 
 class MainMenuButtonCollectionViewCell: UICollectionViewCell {
@@ -28,6 +30,7 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
     
     var authyId: String = ""
     var segueText: String = ""
+    var targetPurpose: PurposeTypes!
     var displayText: String = ""
     var button: UIButton!
     var label: UILabel!
@@ -77,6 +80,8 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         
         delegate?.showSpinner()
         
+        delegate?.setTargetPurpose(type: targetPurpose)
+        
         delegate?.changeColorOfButton(forCell: self)
         
         //If segueing to another menu, we need to do something differently as we have to segue to ourself!
@@ -91,6 +96,9 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         }
         else if(segueText=="GoToTimeStampsMenu"){
             delegate?.renderMenuAssets(menuType: .TimeStamps)
+        }
+        else if(segueText=="GoToRegisteredHoursMenu"){
+            delegate?.renderMenuAssets(menuType: .RegisteredHours)
         }
         else{
             delegate?.performSegue(segueId: segueText)

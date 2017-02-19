@@ -82,6 +82,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         
         indicator.startAnimating()
         indicator.backgroundColor = UIColor.white
+        indicator.hidesWhenStopped = true
         
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -147,7 +148,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     sender?.endRefreshing()
                     
                     self.indicator.stopAnimating()
-                    self.indicator.hidesWhenStopped = true
+                    
                     
                 })
                 
@@ -196,6 +197,9 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     
                     self.tableView.reloadData()
                     sender?.endRefreshing()
+                    
+                    self.indicator.stopAnimating()
+                    
                     
                 })
                 
@@ -312,13 +316,14 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         if (segue.identifier! == "GoToCalendar") {
             
             
-            if(self.Purpose == "GoToSearchPerson_Edit")
+            if(self.Purpose == "TimeStamps_Edit")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
                     vc.childId = self.SelectedPersonId as String
                     vc.childName = self.SelectedPersonFullName as String
-                    vc.Purpose = "GoToSearchPerson_Edit"
+                    vc.Purpose = "TimeStamps_Edit"
+                    vc.selectCalendarPurpose = .TimeStamps
                     
                 }
             }
@@ -330,17 +335,19 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.childId = self.SelectedPersonId as String
                     vc.childName = self.SelectedPersonFullName as String
                     vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+                    vc.selectCalendarPurpose = .TimeStamps
                     
                 }
             }
             
-            if(self.Purpose == "GoToSearchPerson_Delete")
+            if(self.Purpose == "TimeStamps_Delete")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
                     vc.childId = self.SelectedPersonId as String
                     vc.childName = self.SelectedPersonFullName as String
-                    vc.Purpose = "GoToSearchPerson_Delete"
+                    vc.Purpose = "TimeStamps_Delete"
+                    vc.selectCalendarPurpose = .TimeStamps
                     
                 }
             }
@@ -352,42 +359,147 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.childId = self.SelectedPersonId as String
                     vc.childName = self.SelectedPersonFullName as String
                     vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+                    vc.selectCalendarPurpose = .TimeStamps
                     
                 }
             }
             
-            if(self.Purpose == "GoToSearchPerson_Delete")
+            if(self.Purpose == "TimeStamps_Delete")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
                     vc.childId = self.SelectedPersonId as String
                     vc.childName = self.SelectedPersonFullName as String
-                    vc.Purpose = "GoToSearchPerson_Delete"
+                    vc.Purpose = "TimeStamps_Delete"
+                    vc.selectCalendarPurpose = .TimeStamps
                     
                 }
             }
             
-            if(self.Purpose == "GoToSearchPerson_Search")
+            if(self.Purpose == "TimeStamps_Search")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
                     vc.childId = self.SelectedPersonId as String
                     vc.childName = self.SelectedPersonFullName as String
-                    vc.Purpose = "GoToSearchPerson_Search"
+                    vc.Purpose = "TimeStamps_Search"
+                    vc.selectCalendarPurpose = .TimeStamps
                     
                 }
             }
             
-            if(self.Purpose == "GoToSearchPerson_Missing")
+            if(self.Purpose == "TimeStamps_Missing")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
                     vc.childId = self.SelectedPersonId as String
                     vc.childName = self.SelectedPersonFullName as String
-                    vc.Purpose = "GoToSearchPerson_Missing"
+                    vc.Purpose = "TimeStamps_Missing"
+                    vc.selectCalendarPurpose = .TimeStamps
                     
                 }
             }
+            
+            
+            
+            
+            
+            
+            
+            //Do I need this?
+            if(self.Purpose == "RegisteredHours_Edit")
+            {
+                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                    
+                    vc.childId = self.SelectedPersonId as String
+                    vc.childName = self.SelectedPersonFullName as String
+                    vc.Purpose = "RegisteredHours_Edit"
+                    vc.selectCalendarPurpose = .RegistrationHours
+                    
+                }
+            }
+            
+            if(self.Purpose == "RegisteredHours_ExtraMinutes")
+            {
+                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                    
+                    vc.childId = self.SelectedPersonId as String
+                    vc.childName = self.SelectedPersonFullName as String
+                    vc.Purpose = "RegisteredHours_ExtraMinutes"
+                    vc.selectCalendarPurpose = .RegistrationHours
+                    
+                }
+            }
+            
+            if(self.Purpose == "RegisteredHours_Delete")
+            {
+                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                    
+                    vc.childId = self.SelectedPersonId as String
+                    vc.childName = self.SelectedPersonFullName as String
+                    vc.Purpose = "RegisteredHours_Delete"
+                    vc.selectCalendarPurpose = .RegistrationHours
+                    
+                }
+            }
+            
+            if(self.Purpose == "RegisteredHours_ExtraMinutes")
+            {
+                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                    
+                    vc.childId = self.SelectedPersonId as String
+                    vc.childName = self.SelectedPersonFullName as String
+                    vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+                    vc.selectCalendarPurpose = .RegistrationHours
+                    
+                }
+            }
+            
+            if(self.Purpose == "RegisteredHours_Delete")
+            {
+                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                    
+                    vc.childId = self.SelectedPersonId as String
+                    vc.childName = self.SelectedPersonFullName as String
+                    vc.Purpose = "RegisteredHours_Delete"
+                    vc.selectCalendarPurpose = .RegistrationHours
+                    
+                }
+            }
+            
+            if(self.Purpose == "RegisteredHours_Search")
+            {
+                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                    
+                    vc.childId = self.SelectedPersonId as String
+                    vc.childName = self.SelectedPersonFullName as String
+                    vc.Purpose = "RegisteredHours_Search"
+                    vc.selectCalendarPurpose = .RegistrationHours
+                    
+                }
+            }
+            
+            if(self.Purpose == "RegisteredHours_Missing")
+            {
+                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                    
+                    vc.childId = self.SelectedPersonId as String
+                    vc.childName = self.SelectedPersonFullName as String
+                    vc.Purpose = "RegisteredHours_Missing"
+                    vc.selectCalendarPurpose = .RegistrationHours
+                    
+                }
+            }
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
         }

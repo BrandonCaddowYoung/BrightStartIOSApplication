@@ -56,6 +56,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     // a new color every time a cell is displayed. We do not want a laggy
     // scrolling calendar.
     
+    @IBOutlet weak var addNewButtonStart: UIImageView!
+    @IBOutlet weak var addNewButtonEnd: UIImageView!
     
     @IBOutlet weak var TopPadding: UIView!
     
@@ -86,6 +88,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        addNewButtonStart.isHidden = true
+        addNewButtonEnd.isHidden = true
+        
         startTime.isUserInteractionEnabled = true;
         
         let startTap = UITapGestureRecognizer(target: self, action: #selector(startTimeClicked))
@@ -144,7 +149,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         }
         if(selectCalendarPurpose == .RegistrationHours)
         {
-            editSegueIdentifier = "GoToEditTimeStampOrRegisteredHoours"
+            editSegueIdentifier = "GoToEditTimeStampOrRegisteredHours"
             
             startLabel.text = "Start"
             finishLabel.text = "Finish"
@@ -237,9 +242,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         lastSelectedDate = date
         
-        if(Purpose == "GoToSearchPerson_Search")
+        if(Purpose == "TimeStamps_Search")
         {
-         self.performSegue(withIdentifier: "GoToSearchPerson_Search", sender: nil)
+         self.performSegue(withIdentifier: "TimeStamps_Search", sender: nil)
         }
         else if(Purpose == "GoToSearchPerson_ExtraMinutes")
         {
@@ -475,6 +480,21 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             equalTo: view.bottomAnchor).isActive = true
         
         
+        
+        
+        addNewButtonStart.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        addNewButtonStart.centerXAnchor.constraint(
+            equalTo: LeftTopContainer.centerXAnchor).isActive = true
+        
+        //top
+        addNewButtonStart.centerYAnchor.constraint(
+            equalTo: LeftTopContainer.centerYAnchor).isActive = true
+
+        
+        
+        
         startLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //left
@@ -484,6 +504,23 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         //top
         startLabel.topAnchor.constraint(
             equalTo: LeftTopContainer.topAnchor).isActive = true
+        
+        
+        
+        
+        addNewButtonEnd.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        addNewButtonEnd.centerXAnchor.constraint(
+            equalTo: RightTopContainer.centerXAnchor).isActive = true
+        
+        //top
+        addNewButtonEnd.centerYAnchor.constraint(
+            equalTo: RightTopContainer.centerYAnchor).isActive = true
+        
+        
+        
+        
         
         finishLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -551,7 +588,16 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         handleCellSelection(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
         
-        fetchTimeStamps()
+        if(selectCalendarPurpose == .TimeStamps){
+        
+            fetchTimeStamps()
+            
+        }
+        else if(selectCalendarPurpose == .RegistrationHours){
+        
+            fetchRegisteredHours()
+            
+        }
         
     }
     
@@ -628,7 +674,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "GoToSearchPerson_Search") {
+        if (segue.identifier == "TimeStamps_Search") {
             
             if let vc = segue.destination as? TimeStampSearchTableViewController {
                 
@@ -767,11 +813,11 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     {
         var retrievedStartStamp = ""
         var retrievedEndStamp = ""
-    
+        
         self.childId = self.childId.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         PersonLogRequests.sharedInstance.GetLogins(personId: self.childId as String, targetDate: lastSelectedDate as NSDate, onCompletion: { json in
-
+            
             for (index: _, subJson: JSON) in json {
                 
                 let log = PersonLog()
@@ -806,11 +852,20 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 dateFormatter.dateFormat = "HH:mm:ss"
                 retrievedStartStamp = dateFormatter.string(from: log.TimeStamp) as String
                 
-                             }
+            }
             
             DispatchQueue.main.async(execute: {
                 
                 self.startTime.text = retrievedStartStamp
+                
+                if(retrievedStartStamp == "")
+                {
+                    self.addNewButtonStart.isHidden = false
+                }
+                else
+                {
+                    self.addNewButtonStart.isHidden = true
+                }
                 
             })
             
@@ -819,7 +874,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         //Logouts
         
-         // print(childId)
+        // print(childId)
         //print(selectedEndDate)
         
         PersonLogRequests.sharedInstance.GetLogouts(personId: self.childId as String, targetDate: lastSelectedDate as NSDate, onCompletion: { json in
@@ -866,10 +921,141 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 
                 self.endTime.text = retrievedEndStamp
                 
+                if(retrievedEndStamp == "")
+                {
+                    self.addNewButtonEnd.isHidden = false
+                }
+                else
+                {
+                    self.addNewButtonEnd.isHidden = true
+                }
+                
             })
             
         })
     }
+    
+    
+    func fetchRegisteredHours()
+    {
+        var retrievedStartStamp = ""
+        var retrievedEndStamp = ""
+        
+        self.childId = self.childId.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        RegistrationHoursRequests.sharedInstance.GetRegisterdHoursyDateAndID(personId: self.childId as String, DateTime: lastSelectedDate as NSDate, onCompletion: { JSON in
+            
+            var noStartFound = true
+            var noEndFound = true;
+            
+                let regHours = RegistrationHours()
+            
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+                
+                //Start to stirng, then to date
+                let StartTime = JSON["StartTime"].stringValue
+                var newStartTime = dateFormatter.date(from: StartTime)
+                if(newStartTime == nil){
+                    
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    
+                    newStartTime = dateFormatter.date(from: StartTime)
+                    
+                    if(newStartTime != nil){
+                        self.selectedStartDate = newStartTime!
+                        regHours.StartTime = newStartTime!
+                        noStartFound = false
+                    }
+                }
+                else
+                {
+                    if(newStartTime != nil){
+                        self.selectedStartDate = newStartTime!
+                        regHours.StartTime = newStartTime!
+                        noStartFound = false
+                    }
+            }
+            
+                
+                //End to stirng, then to date
+                let endTime = JSON["FinishTime"].stringValue
+                var newEndTime = dateFormatter.date(from: endTime)
+                if(newEndTime == nil){
+                    
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    
+                    newEndTime = dateFormatter.date(from: endTime)
+                    
+                    if(newEndTime != nil){
+                        self.selectedEndDate = newEndTime!
+                        regHours.FinishTime = newEndTime!
+                        noEndFound = false
+                    }
+                }
+            
+                else
+                {
+            
+            
+                    if(newEndTime != nil){
+                        self.selectedEndDate = newEndTime!
+                        regHours.FinishTime = newEndTime!
+                        noEndFound = false
+                    }
+            
+            
+            }
+            
+
+                //Setting both
+                dateFormatter.dateFormat = "HH:mm:ss"
+            
+              if(noStartFound == false){
+                retrievedStartStamp = dateFormatter.string(from: regHours.StartTime) as String
+            }
+            else
+            {
+            retrievedStartStamp = ""
+            }
+            
+            if(noEndFound == false){
+                retrievedEndStamp = dateFormatter.string(from: regHours.FinishTime) as String
+            }
+            else
+            {
+                retrievedEndStamp = ""
+            }
+            
+            DispatchQueue.main.async(execute: {
+                
+                self.startTime.text = retrievedStartStamp
+                self.endTime.text = retrievedEndStamp
+                
+                if(retrievedStartStamp == "")
+                {
+                    self.addNewButtonStart.isHidden = false
+                }
+                else
+                {
+                    self.addNewButtonStart.isHidden = true
+                }
+                
+                if(retrievedEndStamp == "")
+                {
+                    self.addNewButtonEnd.isHidden = false
+                }
+                else
+                {
+                    self.addNewButtonEnd.isHidden = true
+                }
+                
+            })
+            
+        })
+       
+    }
+    
 }
 
 extension RegisterdHoursTimeStampsCalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
