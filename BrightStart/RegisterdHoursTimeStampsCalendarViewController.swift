@@ -94,14 +94,17 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         startTime.isUserInteractionEnabled = true;
         
         let startTap = UITapGestureRecognizer(target: self, action: #selector(startTimeClicked))
-        
         startTime.addGestureRecognizer(startTap)
         
         endTime.isUserInteractionEnabled = true;
         
         let endTap = UITapGestureRecognizer(target: self, action: #selector(endTimeClicked))
-        
         endTime.addGestureRecognizer(endTap)
+        
+        homeButton.isUserInteractionEnabled = true;
+        
+        let homeTap = UITapGestureRecognizer(target: self, action: #selector(homeButtonClicked))
+        homeButton.addGestureRecognizer(homeTap)
         
         calendarView.registerHeaderView(xibFileNames: ["TimeStampsSectionHeaderView", "TimeStampsSectionHeaderView"])
         
@@ -652,9 +655,13 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     // The names should be the same as what was registered.
     func calendar(_ calendar: JTAppleCalendarView, sectionHeaderIdentifierFor range: (start: Date, end: Date), belongingTo month: Int) -> String {
         
+        let calendar2 = Calendar.current
+        
+        yearLabel.text = String(calendar2.component(.year, from: range.start))
+        
         let dateFormatter: DateFormatter = DateFormatter()
         let months = dateFormatter.shortMonthSymbols
-        var monthSymbol = "??"
+        var monthSymbol = ""
         
         if(month > 0){
             monthSymbol = (months?[month - 1])! as String // month - from your date components
@@ -674,7 +681,16 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "TimeStamps_Search") {
+        if (segue.identifier == "GoToMainMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                vc.selectedMenu = .MainMenu
+                
+            }
+        }
+        
+       else  if (segue.identifier == "TimeStamps_Search") {
             
             if let vc = segue.destination as? TimeStampSearchTableViewController {
                 
@@ -776,6 +792,11 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         showActionSheet()
         
     }
+    
+    func homeButtonClicked(sender: UITapGestureRecognizer) {
+      self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+    }
+    
     
     func showActionSheet()
     {

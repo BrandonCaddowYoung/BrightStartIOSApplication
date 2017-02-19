@@ -928,11 +928,12 @@
                         <segue destination="Ltl-fa-ugS" kind="show" identifier="GoToEditTimeStampOrRegisteredHoours" id="1pJ-9N-iMH"/>
                         <segue destination="pK2-Kf-PmB" kind="show" identifier="GoToSearchPerson_Search" id="AaN-mO-ooE"/>
                         <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="fQC-lD-NUF"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="p8U-PX-Nn4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PlT-y7-fKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6296.8000000000002" y="-1739.2803598200901"/>
+            <point key="canvasLocation" x="7471" y="-2126"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="qyL-sf-bbz">
@@ -1682,10 +1683,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2qs-QS-n86"/>
-        <segue reference="ULa-J9-Ttu"/>
-        <segue reference="1pJ-9N-iMH"/>
-        <segue reference="Gez-8g-kB0"/>
+        <segue reference="p8U-PX-Nn4"/>
+        <segue reference="FZS-ay-AFf"/>
         <segue reference="fQC-lD-NUF"/>
+        <segue reference="1pJ-9N-iMH"/>
         <segue reference="AaN-mO-ooE"/>
         <segue reference="nx9-xO-yGO"/>
         <segue reference="Q5J-dV-oJS"/>
