@@ -925,7 +925,7 @@
                         <outlet property="startTime" destination="tYg-EE-bX9" id="cqI-Il-Zqd"/>
                         <outlet property="topContainer" destination="Rhv-fx-Z9a" id="anv-77-cl6"/>
                         <outlet property="yearLabel" destination="giR-fa-apM" id="7Ct-fF-rG0"/>
-                        <segue destination="Ltl-fa-ugS" kind="show" identifier="GoToEditTimeStampOrRegisteredHoours" id="1pJ-9N-iMH"/>
+                        <segue destination="Ltl-fa-ugS" kind="show" identifier="GoToTimeStampsEditor" id="1pJ-9N-iMH"/>
                         <segue destination="pK2-Kf-PmB" kind="show" identifier="GoToSearchPerson_Search" id="AaN-mO-ooE"/>
                         <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="fQC-lD-NUF"/>
                         <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="p8U-PX-Nn4"/>

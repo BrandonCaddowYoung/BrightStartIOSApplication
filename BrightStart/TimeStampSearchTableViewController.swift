@@ -239,10 +239,21 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             
             if let vc = segue.destination as? TimeStampsEditorViewController {
                 
+               // if(selectCalendarPurpose == .RegistrationHours)
+               // {
+                 //   vc.EditorMode = .RegisteredHours_Edit
+               // }
+               // else if(selectCalendarPurpose == .TimeStamps)
+               // {
+                 //   vc.EditorMode = .TimeStamps_Edit
+               // }
+                
+                vc.EditorMode = .TimeStamps_Edit
+                
                 let dateFormatter = DateFormatter()
                 
                 //Need to make API call to get name here! For now its just the id that is going to go through!
-                  vc.Name = "Tupac Shakur"
+                  vc.Name = ""
                 
                 vc.PersonId = SelectedPersonLog.PersonId as String
                 

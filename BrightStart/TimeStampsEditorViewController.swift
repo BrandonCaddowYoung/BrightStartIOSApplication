@@ -8,6 +8,18 @@
 
 import UIKit
 
+enum TimeStampEditerType: Int {
+    case RegisteredHours_Create
+    case RegisteredHours_Edit
+    case TimeStamps_Create
+    case TimeStamps_Edit
+}
+
+enum EditTargetType: Int {
+    case Start
+    case End
+}
+
 class TimeStampsEditorViewController: UIViewController {
     
     var _CommonHelper: CommonHelper!
@@ -19,6 +31,14 @@ class TimeStampsEditorViewController: UIViewController {
     var Date:String!
     var DateAsObject:Date!
     var Time:String!
+    
+    //For Regisrted hours
+    var existingStartDate: Date!
+    var existingEndDate: Date!
+    var registerdHoursId: String!
+    var editType: EditTargetType!
+    
+    var EditorMode: TimeStampEditerType!
     
     @IBOutlet weak var TargetPersonName: UILabel!
     @IBOutlet weak var TargetDate: UILabel!
@@ -36,6 +56,9 @@ class TimeStampsEditorViewController: UIViewController {
     
     @IBAction func SaveTimeStampTouched(_ sender: Any) {
     
+        
+        if(EditorMode == .TimeStamps_Edit){
+        
         //Make API call to update time stamp and then return to the time stamps menu.
         
         let alert = self._CommonHelper.showOverlayMessage("Updating...")
@@ -54,6 +77,54 @@ class TimeStampsEditorViewController: UIViewController {
                                                     
                                                 })
         })
+            
+        }
+        
+        else if(EditorMode == .RegisteredHours_Edit){
+            
+            //Make API call to update time stamp and then return to the time stamps menu.
+            
+            let alert = self._CommonHelper.showOverlayMessage("Updating...")
+            self.present(alert, animated: true, completion: nil)
+            
+            var originalDateValue = NSDate()
+            var newStartValue = NSDate()
+            var newEndValue = NSDate()
+            
+            if(editType == .Start)
+            {
+                originalDateValue = existingStartDate as NSDate
+            }
+            else if(editType == .End)
+            {
+                originalDateValue = existingEndDate as NSDate
+            }
+            
+            if(editType == .Start)
+            {
+                newEndValue = existingEndDate as NSDate
+                newStartValue = DateTimePicker.date as NSDate
+            }
+            else if(editType == .End)
+            {
+                newStartValue = existingStartDate as NSDate
+                newEndValue = DateTimePicker.date as NSDate
+            }
+            
+            RegistrationHoursRequests.sharedInstance.UpdateRegisteredHours(id: registerdHoursId, newStartDate: newStartValue, newEndDate: newEndValue, onCompletion: {_ in
+                
+                DispatchQueue.main.async(execute: {
+                    self.dismiss(animated: false, completion: {
+                        
+                        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                        
+                    })
+                    
+                })
+            })
+            
+        }
+        
     }
     
     @IBAction func RemoveTimeStampTouched(_ sender: Any) {
@@ -252,22 +323,8 @@ class TimeStampsEditorViewController: UIViewController {
         
         SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
-       
-        
-        //view.backgroundColor = _ApplicatoinColours.BackGroundColour
-        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
+   
     /*!
      @brief Preparing to segue.
      */

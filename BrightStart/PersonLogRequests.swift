@@ -87,4 +87,10 @@ class PersonLogRequests: NSObject {
         })
     }
     
+    func DeletePersonLog(logId: String, onCompletion: @escaping (JSON) -> Void) {
+    
+        //Added functionality in bs to delete by id
+        
+    }
+    
 }

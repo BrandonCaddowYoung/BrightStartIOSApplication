@@ -44,6 +44,32 @@ class RegistrationHoursRequests: NSObject {
         })
     }
     
+    func UpdateRegisteredHours(id: String, newStartDate: NSDate, newEndDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
+        
+        var newId = id.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let dateFormatter:DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
+        
+        let startDateInFormat:String = dateFormatter.string(from: newStartDate as Date)
+        let endDateInFormat:String = dateFormatter.string(from: newEndDate as Date)
+        
+        let route = baseURL + "api/RegisteredHoursLogic/UpdateRegisteredHours?id="+newId + "&newStartDate=" + startDateInFormat + "&newEndDate=" + endDateInFormat + "&nurserySchoolId=" + nurserySchoolId
+        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
+    }
+    
+    
     
     func CreateRegisteredHours(personId: String,startTime: NSDate,finishTime: NSDate, onCompletion: @escaping (JSON) -> Void) {
         

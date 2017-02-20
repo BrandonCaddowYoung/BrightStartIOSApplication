@@ -46,6 +46,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     var selectedStartDate = Date()
     var selectedEndDate = Date()
     
+    var selectedRegisteredHoursId = String()
+    
     var editSegueIdentifier = ""
     
     var _ApplicatoinColours: ApplicatoinColours!
@@ -152,7 +154,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         }
         if(selectCalendarPurpose == .RegistrationHours)
         {
-            editSegueIdentifier = "GoToEditTimeStampOrRegisteredHours"
+            editSegueIdentifier = "GoToTimeStampsEditor"
             
             startLabel.text = "Start"
             finishLabel.text = "Finish"
@@ -187,9 +189,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         if cellState.dateBelongsTo == .thisMonth {
             myCustomCell.isUserInteractionEnabled = true
         } else {
-                       myCustomCell.isUserInteractionEnabled = false
+            myCustomCell.isUserInteractionEnabled = false
         }
-        
         
         myCustomCell.selectedView.backgroundColor = _ApplicatoinColours.White
         
@@ -609,17 +610,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         handleCellTextColor(view: cell, cellState: cellState)
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     // This sets the height of your header
     func calendar(_ calendar: JTAppleCalendarView, sectionHeaderSizeFor range: (start: Date, end: Date), belongingTo month: Int) ->
         
@@ -686,9 +676,92 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             if let vc = segue.destination as? MainMenuViewController {
                 
                 vc.selectedMenu = .MainMenu
-                
             }
         }
+            
+            
+        if (segue.identifier == "GoToTimeStampsEditor") {
+            
+                if let vc = segue.destination as? TimeStampsEditorViewController {
+                    
+                    if(selectCalendarPurpose == .RegistrationHours)
+                    {
+                        vc.EditorMode = .RegisteredHours_Edit
+                        
+                        vc.existingStartDate = selectedStartDate
+                        vc.existingEndDate = selectedEndDate
+                        
+                        vc.registerdHoursId = selectedRegisteredHoursId
+                        
+                        if(startSelected){
+                            vc.editType = .Start
+                        }
+                        if(endSelected)
+                        {
+                            vc.editType = .End
+                        }
+                        
+                    }
+                    else if(selectCalendarPurpose == .TimeStamps)
+                    {
+                        vc.EditorMode = .TimeStamps_Edit
+                    }
+                    
+                    let dateFormatter = DateFormatter()
+                    
+                    vc.PersonId = childId
+                    vc.Name = childName
+                    
+                    var action = ""
+                    
+                    if(startSelected){
+                        action = "Login"
+                    }
+                    if(endSelected)
+                    {
+                        action = "Logout"
+                    }
+                    
+                    vc.Action = action
+                    
+                    var chosenDate = Date()
+                    
+                    if(startSelected){
+                        chosenDate = selectedStartDate
+                    }
+                    if(endSelected)
+                    {
+                        chosenDate = selectedEndDate
+                    }
+                    
+                    dateFormatter.dateFormat = "dd/MM/yyyy"
+                    vc.Date = dateFormatter.string(from: chosenDate) as String
+                    
+                    dateFormatter.dateFormat = "hh:mm:ss"
+                    vc.Time = dateFormatter.string(from: chosenDate) as String
+                    
+                    vc.DateAsObject = chosenDate
+                    
+                    
+                    
+                }
+                
+                
+                
+                
+                
+            }
+        
+            
+            
+            
+            
+            
+            
+        
+            
+            
+            
         
        else  if (segue.identifier == "TimeStamps_Search") {
             
@@ -726,16 +799,24 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             
             if let vc = segue.destination as? TimeStampsEditorViewController {
                 
+                if(selectCalendarPurpose == .RegistrationHours)
+                {
+                    vc.EditorMode = .RegisteredHours_Edit
+                }
+                else if(selectCalendarPurpose == .TimeStamps)
+                {
+                    vc.EditorMode = .TimeStamps_Edit
+                }
+                
                 let dateFormatter = DateFormatter()
                 
                 vc.PersonId = childId
-                
                 vc.Name = childName
                 
                 var action = ""
                 
                 if(startSelected){
-                 action = "Login"
+                    action = "Login"
                 }
                 if(endSelected)
                 {
@@ -760,7 +841,10 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 dateFormatter.dateFormat = "hh:mm:ss"
                 vc.Time = dateFormatter.string(from: chosenDate) as String
                 
-               vc.DateAsObject = chosenDate
+                vc.DateAsObject = chosenDate
+                
+                
+                
             }
         }
     }
@@ -807,9 +891,23 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
             (alert: UIAlertAction!) -> Void in
             
+            if(selectCalendarPurpose == .RegistrationHours)
+            {
+                RegistrationHoursRequests.sharedInstance.DeleteRegisteredHours(personId: PersonId!, dateToDelete: lastSelectedDate, onCompletion: { (JSON) in
+                    
+                })
+
+            }
+            else if(selectCalendarPurpose == .TimeStamps)
+            {
+                
+            }
+            
+            
         })
         let saveAction = UIAlertAction(title: "Edit", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            
            self.performSegue(withIdentifier: self.editSegueIdentifier, sender: nil)
             
         })
@@ -817,7 +915,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         //
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
-            print("Cancelled")
+            
         })
         
         
@@ -891,12 +989,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             })
             
         })
-        
-        
-        //Logouts
-        
-        // print(childId)
-        //print(selectedEndDate)
         
         PersonLogRequests.sharedInstance.GetLogouts(personId: self.childId as String, targetDate: lastSelectedDate as NSDate, onCompletion: { json in
             
@@ -973,7 +1065,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
-                
+            
+            self.selectedRegisteredHoursId = JSON["Id"].stringValue;
+            
                 //Start to stirng, then to date
                 let StartTime = JSON["StartTime"].stringValue
                 var newStartTime = dateFormatter.date(from: StartTime)
