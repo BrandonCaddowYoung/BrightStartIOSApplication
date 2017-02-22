@@ -86,6 +86,118 @@
             </objects>
             <point key="canvasLocation" x="5318" y="91"/>
         </scene>
+        <!--Add Registered Hours View Controller-->
+        <scene sceneID="7JV-kn-we6">
+            <objects>
+                <viewController id="cvh-lR-RS0" customClass="AddRegisteredHoursViewController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ahD-KI-H9f"/>
+                        <viewControllerLayoutGuide type="bottom" id="c5a-Ac-5I0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="COL-uC-S5a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FRs-l8-MkG">
+                                <rect key="frame" x="16" y="28" width="343" height="186"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWA-8V-uPN">
+                                        <rect key="frame" x="19" y="8" width="133" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy5-0x-hJ4">
+                                        <rect key="frame" x="203" y="7" width="132" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ry6-HU-fRC">
+                                        <rect key="frame" x="8" y="144" width="133" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Finish" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhO-aw-KJk">
+                                        <rect key="frame" x="171" y="144" width="133" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2588235438" green="0.75686275960000005" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f5w-Y7-gzN">
+                                <rect key="frame" x="16" y="236" width="160" height="194"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wlr-3y-pHp">
+                                        <rect key="frame" x="31" y="35" width="98" height="124"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="509400221.95411998">
+                                            <!--2017-02-21 20:03:41 +0000-->
+                                        </date>
+                                    </datePicker>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1764705926" green="0.01176470611" blue="0.56078433989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BdC-Vb-RKE">
+                                <rect key="frame" x="16" y="462" width="343" height="185"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVI-VX-IOf">
+                                        <rect key="frame" x="146" y="132" width="50" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="S A V E"/>
+                                        <connections>
+                                            <action selector="SaveButtonClicked:" destination="cvh-lR-RS0" eventType="touchUpInside" id="Mbb-he-ock"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.79390401740000005" blue="0.69612836980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Yh-Md-8bC">
+                                <rect key="frame" x="184" y="236" width="160" height="194"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jJE-l2-ziR">
+                                        <rect key="frame" x="31" y="35" width="98" height="124"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="509400221.95411998">
+                                            <!--2017-02-21 20:03:41 +0000-->
+                                        </date>
+                                    </datePicker>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.5292023401" blue="0.68413997500000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="BottomContainer" destination="BdC-Vb-RKE" id="Rh0-UF-hCd"/>
+                        <outlet property="DateLabel" destination="vy5-0x-hJ4" id="scg-Hw-ons"/>
+                        <outlet property="EndDatePicker" destination="jJE-l2-ziR" id="XhP-1i-DkI"/>
+                        <outlet property="FinishLabel" destination="LhO-aw-KJk" id="EqL-ea-8ZW"/>
+                        <outlet property="MiddleLeftContainer" destination="f5w-Y7-gzN" id="gVI-35-rye"/>
+                        <outlet property="MiddleRightContainer" destination="4Yh-Md-8bC" id="dvO-Lc-5dm"/>
+                        <outlet property="NameLabel" destination="MWA-8V-uPN" id="tu2-G4-VeD"/>
+                        <outlet property="SaveButton" destination="cVI-VX-IOf" id="UqS-Dt-fRR"/>
+                        <outlet property="StartDatePicker" destination="Wlr-3y-pHp" id="vcd-hc-lbJ"/>
+                        <outlet property="StartLabel" destination="Ry6-HU-fRC" id="D8u-nu-RvR"/>
+                        <outlet property="TopContainer" destination="FRs-l8-MkG" id="tEp-aP-dhA"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="Ma5-9P-qol"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NXD-BU-NOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5317.6000000000004" y="-2418.440779610195"/>
+        </scene>
         <!--Date Selection View Controller-->
         <scene sceneID="3hl-0z-Pcu">
             <objects>
@@ -106,7 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FwM-dr-bnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5318" y="-1739"/>
+            <point key="canvasLocation" x="5318" y="-1630"/>
         </scene>
         <!--Person Search Table View Controller-->
         <scene sceneID="YgA-oE-yg2">
@@ -925,10 +1037,11 @@
                         <outlet property="startTime" destination="tYg-EE-bX9" id="cqI-Il-Zqd"/>
                         <outlet property="topContainer" destination="Rhv-fx-Z9a" id="anv-77-cl6"/>
                         <outlet property="yearLabel" destination="giR-fa-apM" id="7Ct-fF-rG0"/>
-                        <segue destination="Ltl-fa-ugS" kind="show" identifier="GoToTimeStampsEditor" id="1pJ-9N-iMH"/>
+                        <segue destination="Ltl-fa-ugS" kind="show" identifier="GoTotimeStampsEditor" id="1pJ-9N-iMH"/>
                         <segue destination="pK2-Kf-PmB" kind="show" identifier="GoToSearchPerson_Search" id="AaN-mO-ooE"/>
                         <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="fQC-lD-NUF"/>
                         <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="p8U-PX-Nn4"/>
+                        <segue destination="cvh-lR-RS0" kind="show" identifier="GoToRegistrationHoursEditor" id="miM-uV-NTM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PlT-y7-fKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1682,14 +1795,14 @@
         <image name="ic_check" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2qs-QS-n86"/>
-        <segue reference="p8U-PX-Nn4"/>
+        <segue reference="XfL-MG-fp5"/>
         <segue reference="FZS-ay-AFf"/>
-        <segue reference="fQC-lD-NUF"/>
-        <segue reference="1pJ-9N-iMH"/>
         <segue reference="AaN-mO-ooE"/>
-        <segue reference="nx9-xO-yGO"/>
+        <segue reference="1pJ-9N-iMH"/>
+        <segue reference="dQm-Sj-sjy"/>
         <segue reference="Q5J-dV-oJS"/>
+        <segue reference="2qs-QS-n86"/>
+        <segue reference="nx9-xO-yGO"/>
         <segue reference="CaC-2C-xM4"/>
     </inferredMetricsTieBreakers>
 </document>

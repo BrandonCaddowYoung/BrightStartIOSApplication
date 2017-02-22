@@ -55,11 +55,8 @@ class TimeStampsEditorViewController: UIViewController {
     @IBOutlet weak var RemoveTimeStamp: UIButton!
     
     @IBAction func SaveTimeStampTouched(_ sender: Any) {
-    
         
         if(EditorMode == .TimeStamps_Edit){
-        
-        //Make API call to update time stamp and then return to the time stamps menu.
         
         let alert = self._CommonHelper.showOverlayMessage("Updating...")
         self.present(alert, animated: true, completion: nil)
@@ -79,7 +76,6 @@ class TimeStampsEditorViewController: UIViewController {
         })
             
         }
-        
         else if(EditorMode == .RegisteredHours_Edit){
             
             //Make API call to update time stamp and then return to the time stamps menu.
@@ -122,6 +118,49 @@ class TimeStampsEditorViewController: UIViewController {
                     
                 })
             })
+            
+        }else if(EditorMode == .RegisteredHours_Create){
+         
+            let alert = self._CommonHelper.showOverlayMessage("Updating...")
+            self.present(alert, animated: true, completion: nil)
+            
+            //Change to to creating registered hours
+            RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: PersonId!, startTime: DateTimePicker.date as NSDate, finishTime: DateTimePicker.date as NSDate, onCompletion: {_ in 
+                                                            
+                                                            DispatchQueue.main.async(execute: {
+                                                                self.dismiss(animated: false, completion: {
+                                                                    
+                                                                    self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                    
+                                                                })
+                                                                
+                                                            })
+            })
+            
+        }
+        else if(EditorMode == .TimeStamps_Create){
+         
+            let alert = self._CommonHelper.showOverlayMessage("Updating...")
+            self.present(alert, animated: true, completion: nil)
+            
+            
+            //Change to to creating time stamps
+            CommonRequests.sharedInstance.createTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate,
+                                                          onCompletion: {
+                                                            
+                                                            DispatchQueue.main.async(execute: {
+                                                                self.dismiss(animated: false, completion: {
+                                                                    
+                                                                    self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                    
+                                                                })
+                                                                
+                                                            })
+            })
+            
+            
+            
+            
             
         }
         
@@ -175,6 +214,10 @@ class TimeStampsEditorViewController: UIViewController {
         DateTimePicker.datePickerMode = UIDatePickerMode.time
         
         DateTimePicker.maximumDate = NSDate() as Date
+        
+        if(EditorMode == .RegisteredHours_Create || EditorMode == .TimeStamps_Create ){
+            RemoveButton.isHidden = true
+        }
         
     }
 

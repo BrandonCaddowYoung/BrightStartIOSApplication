@@ -114,6 +114,26 @@ class CommonRequests: NSObject {
         })
     }
     
+    func createTimeStamp(personId: String, action: String, stamp: NSDate, onCompletion: @escaping () -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
+        let stampAsString = dateFormatter.string(from: stamp as Date)
+        
+        let route = baseURL + "api/PersonLogLogic/CreatePersonLog?personId="+personId+"&action="+action+"&stamp=" + stampAsString + "&nurserySchoolId=" + nurserySchoolId
+        
+        makeHTTPPostRequest(encode: false, path: route, onCompletion: { json, err in
+            onCompletion()
+        })
+    }
+    
     /*!
      @brief Delete a time stamp.
      */

@@ -10,6 +10,7 @@
 		7B0257001E4F568C007FED0C /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B0256FF1E4F568C007FED0C /* CellView.xib */; };
 		7B02571A1E4F5762007FED0C /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0257191E4F5762007FED0C /* CellView.swift */; };
 		7B02571C1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B02571B1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift */; };
+		7B03BE211E5CD5C400D61404 /* AddRegisteredHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B03BE201E5CD5C400D61404 /* AddRegisteredHoursViewController.swift */; };
 		7B148C261E578B0300D309F6 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C251E578B0000D309F6 /* ProgressHUD.swift */; };
 		7B148C281E59994F00D309F6 /* RegistrationHoursRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */; };
 		7B148C2A1E599E4D00D309F6 /* RegistrationHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C291E599E4C00D309F6 /* RegistrationHours.swift */; };
@@ -256,6 +257,7 @@
 		7B0256FF1E4F568C007FED0C /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
 		7B0257191E4F5762007FED0C /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		7B02571B1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterdHoursTimeStampsCalendarViewController.swift; sourceTree = "<group>"; };
+		7B03BE201E5CD5C400D61404 /* AddRegisteredHoursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRegisteredHoursViewController.swift; sourceTree = "<group>"; };
 		7B148C251E578B0000D309F6 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationHoursRequests.swift; sourceTree = "<group>"; };
 		7B148C291E599E4C00D309F6 /* RegistrationHours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationHours.swift; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 				7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */,
 				7BB221D41E4A796B0069E74D /* Registration1ViewController.swift */,
 				7BB222091E4BB9890069E74D /* Registration2ViewController.swift */,
+				7B03BE201E5CD5C400D61404 /* AddRegisteredHoursViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -712,16 +715,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -971,6 +974,7 @@
 				7BD0FFE31E43C95300472759 /* AuthyTestViewController.swift in Sources */,
 				7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */,
 				7BB221F11E4BB75C0069E74D /* RegistrationModel.swift in Sources */,
+				7B03BE211E5CD5C400D61404 /* AddRegisteredHoursViewController.swift in Sources */,
 				7BD0FFEB1E47205100472759 /* AuthySettingsViewController.swift in Sources */,
 				7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */,
 				7B148C2A1E599E4D00D309F6 /* RegistrationHours.swift in Sources */,

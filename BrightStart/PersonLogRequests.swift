@@ -89,7 +89,19 @@ class PersonLogRequests: NSObject {
     
     func DeletePersonLog(logId: String, onCompletion: @escaping (JSON) -> Void) {
     
-        //Added functionality in bs to delete by id
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+       
+        let route = baseURL + "api/PersonLogLogic/DeleteLogsById?Id=" + logId + "&nurserySchoolId=" + nurserySchoolId
+        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
         
     }
     

@@ -26,6 +26,10 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     
     //End of mandatory arguments
     
+    var creatingNew = false
+    
+    var loadingSpiiner: ProgressHUD!
+    
     var childName = ""
     
     var hideHeader = true;
@@ -47,6 +51,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     var selectedEndDate = Date()
     
     var selectedRegisteredHoursId = String()
+    
+    var selectedPersonLogStartId = String()
+    var selectedPersonLogEndId = String()
     
     var editSegueIdentifier = ""
     
@@ -90,18 +97,32 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        loadingSpiiner = ProgressHUD(text: "Loading")
+        self.view.addSubview(loadingSpiiner)
+        hideSpinner()
+        
         addNewButtonStart.isHidden = true
         addNewButtonEnd.isHidden = true
         
+        //Adding click to start time
         startTime.isUserInteractionEnabled = true;
-        
         let startTap = UITapGestureRecognizer(target: self, action: #selector(startTimeClicked))
         startTime.addGestureRecognizer(startTap)
         
+        //Adding click to end time
         endTime.isUserInteractionEnabled = true;
-        
         let endTap = UITapGestureRecognizer(target: self, action: #selector(endTimeClicked))
         endTime.addGestureRecognizer(endTap)
+        
+        //Adding click to add new start
+        addNewButtonStart.isUserInteractionEnabled = true;
+        let addNewButtonStartTap = UITapGestureRecognizer(target: self, action: #selector(addNewButtonStartClicked))
+        addNewButtonStart.addGestureRecognizer(addNewButtonStartTap)
+        
+        //Adding click to add new end
+        addNewButtonEnd.isUserInteractionEnabled = true;
+        let addNewButtonEndTap = UITapGestureRecognizer(target: self, action: #selector(addNewButtonEndClicked))
+        addNewButtonEnd.addGestureRecognizer(addNewButtonEndTap)
         
         homeButton.isUserInteractionEnabled = true;
         
@@ -147,14 +168,14 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         if(selectCalendarPurpose == .TimeStamps)
         {
-             editSegueIdentifier = "GoToTimeStampsEditor"
+             editSegueIdentifier = "GoTotimeStampsEditor"
             
              startLabel.text = "Sign in"
              finishLabel.text = "Sign out"
         }
         if(selectCalendarPurpose == .RegistrationHours)
         {
-            editSegueIdentifier = "GoToTimeStampsEditor"
+            editSegueIdentifier = "GoTotimeStampsEditor"
             
             startLabel.text = "Start"
             finishLabel.text = "Finish"
@@ -170,6 +191,17 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
     }
 
+    func showSpinner()
+    {
+        loadingSpiiner.show()
+    }
+    
+    func hideSpinner()
+    {
+        //if(loadingSpiiner!=nil){
+        loadingSpiiner.hide()
+        //}
+    }
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplayCell cell: JTAppleDayCellView, date: Date, cellState: CellState) {
         
@@ -674,13 +706,25 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         if (segue.identifier == "GoToMainMenu") {
             
             if let vc = segue.destination as? MainMenuViewController {
-                
                 vc.selectedMenu = .MainMenu
             }
         }
+        
+       
+        
+        else if (segue.identifier == "GoToRegistrationHoursEditor") {
             
-            
-        if (segue.identifier == "GoToTimeStampsEditor") {
+            if let vc = segue.destination as? AddRegisteredHoursViewController {
+                
+                vc.personName = childName
+                vc.personId = childId
+                
+                vc.targetDate = lastSelectedDate as NSDate
+                
+            }
+        }
+        
+       else if (segue.identifier == "GoTotimeStampsEditor") {
             
                 if let vc = segue.destination as? TimeStampsEditorViewController {
                     
@@ -704,7 +748,15 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                     }
                     else if(selectCalendarPurpose == .TimeStamps)
                     {
-                        vc.EditorMode = .TimeStamps_Edit
+                        if(creatingNew == false){
+                            vc.EditorMode = .TimeStamps_Edit
+
+                        }
+                        else
+                        {
+                            vc.EditorMode = .TimeStamps_Create
+
+                        }
                     }
                     
                     let dateFormatter = DateFormatter()
@@ -742,28 +794,10 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                     
                     vc.DateAsObject = chosenDate
                     
-                    
-                    
                 }
-                
-                
-                
-                
-                
-            }
-        
+        }
             
-            
-            
-            
-            
-            
-        
-            
-            
-            
-        
-       else  if (segue.identifier == "TimeStamps_Search") {
+       else if (segue.identifier == "TimeStamps_Search") {
             
             if let vc = segue.destination as? TimeStampSearchTableViewController {
                 
@@ -849,11 +883,51 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         }
     }
     
+    func addNewButtonStartClicked(sender: UITapGestureRecognizer) {
+     
+        startSelected = true
+        endSelected = false
+        
+        creatingNew = true
+        
+        //Go to time stamps editor
+        
+        if(selectCalendarPurpose == .RegistrationHours)
+        {
+           self.performSegue(withIdentifier: "GoToRegistrationHoursEditor", sender: nil)
+            
+            
+            
+        }
+        else if(selectCalendarPurpose == .TimeStamps)
+        {
+            self.performSegue(withIdentifier: "GoTotimeStampsEditor", sender: nil)
+        }
+        
+    }
+    
+    func addNewButtonEndClicked(sender: UITapGestureRecognizer) {
+        
+        startSelected = false
+        endSelected = true
+        
+        creatingNew = true
+        
+        if(selectCalendarPurpose == .RegistrationHours)
+        {
+            self.performSegue(withIdentifier: "GoToRegistrationHoursEditor", sender: nil)
+        }
+        else if(selectCalendarPurpose == .TimeStamps)
+        {
+            self.performSegue(withIdentifier: "GoTotimeStampsEditor", sender: nil)
+        }
+        
+    }
     
     func startTimeClicked(sender: UITapGestureRecognizer) {
-      
+        
         guard ((sender.view as? UILabel)?.text) != nil else { return }
-      
+        
         startSelected = true
         endSelected = false
         
@@ -891,16 +965,36 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
             (alert: UIAlertAction!) -> Void in
             
-            if(selectCalendarPurpose == .RegistrationHours)
+            if(self.selectCalendarPurpose == .RegistrationHours)
             {
-                RegistrationHoursRequests.sharedInstance.DeleteRegisteredHours(personId: PersonId!, dateToDelete: lastSelectedDate, onCompletion: { (JSON) in
+                 self.showSpinner()
+                
+                RegistrationHoursRequests.sharedInstance.DeleteRegisteredHours(personId: self.childId, dateToDelete: self.lastSelectedDate as NSDate, onCompletion: { (JSON) in
+                    
+                     self.hideSpinner()
                     
                 })
 
             }
-            else if(selectCalendarPurpose == .TimeStamps)
+            else if(self.selectCalendarPurpose == .TimeStamps)
             {
+                var targetTimeStampsLogId = ""
                 
+                if(self.startSelected){
+                    targetTimeStampsLogId = self.selectedPersonLogStartId;
+                }
+                else if(self.endSelected)
+                {
+                    targetTimeStampsLogId = self.selectedPersonLogEndId;
+                }
+                
+                self.showSpinner()
+                
+                PersonLogRequests.sharedInstance.DeletePersonLog(logId: targetTimeStampsLogId, onCompletion:
+                {_ in 
+                self.hideSpinner()
+                }
+                )
             }
             
             
@@ -943,6 +1037,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 
                 log.PersonId = JSON["PersonId"].stringValue as NSString
                 log.Id = JSON["Id"].stringValue as NSString
+                
+                self.selectedPersonLogStartId = log.Id as String
                 
                 log.Action = JSON["Action"].stringValue as NSString
                 
@@ -998,6 +1094,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 
                 log.PersonId = JSON["PersonId"].stringValue as NSString
                 log.Id = JSON["Id"].stringValue as NSString
+                
+                self.selectedPersonLogEndId = log.Id as String
                 
                 log.Action = JSON["Action"].stringValue as NSString
                 
