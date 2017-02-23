@@ -229,6 +229,8 @@ class MainMenuViewController: UIViewController {
                             self.segueIdList.append("GoToNewAuthyUser")
                             self.DisplayTextList.append("New User")
                             self.authyIdList.append("")
+                            self.PurposeList.append(PurposeTypes.None)
+
                         }
                         else{
                         for person in self.authyUserList {
@@ -236,6 +238,8 @@ class MainMenuViewController: UIViewController {
                             self.segueIdList.append("GoToAuthyAuthenticate")
                             self.DisplayTextList.append(person.Name as String)
                             self.authyIdList.append(person.AuhtyId as String)
+                            self.PurposeList.append(PurposeTypes.None)
+
                         }
                         }
                         
@@ -253,6 +257,8 @@ class MainMenuViewController: UIViewController {
                             
                             self.authyIdList.append("")
                             self.authyIdList.append("")
+                            
+                           self.PurposeList.append(PurposeTypes.None)
                             
                         }
                         

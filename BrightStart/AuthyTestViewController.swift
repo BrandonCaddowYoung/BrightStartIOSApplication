@@ -13,6 +13,8 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
+    var shouldPerformCheck = true
+    
     var timer = Timer()
     
     var uuid :NSString!
@@ -51,6 +53,8 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         WaitingLabel.isHidden = true;
         
         self.TokeTextBox.delegate = self
+        
+        
         
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
@@ -120,9 +124,14 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
     
     func checkForUsersAcceptance()
     {
+        if(self.shouldPerformCheck == false){
+            return;
+        }
         
         if(numberOfSeconsToWait<1)
         {
+            self.shouldPerformCheck = false
+            
             self.Spinner.isHidden = true
             self.Spinner.stopAnimating()
             self.timer.invalidate()
@@ -131,7 +140,6 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
                 self.performSegue(withIdentifier: self.successSegueIdentifier as String, sender: self)
             })
-            
         }
         
         AuthyRequests.sharedInstance.HasOneTouchBeenApproved(uuid: uuid as String, onCompletion:  { json in
@@ -142,6 +150,8 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
                     
                     if(approved=="true")
                     {
+                        self.shouldPerformCheck = false
+                        
                         self.Spinner.isHidden = true
                         self.Spinner.stopAnimating()
                         self.timer.invalidate()
@@ -164,45 +174,56 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         if(selectedAuthyAction == .ShouldSignOut){
     
         let alert = self._CommonHelper.showOverlayMessage("Signing out...")
-        self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion:
+                {
+            
+            
+                    CommonRequests.sharedInstance.signOut(personId: self.targetChildId as String, timeOfSignOut: Date() as NSDate,
+                                                          
+                                                          onCompletion: {
+                                                            
+                                                            DispatchQueue.main.async(execute: {
+                                                                
+                                                                self.dismiss(animated: false, completion:
+                                                                    {
+                                                                        self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                                }
+                                                                )
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                            })
+                                                            
+                    })
+            
+            })
         
-        CommonRequests.sharedInstance.signOut(personId: targetChildId as String, timeOfSignOut: Date() as NSDate,
-                                              
-                                              onCompletion: {
-                                                
-                                                DispatchQueue.main.async(execute: {
-                                                    
-                                                    self.dismiss(animated: false, completion:
-                                                        {self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                    }
-                                                    )
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                })
-                                                
-        })
+      
 
         }
         else if(selectedAuthyAction == AuhtyActions.ShouldSignIn){
         
             let alert = self._CommonHelper.showOverlayMessage("Signing in...")
-            self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: {
             
-            CommonRequests.sharedInstance.signIn(personId: targetChildId as String, timeOfSignIn: Date() as NSDate,
-                                                 onCompletion: {
-                                                    DispatchQueue.main.async(execute: {
-                                                        
-                                                        self.dismiss(animated: false, completion:
-                                                            {self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                        }
-                                                        )
-                                                        
-                                                    })
-            }
-            )
+                CommonRequests.sharedInstance.signIn(personId: self.targetChildId as String, timeOfSignIn: Date() as NSDate,
+                                                     onCompletion: {
+                                                        DispatchQueue.main.async(execute: {
+                                                            
+                                                            self.dismiss(animated: false, completion:
+                                                                {self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                            }
+                                                            )
+                                                            
+                                                        })
+                }
+                )
+            
+            })
+            
+           
         
         }
     
