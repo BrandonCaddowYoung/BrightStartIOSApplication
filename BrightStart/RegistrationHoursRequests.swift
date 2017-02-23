@@ -85,8 +85,8 @@ class RegistrationHoursRequests: NSObject {
         let startTimeInFormat:String = dateFormatter.string(from: startTime as Date)
         let finishTimeInFormat:String = dateFormatter.string(from: finishTime as Date)
         
-        let route = baseURL + "api/RegisteredHoursLogic/CreateRegisteredHours?personId="+personId + "&startTime=" + startTimeInFormat + "&finishTime=" + finishTimeInFormat + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPPostRequest(encode: false, path: route, onCompletion:
+        let route = baseURL + "api/RegisteredHoursLogic/CreateRegisteredHours2?personId="+personId + "&startTime=" + startTimeInFormat + "&finishTime=" + finishTimeInFormat + "&nurserySchoolId=" + nurserySchoolId
+        makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

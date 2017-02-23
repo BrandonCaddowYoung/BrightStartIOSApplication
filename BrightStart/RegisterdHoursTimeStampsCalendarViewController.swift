@@ -885,6 +885,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     
     func addNewButtonStartClicked(sender: UITapGestureRecognizer) {
      
+         selectedStartDate = lastSelectedDate
+        
         startSelected = true
         endSelected = false
         
@@ -907,6 +909,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     }
     
     func addNewButtonEndClicked(sender: UITapGestureRecognizer) {
+        
+        selectedEndDate = lastSelectedDate
         
         startSelected = false
         endSelected = true

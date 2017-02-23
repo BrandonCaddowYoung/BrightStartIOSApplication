@@ -127,7 +127,7 @@ class CommonRequests: NSObject {
         dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
         let stampAsString = dateFormatter.string(from: stamp as Date)
         
-        let route = baseURL + "api/PersonLogLogic/CreatePersonLog?personId="+personId+"&action="+action+"&stamp=" + stampAsString + "&nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/PersonLogLogic/CreatePersonLog?ChildId="+personId+"&Action="+action+"&TimeStamp=" + stampAsString + "&nurserySchoolId=" + nurserySchoolId
         
         makeHTTPPostRequest(encode: false, path: route, onCompletion: { json, err in
             onCompletion()

@@ -213,7 +213,7 @@ class TimeStampsEditorViewController: UIViewController {
         
         DateTimePicker.datePickerMode = UIDatePickerMode.time
         
-        DateTimePicker.maximumDate = NSDate() as Date
+        //DateTimePicker.maximumDate = NSDate() as Date
         
         if(EditorMode == .RegisteredHours_Create || EditorMode == .TimeStamps_Create ){
             RemoveButton.isHidden = true

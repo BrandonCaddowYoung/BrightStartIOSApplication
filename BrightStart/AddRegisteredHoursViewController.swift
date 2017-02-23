@@ -42,6 +42,9 @@ class AddRegisteredHoursViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        StartDatePicker.date = targetDate as Date
+        EndDatePicker.date = targetDate as Date
+        
         DateLabel.text = targetDateAsText
         NameLabel.text = personName
             
