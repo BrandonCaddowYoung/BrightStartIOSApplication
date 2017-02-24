@@ -15,6 +15,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     var _PopUpAlert: UIAlertController!
     
+    var loadingSpiiner: ProgressHUD!
+    
     @IBOutlet weak var FooterView: UIView!
     
     @IBOutlet weak var spacerMiddleTopView: UIView!
@@ -549,6 +551,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signInButtonClicked(_ sender: Any) {
         
         _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
+        
+        
+        
         self.present(_PopUpAlert, animated: true, completion: nil)
         
         //Removing incase the user is trying to switch accounts.

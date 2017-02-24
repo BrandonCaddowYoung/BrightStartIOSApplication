@@ -201,6 +201,8 @@ class MainMenuViewController: UIViewController {
             
         case .AuthyUsers:
             
+            showNavigationBar = true
+            
             //Retrieve all children
             AuthyRequests.sharedInstance.GetAllAuthyUsersForChild(childId: childId as String, onCompletion:
                 { json in

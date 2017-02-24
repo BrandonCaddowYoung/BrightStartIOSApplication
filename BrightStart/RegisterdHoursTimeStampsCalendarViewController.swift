@@ -25,6 +25,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     var Purpose = ""
     
     //End of mandatory arguments
+    @IBOutlet weak var startSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var endSpinner: UIActivityIndicatorView!
     
     var creatingNew = false
     
@@ -97,6 +99,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        startSpinner.hidesWhenStopped = true
+        endSpinner.hidesWhenStopped = true
+        
         loadingSpiiner = ProgressHUD(text: "Loading")
         self.view.addSubview(loadingSpiiner)
         hideSpinner()
@@ -188,6 +193,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         startTime.textColor = _ApplicatoinColours.White
         endTime.textColor = _ApplicatoinColours.White
+        
+        //Finally select the current date
+        self.calendarView.selectDates([NSDate() as Date])
         
     }
 
@@ -516,7 +524,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             equalTo: view.bottomAnchor).isActive = true
         
         
-        
+        //NEW BUTTON START
         
         addNewButtonStart.translatesAutoresizingMaskIntoConstraints = false
         
@@ -528,20 +536,10 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         addNewButtonStart.centerYAnchor.constraint(
             equalTo: LeftTopContainer.centerYAnchor).isActive = true
 
+        addNewButtonStart.heightAnchor.constraint(
+            equalTo: LeftTopContainer.heightAnchor,  multiplier: 0.50).isActive = true
         
-        
-        
-        startLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        //left
-        startLabel.leadingAnchor.constraint(
-            equalTo: LeftTopContainer.leadingAnchor).isActive = true
-        
-        //top
-        startLabel.topAnchor.constraint(
-            equalTo: LeftTopContainer.topAnchor).isActive = true
-        
-        
+        //NEW BUTTON END
         
         
         addNewButtonEnd.translatesAutoresizingMaskIntoConstraints = false
@@ -554,19 +552,54 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         addNewButtonEnd.centerYAnchor.constraint(
             equalTo: RightTopContainer.centerYAnchor).isActive = true
         
+        addNewButtonEnd.heightAnchor.constraint(
+            equalTo: RightTopContainer.heightAnchor,  multiplier: 0.50).isActive = true
         
         
         
         
-        finishLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        
+        
+        
+        //START SPINNER
+        
+        startSpinner.translatesAutoresizingMaskIntoConstraints = false
         
         //left
-        finishLabel.leadingAnchor.constraint(
-            equalTo: RightTopContainer.leadingAnchor).isActive = true
+        startSpinner.centerXAnchor.constraint(
+            equalTo: LeftTopContainer.centerXAnchor).isActive = true
         
         //top
-        finishLabel.topAnchor.constraint(
-            equalTo: RightTopContainer.topAnchor).isActive = true
+        startSpinner.centerYAnchor.constraint(
+            equalTo: LeftTopContainer.centerYAnchor).isActive = true
+        
+        //startSpinner.heightAnchor.constraint(
+           // equalTo: LeftTopContainer.heightAnchor,  multiplier: 0.50).isActive = true
+        
+        //END SPINNER
+        
+        
+        endSpinner.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        endSpinner.centerXAnchor.constraint(
+            equalTo: RightTopContainer.centerXAnchor).isActive = true
+        
+        //top
+        endSpinner.centerYAnchor.constraint(
+            equalTo: RightTopContainer.centerYAnchor).isActive = true
+        
+        //endSpinner.heightAnchor.constraint(
+          //  equalTo: RightTopContainer.heightAnchor,  multiplier: 0.50).isActive = true
+        
+        
+        
+        
+        
+        
+        
         
         startTime.translatesAutoresizingMaskIntoConstraints = false
         
@@ -583,6 +616,43 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         endTime.centerXAnchor.constraint(
             equalTo: RightTopContainer.centerXAnchor).isActive = true
+        
+        
+        
+        
+        
+        
+        //FINSIH LABEL
+        
+        finishLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        finishLabel.leadingAnchor.constraint(
+            equalTo: RightTopContainer.leadingAnchor, constant: 10).isActive = true
+
+        //top
+        finishLabel.topAnchor.constraint(
+            equalTo: RightTopContainer.topAnchor).isActive = true
+        
+
+        
+        
+        //START LABEL
+        
+        startLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        startLabel.leadingAnchor.constraint(
+            equalTo: LeftTopContainer.leadingAnchor, constant: 10).isActive = true
+        
+        //top
+        startLabel.topAnchor.constraint(
+            equalTo: LeftTopContainer.topAnchor).isActive = true
+        
+        
+        
+        
+        
         
     }
     
@@ -623,6 +693,15 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
         handleCellSelection(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
+        
+        startSpinner.startAnimating()
+        endSpinner.startAnimating()
+        
+        self.startTime.isHidden = true;
+        self.endTime.isHidden = true;
+        self.addNewButtonEnd.isHidden = true
+        self.addNewButtonStart.isHidden = true
+        
         
         if(selectCalendarPurpose == .TimeStamps){
         
@@ -977,6 +1056,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                     
                      self.hideSpinner()
                     
+                    self.calendarView.selectDates([self.lastSelectedDate])
+                    
                 })
 
             }
@@ -997,6 +1078,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 PersonLogRequests.sharedInstance.DeletePersonLog(logId: targetTimeStampsLogId, onCompletion:
                 {_ in 
                 self.hideSpinner()
+                     self.calendarView.selectDates([self.lastSelectedDate])
                 }
                 )
             }
@@ -1075,6 +1157,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             
             DispatchQueue.main.async(execute: {
                 
+                self.startSpinner.stopAnimating()
+                self.startTime.isHidden = false;
+                
                 self.startTime.text = retrievedStartStamp
                 
                 if(retrievedStartStamp == "")
@@ -1133,6 +1218,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             }
             
             DispatchQueue.main.async(execute: {
+                
+                self.endSpinner.stopAnimating()
+                self.endTime.isHidden = false;
                 
                 self.endTime.text = retrievedEndStamp
                 
@@ -1245,6 +1333,12 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             }
             
             DispatchQueue.main.async(execute: {
+                
+                self.startSpinner.stopAnimating()
+                self.startTime.isHidden = false;
+
+                self.endSpinner.stopAnimating()
+                self.endTime.isHidden = false;
                 
                 self.startTime.text = retrievedStartStamp
                 self.endTime.text = retrievedEndStamp

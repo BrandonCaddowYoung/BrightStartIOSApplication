@@ -400,12 +400,6 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            
-            
-            
-            
-            
-            
             //Do I need this?
             if(self.Purpose == "RegisteredHours_Edit")
             {

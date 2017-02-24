@@ -89,8 +89,10 @@ class PersonSearchTableViewCell: UITableViewCell
         {
             childNameLabel?.text = "\(child.ChildFullName)"
             
-            //UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
-            //UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            birthdayText?.text = dateFormatter.string(from: child.ChildDOB) as String
+           
         }
     }
 }

@@ -896,6 +896,10 @@
                                                         <rect key="frame" x="50" y="74" width="51" height="56"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="I8B-zk-Dij">
+                                                        <rect key="frame" x="65" y="92" width="20" height="20"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </activityIndicatorView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.1764705926" green="0.01176470611" blue="0.56078433989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
@@ -928,6 +932,10 @@
                                                         <rect key="frame" x="50" y="74" width="51" height="56"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="tBR-z6-jvJ">
+                                                        <rect key="frame" x="65" y="92" width="20" height="20"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </activityIndicatorView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.92549020049999997" green="0.23529411850000001" blue="0.1019607857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
@@ -1026,6 +1034,7 @@
                         <outlet property="addNewButtonStart" destination="YLg-Td-nbJ" id="ncf-xG-IPK"/>
                         <outlet property="bottomContainer" destination="ym3-Yg-y6Q" id="RPN-qZ-LCv"/>
                         <outlet property="calendarView" destination="FSW-9p-Ibt" id="WNT-DC-JrC"/>
+                        <outlet property="endSpinner" destination="I8B-zk-Dij" id="k6f-tV-FxP"/>
                         <outlet property="endTime" destination="atB-9O-FPg" id="ceH-M9-uxM"/>
                         <outlet property="finishLabel" destination="LAr-PC-BOb" id="3Kt-Aw-eha"/>
                         <outlet property="homeButton" destination="ytY-ir-jSd" id="FO5-Dg-duC"/>
@@ -1034,6 +1043,7 @@
                         <outlet property="rightContainer" destination="Jtc-ZT-g0Y" id="Vbn-vX-N1A"/>
                         <outlet property="stackView" destination="B0i-2Z-Iut" id="kzq-XX-DGM"/>
                         <outlet property="startLabel" destination="7hI-LB-LS4" id="sOd-3W-DZD"/>
+                        <outlet property="startSpinner" destination="tBR-z6-jvJ" id="i2H-qn-C7B"/>
                         <outlet property="startTime" destination="tYg-EE-bX9" id="cqI-Il-Zqd"/>
                         <outlet property="topContainer" destination="Rhv-fx-Z9a" id="anv-77-cl6"/>
                         <outlet property="yearLabel" destination="giR-fa-apM" id="7Ct-fF-rG0"/>
@@ -1795,11 +1805,11 @@
         <image name="ic_check" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XfL-MG-fp5"/>
+        <segue reference="fQC-lD-NUF"/>
         <segue reference="FZS-ay-AFf"/>
         <segue reference="AaN-mO-ooE"/>
+        <segue reference="p8U-PX-Nn4"/>
         <segue reference="1pJ-9N-iMH"/>
-        <segue reference="dQm-Sj-sjy"/>
         <segue reference="Q5J-dV-oJS"/>
         <segue reference="2qs-QS-n86"/>
         <segue reference="nx9-xO-yGO"/>
