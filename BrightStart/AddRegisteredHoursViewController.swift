@@ -42,8 +42,26 @@ class AddRegisteredHoursViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        StartDatePicker.date = targetDate as Date
-        EndDatePicker.date = targetDate as Date
+       StartDatePicker.date = targetDate as Date
+        StartDatePicker.date = StartDatePicker.date.setTime(hour: 08, min: 0, sec: 0)!
+        
+      EndDatePicker.date = targetDate as Date
+       EndDatePicker.date = EndDatePicker.date.setTime(hour: 18, min: 0, sec: 0)!
+        
+        EndDatePicker.addTarget(self, action: #selector(endDatePickerChanged(sender:)), for: .valueChanged)
+        StartDatePicker.addTarget(self, action: #selector(startDatePickerChanged(sender:)), for: .valueChanged)
+        
+        //var components = DateComponents()
+        //components.hour = -1
+        ///let startTime = Calendar.current.date(byAdding: components, to: Date())
+        //StartDatePicker.date = startTime!
+        
+        //components.hour = 18
+        //let endTime = Calendar.current.date(byAdding: components, to: Date())
+        //EndDatePicker.date = endTime!
+        
+        //StartDatePicker.minimumDate = minDate
+        //StartDatePicker.maximumDate = maxDate
         
         DateLabel.text = targetDateAsText
         NameLabel.text = personName
@@ -81,6 +99,30 @@ class AddRegisteredHoursViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    func startDatePickerChanged(sender: UIDatePicker) {
+        
+        if(sender.date >= EndDatePicker.date)
+        {
+            var components = DateComponents()
+            components.minute = 1
+            let startTimePLusAMinute = Calendar.current.date(byAdding: components, to: sender.date)
+            EndDatePicker.date = startTimePLusAMinute!
+        }
+        
+    }
+    
+    func endDatePickerChanged(sender: UIDatePicker) {
+        
+        if(sender.date <= StartDatePicker.date)
+        {
+            var components = DateComponents()
+            components.minute = -1
+            let endTimeMinusAMinute = Calendar.current.date(byAdding: components, to: sender.date)
+            StartDatePicker.date = endTimeMinusAMinute!
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -208,8 +250,6 @@ class AddRegisteredHoursViewController: UIViewController {
         FinishLabel.bottomAnchor.constraint(
             equalTo: TopContainer.bottomAnchor).isActive = true
         
-        
-        
         //Middle Right
         
         MiddleRightContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -228,8 +268,6 @@ class AddRegisteredHoursViewController: UIViewController {
         
         MiddleRightContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor, multiplier: 0.33).isActive = true
-        
-       
         
         //END DATEPICKER
         
@@ -256,11 +294,6 @@ class AddRegisteredHoursViewController: UIViewController {
         EndDatePicker.bottomAnchor.constraint(
             equalTo: MiddleRightContainer.bottomAnchor).isActive = true
         
-        
-
-        
-        
-        
         //Bottom
         
         BottomContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -280,9 +313,6 @@ class AddRegisteredHoursViewController: UIViewController {
         //bottom
         BottomContainer.bottomAnchor.constraint(
             equalTo: view.bottomAnchor).isActive = true
-        
-        
-        
         
         //SaveButton
         
@@ -380,6 +410,21 @@ class AddRegisteredHoursViewController: UIViewController {
             }
             
         }
+    }
+}
+
+extension Date {
+    public func setTime(hour: Int, min: Int, sec: Int, timeZoneAbbrev: String = "UTC") -> Date? {
+        let x: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
+        let cal = Calendar.current
+        var components = cal.dateComponents(x, from: self)
+        
+        components.timeZone = TimeZone(abbreviation: timeZoneAbbrev)
+        components.hour = hour
+        components.minute = min
+        components.second = sec
+        
+        return cal.date(from: components)
     }
 }
 
