@@ -76,18 +76,30 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     //Removes the navigation bar from the top
     override func viewWillDisappear(_ animated: Bool) {
         
+        super.viewWillDisappear(animated)
+
+        
         if(!showNavigationBar){
             self.navigationController?.setNavigationBarHidden(false, animated: animated);
-            super.viewWillDisappear(animated)
+                    }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(true, animated: animated);
         }
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        super.viewWillAppear(animated)
+        
         if(!showNavigationBar){
-            super.viewWillAppear(animated)
+            
             self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }
         
     }

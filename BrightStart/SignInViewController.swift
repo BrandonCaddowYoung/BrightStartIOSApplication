@@ -66,6 +66,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         signInButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
+        SignUpButton.setTitleColor(_ApplicatoinColours.White, for: .normal)
+        
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
        
         //Making the pasword textfield secure

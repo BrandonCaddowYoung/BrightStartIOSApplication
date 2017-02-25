@@ -19,6 +19,7 @@ class NewAuhtyViewController: UIViewController {
     
     @IBOutlet weak var TopContainer: UIView!
     
+    @IBOutlet weak var HeadingLabel: UILabel!
     @IBOutlet weak var MiddleContainer: UIView!
     
     
@@ -119,6 +120,9 @@ class NewAuhtyViewController: UIViewController {
         //Positioning the left subview
         
         TopContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        HeadingLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         MiddleContainer.translatesAutoresizingMaskIntoConstraints = false
         BottomContainer.translatesAutoresizingMaskIntoConstraints = false
         
@@ -150,7 +154,27 @@ class NewAuhtyViewController: UIViewController {
         //height
         TopContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.20).isActive = true
+            multiplier: 0.10).isActive = true
+        
+        
+        
+        
+        
+        
+        //HeadingLabel
+        
+        //left
+        HeadingLabel.centerYAnchor.constraint(
+            equalTo: TopContainer.centerYAnchor).isActive = true
+        
+        //Right
+        HeadingLabel.centerXAnchor.constraint(
+            equalTo: TopContainer.centerXAnchor).isActive = true
+        
+        
+        
+        
+        
         
         
         //Middle
@@ -170,7 +194,7 @@ class NewAuhtyViewController: UIViewController {
         //height
         MiddleContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.60).isActive = true
+            multiplier: 0.70).isActive = true
         
         
         

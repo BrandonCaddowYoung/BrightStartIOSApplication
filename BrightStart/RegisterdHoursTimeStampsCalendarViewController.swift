@@ -24,6 +24,10 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     var OptionText = ""
     var Purpose = ""
     
+    @IBOutlet weak var targetPersonButton: UIButton!
+    
+    @IBOutlet weak var menuButton: UIButton!
+    
     //End of mandatory arguments
     @IBOutlet weak var startSpinner: UIActivityIndicatorView!
     @IBOutlet weak var endSpinner: UIActivityIndicatorView!
@@ -67,16 +71,14 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     // a new color every time a cell is displayed. We do not want a laggy
     // scrolling calendar.
     
+    @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var addNewButtonStart: UIImageView!
     @IBOutlet weak var addNewButtonEnd: UIImageView!
     
     @IBOutlet weak var TopPadding: UIView!
     
-    @IBOutlet weak var yearLabel: UILabel!
-    
     @IBOutlet weak var rightDeleteButton: UIImageView!
     @IBOutlet weak var monthLabel: UILabel!
-    @IBOutlet weak var homeButton: UIImageView!
     
     @IBOutlet weak var leftContainer: UIView!
     @IBOutlet weak var rightContainer: UIView!
@@ -99,6 +101,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        let inntials = childName.components(separatedBy: " ").reduce("") { $0.0 + String($0.1.characters.first!) + "." }
+        NameLabel.text = inntials
+        
         startSpinner.hidesWhenStopped = true
         endSpinner.hidesWhenStopped = true
         
@@ -128,12 +133,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         addNewButtonEnd.isUserInteractionEnabled = true;
         let addNewButtonEndTap = UITapGestureRecognizer(target: self, action: #selector(addNewButtonEndClicked))
         addNewButtonEnd.addGestureRecognizer(addNewButtonEndTap)
-        
-        homeButton.isUserInteractionEnabled = true;
-        
-        let homeTap = UITapGestureRecognizer(target: self, action: #selector(homeButtonClicked))
-        homeButton.addGestureRecognizer(homeTap)
-        
+       
         calendarView.registerHeaderView(xibFileNames: ["TimeStampsSectionHeaderView", "TimeStampsSectionHeaderView"])
         
         self.edgesForExtendedLayout = []
@@ -169,7 +169,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         let singleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didSingleTapCollectionView(gesture:)))
         
         singleTapGesture.numberOfTapsRequired = 1  // add double tap
-        //calendarView.addGestureRecognizer(singleTapGesture)
         
         if(selectCalendarPurpose == .TimeStamps)
         {
@@ -189,7 +188,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         calendarView.scrollToDate(Date())
         
         monthLabel.textColor = _ApplicatoinColours.White
-        yearLabel.textColor = _ApplicatoinColours.White
         
         startTime.textColor = _ApplicatoinColours.White
         endTime.textColor = _ApplicatoinColours.White
@@ -211,13 +209,24 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         //}
     }
     
+    
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.calendarView.selectDates([self.lastSelectedDate])
+    }
+    
+    
+    
+    
+    
     func calendar(_ calendar: JTAppleCalendarView, willDisplayCell cell: JTAppleDayCellView, date: Date, cellState: CellState) {
         
         let myCustomCell = cell as! CellView
         
         // Setup Cell text
         myCustomCell.dayLabel.text = cellState.text
-        
         
         //if(cellState.dateBelongsTo == .thisMonth){
         //myCustomCell.dayLabel.textColor = _ApplicatoinColours.Red
@@ -262,14 +271,10 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         //}
         
     }
-   
-  
+    
     func didSingleTapCollectionView(gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: gesture.view!)
         let cellState = calendarView.cellStatus(at: point)
-        print(cellState!.date)
-        
-       
         
     }
     
@@ -325,7 +330,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             equalTo: view.topAnchor).isActive = true
 
         TopPadding.heightAnchor.constraint(
-            equalTo: view.heightAnchor, multiplier: 0.08).isActive = true
+            equalTo: view.heightAnchor, multiplier: 0.03).isActive = true
         
         
     //Top container
@@ -344,35 +349,54 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             equalTo: TopPadding.bottomAnchor).isActive = true
         
         topContainer.heightAnchor.constraint(
-            equalTo: view.heightAnchor, multiplier : 0.15).isActive = true
+            equalTo: view.heightAnchor, multiplier : 0.20).isActive = true
         
-        //YEAR label
-        yearLabel.translatesAutoresizingMaskIntoConstraints = false
+        //TargetPerson button
+        targetPersonButton.translatesAutoresizingMaskIntoConstraints = false
         
         //left
-        yearLabel.leadingAnchor.constraint(
+        targetPersonButton.leadingAnchor.constraint(
             equalTo: topContainer.leadingAnchor, constant: 15 ).isActive = true
         
         //top
-        yearLabel.topAnchor.constraint(
+        targetPersonButton.topAnchor.constraint(
             equalTo: topContainer.topAnchor).isActive = true
         
-        //Home button
-        homeButton.translatesAutoresizingMaskIntoConstraints = false
+        targetPersonButton.widthAnchor.constraint(
+            equalToConstant: 40).isActive = true
+        
+        targetPersonButton.heightAnchor.constraint(
+            equalToConstant: 40).isActive = true
+        
+        //Name label
+        NameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center with button
+        NameLabel.centerXAnchor.constraint(
+            equalTo: targetPersonButton.centerXAnchor).isActive = true
         
         //top
-        homeButton.topAnchor.constraint(
+        NameLabel.topAnchor.constraint(
+            equalTo: targetPersonButton.bottomAnchor).isActive = true
+        
+        //MENU BUTTON
+        menuButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        //top
+        menuButton.topAnchor.constraint(
             equalTo: topContainer.topAnchor).isActive = true
         
         //right
-        homeButton.trailingAnchor.constraint(
+        menuButton.trailingAnchor.constraint(
             equalTo: topContainer.trailingAnchor, constant: -15).isActive = true
         
-        homeButton.widthAnchor.constraint(
-            equalToConstant: 20).isActive = true
+        menuButton.widthAnchor.constraint(
+        equalToConstant: 40).isActive = true
         
-        homeButton.heightAnchor.constraint(
-            equalToConstant: 20).isActive = true
+        menuButton.heightAnchor.constraint(
+            equalToConstant: 40).isActive = true
+        
+        menuButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
         //Month label
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -382,10 +406,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             equalTo: topContainer.centerXAnchor).isActive = true
         
         //top
-        monthLabel.topAnchor.constraint(
-            equalTo: topContainer.topAnchor).isActive = true
-        
-        
+        monthLabel.centerYAnchor.constraint(
+            equalTo: targetPersonButton.centerYAnchor).isActive = true
         
         //Stack view
         
@@ -554,9 +576,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         addNewButtonEnd.heightAnchor.constraint(
             equalTo: RightTopContainer.heightAnchor,  multiplier: 0.50).isActive = true
-        
-        
-        
         
         
         
@@ -758,18 +777,18 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         let calendar2 = Calendar.current
         
-        yearLabel.text = String(calendar2.component(.year, from: range.start))
-        
         let dateFormatter: DateFormatter = DateFormatter()
         let months = dateFormatter.shortMonthSymbols
         var monthSymbol = ""
         
         if(month > 0){
             monthSymbol = (months?[month - 1])! as String // month - from your date components
+            
+            
         }
         
         //self.yearLabel.text = String(startYear)
-        self.monthLabel.text = monthSymbol
+        self.monthLabel.text = monthSymbol + " - " + String(calendar2.component(.year, from: range.start))
         
         if month % 2 > 0 {
             return "TimeStampsSectionHeaderView"
@@ -784,11 +803,23 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         if (segue.identifier == "GoToMainMenu") {
             
+            
+            
+            
+            
+            
             if let vc = segue.destination as? MainMenuViewController {
-                vc.selectedMenu = .MainMenu
+                
+                if(selectCalendarPurpose == .TimeStamps){
+                    vc.selectedMenu = .TimeStamps
+                }
+                else if(selectCalendarPurpose == .RegistrationHours){
+                    vc.selectedMenu = .RegisteredHours
+                }
+                
+                
             }
         }
-        
        
         
         else if (segue.identifier == "GoToRegistrationHoursEditor") {
@@ -814,6 +845,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                         vc.existingStartDate = selectedStartDate
                         vc.existingEndDate = selectedEndDate
                         
+                        vc.goBackOnSuccess = true
+                        
                         vc.registerdHoursId = selectedRegisteredHoursId
                         
                         if(startSelected){
@@ -827,6 +860,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                     }
                     else if(selectCalendarPurpose == .TimeStamps)
                     {
+                        vc.goBackOnSuccess = true
+                        
                         if(creatingNew == false){
                             vc.EditorMode = .TimeStamps_Edit
 
@@ -977,8 +1012,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         {
            self.performSegue(withIdentifier: "GoToRegistrationHoursEditor", sender: nil)
             
-            
-            
         }
         else if(selectCalendarPurpose == .TimeStamps)
         {
@@ -1035,7 +1068,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     }
     
     func homeButtonClicked(sender: UITapGestureRecognizer) {
-      self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+      
     }
     
     
@@ -1367,6 +1400,21 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
        
     }
     
+ 
+    @IBAction func PersonTapped(_ sender: Any) {
+       
+        if let nav = self.navigationController {
+            nav.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func MenuTapped(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+        
+    }
 }
 
 extension RegisterdHoursTimeStampsCalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
@@ -1394,3 +1442,5 @@ extension RegisterdHoursTimeStampsCalendarViewController: JTAppleCalendarViewDat
     }
     
 }
+
+

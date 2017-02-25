@@ -25,6 +25,8 @@ class TimeStampsEditorViewController: UIViewController {
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
     
+    var goBackOnSuccess = false
+    
     var Action:String!
     var PersonId:String!
     var Name:String!
@@ -68,7 +70,16 @@ class TimeStampsEditorViewController: UIViewController {
                                                 DispatchQueue.main.async(execute: {
                                                     self.dismiss(animated: false, completion: {
                                                     
+                                                        if(self.goBackOnSuccess){
+                                                        if let nav = self.navigationController {
+                                                            nav.popViewController(animated: true)
+                                                        } else {
+                                                            self.dismiss(animated: true, completion: nil)
+                                                        }
+                                                        }
+                                                        else{
                                                         self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                        }
                                                     
                                                     })
                                                     
@@ -112,7 +123,20 @@ class TimeStampsEditorViewController: UIViewController {
                 DispatchQueue.main.async(execute: {
                     self.dismiss(animated: false, completion: {
                         
-                        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                        
+                        
+                        
+                        if(self.goBackOnSuccess){
+                            if let nav = self.navigationController {
+                                nav.popViewController(animated: true)
+                            } else {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                        else{
+                            self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                        }
+                        
                         
                     })
                     
@@ -130,7 +154,21 @@ class TimeStampsEditorViewController: UIViewController {
                                                             DispatchQueue.main.async(execute: {
                                                                 self.dismiss(animated: false, completion: {
                                                                     
-                                                                    self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                    
+                                                                    
+                                                                    if(self.goBackOnSuccess){
+                                                                        if let nav = self.navigationController {
+                                                                            nav.popViewController(animated: true)
+                                                                        } else {
+                                                                            self.dismiss(animated: true, completion: nil)
+                                                                        }
+                                                                    }
+                                                                    else{
+                                                                        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                    }
+                                                                    
+                                                                    
+                                                                    
                                                                     
                                                                 })
                                                                 
@@ -151,7 +189,21 @@ class TimeStampsEditorViewController: UIViewController {
                                                             DispatchQueue.main.async(execute: {
                                                                 self.dismiss(animated: false, completion: {
                                                                     
-                                                                    self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                    
+                                                                    
+                                                                    
+                                                                    if(self.goBackOnSuccess){
+                                                                        if let nav = self.navigationController {
+                                                                            nav.popViewController(animated: true)
+                                                                        } else {
+                                                                            self.dismiss(animated: true, completion: nil)
+                                                                        }
+                                                                    }
+                                                                    else{
+                                                                        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                    }
+                                                                    
+                                                                    
                                                                     
                                                                 })
                                                                 
@@ -180,7 +232,16 @@ class TimeStampsEditorViewController: UIViewController {
                                                         DispatchQueue.main.async(execute: {
                                                             self.dismiss(animated: false, completion: {
                                                                 
-                                                                self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                if(self.goBackOnSuccess){
+                                                                    if let nav = self.navigationController {
+                                                                        nav.popViewController(animated: true)
+                                                                    } else {
+                                                                        self.dismiss(animated: true, completion: nil)
+                                                                    }
+                                                                }
+                                                                else{
+                                                                    self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                }
                                                                 
                                                             })
                                                             

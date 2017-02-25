@@ -192,7 +192,7 @@ class AddRegisteredHoursViewController: UIViewController {
         
         //left
         StartLabel.leadingAnchor.constraint(
-            equalTo: TopContainer.leadingAnchor).isActive = true
+            equalTo: TopContainer.leadingAnchor, constant: 10).isActive = true
         
         StartLabel.bottomAnchor.constraint(
             equalTo: TopContainer.bottomAnchor).isActive = true
@@ -203,7 +203,7 @@ class AddRegisteredHoursViewController: UIViewController {
         
         //left
         FinishLabel.leadingAnchor.constraint(
-            equalTo: MiddleLeftContainer.trailingAnchor).isActive = true
+            equalTo: MiddleLeftContainer.trailingAnchor, constant: 10).isActive = true
         
         FinishLabel.bottomAnchor.constraint(
             equalTo: TopContainer.bottomAnchor).isActive = true
@@ -295,10 +295,46 @@ class AddRegisteredHoursViewController: UIViewController {
         
         //bottom
         SaveButton.bottomAnchor.constraint(
-            equalTo: BottomContainer.bottomAnchor).isActive = true
+            equalTo: BottomContainer.bottomAnchor, constant: -10).isActive = true
         
-        SaveButton.widthAnchor.constraint(
-            equalTo: BottomContainer.widthAnchor, multiplier: 0.50).isActive = true
+       // SaveButton.widthAnchor.constraint(
+         //   equalTo: BottomContainer.widthAnchor, multiplier: 0.50).isActive = true
+        
+        
+        
+        
+        
+        
+        
+        
+       // SaveButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        //height
+        //SaveButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        SaveButton.heightAnchor.constraint(
+            equalTo: view.heightAnchor,
+            multiplier : 0.10).isActive = true
+        
+        //left
+        SaveButton.leadingAnchor.constraint(
+            equalTo: BottomContainer.leadingAnchor, constant: 5).isActive = true
+        
+        //right
+        SaveButton.trailingAnchor.constraint(
+            equalTo: BottomContainer.trailingAnchor, constant: -5).isActive = true
+        
+        //bottom
+        //SaveButton.bottomAnchor.constraint(
+          //  equalTo: RemoveButton.topAnchor, constant: -10).isActive = true
+        
+        //Stlying save button
+        SaveButton.layer.cornerRadius = 5
+        SaveButton.layer.borderWidth = 1
+        SaveButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
+        SaveButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        
+        SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
 
         
     
@@ -315,8 +351,19 @@ class AddRegisteredHoursViewController: UIViewController {
             
             self.hideSpinner()
             
+            //self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+            
+            //Always goes back when done but this could be optional?
+            
+            if let nav = self.navigationController {
+                nav.popViewController(animated: true)
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+            
         })
-        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+        
+        
         
     }
     

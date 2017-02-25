@@ -149,9 +149,9 @@ class MainMenuViewController: UIViewController {
             
             images = [UIImage(named: "Register")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Information")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRegister", "GoToRegisteredHoursMenu", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToInformation", "GoToSignIn"]
+            segueIdList = ["GoToRegister", "GoToSearchPerson", "GoToSearchPerson", "GoToAuthyMenu", "GoToInformation", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Register, PurposeTypes.None, PurposeTypes.None, PurposeTypes.None, PurposeTypes.information, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Register, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.None, PurposeTypes.information, PurposeTypes.SignOut]
             
             DisplayTextList = ["Register",  "Registered Hours", "Time Stamps", "Auhty", "Informaiton", "Sign Out"]
             
@@ -159,30 +159,30 @@ class MainMenuViewController: UIViewController {
             
         case .TimeStamps:
             
-            images = [UIImage(named: "Search")!, UIImage(named: "Edit")!, UIImage(named: "Delete")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Edit")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToSearchPerson", "GoToSearchPerson", "GoToSearchPerson", "GoToMainMenu", "GoToSignIn"]
+            segueIdList = ["GoToSearchPerson", "GoToMainMenu", "GoToSignIn"]
             
-             PurposeList = [PurposeTypes.TimeStamps_Search, PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Delete, PurposeTypes.None, PurposeTypes.SignOut]
+             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.None, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Search",  "Edit", "Delete", "Home", "Sign Out"]
+            DisplayTextList = ["Edit", "Home", "Sign Out"]
             
-            authyIdList = ["", "", "", "", ""]
+            authyIdList = ["", "", ""]
             
             showNavigationBar = true
             
             
         case .RegisteredHours:
             
-            images = [UIImage(named: "Binoculars100")!, UIImage(named: "Fantasy100")!,UIImage(named: "PencilTip100")!, UIImage(named: "Delete")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "PencilTip100")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToSearchPerson", "GoToSearchPerson","GoToSearchPerson", "GoToSearchPerson", "GoToMainMenu", "GoToSignIn"]
+            segueIdList = ["GoToSearchPerson", "GoToMainMenu", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.RegisteredHours_Search, PurposeTypes.RegisterdHours_Set, PurposeTypes.RegisterdHours_Edit, PurposeTypes.RegisteredHours_Delete, PurposeTypes.None, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.RegisterdHours_Edit, PurposeTypes.RegisteredHours_Delete, PurposeTypes.None, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Search",  "Set", "Edit","Delete", "Home", "Sign Out"]
+            DisplayTextList = ["Edit", "Home", "Sign Out"]
             
-            authyIdList = ["", "", "", "","", ""]
+            authyIdList = ["", "",""]
             
             showNavigationBar = true
             
@@ -491,6 +491,8 @@ class MainMenuViewController: UIViewController {
                     
                     vc.successSegueIdentifier = "GoToCalendar"
                     vc.Purpose = "TimeStamps_Edit"
+                    
+                    vc.showNavigationBar = true
                 }
             }
             
@@ -618,6 +620,8 @@ class MainMenuViewController: UIViewController {
                 
                 vc.successSeqgueIdentifier = "GoToNewAuthyUser"
                 
+                vc.ShouldUseTapToSelect = true
+                
             }
         }
         else if (segue.identifier == "GoToTestAuthyUser") {
@@ -696,9 +700,15 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     //Removes the navigation bar from the top
     override func viewWillDisappear(_ animated: Bool) {
         
+         super.viewWillDisappear(animated)
+        
         if(!showNavigationBar){
             self.navigationController?.setNavigationBarHidden(false, animated: animated);
-            super.viewWillDisappear(animated)
+           
+        }
+        else
+        {
+         self.navigationController?.setNavigationBarHidden(true, animated: animated);
         }
         
     }
@@ -707,10 +717,15 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         
         hideSpinner()
 
+        super.viewWillAppear(animated)
         
          if(!showNavigationBar){
-            super.viewWillAppear(animated)
+            
             self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+         else
+         {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }
         
     }
