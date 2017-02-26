@@ -86,11 +86,7 @@ class TimeStampSearchTableViewCell: UITableViewCell
         //titleLabel?.text = nil
         
         if let log = self.log
-        {
-            
-            
-            
-            
+        {   
             let dateFormatter = DateFormatter()
             
             dateFormatter.dateFormat = "HH mm ss"
@@ -103,16 +99,9 @@ class TimeStampSearchTableViewCell: UITableViewCell
             
             let convertedDateString = dateFormatter.string(from: log.TimeStamp)
            
-            var dateField = convertedDateString as String
-            
-            
-            
-            
+            let dateField = convertedDateString as String
             
             titleLabel?.text = "\(log.Action)"
-            
-            
-            
             timeLabel?.text = "\(dateField)"
             
            // UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")

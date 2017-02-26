@@ -640,10 +640,10 @@ class MainMenuViewController: UIViewController {
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? ClockingTableViewController {
+            //if let vc = segue.destination as? ClockingTableViewController {
                 
                 
-            }
+            //}
             
         }
         

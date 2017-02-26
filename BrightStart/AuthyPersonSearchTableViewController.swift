@@ -10,6 +10,8 @@ import UIKit
 
 class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldDelegate {
     
+    
+    
     var indicator = UIActivityIndicatorView()
     
     func activityIndicator()

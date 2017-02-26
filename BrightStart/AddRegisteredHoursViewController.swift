@@ -16,6 +16,8 @@ class AddRegisteredHoursViewController: UIViewController {
     
     var targetDateAsText = "";
     
+    var showNavigationBar = true
+    
     var selectedStartTime = NSDate()
     var selectedEndTime = NSDate()
     
@@ -51,21 +53,17 @@ class AddRegisteredHoursViewController: UIViewController {
         EndDatePicker.addTarget(self, action: #selector(endDatePickerChanged(sender:)), for: .valueChanged)
         StartDatePicker.addTarget(self, action: #selector(startDatePickerChanged(sender:)), for: .valueChanged)
         
-        //var components = DateComponents()
-        //components.hour = -1
-        ///let startTime = Calendar.current.date(byAdding: components, to: Date())
-        //StartDatePicker.date = startTime!
-        
-        //components.hour = 18
-        //let endTime = Calendar.current.date(byAdding: components, to: Date())
-        //EndDatePicker.date = endTime!
-        
-        //StartDatePicker.minimumDate = minDate
-        //StartDatePicker.maximumDate = maxDate
-        
         DateLabel.text = targetDateAsText
         NameLabel.text = personName
-            
+        
+        NameLabel.adjustsFontSizeToFitWidth = true
+        NameLabel.minimumScaleFactor = 0.2
+        NameLabel.textAlignment = .left
+        
+        DateLabel.adjustsFontSizeToFitWidth = true
+        DateLabel.minimumScaleFactor = 0.2
+        DateLabel.textAlignment = .right
+        
         self.edgesForExtendedLayout = []
         
         _ApplicatoinColours = ApplicatoinColours()
@@ -164,28 +162,32 @@ class AddRegisteredHoursViewController: UIViewController {
         
         //DateLabel
         
-        DateLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        //left
-        DateLabel.leadingAnchor.constraint(
-            equalTo: TopContainer.leadingAnchor).isActive = true
-
-        DateLabel.topAnchor.constraint(
-            equalTo: TopContainer.topAnchor).isActive = true
-        
-        
-        
-        //NameLabel
-        
         NameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //left
-        NameLabel.trailingAnchor.constraint(
-            equalTo: TopContainer.trailingAnchor).isActive = true
-        
+        NameLabel.leadingAnchor.constraint(
+            equalTo: TopContainer.leadingAnchor, constant: 5).isActive = true
+
+        //top
         NameLabel.topAnchor.constraint(
-            equalTo: TopContainer.topAnchor).isActive = true
+            equalTo: TopContainer.topAnchor, constant: 5).isActive = true
         
+        NameLabel.widthAnchor.constraint(
+            equalTo: TopContainer.widthAnchor, multiplier: 0.60).isActive = true
+        
+        //NameLabel
+        
+        DateLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        DateLabel.trailingAnchor.constraint(
+            equalTo: TopContainer.trailingAnchor, constant: -5).isActive = true
+        
+        DateLabel.topAnchor.constraint(
+            equalTo: TopContainer.topAnchor, constant: 5).isActive = true
+        
+        DateLabel.widthAnchor.constraint(
+            equalTo: TopContainer.widthAnchor, multiplier: 0.30).isActive = true
         
         //Middle left
         
@@ -222,11 +224,6 @@ class AddRegisteredHoursViewController: UIViewController {
 
         StartDatePicker.heightAnchor.constraint(
             equalTo: MiddleLeftContainer.heightAnchor).isActive = true
-        
-
-        
-        
-        
         
         //StartLabel
         
@@ -331,12 +328,6 @@ class AddRegisteredHoursViewController: UIViewController {
          //   equalTo: BottomContainer.widthAnchor, multiplier: 0.50).isActive = true
         
         
-        
-        
-        
-        
-        
-        
        // SaveButton.translatesAutoresizingMaskIntoConstraints = false
         
         //height
@@ -365,9 +356,6 @@ class AddRegisteredHoursViewController: UIViewController {
         SaveButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         
         SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
-
-        
-    
     }
    
     @IBAction func SaveButtonClicked(_ sender: Any) {
@@ -392,9 +380,6 @@ class AddRegisteredHoursViewController: UIViewController {
             }
             
         })
-        
-        
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
@@ -411,6 +396,36 @@ class AddRegisteredHoursViewController: UIViewController {
             
         }
     }
+    
+    //Removes the navigation bar from the top
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(true, animated: animated);
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
+        
+    }
+    
 }
 
 extension Date {

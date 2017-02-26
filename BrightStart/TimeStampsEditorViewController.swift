@@ -27,6 +27,8 @@ class TimeStampsEditorViewController: UIViewController {
     
     var goBackOnSuccess = false
     
+    var showNavigationBar = true
+    
     var Action:String!
     var PersonId:String!
     var Name:String!
@@ -94,18 +96,18 @@ class TimeStampsEditorViewController: UIViewController {
             let alert = self._CommonHelper.showOverlayMessage("Updating...")
             self.present(alert, animated: true, completion: nil)
             
-            var originalDateValue = NSDate()
+            //var originalDateValue = NSDate()
             var newStartValue = NSDate()
             var newEndValue = NSDate()
             
-            if(editType == .Start)
-            {
-                originalDateValue = existingStartDate as NSDate
-            }
-            else if(editType == .End)
-            {
-                originalDateValue = existingEndDate as NSDate
-            }
+            //if(editType == .Start)
+            //{
+              //  originalDateValue = existingStartDate as NSDate
+            //}
+            //else if(editType == .End)
+            //{
+              //  originalDateValue = existingEndDate as NSDate
+            //}
             
             if(editType == .Start)
             {
@@ -447,4 +449,33 @@ class TimeStampsEditorViewController: UIViewController {
         }
     }
 
+    //Removes the navigation bar from the top
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(true, animated: animated);
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
+        
+    }
+    
 }

@@ -197,7 +197,6 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             //Saving the selected log so that when we segue we can call on it!
             SelectedPersonLog = cell.log
             
-            let rowTitle2 = OptionText
             self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
             
         }

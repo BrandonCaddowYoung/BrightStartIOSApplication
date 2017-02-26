@@ -15,6 +15,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
 
     //Arguments
     
+    var showNavigationBar = true
+    
     var selectCalendarPurpose = CalendarPurpose.RegistrationHours
     
     var homeSeqgueIdentifier = ""
@@ -273,8 +275,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     }
     
     func didSingleTapCollectionView(gesture: UITapGestureRecognizer) {
-        let point = gesture.location(in: gesture.view!)
-        let cellState = calendarView.cellStatus(at: point)
+        //let point = gesture.location(in: gesture.view!)
+        //let cellState = calendarView.cellStatus(at: point)
         
     }
     
@@ -828,6 +830,10 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 
                 vc.personName = childName
                 vc.personId = childId
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                vc.targetDateAsText = dateFormatter.string(from: lastSelectedDate) as String
                 
                 vc.targetDate = lastSelectedDate as NSDate
                 

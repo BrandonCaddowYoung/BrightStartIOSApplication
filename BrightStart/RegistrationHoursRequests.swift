@@ -46,7 +46,7 @@ class RegistrationHoursRequests: NSObject {
     
     func UpdateRegisteredHours(id: String, newStartDate: NSDate, newEndDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
-        var newId = id.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let newId = id.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         let defaults = UserDefaults.standard
         

@@ -198,28 +198,6 @@
             </objects>
             <point key="canvasLocation" x="5317.6000000000004" y="-2418.440779610195"/>
         </scene>
-        <!--Date Selection View Controller-->
-        <scene sceneID="3hl-0z-Pcu">
-            <objects>
-                <viewController id="lz2-yB-hMu" customClass="DateSelectionViewController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dyv-Fh-WgK"/>
-                        <viewControllerLayoutGuide type="bottom" id="Z4B-N2-TrJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wdg-iQ-6ej">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson" id="XfL-MG-fp5"/>
-                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="dQm-Sj-sjy"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FwM-dr-bnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5318" y="-1630"/>
-        </scene>
         <!--Person Search Table View Controller-->
         <scene sceneID="YgA-oE-yg2">
             <objects>
