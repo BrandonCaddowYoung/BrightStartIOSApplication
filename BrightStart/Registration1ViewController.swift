@@ -50,6 +50,8 @@ class Registration1ViewController: UIViewController {
         CreateAccountButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         CreateAccountButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
+        CreateAccountButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        
         TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         MiddleContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour

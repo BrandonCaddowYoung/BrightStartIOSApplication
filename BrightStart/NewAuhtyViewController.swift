@@ -88,6 +88,8 @@ class NewAuhtyViewController: UIViewController {
         
         SubmitButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
 
+        SubmitButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
         
          setupConstraints()

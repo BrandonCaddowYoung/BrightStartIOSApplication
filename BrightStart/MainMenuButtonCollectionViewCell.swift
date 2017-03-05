@@ -41,11 +41,10 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         _ApplicatoinColours = ApplicatoinColours()
         
         label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        label.textColor = _ApplicatoinColours.LabelColour
+        label.textColor = _ApplicatoinColours.FontColour
         label.adjustsFontSizeToFitWidth = true
         
-        label.font = UIFont(name: "Helvetica Neue", size: 15)
-        label.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightThin)
+        label.font = _ApplicatoinColours.sshmediumlFont
         
         contentView.addSubview(label) //Remember to add ui elements to the content view not the cell iteslf.
         
@@ -53,7 +52,6 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         button.contentMode = .scaleToFill
         button.clipsToBounds = true
         
-       // button.setTitle(displayText, for: .normal)
         button.layer.cornerRadius = 3
         
         button.addTarget(self, action: #selector(changeColor), for: .touchUpInside)

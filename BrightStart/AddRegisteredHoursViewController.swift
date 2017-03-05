@@ -83,6 +83,8 @@ class AddRegisteredHoursViewController: UIViewController {
         
         SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
 
+        SaveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        
         TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         MiddleRightContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         MiddleLeftContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
@@ -356,6 +358,8 @@ class AddRegisteredHoursViewController: UIViewController {
         SaveButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         
         SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        
+        SaveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
     }
    
     @IBAction func SaveButtonClicked(_ sender: Any) {
@@ -412,6 +416,10 @@ class AddRegisteredHoursViewController: UIViewController {
         
     }
     
+    func NavBarMenuTapped(){
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -420,7 +428,29 @@ class AddRegisteredHoursViewController: UIViewController {
             self.navigationController?.setNavigationBarHidden(true, animated: animated)
         }
         else
-        {
+        {   
+            //Changes the color of the backgorund within the nav bar.
+            navigationController?.navigationBar.barStyle = UIBarStyle.black
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            
+            //Title color
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            
+            //Back color
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            
+            //Back ground color
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            
+            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            
+            navigationController?.navigationBar.backItem?.title = "Created Registered Hours."
+            
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }
         

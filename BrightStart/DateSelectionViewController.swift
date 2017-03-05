@@ -172,7 +172,8 @@ class DateSelectionViewController: UIViewController {
         SaveButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         
         SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
-                
+        
+        SaveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
     }
     
 

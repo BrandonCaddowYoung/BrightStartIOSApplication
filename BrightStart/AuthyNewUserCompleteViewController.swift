@@ -42,12 +42,16 @@ class AuthyNewUserCompleteViewController: UIViewController {
         OkButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         OkButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
+         OkButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        
         //Styling button
         TestButton.layer.cornerRadius = 5
         TestButton.layer.borderWidth = 1
         TestButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
         TestButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         TestButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        
+        TestButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
         

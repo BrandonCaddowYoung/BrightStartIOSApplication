@@ -66,6 +66,8 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         DoneButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         DoneButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
 
+        DoneButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour

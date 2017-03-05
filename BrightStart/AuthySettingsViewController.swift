@@ -48,6 +48,8 @@ class AuthySettingsViewController: UIViewController {
         OkButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         OkButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
+        OkButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour

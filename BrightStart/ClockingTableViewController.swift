@@ -74,6 +74,8 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         }
         else
         {
+            
+            
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }
         

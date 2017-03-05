@@ -13,6 +13,8 @@ class ApplicatoinColours {
     
     //DEFAULTS
     var NavigationBarBackGroundColor: UIColor!
+    var NavigationBarBackBackButtonColor: UIColor!
+    
     var BackGroundColour: UIColor!
     var FontHeadingColour: UIColor!
     var FontColour: UIColor!
@@ -38,47 +40,54 @@ class ApplicatoinColours {
     var Blue: UIColor!
     var White: UIColor!
     var Black: UIColor!
+    var Orange: UIColor!
+    
+    var buttonFont = UIFont()
+    
+    var smallFont = UIFont()
+     var sshmediumlFont = UIFont()
+    var mediumFont = UIFont()
+    var largeFont = UIFont()
+    var XlargeFont = UIFont()
     
     var MenuHeadingFontSize: CGFloat!
     
     init() {
         
-        //Apple Colours
+        buttonFont = UIFont(name: "HelveticaNeue-Light", size: 15.0)!
         
-        AppleLightGrey = hexStringToUIColor(hex: "#F7F7F7")
-        AppledGrey = hexStringToUIColor(hex: "#C7C7CC")
-        AppleLightBlue = hexStringToUIColor(hex: "#D1EEFC")
+        smallFont = UIFont(name: "HelveticaNeue-Light", size: 10.0)!
+        sshmediumlFont = UIFont(name: "HelveticaNeue-Light", size: 15.0)!
+        mediumFont = UIFont(name: "HelveticaNeue-Light", size: 20.0)!
+        largeFont = UIFont(name: "HelveticaNeue-Light", size: 30.0)!
+        XlargeFont = UIFont(name: "HelveticaNeue-Light", size: 40.0)!
         
-        //Bright Start Colours
-        
-        Red = hexStringToUIColor(hex: "#E53437")
-        Blue = hexStringToUIColor(hex: "#37A0e6")
+        //Theme Colour
         White = hexStringToUIColor(hex: "#FFFFFF")
         Black = hexStringToUIColor(hex: "#000000")
-        
-        LightBlue = hexStringToUIColor(hex: "#D1EEFC")
-        LightPink = hexStringToUIColor(hex: "#FD3E0")
-        Grey = hexStringToUIColor(hex: "#555555")
+        Grey = hexStringToUIColor(hex: "#7f909a")
+        Orange = hexStringToUIColor(hex: "#ed6639")
+        Blue = hexStringToUIColor(hex: "#385b9f")
         
         //Applicaiton Elements
         
         BackGroundColour = Blue
         
+        NavigationBarBackGroundColor = White;
+        NavigationBarBackBackButtonColor = Orange
+        
         FontColour = White
         LabelColour = Black
         FontHeadingColour = White
         
-        ButtonBackGroundColor = Grey
-        ButtonForeGroundColor = White
+        ButtonBackGroundColor = White
+        ButtonForeGroundColor = Black
         
-        NavigationBarBackGroundColor = Grey;
-        
-        TableBackGroundOptionColour = Grey
-        TableBackGroundOptionColour2 = Blue;
-
+        TableBackGroundOptionColour = White
+        TableBackGroundOptionColour2 = Orange;
         TableForeGroundOptionColour = Black
         
-        MenuHeadingFontSize = 17
+        MenuHeadingFontSize = 26
         
     }
     

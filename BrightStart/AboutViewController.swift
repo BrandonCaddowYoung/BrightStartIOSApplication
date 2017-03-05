@@ -73,6 +73,8 @@ class AboutViewController: UIViewController {
         icons8Button.addTarget(self, action: #selector(self.GoToIcons8), for: .touchUpInside)
         view.addSubview(icons8Button)
         
+        icons8Button.titleLabel?.font = _ApplicatoinColours.buttonFont
+        
         
     setupConstraints()
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rpo-Nf-bMu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rpo-Nf-bMu">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -752,7 +752,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter your password." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ulk-tf-MTx">
-                                        <rect key="frame" x="8" y="128" width="327" height="30"/>
+                                        <rect key="frame" x="8" y="92" width="327" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
@@ -761,23 +761,23 @@
                                             <action selector="passWordEditEnd:" destination="rpo-Nf-bMu" eventType="editingDidEnd" id="l6H-QO-Hsv"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xky-Qx-Dix">
+                                        <rect key="frame" x="8" y="130" width="327" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                        <state key="normal" title="Sign in to Bright Start">
+                                            <color key="titleColor" red="0.44551444499999998" green="0.96862745289999996" blue="0.60209264510000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signInButtonClicked:" destination="rpo-Nf-bMu" eventType="touchUpInside" id="DFe-GH-eqs"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Izb-il-jXN">
                                 <rect key="frame" x="16" y="448" width="343" height="199"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xky-Qx-Dix">
-                                        <rect key="frame" x="8" y="8" width="327" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
-                                        <state key="normal" title="Sign In">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="signInButtonClicked:" destination="rpo-Nf-bMu" eventType="touchUpInside" id="DFe-GH-eqs"/>
-                                        </connections>
-                                    </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UoU-ud-c9l">
                                         <rect key="frame" x="0.0" y="141" width="343" height="58"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1062,9 +1062,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Ghg-aM-lDY">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="J31-6g-GfJ"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Ghg-aM-lDY"/>
                     <connections>
                         <segue destination="rpo-Nf-bMu" kind="show" identifier="GoToSignIn" id="2qs-QS-n86"/>
                         <segue destination="xZG-mU-XJf" kind="show" identifier="GoToRegister" id="wG7-yc-5Up"/>
@@ -1807,14 +1805,14 @@
         <image name="ic_check" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fQC-lD-NUF"/>
-        <segue reference="FZS-ay-AFf"/>
-        <segue reference="AaN-mO-ooE"/>
-        <segue reference="p8U-PX-Nn4"/>
-        <segue reference="1pJ-9N-iMH"/>
         <segue reference="Q5J-dV-oJS"/>
+        <segue reference="fc6-ML-ctd"/>
         <segue reference="2qs-QS-n86"/>
+        <segue reference="xMR-cl-oyC"/>
+        <segue reference="Gez-8g-kB0"/>
+        <segue reference="wG7-yc-5Up"/>
         <segue reference="nx9-xO-yGO"/>
-        <segue reference="CaC-2C-xM4"/>
+        <segue reference="AaN-mO-ooE"/>
+        <segue reference="1pJ-9N-iMH"/>
     </inferredMetricsTieBreakers>
 </document>

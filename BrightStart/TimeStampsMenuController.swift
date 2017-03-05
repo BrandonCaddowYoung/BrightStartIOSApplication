@@ -13,8 +13,6 @@ class TimeStampsMenuController: MainMenuViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       headingLabel.text = "Time Stamps"
-        
     }
     
     var activeSegue = ""
@@ -40,6 +38,9 @@ class TimeStampsMenuController: MainMenuViewController {
                 vc.Purpose = "GoToSearchPerson_ExtraMinutes"
                 //vc.childId = self.SelectedPersonId as String
                 //vc.childName = self.SelectedPersonFullName as String
+                
+                vc.showNavigationBar = true
+                
             }
         }
         

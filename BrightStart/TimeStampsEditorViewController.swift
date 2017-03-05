@@ -396,6 +396,8 @@ class TimeStampsEditorViewController: UIViewController {
         
         RemoveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
+        RemoveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        
         RemoveButton.heightAnchor.constraint(
             equalTo: view.heightAnchor,
             multiplier : 0.10).isActive = true
@@ -429,6 +431,8 @@ class TimeStampsEditorViewController: UIViewController {
         
         SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
+        SaveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+       
     }
    
     /*!
@@ -464,6 +468,11 @@ class TimeStampsEditorViewController: UIViewController {
         
     }
     
+    func NavBarMenuTapped(){
+        
+    }
+
+    
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -474,6 +483,29 @@ class TimeStampsEditorViewController: UIViewController {
         else
         {
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            
+            //Changes the color of the backgorund within the nav bar.
+            navigationController?.navigationBar.barStyle = UIBarStyle.black
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            
+            //Title color
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            
+            //Back color
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            
+            //Back ground color
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            
+            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            
+            navigationController?.navigationBar.backItem?.title = "Time Stamp Editor."
+            
         }
         
     }

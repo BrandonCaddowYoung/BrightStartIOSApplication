@@ -65,9 +65,6 @@ class MainMenuViewController: UIViewController {
     var leftSpacer: UIView!
     var rightSpacer: UIView!
     
-    var headingLabel: UILabel!
-    //var bodyLabel: UILabel!
-    
     var selectedMenu = MenuTypes.MainMenu
     
     var selectedAuthyAction = AuhtyActions.ShouldDoNothing
@@ -92,27 +89,39 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.edgesForExtendedLayout = []
+        
         _ApplicatoinColours = ApplicatoinColours()
         
         setupCollectionView()
         
         //Changes the color of the backgorund within the nav bar.
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor
+         navigationController?.navigationBar.barStyle = UIBarStyle.black
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
         
-        //Changes the color of the text within the nav bar
-        navigationController?.navigationBar.barStyle = UIBarStyle.black
-        navigationController?.navigationBar.tintColor = _ApplicatoinColours.FontColour
+        //Title color
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
         
-      loadMenuAssets()
+        //Back color
+        navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
         
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+        
+        loadMenuAssets()
         
         // Create and add the view to the screen.
         loadingSpiiner = ProgressHUD(text: "Loading")
         
         self.view.addSubview(loadingSpiiner)
         hideSpinner()
+       
         
-        
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func fetchAuthyUsersBelongingToChild()
@@ -147,15 +156,17 @@ class MainMenuViewController: UIViewController {
         switch selectedMenu {
         case .MainMenu:
             
-            images = [UIImage(named: "Register")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Information")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Register")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRegister", "GoToSearchPerson", "GoToSearchPerson", "GoToAuthyMenu", "GoToInformation", "GoToSignIn"]
+            segueIdList = ["GoToRegister", "GoToSearchPerson", "GoToSearchPerson", "GoToAuthyMenu", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Register, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.None, PurposeTypes.information, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Register, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.None, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Register",  "Registered Hours", "Time Stamps", "Auhty", "Informaiton", "Sign Out"]
+            DisplayTextList = ["Register",  "Registered Hours", "Time Stamps", "Auhty", "Sign Out"]
             
-            authyIdList = ["",  "", "", "", "", ""]
+            authyIdList = ["",  "", "", "", ""]
+            
+            showNavigationBar = true
             
         case .TimeStamps:
             
@@ -198,6 +209,8 @@ class MainMenuViewController: UIViewController {
             DisplayTextList = ["New User",  "Test User", "Settings", "Home", "Sign Out"]
             
             authyIdList = ["", "", "", "", ""]
+            
+            showNavigationBar = true
             
         case .AuthyUsers:
             
@@ -307,6 +320,11 @@ class MainMenuViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        collectionView.collectionViewLayout = layout
+        
+        //self.automaticallyAdjustsScrollViewInsets = false
+        //self.collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        
         //For some reason above the collectionView there is space, this removes the space.
        // self.automaticallyAdjustsScrollViewInsets = false
         
@@ -321,19 +339,11 @@ class MainMenuViewController: UIViewController {
         topThirdViewMiddleSpacer = UIView()
         view.addSubview(topThirdViewMiddleSpacer)
         
-        headingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        headingLabel.text = "Menu"
-        
-        headingLabel.font = UIFont(name: "Helvetica Neue", size: _ApplicatoinColours.MenuHeadingFontSize)
-        headingLabel.font = UIFont.systemFont(ofSize: _ApplicatoinColours.MenuHeadingFontSize, weight: UIFontWeightThin)
-        
-        headingLabel.textColor = _ApplicatoinColours.FontColour
-        
-        view.addSubview(headingLabel)
-        
         setupConstraints()
         
     }
+    
+    
     
     func setupConstraints()
     {
@@ -421,22 +431,6 @@ class MainMenuViewController: UIViewController {
         
         //Now addin the menu label the top left
         
-        headingLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        //top
-        headingLabel.topAnchor.constraint(
-            equalTo: topThirdViewTopSpacer.bottomAnchor).isActive = true
-        
-        //left
-        //headingLabel.leadingAnchor.constraint(
-          //  equalTo: leftSpacer.trailingAnchor).isActive = true
-        //right
-        //headingLabel.trailingAnchor.constraint(
-          //  equalTo: rightSpacer.leadingAnchor).isActive = true
-        
-        headingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        headingLabel.addConstraint(NSLayoutConstraint(item: headingLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 21))
         
         topThirdViewMiddleSpacer.translatesAutoresizingMaskIntoConstraints = false
         topThirdViewMiddleSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
@@ -449,7 +443,7 @@ class MainMenuViewController: UIViewController {
             equalTo: rightSpacer.leadingAnchor).isActive = true
         //top
         topThirdViewMiddleSpacer.topAnchor .constraint(
-            equalTo: headingLabel.bottomAnchor).isActive = true
+            equalTo: topThirdViewTopSpacer.bottomAnchor).isActive = true
         
         //height
         topThirdViewMiddleSpacer.heightAnchor.constraint(
@@ -539,6 +533,9 @@ class MainMenuViewController: UIViewController {
                 vc.Purpose = "GoToSearchPerson_ExtraMinutes"
                 //vc.childId = self.SelectedPersonId as String
                 //vc.childName = self.SelectedPersonFullName as String
+                
+                vc.showNavigationBar = true
+                
             }
             }
             
@@ -666,6 +663,10 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         return images.count
     }
     
+    
+    
+    
+    
     //We use this method to dequeue the cell and set it up
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainMenuButtonCell", for: indexPath) as! MainMenuButtonCollectionViewCell
@@ -683,13 +684,31 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         
         cell.targetPurpose = PurposeList[indexPath.row]
         
+        //var bcolor : UIColor = UIColor( red: 0.2, green: 0.2, blue:0.2, alpha: 0.3 )
+        
+       // cell.layer.borderColor = bcolor.cgColor
+        //cell.layer.borderWidth = 0.5
+        //cell.layer.cornerRadius = 3
+        
+       // cell.backgroundColor = .white
+        
         return cell
     }
     
     //We use this method to populate the data of a given cell
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let foodCell = cell as! MainMenuButtonCollectionViewCell
+        
         foodCell.button.setBackgroundImage(images[indexPath.row], for: .normal)
+       
+        let filter = CIFilter(name: "CIColorInvert") //this creates a CIFilter with the attribute color invert
+        
+        filter?.setValue(CIImage(image: images[indexPath.row]), forKey: kCIInputImageKey) //this applies our filter to our UIImage
+        
+        let newImage = UIImage(ciImage: (filter?.outputImage!)!) //this takes our inverted image and stores it as a new UIImage
+        
+        foodCell.button.setBackgroundImage(newImage, for: .normal)
+        
     }
     
     //Sets the size of the cell
@@ -713,6 +732,10 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         
     }
     
+    func NavBarMenuTapped(){
+        renderMenuAssets(menuType: .MainMenu)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         hideSpinner()
@@ -722,11 +745,48 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
          if(!showNavigationBar){
             
             self.navigationController?.setNavigationBarHidden(true, animated: animated)
+           
         }
          else
          {
+            
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        }
+          
+            //Changes the color of the backgorund within the nav bar.
+            navigationController?.navigationBar.barStyle = UIBarStyle.black
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            
+            //Title color
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            
+            //Back color
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            
+            //Back ground color
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            
+           self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            
+            navigationController?.navigationBar.backItem?.title = ""
+            
+            switch selectedMenu {
+            case .MainMenu:
+                navigationController?.navigationBar.topItem?.title = "Menu"
+                case .TimeStamps:
+                    navigationController?.navigationBar.topItem?.title = "Time Stamps"
+                    case .RegisteredHours:
+                        navigationController?.navigationBar.topItem?.title = "Registered Hours"
+                        case .Authy:
+                            navigationController?.navigationBar.topItem?.title = "Authy"
+                            case .AuthyUsers:
+                                navigationController?.navigationBar.topItem?.title = "Authy Users"
+             
+            }}
         
     }
     
@@ -749,9 +809,23 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
         
         loadMenuAssets()
         
+        switch selectedMenu {
+        case .MainMenu:
+            navigationController?.navigationBar.topItem?.title = "Menu"
+        case .TimeStamps:
+            navigationController?.navigationBar.topItem?.title = "Time Stamps"
+        case .RegisteredHours:
+            navigationController?.navigationBar.topItem?.title = "Registered Hours"
+        case .Authy:
+            navigationController?.navigationBar.topItem?.title = "Authy"
+        case .AuthyUsers:
+            navigationController?.navigationBar.topItem?.title = "Authy Users"
+            
+        }
+    
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.collectionView.reloadData()
-            
+    
             self.hideSpinner()
             
         }

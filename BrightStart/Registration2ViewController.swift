@@ -49,6 +49,8 @@ class Registration2ViewController: UIViewController {
         FinishedButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         FinishedButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
+        FinishedButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        
         TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         MiddleContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour

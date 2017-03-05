@@ -80,11 +80,38 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         }
         else
         {
+            //Changes the color of the backgorund within the nav bar.
+            navigationController?.navigationBar.barStyle = UIBarStyle.black
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            
+            //Title color
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            
+            //Back color
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            
+            //Back ground color
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            
+            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            
+            navigationController?.navigationBar.backItem?.title = "Search."
+            
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
 
         }
         
     }
+    
+    func NavBarMenuTapped(){
+        
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -341,29 +368,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.Purpose = "TimeStamps_Edit"
                     vc.selectCalendarPurpose = .TimeStamps
                     
-                }
-            }
-            
-            if(self.Purpose == "GoToSearchPerson_ExtraMinutes")
-            {
-                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
-                    
-                    vc.childId = self.SelectedPersonId as String
-                    vc.childName = self.SelectedPersonFullName as String
-                    vc.Purpose = "GoToSearchPerson_ExtraMinutes"
-                    vc.selectCalendarPurpose = .TimeStamps
-                    
-                }
-            }
-            
-            if(self.Purpose == "TimeStamps_Delete")
-            {
-                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
-                    
-                    vc.childId = self.SelectedPersonId as String
-                    vc.childName = self.SelectedPersonFullName as String
-                    vc.Purpose = "TimeStamps_Delete"
-                    vc.selectCalendarPurpose = .TimeStamps
+                    vc.showNavigationBar = true
                     
                 }
             }
@@ -377,6 +382,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.Purpose = "GoToSearchPerson_ExtraMinutes"
                     vc.selectCalendarPurpose = .TimeStamps
                     
+                    vc.showNavigationBar = true
+                    
                 }
             }
             
@@ -388,6 +395,36 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.childName = self.SelectedPersonFullName as String
                     vc.Purpose = "TimeStamps_Delete"
                     vc.selectCalendarPurpose = .TimeStamps
+                    
+                    vc.showNavigationBar = true
+                    
+                }
+            }
+            
+            if(self.Purpose == "GoToSearchPerson_ExtraMinutes")
+            {
+                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                    
+                    vc.childId = self.SelectedPersonId as String
+                    vc.childName = self.SelectedPersonFullName as String
+                    vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+                    vc.selectCalendarPurpose = .TimeStamps
+                    
+                    vc.showNavigationBar = true
+                    
+                }
+            }
+            
+            if(self.Purpose == "TimeStamps_Delete")
+            {
+                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                    
+                    vc.childId = self.SelectedPersonId as String
+                    vc.childName = self.SelectedPersonFullName as String
+                    vc.Purpose = "TimeStamps_Delete"
+                    vc.selectCalendarPurpose = .TimeStamps
+                    
+                    vc.showNavigationBar = true
                     
                 }
             }
@@ -401,6 +438,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.Purpose = "TimeStamps_Search"
                     vc.selectCalendarPurpose = .TimeStamps
                     
+                    vc.showNavigationBar = true
                 }
             }
             
@@ -412,6 +450,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.childName = self.SelectedPersonFullName as String
                     vc.Purpose = "TimeStamps_Missing"
                     vc.selectCalendarPurpose = .TimeStamps
+                    
+                    vc.showNavigationBar = true
                     
                 }
             }
@@ -426,6 +466,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.Purpose = "RegisteredHours_Edit"
                     vc.selectCalendarPurpose = .RegistrationHours
                     
+                    vc.showNavigationBar = true
+                    
                 }
             }
             
@@ -438,6 +480,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.Purpose = "RegisteredHours_ExtraMinutes"
                     vc.selectCalendarPurpose = .RegistrationHours
                     
+                    vc.showNavigationBar = true
+                    
                 }
             }
             
@@ -449,6 +493,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.childName = self.SelectedPersonFullName as String
                     vc.Purpose = "RegisteredHours_Delete"
                     vc.selectCalendarPurpose = .RegistrationHours
+                    
+                    vc.showNavigationBar = true
                     
                 }
             }
@@ -462,6 +508,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.Purpose = "GoToSearchPerson_ExtraMinutes"
                     vc.selectCalendarPurpose = .RegistrationHours
                     
+                    vc.showNavigationBar = true
+                    
                 }
             }
             
@@ -473,6 +521,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.childName = self.SelectedPersonFullName as String
                     vc.Purpose = "RegisteredHours_Delete"
                     vc.selectCalendarPurpose = .RegistrationHours
+                    
+                    vc.showNavigationBar = true
                     
                 }
             }
@@ -486,6 +536,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.Purpose = "RegisteredHours_Search"
                     vc.selectCalendarPurpose = .RegistrationHours
                     
+                    vc.showNavigationBar = true
+                    
                 }
             }
             
@@ -497,6 +549,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.childName = self.SelectedPersonFullName as String
                     vc.Purpose = "RegisteredHours_Missing"
                     vc.selectCalendarPurpose = .RegistrationHours
+                    
+                    vc.showNavigationBar = true
                     
                 }
             }

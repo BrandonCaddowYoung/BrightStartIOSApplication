@@ -216,10 +216,37 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
         self.calendarView.selectDates([self.lastSelectedDate])
+        
+        //Changes the color of the backgorund within the nav bar.
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+        
+        //Title color
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        
+        //Back color
+        navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+        
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        
+        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+        
+        navigationController?.navigationBar.backItem?.title = "Calendar."
+        
     }
     
-    
+    func NavBarMenuTapped(){
+        
+    }
+
     
     
     

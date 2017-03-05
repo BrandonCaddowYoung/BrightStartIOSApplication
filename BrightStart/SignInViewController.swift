@@ -66,6 +66,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         signInButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
+        signInButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        
         SignUpButton.setTitleColor(_ApplicatoinColours.White, for: .normal)
         
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
@@ -87,6 +89,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             usernameTextField.text = "user1"
             passwordTextField.text = "user1"
         #endif
+        
+        
+        usernameTextField.font = _ApplicatoinColours.mediumFont
+         passwordTextField.font = _ApplicatoinColours.mediumFont
+        
+        SignUpButton.titleLabel!.font = _ApplicatoinColours.mediumFont
+        signInButton.titleLabel!.font = _ApplicatoinColours.buttonFont
+        
     }
     
     /*!
@@ -130,44 +140,26 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //bottom
         bottomView.bottomAnchor.constraint(
             equalTo: view.bottomAnchor).isActive = true
-        // no top
         
+       // bottomView.backgroundColor = .red
+       
         //height
         bottomView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.20).isActive = true
+            multiplier: 0.30).isActive = true
         
         bottomView.addSubview(FooterView)
         
-       // bottomView.backgroundColor = .yellow
+    //bottomView.backgroundColor = .yellow
         
         //IMAGE WITHIN BOTTOM VIEW
         
-        //Sign in button
         
-        signInButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        signInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        signInButton.topAnchor.constraint(
-            equalTo: middleView.bottomAnchor).isActive = true
-        
-       
-        //width
-         signInButton.widthAnchor.constraint(
-            equalTo: view.widthAnchor,
-            multiplier: 0.70).isActive = true
-
-        
-        signInButton.centerXAnchor.constraint(
-           equalTo: bottomView.centerXAnchor).isActive = true
-        
-        //bottomView.backgroundColor = .red
         
         
         FooterView.translatesAutoresizingMaskIntoConstraints = false
         
-        //FooterView.backgroundColor = .white
+        //FooterView.backgroundColor = .yellow
         
         //bottom
         FooterView.bottomAnchor.constraint(
@@ -183,15 +175,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
        
         //left
         FooterView.topAnchor.constraint(
-            equalTo: signInButton.bottomAnchor).isActive = true
+            equalTo: middleView.bottomAnchor).isActive = true
         //right
         FooterView.bottomAnchor.constraint(
             equalTo: bottomView.bottomAnchor).isActive = true
 
+        DontHaveAnAccountLabel.textColor = _ApplicatoinColours.FontColour
         
-        
-        
-        
+        DontHaveAnAccountLabel.font = _ApplicatoinColours.mediumFont
         
         DontHaveAnAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -210,13 +201,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //left
         SignUpButton.leadingAnchor.constraint(
             equalTo: DontHaveAnAccountLabel.trailingAnchor, constant: 5).isActive = true
-        
-        //left
-       // SignUpButton.trailingAnchor.constraint(
-          //  equalTo: FooterView.trailingAnchor).isActive = true
-
-        
-        
+       
         //left
         SignUpButton.topAnchor.constraint(
             equalTo: DontHaveAnAccountLabel.topAnchor).isActive = true
@@ -224,16 +209,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //left
         SignUpButton.bottomAnchor.constraint(
             equalTo: DontHaveAnAccountLabel.bottomAnchor).isActive = true
-        
-        
-        
-        //left
-        //SignUpButton.centerYAnchor.constraint(
-          //  equalTo: DontHaveAnAccountLabel.centerYAnchor).isActive = true
-        
-        
-        
-        
+                
         //MIDDLE VIEW
         
         middleView.translatesAutoresizingMaskIntoConstraints = false
@@ -250,12 +226,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         middleView.bottomAnchor.constraint(
             equalTo: bottomView.topAnchor).isActive = true
     
+        //middleView.backgroundColor = .red
+        
         //no top
         
         //height
         middleView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.50).isActive = true
+            multiplier: 0.40).isActive = true
         
         //TEXT INPUT FIELDS WITHIN MIDDLE VIEW
         
@@ -328,15 +306,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
         //Center all text input and labels horizontally
         
-     //   usernameLabel.centerXAnchor.constraint(
-       //     equalTo: middleView.centerXAnchor).isActive = true
-        usernameTextField.centerXAnchor.constraint(
+             usernameTextField.centerXAnchor.constraint(
             equalTo: middleView.centerXAnchor).isActive = true
-       // passwordLabel.centerXAnchor.constraint(
-         //   equalTo: middleView.centerXAnchor).isActive = true
+     
         passwordTextField.centerXAnchor.constraint(
             equalTo: middleView.centerXAnchor).isActive = true
-        
         
         //USER TEXT FIELD
         
@@ -362,6 +336,34 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             equalTo: view.widthAnchor,
             multiplier: 0.70).isActive = true
         
+        
+        
+        //Sign in button
+        
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        signInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        signInButton.topAnchor.constraint(
+            equalTo: passwordTextField.bottomAnchor, constant: 5).isActive = true
+        
+        
+        //width
+        signInButton.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.70).isActive = true
+        
+        
+        signInButton.centerXAnchor.constraint(
+            equalTo: spacerMiddleMiddleView.centerXAnchor).isActive = true
+        
+       // bottomView.backgroundColor = .white
+        
+        
+        
+        
+        
+        
         //TOP VIEW
         
         topView.translatesAutoresizingMaskIntoConstraints = false
@@ -379,7 +381,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //height
         topView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.20).isActive = true
+            multiplier: 0.30).isActive = true
+        
+        topView.topAnchor.constraint(
+            equalTo: view.topAnchor).isActive = true
+        
+        //topView.backgroundColor = .yellow
         
         //IMAGE WITHIN TOP VIEW
         
@@ -584,6 +591,29 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        //Changes the color of the backgorund within the nav bar.
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+        
+        //Title color
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        
+        //Back color
+        navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+        
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        
+        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+        
+        navigationController?.navigationBar.backItem?.title = "Sign in."
+        
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
@@ -591,6 +621,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    func NavBarMenuTapped(){
+        
+    }
+
     
 
 }
