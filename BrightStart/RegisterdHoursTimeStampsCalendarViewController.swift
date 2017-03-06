@@ -103,8 +103,15 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        let inntials = childName.components(separatedBy: " ").reduce("") { $0.0 + String($0.1.characters.first!) + "." }
-        NameLabel.text = inntials
+        self.edgesForExtendedLayout = []
+        
+        _ApplicatoinColours = ApplicatoinColours()
+        _CommonHelper = CommonHelper()
+        
+        NameLabel.text = childName
+        NameLabel.textColor = _ApplicatoinColours.FontColour
+        
+        NameLabel.font = _ApplicatoinColours.largeFont
         
         startSpinner.hidesWhenStopped = true
         endSpinner.hidesWhenStopped = true
@@ -138,11 +145,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
        
         calendarView.registerHeaderView(xibFileNames: ["TimeStampsSectionHeaderView", "TimeStampsSectionHeaderView"])
         
-        self.edgesForExtendedLayout = []
-        
-        _ApplicatoinColours = ApplicatoinColours()
-        _CommonHelper = CommonHelper()
-        
         calendarView.dataSource = self
         calendarView.delegate = self
         calendarView.registerCellViewXib(file: "CellView") // Registering your cell is manditory
@@ -150,7 +152,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         leftContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         rightContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        calendarView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        
+        calendarView.backgroundColor = _ApplicatoinColours.CalendarBackGround
         
         topContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         bottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
@@ -211,14 +214,17 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         //}
     }
     
-    
-    
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         
         self.calendarView.selectDates([self.lastSelectedDate])
         
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            
         //Changes the color of the backgorund within the nav bar.
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
@@ -239,16 +245,17 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
         
-        navigationController?.navigationBar.backItem?.title = "Calendar."
+             navigationController?.navigationBar.topItem?.title = "Calendar"
+            
+        navigationController?.navigationBar.backItem?.title = ""
+            
+        }
         
     }
     
     func NavBarMenuTapped(){
         
     }
-
-    
-    
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplayCell cell: JTAppleDayCellView, date: Date, cellState: CellState) {
         
@@ -256,6 +263,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         // Setup Cell text
         myCustomCell.dayLabel.text = cellState.text
+        myCustomCell.dayLabel.textColor = _ApplicatoinColours.CalendarHighLightedText
         
         //if(cellState.dateBelongsTo == .thisMonth){
         //myCustomCell.dayLabel.textColor = _ApplicatoinColours.Red
@@ -270,7 +278,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             myCustomCell.isUserInteractionEnabled = false
         }
         
-        myCustomCell.selectedView.backgroundColor = _ApplicatoinColours.White
+        myCustomCell.selectedView.backgroundColor = _ApplicatoinColours.CalendarHighLighted
         
         handleCellTextColor(view: cell, cellState: cellState)
         handleCellSelection(view: cell, cellState: cellState)
@@ -339,7 +347,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     }
 
     /*!
-     @brief Sets up all constraints for the view.
+     @brief Sets up all constraints for the view..
      */
     func setupConstraints() {
     
@@ -377,36 +385,31 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         topContainer.topAnchor.constraint(
             equalTo: TopPadding.bottomAnchor).isActive = true
         
-        topContainer.heightAnchor.constraint(
-            equalTo: view.heightAnchor, multiplier : 0.20).isActive = true
-        
-        //TargetPerson button
-        targetPersonButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        //left
-        targetPersonButton.leadingAnchor.constraint(
-            equalTo: topContainer.leadingAnchor, constant: 15 ).isActive = true
-        
-        //top
-        targetPersonButton.topAnchor.constraint(
-            equalTo: topContainer.topAnchor).isActive = true
-        
-        targetPersonButton.widthAnchor.constraint(
-            equalToConstant: 40).isActive = true
-        
-        targetPersonButton.heightAnchor.constraint(
-            equalToConstant: 40).isActive = true
-        
         //Name label
         NameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        //center with button
-        NameLabel.centerXAnchor.constraint(
-            equalTo: targetPersonButton.centerXAnchor).isActive = true
+        //left
+        NameLabel.leadingAnchor.constraint(
+            equalTo: topContainer.leadingAnchor, constant: 15 ).isActive = true
         
         //top
         NameLabel.topAnchor.constraint(
-            equalTo: targetPersonButton.bottomAnchor).isActive = true
+            equalTo: topContainer.topAnchor).isActive = true
+        
+        //targetPersonButton
+        targetPersonButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        targetPersonButton.widthAnchor.constraint(
+            equalToConstant: 20).isActive = true
+        
+        targetPersonButton.heightAnchor.constraint(
+            equalToConstant: 20).isActive = true
+        
+        targetPersonButton.leadingAnchor.constraint(
+            equalTo: NameLabel.trailingAnchor, constant: 10).isActive = true
+        
+        targetPersonButton.centerYAnchor.constraint(
+         equalTo: NameLabel.centerYAnchor).isActive = true
         
         //MENU BUTTON
         menuButton.translatesAutoresizingMaskIntoConstraints = false
@@ -430,13 +433,13 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         //Month label
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        //center
-        monthLabel.centerXAnchor.constraint(
-            equalTo: topContainer.centerXAnchor).isActive = true
+        //left
+        monthLabel.leadingAnchor.constraint(
+            equalTo: topContainer.leadingAnchor, constant: 15).isActive = true
         
         //top
-        monthLabel.centerYAnchor.constraint(
-            equalTo: targetPersonButton.centerYAnchor).isActive = true
+        monthLabel.topAnchor.constraint(
+            equalTo: NameLabel.bottomAnchor, constant: 5).isActive = true
         
         //Stack view
         
@@ -453,12 +456,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         stackView.trailingAnchor.constraint(
             equalTo: topContainer.trailingAnchor).isActive = true
         
-        
-        
         topContainer.bottomAnchor.constraint(
             equalTo: stackView.bottomAnchor).isActive = true
-        
-        
         
         //Calendar
         calendarView.translatesAutoresizingMaskIntoConstraints = false
@@ -713,13 +712,12 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         }
         
         if cellState.isSelected {
-            myCustomCell.dayLabel.textColor = _ApplicatoinColours.Red
+            myCustomCell.dayLabel.textColor = _ApplicatoinColours.CalendarHighLightedText
         } else {
             if cellState.dateBelongsTo == .thisMonth {
-                myCustomCell.dayLabel.textColor = _ApplicatoinColours.Black
+                myCustomCell.dayLabel.textColor = _ApplicatoinColours.CalendarText
             } else {
-                 myCustomCell.dayLabel.textColor = _ApplicatoinColours.BackGroundColour
-                
+                myCustomCell.dayLabel.textColor = _ApplicatoinColours.CalendarBackGround
             }
         }
     }
@@ -787,14 +785,14 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         let headerCell = (header as? TimeStampsSectionHeaderView)
         headerCell?.title.text = "Registered Hours"
-        headerCell?.backgroundColor = _ApplicatoinColours.White
+        headerCell?.backgroundColor = .red
         
         if(hideHeader){
-            headerCell?.title.textColor = _ApplicatoinColours.BackGroundColour
+            headerCell?.title.textColor = _ApplicatoinColours.CalendarBackGround
         }
         else
         {
-        headerCell?.title.textColor = _ApplicatoinColours.White
+        headerCell?.title.textColor = _ApplicatoinColours.CaelndarHeader
         }
        
     }

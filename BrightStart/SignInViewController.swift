@@ -612,7 +612,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
         
-        navigationController?.navigationBar.backItem?.title = "Sign in."
+        navigationController?.navigationBar.topItem?.title = "Sign in"
+        
+        
+        navigationController?.navigationBar.backItem?.title = ""
         
     }
     

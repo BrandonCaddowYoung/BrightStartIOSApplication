@@ -251,7 +251,9 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
             
             self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
             
-            navigationController?.navigationBar.backItem?.title = "Authy Search."
+            navigationController?.navigationBar.backItem?.title = ""
+            
+            navigationController?.navigationBar.topItem?.title = "Authy Search"
             
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }

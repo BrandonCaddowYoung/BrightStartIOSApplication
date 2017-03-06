@@ -121,7 +121,10 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             
             self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
             
-            navigationController?.navigationBar.backItem?.title = "Time Stamp Search."
+            navigationController?.navigationBar.topItem?.title = "Time Stamp Search."
+            
+            
+            navigationController?.navigationBar.backItem?.title = ""
             
         }
         

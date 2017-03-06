@@ -449,7 +449,9 @@ class AddRegisteredHoursViewController: UIViewController {
             
             self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
             
-            navigationController?.navigationBar.backItem?.title = "Created Registered Hours."
+            navigationController?.navigationBar.topItem?.title = "Created Registered Hours."
+            
+            navigationController?.navigationBar.backItem?.title = ""
             
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }

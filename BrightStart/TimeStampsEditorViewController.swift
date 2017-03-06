@@ -504,7 +504,9 @@ class TimeStampsEditorViewController: UIViewController {
             
             self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
             
-            navigationController?.navigationBar.backItem?.title = "Time Stamp Editor."
+            navigationController?.navigationBar.topItem?.title = "Time Stamp Editor"
+            
+            navigationController?.navigationBar.backItem?.title = ""
             
         }
         

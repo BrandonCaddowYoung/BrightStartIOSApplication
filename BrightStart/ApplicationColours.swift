@@ -36,6 +36,14 @@ class ApplicatoinColours {
     var AppledGrey: UIColor!
     var AppleLightBlue: UIColor!
     
+    var CalendarBackGround: UIColor!
+    var CalendarText: UIColor!
+    var CalendarHighLighted: UIColor!
+    var CalendarHighLightedText: UIColor!
+    var CalendarDot: UIColor!
+    var CaelndarHeader: UIColor!
+    
+    
     var Red: UIColor!
     var Blue: UIColor!
     var White: UIColor!
@@ -75,6 +83,14 @@ class ApplicatoinColours {
         
         NavigationBarBackGroundColor = White;
         NavigationBarBackBackButtonColor = Orange
+        
+        //CALENDAR
+        CalendarBackGround = White;
+        CalendarHighLighted = Blue
+        CalendarDot = Orange;
+        CalendarHighLightedText = White;
+        CalendarText = Black
+        CaelndarHeader = Black
         
         FontColour = White
         LabelColour = Black

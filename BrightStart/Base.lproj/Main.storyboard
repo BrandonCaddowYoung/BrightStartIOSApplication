@@ -218,20 +218,13 @@
                                             <rect key="frame" x="26" y="21" width="257" height="42"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="33"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18/05/1987" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6v-Y9-BlH">
-                                            <rect key="frame" x="26" y="64" width="91" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.44551444499999998" green="0.96862745289999996" blue="0.60209264510000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="birthdayText" destination="b6v-Y9-BlH" id="lD6-9U-5Gv"/>
                                     <outlet property="childNameLabel" destination="2aG-J1-Phi" id="mzA-dT-e7Y"/>
                                 </connections>
                             </tableViewCell>
@@ -860,19 +853,20 @@
                                                         <rect key="frame" x="8" y="5" width="45" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="14:34" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atB-9O-FPg">
                                                         <rect key="frame" x="25" y="39" width="100" height="47"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="39"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PlusMath100" translatesAutoresizingMaskIntoConstraints="NO" id="mf2-xb-nKW">
                                                         <rect key="frame" x="50" y="74" width="51" height="56"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </imageView>
                                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="I8B-zk-Dij">
                                                         <rect key="frame" x="65" y="92" width="20" height="20"/>
@@ -896,19 +890,20 @@
                                                         <rect key="frame" x="8" y="5" width="38" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="07:35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYg-EE-bX9">
                                                         <rect key="frame" x="17" y="42" width="117" height="41"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="39"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PlusMath100" translatesAutoresizingMaskIntoConstraints="NO" id="YLg-Td-nbJ">
                                                         <rect key="frame" x="50" y="74" width="51" height="56"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </imageView>
                                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="tBR-z6-jvJ">
                                                         <rect key="frame" x="65" y="92" width="20" height="20"/>
@@ -982,10 +977,13 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdg-yk-8Lu">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdg-yk-8Lu">
                                         <rect key="frame" x="28" y="12" width="24" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="User-100"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="Edit">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="PersonTapped:" destination="DxJ-3C-TAj" eventType="touchUpInside" id="xxV-A5-agF"/>
                                         </connections>
@@ -1796,23 +1794,23 @@
     <resources>
         <image name="Baby" width="100" height="100"/>
         <image name="BrightLogo" width="200" height="105"/>
+        <image name="Edit" width="100" height="100"/>
         <image name="More-100" width="100" height="100"/>
         <image name="PlusMath100" width="100" height="100"/>
         <image name="SignedOut" width="100" height="100"/>
         <image name="Standing Man" width="100" height="100"/>
         <image name="SwipeLeft" width="100" height="100"/>
-        <image name="User-100" width="100" height="100"/>
         <image name="ic_check" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q5J-dV-oJS"/>
-        <segue reference="fc6-ML-ctd"/>
-        <segue reference="2qs-QS-n86"/>
-        <segue reference="xMR-cl-oyC"/>
-        <segue reference="Gez-8g-kB0"/>
-        <segue reference="wG7-yc-5Up"/>
-        <segue reference="nx9-xO-yGO"/>
+        <segue reference="fQC-lD-NUF"/>
+        <segue reference="FZS-ay-AFf"/>
         <segue reference="AaN-mO-ooE"/>
+        <segue reference="p8U-PX-Nn4"/>
         <segue reference="1pJ-9N-iMH"/>
+        <segue reference="nx9-xO-yGO"/>
+        <segue reference="2qs-QS-n86"/>
+        <segue reference="Q5J-dV-oJS"/>
+        <segue reference="wG7-yc-5Up"/>
     </inferredMetricsTieBreakers>
 </document>

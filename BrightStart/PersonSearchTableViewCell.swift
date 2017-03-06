@@ -21,7 +21,6 @@ class PersonSearchTableViewCell: UITableViewCell
     var _ApplicationColours: ApplicatoinColours!
     
     @IBOutlet weak var childNameLabel: UILabel!
-    @IBOutlet weak var birthdayText: UILabel!
     
     override func awakeFromNib() {
         
@@ -29,6 +28,12 @@ class PersonSearchTableViewCell: UITableViewCell
         _ApplicationColours = ApplicatoinColours()
         
         setupConstraints()
+        
+        contentView.backgroundColor = _ApplicationColours.BackGroundColour
+        
+        childNameLabel.font = _ApplicationColours.largeFont
+        childNameLabel.textColor = _ApplicationColours.FontColour
+
     }
     
     func setupConstraints() {
@@ -45,29 +50,13 @@ class PersonSearchTableViewCell: UITableViewCell
         childNameLabel.topAnchor.constraint(
             equalTo: contentView.topAnchor, constant: 10).isActive = true
         
+        //bottom
+        childNameLabel.bottomAnchor.constraint(
+            equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+
         //right
         childNameLabel.trailingAnchor.constraint(
             equalTo: contentView.trailingAnchor, constant: -5).isActive = true
-        
-        //Positioning the birthday label
-        
-         birthdayText.translatesAutoresizingMaskIntoConstraints = false
-        
-        //left
-        birthdayText.leadingAnchor.constraint(
-            equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        
-        //right
-        birthdayText.trailingAnchor.constraint(
-            equalTo: contentView.trailingAnchor, constant: -5).isActive = true
-        
-        //bottomAnchor
-        birthdayText.topAnchor.constraint(
-            equalTo: childNameLabel.bottomAnchor).isActive = true
-        
-        //bottomAnchor
-        birthdayText.bottomAnchor.constraint(
-            equalTo: contentView.bottomAnchor).isActive = true
         
     }
     
@@ -80,9 +69,6 @@ class PersonSearchTableViewCell: UITableViewCell
         
         self.backgroundColor = _ApplicationColours.BackGroundColour
         
-        self.childNameLabel.textColor = .black
-        self.birthdayText.textColor = .black
-        
         childNameLabel?.text = nil
         
         if let child = self.child
@@ -91,7 +77,7 @@ class PersonSearchTableViewCell: UITableViewCell
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
-            birthdayText?.text = dateFormatter.string(from: child.ChildDOB) as String
+           // birthdayText?.text = dateFormatter.string(from: child.ChildDOB) as String
            
         }
     }
