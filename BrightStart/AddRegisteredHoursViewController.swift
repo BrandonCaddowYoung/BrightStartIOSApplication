@@ -373,8 +373,6 @@ class AddRegisteredHoursViewController: UIViewController {
             
             self.hideSpinner()
             
-            //self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
-            
             //Always goes back when done but this could be optional?
             
             if let nav = self.navigationController {
@@ -388,17 +386,18 @@ class AddRegisteredHoursViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "GoToMainMenu") {
+        if (segue.identifier == "GoToMenu") {
             
             if let vc = segue.destination as? MainMenuViewController {
                 
                 //In future we should go back to the calendar and select the date, however for now we should just go back to the main menu
                 
-                vc.selectedMenu = .MainMenu
+                vc.selectedMenu = .RegisteredHours
                 
             }
             
         }
+
     }
     
     //Removes the navigation bar from the top
@@ -417,6 +416,10 @@ class AddRegisteredHoursViewController: UIViewController {
     }
     
     func NavBarMenuTapped(){
+        
+        //Go to registered hours menu
+        
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
         
     }
     

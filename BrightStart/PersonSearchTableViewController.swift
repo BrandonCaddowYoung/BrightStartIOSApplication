@@ -100,12 +100,11 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             
             self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
             
-            navigationController?.navigationBar.topItem?.title = "Search"
-            
             navigationController?.navigationBar.backItem?.title = ""
+            self.navigationItem.title="Search";
             
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
-
+            
         }
         
     }

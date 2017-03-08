@@ -28,7 +28,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     
     @IBOutlet weak var targetPersonButton: UIButton!
     
-    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var yearLabel: UILabel!
+    
+    @IBOutlet weak var typeSwitch: UISegmentedControl!
     
     //End of mandatory arguments
     @IBOutlet weak var startSpinner: UIActivityIndicatorView!
@@ -168,6 +170,12 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         bottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         
+        startLabel.font = _ApplicatoinColours.mediumFont
+        finishLabel.font = _ApplicatoinColours.mediumFont
+        
+        startLabel.textColor = _ApplicatoinColours.FontColour
+       finishLabel.textColor = _ApplicatoinColours.FontColour
+        
         setupConstraints()
         
         //Single tap.
@@ -193,6 +201,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         calendarView.scrollToDate(Date())
         
         monthLabel.textColor = _ApplicatoinColours.White
+        yearLabel.textColor = _ApplicatoinColours.White
+        
+typeSwitch.tintColor = _ApplicatoinColours.Grey
         
         startTime.textColor = _ApplicatoinColours.White
         endTime.textColor = _ApplicatoinColours.White
@@ -245,15 +256,20 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
         
-             navigationController?.navigationBar.topItem?.title = "Calendar"
+            
+            if(selectCalendarPurpose == .TimeStamps){
+                navigationController?.navigationBar.topItem?.title = "Time Stamps"
+            }
+            else if(selectCalendarPurpose == .RegistrationHours){
+               navigationController?.navigationBar.topItem?.title = "Registered Hours"
+            }
+            
+            
+            
             
         navigationController?.navigationBar.backItem?.title = ""
             
         }
-        
-    }
-    
-    func NavBarMenuTapped(){
         
     }
     
@@ -353,6 +369,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     
         //Top Padding
         
+       
+        
         TopPadding.translatesAutoresizingMaskIntoConstraints = false
         
         //left
@@ -367,7 +385,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             equalTo: view.topAnchor).isActive = true
 
         TopPadding.heightAnchor.constraint(
-            equalTo: view.heightAnchor, multiplier: 0.03).isActive = true
+            equalTo: view.heightAnchor, multiplier: 0.02).isActive = true
         
         
     //Top container
@@ -411,24 +429,15 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         targetPersonButton.centerYAnchor.constraint(
          equalTo: NameLabel.centerYAnchor).isActive = true
         
-        //MENU BUTTON
-        menuButton.translatesAutoresizingMaskIntoConstraints = false
+        //typeSwitch
+        typeSwitch.translatesAutoresizingMaskIntoConstraints = false
         
-        //top
-        menuButton.topAnchor.constraint(
-            equalTo: topContainer.topAnchor).isActive = true
+        typeSwitch.centerYAnchor.constraint(
+            equalTo: NameLabel.centerYAnchor).isActive = true
         
         //right
-        menuButton.trailingAnchor.constraint(
+        typeSwitch.trailingAnchor.constraint(
             equalTo: topContainer.trailingAnchor, constant: -15).isActive = true
-        
-        menuButton.widthAnchor.constraint(
-        equalToConstant: 40).isActive = true
-        
-        menuButton.heightAnchor.constraint(
-            equalToConstant: 40).isActive = true
-        
-        menuButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
         //Month label
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -439,7 +448,21 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         //top
         monthLabel.topAnchor.constraint(
-            equalTo: NameLabel.bottomAnchor, constant: 5).isActive = true
+            equalTo: NameLabel.bottomAnchor, constant: 20).isActive = true
+        
+        monthLabel.heightAnchor.constraint(
+            equalTo: topContainer.heightAnchor, multiplier: 0.20).isActive = true
+        
+        //year label
+        yearLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //right
+        yearLabel.trailingAnchor.constraint(
+            equalTo: topContainer.trailingAnchor, constant: -15).isActive = true
+        
+        //top
+        yearLabel.centerYAnchor.constraint(
+            equalTo: monthLabel.centerYAnchor).isActive = true
         
         //Stack view
         
@@ -483,6 +506,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         //left
         bottomContainer.leadingAnchor.constraint(
             equalTo: view.leadingAnchor).isActive = true
+        
         //right
         bottomContainer.trailingAnchor.constraint(
             equalTo: view.trailingAnchor).isActive = true
@@ -532,9 +556,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         //top
         RightTopContainer.bottomAnchor.constraint(
-            equalTo: view.bottomAnchor).isActive = true
+           equalTo: view.bottomAnchor).isActive = true
         
-               //LEFT
+        //LEFT
         
         leftContainer.translatesAutoresizingMaskIntoConstraints = false
         
@@ -573,7 +597,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         LeftTopContainer.bottomAnchor.constraint(
             equalTo: view.bottomAnchor).isActive = true
         
-        
         //NEW BUTTON START
         
         addNewButtonStart.translatesAutoresizingMaskIntoConstraints = false
@@ -591,7 +614,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         //NEW BUTTON END
         
-        
         addNewButtonEnd.translatesAutoresizingMaskIntoConstraints = false
         
         //left
@@ -604,11 +626,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         addNewButtonEnd.heightAnchor.constraint(
             equalTo: RightTopContainer.heightAnchor,  multiplier: 0.50).isActive = true
-        
-        
-        
-        
-        
         
         //START SPINNER
         
@@ -627,7 +644,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         //END SPINNER
         
-        
         endSpinner.translatesAutoresizingMaskIntoConstraints = false
         
         //left
@@ -640,13 +656,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         //endSpinner.heightAnchor.constraint(
           //  equalTo: RightTopContainer.heightAnchor,  multiplier: 0.50).isActive = true
-        
-        
-        
-        
-        
-        
-        
         
         startTime.translatesAutoresizingMaskIntoConstraints = false
         
@@ -664,11 +673,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         endTime.centerXAnchor.constraint(
             equalTo: RightTopContainer.centerXAnchor).isActive = true
         
-        
-        
-        
-        
-        
         //FINSIH LABEL
         
         finishLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -679,10 +683,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
 
         //top
         finishLabel.topAnchor.constraint(
-            equalTo: RightTopContainer.topAnchor).isActive = true
-        
-
-        
+            equalTo: RightTopContainer.topAnchor, constant: 10).isActive = true
         
         //START LABEL
         
@@ -694,13 +695,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         //top
         startLabel.topAnchor.constraint(
-            equalTo: LeftTopContainer.topAnchor).isActive = true
-        
-        
-        
-        
-        
-        
+            equalTo: LeftTopContainer.topAnchor,  constant: 10).isActive = true
     }
     
     
@@ -815,7 +810,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         }
         
         //self.yearLabel.text = String(startYear)
-        self.monthLabel.text = monthSymbol + " - " + String(calendar2.component(.year, from: range.start))
+        monthLabel.text = monthSymbol
+        
+         yearLabel.text = String(calendar2.component(.year, from: range.start))
         
         if month % 2 > 0 {
             return "TimeStampsSectionHeaderView"
@@ -830,11 +827,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         if (segue.identifier == "GoToMainMenu") {
             
-            
-            
-            
-            
-            
             if let vc = segue.destination as? MainMenuViewController {
                 
                 if(selectCalendarPurpose == .TimeStamps){
@@ -847,8 +839,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 
             }
         }
-       
-        
+            
         else if (segue.identifier == "GoToRegistrationHoursEditor") {
             
             if let vc = segue.destination as? AddRegisteredHoursViewController {
@@ -1441,7 +1432,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         }
     }
     
-    @IBAction func MenuTapped(_ sender: Any) {
+    @IBAction func NavBarMenuTapped(_ sender: Any) {
         
         self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
         

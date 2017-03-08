@@ -170,45 +170,45 @@ class MainMenuViewController: UIViewController {
             
         case .TimeStamps:
             
-            images = [UIImage(named: "Edit")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Edit")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToSearchPerson", "GoToMainMenu", "GoToSignIn"]
+            segueIdList = ["GoToSearchPerson", "GoToSignIn"]
             
-             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.None, PurposeTypes.SignOut]
+             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Edit", "Home", "Sign Out"]
+            DisplayTextList = ["Edit", "Sign Out"]
             
-            authyIdList = ["", "", ""]
+            authyIdList = ["", ""]
             
             showNavigationBar = true
             
             
         case .RegisteredHours:
             
-            images = [UIImage(named: "PencilTip100")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "PencilTip100")!, UIImage(named: "SignOut")!]
             
             segueIdList = ["GoToSearchPerson", "GoToMainMenu", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.RegisterdHours_Edit, PurposeTypes.RegisteredHours_Delete, PurposeTypes.None, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.RegisterdHours_Edit,  PurposeTypes.SignOut]
             
-            DisplayTextList = ["Edit", "Home", "Sign Out"]
+            DisplayTextList = ["Edit", "Sign Out"]
             
-            authyIdList = ["", "",""]
+            authyIdList = ["", ""]
             
             showNavigationBar = true
             
             
         case .Authy:
             
-            images = [UIImage(named: "AddUserMale")!, UIImage(named: "TestTube")!,  UIImage(named: "Settings")!, UIImage(named: "Home")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "AddUserMale")!, UIImage(named: "TestTube")!,  UIImage(named: "Settings")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToNewAuthyUser", "GoToTestAuthyUser", "GoToAuthySettings", "GoToMainMenu", "GoToSignIn"]
+            segueIdList = ["GoToNewAuthyUser", "GoToTestAuthyUser", "GoToAuthySettings", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Authy_NewUser, PurposeTypes.Authy_Test, PurposeTypes.Authy_Settings, PurposeTypes.None, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Authy_NewUser, PurposeTypes.Authy_Test, PurposeTypes.Authy_Settings, PurposeTypes.SignOut]
             
-            DisplayTextList = ["New User",  "Test User", "Settings", "Home", "Sign Out"]
+            DisplayTextList = ["New User",  "Test User", "Settings", "Sign Out"]
             
-            authyIdList = ["", "", "", "", ""]
+            authyIdList = ["", "", "", ""]
             
             showNavigationBar = true
             
@@ -752,42 +752,60 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
             
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
           
-            //Changes the color of the backgorund within the nav bar.
-            navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
             
-            //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        SetNavigationBarDetails()
             
-            //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
-            
-            //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
-            
-            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-            
-            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            
-           self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
-            
-            navigationController?.navigationBar.backItem?.title = ""
-            
-            switch selectedMenu {
-            case .MainMenu:
-                navigationController?.navigationBar.topItem?.title = "Menu"
-                case .TimeStamps:
-                    navigationController?.navigationBar.topItem?.title = "Time Stamps"
-                    case .RegisteredHours:
-                        navigationController?.navigationBar.topItem?.title = "Registered Hours"
-                        case .Authy:
-                            navigationController?.navigationBar.topItem?.title = "Authy"
-                            case .AuthyUsers:
-                                navigationController?.navigationBar.topItem?.title = "Authy Users"
-             
-            }}
+        }
         
+    }
+ 
+    func SetNavigationBarDetails()
+    {
+        //Changes the color of the backgorund within the nav bar.
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+        
+        //Title color
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+        
+        var rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        if(selectedMenu == .MainMenu)
+        {
+            rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "About"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        }
+        
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        
+        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+       
+        self.navigationController?.navigationBar.topItem?.title = " ";
+        
+        //Back color
+        navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+        
+        switch selectedMenu {
+        case .MainMenu:
+            self.navigationItem.title="Menu"
+            //navigationController?.navigationBar.topItem?.title = "Menu"
+        case .TimeStamps:
+            self.navigationItem.title="Time Stamps"
+            //navigationController?.navigationBar.topItem?.title = "Time Stamps"
+        case .RegisteredHours:
+            self.navigationItem.title="Registered Hours"
+            //navigationController?.navigationBar.topItem?.title = "Registered Hours"
+        case .Authy:
+            self.navigationItem.title="Authy"
+            //navigationController?.navigationBar.topItem?.title = "Authy"
+        case .AuthyUsers:
+            self.navigationItem.title="Authy Users"
+            //navigationController?.navigationBar.topItem?.title = "Authy Users"
+            
+        }
     }
     
 }
@@ -809,19 +827,13 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
         
         loadMenuAssets()
         
-        switch selectedMenu {
-        case .MainMenu:
-            navigationController?.navigationBar.topItem?.title = "Menu"
-        case .TimeStamps:
-            navigationController?.navigationBar.topItem?.title = "Time Stamps"
-        case .RegisteredHours:
-            navigationController?.navigationBar.topItem?.title = "Registered Hours"
-        case .Authy:
-            navigationController?.navigationBar.topItem?.title = "Authy"
-        case .AuthyUsers:
-            navigationController?.navigationBar.topItem?.title = "Authy Users"
-            
-        }
+        //Back color
+        navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+
+       SetNavigationBarDetails()
     
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.collectionView.reloadData()

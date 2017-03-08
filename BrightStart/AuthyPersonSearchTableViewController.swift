@@ -218,7 +218,7 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
     }
     
     func NavBarMenuTapped(){
-        
+         self.performSegue(withIdentifier: "GoToAuthyMenu", sender: nil)
     }
 
     
@@ -298,6 +298,18 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
                 vc.childId = SelectedPersonId
                 vc.authyUsersOnly = true
                 vc.showNavigationBar = true
+            }
+        }
+        
+        if (segue.identifier! == "GoToAuthyMenu") {
+            
+            //Settings the menu details.
+            
+            //Need to get the specific user. so navigate to menu.
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                vc.selectedMenu = .Authy
             }
         }
         

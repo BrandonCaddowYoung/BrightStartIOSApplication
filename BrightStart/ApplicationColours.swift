@@ -43,7 +43,6 @@ class ApplicatoinColours {
     var CalendarDot: UIColor!
     var CaelndarHeader: UIColor!
     
-    
     var Red: UIColor!
     var Blue: UIColor!
     var White: UIColor!
@@ -62,13 +61,13 @@ class ApplicatoinColours {
     
     init() {
         
-        buttonFont = UIFont(name: "HelveticaNeue-Light", size: 15.0)!
+        buttonFont = UIFont(name: "HelveticaNeue-Thin", size: 15.0)!
         
-        smallFont = UIFont(name: "HelveticaNeue-Light", size: 10.0)!
-        sshmediumlFont = UIFont(name: "HelveticaNeue-Light", size: 15.0)!
-        mediumFont = UIFont(name: "HelveticaNeue-Light", size: 20.0)!
-        largeFont = UIFont(name: "HelveticaNeue-Light", size: 30.0)!
-        XlargeFont = UIFont(name: "HelveticaNeue-Light", size: 40.0)!
+        smallFont = UIFont(name: "HelveticaNeue-Thin", size: 10.0)!
+        sshmediumlFont = UIFont(name: "HelveticaNeue-Thin", size: 15.0)!
+        mediumFont = UIFont(name: "HelveticaNeue-Thin", size: 20.0)!
+        largeFont = UIFont(name: "HelveticaNeue-Thin", size: 30.0)!
+        XlargeFont = UIFont(name: "HelveticaNeue-Thin", size: 40.0)!
         
         //Theme Colour
         White = hexStringToUIColor(hex: "#FFFFFF")
@@ -129,4 +128,24 @@ class ApplicatoinColours {
         )
     }
     
+}
+
+extension UITextField {
+    
+    func setBottomBorder(backGroundColor: CGColor, underlineColor: CGColor, textColor: UIColor) {
+        
+        self.borderStyle = .none
+        self.layer.backgroundColor = backGroundColor
+        
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = underlineColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 0.0
+        
+        self.textColor = textColor
+        
+        self.attributedPlaceholder = NSAttributedString(string: self.placeholder!, attributes: [NSForegroundColorAttributeName : textColor])
+        
+    }
 }

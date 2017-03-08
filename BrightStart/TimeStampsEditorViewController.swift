@@ -22,6 +22,8 @@ enum EditTargetType: Int {
 
 class TimeStampsEditorViewController: UIViewController {
     
+    var GoToMenuType: MenuTypes!
+    
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
     
@@ -80,7 +82,11 @@ class TimeStampsEditorViewController: UIViewController {
                                                         }
                                                         }
                                                         else{
-                                                        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                            
+                                                            self.GoToMenuType = .MainMenu
+                                                            
+                                                        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+                                                            
                                                         }
                                                     
                                                     })
@@ -136,7 +142,10 @@ class TimeStampsEditorViewController: UIViewController {
                             }
                         }
                         else{
-                            self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                            
+                            self.GoToMenuType = .MainMenu
+                            
+                            self.performSegue(withIdentifier: "GoToMenu", sender: nil)
                         }
                         
                         
@@ -166,7 +175,10 @@ class TimeStampsEditorViewController: UIViewController {
                                                                         }
                                                                     }
                                                                     else{
-                                                                        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                        
+                                                                        self.GoToMenuType = .MainMenu
+                                                                        
+                                                                        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
                                                                     }
                                                                     
                                                                     
@@ -202,7 +214,10 @@ class TimeStampsEditorViewController: UIViewController {
                                                                         }
                                                                     }
                                                                     else{
-                                                                        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                        
+                                                                        self.GoToMenuType = .MainMenu
+                                                                        
+                                                                        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
                                                                     }
                                                                     
                                                                     
@@ -242,7 +257,10 @@ class TimeStampsEditorViewController: UIViewController {
                                                                     }
                                                                 }
                                                                 else{
-                                                                    self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                                                    
+                                                                    self.GoToMenuType = .MainMenu
+                                                                    
+                                                                    self.performSegue(withIdentifier: "GoToMenu", sender: nil)
                                                                 }
                                                                 
                                                             })
@@ -440,13 +458,19 @@ class TimeStampsEditorViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "GoToMainMenu") {
+        if (segue.identifier == "GoToMenu") {
             
             if let vc = segue.destination as? MainMenuViewController {
                 
                 //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
                 
-                vc.selectedMenu = .MainMenu
+                if(self.GoToMenuType == .MainMenu){
+                    vc.selectedMenu = .MainMenu
+                }
+                else
+                {
+                    vc.selectedMenu = .TimeStamps
+                }
                 
             }
             
@@ -470,6 +494,9 @@ class TimeStampsEditorViewController: UIViewController {
     
     func NavBarMenuTapped(){
         
+         self.GoToMenuType = .TimeStamps
+        
+     self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
 
     

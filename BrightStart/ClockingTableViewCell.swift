@@ -31,7 +31,8 @@ class ClockingTableViewCell: UITableViewCell
         _CommonHelper = CommonHelper()
         _ApplicationColours = ApplicatoinColours()
         
-              setupConstraints()
+        setupConstraints()
+        
     }
     
     func setupConstraints() {
@@ -45,7 +46,6 @@ class ClockingTableViewCell: UITableViewCell
             equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         
        //Right is defined below, after the image is in place
-
         
         //top
         childNameLabel.topAnchor.constraint(
@@ -195,12 +195,12 @@ class ClockingTableViewCell: UITableViewCell
     
     func updateUI() {
         
-        self.childNameLabel.textColor = .black
+        self.childNameLabel.textColor = _ApplicationColours.FontColour
         self.cellInformationText.textColor = .black
-        self.cellDetailsText.textColor = .black
+        self.cellDetailsText.textColor = _ApplicationColours.FontColour
        
         childNameLabel?.text = nil
-       
+        
          if let child = self.child
         {
             childNameLabel?.text = "\(child.Name)" 
@@ -217,6 +217,10 @@ class ClockingTableViewCell: UITableViewCell
                 self.cellImage?.image = UIImage(named: "SwipeLeft")
                 self.cellImage2?.image = UIImage(named: "SignedIn")
                 
+                cellImage.image = cellImage.image?.maskWithColor(color: _ApplicationColours.Orange)
+                cellImage2.image = cellImage2.image?.maskWithColor(color: _ApplicationColours.Orange)
+                
+
                 if let savedDate = UserDefaults.standard.object(forKey: "finishTime")  as? Date
                 {
                     //Getting Registered Finish time as string
@@ -267,6 +271,8 @@ class ClockingTableViewCell: UITableViewCell
                 self.cellImage?.image = UIImage(named: "SwipeLeft")
                 self.cellImage2?.image = UIImage(named: "SignedOut")
 
+               cellImage.image = cellImage.image?.maskWithColor(color: _ApplicationColours.Orange)
+              cellImage2.image = cellImage2.image?.maskWithColor(color: _ApplicationColours.Orange)
                 
                 self.cellDetailsText.text = ""
                 
@@ -395,4 +401,30 @@ class ClockingTableViewCell: UITableViewCell
     }
 }
 
+extension UIImage {
+    
+    func maskWithColor(color: UIColor) -> UIImage? {
+        let maskImage = cgImage!
+        
+        let width = size.width
+        let height = size.height
+        let bounds = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
+        
+        context.clip(to: bounds, mask: maskImage)
+        context.setFillColor(color.cgColor)
+        context.fill(bounds)
+        
+        if let cgImage = context.makeImage() {
+            let coloredImage = UIImage(cgImage: cgImage)
+            return coloredImage
+        } else {
+            return nil
+        }
+    }
+    
+}
 
