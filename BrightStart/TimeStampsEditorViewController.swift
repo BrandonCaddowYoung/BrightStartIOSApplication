@@ -45,6 +45,16 @@ class TimeStampsEditorViewController: UIViewController {
     var editType: EditTargetType!
     
     var EditorMode: TimeStampEditerType!
+  
+    @IBOutlet weak var HorizontalDivider: UIView!
+    @IBOutlet weak var TopContainer: UIView!
+    @IBOutlet weak var MiddleContainer: UIView!
+    @IBOutlet weak var BottomContainer: UIView!
+    
+    @IBOutlet weak var CurrentTimeLabel: UILabel!
+    @IBOutlet weak var CurrentDateLabel: UILabel!
+    
+    @IBOutlet weak var SetYourNewTimeStampLabel: UILabel!
     
     @IBOutlet weak var TargetPersonName: UILabel!
     @IBOutlet weak var TargetDate: UILabel!
@@ -56,43 +66,40 @@ class TimeStampsEditorViewController: UIViewController {
     @IBOutlet weak var SaveButton: UIButton!
     
     @IBOutlet weak var RemoveButton: UIButton!
-    
-    @IBOutlet weak var SaveTimeStamp: UIButton!
-    @IBOutlet weak var RemoveTimeStamp: UIButton!
-    
-    @IBAction func SaveTimeStampTouched(_ sender: Any) {
+   
+    @IBAction func Save(_ sender: Any) {
         
         if(EditorMode == .TimeStamps_Edit){
-        
-        let alert = self._CommonHelper.showOverlayMessage("Updating...")
-        self.present(alert, animated: true, completion: nil)
-        
-        CommonRequests.sharedInstance.updateTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate, originalAction: Action!, originalTimeStamp: DateAsObject as NSDate,
-                                                     
-                                              onCompletion: {
-                                                
-                                                DispatchQueue.main.async(execute: {
-                                                    self.dismiss(animated: false, completion: {
-                                                    
-                                                        if(self.goBackOnSuccess){
-                                                        if let nav = self.navigationController {
-                                                            nav.popViewController(animated: true)
-                                                        } else {
-                                                            self.dismiss(animated: true, completion: nil)
-                                                        }
-                                                        }
-                                                        else{
+            
+            let alert = self._CommonHelper.showOverlayMessage("Updating...")
+            self.present(alert, animated: true, completion: nil)
+            
+            CommonRequests.sharedInstance.updateTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate, originalAction: Action!, originalTimeStamp: DateAsObject as NSDate,
+                                                          
+                                                          onCompletion: {
                                                             
-                                                            self.GoToMenuType = .MainMenu
-                                                            
-                                                        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
-                                                            
-                                                        }
-                                                    
-                                                    })
-                                                    
-                                                })
-        })
+                                                            DispatchQueue.main.async(execute: {
+                                                                self.dismiss(animated: false, completion: {
+                                                                    
+                                                                    if(self.goBackOnSuccess){
+                                                                        if let nav = self.navigationController {
+                                                                            nav.popViewController(animated: true)
+                                                                        } else {
+                                                                            self.dismiss(animated: true, completion: nil)
+                                                                        }
+                                                                    }
+                                                                    else{
+                                                                        
+                                                                        self.GoToMenuType = .MainMenu
+                                                                        
+                                                                        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+                                                                        
+                                                                    }
+                                                                    
+                                                                })
+                                                                
+                                                            })
+            })
             
         }
         else if(EditorMode == .RegisteredHours_Edit){
@@ -108,11 +115,11 @@ class TimeStampsEditorViewController: UIViewController {
             
             //if(editType == .Start)
             //{
-              //  originalDateValue = existingStartDate as NSDate
+            //  originalDateValue = existingStartDate as NSDate
             //}
             //else if(editType == .End)
             //{
-              //  originalDateValue = existingEndDate as NSDate
+            //  originalDateValue = existingEndDate as NSDate
             //}
             
             if(editType == .Start)
@@ -130,8 +137,6 @@ class TimeStampsEditorViewController: UIViewController {
                 
                 DispatchQueue.main.async(execute: {
                     self.dismiss(animated: false, completion: {
-                        
-                        
                         
                         
                         if(self.goBackOnSuccess){
@@ -155,43 +160,43 @@ class TimeStampsEditorViewController: UIViewController {
             })
             
         }else if(EditorMode == .RegisteredHours_Create){
-         
+            
             let alert = self._CommonHelper.showOverlayMessage("Updating...")
             self.present(alert, animated: true, completion: nil)
             
             //Change to to creating registered hours
-            RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: PersonId!, startTime: DateTimePicker.date as NSDate, finishTime: DateTimePicker.date as NSDate, onCompletion: {_ in 
-                                                            
-                                                            DispatchQueue.main.async(execute: {
-                                                                self.dismiss(animated: false, completion: {
-                                                                    
-                                                                    
-                                                                    
-                                                                    if(self.goBackOnSuccess){
-                                                                        if let nav = self.navigationController {
-                                                                            nav.popViewController(animated: true)
-                                                                        } else {
-                                                                            self.dismiss(animated: true, completion: nil)
-                                                                        }
-                                                                    }
-                                                                    else{
-                                                                        
-                                                                        self.GoToMenuType = .MainMenu
-                                                                        
-                                                                        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
-                                                                    }
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                })
-                                                                
-                                                            })
+            RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: PersonId!, startTime: DateTimePicker.date as NSDate, finishTime: DateTimePicker.date as NSDate, onCompletion: {_ in
+                
+                DispatchQueue.main.async(execute: {
+                    self.dismiss(animated: false, completion: {
+                        
+                        
+                        
+                        if(self.goBackOnSuccess){
+                            if let nav = self.navigationController {
+                                nav.popViewController(animated: true)
+                            } else {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                        else{
+                            
+                            self.GoToMenuType = .MainMenu
+                            
+                            self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+                        }
+                        
+                        
+                        
+                        
+                    })
+                    
+                })
             })
             
         }
         else if(EditorMode == .TimeStamps_Create){
-         
+            
             let alert = self._CommonHelper.showOverlayMessage("Updating...")
             self.present(alert, animated: true, completion: nil)
             
@@ -232,10 +237,12 @@ class TimeStampsEditorViewController: UIViewController {
             
             
         }
+
         
     }
+   
     
-    @IBAction func RemoveTimeStampTouched(_ sender: Any) {
+    @IBAction func RemoveStamp(_ sender: Any) {
         
         //Make API call to delete time stamp and then return to the time stamps menu.
         
@@ -268,7 +275,11 @@ class TimeStampsEditorViewController: UIViewController {
                                                         })
         })
         
+
+        
     }
+    
+    
     
     
     override func viewDidLoad() {
@@ -283,18 +294,35 @@ class TimeStampsEditorViewController: UIViewController {
         
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
         
-        SaveTimeStamp.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
-        
-        SaveTimeStamp.tintColor = _ApplicatoinColours.ButtonForeGroundColor
-        
         TargetPersonName.text = Name
-        TargetDate.text = Date
-        TargetCurrentTime.text = Time
-        DateTimePicker.date = DateAsObject
+        TargetPersonName.font = _ApplicatoinColours.largeFont
+        TargetPersonName.textColor = _ApplicatoinColours.FontColour
         
+        TargetDate.text = Date
+        TargetDate.font = _ApplicatoinColours.largeFont
+        TargetDate.textColor = _ApplicatoinColours.FontColour
+        
+        TargetCurrentTime.text = Time
+        TargetCurrentTime.font = _ApplicatoinColours.largeFont
+        TargetCurrentTime.textColor = _ApplicatoinColours.FontColour
+        
+        CurrentTimeLabel.font = _ApplicatoinColours.mediumFont
+        CurrentTimeLabel.textColor = _ApplicatoinColours.Orange
+        
+        CurrentDateLabel.font = _ApplicatoinColours.mediumFont
+        CurrentDateLabel.textColor = _ApplicatoinColours.Orange
+        
+        SetYourNewTimeStampLabel.font = _ApplicatoinColours.mediumFont
+        SetYourNewTimeStampLabel.textColor = _ApplicatoinColours.Blue
+        
+        DateTimePicker.date = DateAsObject
         DateTimePicker.datePickerMode = UIDatePickerMode.time
         
-        //DateTimePicker.maximumDate = NSDate() as Date
+        HorizontalDivider.backgroundColor = _ApplicatoinColours.Orange
+        
+        TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        MiddleContainer.backgroundColor = _ApplicatoinColours.White
+        BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         if(EditorMode == .RegisteredHours_Create || EditorMode == .TimeStamps_Create ){
             RemoveButton.isHidden = true
@@ -309,84 +337,243 @@ class TimeStampsEditorViewController: UIViewController {
     
     func setupConstraints() {
         
-       //Positioning the persons name
+        self.edgesForExtendedLayout = []
+        
+        //Positioning the top container
+        
+        TopContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        TopContainer.leadingAnchor.constraint(
+            equalTo: view.leadingAnchor, constant: 5).isActive = true
+        
+        //right
+        TopContainer.trailingAnchor.constraint(
+            equalTo: view.trailingAnchor, constant: -5).isActive = true
+        //top
+        TopContainer.topAnchor.constraint(
+            equalTo: view.topAnchor).isActive = true
+        
+        //height
+        TopContainer.heightAnchor.constraint(
+            equalTo: view.heightAnchor,
+            multiplier : 0.33).isActive = true
+        
+        //Positioning the persons name
         
         TargetPersonName.translatesAutoresizingMaskIntoConstraints = false
         
         //left
         TargetPersonName.leadingAnchor.constraint(
-            equalTo: view.leadingAnchor, constant: 5).isActive = true
+            equalTo: TopContainer.leadingAnchor, constant: 5).isActive = true
+        
         //right
         TargetPersonName.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor, constant: -5).isActive = true
+            equalTo: TopContainer.trailingAnchor, constant: -5).isActive = true
+        
         //top
         TargetPersonName.topAnchor.constraint(
-            equalTo: topLayoutGuide.bottomAnchor).isActive = true
+            equalTo: TopContainer.topAnchor, constant: 10).isActive = true
         
         //height
         TargetPersonName.heightAnchor.constraint(
-            equalTo: view.heightAnchor,
-            multiplier : 0.10).isActive = true
+            equalTo: TopContainer.heightAnchor,
+            multiplier : 0.20).isActive = true
         
-        //Positioning the current date
+    //Positioning the divider
         
-        TargetDate.translatesAutoresizingMaskIntoConstraints = false
+        HorizontalDivider.translatesAutoresizingMaskIntoConstraints = false
         
         //left
-        TargetDate.leadingAnchor.constraint(
-            equalTo: view.leadingAnchor, constant: 5).isActive = true
+        HorizontalDivider.leadingAnchor.constraint(
+            equalTo: TopContainer.leadingAnchor, constant: 5).isActive = true
+        
+        //right
+        HorizontalDivider.trailingAnchor.constraint(
+            equalTo: TopContainer.trailingAnchor, constant: -5).isActive = true
+        
         //top
-        TargetDate.topAnchor.constraint(
-            equalTo: TargetPersonName.bottomAnchor).isActive = true
+        HorizontalDivider.topAnchor.constraint(
+            equalTo: TargetPersonName.bottomAnchor, constant: 10).isActive = true
         
         //height
-        TargetDate.heightAnchor.constraint(
-            equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
+        HorizontalDivider.heightAnchor.constraint(
+            equalToConstant: 1).isActive = true
         
-        TargetDate.font.withSize(100)
         
-        //Positioning the current time
+        //CURRENT TIME LABEL
+        
+        CurrentTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        CurrentTimeLabel.leadingAnchor.constraint(
+            equalTo: TargetPersonName.leadingAnchor).isActive = true
+        
+        //top
+        CurrentTimeLabel.topAnchor.constraint(
+            equalTo: HorizontalDivider.bottomAnchor, constant: 10).isActive = true
+        
+        //height
+        CurrentTimeLabel.heightAnchor.constraint(
+            equalToConstant: 15).isActive = true
+        
+        
+       
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        //CURRENT DATE LABEL
+        
+        CurrentDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        CurrentDateLabel.leadingAnchor.constraint(
+            equalTo: CurrentTimeLabel.trailingAnchor).isActive = true
+        
+        //top
+        CurrentDateLabel.topAnchor.constraint(
+            equalTo: CurrentTimeLabel.topAnchor).isActive = true
+        
+        //height
+        CurrentDateLabel.heightAnchor.constraint(
+            equalToConstant: 15).isActive = true
+        
+        CurrentDateLabel.trailingAnchor.constraint(
+            equalTo: TopContainer.trailingAnchor).isActive = true
+        
+        
+        
+        
+        //CURRENT TIME
+        
         
         TargetCurrentTime.translatesAutoresizingMaskIntoConstraints = false
         
         //left
-        TargetCurrentTime.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor, constant: -5).isActive = true
-        
+        TargetCurrentTime.leadingAnchor.constraint(
+            equalTo: CurrentTimeLabel.leadingAnchor).isActive = true
         //top
         TargetCurrentTime.topAnchor.constraint(
-            equalTo: TargetPersonName.bottomAnchor).isActive = true
+            equalTo: CurrentTimeLabel.bottomAnchor).isActive = true
         
         //height
         TargetCurrentTime.heightAnchor.constraint(
             equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
         
-        TargetCurrentTime.font.withSize(100)
+        
+        //Positioning the current time
+        
+        TargetDate.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        TargetDate.leadingAnchor.constraint(
+            equalTo: CurrentDateLabel.leadingAnchor).isActive = true
+        
+        //top
+        TargetDate.topAnchor.constraint(
+            equalTo: CurrentDateLabel.bottomAnchor).isActive = true
+        
+        //height
+        TargetDate.heightAnchor.constraint(
+            equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
+        
+        TargetDate.trailingAnchor.constraint(
+            equalTo: TopContainer.trailingAnchor).isActive = true
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        MiddleContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        MiddleContainer.leadingAnchor.constraint(
+            equalTo: view.leadingAnchor, constant: 5).isActive = true
+        
+        //right
+        MiddleContainer.trailingAnchor.constraint(
+            equalTo: view.trailingAnchor, constant: -5).isActive = true
+        
+        //top
+        MiddleContainer.topAnchor.constraint(
+            equalTo: TopContainer.bottomAnchor).isActive = true
+        
+        //height
+        MiddleContainer.heightAnchor.constraint(
+            equalTo: view.heightAnchor,
+            multiplier : 0.33).isActive = true
         
         
         //Positioning Date Time Picker
         
         DateTimePicker.translatesAutoresizingMaskIntoConstraints = false
         
-        //DateTimePicker.topAnchor.constraint(
-          //  equalTo: TargetCurrentTime.bottomAnchor).isActive = true
-        
         //Center x
         DateTimePicker.centerXAnchor.constraint(
-            equalTo: view.centerXAnchor).isActive = true
+            equalTo: MiddleContainer.centerXAnchor).isActive = true
         
         //Center y
         DateTimePicker.centerYAnchor.constraint(
-            equalTo: view.centerYAnchor).isActive = true
-
-        
-        //height
-        //DateTimePicker.heightAnchor.constraint(equalToConstant: 140).isActive = true
+            equalTo: MiddleContainer.centerYAnchor).isActive = true
         
         DateTimePicker.heightAnchor.constraint(
-            equalTo: view.heightAnchor,
-            multiplier : 0.30).isActive = true
+            equalTo: MiddleContainer.heightAnchor, multiplier: 0.70).isActive = true
         
+        DateTimePicker.widthAnchor.constraint(
+            equalTo: MiddleContainer.widthAnchor, multiplier: 0.70).isActive = true
+        
+        //Positioning label above the date picker
+        
+        SetYourNewTimeStampLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        SetYourNewTimeStampLabel.leadingAnchor.constraint(
+            equalTo: MiddleContainer.leadingAnchor).isActive = true
+        
+        SetYourNewTimeStampLabel.trailingAnchor.constraint(
+            equalTo: MiddleContainer.trailingAnchor).isActive = true
+        
+        SetYourNewTimeStampLabel.topAnchor.constraint(
+            equalTo: MiddleContainer.topAnchor).isActive = true
+        
+        SetYourNewTimeStampLabel.heightAnchor.constraint(
+            equalTo: MiddleContainer.heightAnchor,
+            multiplier : 0.10).isActive = true
+        
+        
+        
+        
+        
+        BottomContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        BottomContainer.leadingAnchor.constraint(
+            equalTo: view.leadingAnchor, constant: 5).isActive = true
+        
+        //right
+        BottomContainer.trailingAnchor.constraint(
+            equalTo: view.trailingAnchor, constant: -5).isActive = true
+        
+        //top
+        BottomContainer.topAnchor.constraint(
+            equalTo: MiddleContainer.bottomAnchor).isActive = true
+        
+        //Bottom
+        BottomContainer.bottomAnchor.constraint(
+            equalTo: view.bottomAnchor).isActive = true
         
         //Positioning Delete Button
         
@@ -394,31 +581,31 @@ class TimeStampsEditorViewController: UIViewController {
         
         //left
         RemoveButton.leadingAnchor.constraint(
-            equalTo: view.leadingAnchor, constant: 5).isActive = true
+            equalTo: BottomContainer.leadingAnchor, constant: 5).isActive = true
         
         //right
         RemoveButton.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor, constant: -5).isActive = true
+            equalTo: BottomContainer.trailingAnchor, constant: -5).isActive = true
         
         //bottom
         RemoveButton.bottomAnchor.constraint(
-            equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
+            equalTo: BottomContainer.bottomAnchor, constant: -10).isActive = true
         
         //Positioning Save Button
         
         //Stlying remove button
         RemoveButton.layer.cornerRadius = 5
         RemoveButton.layer.borderWidth = 1
-        RemoveButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
+        RemoveButton.layer.borderColor = _ApplicatoinColours.Red as! CGColor?
         RemoveButton.backgroundColor = _ApplicatoinColours.Red
-        
-        RemoveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
-        
+       
         RemoveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
+        RemoveButton.setTitleColor(_ApplicatoinColours.Red, for: .normal)
+        
         RemoveButton.heightAnchor.constraint(
-            equalTo: view.heightAnchor,
-            multiplier : 0.10).isActive = true
+            equalTo: BottomContainer.heightAnchor,
+            multiplier : 0.30).isActive = true
         
         SaveButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -426,16 +613,16 @@ class TimeStampsEditorViewController: UIViewController {
         //SaveButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         SaveButton.heightAnchor.constraint(
-            equalTo: view.heightAnchor,
-            multiplier : 0.10).isActive = true
+            equalTo: BottomContainer.heightAnchor,
+            multiplier : 0.30).isActive = true
         
         //left
         SaveButton.leadingAnchor.constraint(
-            equalTo: view.leadingAnchor, constant: 5).isActive = true
+            equalTo: BottomContainer.leadingAnchor, constant: 5).isActive = true
         
         //right
         SaveButton.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor, constant: -5).isActive = true
+            equalTo: BottomContainer.trailingAnchor, constant: -5).isActive = true
         
         //bottom
         SaveButton.bottomAnchor.constraint(
@@ -450,7 +637,14 @@ class TimeStampsEditorViewController: UIViewController {
         SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
         SaveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
-       
+        
+        
+        
+
+        
+        
+        
+
     }
    
     /*!
