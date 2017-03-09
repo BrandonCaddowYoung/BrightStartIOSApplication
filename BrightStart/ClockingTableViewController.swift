@@ -84,22 +84,21 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        _CommonHelper = CommonHelper()
+        _ApplicatoinColours = ApplicatoinColours()
+        
         self.indicator.center = self.view.center
         self.view.addSubview(indicator)
         
         indicator.startAnimating()
-        indicator.backgroundColor = UIColor.white
+        //indicator.backgroundColor = UIColor.white
         
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        _CommonHelper = CommonHelper()
-        _ApplicatoinColours = ApplicatoinColours()
-        
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = _ApplicatoinColours.TableBackGround
         
         refresh()
-        
         
         let threeFingerTap = UITapGestureRecognizer(target: self,
                                                action: #selector(ClockingTableViewController.tapDetected as
@@ -108,7 +107,6 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         threeFingerTap.numberOfTouchesRequired = 3
         
         self.view.addGestureRecognizer(threeFingerTap)
-        
         
     }
     
@@ -262,7 +260,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                 }
                 
             }
-            signIn.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour2
+            signIn.backgroundColor = _ApplicatoinColours.Blue
             
             var rowTitle2 = "Sign out " + ((cell.child?.Name)! as String)
             
@@ -310,7 +308,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                 
                 
             }
-            signOut.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour
+            signOut.backgroundColor = _ApplicatoinColours.Orange
             
             if(cell.child?.CurrentlySignedIn == true){
                 return [signOut]

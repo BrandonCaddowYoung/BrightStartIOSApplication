@@ -195,9 +195,10 @@ class ClockingTableViewCell: UITableViewCell
     
     func updateUI() {
         
-        self.childNameLabel.textColor = _ApplicationColours.FontColour
-        self.cellInformationText.textColor = .black
-        self.cellDetailsText.textColor = _ApplicationColours.FontColour
+        self.childNameLabel.textColor = _ApplicationColours.TableTextColor
+        self.cellInformationText.textColor = _ApplicationColours.Black
+
+        self.cellDetailsText.textColor = _ApplicationColours.TableTextColor
        
         childNameLabel?.text = nil
         
@@ -220,7 +221,6 @@ class ClockingTableViewCell: UITableViewCell
                 cellImage.image = cellImage.image?.maskWithColor(color: _ApplicationColours.Orange)
                 cellImage2.image = cellImage2.image?.maskWithColor(color: _ApplicationColours.Orange)
                 
-
                 if let savedDate = UserDefaults.standard.object(forKey: "finishTime")  as? Date
                 {
                     //Getting Registered Finish time as string
@@ -241,7 +241,7 @@ class ClockingTableViewCell: UITableViewCell
                         //self.takeActionImage?.image = UIImage(named: "star")
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "No registerd hours."
-                        self.backgroundColor = lightBlue?.withAlphaComponent(1)
+                        self.backgroundColor = lightBlue
                         
                     }
                     else if(minutesElapsed > 0 && minutesElapsed < 1440)
@@ -252,7 +252,7 @@ class ClockingTableViewCell: UITableViewCell
                         //self.takeActionImage?.image = UIImage(named: "priority")
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "Late to leave, expected to go home at: " + registeredFinishTime
-                        self.backgroundColor = lightBlue?.withAlphaComponent(1)
+                        self.backgroundColor = lightBlue
                     }
                     else{
                         
@@ -262,7 +262,7 @@ class ClockingTableViewCell: UITableViewCell
                         //self.takeActionImage?.image = UIImage(named: "star")
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "Expected to go home at " + registeredFinishTime
-                        self.backgroundColor = lightBlue?.withAlphaComponent(1)
+                        self.backgroundColor = lightBlue
                     }
                 }
             }
@@ -374,7 +374,7 @@ class ClockingTableViewCell: UITableViewCell
                                     
                                     //Child is yet to arrive/Child is late to sign in
                                     self.childNameLabel.textColor = .white
-                                    self.backgroundColor = lightPink?.withAlphaComponent(1)
+                                    self.backgroundColor = lightPink
                                     //self.backgroundColor.backgroundColor?.withAlphaComponent(0.5)
                                     
                                     self.cellDetailsText.text = "Gone home."

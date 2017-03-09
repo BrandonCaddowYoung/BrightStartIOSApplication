@@ -20,9 +20,11 @@ class ApplicatoinColours {
     var FontColour: UIColor!
     var LabelColour: UIColor!
     
+    var TableBackGround: UIColor!
+    var TableTextColor: UIColor!
+    
     var TableBackGroundOptionColour: UIColor!
     var TableBackGroundOptionColour2: UIColor!
-    
     var TableForeGroundOptionColour: UIColor!
     
     var ButtonBackGroundColor: UIColor!
@@ -76,10 +78,10 @@ class ApplicatoinColours {
         Orange = hexStringToUIColor(hex: "#ed6639")
         Blue = hexStringToUIColor(hex: "#385b9f")
         
-        //Applicaiton Elements
-        
+        //GENERAL
         BackGroundColour = Blue
         
+        //NAVIGATION BAR
         NavigationBarBackGroundColor = White;
         NavigationBarBackBackButtonColor = Orange
         
@@ -91,12 +93,19 @@ class ApplicatoinColours {
         CalendarText = Black
         CaelndarHeader = Black
         
+        //TEXT
         FontColour = White
         LabelColour = Black
         FontHeadingColour = White
         
+        //BUTTONS
         ButtonBackGroundColor = White
         ButtonForeGroundColor = Black
+        
+        //TABLES
+        
+        TableBackGround = White;
+        TableTextColor = Blue;
         
         TableBackGroundOptionColour = White
         TableBackGroundOptionColour2 = Orange;

@@ -58,7 +58,6 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     //Removes the navigation bar from the top
     override func viewWillDisappear(_ animated: Bool) {
         
-       
         super.viewWillDisappear(animated)
         
         if(!showNavigationBar){
@@ -130,7 +129,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         _CommonHelper = CommonHelper()
         _ApplicatoinColours = ApplicatoinColours()
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = _ApplicatoinColours.TableBackGround
         
         refresh()
         

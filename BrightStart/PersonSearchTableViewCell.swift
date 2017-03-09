@@ -29,10 +29,10 @@ class PersonSearchTableViewCell: UITableViewCell
         
         setupConstraints()
         
-        contentView.backgroundColor = _ApplicationColours.BackGroundColour
+        contentView.backgroundColor = _ApplicationColours.TableBackGround
         
         childNameLabel.font = _ApplicationColours.largeFont
-        childNameLabel.textColor = _ApplicationColours.FontColour
+        childNameLabel.textColor = _ApplicationColours.TableTextColor
 
     }
     

@@ -11,10 +11,6 @@ import UIKit
 class SignInViewController: UIViewController, UITextFieldDelegate {
 
     
-    @IBOutlet weak var BrightStartLabel: UILabel!
-    
-    @IBOutlet weak var SloganLabel: UILabel!
-    
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
@@ -58,37 +54,21 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
         usernameTextField.delegate = self
         
-       
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
-      
+       
+        usernameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
         
         
-        
-        let filter = CIFilter(name: "CIColorInvert") //this creates a CIFilter with the attribute color invert
-        
-        filter?.setValue(CIImage(image: logoImaveView.image!), forKey: kCIInputImageKey) //this applies our filter to our UIImage
-        
-        let newImage = UIImage(ciImage: (filter?.outputImage!)!) //this takes our inverted image and stores it as a new UIImage
-        
-        logoImaveView.image = newImage
+        passwordTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
         
         
-        
-        
-        BrightStartLabel.font = _ApplicatoinColours.XlargeFont
-        
-        BrightStartLabel.textColor = _ApplicatoinColours.FontColour
-        
-         SloganLabel.font = _ApplicatoinColours.mediumFont
-        
-        SloganLabel.textColor = _ApplicatoinColours.Orange
-        
-        
-        usernameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.BackGroundColour.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.FontColour)
-        passwordTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.BackGroundColour.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.FontColour)
         setupConstraints()
         
+        topView.backgroundColor = .white
+        middleView.backgroundColor = .white
+        bottomView.backgroundColor = .white
+       
         //Styling the sign in button
         signInButton.layer.cornerRadius = 5
         signInButton.layer.borderWidth = 1
@@ -121,12 +101,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             passwordTextField.text = "user1"
         #endif
         
-        
         usernameTextField.font = _ApplicatoinColours.mediumFont
          passwordTextField.font = _ApplicatoinColours.mediumFont
         
         SignUpButton.titleLabel!.font = _ApplicatoinColours.sshmediumlFont
         signInButton.titleLabel!.font = _ApplicatoinColours.buttonFont
+        
+        
         
     }
     
@@ -177,7 +158,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //height
         bottomView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.30).isActive = true
+            multiplier: 0.35).isActive = true
         
         bottomView.addSubview(FooterView)
         
@@ -264,7 +245,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //height
         middleView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.40).isActive = true
+            multiplier: 0.30).isActive = true
         
         //TEXT INPUT FIELDS WITHIN MIDDLE VIEW
         
@@ -412,7 +393,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //height
         topView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.30).isActive = true
+            multiplier: 0.35).isActive = true
         
         topView.topAnchor.constraint(
             equalTo: view.topAnchor).isActive = true
@@ -425,28 +406,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         logoImaveView.centerXAnchor.constraint(
             equalTo: topView.centerXAnchor).isActive = true
-        logoImaveView.centerYAnchor.constraint(
-            equalTo: topView.centerYAnchor).isActive = true
+        //logoImaveView.centerYAnchor.constraint(
+          //  equalTo: topView.centerYAnchor).isActive = true
         
+        logoImaveView.widthAnchor.constraint(
+            equalTo: topView.widthAnchor, multiplier: 0.50).isActive = true
         
-        BrightStartLabel.translatesAutoresizingMaskIntoConstraints = false
+        logoImaveView.heightAnchor.constraint(
+            equalTo: topView.heightAnchor, multiplier: 0.50).isActive = true
         
-        BrightStartLabel.centerXAnchor.constraint(
-            equalTo: topView.centerXAnchor).isActive = true
-        
-        BrightStartLabel.topAnchor.constraint(
-            equalTo: logoImaveView.bottomAnchor).isActive = true
-        
-        SloganLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        SloganLabel.centerXAnchor.constraint(
-            equalTo: topView.centerXAnchor).isActive = true
-        
-        SloganLabel.topAnchor.constraint(
-            equalTo: BrightStartLabel.bottomAnchor).isActive = true
-        
-        
-        
+        logoImaveView.bottomAnchor.constraint(
+            equalTo: topView.bottomAnchor).isActive = true
         
         
     }
