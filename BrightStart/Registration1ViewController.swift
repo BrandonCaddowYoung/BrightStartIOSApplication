@@ -8,12 +8,13 @@
 
 import UIKit
 
-class Registration1ViewController: UIViewController {
-
+class Registration1ViewController: UIViewController , UITextFieldDelegate {
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
     var registration: RegistrationModel!
+
+   var showNavigationBar = true
     
     @IBOutlet weak var TopContainer: UIView!
     @IBOutlet weak var MiddleContainer: UIView!
@@ -33,6 +34,7 @@ class Registration1ViewController: UIViewController {
     @IBOutlet weak var FooterLabel: UILabel!
     override func viewDidLoad() {
         
+        self.hideKeyboardWhenTappedAround()
         
         registration = RegistrationModel()
         
@@ -43,36 +45,63 @@ class Registration1ViewController: UIViewController {
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
 
+        EmailTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+        EmailTextField.delegate = self;
+        
+        PasswordTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+        PasswordTextField.delegate = self;
+        
+        ConfirmPasswordTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+        ConfirmPasswordTextField.delegate = self;
+        
         //Styling button
         CreateAccountButton.layer.cornerRadius = 5
         CreateAccountButton.layer.borderWidth = 1
-        CreateAccountButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
+        CreateAccountButton.layer.borderColor = _ApplicatoinColours.White.cgColor
         CreateAccountButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         CreateAccountButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
         
         CreateAccountButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        MiddleContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-         FooterContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopContainer.backgroundColor = _ApplicatoinColours.White
+        MiddleContainer.backgroundColor = _ApplicatoinColours.White
+        BottomContainer.backgroundColor = _ApplicatoinColours.White
+         FooterContainer.backgroundColor = _ApplicatoinColours.White
         
-               SubHeaderLabl.textAlignment = NSTextAlignment.center;
+        SubHeaderLabl.textAlignment = NSTextAlignment.center;
         SubHeaderLabl.numberOfLines = 0;
         SubHeaderLabl.font = UIFont.systemFont(ofSize: 16.0);
         SubHeaderLabl.text = "To get going, just enter a username and password.";
         
         setupConstraints()
+        
     }
-    
- 
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-  
+    func SetNavigationBarDetails()
+    {
+        //No right button
+        
+        //Changes the color of the backgorund within the nav bar.
+        //navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
+        
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.White]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Blue
+        
+        self.navigationController?.navigationBar.topItem?.title = " ";
+        
+    }
     
     func setupConstraints() {
         
@@ -138,7 +167,7 @@ class Registration1ViewController: UIViewController {
         //height
         MiddleContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.25).isActive = true
+            multiplier: 0.15).isActive = true
         
         //Sub label
         
@@ -175,7 +204,7 @@ class Registration1ViewController: UIViewController {
         //height
         BottomContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.40).isActive = true
+            multiplier: 0.50).isActive = true
         
         
         //email text field
@@ -185,7 +214,9 @@ class Registration1ViewController: UIViewController {
         
         EmailTextField.widthAnchor.constraint(
             equalTo: view.widthAnchor,
-            multiplier: 0.50).isActive = true
+            multiplier: 0.70).isActive = true
+        
+        EmailTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         EmailTextField.topAnchor.constraint(
             equalTo: BottomContainer.topAnchor).isActive = true
@@ -195,9 +226,11 @@ class Registration1ViewController: UIViewController {
         PasswordTextField.centerXAnchor.constraint(
             equalTo: BottomContainer.centerXAnchor).isActive = true
         
+         PasswordTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         PasswordTextField.widthAnchor.constraint(
             equalTo: view.widthAnchor,
-            multiplier: 0.50).isActive = true
+            multiplier: 0.70).isActive = true
         
         PasswordTextField.topAnchor.constraint(
             equalTo: EmailTextField.bottomAnchor, constant: 10).isActive = true
@@ -207,9 +240,11 @@ class Registration1ViewController: UIViewController {
         ConfirmPasswordTextField.centerXAnchor.constraint(
             equalTo: BottomContainer.centerXAnchor).isActive = true
         
+        ConfirmPasswordTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         ConfirmPasswordTextField.widthAnchor.constraint(
             equalTo: view.widthAnchor,
-            multiplier: 0.50).isActive = true
+            multiplier: 0.70).isActive = true
         
         ConfirmPasswordTextField.topAnchor.constraint(
             equalTo: PasswordTextField.bottomAnchor, constant: 10).isActive = true
@@ -222,6 +257,10 @@ class Registration1ViewController: UIViewController {
         CreateAccountButton.widthAnchor.constraint(
             equalTo: view.widthAnchor,
             multiplier: 0.50).isActive = true
+        
+        CreateAccountButton.heightAnchor.constraint(
+            equalTo: BottomContainer.heightAnchor,
+            multiplier : 0.30).isActive = true
         
         CreateAccountButton.topAnchor.constraint(
             equalTo: ConfirmPasswordTextField.bottomAnchor, constant: 10).isActive = true
@@ -279,6 +318,27 @@ class Registration1ViewController: UIViewController {
         }
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            
+            SetNavigationBarDetails()
+            
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     /*

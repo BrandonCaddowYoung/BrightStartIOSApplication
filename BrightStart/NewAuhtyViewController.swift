@@ -8,8 +8,10 @@
 
 import UIKit
 
-class NewAuhtyViewController: UIViewController {
+class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
 
+    var showNavigationBar = true
+    
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
@@ -21,7 +23,6 @@ class NewAuhtyViewController: UIViewController {
     
     @IBOutlet weak var HeadingLabel: UILabel!
     @IBOutlet weak var MiddleContainer: UIView!
-    
     
     @IBOutlet weak var NameTextBox: UITextField!
     
@@ -72,9 +73,58 @@ class NewAuhtyViewController: UIViewController {
                     }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            
+            SetNavigationBarDetails()
+            
+        }
+    }
+    
+    func SetNavigationBarDetails()
+    {
+        //Changes the color of the backgorund within the nav bar.
+        //navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
+        
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.White]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Blue
+        
+        var rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        //Right button
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.White
+        
+        self.navigationController?.navigationBar.topItem?.title = "New Authy User";
+        
+    }
+    
+    func NavBarMenuTapped(){
+       
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.hideKeyboardWhenTappedAround()
+        
        self.edgesForExtendedLayout = []
         
         _ApplicatoinColours = ApplicatoinColours()
@@ -90,11 +140,33 @@ class NewAuhtyViewController: UIViewController {
 
         SubmitButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = _ApplicatoinColours.White
+        
+        RelationshipTextBox.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+        RelationshipTextBox.delegate = self;
+        
+        NameTextBox.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+        NameTextBox.delegate = self;
+        
+        CountryCodeTextBox.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+        CountryCodeTextBox.delegate = self;
+        
+         EmailAddresTextBox.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+        EmailAddresTextBox.delegate = self;
+        
+        MobileNumberTextBox.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+        MobileNumberTextBox.delegate = self;
+        
+        HeadingLabel.font = _ApplicatoinColours.largeFont
+        HeadingLabel.textColor = _ApplicatoinColours.White
         
          setupConstraints()
-        
-        // Do any additional setup after loading the view.
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -128,9 +200,9 @@ class NewAuhtyViewController: UIViewController {
         MiddleContainer.translatesAutoresizingMaskIntoConstraints = false
         BottomContainer.translatesAutoresizingMaskIntoConstraints = false
         
-        TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        MiddleContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopContainer.backgroundColor = _ApplicatoinColours.White
+        MiddleContainer.backgroundColor = _ApplicatoinColours.White
+        BottomContainer.backgroundColor = _ApplicatoinColours.White
         
         NameTextBox.translatesAutoresizingMaskIntoConstraints = false
         RelationshipTextBox.translatesAutoresizingMaskIntoConstraints = false
@@ -196,16 +268,13 @@ class NewAuhtyViewController: UIViewController {
         //height
         MiddleContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.70).isActive = true
+            multiplier: 0.50).isActive = true
         
         
         
         
         //MobileNumber text box
         
-        //width
-        MobileNumberTextBox.widthAnchor.constraint(
-            equalTo: MiddleContainer.widthAnchor, multiplier: 0.60).isActive = true
         //X
         MobileNumberTextBox.centerXAnchor.constraint(
             equalTo: MiddleContainer.centerXAnchor).isActive = true
@@ -214,12 +283,18 @@ class NewAuhtyViewController: UIViewController {
         MobileNumberTextBox.centerYAnchor.constraint(
             equalTo: MiddleContainer.centerYAnchor).isActive = true
         
+        MobileNumberTextBox.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.70).isActive = true
+        
+        MobileNumberTextBox.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        
+        
+        
+        
        
         //Relationship text box
-        
-        //width
-        RelationshipTextBox.widthAnchor.constraint(
-            equalTo: MiddleContainer.widthAnchor, multiplier: 0.60).isActive = true
         
         //Bottom
         RelationshipTextBox.bottomAnchor.constraint(
@@ -229,11 +304,14 @@ class NewAuhtyViewController: UIViewController {
         RelationshipTextBox.centerXAnchor.constraint(
             equalTo: MiddleContainer.centerXAnchor).isActive = true
 
-        //Country code
+        RelationshipTextBox.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.70).isActive = true
         
-        //width
-        CountryCodeTextBox.widthAnchor.constraint(
-            equalTo: MiddleContainer.widthAnchor, multiplier: 0.60).isActive = true
+        RelationshipTextBox.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        //Country code
+      
         //Top
         CountryCodeTextBox.topAnchor.constraint(
             equalTo: MobileNumberTextBox.bottomAnchor, constant: 10).isActive = true
@@ -242,11 +320,14 @@ class NewAuhtyViewController: UIViewController {
         CountryCodeTextBox.centerXAnchor.constraint(
             equalTo: MiddleContainer.centerXAnchor).isActive = true
         
+        CountryCodeTextBox.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.70).isActive = true
+        
+        CountryCodeTextBox.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         //Email addres
         
-        //width
-        EmailAddresTextBox.widthAnchor.constraint(
-            equalTo: MiddleContainer.widthAnchor, multiplier: 0.60).isActive = true
         //Top
         EmailAddresTextBox.topAnchor.constraint(
             equalTo: CountryCodeTextBox.bottomAnchor, constant: 10).isActive = true
@@ -255,11 +336,16 @@ class NewAuhtyViewController: UIViewController {
         EmailAddresTextBox.centerXAnchor.constraint(
             equalTo: MiddleContainer.centerXAnchor).isActive = true
         
+        EmailAddresTextBox.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.70).isActive = true
+        
+        EmailAddresTextBox.heightAnchor.constraint(equalToConstant: 50).isActive = true
+
+        
         //Email addres
         
-        //width
-        NameTextBox.widthAnchor.constraint(
-            equalTo: MiddleContainer.widthAnchor, multiplier: 0.60).isActive = true
+       
         //bottom
         NameTextBox.bottomAnchor.constraint(
             equalTo: RelationshipTextBox.topAnchor, constant: -10).isActive = true
@@ -267,6 +353,13 @@ class NewAuhtyViewController: UIViewController {
         //X
         NameTextBox.centerXAnchor.constraint(
             equalTo: MiddleContainer.centerXAnchor).isActive = true
+        
+        NameTextBox.widthAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: 0.70).isActive = true
+        
+        NameTextBox.heightAnchor.constraint(equalToConstant: 50).isActive = true
+
         
         //Bottom
         

@@ -50,6 +50,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.hideKeyboardWhenTappedAround()
+        
         //We need this so that we can dismess the keyboard on enter.
         passwordTextField.delegate = self
         usernameTextField.delegate = self
@@ -59,9 +61,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
        
         usernameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
         
+        usernameTextField.delegate = self;
         
         passwordTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
         
+          passwordTextField.delegate = self;
         
         setupConstraints()
         
@@ -79,7 +83,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         signInButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        SignUpButton.setTitleColor(_ApplicatoinColours.White, for: .normal)
+        
+        
         
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
        
@@ -105,6 +110,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
          passwordTextField.font = _ApplicatoinColours.mediumFont
         
         SignUpButton.titleLabel!.font = _ApplicatoinColours.sshmediumlFont
+        SignUpButton.setTitleColor(_ApplicatoinColours.Orange, for: .normal)
+        
         signInButton.titleLabel!.font = _ApplicatoinColours.buttonFont
         
         
@@ -192,8 +199,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         FooterView.bottomAnchor.constraint(
             equalTo: bottomView.bottomAnchor).isActive = true
 
-        DontHaveAnAccountLabel.textColor = _ApplicatoinColours.FontColour
-        
+        DontHaveAnAccountLabel.textColor = _ApplicatoinColours.Black
         DontHaveAnAccountLabel.font = _ApplicatoinColours.sshmediumlFont
         
         DontHaveAnAccountLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rpo-Nf-bMu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="XcE-Os-sbf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -86,7 +86,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEi-4L-zl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5318" y="91"/>
+            <point key="canvasLocation" x="6256.8000000000002" y="90.404797601199405"/>
         </scene>
         <!--Add Registered Hours View Controller-->
         <scene sceneID="7JV-kn-we6">
@@ -132,6 +132,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YJ3-OE-Np4">
+                                        <rect key="frame" x="8" y="51" width="318" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.2588235438" green="0.75686275960000005" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -186,6 +191,7 @@
                         <outlet property="DateLabel" destination="vy5-0x-hJ4" id="scg-Hw-ons"/>
                         <outlet property="EndDatePicker" destination="jJE-l2-ziR" id="XhP-1i-DkI"/>
                         <outlet property="FinishLabel" destination="LhO-aw-KJk" id="EqL-ea-8ZW"/>
+                        <outlet property="HorizontalDivider" destination="YJ3-OE-Np4" id="mI9-T6-39U"/>
                         <outlet property="MiddleLeftContainer" destination="f5w-Y7-gzN" id="gVI-35-rye"/>
                         <outlet property="MiddleRightContainer" destination="4Yh-Md-8bC" id="dvO-Lc-5dm"/>
                         <outlet property="NameLabel" destination="MWA-8V-uPN" id="tu2-G4-VeD"/>
@@ -447,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L0A-4K-bvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3214" y="854"/>
+            <point key="canvasLocation" x="4152.8000000000002" y="853.22338830584715"/>
         </scene>
         <!--Numbers Controller-->
         <scene sceneID="wAY-4w-vO5">
@@ -848,13 +854,13 @@
                         <outlet property="spacerMiddleTopView" destination="RKS-Py-gQl" id="K4s-pr-1Ay"/>
                         <outlet property="topView" destination="KlC-xP-8IB" id="GHJ-18-gSm"/>
                         <outlet property="usernameTextField" destination="GvP-Kz-dC0" id="ULa-lA-2Yo"/>
-                        <segue destination="aOE-8P-jPi" kind="show" identifier="AccessGrantedSegue" id="f3g-sM-rld"/>
                         <segue destination="Iwk-8P-Xs8" kind="show" identifier="GoToSignUp" id="Fbm-p5-5Ml"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="AccessGrantedSegue" id="LX8-Ai-RhM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sy4-Cj-dGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1700" y="492.50374812593708"/>
+            <point key="canvasLocation" x="-15.199999999999999" y="546.47676161919048"/>
         </scene>
         <!--Registerd Hours Time Stamps Calendar View Controller-->
         <scene sceneID="JCA-w8-RTd">
@@ -1106,7 +1112,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ghg-aM-lDY"/>
                     <connections>
-                        <segue destination="rpo-Nf-bMu" kind="show" identifier="GoToSignIn" id="2qs-QS-n86"/>
+                        <segue destination="XcE-Os-sbf" kind="show" identifier="GoToSignIn" id="2qs-QS-n86"/>
                         <segue destination="xZG-mU-XJf" kind="show" identifier="GoToRegister" id="wG7-yc-5Up"/>
                         <segue destination="SU0-sR-NYn" kind="show" identifier="GoToInformation" id="EeO-x6-zkh"/>
                         <segue destination="yH9-Lk-dKG" kind="show" identifier="GoToForecast" id="Hwv-hL-FBY"/>
@@ -1120,25 +1126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWk-wx-plk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="466" y="493"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="LJc-9E-IFi">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aOE-8P-jPi" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="opB-E7-EIm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="7jx-4D-Oem" kind="relationship" relationship="rootViewController" id="fc6-ML-ctd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="au0-Zz-5rG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-658" y="493"/>
+            <point key="canvasLocation" x="1404" y="492.50374812593708"/>
         </scene>
         <!--Authy Person Search Table View Controller-->
         <scene sceneID="GG6-ke-Ws1">
@@ -1220,9 +1208,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvu-8e-4Fr">
-                                        <rect key="frame" x="50" y="42" width="140" height="64"/>
+                                        <rect key="frame" x="42" y="42" width="156" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Submit"/>
+                                        <state key="normal" title="Create new Authy user"/>
                                         <connections>
                                             <action selector="CreateUserClick:" destination="uCY-vN-CB8" eventType="touchUpInside" id="wM0-fF-ufd"/>
                                         </connections>
@@ -1820,12 +1808,30 @@
                         <outlet property="PhoneNumberTextField" destination="Xb5-4H-30J" id="Ld9-Mt-6zm"/>
                         <outlet property="SubHeaderLabl" destination="J1O-Yk-Bjn" id="ZRP-PX-9zy"/>
                         <outlet property="TopContainer" destination="Pct-DU-gTt" id="cQC-AL-5NG"/>
-                        <segue destination="rpo-Nf-bMu" kind="show" identifier="GoToSignIn" id="kHd-AH-5Ek"/>
+                        <segue destination="XcE-Os-sbf" kind="show" identifier="GoToSignIn" id="kHd-AH-5Ek"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6N-81-8oW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-657" y="-338"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eAg-0X-Obc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XcE-Os-sbf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eft-dc-Icq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rpo-Nf-bMu" kind="relationship" relationship="rootViewController" id="8wU-8y-Cy0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fFt-rb-aau" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-954.39999999999998" y="546.47676161919048"/>
         </scene>
     </scenes>
     <resources>
@@ -1840,13 +1846,13 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Gez-8g-kB0"/>
-        <segue reference="ULa-J9-Ttu"/>
-        <segue reference="1pJ-9N-iMH"/>
+        <segue reference="LX8-Ai-RhM"/>
+        <segue reference="kHd-AH-5Ek"/>
         <segue reference="nx9-xO-yGO"/>
         <segue reference="wG7-yc-5Up"/>
         <segue reference="Q5J-dV-oJS"/>
         <segue reference="xMR-cl-oyC"/>
-        <segue reference="2qs-QS-n86"/>
         <segue reference="AaN-mO-ooE"/>
+        <segue reference="1pJ-9N-iMH"/>
     </inferredMetricsTieBreakers>
 </document>

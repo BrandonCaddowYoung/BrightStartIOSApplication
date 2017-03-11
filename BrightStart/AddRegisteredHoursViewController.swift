@@ -36,6 +36,8 @@ class AddRegisteredHoursViewController: UIViewController {
     @IBOutlet weak var BottomContainer: UIView!
     @IBOutlet weak var SaveButton: UIButton!
     
+    @IBOutlet weak var HorizontalDivider: UIView!
+    
     var loadingSpiiner: ProgressHUD!
     
     var _ApplicatoinColours: ApplicatoinColours!
@@ -86,15 +88,22 @@ class AddRegisteredHoursViewController: UIViewController {
         SaveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
         TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        MiddleRightContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        MiddleLeftContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        MiddleRightContainer.backgroundColor = _ApplicatoinColours.White
+        MiddleLeftContainer.backgroundColor = _ApplicatoinColours.White
         BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        
+        HorizontalDivider.backgroundColor = _ApplicatoinColours.Orange
+        
+        NameLabel.textColor = _ApplicatoinColours.White
+        DateLabel.textColor = _ApplicatoinColours.White
+
+        StartLabel.textColor = _ApplicatoinColours.Orange
+        FinishLabel.textColor = _ApplicatoinColours.Orange
         
         setupConstraints()
         
        StartDatePicker.datePickerMode = UIDatePickerMode.time
         EndDatePicker.datePickerMode = UIDatePickerMode.time
-
         
         // Do any additional setup after loading the view.
     }
@@ -174,6 +183,7 @@ class AddRegisteredHoursViewController: UIViewController {
         NameLabel.topAnchor.constraint(
             equalTo: TopContainer.topAnchor, constant: 5).isActive = true
         
+        //
         NameLabel.widthAnchor.constraint(
             equalTo: TopContainer.widthAnchor, multiplier: 0.60).isActive = true
         
@@ -190,6 +200,27 @@ class AddRegisteredHoursViewController: UIViewController {
         
         DateLabel.widthAnchor.constraint(
             equalTo: TopContainer.widthAnchor, multiplier: 0.30).isActive = true
+        
+        
+        //NameLabel
+        
+        HorizontalDivider.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        HorizontalDivider.trailingAnchor.constraint(
+            equalTo: TopContainer.trailingAnchor, constant: -5).isActive = true
+        
+        HorizontalDivider.leadingAnchor.constraint(
+            equalTo: TopContainer.leadingAnchor, constant: 5).isActive = true
+        
+        HorizontalDivider.heightAnchor.constraint(
+            equalToConstant: 1).isActive = true
+        
+        HorizontalDivider.topAnchor.constraint(
+            equalTo: NameLabel.bottomAnchor, constant: 5).isActive = true
+
+        
+        
         
         //Middle left
         

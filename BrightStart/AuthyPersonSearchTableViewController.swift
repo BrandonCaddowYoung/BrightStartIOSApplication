@@ -72,7 +72,7 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
         _CommonHelper = CommonHelper()
         _ApplicatoinColours = ApplicatoinColours()
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = _ApplicatoinColours.TableBackGround
         
         OptionText = "Create"
         

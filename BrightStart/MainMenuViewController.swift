@@ -95,19 +95,7 @@ class MainMenuViewController: UIViewController {
         
         setupCollectionView()
         
-        //Changes the color of the backgorund within the nav bar.
-         navigationController?.navigationBar.barStyle = UIBarStyle.black
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
-        
-        //Title color
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
-        
-        //Back color
-        navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
-        
-        //Back ground color
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+        SetNavigationBarDetails()
         
         loadMenuAssets()
         
@@ -116,12 +104,10 @@ class MainMenuViewController: UIViewController {
         
         self.view.addSubview(loadingSpiiner)
         hideSpinner()
-       
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
     
     func fetchAuthyUsersBelongingToChild()
@@ -316,7 +302,7 @@ class MainMenuViewController: UIViewController {
         collectionView.contentInset.left = 25
         collectionView.contentInset.right = 25
        
-        collectionView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        collectionView.backgroundColor = _ApplicatoinColours.White
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -339,6 +325,8 @@ class MainMenuViewController: UIViewController {
         topThirdViewMiddleSpacer = UIView()
         view.addSubview(topThirdViewMiddleSpacer)
         
+        view.backgroundColor = _ApplicatoinColours.White
+        
         setupConstraints()
         
     }
@@ -347,11 +335,10 @@ class MainMenuViewController: UIViewController {
     
     func setupConstraints()
     {
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
-        
+       
         //The first view takes up a third of the screen.
         
-        leftSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        leftSpacer.backgroundColor = _ApplicatoinColours.White
         leftSpacer.translatesAutoresizingMaskIntoConstraints = false
         
         //left
@@ -369,7 +356,7 @@ class MainMenuViewController: UIViewController {
         
         //leftSpacer.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
-        rightSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        rightSpacer.backgroundColor = _ApplicatoinColours.White
         rightSpacer.translatesAutoresizingMaskIntoConstraints = false
         
         //right
@@ -389,7 +376,7 @@ class MainMenuViewController: UIViewController {
         //rightSpacer.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
         topThirdView.translatesAutoresizingMaskIntoConstraints = false
-        topThirdView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        topThirdView.backgroundColor = _ApplicatoinColours.White
 
         //left
         topThirdView.leadingAnchor.constraint(
@@ -409,7 +396,7 @@ class MainMenuViewController: UIViewController {
        //topThirdView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         
         topThirdViewTopSpacer.translatesAutoresizingMaskIntoConstraints = false
-        topThirdViewTopSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        topThirdViewTopSpacer.backgroundColor = _ApplicatoinColours.White
         
         //left
         topThirdViewTopSpacer.leadingAnchor.constraint(
@@ -433,7 +420,7 @@ class MainMenuViewController: UIViewController {
         
         
         topThirdViewMiddleSpacer.translatesAutoresizingMaskIntoConstraints = false
-        topThirdViewMiddleSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        topThirdViewMiddleSpacer.backgroundColor = _ApplicatoinColours.White
         
         //left
         topThirdViewMiddleSpacer.leadingAnchor.constraint(
@@ -701,13 +688,11 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         
         foodCell.button.setBackgroundImage(images[indexPath.row], for: .normal)
        
-        let filter = CIFilter(name: "CIColorInvert") //this creates a CIFilter with the attribute color invert
+        let tintedImage = images[indexPath.row].withRenderingMode(.alwaysTemplate)
         
-        filter?.setValue(CIImage(image: images[indexPath.row]), forKey: kCIInputImageKey) //this applies our filter to our UIImage
+        foodCell.button.setBackgroundImage(tintedImage, for: .normal)
         
-        let newImage = UIImage(ciImage: (filter?.outputImage!)!) //this takes our inverted image and stores it as a new UIImage
-        
-        foodCell.button.setBackgroundImage(newImage, for: .normal)
+        foodCell.button.tintColor = _ApplicatoinColours.Blue
         
     }
     
@@ -759,18 +744,19 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         
     }
  
+    
+    
     func SetNavigationBarDetails()
     {
         //Changes the color of the backgorund within the nav bar.
-        navigationController?.navigationBar.barStyle = UIBarStyle.black
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
-        
-        //Title color
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+        //navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
+       
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.White]
         navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
         
         //Back ground color
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Blue
         
         var rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
         
@@ -779,16 +765,15 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
             rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "About"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
         }
         
+        //Right button
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.White
         
-        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
-       
         self.navigationController?.navigationBar.topItem?.title = " ";
         
-        //Back color
-        navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+       
         
-        switch selectedMenu {
+                switch selectedMenu {
         case .MainMenu:
             self.navigationItem.title="Menu"
             //navigationController?.navigationBar.topItem?.title = "Menu"
@@ -828,10 +813,10 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
         loadMenuAssets()
         
         //Back color
-        navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+        //navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
         
         //Back ground color
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+        //navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
 
        SetNavigationBarDetails()
     

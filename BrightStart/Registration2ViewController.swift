@@ -8,12 +8,14 @@
 
 import UIKit
 
-class Registration2ViewController: UIViewController {
+class Registration2ViewController: UIViewController , UITextFieldDelegate {
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
     var registration: RegistrationModel!
+    
+      var showNavigationBar = true
     
     @IBOutlet weak var TopContainer: UIView!
     @IBOutlet weak var MiddleContainer: UIView!
@@ -33,6 +35,8 @@ class Registration2ViewController: UIViewController {
     @IBOutlet weak var FooterLabel: UILabel!
     override func viewDidLoad() {
         
+        self.hideKeyboardWhenTappedAround()
+        
         registration = RegistrationModel()
         
         super.viewDidLoad()
@@ -51,10 +55,10 @@ class Registration2ViewController: UIViewController {
         
         FinishedButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        MiddleContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        FooterContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopContainer.backgroundColor = _ApplicatoinColours.White
+        MiddleContainer.backgroundColor = _ApplicatoinColours.White
+        BottomContainer.backgroundColor = _ApplicatoinColours.White
+        FooterContainer.backgroundColor = _ApplicatoinColours.White
         
         SubHeaderLabl.textAlignment = NSTextAlignment.center;
         SubHeaderLabl.numberOfLines = 0;
@@ -62,9 +66,39 @@ class Registration2ViewController: UIViewController {
         SubHeaderLabl.text = "Just a few more details and you'l be set!";
         
         
+        NurseryNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+         NurseryNameTextField.delegate = self;
+        
+        ManagerNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+         ManagerNameTextField.delegate = self;
+        
+        PhoneNumberTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+         PhoneNumberTextField.delegate = self;
+        
         setupConstraints()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func SetNavigationBarDetails()
+    {
+        //No right button
+        
+        //Changes the color of the backgorund within the nav bar.
+        //navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
+        
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.White]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Blue
+        
+        self.navigationController?.navigationBar.topItem?.title = " ";
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -137,7 +171,7 @@ class Registration2ViewController: UIViewController {
         //height
         MiddleContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.25).isActive = true
+            multiplier: 0.15).isActive = true
         
         //Sub label
         
@@ -174,7 +208,7 @@ class Registration2ViewController: UIViewController {
         //height
         BottomContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.40).isActive = true
+            multiplier: 0.50).isActive = true
         
         
         //email text field
@@ -184,8 +218,9 @@ class Registration2ViewController: UIViewController {
         
         NurseryNameTextField.widthAnchor.constraint(
             equalTo: view.widthAnchor,
-            multiplier: 0.50).isActive = true
+            multiplier: 0.70).isActive = true
         
+        NurseryNameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         NurseryNameTextField.topAnchor.constraint(
             equalTo: BottomContainer.topAnchor).isActive = true
         
@@ -196,7 +231,9 @@ class Registration2ViewController: UIViewController {
         
         ManagerNameTextField.widthAnchor.constraint(
             equalTo: view.widthAnchor,
-            multiplier: 0.50).isActive = true
+            multiplier: 0.70).isActive = true
+        
+        ManagerNameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         ManagerNameTextField.topAnchor.constraint(
             equalTo: NurseryNameTextField.bottomAnchor, constant: 10).isActive = true
@@ -208,7 +245,9 @@ class Registration2ViewController: UIViewController {
         
         PhoneNumberTextField.widthAnchor.constraint(
             equalTo: view.widthAnchor,
-            multiplier: 0.50).isActive = true
+            multiplier: 0.70).isActive = true
+        
+        PhoneNumberTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         PhoneNumberTextField.topAnchor.constraint(
             equalTo: ManagerNameTextField.bottomAnchor, constant: 10).isActive = true
@@ -222,8 +261,13 @@ class Registration2ViewController: UIViewController {
             equalTo: view.widthAnchor,
             multiplier: 0.50).isActive = true
         
+        FinishedButton.heightAnchor.constraint(
+            equalTo: BottomContainer.heightAnchor,
+            multiplier : 0.30).isActive = true
+        
         FinishedButton.topAnchor.constraint(
             equalTo: PhoneNumberTextField.bottomAnchor, constant: 10).isActive = true
+        
         
         //Footer
         
@@ -252,6 +296,7 @@ class Registration2ViewController: UIViewController {
         //top
         FooterLabel.centerXAnchor.constraint(
             equalTo: FooterContainer.centerXAnchor).isActive = true
+
     }
     
    
@@ -275,11 +320,32 @@ class Registration2ViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            
+            SetNavigationBarDetails()
+            
+        }
+    }
+    
     /*!
      @brief Preparing to segue.
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     /*
