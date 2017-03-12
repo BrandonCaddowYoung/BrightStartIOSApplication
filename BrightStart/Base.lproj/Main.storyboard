@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lnz-bY-4jG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="XcE-Os-sbf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1118,10 +1118,10 @@
                         <segue destination="yH9-Lk-dKG" kind="show" identifier="GoToForecast" id="Hwv-hL-FBY"/>
                         <segue destination="GhA-9F-S6O" kind="show" identifier="GoToNewAuthyUser" id="Q5J-dV-oJS"/>
                         <segue destination="GhA-9F-S6O" kind="show" identifier="GoToTestAuthyUser" id="j5x-qr-qjo"/>
-                        <segue destination="KDk-fE-MOK" kind="show" identifier="GoToAuthyAuthenticate" id="nx9-xO-yGO"/>
                         <segue destination="Xhn-Yw-DuQ" kind="show" identifier="GoToAuthySettings" id="fsy-fY-g8z"/>
                         <segue destination="JFD-vf-2e8" kind="show" identifier="GoToSearchPerson" id="xMR-cl-oyC"/>
                         <segue destination="DxJ-3C-TAj" kind="show" identifier="GoToSearchPerson_ExtraMinutes" id="Gez-8g-kB0"/>
+                        <segue destination="Lnz-bY-4jG" kind="show" identifier="GoToAuthyAuthenticate" id="CWW-ID-FRn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWk-wx-plk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1350,8 +1350,8 @@
                         <outlet property="TestButton" destination="iXN-AI-Vw2" id="nFR-9Q-DC5"/>
                         <outlet property="TickImage" destination="ZRk-5Q-aNT" id="Y8a-4k-o14"/>
                         <outlet property="TopContainer" destination="Pxu-vU-sei" id="fG3-to-uPv"/>
-                        <segue destination="KDk-fE-MOK" kind="show" identifier="GoToAuthyAuthenticate" id="Eu4-6W-vLY"/>
                         <segue destination="7jx-4D-Oem" kind="show" identifier="GoToAuthyMenu" id="rM4-gm-d5A"/>
+                        <segue destination="Lnz-bY-4jG" kind="show" identifier="GoToAuthyAuthenticate" id="OgL-73-OOs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYb-vH-Jy0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1438,11 +1438,13 @@
                         <outlet property="TokenTextFiled" destination="cr7-fg-ttt" id="RhZ-ez-48Z"/>
                         <outlet property="TopContainer" destination="Uf9-Kq-9gq" id="DvW-63-Dwy"/>
                         <outlet property="TopLabel" destination="wXT-nw-XbM" id="gbY-xs-fAW"/>
+                        <segue destination="xZG-mU-XJf" kind="show" identifier="GoToRegister" id="TDL-oH-gsg"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="lFb-NG-Wc6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WjU-ef-Zt3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2684" y="-2177.3613193403298"/>
+            <point key="canvasLocation" x="2702" y="-1417"/>
         </scene>
         <!--Authy Test View Controller-->
         <scene sceneID="lol-rh-E0m">
@@ -1535,13 +1537,11 @@
                         <outlet property="TokenContainer" destination="9d7-3U-avR" id="SZw-yY-iRz"/>
                         <outlet property="TopContainer" destination="ZtS-QN-eof" id="adt-Tz-fbX"/>
                         <outlet property="WaitingLabel" destination="Lsy-B9-ks7" id="9YE-0a-J8g"/>
-                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="NYq-jD-sEX"/>
-                        <segue destination="xZG-mU-XJf" kind="show" identifier="GoToRegister" id="CaC-2C-xM4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2jh-lc-HA5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2662" y="-1417"/>
+            <point key="canvasLocation" x="-3474" y="-2126"/>
         </scene>
         <!--Authy Settings View Controller-->
         <scene sceneID="Rnj-5r-bNE">
@@ -1948,13 +1948,13 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Q5J-dV-oJS"/>
-        <segue reference="W9w-EW-wfJ"/>
-        <segue reference="nx9-xO-yGO"/>
-        <segue reference="xMR-cl-oyC"/>
+        <segue reference="lFb-NG-Wc6"/>
+        <segue reference="CWW-ID-FRn"/>
         <segue reference="Gez-8g-kB0"/>
-        <segue reference="CaC-2C-xM4"/>
+        <segue reference="2qs-QS-n86"/>
+        <segue reference="xMR-cl-oyC"/>
+        <segue reference="wG7-yc-5Up"/>
         <segue reference="1pJ-9N-iMH"/>
         <segue reference="AaN-mO-ooE"/>
-        <segue reference="kHd-AH-5Ek"/>
     </inferredMetricsTieBreakers>
 </document>

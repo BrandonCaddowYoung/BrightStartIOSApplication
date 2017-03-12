@@ -586,7 +586,7 @@ class MainMenuViewController: UIViewController {
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? AuthyTestViewController {
+            if let vc = segue.destination as? AuthyAuthenticateViewController {
                 
                 vc.targetAuthyId =  selectedAuhtyId
                 vc.numberOfSeconsToWait = 60
@@ -770,8 +770,6 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.White
         
         self.navigationController?.navigationBar.topItem?.title = " ";
-        
-       
         
                 switch selectedMenu {
         case .MainMenu:

@@ -212,7 +212,7 @@ class AuthyNewUserCompleteViewController: UIViewController {
         
         if (segue.identifier == "GoToAuthyAuthenticate") {
             
-            if let vc = segue.destination as? AuthyTestViewController {
+            if let vc = segue.destination as? AuthyAuthenticateViewController {
                 
                 vc.targetAuthyId =  targetAuthyId
                 vc.numberOfSeconsToWait = 60

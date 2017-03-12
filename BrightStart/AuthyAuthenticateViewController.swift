@@ -12,6 +12,24 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
 
      var showNavigationBar = true
     
+    var shouldPerformCheck = true
+    
+    var timer = Timer()
+    
+    var uuid :NSString!
+    
+    var successSegueIdentifier :NSString!
+    
+    var targetChildId :NSString!
+    
+    var targetAuthyId :NSString!
+    var numberOfSeconsToWait: Int!
+    
+    var selectedAuthyAction = AuhtyActions.ShouldDoNothing
+    
+    var targetAuthyUser = AuthyUser()
+
+    
     @IBOutlet weak var CenterView: UIView!
     @IBOutlet weak var SecondstoGoLabel: UILabel!
     @IBOutlet weak var SecondsToGoLabel2: UILabel!
@@ -29,6 +47,8 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        SecondstoGoLabel.text = String(numberOfSeconsToWait)
+        
          self.hideKeyboardWhenTappedAround()
         
         self.edgesForExtendedLayout = []
@@ -63,16 +83,157 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         DontHaveYourPhoneLabel.font = _ApplicatoinColours.MenuFont
         DontHaveYourPhoneLabel.textColor = _ApplicatoinColours.FontColour
         
+        AuthyRequests.sharedInstance.GetAuhtyUser(auhtyId: targetAuthyId as String, onCompletion:
+            { json in
+                
+                for (index: _, subJson: JSON) in json {
+                    
+                    self.targetAuthyUser.CountryCode = JSON["CountryCode"].stringValue as NSString
+                    self.targetAuthyUser.PhoneNumber = JSON["PhoneNumber"].stringValue as NSString
+                    self.targetAuthyUser.Relationship = JSON["Relationship"].stringValue as NSString
+                    self.targetAuthyUser.ChildId = JSON["ChildId"].stringValue as NSString
+                    self.targetAuthyUser.Email = JSON["Email"].stringValue as NSString
+                    self.targetAuthyUser.Name = JSON["Name"].stringValue as NSString
+                    //targetAuthyUser.IsDisabled = JSON["targetAuthyUser.IsDisabled"].stringValue as NSString
+                    
+                }
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    
+                    
+                })
+                
+        })
+        
+        //PhoneNumberLabel.text = targetAuthyUser.PhoneNumber as String
+        
+        AuthyRequests.sharedInstance.SendOneTouchRequest(authyId: targetAuthyId as String, onCompletion:  { json in
+            
+            self.uuid = json.rawString() as NSString!
+            
+            DispatchQueue.main.async(execute: {
+                
+                self.SecondstoGoLabel.isHidden = false
+                self.SecondsToGoLabel2.isHidden = false
+                //self.TickImage.isHidden = true
+                
+                self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AuthyAuthenticateViewController.checkForUsersAcceptance), userInfo: nil, repeats: true)
+                
+            })
+            
+        })
+
+        
+        
+    }
     
+    func checkForUsersAcceptance()
+    {
+        if(self.shouldPerformCheck == false){
+            return;
+        }
+        
+        SecondstoGoLabel.text = String(numberOfSeconsToWait)
+        
+        if(numberOfSeconsToWait<1)
+        {
+            self.shouldPerformCheck = false
+            
+            self.SecondstoGoLabel.isHidden = true
+            self.SecondsToGoLabel2.isHidden = true
+            //self.TickImage.isHidden = false
+            
+            self.timer.invalidate()
+            //self.WaitingLabel.text = "Sorry you took too long confirming."
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                self.performSegue(withIdentifier: self.successSegueIdentifier as String, sender: self)
+            })
+        }
+        
+        AuthyRequests.sharedInstance.HasOneTouchBeenApproved(uuid: uuid as String, onCompletion:  { json in
+            
+            let approved = json.rawString() as NSString!
+            
+            DispatchQueue.main.async(execute: {
+                
+                if(approved=="true")
+                {
+                    self.shouldPerformCheck = false
+                    
+                    self.SecondstoGoLabel.isHidden = true
+                    self.SecondsToGoLabel2.isHidden = true
+                    //self.TickImage.isHidden = false
+                    
+                    self.timer.invalidate()
+                    
+                    self.onSuccss()
+                    
+                }
+                
+            })
+        })
+        
+        numberOfSeconsToWait = numberOfSeconsToWait - 1
+        
     }
 
+    func onSuccss()
+    {
+        if(selectedAuthyAction == .ShouldSignOut){
+            
+            let alert = self._CommonHelper.showOverlayMessage("Signing out...")
+            self.present(alert, animated: true, completion:
+                {
+                    CommonRequests.sharedInstance.signOut(personId: self.targetChildId as String, timeOfSignOut: Date() as NSDate,
+                                                          
+                                                          onCompletion: {
+                                                            
+                                                            DispatchQueue.main.async(execute: {
+                                                                
+                                                                self.dismiss(animated: false, completion:
+                                                                    {
+                                                                        self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                                }
+                                                                )
+                                                            
+                                                            })
+                                                            
+                    })
+            })
+        }
+        else if(selectedAuthyAction == AuhtyActions.ShouldSignIn){
+            
+            let alert = self._CommonHelper.showOverlayMessage("Signing in...")
+            self.present(alert, animated: true, completion: {
+                
+                CommonRequests.sharedInstance.signIn(personId: self.targetChildId as String, timeOfSignIn: Date() as NSDate,
+                                                     onCompletion: {
+                                                        DispatchQueue.main.async(execute: {
+                                                            
+                                                            self.dismiss(animated: false, completion:
+                                                                {self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                            }
+                                                            )
+                                                            
+                                                        })
+                }
+                )
+                
+            })
+        }
+        else if(selectedAuthyAction == AuhtyActions.ShouldDoNothing){
+         
+            SecondstoGoLabel.text = ""
+            SecondsToGoLabel2.text = ""
+            
+            TopLabel.text = "Fantastic, that worked!"
+            
+        }
+    }
+    
     func setupConstraints() {
-        
-       
-        
-        
-        
-        
         
         CenterView.translatesAutoresizingMaskIntoConstraints = false
         

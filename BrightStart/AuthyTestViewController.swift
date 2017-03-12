@@ -61,8 +61,6 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         
         self.TokeTextBox.delegate = self
         
-        
-        
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
@@ -85,8 +83,6 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         setupConstraints()
 
         // Do any additional setup after loading the view.
-        
-       //targetAuthyId = "30438556"
         
         AuthyRequests.sharedInstance.GetAuhtyUser(auhtyId: targetAuthyId as String, onCompletion:
             { json in
@@ -116,7 +112,7 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         
         PhoneNumberLabel.text = targetAuthyUser.PhoneNumber as String
         
-         if(false){
+        
         
         AuthyRequests.sharedInstance.SendOneTouchRequest(authyId: targetAuthyId as String, onCompletion:  { json in
             
@@ -135,7 +131,7 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         
          })
             
-        }
+        
         
     }
     
