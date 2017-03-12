@@ -13,6 +13,7 @@ class AuthySettingsViewController: UIViewController {
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
 
+    var showNavigationBar = true
     
     @IBOutlet weak var TopContainer: UIView!
     @IBOutlet weak var MiddleContainer: UIView!
@@ -20,6 +21,7 @@ class AuthySettingsViewController: UIViewController {
     @IBOutlet weak var ContentContainer: UIView!
     
     @IBOutlet weak var Top: UIView!
+    @IBOutlet weak var Top1: UIView!
     @IBOutlet weak var Middle: UIView!
     @IBOutlet weak var Bottom: UIView!
     
@@ -28,6 +30,7 @@ class AuthySettingsViewController: UIViewController {
     @IBOutlet weak var OnSignInLabel: UILabel!
     @IBOutlet weak var UseAuthyLabel: UILabel!
     @IBOutlet weak var OnSignOutLabel: UILabel!
+    @IBOutlet weak var ExplinationLabel: UILabel!
     
     @IBOutlet weak var UseAuthySwitch: UISwitch!
     @IBOutlet weak var OnSignInSwitch: UISwitch!
@@ -58,11 +61,27 @@ class AuthySettingsViewController: UIViewController {
         
          ContentContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         
-        Top.backgroundColor = _ApplicatoinColours.BackGroundColour
-        Middle.backgroundColor = _ApplicatoinColours.BackGroundColour
-        Bottom.backgroundColor = _ApplicatoinColours.BackGroundColour
+        Top.backgroundColor = _ApplicatoinColours.White
+        Top1.backgroundColor = _ApplicatoinColours.BackGroundColour
+        Middle.backgroundColor = _ApplicatoinColours.White
+        Bottom.backgroundColor = _ApplicatoinColours.White
         
         setupConstraints()
+        
+        Top.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        Top.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        
+        //Middle.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        Middle.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        
+        Bottom.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        Bottom.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        
+        ExplinationLabel.lineBreakMode = .byWordWrapping
+        ExplinationLabel.numberOfLines = 5
+        ExplinationLabel.textColor = _ApplicatoinColours.FontColour
+        
+        ExplinationLabel.text = "By using Authy, all registered parents will be required to have their mobiles phones with them when ever they drop off or pick up their children."
         
         let defaults = UserDefaults.standard
         
@@ -111,8 +130,6 @@ class AuthySettingsViewController: UIViewController {
             OnSignInSwitch.setOn(false, animated: true)
             OnSignOutSwitch.setOn(false, animated: true)
             UseAuthySwitch.setOn(false, animated: true)
-            
-            
         }
         
         // Do any additional setup after loading the view.
@@ -133,11 +150,7 @@ class AuthySettingsViewController: UIViewController {
         
         ContentContainer.translatesAutoresizingMaskIntoConstraints = false
         
-
-        
         OkButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        
         
         OnSignInLabel.translatesAutoresizingMaskIntoConstraints = false
         UseAuthyLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -145,9 +158,11 @@ class AuthySettingsViewController: UIViewController {
         UseAuthySwitch.translatesAutoresizingMaskIntoConstraints = false
         OnSignInSwitch.translatesAutoresizingMaskIntoConstraints = false
         OnSignOutSwitch.translatesAutoresizingMaskIntoConstraints = false
-        
+        ExplinationLabel.translatesAutoresizingMaskIntoConstraints = false
+
         
         Top.translatesAutoresizingMaskIntoConstraints = false
+        Top1.translatesAutoresizingMaskIntoConstraints = false
         Middle.translatesAutoresizingMaskIntoConstraints = false
         Bottom.translatesAutoresizingMaskIntoConstraints = false
         
@@ -203,8 +218,8 @@ class AuthySettingsViewController: UIViewController {
         
         //width
         ContentContainer.widthAnchor.constraint(
-            equalTo: MiddleContainer.widthAnchor,
-            multiplier: 0.60).isActive = true
+            equalTo: view.widthAnchor
+        ).isActive = true
 
         
         //height
@@ -238,22 +253,55 @@ class AuthySettingsViewController: UIViewController {
         
         //left
         UseAuthyLabel.leadingAnchor.constraint(
-            equalTo: Top.leadingAnchor).isActive = true
+            equalTo: Top.leadingAnchor, constant: 20).isActive = true
         
         //top
-        UseAuthyLabel.topAnchor.constraint(
-            equalTo: Top.topAnchor).isActive = true
+        UseAuthyLabel.centerYAnchor.constraint(
+            equalTo: Top.centerYAnchor).isActive = true
         
        
         //Use Authy Switch
         
         //right
         UseAuthySwitch.trailingAnchor.constraint(
-            equalTo: Top.trailingAnchor).isActive = true
+            equalTo: Top.trailingAnchor, constant : -20).isActive = true
+        
+        UseAuthySwitch.centerYAnchor.constraint(
+            equalTo: UseAuthyLabel.centerYAnchor).isActive = true
+        
+        
+        //Top
+        
+        //left
+        Top1.leadingAnchor.constraint(
+            equalTo: ContentContainer.leadingAnchor).isActive = true
+        
+        //right
+        Top1.trailingAnchor.constraint(
+            equalTo: ContentContainer.trailingAnchor).isActive = true
         
         //top
-        UseAuthySwitch.topAnchor.constraint(
-            equalTo: Top.topAnchor).isActive = true
+        Top1.topAnchor.constraint(
+            equalTo: Top.bottomAnchor).isActive = true
+        
+        //height
+        Top1.heightAnchor.constraint(
+            equalTo: ContentContainer.heightAnchor,
+            multiplier: 0.40).isActive = true
+        
+        //Use Authy
+        
+        //left
+        ExplinationLabel.leadingAnchor.constraint(
+            equalTo: Top1.leadingAnchor, constant: 20).isActive = true
+        
+        ExplinationLabel.trailingAnchor.constraint(
+            equalTo: Top1.trailingAnchor, constant: -20).isActive = true
+        
+        //top
+        ExplinationLabel.centerYAnchor.constraint(
+            equalTo: Top1.centerYAnchor).isActive = true
+        
         
         
         
@@ -270,10 +318,9 @@ class AuthySettingsViewController: UIViewController {
         Middle.trailingAnchor.constraint(
             equalTo: ContentContainer.trailingAnchor).isActive = true
         
-        //Y
-        Middle.centerYAnchor.constraint(
-            equalTo: ContentContainer.centerYAnchor).isActive = true
-        
+        //top
+        Middle.topAnchor.constraint(
+            equalTo: Top1.bottomAnchor).isActive = true
         //height
         Middle.heightAnchor.constraint(
             equalTo: ContentContainer.heightAnchor,
@@ -284,22 +331,21 @@ class AuthySettingsViewController: UIViewController {
         
         //left
         OnSignInLabel.leadingAnchor.constraint(
-            equalTo: Middle.leadingAnchor).isActive = true
+            equalTo: Middle.leadingAnchor, constant: 20).isActive = true
         
         //top
-        OnSignInLabel.topAnchor.constraint(
-            equalTo: Middle.topAnchor).isActive = true
+        OnSignInLabel.centerYAnchor.constraint(
+            equalTo: Middle.centerYAnchor).isActive = true
         
         
         //Use Authy Switch
         
         //right
         OnSignInSwitch.trailingAnchor.constraint(
-            equalTo: Middle.trailingAnchor).isActive = true
+            equalTo: Middle.trailingAnchor, constant : -20).isActive = true
         
-        //top
-        OnSignInSwitch.topAnchor.constraint(
-            equalTo: Middle.topAnchor).isActive = true
+        OnSignInSwitch.centerYAnchor.constraint(
+            equalTo: OnSignInLabel.centerYAnchor).isActive = true
 
         
         
@@ -318,9 +364,9 @@ class AuthySettingsViewController: UIViewController {
         Bottom.widthAnchor.constraint(
             equalTo: ContentContainer.widthAnchor).isActive = true
         
-        //right
-        Bottom.bottomAnchor.constraint(
-            equalTo: ContentContainer.bottomAnchor).isActive = true
+        //top
+        Bottom.topAnchor .constraint(
+            equalTo: Middle.bottomAnchor).isActive = true
         
         //height
         Bottom.heightAnchor.constraint(
@@ -336,22 +382,21 @@ class AuthySettingsViewController: UIViewController {
         
         //left
         OnSignOutLabel.leadingAnchor.constraint(
-            equalTo: Bottom.leadingAnchor).isActive = true
+            equalTo: Bottom.leadingAnchor, constant: 20).isActive = true
         
         //top
-        OnSignOutLabel.topAnchor.constraint(
-            equalTo: Bottom.topAnchor).isActive = true
+        OnSignOutLabel.centerYAnchor.constraint(
+            equalTo: Bottom.centerYAnchor).isActive = true
         
         
         //Use Authy Switch
         
         //right
         OnSignOutSwitch.trailingAnchor.constraint(
-            equalTo: Bottom.trailingAnchor).isActive = true
+            equalTo: Bottom.trailingAnchor, constant : -20).isActive = true
         
-        //top
-        OnSignOutSwitch.topAnchor.constraint(
-            equalTo: Bottom.topAnchor).isActive = true
+        OnSignOutSwitch.centerYAnchor.constraint(
+            equalTo: OnSignOutLabel.centerYAnchor).isActive = true
         
         
         
@@ -443,6 +488,46 @@ class AuthySettingsViewController: UIViewController {
         defaults.set(false, forKey: "ShouldUseAuhtyOnSignIn")
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            
+            SetNaviagationBarDetails()
+            
+        }
+    }
+    
+    func SetNaviagationBarDetails()
+    {
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.White
+        
+        self.navigationController?.navigationBar.topItem?.title = "Authy Settings";
+        
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        
+        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+
+    }
+    
+    func NavBarMenuTapped()
+    {
+    
     }
     
     @IBAction func OnSignOutSwitched(_ sender: Any) {

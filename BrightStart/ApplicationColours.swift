@@ -59,6 +59,7 @@ class ApplicatoinColours {
     var largeFont = UIFont()
     var XlargeFont = UIFont()
     var MenuFont = UIFont()
+    var MassiveFont = UIFont()
     
     var MenuHeadingFontSize: CGFloat!
     
@@ -71,6 +72,7 @@ class ApplicatoinColours {
         mediumFont = UIFont(name: "HelveticaNeue-Thin", size: 20.0)!
         largeFont = UIFont(name: "HelveticaNeue-Thin", size: 30.0)!
         XlargeFont = UIFont(name: "HelveticaNeue-Thin", size: 40.0)!
+         MassiveFont = UIFont(name: "HelveticaNeue-Thin", size: 80.0)!
         
         MenuFont = UIFont(name: "HelveticaNeue-Medium", size: 15.0)!
         

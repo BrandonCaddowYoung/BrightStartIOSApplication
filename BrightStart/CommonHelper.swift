@@ -61,3 +61,85 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+extension UIView {
+    
+    /**
+     Adds bottom border to the view with given side margins
+     
+     - parameter color:   the border color
+     - parameter margins: the left and right margin
+     */
+    func addBottomBorder(color: UIColor = .red, margins: CGFloat = 0) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(border)
+        
+        border.addConstraint(NSLayoutConstraint(item: border,
+                                                attribute: NSLayoutAttribute.height,
+                                                relatedBy: NSLayoutRelation.equal,
+                                                toItem: nil,
+                                                attribute: NSLayoutAttribute.height,
+                                                multiplier: 1, constant: 1))
+        
+        self.addConstraint(NSLayoutConstraint(item: border,
+                                              attribute: NSLayoutAttribute.bottom,
+                                              relatedBy: NSLayoutRelation.equal,
+                                              toItem: self,
+                                              attribute: NSLayoutAttribute.bottom,
+                                              multiplier: 1, constant: 0))
+        
+        
+        self.addConstraint(NSLayoutConstraint(item: border,
+                                              attribute: NSLayoutAttribute.leading,
+                                              relatedBy: NSLayoutRelation.equal,
+                                              toItem: self,
+                                              attribute: NSLayoutAttribute.leading,
+                                              multiplier: 1, constant: margins))
+        
+        self.addConstraint(NSLayoutConstraint(item: border,
+                                              attribute: NSLayoutAttribute.trailing,
+                                              relatedBy: NSLayoutRelation.equal,
+                                              toItem: self,
+                                              attribute: NSLayoutAttribute.trailing,
+                                              multiplier: 1, constant: margins))
+    }
+    
+    func addTopBorder(color: UIColor = .red, margins: CGFloat = 0) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(border)
+        
+        border.addConstraint(NSLayoutConstraint(item: border,
+                                                attribute: NSLayoutAttribute.height,
+                                                relatedBy: NSLayoutRelation.equal,
+                                                toItem: nil,
+                                                attribute: NSLayoutAttribute.height,
+                                                multiplier: 1, constant: 1))
+        
+        self.addConstraint(NSLayoutConstraint(item: border,
+                                              attribute: NSLayoutAttribute.top,
+                                              relatedBy: NSLayoutRelation.equal,
+                                              toItem: self,
+                                              attribute: NSLayoutAttribute.top,
+                                              multiplier: 1, constant: 0))
+        
+        
+        self.addConstraint(NSLayoutConstraint(item: border,
+                                              attribute: NSLayoutAttribute.leading,
+                                              relatedBy: NSLayoutRelation.equal,
+                                              toItem: self,
+                                              attribute: NSLayoutAttribute.leading,
+                                              multiplier: 1, constant: margins))
+        
+        self.addConstraint(NSLayoutConstraint(item: border,
+                                              attribute: NSLayoutAttribute.trailing,
+                                              relatedBy: NSLayoutRelation.equal,
+                                              toItem: self,
+                                              attribute: NSLayoutAttribute.trailing,
+                                              multiplier: 1, constant: margins))
+    }
+}
+

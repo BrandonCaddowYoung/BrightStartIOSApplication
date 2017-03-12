@@ -43,6 +43,13 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var WaitingLabel: UILabel!
     
+    public func isNilOrEmpty(string: NSString?) -> Bool {
+        switch string {
+        case .some(let nonNilString): return nonNilString.length == 0
+        default:                      return true
+        }
+    }
+    
     @IBOutlet weak var DoneButton: UIButton!
     
     override func viewDidLoad() {
@@ -79,6 +86,7 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
         
+       //targetAuthyId = "30438556"
         
         AuthyRequests.sharedInstance.GetAuhtyUser(auhtyId: targetAuthyId as String, onCompletion:
             { json in
@@ -103,7 +111,12 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
                 
     })
         
+    
+    
+        
         PhoneNumberLabel.text = targetAuthyUser.PhoneNumber as String
+        
+         if(false){
         
         AuthyRequests.sharedInstance.SendOneTouchRequest(authyId: targetAuthyId as String, onCompletion:  { json in
             
@@ -121,6 +134,8 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
          })
         
          })
+            
+        }
         
     }
     

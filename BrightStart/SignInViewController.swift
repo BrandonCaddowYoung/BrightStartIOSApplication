@@ -53,8 +53,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
         
         //We need this so that we can dismess the keyboard on enter.
-        passwordTextField.delegate = self
-        usernameTextField.delegate = self
+        //passwordTextField.delegate = self
+        //usernameTextField.delegate = self
         
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()

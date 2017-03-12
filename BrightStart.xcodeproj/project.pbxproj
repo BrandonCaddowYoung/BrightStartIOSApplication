@@ -48,6 +48,8 @@
 		7BD0FFE51E44787600472759 /* AuthyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0FFE41E44787600472759 /* AuthyUser.swift */; };
 		7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0FFE61E4682B400472759 /* AuthyAction.swift */; };
 		7BD0FFEB1E47205100472759 /* AuthySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0FFEA1E47205100472759 /* AuthySettingsViewController.swift */; };
+		7BDEF8171E758D0B0012151B /* AuthyAuthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF8161E758D0A0012151B /* AuthyAuthenticateViewController.swift */; };
+		7BDEF8301E75A62D0012151B /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF82F1E75A62D0012151B /* CircleView.swift */; };
 		7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */; };
 		C53FFE0F4BFF7C5BD7A0E31A /* Pods_BrightStart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5674001169A7EE20DDBCD2 /* Pods_BrightStart.framework */; };
 		D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9A1CAF1A7100948DE5 /* Child.swift */; };
@@ -296,6 +298,8 @@
 		7BD0FFE41E44787600472759 /* AuthyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyUser.swift; sourceTree = "<group>"; };
 		7BD0FFE61E4682B400472759 /* AuthyAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyAction.swift; sourceTree = "<group>"; };
 		7BD0FFEA1E47205100472759 /* AuthySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthySettingsViewController.swift; sourceTree = "<group>"; };
+		7BDEF8161E758D0A0012151B /* AuthyAuthenticateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyAuthenticateViewController.swift; sourceTree = "<group>"; };
+		7BDEF82F1E75A62D0012151B /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		7F04C0F20972BB0831C45083 /* Pods-BrightStart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrightStart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrightStart/Pods-BrightStart.debug.xcconfig"; sourceTree = "<group>"; };
 		D7387E9A1CAF1A7100948DE5 /* Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
@@ -501,6 +505,7 @@
 				7BD0FFE01E43BF3400472759 /* AuthyNewUserCompleteViewController.swift */,
 				7BD0FFE21E43C95300472759 /* AuthyTestViewController.swift */,
 				7BD0FFEA1E47205100472759 /* AuthySettingsViewController.swift */,
+				7BDEF8161E758D0A0012151B /* AuthyAuthenticateViewController.swift */,
 			);
 			name = Auhty;
 			sourceTree = "<group>";
@@ -582,6 +587,7 @@
 				D7F995751C9EF4A1001802EC /* Info.plist */,
 				7BCAD8141DF7617E0056AC9C /* CommonHelper.swift */,
 				7B99CDC41DFDA6F4007EF4FC /* ApplicationColours.swift */,
+				7BDEF82F1E75A62D0012151B /* CircleView.swift */,
 			);
 			path = BrightStart;
 			sourceTree = "<group>";
@@ -715,16 +721,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -993,6 +999,7 @@
 				7BCAD8151DF7617E0056AC9C /* CommonHelper.swift in Sources */,
 				7B148C281E59994F00D309F6 /* RegistrationHoursRequests.swift in Sources */,
 				D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */,
+				7BDEF8171E758D0B0012151B /* AuthyAuthenticateViewController.swift in Sources */,
 				7BB2220A1E4BB9890069E74D /* Registration2ViewController.swift in Sources */,
 				7B8BDBDD1E156FE1009F3EAF /* PersonLogRequests.swift in Sources */,
 				7B8BDBCC1E12ED9F009F3EAF /* PersonSearchTableViewController.swift in Sources */,
@@ -1014,6 +1021,7 @@
 				7B02571C1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift in Sources */,
 				7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,
+				7BDEF8301E75A62D0012151B /* CircleView.swift in Sources */,
 				7BC518221E4324BA00F81374 /* NewAuhtyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
