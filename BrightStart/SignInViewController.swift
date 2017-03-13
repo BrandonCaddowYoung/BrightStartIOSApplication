@@ -10,13 +10,15 @@ import UIKit
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
 
-    
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
     var _PopUpAlert: UIAlertController!
     
     var loadingSpiiner: ProgressHUD!
+    
+    @IBOutlet weak var RememberUsernameLabel: UILabel!
+    @IBOutlet weak var RememberUsernameSegment: UISegmentedControl!
     
     @IBOutlet weak var FooterView: UIView!
     
@@ -69,9 +71,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         setupConstraints()
         
-        topView.backgroundColor = .white
-        middleView.backgroundColor = .white
-        bottomView.backgroundColor = .white
+        topView.backgroundColor = _ApplicatoinColours.White
+        middleView.backgroundColor = _ApplicatoinColours.White
+        bottomView.backgroundColor = _ApplicatoinColours.White
        
         //Styling the sign in button
         signInButton.layer.cornerRadius = 5
@@ -83,8 +85,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         signInButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        
-        
+        RememberUsernameSegment.tintColor = _ApplicatoinColours.BackGroundColour
         
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
        
@@ -93,17 +94,24 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         let defaults = UserDefaults.standard
         
-        //Check for existing username.
-        if let username = defaults.string(forKey: "NurserySchoolUsername")
+        if(retrieveShouldRememberPassword())
         {
-            usernameTextField.text = username;
+            RememberUsernameSegment.selectedSegmentIndex = 0
+            usernameTextField.text = retrieveUserName();
         }
+        else
+        {
+            RememberUsernameSegment.selectedSegmentIndex = 1
+        }
+        
+        //Check for existing username.
+        
         
         //We could put the passwod in place if it exists however is a security risk.
         
         #if DEBUG
             usernameTextField.text = "user1"
-            passwordTextField.text = "user1"
+           passwordTextField.text = "user1"
         #endif
         
         usernameTextField.font = _ApplicatoinColours.mediumFont
@@ -114,7 +122,24 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         signInButton.titleLabel!.font = _ApplicatoinColours.buttonFont
         
+        spacerMiddleTopView.backgroundColor = _ApplicatoinColours.White
+        spacerMiddleMiddleView.backgroundColor = _ApplicatoinColours.White
+        spacerMiddleBottomView.backgroundColor = _ApplicatoinColours.White
         
+        
+    }
+    
+    
+    @IBAction func Switched(_ sender: Any) {
+        
+        if RememberUsernameSegment.selectedSegmentIndex == 0 {
+            storeShouldRememberUsername(should: true)
+            storeUserName(userName: usernameTextField.text!)
+        }
+        
+        if RememberUsernameSegment.selectedSegmentIndex == 1 {
+            storeShouldRememberUsername(should: false)
+        }
         
     }
     
@@ -131,6 +156,18 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
         
         return ""
+    }
+    
+    func retrieveShouldRememberPassword() -> Bool
+    {
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "ShouldRememberUsername")
+        {
+            return Bool(id)!
+        }
+        
+        return false
     }
     
     /*!
@@ -165,16 +202,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //height
         bottomView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.35).isActive = true
+            multiplier: 0.20).isActive = true
         
         bottomView.addSubview(FooterView)
         
     //bottomView.backgroundColor = .yellow
         
         //IMAGE WITHIN BOTTOM VIEW
-        
-        
-        
         
         FooterView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -201,6 +235,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
         DontHaveAnAccountLabel.textColor = _ApplicatoinColours.Black
         DontHaveAnAccountLabel.font = _ApplicatoinColours.sshmediumlFont
+        
+        RememberUsernameLabel.textColor = _ApplicatoinColours.Black
+        RememberUsernameLabel.font = _ApplicatoinColours.sshmediumlFont
         
         DontHaveAnAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -232,7 +269,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         middleView.translatesAutoresizingMaskIntoConstraints = false
         
-        // middleView.backgroundColor = .yellow
+         middleView.backgroundColor = .yellow
         
         //left
         middleView.leadingAnchor.constraint(
@@ -244,14 +281,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         middleView.bottomAnchor.constraint(
             equalTo: bottomView.topAnchor).isActive = true
     
-        //middleView.backgroundColor = .red
+        middleView.backgroundColor = .red
         
         //no top
         
         //height
         middleView.heightAnchor.constraint(
             equalTo: view.heightAnchor,
-            multiplier: 0.30).isActive = true
+            multiplier: 0.45).isActive = true
         
         //TEXT INPUT FIELDS WITHIN MIDDLE VIEW
         
@@ -332,9 +369,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         //USER TEXT FIELD
         
+        
         //bottom
-        usernameTextField.bottomAnchor.constraint(
-            equalTo: spacerMiddleMiddleView.topAnchor
+        usernameTextField.topAnchor.constraint(
+            equalTo: spacerMiddleTopView.bottomAnchor, constant: 50
             ).isActive = true
         
         //width
@@ -346,7 +384,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         //top
         passwordTextField.topAnchor.constraint(
-            equalTo: spacerMiddleMiddleView.bottomAnchor, constant: 5
+            equalTo: usernameTextField.bottomAnchor, constant: 5
             ).isActive = true
         
         
@@ -355,6 +393,25 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             multiplier: 0.70).isActive = true
         
         
+        RememberUsernameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        RememberUsernameLabel.leadingAnchor.constraint(
+            equalTo: passwordTextField.leadingAnchor
+            ).isActive = true
+        
+        RememberUsernameLabel.topAnchor.constraint(
+            equalTo: passwordTextField.bottomAnchor, constant: 15
+            ).isActive = true
+        
+        RememberUsernameSegment.translatesAutoresizingMaskIntoConstraints = false
+        
+        RememberUsernameSegment.leadingAnchor.constraint(
+            equalTo: RememberUsernameLabel.leadingAnchor
+            ).isActive = true
+        
+        RememberUsernameSegment.topAnchor.constraint(
+            equalTo: RememberUsernameLabel.bottomAnchor
+            , constant: 3).isActive = true
         
         //Sign in button
         
@@ -363,7 +420,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         signInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         signInButton.topAnchor.constraint(
-            equalTo: passwordTextField.bottomAnchor, constant: 20).isActive = true
+            equalTo: RememberUsernameSegment.bottomAnchor, constant: 20).isActive = true
         
         
         //width
@@ -422,7 +479,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             equalTo: topView.heightAnchor, multiplier: 0.50).isActive = true
         
         logoImaveView.bottomAnchor.constraint(
-            equalTo: topView.bottomAnchor).isActive = true
+            equalTo: spacerMiddleTopView.topAnchor).isActive = true
         
         
     }
@@ -447,8 +504,32 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     func storeNurserySchoolIdWithinDefaults(username: String, nurserySchoolId: String)
     {
         let defaults = UserDefaults.standard
-        defaults.set(username, forKey: "NurserySchoolUserName")
         defaults.set(nurserySchoolId, forKey: "NurserySchoolId")
+        defaults.set(username, forKey: "NurserySchoolUserName")
+    }
+    
+    func storeUserName(userName: String)
+    {
+        UserDefaults.standard.set(userName, forKey: "NurserySchoolUserName")
+    }
+    
+    func retrieveUserName() -> String
+    {
+        if let userName = UserDefaults.standard.string(forKey: "NurserySchoolUserName") {
+            return userName
+        }
+        
+        return ""
+    }
+    
+    
+    func storeShouldRememberUsername(should: Bool)
+    {
+        let defaults = UserDefaults.standard
+        defaults.set(String(should), forKey: "ShouldRememberUsername")
+        
+        var test = retrieveShouldRememberPassword()
+        
     }
     
     /*!
@@ -456,28 +537,21 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
+        
         if (segue.identifier == "AccessGrantedSegue") {
             
-            //Settings the menu details.
-            
-            if let navController = segue.destination as? UINavigationController {
+            if let vc = segue.destination as? MainMenuViewController {
                 
-                if let vc = navController.topViewController as? MainMenuViewController {
-                    //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
-                    
-                    vc.images = [UIImage(named: "Register")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Information")!, UIImage(named: "SignOut")!]
-                    
-                    vc.segueIdList = ["GoToRegister", "GoToRegisteredHours", "GoToTimeStampsMenu", "GoToInformation", "GoToSignIn"]
-                    
-                    vc.DisplayTextList = ["Register",  "Registered Hours", "Time Stamps", "Informaiton", "Sign Out"]
-                    
-                    
-                    
-                    
-                }
+                //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
+                
+                vc.selectedMenu = .MainMenu
+                vc.showNavigationBar = true
+                
+                
             }
             
         }
+       
     }
     
     /*!
@@ -588,7 +662,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         self.present(_PopUpAlert, animated: true, completion: nil)
         
         //Removing incase the user is trying to switch accounts.
-        removeStoredNurserySchoolId()
+        //removeStoredNurserySchoolId()
         
         MoveToNextSceneIfCredentialsAreValid()
         

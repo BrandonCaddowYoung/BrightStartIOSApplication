@@ -13,6 +13,8 @@ class AuthySettingsViewController: UIViewController {
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
 
+    var selectedMenu: MenuTypes!
+    
     var showNavigationBar = true
     
     @IBOutlet weak var TopContainer: UIView!
@@ -25,8 +27,6 @@ class AuthySettingsViewController: UIViewController {
     @IBOutlet weak var Middle: UIView!
     @IBOutlet weak var Bottom: UIView!
     
-    @IBOutlet weak var OkButton: UIButton!
-
     @IBOutlet weak var OnSignInLabel: UILabel!
     @IBOutlet weak var UseAuthyLabel: UILabel!
     @IBOutlet weak var OnSignOutLabel: UILabel!
@@ -43,15 +43,6 @@ class AuthySettingsViewController: UIViewController {
         
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
-        
-        //Styling button
-        OkButton.layer.cornerRadius = 5
-        OkButton.layer.borderWidth = 1
-        OkButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        OkButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
-        OkButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
-        
-        OkButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
         view.backgroundColor = _ApplicatoinColours.BackGroundColour
         
@@ -149,9 +140,7 @@ class AuthySettingsViewController: UIViewController {
         BottomContainer.translatesAutoresizingMaskIntoConstraints = false
         
         ContentContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-        OkButton.translatesAutoresizingMaskIntoConstraints = false
-        
+       
         OnSignInLabel.translatesAutoresizingMaskIntoConstraints = false
         UseAuthyLabel.translatesAutoresizingMaskIntoConstraints = false
         OnSignOutLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -160,12 +149,10 @@ class AuthySettingsViewController: UIViewController {
         OnSignOutSwitch.translatesAutoresizingMaskIntoConstraints = false
         ExplinationLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        
         Top.translatesAutoresizingMaskIntoConstraints = false
         Top1.translatesAutoresizingMaskIntoConstraints = false
         Middle.translatesAutoresizingMaskIntoConstraints = false
         Bottom.translatesAutoresizingMaskIntoConstraints = false
-        
         
         //Top
         
@@ -204,8 +191,7 @@ class AuthySettingsViewController: UIViewController {
         MiddleContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor,
             multiplier: 0.60).isActive = true
-        
-        
+    
         //Content
         
         //left
@@ -227,22 +213,19 @@ class AuthySettingsViewController: UIViewController {
             equalTo: MiddleContainer.heightAnchor,
             multiplier: 0.70).isActive = true
         
-        
-        
-        
         //Top
         
         //left
         Top.leadingAnchor.constraint(
-            equalTo: ContentContainer.leadingAnchor).isActive = true
+            equalTo: TopContainer.leadingAnchor).isActive = true
         
         //right
         Top.trailingAnchor.constraint(
-            equalTo: ContentContainer.trailingAnchor).isActive = true
+            equalTo: TopContainer.trailingAnchor).isActive = true
         
         //right
         Top.topAnchor.constraint(
-            equalTo: ContentContainer.topAnchor).isActive = true
+            equalTo: TopContainer.topAnchor, constant: 35).isActive = true
         
         //height
         Top.heightAnchor.constraint(
@@ -302,12 +285,6 @@ class AuthySettingsViewController: UIViewController {
         ExplinationLabel.centerYAnchor.constraint(
             equalTo: Top1.centerYAnchor).isActive = true
         
-        
-        
-        
-        
-        
-        
         //Middle
         
         //left
@@ -325,7 +302,6 @@ class AuthySettingsViewController: UIViewController {
         Middle.heightAnchor.constraint(
             equalTo: ContentContainer.heightAnchor,
             multiplier: 0.20).isActive = true
-        
         
         //Use Authy
         
@@ -346,14 +322,6 @@ class AuthySettingsViewController: UIViewController {
         
         OnSignInSwitch.centerYAnchor.constraint(
             equalTo: OnSignInLabel.centerYAnchor).isActive = true
-
-        
-        
-        
-        
-        
-        
-        
         //Bottom
         
         //left
@@ -398,13 +366,6 @@ class AuthySettingsViewController: UIViewController {
         OnSignOutSwitch.centerYAnchor.constraint(
             equalTo: OnSignOutLabel.centerYAnchor).isActive = true
         
-        
-        
-        
-        
-        
-        
-        
         //Bottom
         
         //left
@@ -423,21 +384,6 @@ class AuthySettingsViewController: UIViewController {
         BottomContainer.bottomAnchor.constraint(
             equalTo: view.bottomAnchor).isActive = true
         
-        
-        //OK Button
-        
-        //X
-        OkButton.centerXAnchor.constraint(
-            equalTo: BottomContainer.centerXAnchor).isActive = true
-        
-        //Y
-        OkButton.centerYAnchor.constraint(
-            equalTo: BottomContainer.centerYAnchor).isActive = true
-        
-        OkButton.widthAnchor.constraint(
-            equalTo: view.widthAnchor, multiplier: 0.50).isActive = true
-        
-        
     }
 
     
@@ -453,8 +399,7 @@ class AuthySettingsViewController: UIViewController {
             OnSignInLabel.isEnabled = true
             OnSignOutLabel.isEnabled = true
             
-            
-              defaults.set(true, forKey: "ShouldUseAuhty")
+            defaults.set(true, forKey: "ShouldUseAuhty")
 
         }else
         {
@@ -527,7 +472,9 @@ class AuthySettingsViewController: UIViewController {
     
     func NavBarMenuTapped()
     {
-    
+        selectedMenu = .MainMenu
+        
+    self.performSegue(withIdentifier: "GoToMenu", sender: self)
     }
     
     @IBAction func OnSignOutSwitched(_ sender: Any) {
@@ -549,14 +496,16 @@ class AuthySettingsViewController: UIViewController {
     
     @IBAction func OKClicked(_ sender: Any) {
         
-         self.performSegue(withIdentifier: "GoToAuthyMenu", sender: self)
+        selectedMenu = .Authy
+        
+         self.performSegue(withIdentifier: "GoToMenu", sender: self)
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         
-        if (segue.identifier! == "GoToAuthyMenu") {
+        if (segue.identifier! == "GoToMenu") {
             
             //Settings the menu details.
             
@@ -564,8 +513,13 @@ class AuthySettingsViewController: UIViewController {
             
             if let vc = segue.destination as? MainMenuViewController {
                 
-                //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
+                if(selectedMenu == .Authy){
                 vc.selectedMenu = .Authy
+                }
+                else if(selectedMenu == .MainMenu)
+                {
+                vc.selectedMenu = .MainMenu
+                }
             }
         }
         

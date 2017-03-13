@@ -42,6 +42,8 @@ enum PurposeTypes: Int {
 
 class MainMenuViewController: UIViewController {
     
+    var shouldHideBackButton = true
+    
    var targetPurpose: PurposeTypes!
     
     var loadingSpiiner: ProgressHUD!
@@ -55,6 +57,7 @@ class MainMenuViewController: UIViewController {
     var authyUserList = [AuthyUser]()
     
     var _ApplicatoinColours: ApplicatoinColours!
+    var _CommonHelper: CommonHelper!
     
     var collectionView: UICollectionView!
     var topThirdView: UIView!
@@ -92,6 +95,7 @@ class MainMenuViewController: UIViewController {
         self.edgesForExtendedLayout = []
         
         _ApplicatoinColours = ApplicatoinColours()
+        _CommonHelper = CommonHelper()
         
         setupCollectionView()
         
@@ -153,6 +157,7 @@ class MainMenuViewController: UIViewController {
             authyIdList = ["",  "", "", "", ""]
             
             showNavigationBar = true
+            ShowNavBar()
             
         case .TimeStamps:
             
@@ -167,6 +172,7 @@ class MainMenuViewController: UIViewController {
             authyIdList = ["", ""]
             
             showNavigationBar = true
+            ShowNavBar()
             
             
         case .RegisteredHours:
@@ -182,7 +188,7 @@ class MainMenuViewController: UIViewController {
             authyIdList = ["", ""]
             
             showNavigationBar = true
-            
+            ShowNavBar()
             
         case .Authy:
             
@@ -197,10 +203,12 @@ class MainMenuViewController: UIViewController {
             authyIdList = ["", "", "", ""]
             
             showNavigationBar = true
+            ShowNavBar()
             
         case .AuthyUsers:
             
             showNavigationBar = true
+            ShowNavBar()
             
             //Retrieve all children
             AuthyRequests.sharedInstance.GetAllAuthyUsersForChild(childId: childId as String, onCompletion:
@@ -223,17 +231,81 @@ class MainMenuViewController: UIViewController {
                     
                     DispatchQueue.main.async(execute: {
                         
-                        
                         if(self.authyUserList.count == 0)
                         {
+                            
+                            if(self.selectedAuthyAction == .ShouldSignIn || self.selectedAuthyAction == .ShouldSignOut)
+                            {
+                                
+                                if(self.selectedAuthyAction == .ShouldSignOut){
+                                    
+                                    let alert = self._CommonHelper.showOverlayMessage("Signing out...")
+                                    self.present(alert, animated: true, completion:
+                                        {
+                                            CommonRequests.sharedInstance.signOut(personId: self.childId as String, timeOfSignOut: Date() as NSDate,
+                                                                                  
+                                                                                  onCompletion: {
+                                                                                    
+                                                                                    DispatchQueue.main.async(execute: {
+                                                                                        
+                                                                                        self.dismiss(animated: false, completion:
+                                                                                            {
+                                                                                                self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                                                        }
+                                                                                        )
+                                                                                        
+                                                                                    })
+                                                                                    
+                                            })
+                                    })
+                                }
+                                else if(self.selectedAuthyAction == AuhtyActions.ShouldSignIn){
+                                    
+                                    let alert = self._CommonHelper.showOverlayMessage("Signing in...")
+                                    self.present(alert, animated: true, completion: {
+                                        
+                                        CommonRequests.sharedInstance.signIn(personId: self.childId as String, timeOfSignIn: Date() as NSDate,
+                                                                             onCompletion: {
+                                                                                DispatchQueue.main.async(execute: {
+                                                                                    
+                                                                                    self.dismiss(animated: false, completion:
+                                                                                        {self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                                                    }
+                                                                                    )
+                                                                                    
+                                                                                })
+                                        }
+                                        )
+                                        
+                                    })
+                                }
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                            }
+                            else{
+                            
                             self.images.append(UIImage(named: "Standing Man")!) //Replace with Plus100
                             self.segueIdList.append("GoToNewAuthyUser")
                             self.DisplayTextList.append("New User")
                             self.authyIdList.append("")
                             self.PurposeList.append(PurposeTypes.None)
-
+                                
+                            }
                         }
                         else{
+                            
+                            //Add all the users
+                            
                         for person in self.authyUserList {
                             self.images.append(UIImage(named: "UserMale100")!)
                             self.segueIdList.append("GoToAuthyAuthenticate")
@@ -621,21 +693,11 @@ class MainMenuViewController: UIViewController {
             
         }
         else if (segue.identifier == "GoToRegister") {
-            
-            //Settings the menu details.
-            
-            //if let vc = segue.destination as? ClockingTableViewController {
-                
-                
-            //}
+           
+            //No need to pass anyhting to the regiser.
             
         }
-        
-        
-        
-        
     }
-    
 }
 
 extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -649,10 +711,6 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
-    
-    
-    
-    
     
     //We use this method to dequeue the cell and set it up
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -727,24 +785,39 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
 
         super.viewWillAppear(animated)
         
-         if(!showNavigationBar){
-            
-            self.navigationController?.setNavigationBarHidden(true, animated: animated)
-           
-        }
-         else
-         {
-            
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-          
-            
-        SetNavigationBarDetails()
-            
-        }
-        
+        ShowNavBar()
     }
  
     
+    func ShowNavBar()
+    {
+        if(!showNavigationBar){
+            
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            
+        }
+        else
+        {
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            
+            
+            SetNavigationBarDetails()
+            
+        }
+
+    }
+    
+    func HideShowBackButton()
+    {
+        if(shouldHideBackButton){
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.BackGroundColour
+        }
+        else
+        {
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.Orange
+        }
+    }
     
     func SetNavigationBarDetails()
     {
@@ -755,19 +828,32 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.White]
         navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
         
+        //Hiding back button
+        
+       HideShowBackButton()
+        
         //Back ground color
         navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Blue
         
-        var rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-        
         if(selectedMenu == .MainMenu)
         {
-            rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "About"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            //When about scren is built, put this in!
+            
+             var rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "About"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
+            //Right button
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.BackGroundColour
+            
         }
+        else
+        {
+            var rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
         
-        //Right button
-        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.White
+            //Right button
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.White
+        }
         
         self.navigationController?.navigationBar.topItem?.title = " ";
         
@@ -810,12 +896,8 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
         
         loadMenuAssets()
         
-        //Back color
-        //navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+        HideShowBackButton()
         
-        //Back ground color
-        //navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
-
        SetNavigationBarDetails()
     
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

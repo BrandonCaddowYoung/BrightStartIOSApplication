@@ -12,6 +12,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     
     var indicator = UIActivityIndicatorView()
     
+    var GoToMenuType: MenuTypes!
+    
     func activityIndicator()
     {
         indicator = UIActivityIndicatorView(frame: CGRect())
@@ -109,6 +111,10 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     }
     
     func NavBarMenuTapped(){
+        
+        self.GoToMenuType = .MainMenu
+        
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
         
     }
 
@@ -555,6 +561,25 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
 
+            if (segue.identifier == "GoToMenu") {
+                
+                
+                if let vc = segue.destination as? MainMenuViewController {
+                    
+                    if(GoToMenuType == .MainMenu)
+                    {
+                    vc.selectedMenu = .MainMenu
+                    }
+                    
+                    if(GoToMenuType == .TimeStamps)
+                    {
+                        vc.selectedMenu = .TimeStamps
+                    }
+                    
+                    
+                }
+                
+            }
             
             
             

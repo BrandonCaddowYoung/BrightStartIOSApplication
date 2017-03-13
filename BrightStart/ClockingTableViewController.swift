@@ -356,6 +356,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         vc.childId = selectedChildId
         vc.authyUsersOnly = true
         vc.selectedAuthyAction = selectedAuthyAction
+        vc.shouldHideBackButton = false
     }
     }
         

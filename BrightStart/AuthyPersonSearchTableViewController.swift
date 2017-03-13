@@ -276,11 +276,8 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
             
             //Settings the menu details.
             
-            
             if let vc = segue.destination as? NewAuhtyViewController {
-                
                 vc.selectedChildId = self.SelectedPersonId
-                
             }
         }
         
@@ -298,6 +295,7 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
                 vc.childId = SelectedPersonId
                 vc.authyUsersOnly = true
                 vc.showNavigationBar = true
+                vc.shouldHideBackButton = false
             }
         }
         

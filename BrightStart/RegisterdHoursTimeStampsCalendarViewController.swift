@@ -205,6 +205,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
 typeSwitch.tintColor = _ApplicatoinColours.Grey
         
+        typeSwitch.isHidden = true
+        
         startTime.textColor = _ApplicatoinColours.White
         endTime.textColor = _ApplicatoinColours.White
         

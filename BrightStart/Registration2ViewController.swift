@@ -31,8 +31,7 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
     
     
     @IBOutlet weak var FinishedButton: UIButton!
-    
-    @IBOutlet weak var FooterLabel: UILabel!
+   
     override func viewDidLoad() {
         
         self.hideKeyboardWhenTappedAround()
@@ -122,7 +121,6 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
         ManagerNameTextField.translatesAutoresizingMaskIntoConstraints = false
         PhoneNumberTextField.translatesAutoresizingMaskIntoConstraints = false
         FinishedButton.translatesAutoresizingMaskIntoConstraints = false
-        FooterLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //Top
         
@@ -287,15 +285,7 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
         FooterContainer.bottomAnchor.constraint(
             equalTo: view.bottomAnchor).isActive = true
         
-        //Footer label
-        
-        //top
-        FooterLabel.bottomAnchor.constraint(
-            equalTo: FooterContainer.bottomAnchor, constant:-10).isActive = true
-        
-        //top
-        FooterLabel.centerXAnchor.constraint(
-            equalTo: FooterContainer.centerXAnchor).isActive = true
+       
 
     }
     

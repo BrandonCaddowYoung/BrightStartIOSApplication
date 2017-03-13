@@ -299,7 +299,7 @@ class ClockingTableViewCell: UITableViewCell
                             self.cellDetailsText.text = "Expected in"
                             self.cellInformationText.text = "Expected in " + String(format:"%.0f", abs(minutesElapsed)) + " minutes."
                             
-                            self.childNameLabel.textColor = .white
+                            self.childNameLabel.textColor = _ApplicationColours.BackGroundColour
                             self.cellInformationText.textColor = lightBlue
                             self.cellDetailsText.textColor = lightPink
                             
@@ -373,7 +373,7 @@ class ClockingTableViewCell: UITableViewCell
                                     //For now I am just going to assume that the child came in and left, ie has time stamps for today
                                     
                                     //Child is yet to arrive/Child is late to sign in
-                                    self.childNameLabel.textColor = .white
+                                    self.childNameLabel.textColor = _ApplicationColours.BackGroundColour
                                     self.backgroundColor = lightPink
                                     //self.backgroundColor.backgroundColor?.withAlphaComponent(0.5)
                                     
