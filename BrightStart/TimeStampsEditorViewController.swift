@@ -113,15 +113,6 @@ class TimeStampsEditorViewController: UIViewController {
             var newStartValue = NSDate()
             var newEndValue = NSDate()
             
-            //if(editType == .Start)
-            //{
-            //  originalDateValue = existingStartDate as NSDate
-            //}
-            //else if(editType == .End)
-            //{
-            //  originalDateValue = existingEndDate as NSDate
-            //}
-            
             if(editType == .Start)
             {
                 newEndValue = existingEndDate as NSDate
@@ -326,13 +317,84 @@ class TimeStampsEditorViewController: UIViewController {
         
         if(EditorMode == .RegisteredHours_Create || EditorMode == .TimeStamps_Create ){
             RemoveButton.isHidden = true
+            
+            CurrentTimeLabel.isHidden = true;
+            TargetCurrentTime.isHidden = true
+
         }
+        else
+        {
+            CurrentTimeLabel.isHidden = false;
+            TargetCurrentTime.isHidden = false
+        }
+        
+        //Should check if child has reg hours for this date
+        
+        fetchRegisteredHours()
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func fetchRegisteredHours()
+    {
+        self.PersonId = self.PersonId.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        var noStartTime = false
+        var noEndTime = false
+        
+        RegistrationHoursRequests.sharedInstance.GetRegisterdHoursyDateAndID(personId: self.PersonId as String, DateTime: DateAsObject as NSDate, onCompletion: { JSON in
+            
+            let regHours = RegistrationHours()
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            //Start to stirng, then to date
+            let StartTime = JSON["StartTime"].stringValue
+            let newStartTime = dateFormatter.date(from: StartTime)
+            
+            if(newStartTime != nil){
+                regHours.StartTime = newStartTime!
+            }
+            else{
+                noStartTime = true
+            }
+            
+            //End to stirng, then to date
+            let endTime = JSON["FinishTime"].stringValue
+            let newEndTime = dateFormatter.date(from: endTime)
+            
+            if(newEndTime != nil){
+                regHours.FinishTime = newEndTime!
+            }
+            else{
+                noEndTime = true
+            }
+            
+            DispatchQueue.main.async(execute: {
+                
+                //If so default to that date.
+                if(self.editType == .Start)
+                {
+                    if(noStartTime==false){
+                    self.DateTimePicker.setDate(regHours.StartTime, animated: true)
+                    }
+                }
+                else if(self.editType == .End)
+                {
+                    if(noEndTime==false){
+                     self.DateTimePicker.setDate(regHours.FinishTime, animated: true)
+                    }
+                }
+                
+            })
+            
+        })
+        
     }
     
     func setupConstraints() {
@@ -541,13 +603,13 @@ class TimeStampsEditorViewController: UIViewController {
         SetYourNewTimeStampLabel.translatesAutoresizingMaskIntoConstraints = false
         
         SetYourNewTimeStampLabel.leadingAnchor.constraint(
-            equalTo: MiddleContainer.leadingAnchor).isActive = true
+            equalTo: MiddleContainer.leadingAnchor, constant: 5).isActive = true
         
         SetYourNewTimeStampLabel.trailingAnchor.constraint(
             equalTo: MiddleContainer.trailingAnchor).isActive = true
         
         SetYourNewTimeStampLabel.topAnchor.constraint(
-            equalTo: MiddleContainer.topAnchor).isActive = true
+            equalTo: MiddleContainer.topAnchor, constant: 5).isActive = true
         
         SetYourNewTimeStampLabel.heightAnchor.constraint(
             equalTo: MiddleContainer.heightAnchor,
@@ -596,12 +658,12 @@ class TimeStampsEditorViewController: UIViewController {
         //Stlying remove button
         RemoveButton.layer.cornerRadius = 5
         RemoveButton.layer.borderWidth = 1
-        RemoveButton.layer.borderColor = _ApplicatoinColours.Red as! CGColor?
-        RemoveButton.backgroundColor = _ApplicatoinColours.Red
+        RemoveButton.layer.borderColor = UIColor.red.cgColor
+        RemoveButton.backgroundColor = _ApplicatoinColours.White
        
         RemoveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        RemoveButton.setTitleColor(_ApplicatoinColours.Red, for: .normal)
+        RemoveButton.setTitleColor(.red, for: .normal)
         
         RemoveButton.heightAnchor.constraint(
             equalTo: BottomContainer.heightAnchor,
@@ -658,10 +720,10 @@ class TimeStampsEditorViewController: UIViewController {
                 
                 //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
                 
-                if(self.GoToMenuType == .MainMenu){
-                    vc.selectedMenu = .MainMenu
+                if(self.GoToMenuType == .RegisteredHours){
+                    vc.selectedMenu = .RegisteredHours
                 }
-                else
+                else if(self.GoToMenuType == .TimeStamps)
                 {
                     vc.selectedMenu = .TimeStamps
                 }
@@ -688,9 +750,15 @@ class TimeStampsEditorViewController: UIViewController {
     
     func NavBarMenuTapped(){
         
-         self.GoToMenuType = .TimeStamps
+        if(EditorMode == .TimeStamps_Edit){
+        self.GoToMenuType = .TimeStamps
+        }
+        else if(EditorMode == .RegisteredHours_Edit){
+            self.GoToMenuType = .RegisteredHours
+        }
         
-     self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+                 self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+        
     }
 
     

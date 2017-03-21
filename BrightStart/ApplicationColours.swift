@@ -15,6 +15,8 @@ class ApplicatoinColours {
     var NavigationBarBackGroundColor: UIColor!
     var NavigationBarBackBackButtonColor: UIColor!
     
+    var WebAPIURL = "http://brightstartwebapi126.azurewebsites.net/api";
+    
     var BackGroundColour: UIColor!
     var FontHeadingColour: UIColor!
     var FontColour: UIColor!
@@ -30,7 +32,6 @@ class ApplicatoinColours {
     var ButtonBackGroundColor: UIColor!
     var ButtonForeGroundColor: UIColor!
     
-    var LightBlue: UIColor!
     var LightPink: UIColor!
     var Grey: UIColor!
     
@@ -47,6 +48,7 @@ class ApplicatoinColours {
     
     var Red: UIColor!
     var Blue: UIColor!
+    var LightBlue: UIColor!
     var White: UIColor!
     var Black: UIColor!
     var Orange: UIColor!
@@ -82,6 +84,7 @@ class ApplicatoinColours {
         Grey = hexStringToUIColor(hex: "#7f909a")
         Orange = hexStringToUIColor(hex: "#ed6639")
         Blue = hexStringToUIColor(hex: "#385b9f")
+        LightBlue = hexStringToUIColor(hex: "#6889ca")
         
         //GENERAL
         BackGroundColour = Blue

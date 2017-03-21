@@ -20,7 +20,7 @@ class AuthySettingsViewController: UIViewController {
     @IBOutlet weak var TopContainer: UIView!
     @IBOutlet weak var MiddleContainer: UIView!
     @IBOutlet weak var BottomContainer: UIView!
-    @IBOutlet weak var ContentContainer: UIView!
+    
     
     @IBOutlet weak var Top: UIView!
     @IBOutlet weak var Top1: UIView!
@@ -49,8 +49,6 @@ class AuthySettingsViewController: UIViewController {
         TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         MiddleContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        
-         ContentContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         Top.backgroundColor = _ApplicatoinColours.White
         Top1.backgroundColor = _ApplicatoinColours.BackGroundColour
@@ -138,9 +136,7 @@ class AuthySettingsViewController: UIViewController {
         TopContainer.translatesAutoresizingMaskIntoConstraints = false
         MiddleContainer.translatesAutoresizingMaskIntoConstraints = false
         BottomContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-        ContentContainer.translatesAutoresizingMaskIntoConstraints = false
-       
+      
         OnSignInLabel.translatesAutoresizingMaskIntoConstraints = false
         UseAuthyLabel.translatesAutoresizingMaskIntoConstraints = false
         OnSignOutLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -191,27 +187,6 @@ class AuthySettingsViewController: UIViewController {
         MiddleContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor,
             multiplier: 0.60).isActive = true
-    
-        //Content
-        
-        //left
-        ContentContainer.centerXAnchor.constraint(
-            equalTo: MiddleContainer.centerXAnchor).isActive = true
-        
-        //Right
-        ContentContainer.centerYAnchor.constraint(
-            equalTo: MiddleContainer.centerYAnchor).isActive = true
-        
-        //width
-        ContentContainer.widthAnchor.constraint(
-            equalTo: view.widthAnchor
-        ).isActive = true
-
-        
-        //height
-        ContentContainer.heightAnchor.constraint(
-            equalTo: MiddleContainer.heightAnchor,
-            multiplier: 0.70).isActive = true
         
         //Top
         
@@ -229,7 +204,7 @@ class AuthySettingsViewController: UIViewController {
         
         //height
         Top.heightAnchor.constraint(
-            equalTo: ContentContainer.heightAnchor,
+            equalTo: MiddleContainer.heightAnchor,
             multiplier: 0.20).isActive = true
         
         //Use Authy
@@ -257,11 +232,11 @@ class AuthySettingsViewController: UIViewController {
         
         //left
         Top1.leadingAnchor.constraint(
-            equalTo: ContentContainer.leadingAnchor).isActive = true
+            equalTo: MiddleContainer.leadingAnchor).isActive = true
         
         //right
         Top1.trailingAnchor.constraint(
-            equalTo: ContentContainer.trailingAnchor).isActive = true
+            equalTo: MiddleContainer.trailingAnchor).isActive = true
         
         //top
         Top1.topAnchor.constraint(
@@ -269,7 +244,7 @@ class AuthySettingsViewController: UIViewController {
         
         //height
         Top1.heightAnchor.constraint(
-            equalTo: ContentContainer.heightAnchor,
+            equalTo: MiddleContainer.heightAnchor,
             multiplier: 0.40).isActive = true
         
         //Use Authy
@@ -289,18 +264,18 @@ class AuthySettingsViewController: UIViewController {
         
         //left
         Middle.leadingAnchor.constraint(
-            equalTo: ContentContainer.leadingAnchor).isActive = true
+            equalTo: MiddleContainer.leadingAnchor).isActive = true
         
         //right
         Middle.trailingAnchor.constraint(
-            equalTo: ContentContainer.trailingAnchor).isActive = true
+            equalTo: MiddleContainer.trailingAnchor).isActive = true
         
         //top
         Middle.topAnchor.constraint(
             equalTo: Top1.bottomAnchor).isActive = true
         //height
         Middle.heightAnchor.constraint(
-            equalTo: ContentContainer.heightAnchor,
+            equalTo: MiddleContainer.heightAnchor,
             multiplier: 0.20).isActive = true
         
         //Use Authy
@@ -326,11 +301,11 @@ class AuthySettingsViewController: UIViewController {
         
         //left
         Bottom.leadingAnchor.constraint(
-            equalTo: ContentContainer.leadingAnchor).isActive = true
+            equalTo: MiddleContainer.leadingAnchor).isActive = true
         
         //right
         Bottom.widthAnchor.constraint(
-            equalTo: ContentContainer.widthAnchor).isActive = true
+            equalTo: MiddleContainer.widthAnchor).isActive = true
         
         //top
         Bottom.topAnchor .constraint(
@@ -338,12 +313,12 @@ class AuthySettingsViewController: UIViewController {
         
         //height
         Bottom.heightAnchor.constraint(
-            equalTo: ContentContainer.heightAnchor,
+            equalTo: MiddleContainer.heightAnchor,
             multiplier: 0.20).isActive = true
         
         
         Bottom.centerXAnchor.constraint(
-            equalTo: ContentContainer.centerXAnchor).isActive = true
+            equalTo: MiddleContainer.centerXAnchor).isActive = true
         
         
         //Use Authy
@@ -472,7 +447,7 @@ class AuthySettingsViewController: UIViewController {
     
     func NavBarMenuTapped()
     {
-        selectedMenu = .MainMenu
+        selectedMenu = .Authy
         
     self.performSegue(withIdentifier: "GoToMenu", sender: self)
     }

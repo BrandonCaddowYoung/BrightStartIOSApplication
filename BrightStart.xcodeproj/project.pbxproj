@@ -14,6 +14,14 @@
 		7B148C261E578B0300D309F6 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C251E578B0000D309F6 /* ProgressHUD.swift */; };
 		7B148C281E59994F00D309F6 /* RegistrationHoursRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */; };
 		7B148C2A1E599E4D00D309F6 /* RegistrationHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C291E599E4C00D309F6 /* RegistrationHours.swift */; };
+		7B1575B81E805311008AB34F /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575B71E805311008AB34F /* TutorialPageViewController.swift */; };
+		7B1575DB1E806477008AB34F /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575DA1E806477008AB34F /* TutorialViewController.swift */; };
+		7B1575DD1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575DC1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift */; };
+		7B1575DF1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575DE1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift */; };
+		7B1575E11E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E01E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift */; };
+		7B1575E31E816A98008AB34F /* DoubleTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E21E816A98008AB34F /* DoubleTemplateViewController.swift */; };
+		7B1575E61E81A139008AB34F /* SingleTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E51E81A139008AB34F /* SingleTemplateViewController.swift */; };
+		7B1575E81E81BED1008AB34F /* ListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E71E81BED1008AB34F /* ListItemCell.swift */; };
 		7B1772981DEB8065002992C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772701DEB7F8F002992C9 /* Alamofire.framework */; };
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
@@ -39,6 +47,7 @@
 		7BB221F11E4BB75C0069E74D /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB221F01E4BB75C0069E74D /* RegistrationModel.swift */; };
 		7BB2220A1E4BB9890069E74D /* Registration2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB222091E4BB9890069E74D /* Registration2ViewController.swift */; };
 		7BB2220C1E4CA86E0069E74D /* RegistrationRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB2220B1E4CA86E0069E74D /* RegistrationRequests.swift */; };
+		7BB270C91E7C8CAA0023DF7D /* Authy_SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB270C81E7C8CA90023DF7D /* Authy_SettingsViewController.swift */; };
 		7BC518221E4324BA00F81374 /* NewAuhtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC518211E4324BA00F81374 /* NewAuhtyViewController.swift */; };
 		7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */; };
 		7BCAD8131DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAD8121DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift */; };
@@ -263,6 +272,14 @@
 		7B148C251E578B0000D309F6 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationHoursRequests.swift; sourceTree = "<group>"; };
 		7B148C291E599E4C00D309F6 /* RegistrationHours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationHours.swift; sourceTree = "<group>"; };
+		7B1575B71E805311008AB34F /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
+		7B1575DA1E806477008AB34F /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		7B1575DC1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChild_Quick_1ViewController.swift; sourceTree = "<group>"; };
+		7B1575DE1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChild_Quick_2ViewController.swift; sourceTree = "<group>"; };
+		7B1575E01E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChild_Quick_3ViewController.swift; sourceTree = "<group>"; };
+		7B1575E21E816A98008AB34F /* DoubleTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleTemplateViewController.swift; sourceTree = "<group>"; };
+		7B1575E51E81A139008AB34F /* SingleTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTemplateViewController.swift; sourceTree = "<group>"; };
+		7B1575E71E81BED1008AB34F /* ListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemCell.swift; sourceTree = "<group>"; };
 		7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
@@ -289,6 +306,7 @@
 		7BB221F01E4BB75C0069E74D /* RegistrationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		7BB222091E4BB9890069E74D /* Registration2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registration2ViewController.swift; sourceTree = "<group>"; };
 		7BB2220B1E4CA86E0069E74D /* RegistrationRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRequests.swift; sourceTree = "<group>"; };
+		7BB270C81E7C8CA90023DF7D /* Authy_SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authy_SettingsViewController.swift; sourceTree = "<group>"; };
 		7BC518211E4324BA00F81374 /* NewAuhtyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAuhtyViewController.swift; sourceTree = "<group>"; };
 		7BCAD8101DF613360056AC9C /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		7BCAD8121DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuButtonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -361,6 +379,35 @@
 				7B774FA11E4FD47700ECDF66 /* CalendarPurpose.swift */,
 			);
 			name = Calendar;
+			sourceTree = "<group>";
+		};
+		7B15759F1E805286008AB34F /* PageViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7B1575B91E805354008AB34F /* PageViewControllers */,
+				7B1575B71E805311008AB34F /* TutorialPageViewController.swift */,
+				7B1575DA1E806477008AB34F /* TutorialViewController.swift */,
+			);
+			name = PageViewControllers;
+			sourceTree = "<group>";
+		};
+		7B1575B91E805354008AB34F /* PageViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7B1575DC1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift */,
+				7B1575DE1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift */,
+				7B1575E01E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift */,
+			);
+			name = PageViewControllers;
+			sourceTree = "<group>";
+		};
+		7B1575E41E81A0B9008AB34F /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				7B1575E21E816A98008AB34F /* DoubleTemplateViewController.swift */,
+				7B1575E51E81A139008AB34F /* SingleTemplateViewController.swift */,
+			);
+			name = Templates;
 			sourceTree = "<group>";
 		};
 		7B1772481DEB7B26002992C9 /* Frameworks */ = {
@@ -474,6 +521,7 @@
 				7BCAD8121DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift */,
 				7B8BDBCE1E12F017009F3EAF /* PersonSearchTableViewCell.swift */,
 				7B8BDBD01E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift */,
+				7B1575E71E81BED1008AB34F /* ListItemCell.swift */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -506,6 +554,7 @@
 				7BD0FFE21E43C95300472759 /* AuthyTestViewController.swift */,
 				7BD0FFEA1E47205100472759 /* AuthySettingsViewController.swift */,
 				7BDEF8161E758D0A0012151B /* AuthyAuthenticateViewController.swift */,
+				7BB270C81E7C8CA90023DF7D /* Authy_SettingsViewController.swift */,
 			);
 			name = Auhty;
 			sourceTree = "<group>";
@@ -571,6 +620,8 @@
 		D7F995681C9EF4A1001802EC /* BrightStart */ = {
 			isa = PBXGroup;
 			children = (
+				7B1575E41E81A0B9008AB34F /* Templates */,
+				7B15759F1E805286008AB34F /* PageViewControllers */,
 				7B0257181E4F56F9007FED0C /* Calendar */,
 				7B8BDBD21E12F205009F3EAF /* TablieViews */,
 				7B8BDBCD1E12EFC5009F3EAF /* TableViewCells */,
@@ -979,7 +1030,9 @@
 				7B8BDBCA1E12B5F1009F3EAF /* TimeStampSearchTableViewController.swift in Sources */,
 				7BD0FFE31E43C95300472759 /* AuthyTestViewController.swift in Sources */,
 				7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */,
+				7BB270C91E7C8CAA0023DF7D /* Authy_SettingsViewController.swift in Sources */,
 				7BB221F11E4BB75C0069E74D /* RegistrationModel.swift in Sources */,
+				7B1575E31E816A98008AB34F /* DoubleTemplateViewController.swift in Sources */,
 				7B03BE211E5CD5C400D61404 /* AddRegisteredHoursViewController.swift in Sources */,
 				7BD0FFEB1E47205100472759 /* AuthySettingsViewController.swift in Sources */,
 				7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */,
@@ -989,12 +1042,16 @@
 				7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */,
 				7BB221D51E4A796B0069E74D /* Registration1ViewController.swift in Sources */,
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,
+				7B1575DD1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift in Sources */,
 				7B8BDBD61E1508B5009F3EAF /* TimeStampsEditorViewController.swift in Sources */,
 				7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */,
 				7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */,
 				7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */,
 				7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */,
+				7B1575DB1E806477008AB34F /* TutorialViewController.swift in Sources */,
+				7B1575E61E81A139008AB34F /* SingleTemplateViewController.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
+				7B1575DF1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift in Sources */,
 				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,
 				7BCAD8151DF7617E0056AC9C /* CommonHelper.swift in Sources */,
 				7B148C281E59994F00D309F6 /* RegistrationHoursRequests.swift in Sources */,
@@ -1013,14 +1070,17 @@
 				7B8BDBDB1E156F47009F3EAF /* PersonLog.swift in Sources */,
 				D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */,
 				7B8BDBDF1E1572AF009F3EAF /* ChildRequests.swift in Sources */,
+				7B1575E11E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
 				7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */,
 				7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */,
 				7B148C261E578B0300D309F6 /* ProgressHUD.swift in Sources */,
 				7B02571A1E4F5762007FED0C /* CellView.swift in Sources */,
 				7B02571C1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift in Sources */,
+				7B1575E81E81BED1008AB34F /* ListItemCell.swift in Sources */,
 				7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,
+				7B1575B81E805311008AB34F /* TutorialPageViewController.swift in Sources */,
 				7BDEF8301E75A62D0012151B /* CircleView.swift in Sources */,
 				7BC518221E4324BA00F81374 /* NewAuhtyViewController.swift in Sources */,
 			);

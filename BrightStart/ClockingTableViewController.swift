@@ -260,7 +260,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                 }
                 
             }
-            signIn.backgroundColor = _ApplicatoinColours.Blue
+            signIn.backgroundColor = _ApplicatoinColours.LightBlue
             
             var rowTitle2 = "Sign out " + ((cell.child?.Name)! as String)
             

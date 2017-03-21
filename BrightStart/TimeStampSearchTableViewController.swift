@@ -15,7 +15,6 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     func activityIndicator()
     {
         indicator = UIActivityIndicatorView(frame: CGRect())
-        
     }
     
     var SelectedPersonLog: PersonLog!
@@ -67,7 +66,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         _CommonHelper = CommonHelper()
         _ApplicatoinColours = ApplicatoinColours()
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = _ApplicatoinColours.TableBackGround
         
         refresh()
 
@@ -242,24 +241,26 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             
             //Saving the selected log so that when we segue we can call on it!
             SelectedPersonLog = cell.log
-            
-            let rowTitle2 = OptionText
-            
-            let optionText = UITableViewRowAction(style: .normal, title: rowTitle2 as String?) { action, index in
+           
+            let delete = UITableViewRowAction(style: .normal, title: "Remove") { (action, indexPath) in
                 
+                PersonLogRequests.sharedInstance.DeletePersonLog(logId: cell.log?.Id as! String, onCompletion:
+                    {_ in
+                        
+                        self.refresh()
+                        
+                }
+                )
+                
+            }
+            delete.backgroundColor = _ApplicatoinColours.Grey
+            
+            let share = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
                 self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
-                
-                
             }
-            optionText.backgroundColor = _ApplicatoinColours.TableBackGroundOptionColour
-
+            share.backgroundColor = _ApplicatoinColours.Orange
             
-            if(rowTitle2==""){
-                return[]
-            }
-            else{
-                return [optionText]
-            }
+            return [delete, share]
     }
     
     

@@ -8,12 +8,13 @@
 
 import UIKit
 
-
 import JTAppleCalendar
 
 class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
 
     //Arguments
+    
+    var numberOfDateTaps = 0;
     
     var showNavigationBar = true
     
@@ -140,11 +141,17 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         let addNewButtonStartTap = UITapGestureRecognizer(target: self, action: #selector(addNewButtonStartClicked))
         addNewButtonStart.addGestureRecognizer(addNewButtonStartTap)
         
+        addNewButtonStart.image = addNewButtonStart.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        addNewButtonStart.tintColor = _ApplicatoinColours.Grey
+        
         //Adding click to add new end
         addNewButtonEnd.isUserInteractionEnabled = true;
         let addNewButtonEndTap = UITapGestureRecognizer(target: self, action: #selector(addNewButtonEndClicked))
         addNewButtonEnd.addGestureRecognizer(addNewButtonEndTap)
        
+        addNewButtonEnd.image = addNewButtonEnd.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        addNewButtonEnd.tintColor = _ApplicatoinColours.Grey
+        
         calendarView.registerHeaderView(xibFileNames: ["TimeStampsSectionHeaderView", "TimeStampsSectionHeaderView"])
         
         calendarView.dataSource = self
@@ -189,6 +196,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             
              startLabel.text = "Sign in"
              finishLabel.text = "Sign out"
+            
         }
         if(selectCalendarPurpose == .RegistrationHours)
         {
@@ -265,9 +273,6 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
             else if(selectCalendarPurpose == .RegistrationHours){
                navigationController?.navigationBar.topItem?.title = "Registered Hours"
             }
-            
-            
-            
             
         navigationController?.navigationBar.backItem?.title = ""
             
@@ -350,7 +355,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         {
          self.performSegue(withIdentifier: "TimeStamps_Search", sender: nil)
         }
-        else if(Purpose == "GoToSearchPerson_ExtraMinutes")
+        else if(Purpose == "TimeStamps_Missing")
         {
             self.performSegue(withIdentifier: "GoToSearchPerson_ExtraMinutes", sender: nil)
         }
@@ -734,6 +739,9 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
     
    
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleDayCellView?, cellState: CellState) {
+        
+        self.numberOfDateTaps += 1
+        
         handleCellSelection(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
         
@@ -755,6 +763,14 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         
             fetchRegisteredHours()
             
+        }
+        else if(selectCalendarPurpose == .MissingTimeStamps_Person){
+            
+            if(numberOfDateTaps > 1){
+            
+            self.performSegue(withIdentifier: "GoToTimeStamp_Search", sender: nil)
+                
+            }
         }
         
     }
@@ -802,7 +818,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         let calendar2 = Calendar.current
         
         let dateFormatter: DateFormatter = DateFormatter()
-        let months = dateFormatter.shortMonthSymbols
+        let months = dateFormatter.monthSymbols
         var monthSymbol = ""
         
         if(month > 0){
@@ -888,13 +904,21 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
                         
                         if(creatingNew == false){
                             vc.EditorMode = .TimeStamps_Edit
-
                         }
                         else
                         {
                             vc.EditorMode = .TimeStamps_Create
 
                         }
+                        
+                        if(startSelected){
+                            vc.editType = .Start
+                        }
+                        if(endSelected)
+                        {
+                            vc.editType = .End
+                        }
+                        
                     }
                     
                     let dateFormatter = DateFormatter()
@@ -935,7 +959,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
                 }
         }
             
-       else if (segue.identifier == "TimeStamps_Search") {
+       else if (segue.identifier == "GoToTimeStamp_Search") {
             
             if let vc = segue.destination as? TimeStampSearchTableViewController {
                 
@@ -943,7 +967,6 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
                 
                 //Because it was 00:00 it thought it was the next day, so just rewinding the click 60 mintes.
                  vc.TargetDate = vc.TargetDate.addingTimeInterval(60)
-                
                 
                 vc.TargetPersonId = childId as NSString!
                 vc.SelectedPersonFullName = childName as NSString!
@@ -960,7 +983,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
                 vc.targetDate = lastSelectedDate
                 
                 vc.Purpose = "GoToSearchPerson_ExtraMinutes"
-                vc.successSegueIdentifier = "GoToTimeStampsMenu"
+                vc.successSegueIdentifier = "GoToTimeStampSearch"
                 
             }
         }
@@ -1019,6 +1042,15 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
                 
             }
         }
+        
+       
+        
+        
+        
+        
+        
+        
+        
     }
     
     func addNewButtonStartClicked(sender: UITapGestureRecognizer) {
@@ -1136,6 +1168,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
                 {_ in 
                 self.hideSpinner()
                      self.calendarView.selectDates([self.lastSelectedDate])
+                    
                 }
                 )
             }
@@ -1158,11 +1191,24 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         
         // 4
         optionMenu.addAction(saveAction)
-              optionMenu.addAction(deleteAction)
+        optionMenu.addAction(deleteAction)
         optionMenu.addAction(cancelAction)
+       
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad ){
+        
+        if(self.startSelected){
+            optionMenu.popoverPresentationController?.sourceView = self.addNewButtonStart
+        }
+        else if(self.endSelected)
+        {
+            optionMenu.popoverPresentationController?.sourceView = self.addNewButtonEnd
+        }
+            
+        }
         
         // 5
         self.present(optionMenu, animated: true, completion: nil)
+        
     }
     
     func fetchTimeStamps()

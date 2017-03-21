@@ -161,16 +161,18 @@ class MainMenuViewController: UIViewController {
             
         case .TimeStamps:
             
-            images = [UIImage(named: "Edit")!, UIImage(named: "SignOut")!]
+            //uncomment for missing timestamps, also fill in the rest. The end result actually just returns current timestamps for the day, not missing time stamps!
             
-            segueIdList = ["GoToSearchPerson", "GoToSignIn"]
+            images = [UIImage(named: "Edit")!, UIImage(named: "Question")!, UIImage(named: "SignOut")!]
             
-             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.SignOut]
+            segueIdList = ["GoToSearchPerson", "GoToDateSelect", "GoToSignIn"]
             
-            DisplayTextList = ["Edit", "Sign Out"]
+             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Missing, PurposeTypes.SignOut]
             
-            authyIdList = ["", ""]
+            DisplayTextList = ["Edit", "Missing Time Stamps","Sign Out"]
             
+            authyIdList = ["", "","", ""]
+                
             showNavigationBar = true
             ShowNavBar()
             
@@ -536,7 +538,18 @@ class MainMenuViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if (segue.identifier == "GoToSearchPerson") {
+        if (segue.identifier == "GoToDateSelect") {
+            
+            if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                
+                vc.Purpose = "TimeStamps_Missing"
+                vc.selectCalendarPurpose = .DateSelector
+                
+                vc.showNavigationBar = true
+            }
+        }
+        
+        else if (segue.identifier == "GoToSearchPerson") {
             
             if(targetPurpose == .TimeStamps_Edit)
             {
@@ -590,8 +603,6 @@ class MainMenuViewController: UIViewController {
                 vc.selectCalendarPurpose = .TimeStamps
                 
                 vc.Purpose = "GoToSearchPerson_ExtraMinutes"
-                //vc.childId = self.SelectedPersonId as String
-                //vc.childName = self.SelectedPersonFullName as String
                 
                 vc.showNavigationBar = true
                 

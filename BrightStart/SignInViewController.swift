@@ -52,6 +52,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //view.translatesAutoresizingMaskIntoConstraints = false
+        
         self.hideKeyboardWhenTappedAround()
         
         //We need this so that we can dismess the keyboard on enter.
@@ -458,9 +460,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             equalTo: view.heightAnchor,
             multiplier: 0.35).isActive = true
         
-        topView.topAnchor.constraint(
-            equalTo: view.topAnchor).isActive = true
-        
         //topView.backgroundColor = .yellow
         
         //IMAGE WITHIN TOP VIEW
@@ -469,11 +468,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         logoImaveView.centerXAnchor.constraint(
             equalTo: topView.centerXAnchor).isActive = true
-        //logoImaveView.centerYAnchor.constraint(
-          //  equalTo: topView.centerYAnchor).isActive = true
         
         logoImaveView.widthAnchor.constraint(
-            equalTo: topView.widthAnchor, multiplier: 0.50).isActive = true
+            equalTo: topView.widthAnchor, multiplier: 0.40).isActive = true
         
         logoImaveView.heightAnchor.constraint(
             equalTo: topView.heightAnchor, multiplier: 0.50).isActive = true

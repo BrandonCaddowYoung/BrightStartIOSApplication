@@ -9,8 +9,12 @@
 import Foundation
 
 enum CalendarPurpose: Int {
+    case DateSelector
     case RegistrationHours
     case TimeStamps
+    case MissingTimeStamps_Person
+    case MissingTimeStamps_Date
+    case MissingTimeStamps_DateRange
     case DateSelection
     case DateRangeSelection
 }

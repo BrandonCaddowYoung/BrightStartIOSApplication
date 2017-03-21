@@ -78,10 +78,10 @@ class TimeStampSearchTableViewCell: UITableViewCell
     
     func updateUI() {
         
-        self.backgroundColor = _ApplicationColours.BackGroundColour
+        self.backgroundColor = _ApplicationColours.TableBackGround
         
-        self.titleLabel.textColor = .black
-        self.timeLabel.textColor = .black
+        self.titleLabel.textColor = _ApplicationColours.TableTextColor
+        self.timeLabel.textColor =  _ApplicationColours.TableTextColor
         
         //titleLabel?.text = nil
         

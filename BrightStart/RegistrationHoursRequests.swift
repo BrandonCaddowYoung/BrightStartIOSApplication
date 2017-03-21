@@ -14,7 +14,7 @@ import Foundation
 class RegistrationHoursRequests: NSObject {
     
     static let sharedInstance = RegistrationHoursRequests()
-    let baseURL = "https://microsoft-apiappce8388460f4f40a6bdcea26f938e44fb.azurewebsites.net/"
+    let baseURL = "https://brightstartwebapi126.azurewebsites.net/"
     var nurserySchoolId = "";
     
     /*!
@@ -103,7 +103,7 @@ class RegistrationHoursRequests: NSObject {
         }
         
         let dateFormatter:DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let DateInFormat:String = dateFormatter.string(from: dateToDelete as Date)
         
         let route = baseURL + "api/RegisteredHoursLogic/DeleteRegisteredHours?personId="+personId + "&dateToDelete=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId

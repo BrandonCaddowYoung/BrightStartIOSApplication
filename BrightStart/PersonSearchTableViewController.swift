@@ -145,7 +145,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         
         self.children.removeAll();
         
-        if(successSegueIdentifier == "GoToTimeStampsMenu" && Purpose=="GoToSearchPerson_ExtraMinutes")
+        if(successSegueIdentifier == "GoToTimeStampSearch" && Purpose=="GoToSearchPerson_ExtraMinutes")
         {
             
         //Get only the children who were late or early.
@@ -455,7 +455,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     vc.childId = self.SelectedPersonId as String
                     vc.childName = self.SelectedPersonFullName as String
                     vc.Purpose = "TimeStamps_Missing"
-                    vc.selectCalendarPurpose = .TimeStamps
+                    vc.selectCalendarPurpose = .MissingTimeStamps_Person
                     
                     vc.showNavigationBar = true
                     
