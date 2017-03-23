@@ -22,6 +22,7 @@
 		7B1575E31E816A98008AB34F /* DoubleTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E21E816A98008AB34F /* DoubleTemplateViewController.swift */; };
 		7B1575E61E81A139008AB34F /* SingleTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E51E81A139008AB34F /* SingleTemplateViewController.swift */; };
 		7B1575E81E81BED1008AB34F /* ListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E71E81BED1008AB34F /* ListItemCell.swift */; };
+		7B1575EA1E8328DB008AB34F /* WizardPurpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E91E8328DB008AB34F /* WizardPurpose.swift */; };
 		7B1772981DEB8065002992C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772701DEB7F8F002992C9 /* Alamofire.framework */; };
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
@@ -280,6 +281,7 @@
 		7B1575E21E816A98008AB34F /* DoubleTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleTemplateViewController.swift; sourceTree = "<group>"; };
 		7B1575E51E81A139008AB34F /* SingleTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTemplateViewController.swift; sourceTree = "<group>"; };
 		7B1575E71E81BED1008AB34F /* ListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemCell.swift; sourceTree = "<group>"; };
+		7B1575E91E8328DB008AB34F /* WizardPurpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardPurpose.swift; sourceTree = "<group>"; };
 		7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				7B1575B91E805354008AB34F /* PageViewControllers */,
 				7B1575B71E805311008AB34F /* TutorialPageViewController.swift */,
 				7B1575DA1E806477008AB34F /* TutorialViewController.swift */,
+				7B1575E91E8328DB008AB34F /* WizardPurpose.swift */,
 			);
 			name = PageViewControllers;
 			sourceTree = "<group>";
@@ -1075,6 +1078,7 @@
 				7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */,
 				7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */,
 				7B148C261E578B0300D309F6 /* ProgressHUD.swift in Sources */,
+				7B1575EA1E8328DB008AB34F /* WizardPurpose.swift in Sources */,
 				7B02571A1E4F5762007FED0C /* CellView.swift in Sources */,
 				7B02571C1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift in Sources */,
 				7B1575E81E81BED1008AB34F /* ListItemCell.swift in Sources */,

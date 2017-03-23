@@ -1925,19 +1925,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0d-Yx-nhZ">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0d-Yx-nhZ">
+                                <rect key="frame" x="0.0" y="121" width="375" height="425"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="G69-01-Aa4" kind="embed" id="eiN-rk-W3D"/>
                                 </connections>
                             </containerView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="67O-Gq-0sn">
-                                <rect key="frame" x="20" y="40" width="39" height="37"/>
-                                <color key="pageIndicatorTintColor" red="1" green="0.086735173969999996" blue="0.92219595379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="currentPageIndicatorTintColor" red="0.32389615770000002" green="0.8787983425" blue="0.86665754679999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </pageControl>
-                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNK-je-a0A">
-                                <rect key="frame" x="528" y="542" width="52" height="38"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Obk-H1-lRc">
+                                <rect key="frame" x="0.0" y="10" width="375" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="67O-Gq-0sn">
+                                        <rect key="frame" x="8" y="0.0" width="39" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="pageIndicatorTintColor" red="1" green="0.086735173969999996" blue="0.92219595379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="currentPageIndicatorTintColor" red="0.32389615770000002" green="0.8787983425" blue="0.86665754679999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </pageControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNK-je-a0A">
+                                <rect key="frame" x="307" y="609" width="52" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Next">
@@ -1949,25 +1959,17 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="67O-Gq-0sn" firstAttribute="leading" secondItem="2V5-HH-7CY" secondAttribute="leading" constant="20" id="0xm-5Q-uvt"/>
-                            <constraint firstItem="0Cy-uP-Uu9" firstAttribute="top" secondItem="X0d-Yx-nhZ" secondAttribute="bottom" id="6zd-Yi-G3Z"/>
-                            <constraint firstItem="67O-Gq-0sn" firstAttribute="top" secondItem="FrH-Sl-4cl" secondAttribute="bottom" constant="20" id="FEW-YC-D9o"/>
-                            <constraint firstAttribute="trailing" secondItem="X0d-Yx-nhZ" secondAttribute="trailing" id="LRo-ic-skM"/>
-                            <constraint firstItem="X0d-Yx-nhZ" firstAttribute="top" secondItem="FrH-Sl-4cl" secondAttribute="bottom" id="Wb8-zH-P6w"/>
-                            <constraint firstItem="0Cy-uP-Uu9" firstAttribute="top" secondItem="DNK-je-a0A" secondAttribute="bottom" constant="20" id="X0Z-6e-pNU"/>
-                            <constraint firstItem="X0d-Yx-nhZ" firstAttribute="leading" secondItem="2V5-HH-7CY" secondAttribute="leading" id="hGB-jB-MeV"/>
-                            <constraint firstAttribute="trailing" secondItem="DNK-je-a0A" secondAttribute="trailing" constant="20" id="mv8-qe-3DA"/>
-                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="NextFinishButton" destination="DNK-je-a0A" id="Oz7-XQ-sMw"/>
+                        <outlet property="Top" destination="Obk-H1-lRc" id="POT-LQ-9oT"/>
                         <outlet property="containerView" destination="X0d-Yx-nhZ" id="mYL-2V-vey"/>
-                        <outlet property="pageControl" destination="67O-Gq-0sn" id="AEn-2T-7Pd"/>
+                        <outlet property="pageControl" destination="67O-Gq-0sn" id="W6H-4L-TBH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycZ-b6-zuK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1038" y="1693"/>
+            <point key="canvasLocation" x="1036" y="1691.6041979010497"/>
         </scene>
         <!--Double Template View Controller-->
         <scene sceneID="2HS-ey-PiJ">

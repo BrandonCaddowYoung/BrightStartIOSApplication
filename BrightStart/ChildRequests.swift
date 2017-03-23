@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 //typealias ServiceResponse = (JSON, NSError?) -> Void
 
@@ -29,7 +30,47 @@ class ChildRequests: NSObject {
         }
         
         let route = baseURL + "api/ChildLogic/GetAllEnrolledChilren?nurserySchoolId=" + nurserySchoolId
+        
         makeHTTPGetRequest(encode: false, path: route, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
+    }
+    
+    /*!
+     @brief Retrieves a list of logins.
+     */
+    func CreateChild(childFirstName: String, childMiddleName: String,childLastName: String, mothersEmail: String, fathersEmail: String, onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let parameters: Parameters = [
+            "ChildId": "",
+            "AccountId": "",
+            "ChildFirstName": childFirstName,
+            "ChildMiddleName": childMiddleName,
+            "ChildLastName": childLastName,
+            "ChildDOB": "",
+            "ChildFullName": childFirstName + " " + childMiddleName + " " + childLastName,
+            "MedicalConditions": "",
+            "GPsDetails": "",
+            "EmergencyName": "",
+            "EmergencyRelation": "",
+            "EmergencyHomeNumber": "",
+            "EmergencyMobileNumber": "",
+            "EmergencyWorkNumber": "",
+            "KeyWorkerId": "",
+            "EverNoteAccessToken": "",
+            ]
+        
+        let route = baseURL + "api/ChildLogic/UpdateChild?nurserySchoolId=" + nurserySchoolId
+        makeHTTPPost(encode: false, path: route, params: parameters, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

@@ -164,6 +164,31 @@ func makeHTTPPostRequest(encode: Bool, path: String, onCompletion: @escaping Ser
 
 
 /*!
+ @brief Performs an HTTP POST request.
+ */
+func makeHTTPPost(encode: Bool, path: String, params: Parameters, onCompletion: @escaping ServiceResponse) {
+    
+    let user = "byoung"
+    let password = "P@ssw0rd.1"
+    
+    var headers: HTTPHeaders = [:]
+    
+    if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
+        headers[authorizationHeader.key] = authorizationHeader.value
+    }
+    
+    Alamofire.request(path, method: .post, parameters: params, encoding: URLEncoding.httpBody, headers: headers).responseJSON { response in
+        
+        if let data = response.data {
+            let json = String(data: data, encoding: String.Encoding.utf8)
+            print("Response: \(json)")
+        }
+    }
+    
+}
+
+
+/*!
  @brief Performs an HTTP DELETE request.
  */
 func makeHTTPDeleteRequest(encode: Bool, path: String, onCompletion: @escaping ServiceResponse) {

@@ -11,18 +11,26 @@ import UIKit
 
 class TutorialPageViewController: UIPageViewController {
     
+    var WizardPurpose: WizardPurpose!
+    var successSegue: String!
+    var cancelSegue: String!
+    
+    var onLastPage = false
+    
+    var WizardViewControllers: [String] = []
     
     weak var tutorialDelegate: TutorialPageViewControllerDelegate?
     
     fileprivate(set) lazy var orderedViewControllers: [UIViewController] = {
         // The view controllers will be shown in this order
-        return [self.newColoredViewController("CreateChild_Step1"),
-                self.newColoredViewController("CreateChild_Step2"),
-                self.newColoredViewController("CreateChild_Step3")]
+        return [self.newColoredViewController("CreateChild_Step1")] //Add to this array for more Wizard steps!
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //This needs to be passed in 
+        WizardPurpose = .CreatQuickChild
         
         dataSource = self
         delegate = self
@@ -44,6 +52,35 @@ class TutorialPageViewController: UIPageViewController {
                                                         viewControllerAfter: visibleViewController) {
             scrollToViewController(nextViewController)
         }
+        
+        if(onLastPage)
+        {
+            if(self.WizardPurpose == .CreatQuickChild)
+            {
+                if let step1 = orderedViewControllers[0] as? CreateChild_Quick_1ViewController {
+                    if let step2 = orderedViewControllers[0] as? CreateChild_Quick_2ViewController {
+                        
+                    ChildRequests.sharedInstance.CreateChild(childFirstName: step1.FirstNameTextField.text!, childMiddleName: step1.MiddleNameTextField.text!, childLastName: step1.LastNameTextField.text!, mothersEmail: step2.MotherEmail.text!, fathersEmail: step2.FatherEMail.text!, onCompletion:
+                        { json in
+                            
+                            for (index: _, subJson: JSON) in json {
+                                let succes = JSON["Success"].stringValue as NSString
+                            }
+                            
+                            DispatchQueue.main.async(execute: {
+                                
+                                //Do something on complete!
+                                
+                                
+                            })
+                    })
+                    
+                }
+                    
+                }
+            }
+        }
+        
     }
     
     /**
@@ -53,12 +90,32 @@ class TutorialPageViewController: UIPageViewController {
      - parameter newIndex: the new index to scroll to
      */
     func scrollToViewController(index newIndex: Int) {
+       
         if let firstViewController = viewControllers?.first,
             let currentIndex = orderedViewControllers.index(of: firstViewController) {
             let direction: UIPageViewControllerNavigationDirection = newIndex >= currentIndex ? .forward : .reverse
             let nextViewController = orderedViewControllers[newIndex]
             scrollToViewController(nextViewController, direction: direction)
         }
+       
+        if(onLastPage)
+        {
+            if(self.WizardPurpose == .CreatQuickChild)
+            {
+                
+                
+               
+                
+           
+               
+                
+            }
+        }
+        else{
+            
+        }
+        
+        
     }
     
     fileprivate func newColoredViewController(_ color: String) -> UIViewController {
@@ -90,9 +147,21 @@ class TutorialPageViewController: UIPageViewController {
     fileprivate func notifyTutorialDelegateOfNewIndex() {
         if let firstViewController = viewControllers?.first,
             let index = orderedViewControllers.index(of: firstViewController) {
-            tutorialDelegate?.tutorialPageViewController(self,
-                                                         didUpdatePageIndex: index)
-        }
+            
+            if(index == orderedViewControllers.count-1){
+                 self.onLastPage = true
+            }
+            else
+            {
+            self.onLastPage = false
+            }
+            
+            tutorialDelegate?.tutorialPageViewController(self, didUpdatePageIndex: index, onLastPage:  self.onLastPage)
+            
+            
+            }
+        
+        
     }
     
 }
@@ -112,7 +181,8 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
         // User is on the first view controller and swiped left to loop to
         // the last view controller.
         guard previousIndex >= 0 else {
-            return orderedViewControllers.last
+            //return orderedViewControllers.last
+            return nil
         }
         
         guard orderedViewControllers.count > previousIndex else {
@@ -134,7 +204,8 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
         // User is on the last view controller and swiped right to loop to
         // the first view controller.
         guard orderedViewControllersCount != nextIndex else {
-            return orderedViewControllers.first
+            //return orderedViewControllers.first
+            return nil
         }
         
         guard orderedViewControllersCount > nextIndex else {
@@ -175,6 +246,6 @@ protocol TutorialPageViewControllerDelegate: class {
      - parameter index: the index of the currently visible page.
      */
     func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
-                                    didUpdatePageIndex index: Int)
+                                    didUpdatePageIndex index: Int, onLastPage : Bool)
     
 }
