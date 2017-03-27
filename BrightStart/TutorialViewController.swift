@@ -10,12 +10,15 @@ import UIKit
 
 class TutorialViewController: UIViewController {
     
+    var WizardPurpose: WizardPurpose!
+    var successSegue: String!
+    var cancelSegue: String!
+    
     @IBOutlet weak var Top: UIView!
-        @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var NextFinishButton: UIButton!
     
     @IBOutlet weak var pageControl: UIPageControl!
-    
     
     var tutorialPageViewController: TutorialPageViewController? {
         didSet {
@@ -109,26 +112,22 @@ class TutorialViewController: UIViewController {
         
         NextFinishButton.heightAnchor.constraint(
             equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
-
-
-        
-        
-        
-
-    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let tutorialPageViewController = segue.destination as? TutorialPageViewController {
+            
             self.tutorialPageViewController = tutorialPageViewController
+            
+            tutorialPageViewController.WizardPurpose = WizardPurpose
+            tutorialPageViewController.successSegue = successSegue
+            tutorialPageViewController.cancelSegue = cancelSegue
+            
         }
     }
     
     @IBAction func didTapNextButton(_ sender: UIButton) {
         tutorialPageViewController?.scrollToNextViewController()
-        
-        
-        
     }
     
     /**

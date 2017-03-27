@@ -23,7 +23,7 @@ class TutorialPageViewController: UIPageViewController {
     
     fileprivate(set) lazy var orderedViewControllers: [UIViewController] = {
         // The view controllers will be shown in this order
-        return [self.newColoredViewController("CreateChild_Step1")] //Add to this array for more Wizard steps!
+        return [self.newColoredViewController("CreateChild_Step1"), self.newColoredViewController("CreateChild_Step2")] //Add to this array for more Wizard steps!
     }()
     
     override func viewDidLoad() {
@@ -55,28 +55,56 @@ class TutorialPageViewController: UIPageViewController {
         
         if(onLastPage)
         {
+            var accountId = ""
+            
             if(self.WizardPurpose == .CreatQuickChild)
             {
                 if let step1 = orderedViewControllers[0] as? CreateChild_Quick_1ViewController {
-                    if let step2 = orderedViewControllers[0] as? CreateChild_Quick_2ViewController {
+                    if let step2 = orderedViewControllers[1] as? CreateChild_Quick_2ViewController {
                         
-                    ChildRequests.sharedInstance.CreateChild(childFirstName: step1.FirstNameTextField.text!, childMiddleName: step1.MiddleNameTextField.text!, childLastName: step1.LastNameTextField.text!, mothersEmail: step2.MotherEmail.text!, fathersEmail: step2.FatherEMail.text!, onCompletion:
-                        { json in
-                            
-                            for (index: _, subJson: JSON) in json {
-                                let succes = JSON["Success"].stringValue as NSString
-                            }
-                            
-                            DispatchQueue.main.async(execute: {
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        AccountRequests.sharedInstance.CreateAccount(mothersEmail: step2.MotherEmail.text!, fathersEmail: step2.FatherEMail.text!, mothersName: step2.MothersName.text!, fathersName: step2.FathersName.text!, onCompletion:
+                            { json in
+                              
+                                print(json["AccountId"].stringValue as NSString)
                                 
-                                //Do something on complete!
+                                accountId = (json["AccountId"].stringValue as NSString) as String
                                 
+                                print(accountId)
                                 
-                            })
-                    })
-                    
+                                DispatchQueue.main.async(execute: {
+                                    
+                                    ChildHelperRequests.sharedInstance.CreateChild(childFirstName: step1.FirstNameTextField.text!, childMiddleName: step1.MiddleNameTextField.text!, childLastName: step1.LastNameTextField.text!, accountId:accountId, onCompletion:
+                                        { json in
+                                            
+                                            for (index: _, subJson: JSON) in json {
+                                                let suc = JSON["Success"].stringValue as NSString
+                                            }
+                                            
+                                            DispatchQueue.main.async(execute: {
+                                                
+                                                //Finally created both accounts and child
+                                                
+                                                
+                                                
+                                            })
+                                    })
+                                })
+                        })
                 }
-                    
                 }
             }
         }

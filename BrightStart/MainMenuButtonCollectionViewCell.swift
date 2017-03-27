@@ -98,6 +98,9 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         else if(segueText=="GoToRegisteredHoursMenu"){
             delegate?.renderMenuAssets(menuType: .RegisteredHours)
         }
+        else if(segueText=="GoToChildrenMenu"){
+            delegate?.renderMenuAssets(menuType: .Children)
+        }
         else{
             delegate?.performSegue(segueId: segueText)
         }

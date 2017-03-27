@@ -12,7 +12,10 @@ import Foundation
 class AuthyRequests: NSObject {
     
     static let sharedInstance = AuthyRequests()
-    let baseURL = "https://brightstartwebapi126.azurewebsites.net/"
+    let baseURL = ApiInformation.ApiURL
+    
+    
+    
     var nurserySchoolId = "";
     
     /*!

@@ -20,8 +20,8 @@ func makeHTTPGetRequest(encode: Bool, path: String, onCompletion: @escaping Serv
      url = path.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
     }
     
-    let user = "byoung"
-    let password = "P@ssw0rd.1"
+    let user = ApiInformation.BasicAithUsername
+    let password = ApiInformation.BasicAithPassword
     
     var headers: HTTPHeaders = [:]
     
@@ -67,8 +67,8 @@ func makeHTTPPutRequest(encode: Bool, path: String, onCompletion: @escaping Serv
         url = path.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
     }
     
-    let user = "byoung"
-    let password = "P@ssw0rd.1"
+    let user = ApiInformation.BasicAithUsername
+    let password = ApiInformation.BasicAithPassword
     
     var headers: HTTPHeaders = [:]
     
@@ -121,8 +121,8 @@ func makeHTTPPostRequest(encode: Bool, path: String, onCompletion: @escaping Ser
         url = path.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
     }
     
-    let user = "byoung"
-    let password = "P@ssw0rd.1"
+    let user = ApiInformation.BasicAithUsername
+    let password = ApiInformation.BasicAithPassword
     
     var headers: HTTPHeaders = [:]
     
@@ -168,8 +168,8 @@ func makeHTTPPostRequest(encode: Bool, path: String, onCompletion: @escaping Ser
  */
 func makeHTTPPost(encode: Bool, path: String, params: Parameters, onCompletion: @escaping ServiceResponse) {
     
-    let user = "byoung"
-    let password = "P@ssw0rd.1"
+    let user = ApiInformation.BasicAithUsername
+    let password = ApiInformation.BasicAithPassword
     
     var headers: HTTPHeaders = [:]
     
@@ -177,13 +177,30 @@ func makeHTTPPost(encode: Bool, path: String, params: Parameters, onCompletion: 
         headers[authorizationHeader.key] = authorizationHeader.value
     }
     
-    Alamofire.request(path, method: .post, parameters: params, encoding: URLEncoding.httpBody, headers: headers).responseJSON { response in
+    Alamofire.request(path, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
         
-        if let data = response.data {
-            let json = String(data: data, encoding: String.Encoding.utf8)
-            print("Response: \(json)")
+        switch response.result {
+            
+        case.success(let data):
+            onCompletion(JSON(data), nil)
+            
+        case.failure(let error):
+            if let httpStatusCode = response.response?.statusCode {
+                switch(httpStatusCode) {
+                case 400:
+                    print("Not found \(error) ")
+                case 401:
+                    print("Unauthorised\(error) ")
+                default:
+                    print("An unknown eror occured when making an http request")
+                }
+                
+            }
         }
     }
+    
+    
+   // Alamofire.request(path, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
     
 }
 
@@ -199,8 +216,8 @@ func makeHTTPDeleteRequest(encode: Bool, path: String, onCompletion: @escaping S
         url = path.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
     }
     
-    let user = "byoung"
-    let password = "P@ssw0rd.1"
+    let user = ApiInformation.BasicAithUsername
+    let password = ApiInformation.BasicAithPassword
     
     var headers: HTTPHeaders = [:]
     

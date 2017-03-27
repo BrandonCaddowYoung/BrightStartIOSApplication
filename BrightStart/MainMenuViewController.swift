@@ -10,6 +10,7 @@ import UIKit
 
 enum MenuTypes: Int {
     case MainMenu
+    case Children
     case TimeStamps
     case Authy
     case AuthyUsers
@@ -20,10 +21,16 @@ enum PurposeTypes: Int {
     
     case None
     
+    case Children
     case Register
     case information
     case SignOut
    
+    case Child_QuickCreate
+    case Child_Create
+    case Child_Edit
+    case Child_Delete
+    
     case RegisterdHours_Set
     case RegisterdHours_Edit
     case RegisteredHours_Delete
@@ -144,17 +151,18 @@ class MainMenuViewController: UIViewController {
         self.authyIdList = []
         
         switch selectedMenu {
+            
         case .MainMenu:
             
-            images = [UIImage(named: "Register")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Register")!,UIImage(named: "Children")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRegister", "GoToSearchPerson", "GoToSearchPerson", "GoToAuthyMenu", "GoToSignIn"]
+            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToSearchPerson", "GoToSearchPerson", "GoToAuthyMenu", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Register, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.None, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.None, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Register",  "Registered Hours", "Time Stamps", "Auhty", "Sign Out"]
+            DisplayTextList = ["Register",  "Children", "Registered Hours", "Time Stamps", "Auhty", "Sign Out"]
             
-            authyIdList = ["",  "", "", "", ""]
+            authyIdList = ["",  "", "", "",  "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -186,6 +194,21 @@ class MainMenuViewController: UIViewController {
             PurposeList = [PurposeTypes.RegisterdHours_Edit,  PurposeTypes.SignOut]
             
             DisplayTextList = ["Edit", "Sign Out"]
+            
+            authyIdList = ["", ""]
+            
+            showNavigationBar = true
+            ShowNavBar()
+            
+        case .Children:
+            
+            images = [UIImage(named: "AddUserMale")!, UIImage(named: "SignOut")!]
+            
+            segueIdList = ["GoToChildQuickCreate", "GoToSignIn"]
+            
+            PurposeList = [PurposeTypes.Child_QuickCreate,  PurposeTypes.SignOut]
+            
+            DisplayTextList = ["Quick Create", "Sign Out"]
             
             authyIdList = ["", ""]
             
@@ -708,6 +731,17 @@ class MainMenuViewController: UIViewController {
             //No need to pass anyhting to the regiser.
             
         }
+        else if (segue.identifier == "GoToChildQuickCreate") {
+            
+            if let vc = segue.destination as? TutorialViewController {
+ 
+                //vc.WizardPurpose =
+                vc.successSegue = ""
+                vc.cancelSegue = ""
+               
+            }
+            
+        }
     }
 }
 
@@ -884,6 +918,9 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         case .AuthyUsers:
             self.navigationItem.title="Authy Users"
             //navigationController?.navigationBar.topItem?.title = "Authy Users"
+                case .Children:
+                    self.navigationItem.title="Children"
+                    //navigationController?.navigationBar.topItem?.title = "Authy Users"
             
         }
     }

@@ -13,7 +13,7 @@ typealias ServiceResponse = (JSON, NSError?) -> Void
 class CommonRequests: NSObject {
     
     static let sharedInstance = CommonRequests()
-    let baseURL = "https://brightstartwebapi126.azurewebsites.net/"
+    let baseURL = ApiInformation.ApiURL
     var nurserySchoolId = "";
     
     /*!

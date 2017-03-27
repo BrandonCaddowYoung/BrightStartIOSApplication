@@ -29,6 +29,9 @@
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
 		7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */; };
 		7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */; };
+		7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */; };
+		7B6A1AD41E855B9800540E0C /* ApiInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6A1AD31E855B9800540E0C /* ApiInformation.swift */; };
+		7B6A1AED1E85B53700540E0C /* ChildHelperRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */; };
 		7B774F9E1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B774F9D1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib */; };
 		7B774FA01E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B774F9F1E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift */; };
 		7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B774FA11E4FD47700ECDF66 /* CalendarPurpose.swift */; };
@@ -289,6 +292,9 @@
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyRequests.swift; sourceTree = "<group>"; };
 		7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyPersonSearchTableViewController.swift; sourceTree = "<group>"; };
+		7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRequests.swift; sourceTree = "<group>"; };
+		7B6A1AD31E855B9800540E0C /* ApiInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiInformation.swift; sourceTree = "<group>"; };
+		7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildHelperRequests.swift; sourceTree = "<group>"; };
 		7B774F9D1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeStampsSectionHeaderView.xib; sourceTree = "<group>"; };
 		7B774F9F1E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampsSectionHeader.swift; sourceTree = "<group>"; };
 		7B774FA11E4FD47700ECDF66 /* CalendarPurpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPurpose.swift; sourceTree = "<group>"; };
@@ -593,6 +599,9 @@
 				7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */,
 				7BB2220B1E4CA86E0069E74D /* RegistrationRequests.swift */,
 				7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */,
+				7B6A1AD31E855B9800540E0C /* ApiInformation.swift */,
+				7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */,
+				7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1033,6 +1042,7 @@
 				7B8BDBCA1E12B5F1009F3EAF /* TimeStampSearchTableViewController.swift in Sources */,
 				7BD0FFE31E43C95300472759 /* AuthyTestViewController.swift in Sources */,
 				7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */,
+				7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */,
 				7BB270C91E7C8CAA0023DF7D /* Authy_SettingsViewController.swift in Sources */,
 				7BB221F11E4BB75C0069E74D /* RegistrationModel.swift in Sources */,
 				7B1575E31E816A98008AB34F /* DoubleTemplateViewController.swift in Sources */,
@@ -1052,6 +1062,7 @@
 				7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */,
 				7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */,
 				7B1575DB1E806477008AB34F /* TutorialViewController.swift in Sources */,
+				7B6A1AED1E85B53700540E0C /* ChildHelperRequests.swift in Sources */,
 				7B1575E61E81A139008AB34F /* SingleTemplateViewController.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				7B1575DF1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift in Sources */,
@@ -1075,6 +1086,7 @@
 				7B8BDBDF1E1572AF009F3EAF /* ChildRequests.swift in Sources */,
 				7B1575E11E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
+				7B6A1AD41E855B9800540E0C /* ApiInformation.swift in Sources */,
 				7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */,
 				7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */,
 				7B148C261E578B0300D309F6 /* ProgressHUD.swift in Sources */,

@@ -14,7 +14,7 @@ import Foundation
 class PersonLogRequests: NSObject {
     
     static let sharedInstance = PersonLogRequests()
-    let baseURL = "https://brightstartwebapi126.azurewebsites.net/"
+    let baseURL = ApiInformation.ApiURL
     var nurserySchoolId = "";
     
     /*!

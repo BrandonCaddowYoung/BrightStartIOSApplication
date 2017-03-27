@@ -14,7 +14,7 @@ import Foundation
 class RegistrationHoursRequests: NSObject {
     
     static let sharedInstance = RegistrationHoursRequests()
-    let baseURL = "https://brightstartwebapi126.azurewebsites.net/"
+    let baseURL = ApiInformation.ApiURL
     var nurserySchoolId = "";
     
     /*!
