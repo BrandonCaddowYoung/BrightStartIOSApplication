@@ -54,7 +54,7 @@ class CreateChild_Quick_1ViewController: UIViewController {
         
         setupConstraints()
         
-        Top.backgroundColor = _ApplicatoinColours.White
+        Top.backgroundColor = _ApplicatoinColours.BackGroundColour
         
         UpperHeading.backgroundColor = _ApplicatoinColours.White
         
@@ -66,12 +66,31 @@ class CreateChild_Quick_1ViewController: UIViewController {
         
         LowerContent.backgroundColor = _ApplicatoinColours.White
         
-        Bottom.backgroundColor = _ApplicatoinColours.White
+        Bottom.backgroundColor = _ApplicatoinColours.BackGroundColour
+        
+        //UpperContent.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        LowerContent.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        UpperHeading.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        
+        HeadingLabel.font = _ApplicatoinColours.largeFont
+        HeadingLabel.textColor = _ApplicatoinColours.White
+        
+        NameLabel.font = _ApplicatoinColours.mediumFont
+        DateOfBirthLabel.font = _ApplicatoinColours.mediumFont
+        
+        FirstNameTextField.font = _ApplicatoinColours.sshmediumlFont
+        MiddleNameTextField.font = _ApplicatoinColours.sshmediumlFont
+        LastNameTextField.font = _ApplicatoinColours.sshmediumlFont
+        
+         FirstNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+         MiddleNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+        
+         LastNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+       
     }
     
-    
     func setupConstraints() {
-        
         
         //Middle
         
@@ -87,8 +106,6 @@ class CreateChild_Quick_1ViewController: UIViewController {
         //height
         Middle.heightAnchor.constraint(
             equalTo: view.heightAnchor, multiplier: 0.01).isActive = true
-        
-        
         
         //Top
         

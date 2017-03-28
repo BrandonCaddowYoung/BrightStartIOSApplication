@@ -51,7 +51,7 @@
             
             setupConstraints()
             
-            Top.backgroundColor = _ApplicatoinColours.White
+            Top.backgroundColor = _ApplicatoinColours.BackGroundColour
             
             UpperHeading.backgroundColor = _ApplicatoinColours.White
             
@@ -63,12 +63,31 @@
             
             LowerContent.backgroundColor = _ApplicatoinColours.White
             
-            Bottom.backgroundColor = _ApplicatoinColours.White
+            Bottom.backgroundColor = _ApplicatoinColours.BackGroundColour
+            
+            //UpperContent.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
+            LowerContent.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
+            UpperHeading.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
+            
+            HeadingLabel.font = _ApplicatoinColours.largeFont
+            HeadingLabel.textColor = _ApplicatoinColours.White
+            
+            MothersName.font = _ApplicatoinColours.sshmediumlFont
+            FathersName.font = _ApplicatoinColours.sshmediumlFont
+            MotherEmail.font = _ApplicatoinColours.sshmediumlFont
+            FatherEMail.font = _ApplicatoinColours.sshmediumlFont
+            
+            MothersName.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+            FathersName.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+            MotherEmail.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+            FatherEMail.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+            
+            NamesLabel.font = _ApplicatoinColours.mediumFont
+            EmailLabel.font = _ApplicatoinColours.mediumFont
+            
         }
         
-        
         func setupConstraints() {
-            
             
             //Middle
             
@@ -305,9 +324,6 @@
                 equalTo: LowerHeading.bottomAnchor).isActive = true
             
             
-            
-            
-            
             //First Name
             
             MotherEmail.translatesAutoresizingMaskIntoConstraints = false
@@ -347,12 +363,6 @@
             //height
             FatherEMail.heightAnchor.constraint(
                 equalTo: LowerContent.heightAnchor, multiplier: 0.15).isActive = true
-            
-
-            
-            
-            
-            
             
             
         }

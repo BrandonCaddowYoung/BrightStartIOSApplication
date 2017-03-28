@@ -10,9 +10,14 @@ import UIKit
 
 class TutorialViewController: UIViewController {
     
+    var _ApplicatoinColours: ApplicatoinColours!
+    var _CommonHelper: CommonHelper!
+    
     var WizardPurpose: WizardPurpose!
     var successSegue: String!
     var cancelSegue: String!
+    
+    var showNavigationBar = true
     
     @IBOutlet weak var Top: UIView!
     @IBOutlet weak var containerView: UIView!
@@ -31,13 +36,28 @@ class TutorialViewController: UIViewController {
         
          self.edgesForExtendedLayout = []
         
+        _ApplicatoinColours = ApplicatoinColours()
+        _CommonHelper = CommonHelper()
+        
         pageControl.addTarget(self, action: #selector(TutorialViewController.didChangePageControlValue), for: .valueChanged)
         
         setupConstraints()
         
         Top.backgroundColor = .clear
+        
+        let image = UIImage.outlinedEllipse(size: CGSize(width: 7.0, height: 7.0), color: _ApplicatoinColours.Orange)
+        self.pageControl.pageIndicatorTintColor = UIColor.init(patternImage: image!)
+        self.pageControl.currentPageIndicatorTintColor = .white
+        
+        //Stlying save button
+        NextFinishButton.layer.cornerRadius = 5
+        NextFinishButton.layer.borderWidth = 1
+        NextFinishButton.layer.borderColor = _ApplicatoinColours.White.cgColor
+        NextFinishButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        
+        NextFinishButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        NextFinishButton.setTitleColor(_ApplicatoinColours.Black, for: .normal)
     }
-    
     
     func setupConstraints() {
         
@@ -76,9 +96,6 @@ class TutorialViewController: UIViewController {
         //height
         Top.heightAnchor.constraint(
             equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
-
-        
-        
         
         //Top
         
@@ -90,10 +107,6 @@ class TutorialViewController: UIViewController {
         
         pageControl.leadingAnchor.constraint(
             equalTo: Top.leadingAnchor, constant: 15).isActive = true
-        
-        
-        
-        
         
         //Top
         
@@ -115,7 +128,16 @@ class TutorialViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let tutorialPageViewController = segue.destination as? TutorialPageViewController {
+        
+        if (segue.identifier == "GoToMenu") {
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                //In future we should go back to the calendar and select the date, however for now we should just go back to the main menu
+                vc.selectedMenu = .MainMenu
+            }
+        }
+        
+        else if let tutorialPageViewController = segue.destination as? TutorialPageViewController {
             
             self.tutorialPageViewController = tutorialPageViewController
             
@@ -127,7 +149,16 @@ class TutorialViewController: UIViewController {
     }
     
     @IBAction func didTapNextButton(_ sender: UIButton) {
-        tutorialPageViewController?.scrollToNextViewController()
+        
+         tutorialPageViewController?.scrollToNextViewController()
+        
+        //Final page validation
+        
+       // if(self.tutorialPageViewController?.Validation(currentIndex: 1) == true)
+        //{
+          //   tutorialPageViewController?.scrollToNextViewController()
+       // }
+        
     }
     
     /**
@@ -136,6 +167,61 @@ class TutorialViewController: UIViewController {
     func didChangePageControlValue() {
         tutorialPageViewController?.scrollToViewController(index: pageControl.currentPage)
     }
+    
+    //Removes the navigation bar from the top
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(true, animated: animated);
+        }
+        
+    }
+    
+    func NavBarMenuTapped(){
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            //Changes the color of the backgorund within the nav bar.
+            navigationController?.navigationBar.barStyle = UIBarStyle.black
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            
+            //Title color
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            
+            //Back color
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            
+            //Back ground color
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            
+            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            
+            navigationController?.navigationBar.topItem?.title = ""
+            navigationController?.navigationBar.backItem?.title = ""
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
+    }
+    
 }
 
 extension TutorialViewController: TutorialPageViewControllerDelegate {
@@ -155,9 +241,31 @@ extension TutorialViewController: TutorialPageViewControllerDelegate {
         else
         {
             NextFinishButton.setTitle("Next", for: .normal)
+        }
+    }
+}
 
+/// An extension to `UIImage` for creating images with shapes.
+extension UIImage {
+    
+    /// Creates a circular outline image.
+    class func outlinedEllipse(size: CGSize, color: UIColor, lineWidth: CGFloat = 1.0) -> UIImage? {
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
         }
         
+        context.setStrokeColor(color.cgColor)
+        context.setLineWidth(lineWidth)
+        // Inset the rect to account for the fact that strokes are
+        // centred on the bounds of the shape.
+        let rect = CGRect(origin: .zero, size: size).insetBy(dx: lineWidth * 0.5, dy: lineWidth * 0.5)
+        context.addEllipse(in: rect)
+        context.strokePath()
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
-    
 }

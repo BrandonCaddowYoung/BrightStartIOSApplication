@@ -462,7 +462,7 @@ class AddRegisteredHoursViewController: UIViewController {
             self.navigationController?.setNavigationBarHidden(true, animated: animated)
         }
         else
-        {   
+        {
             //Changes the color of the backgorund within the nav bar.
             navigationController?.navigationBar.barStyle = UIBarStyle.black
             navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black

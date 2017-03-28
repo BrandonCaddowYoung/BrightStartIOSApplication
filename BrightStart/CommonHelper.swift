@@ -16,9 +16,6 @@ class CommonHelper {
         
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
-        
-        
-        
         alert.view.layer.cornerRadius = 8.0
         alert.view.layer.masksToBounds = true
         

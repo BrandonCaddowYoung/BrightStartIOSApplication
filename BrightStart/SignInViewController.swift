@@ -622,8 +622,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     //Removing the message we showed the user when they attempted to sign in.
                     self._PopUpAlert.dismiss(animated: false, completion: callActionHandler)
                     
-                    
-                    
                 }
                 else
                 {
@@ -631,7 +629,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                 //Notify the user that the given credentials were incorrect.
                     
                     //Removing the message we showed the user when they attempted to sign in.
-                    self._PopUpAlert.dismiss(animated: false, completion: {  let alert = UIAlertController(title: "Login failed.", message:
+                    self._PopUpAlert.dismiss(animated: false, completion: {
+                        
+                        let alert = UIAlertController(title: "Login failed.", message:
                         "Invalid credentials were supplied. Please try again making sure both your username and password are spelt correctly.", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
                         
@@ -653,9 +653,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signInButtonClicked(_ sender: Any) {
         
         _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
-        
-        
-        
         self.present(_PopUpAlert, animated: true, completion: nil)
         
         //Removing incase the user is trying to switch accounts.
