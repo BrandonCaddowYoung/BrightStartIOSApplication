@@ -14,7 +14,7 @@
 		7B148C261E578B0300D309F6 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C251E578B0000D309F6 /* ProgressHUD.swift */; };
 		7B148C281E59994F00D309F6 /* RegistrationHoursRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */; };
 		7B148C2A1E599E4D00D309F6 /* RegistrationHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C291E599E4C00D309F6 /* RegistrationHours.swift */; };
-		7B1575B81E805311008AB34F /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575B71E805311008AB34F /* TutorialPageViewController.swift */; };
+		7B1575B81E805311008AB34F /* WizardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575B71E805311008AB34F /* WizardPageViewController.swift */; };
 		7B1575DB1E806477008AB34F /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575DA1E806477008AB34F /* TutorialViewController.swift */; };
 		7B1575DD1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575DC1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift */; };
 		7B1575DF1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575DE1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift */; };
@@ -276,7 +276,7 @@
 		7B148C251E578B0000D309F6 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationHoursRequests.swift; sourceTree = "<group>"; };
 		7B148C291E599E4C00D309F6 /* RegistrationHours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationHours.swift; sourceTree = "<group>"; };
-		7B1575B71E805311008AB34F /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
+		7B1575B71E805311008AB34F /* WizardPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardPageViewController.swift; sourceTree = "<group>"; };
 		7B1575DA1E806477008AB34F /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		7B1575DC1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChild_Quick_1ViewController.swift; sourceTree = "<group>"; };
 		7B1575DE1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChild_Quick_2ViewController.swift; sourceTree = "<group>"; };
@@ -393,7 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				7B1575B91E805354008AB34F /* PageViewControllers */,
-				7B1575B71E805311008AB34F /* TutorialPageViewController.swift */,
+				7B1575B71E805311008AB34F /* WizardPageViewController.swift */,
 				7B1575DA1E806477008AB34F /* TutorialViewController.swift */,
 				7B1575E91E8328DB008AB34F /* WizardPurpose.swift */,
 			);
@@ -784,16 +784,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1096,7 +1096,7 @@
 				7B1575E81E81BED1008AB34F /* ListItemCell.swift in Sources */,
 				7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,
-				7B1575B81E805311008AB34F /* TutorialPageViewController.swift in Sources */,
+				7B1575B81E805311008AB34F /* WizardPageViewController.swift in Sources */,
 				7BDEF8301E75A62D0012151B /* CircleView.swift in Sources */,
 				7BC518221E4324BA00F81374 /* NewAuhtyViewController.swift in Sources */,
 			);

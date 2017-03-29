@@ -733,7 +733,7 @@ class MainMenuViewController: UIViewController {
         }
         else if (segue.identifier == "GoToChildQuickCreate") {
             
-            if let vc = segue.destination as? TutorialViewController {
+            if let vc = segue.destination as? WizardViewController {
  
                 //vc.WizardPurpose =
                 vc.successSegue = ""

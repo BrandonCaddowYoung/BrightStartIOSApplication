@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TutorialViewController: UIViewController {
+class WizardViewController: UIViewController {
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -25,9 +25,9 @@ class TutorialViewController: UIViewController {
     
     @IBOutlet weak var pageControl: UIPageControl!
     
-    var tutorialPageViewController: TutorialPageViewController? {
+    var wizardPageViewController: WizardPageViewController? {
         didSet {
-            tutorialPageViewController?.tutorialDelegate = self
+            wizardPageViewController?.tutorialDelegate = self
         }
     }
     
@@ -39,7 +39,7 @@ class TutorialViewController: UIViewController {
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
-        pageControl.addTarget(self, action: #selector(TutorialViewController.didChangePageControlValue), for: .valueChanged)
+        pageControl.addTarget(self, action: #selector(WizardViewController.didChangePageControlValue), for: .valueChanged)
         
         setupConstraints()
         
@@ -137,20 +137,20 @@ class TutorialViewController: UIViewController {
             }
         }
         
-        else if let tutorialPageViewController = segue.destination as? TutorialPageViewController {
+        else if let wizardPageViewController = segue.destination as? WizardPageViewController {
             
-            self.tutorialPageViewController = tutorialPageViewController
+            self.wizardPageViewController = wizardPageViewController
             
-            tutorialPageViewController.WizardPurpose = WizardPurpose
-            tutorialPageViewController.successSegue = successSegue
-            tutorialPageViewController.cancelSegue = cancelSegue
+            wizardPageViewController.WizardPurpose = WizardPurpose
+            wizardPageViewController.successSegue = successSegue
+            wizardPageViewController.cancelSegue = cancelSegue
             
         }
     }
     
     @IBAction func didTapNextButton(_ sender: UIButton) {
         
-         tutorialPageViewController?.scrollToNextViewController()
+         wizardPageViewController?.scrollToNextViewController()
         
         //Final page validation
         
@@ -165,7 +165,7 @@ class TutorialViewController: UIViewController {
      Fired when the user taps on the pageControl to change its current page.
      */
     func didChangePageControlValue() {
-        tutorialPageViewController?.scrollToViewController(index: pageControl.currentPage)
+        wizardPageViewController?.scrollToViewController(index: pageControl.currentPage)
     }
     
     //Removes the navigation bar from the top
@@ -224,14 +224,14 @@ class TutorialViewController: UIViewController {
     
 }
 
-extension TutorialViewController: TutorialPageViewControllerDelegate {
+extension WizardViewController: WizardPageViewControllerDelegate {
     
-    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
+    func wizardPageViewController(_ tutorialPageViewController: WizardPageViewController,
                                     didUpdatePageCount count: Int) {
         pageControl.numberOfPages = count
     }
     
-    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
+    func wizardPageViewController(_ wizardPageViewController: WizardPageViewController,
                                     didUpdatePageIndex index: Int, onLastPage: Bool) {
         pageControl.currentPage = index
         

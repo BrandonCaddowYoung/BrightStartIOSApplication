@@ -1906,10 +1906,10 @@
             </objects>
             <point key="canvasLocation" x="-954.39999999999998" y="546.47676161919048"/>
         </scene>
-        <!--Tutorial Page View Controller-->
+        <!--Wizard Page View Controller-->
         <scene sceneID="dcS-N4-NeD">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="G69-01-Aa4" customClass="TutorialPageViewController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="G69-01-Aa4" customClass="WizardPageViewController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMenu" id="U8W-fd-z3u"/>
                         <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMenu" id="v3g-16-rvh"/>
@@ -1919,10 +1919,10 @@
             </objects>
             <point key="canvasLocation" x="-103" y="1693"/>
         </scene>
-        <!--Tutorial View Controller-->
+        <!--Wizard View Controller-->
         <scene sceneID="3pU-0r-51P">
             <objects>
-                <viewController id="RWf-iR-1kG" customClass="TutorialViewController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RWf-iR-1kG" customClass="WizardViewController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FrH-Sl-4cl"/>
                         <viewControllerLayoutGuide type="bottom" id="0Cy-uP-Uu9"/>

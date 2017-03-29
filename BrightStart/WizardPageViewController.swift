@@ -9,7 +9,7 @@
 
 import UIKit
 
-class TutorialPageViewController: UIPageViewController {
+class WizardPageViewController: UIPageViewController {
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -22,7 +22,7 @@ class TutorialPageViewController: UIPageViewController {
     
     var WizardViewControllers: [String] = []
     
-    weak var tutorialDelegate: TutorialPageViewControllerDelegate?
+    weak var tutorialDelegate: WizardPageViewControllerDelegate?
     
     fileprivate(set) lazy var orderedViewControllers: [UIViewController] = {
         // The view controllers will be shown in this order
@@ -47,7 +47,7 @@ class TutorialPageViewController: UIPageViewController {
             scrollToViewController(initialViewController)
         }
         
-        tutorialDelegate?.tutorialPageViewController(self,
+        tutorialDelegate?.wizardPageViewController(self,
                                                      didUpdatePageCount: orderedViewControllers.count)
         
         }
@@ -162,7 +162,7 @@ class TutorialPageViewController: UIPageViewController {
             self.onLastPage = false
             }
             
-            tutorialDelegate?.tutorialPageViewController(self, didUpdatePageIndex: index, onLastPage:  self.onLastPage)
+            tutorialDelegate?.wizardPageViewController(self, didUpdatePageIndex: index, onLastPage:  self.onLastPage)
             
             
             }
@@ -174,7 +174,7 @@ class TutorialPageViewController: UIPageViewController {
 
 // MARK: UIPageViewControllerDataSource
 
-extension TutorialPageViewController: UIPageViewControllerDataSource {
+extension WizardPageViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -298,7 +298,7 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
     
 }
 
-extension TutorialPageViewController: UIPageViewControllerDelegate {
+extension WizardPageViewController: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             didFinishAnimating finished: Bool,
@@ -325,7 +325,7 @@ func prepare(for segue: UIStoryboardSegue, sender: Any!) {
     
 }
 
-protocol TutorialPageViewControllerDelegate: class {
+protocol WizardPageViewControllerDelegate: class {
     
     /**
      Called when the number of pages is updated.
@@ -333,7 +333,7 @@ protocol TutorialPageViewControllerDelegate: class {
      - parameter tutorialPageViewController: the TutorialPageViewController instance
      - parameter count: the total number of pages.
      */
-    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
+    func wizardPageViewController(_ WwzardPageViewController: WizardPageViewController,
                                     didUpdatePageCount count: Int)
     
     /**
@@ -342,7 +342,7 @@ protocol TutorialPageViewControllerDelegate: class {
      - parameter tutorialPageViewController: the TutorialPageViewController instance
      - parameter index: the index of the currently visible page.
      */
-    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
+    func wizardPageViewController(_ wizardPageViewController: WizardPageViewController,
                                     didUpdatePageIndex index: Int, onLastPage : Bool)
     
 }
