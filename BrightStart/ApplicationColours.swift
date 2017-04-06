@@ -22,6 +22,8 @@ class ApplicatoinColours {
     var FontColour: UIColor!
     var LabelColour: UIColor!
     
+    var PlaceholderColor: UIColor!
+    
     var TableBackGround: UIColor!
     var TableTextColor: UIColor!
     
@@ -106,6 +108,9 @@ class ApplicatoinColours {
         LabelColour = Black
         FontHeadingColour = White
         
+        //UITEXTField
+        PlaceholderColor = Grey
+        
         //BUTTONS
         ButtonBackGroundColor = White
         ButtonForeGroundColor = Black
@@ -147,22 +152,4 @@ class ApplicatoinColours {
     
 }
 
-extension UITextField {
-    
-    func setBottomBorder(backGroundColor: CGColor, underlineColor: CGColor, textColor: UIColor) {
-        
-        self.borderStyle = .none
-        self.layer.backgroundColor = backGroundColor
-        
-        self.layer.masksToBounds = false
-        self.layer.shadowColor = underlineColor
-        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        self.layer.shadowOpacity = 1.0
-        self.layer.shadowRadius = 0.0
-        
-        self.textColor = textColor
-        
-        self.attributedPlaceholder = NSAttributedString(string: self.placeholder!, attributes: [NSForegroundColorAttributeName : textColor])
-        
-    }
-}
+

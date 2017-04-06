@@ -13,6 +13,8 @@ class CreateChild_Quick_1ViewController: UIViewController {
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
+     var showNavigationBar = true
+    
     @IBOutlet weak var Top: UIView!
     
     @IBOutlet weak var HeadingLabel: UILabel!
@@ -40,7 +42,6 @@ class CreateChild_Quick_1ViewController: UIViewController {
     @IBOutlet weak var DateOfBirthLabel: UILabel!
     
     @IBOutlet weak var DateOfBirthDatePicker: UIDatePicker!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,21 +73,21 @@ class CreateChild_Quick_1ViewController: UIViewController {
         LowerContent.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
         UpperHeading.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
         
-        HeadingLabel.font = _ApplicatoinColours.largeFont
+        HeadingLabel.font = _ApplicatoinColours.XlargeFont
         HeadingLabel.textColor = _ApplicatoinColours.White
         
-        NameLabel.font = _ApplicatoinColours.mediumFont
-        DateOfBirthLabel.font = _ApplicatoinColours.mediumFont
+        NameLabel.font = _ApplicatoinColours.largeFont
+        DateOfBirthLabel.font = _ApplicatoinColours.largeFont
         
-        FirstNameTextField.font = _ApplicatoinColours.sshmediumlFont
-        MiddleNameTextField.font = _ApplicatoinColours.sshmediumlFont
-        LastNameTextField.font = _ApplicatoinColours.sshmediumlFont
+        FirstNameTextField.font = _ApplicatoinColours.mediumFont
+        MiddleNameTextField.font = _ApplicatoinColours.mediumFont
+        LastNameTextField.font = _ApplicatoinColours.mediumFont
         
-         FirstNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+         FirstNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
         
-         MiddleNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+         MiddleNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
         
-         LastNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+         LastNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
        
     }
     
@@ -358,7 +359,6 @@ class CreateChild_Quick_1ViewController: UIViewController {
         
         DateOfBirthDatePicker.centerYAnchor.constraint(
             equalTo: LowerContent.centerYAnchor).isActive = true
-        
         
     }
     

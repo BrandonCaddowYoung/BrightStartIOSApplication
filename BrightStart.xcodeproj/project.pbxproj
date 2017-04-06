@@ -15,7 +15,7 @@
 		7B148C281E59994F00D309F6 /* RegistrationHoursRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */; };
 		7B148C2A1E599E4D00D309F6 /* RegistrationHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C291E599E4C00D309F6 /* RegistrationHours.swift */; };
 		7B1575B81E805311008AB34F /* WizardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575B71E805311008AB34F /* WizardPageViewController.swift */; };
-		7B1575DB1E806477008AB34F /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575DA1E806477008AB34F /* TutorialViewController.swift */; };
+		7B1575DB1E806477008AB34F /* WizardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575DA1E806477008AB34F /* WizardViewController.swift */; };
 		7B1575DD1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575DC1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift */; };
 		7B1575DF1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575DE1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift */; };
 		7B1575E11E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E01E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift */; };
@@ -23,7 +23,9 @@
 		7B1575E61E81A139008AB34F /* SingleTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E51E81A139008AB34F /* SingleTemplateViewController.swift */; };
 		7B1575E81E81BED1008AB34F /* ListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E71E81BED1008AB34F /* ListItemCell.swift */; };
 		7B1575EA1E8328DB008AB34F /* WizardPurpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E91E8328DB008AB34F /* WizardPurpose.swift */; };
+		7B169CFF1E91635300FD8A38 /* RegisteredHoursWeekly_Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B169CFE1E91635300FD8A38 /* RegisteredHoursWeekly_Step1ViewController.swift */; };
 		7B1772981DEB8065002992C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772701DEB7F8F002992C9 /* Alamofire.framework */; };
+		7B208C231E96DA910039A0A0 /* RegisteredHoursWeekly_Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B208C221E96DA910039A0A0 /* RegisteredHoursWeekly_Step2ViewController.swift */; };
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
@@ -32,6 +34,8 @@
 		7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */; };
 		7B6A1AD41E855B9800540E0C /* ApiInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6A1AD31E855B9800540E0C /* ApiInformation.swift */; };
 		7B6A1AED1E85B53700540E0C /* ChildHelperRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */; };
+		7B70F0591E8C2A8600290432 /* SuccessTemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B70F0581E8C2A8600290432 /* SuccessTemplateController.swift */; };
+		7B70F05C1E8C2F3500290432 /* WizardSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B70F05B1E8C2F3500290432 /* WizardSuccessViewController.swift */; };
 		7B774F9E1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B774F9D1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib */; };
 		7B774FA01E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B774F9F1E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift */; };
 		7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B774FA11E4FD47700ECDF66 /* CalendarPurpose.swift */; };
@@ -277,7 +281,7 @@
 		7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationHoursRequests.swift; sourceTree = "<group>"; };
 		7B148C291E599E4C00D309F6 /* RegistrationHours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationHours.swift; sourceTree = "<group>"; };
 		7B1575B71E805311008AB34F /* WizardPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardPageViewController.swift; sourceTree = "<group>"; };
-		7B1575DA1E806477008AB34F /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		7B1575DA1E806477008AB34F /* WizardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardViewController.swift; sourceTree = "<group>"; };
 		7B1575DC1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChild_Quick_1ViewController.swift; sourceTree = "<group>"; };
 		7B1575DE1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChild_Quick_2ViewController.swift; sourceTree = "<group>"; };
 		7B1575E01E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChild_Quick_3ViewController.swift; sourceTree = "<group>"; };
@@ -285,9 +289,11 @@
 		7B1575E51E81A139008AB34F /* SingleTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTemplateViewController.swift; sourceTree = "<group>"; };
 		7B1575E71E81BED1008AB34F /* ListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemCell.swift; sourceTree = "<group>"; };
 		7B1575E91E8328DB008AB34F /* WizardPurpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardPurpose.swift; sourceTree = "<group>"; };
+		7B169CFE1E91635300FD8A38 /* RegisteredHoursWeekly_Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursWeekly_Step1ViewController.swift; sourceTree = "<group>"; };
 		7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
+		7B208C221E96DA910039A0A0 /* RegisteredHoursWeekly_Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursWeekly_Step2ViewController.swift; sourceTree = "<group>"; };
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyRequests.swift; sourceTree = "<group>"; };
@@ -295,6 +301,8 @@
 		7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRequests.swift; sourceTree = "<group>"; };
 		7B6A1AD31E855B9800540E0C /* ApiInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiInformation.swift; sourceTree = "<group>"; };
 		7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildHelperRequests.swift; sourceTree = "<group>"; };
+		7B70F0581E8C2A8600290432 /* SuccessTemplateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessTemplateController.swift; sourceTree = "<group>"; };
+		7B70F05B1E8C2F3500290432 /* WizardSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardSuccessViewController.swift; sourceTree = "<group>"; };
 		7B774F9D1E4FC97400ECDF66 /* TimeStampsSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeStampsSectionHeaderView.xib; sourceTree = "<group>"; };
 		7B774F9F1E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampsSectionHeader.swift; sourceTree = "<group>"; };
 		7B774FA11E4FD47700ECDF66 /* CalendarPurpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPurpose.swift; sourceTree = "<group>"; };
@@ -394,7 +402,7 @@
 			children = (
 				7B1575B91E805354008AB34F /* PageViewControllers */,
 				7B1575B71E805311008AB34F /* WizardPageViewController.swift */,
-				7B1575DA1E806477008AB34F /* TutorialViewController.swift */,
+				7B1575DA1E806477008AB34F /* WizardViewController.swift */,
 				7B1575E91E8328DB008AB34F /* WizardPurpose.swift */,
 			);
 			name = PageViewControllers;
@@ -415,8 +423,18 @@
 			children = (
 				7B1575E21E816A98008AB34F /* DoubleTemplateViewController.swift */,
 				7B1575E51E81A139008AB34F /* SingleTemplateViewController.swift */,
+				7B70F0581E8C2A8600290432 /* SuccessTemplateController.swift */,
 			);
 			name = Templates;
+			sourceTree = "<group>";
+		};
+		7B169D001E9173A400FD8A38 /* RegisteredHoursWeekly */ = {
+			isa = PBXGroup;
+			children = (
+				7B169CFE1E91635300FD8A38 /* RegisteredHoursWeekly_Step1ViewController.swift */,
+				7B208C221E96DA910039A0A0 /* RegisteredHoursWeekly_Step2ViewController.swift */,
+			);
+			name = RegisteredHoursWeekly;
 			sourceTree = "<group>";
 		};
 		7B1772481DEB7B26002992C9 /* Frameworks */ = {
@@ -503,6 +521,15 @@
 				7B03BE201E5CD5C400D61404 /* AddRegisteredHoursViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		7B70F05A1E8C2EBA00290432 /* Wizard */ = {
+			isa = PBXGroup;
+			children = (
+				7B169D001E9173A400FD8A38 /* RegisteredHoursWeekly */,
+				7B70F05B1E8C2F3500290432 /* WizardSuccessViewController.swift */,
+			);
+			name = Wizard;
 			sourceTree = "<group>";
 		};
 		7B774F9C1E4FC34C00ECDF66 /* Calendar Headers */ = {
@@ -632,6 +659,7 @@
 		D7F995681C9EF4A1001802EC /* BrightStart */ = {
 			isa = PBXGroup;
 			children = (
+				7B70F05A1E8C2EBA00290432 /* Wizard */,
 				7B1575E41E81A0B9008AB34F /* Templates */,
 				7B15759F1E805286008AB34F /* PageViewControllers */,
 				7B0257181E4F56F9007FED0C /* Calendar */,
@@ -1052,16 +1080,19 @@
 				7B148C2A1E599E4D00D309F6 /* RegistrationHours.swift in Sources */,
 				D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */,
 				7BD0FFE11E43BF3500472759 /* AuthyNewUserCompleteViewController.swift in Sources */,
+				7B70F05C1E8C2F3500290432 /* WizardSuccessViewController.swift in Sources */,
 				7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */,
 				7BB221D51E4A796B0069E74D /* Registration1ViewController.swift in Sources */,
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,
 				7B1575DD1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift in Sources */,
 				7B8BDBD61E1508B5009F3EAF /* TimeStampsEditorViewController.swift in Sources */,
+				7B169CFF1E91635300FD8A38 /* RegisteredHoursWeekly_Step1ViewController.swift in Sources */,
 				7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */,
 				7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */,
 				7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */,
 				7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */,
-				7B1575DB1E806477008AB34F /* TutorialViewController.swift in Sources */,
+				7B1575DB1E806477008AB34F /* WizardViewController.swift in Sources */,
+				7B70F0591E8C2A8600290432 /* SuccessTemplateController.swift in Sources */,
 				7B6A1AED1E85B53700540E0C /* ChildHelperRequests.swift in Sources */,
 				7B1575E61E81A139008AB34F /* SingleTemplateViewController.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
@@ -1086,6 +1117,7 @@
 				7B8BDBDF1E1572AF009F3EAF /* ChildRequests.swift in Sources */,
 				7B1575E11E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
+				7B208C231E96DA910039A0A0 /* RegisteredHoursWeekly_Step2ViewController.swift in Sources */,
 				7B6A1AD41E855B9800540E0C /* ApiInformation.swift in Sources */,
 				7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */,
 				7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */,

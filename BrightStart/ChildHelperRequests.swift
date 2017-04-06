@@ -17,7 +17,7 @@ class ChildHelperRequests: NSObject {
     let baseURL = ApiInformation.ApiURL
     var nurserySchoolId = "";
    
-    func CreateChild(childFirstName: String, childMiddleName: String,childLastName: String, accountId: String, onCompletion: @escaping (JSON) -> Void) {
+    func CreateChild(childFirstName: String, childMiddleName: String,childLastName : String, dob : NSDate, accountId: String, onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
         
@@ -26,13 +26,17 @@ class ChildHelperRequests: NSObject {
             nurserySchoolId = id;
         }
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+        let childsDateOfBirth = dateFormatter.string(from: dob as Date)
+        
         let parameters: Parameters = [
                     "ChildId": "",
                     "AccountId": accountId,
                     "ChildFirstName": childFirstName,
                     "ChildMiddleName": childMiddleName,
                     "ChildLastName": childLastName,
-                    "ChildDOB": "2017-01-01T01:01:01",
+                    "ChildDOB": childsDateOfBirth,
                     "ChildFullName": childFirstName + " " + childMiddleName + " " + childLastName,
                     "MedicalConditions": "",
                     "GPsDetails": "",

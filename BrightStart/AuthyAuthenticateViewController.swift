@@ -58,7 +58,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         // Do any additional setup after loading the view.
         
-        TokenTextFiled.setBottomBorder(backGroundColor: _ApplicatoinColours.BackGroundColour.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.White)
+        TokenTextFiled.setBottomBorder(backGroundColor: _ApplicatoinColours.BackGroundColour.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.White, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
         
         TokenTextFiled.delegate = self;
         

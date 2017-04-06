@@ -11,6 +11,8 @@ import UIKit
 
 class WizardPageViewController: UIPageViewController {
     
+    var loadingSpiiner: ProgressHUD!
+    
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
@@ -26,11 +28,20 @@ class WizardPageViewController: UIPageViewController {
     
     fileprivate(set) lazy var orderedViewControllers: [UIViewController] = {
         // The view controllers will be shown in this order
-        return [self.newColoredViewController("CreateChild_Step1"), self.newColoredViewController("CreateChild_Step2")] //Add to this array for more Wizard steps!
+        
+        var WizardConrollerArray: [UIViewController] = []
+        
+        return WizardConrollerArray
+        
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for item in WizardViewControllers
+        {
+            orderedViewControllers.append(self.newWizardViewController(item))
+        }
         
         self.edgesForExtendedLayout = []
         
@@ -39,6 +50,10 @@ class WizardPageViewController: UIPageViewController {
         
         //This needs to be passed in 
         WizardPurpose = .CreatQuickChild
+        
+        loadingSpiiner = ProgressHUD(text: "Loading")
+        self.view.addSubview(loadingSpiiner)
+        hideSpinner()
         
         dataSource = self
         delegate = self
@@ -50,6 +65,7 @@ class WizardPageViewController: UIPageViewController {
         tutorialDelegate?.wizardPageViewController(self,
                                                      didUpdatePageCount: orderedViewControllers.count)
         
+    
         }
     
     /**
@@ -68,8 +84,19 @@ class WizardPageViewController: UIPageViewController {
             
             if(self.WizardPurpose == .CreatQuickChild)
             {
+                //loadingSpiiner.show()
+                
                 if let step1 = orderedViewControllers[0] as? CreateChild_Quick_1ViewController {
                     if let step2 = orderedViewControllers[1] as? CreateChild_Quick_2ViewController {
+                        
+                        step2.MotherEmail.text = step2.MotherEmail.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                        step2.FatherEMail.text = step2.MotherEmail.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                        
+                        step1.FirstNameTextField.text = step1.FirstNameTextField.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalizingFirstLetter()
+                        
+                        step1.MiddleNameTextField.text = step1.MiddleNameTextField.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalizingFirstLetter()
+                        
+                        step1.LastNameTextField.text = step1.LastNameTextField.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).capitalizingFirstLetter()
                         
                         AccountRequests.sharedInstance.CreateAccount(mothersEmail: step2.MotherEmail.text!, fathersEmail: step2.FatherEMail.text!, mothersName: step2.MothersName.text!, fathersName: step2.FathersName.text!, onCompletion:
                             { json in
@@ -78,12 +105,14 @@ class WizardPageViewController: UIPageViewController {
                                 
                                 DispatchQueue.main.async(execute: {
                                     
-                                    ChildHelperRequests.sharedInstance.CreateChild(childFirstName: step1.FirstNameTextField.text!, childMiddleName: step1.MiddleNameTextField.text!, childLastName: step1.LastNameTextField.text!, accountId:accountId, onCompletion:
+                                    ChildHelperRequests.sharedInstance.CreateChild(childFirstName: step1.FirstNameTextField.text!, childMiddleName: step1.MiddleNameTextField.text!, childLastName: step1.LastNameTextField.text!, dob: step1.DateOfBirthDatePicker.date as NSDate, accountId:accountId, onCompletion:
                                         { json in
                                             
                                             DispatchQueue.main.async(execute: {
                                                 
-                                                 self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+                                                //self.hideSpinner()
+                                                
+                                                 self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
                                                 
                                             })
                                     })
@@ -94,6 +123,13 @@ class WizardPageViewController: UIPageViewController {
             }
         }
         
+    }
+    
+    func hideSpinner()
+    {
+        //if(loadingSpiiner!=nil){
+        loadingSpiiner.hide()
+        //}
     }
     
     /**
@@ -124,9 +160,8 @@ class WizardPageViewController: UIPageViewController {
         
     }
     
-    fileprivate func newColoredViewController(_ color: String) -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil) .
-            instantiateViewController(withIdentifier: "\(color)ViewController")
+    fileprivate func newWizardViewController(_ controllerName: String) -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(controllerName)ViewController")
     }
     
     /**
@@ -321,6 +356,12 @@ func prepare(for segue: UIStoryboardSegue, sender: Any!) {
             
         }
         
+    }
+    else if (segue.identifier == "GoToSuccess") {
+        if let vc = segue.destination as? WizardSuccessViewController {
+            
+            
+        }
     }
     
 }

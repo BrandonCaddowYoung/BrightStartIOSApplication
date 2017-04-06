@@ -32,6 +32,7 @@ enum PurposeTypes: Int {
     case Child_Delete
     
     case RegisterdHours_Set
+     case RegisterdHours_SetWeekly
     case RegisterdHours_Edit
     case RegisteredHours_Delete
     case RegisteredHours_Search
@@ -187,15 +188,15 @@ class MainMenuViewController: UIViewController {
             
         case .RegisteredHours:
             
-            images = [UIImage(named: "PencilTip100")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "PencilTip100")!, UIImage(named: "PencilTip100")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToSearchPerson", "GoToMainMenu", "GoToSignIn"]
+            segueIdList = ["GoToSearchPerson", "GoToWizard", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.RegisterdHours_Edit,  PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.RegisterdHours_Edit, PurposeTypes.RegisterdHours_SetWeekly, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Edit", "Sign Out"]
+            DisplayTextList = ["Edit", "Set Weekly", "Sign Out"]
             
-            authyIdList = ["", ""]
+            authyIdList = ["", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -204,7 +205,7 @@ class MainMenuViewController: UIViewController {
             
             images = [UIImage(named: "AddUserMale")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToChildQuickCreate", "GoToSignIn"]
+            segueIdList = ["GoToWizard", "GoToSignIn"]
             
             PurposeList = [PurposeTypes.Child_QuickCreate,  PurposeTypes.SignOut]
             
@@ -670,8 +671,6 @@ class MainMenuViewController: UIViewController {
                     
                     vc.successSegueIdentifier = "GoToCalendar"
                     vc.Purpose = "RegisteredHours_Missing"
-                    
-                    
                 }
             }
             
@@ -731,17 +730,29 @@ class MainMenuViewController: UIViewController {
             //No need to pass anyhting to the regiser.
             
         }
-        else if (segue.identifier == "GoToChildQuickCreate") {
+        else if (segue.identifier == "GoToWizard") {
             
-            if let vc = segue.destination as? WizardViewController {
- 
-                //vc.WizardPurpose =
-                vc.successSegue = ""
-                vc.cancelSegue = ""
-               
+            if(targetPurpose == PurposeTypes.Child_QuickCreate)
+            {
+            
+                if let vc = segue.destination as? WizardViewController {
+                    vc.WizardPurpose = .CreatQuickChild
+                    vc.successSegue = ""
+                    vc.cancelSegue = ""
+                }
+                
             }
-            
+            else if (targetPurpose == PurposeTypes.RegisterdHours_SetWeekly)
+            {
+                if let vc = segue.destination as? WizardViewController {
+                    vc.WizardPurpose = .SetWeeklyRegisteredHours
+                    vc.successSegue = ""
+                    vc.cancelSegue = ""
+                }
+            }
         }
+        
+        
     }
 }
 

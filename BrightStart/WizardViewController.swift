@@ -133,7 +133,14 @@ class WizardViewController: UIViewController {
             if let vc = segue.destination as? MainMenuViewController {
                 
                 //In future we should go back to the calendar and select the date, however for now we should just go back to the main menu
-                vc.selectedMenu = .MainMenu
+                vc.selectedMenu = .Children
+            }
+        }
+            
+        else if (segue.identifier == "GoToSuccess") {
+            if let vc = segue.destination as? WizardSuccessViewController {
+                
+                
             }
         }
         
@@ -145,6 +152,13 @@ class WizardViewController: UIViewController {
             wizardPageViewController.successSegue = successSegue
             wizardPageViewController.cancelSegue = cancelSegue
             
+            if(WizardPurpose == .CreatQuickChild){
+              wizardPageViewController.WizardViewControllers = ["CreateChild_Step1", "CreateChild_Step2"]
+            }
+            else if(WizardPurpose == .SetWeeklyRegisteredHours){
+                wizardPageViewController.WizardViewControllers = ["RegisteredHoursWeekly_Step1", "RegisteredHoursWeekly_Step2"]
+            }
+    
         }
     }
     

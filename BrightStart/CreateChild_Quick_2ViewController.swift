@@ -69,21 +69,24 @@
             LowerContent.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
             UpperHeading.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
             
-            HeadingLabel.font = _ApplicatoinColours.largeFont
+            HeadingLabel.font = _ApplicatoinColours.XlargeFont
             HeadingLabel.textColor = _ApplicatoinColours.White
             
-            MothersName.font = _ApplicatoinColours.sshmediumlFont
-            FathersName.font = _ApplicatoinColours.sshmediumlFont
-            MotherEmail.font = _ApplicatoinColours.sshmediumlFont
-            FatherEMail.font = _ApplicatoinColours.sshmediumlFont
+            MothersName.font = _ApplicatoinColours.mediumFont
+            FathersName.font = _ApplicatoinColours.mediumFont
+            MotherEmail.font = _ApplicatoinColours.mediumFont
+            FatherEMail.font = _ApplicatoinColours.mediumFont
             
-            MothersName.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
-            FathersName.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
-            MotherEmail.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
-            FatherEMail.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black)
+            MothersName.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
             
-            NamesLabel.font = _ApplicatoinColours.mediumFont
-            EmailLabel.font = _ApplicatoinColours.mediumFont
+            FathersName.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+            
+            MotherEmail.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+            
+            FatherEMail.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+            
+            NamesLabel.font = _ApplicatoinColours.largeFont
+            EmailLabel.font = _ApplicatoinColours.largeFont
             
         }
         
