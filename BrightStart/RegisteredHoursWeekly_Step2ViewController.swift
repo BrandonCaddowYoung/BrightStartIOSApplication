@@ -27,8 +27,8 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDa
     
     @IBOutlet weak var KeyWorkerTable: UITableView!
     
-    var numberArray = NSMutableArray()
-    var selectedArray=NSMutableArray()
+    var numberArray = Array<BrightStartChild>()
+    var selectedArray = Array<BrightStartChild>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +42,68 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDa
         
         setupConstraints()
         
-        
         self.KeyWorkerTable.delegate = self
         self.KeyWorkerTable.dataSource = self
         
-        for index in 1...200 {
+        
+        
+        
+        //Retrieve all children
+        ChildRequests.sharedInstance.GetAllEnrolledChilren(onCompletion: { json in
             
-            numberArray.add(index)
+            for (index: _, subJson: JSON) in json {
+                
+                let child = BrightStartChild()
+                
+                child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
+                child.ChildId = JSON["ChildId"].stringValue as NSString
+                
+                let dateFormatter = DateFormatter()
+                //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+                
+                let dateOfBirth = JSON["ChildDOB"].stringValue
+                
+                var newDate = dateFormatter.date(from: dateOfBirth)
+                
+                if(newDate == nil){
+                    
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    
+                    newDate = dateFormatter.date(from: dateOfBirth)
+                    
+                    if(newDate == nil){
+                        continue
+                    }
+                }
+                
+                child.ChildDOB = newDate!
+                
+                self.numberArray.append(child)
+            }
             
-        }
+            DispatchQueue.main.async(execute: {
+                
+             //   self.numberArray = self.numberArray.reversed()
+                
+                self.KeyWorkerTable.reloadData()
+                //sender?.endRefreshing()
+                
+                //self.indicator.stopAnimating()
+                
+            })
+            
+        })
+        
+        
+        
+        
+        
+        //for index in 1...200 {
+            
+          //  numberArray.add(index)
+            
+       // }
         
         Top.backgroundColor = _ApplicatoinColours.White
         
@@ -217,15 +270,16 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDa
     {
         let value = sender.tag;
         
-        if selectedArray.contains(numberArray.object(at: value))
-        {
-            selectedArray.remove(numberArray.object(at: value))
+        if(selectedArray.contains( where: { $0 === numberArray[value] } )){
+            //remove
+            selectedArray.remove(at: value)
         }
         else
         {
-            selectedArray.add(numberArray.object(at: value))
+            //add
+            selectedArray.append(numberArray[value])
         }
-        
+      
         print("Selecetd Array \(selectedArray)")
         
         KeyWorkerTable.reloadData()
@@ -245,22 +299,40 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDa
     /////CELL FOR ROW
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let contact = numberArray.object(at: indexPath.row)
+        //let contact = numberArray.object(at: indexPath.row)
+        let contact = numberArray[indexPath.row]
+        
         let cell:ListItemCell = KeyWorkerTable.dequeueReusableCell(withIdentifier: "reuseCell") as! ListItemCell
         
-        cell.textLabel?.text = String("Number \(contact)")
+        var selectedChild = BrightStartChild()
+        selectedChild = contact 
+        
+        cell.textLabel?.text = String("Number \(contact.ChildFullName)")
         
         cell.tickButton.addTarget(self, action:#selector(CreateChild_Quick_3ViewController.tickClicked(sender:)), for: .touchUpInside)
         
         cell.tickButton.tag=indexPath.row
         
-        if selectedArray .contains(numberArray.object(at: indexPath.row)) {
-            cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
+        
+        
+        if(selectedArray.contains( where: { $0 === contact } )){
+        cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
         }
         else
         {
             cell.tickButton.setBackgroundImage(UIImage(named:"star"), for: UIControlState.normal)
+
         }
+        
+        
+        //if selectedArray.contains(numberArray.object(at: indexPath.row)) {
+          //  cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
+        //}
+        //else
+        //{
+          //  cell.tickButton.setBackgroundImage(UIImage(named:"star"), for: UIControlState.normal)
+        //}
+        
         return cell
     }
     /////HEIGHT FOR ROW

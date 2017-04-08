@@ -17,7 +17,6 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     func activityIndicator()
     {
         indicator = UIActivityIndicatorView(frame: CGRect())
-        
     }
     
     var targetDate: Date!
@@ -43,7 +42,6 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         children.removeAll()
         tableView.reloadData()
         refresh()
-       
     }
     
     func refresh()
@@ -111,11 +109,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     }
     
     func NavBarMenuTapped(){
-        
         self.GoToMenuType = .MainMenu
-        
         self.performSegue(withIdentifier: "GoToMenu", sender: nil)
-        
     }
 
     
