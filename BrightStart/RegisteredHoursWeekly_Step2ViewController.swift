@@ -1,34 +1,50 @@
 //
-//  RegisteredHoursWeekly_Step2ViewController.swift
+//  RegisteredHoursWeeklyViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 06/04/2017.
+//  Created by Colleen Caddow on 02/04/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
 import UIKit
 
-class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RegisteredHoursWeekly_Step2ViewController: UIViewController {
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
-    @IBOutlet weak var MainHeadingLabel: UILabel!
-    
-    @IBOutlet weak var SelectLabel: UILabel!
+    var showNavigationBar = true
     
     @IBOutlet weak var Top: UIView!
     
+    @IBOutlet weak var TopText: UILabel!
+    
     @IBOutlet weak var UpperHeading: UIView!
+    
+    @IBOutlet weak var SelectTheYearLabel: UILabel!
     
     @IBOutlet weak var UpperContent: UIView!
     
+    @IBOutlet weak var YearLabel: UILabel!
+    
+    @IBOutlet weak var YearPicker: UIPickerView!
+    
+    @IBOutlet weak var Middle: UIView!
+    
+    @IBOutlet weak var LowerHeading: UIView!
+    
+    @IBOutlet weak var SelectTheMonthLabel: UILabel!
+    
+    @IBOutlet weak var LowerContent: UIView!
+    
+    @IBOutlet weak var MonthLabel: UILabel!
+    
+    @IBOutlet weak var MonthPicker: UIPickerView!
+    
     @IBOutlet weak var Bottom: UIView!
     
-    @IBOutlet weak var KeyWorkerTable: UITableView!
+    @IBOutlet weak var NextButton: UIButton!
     
-    var numberArray = Array<BrightStartChild>()
-    var selectedArray = Array<BrightStartChild>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,81 +58,57 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDa
         
         setupConstraints()
         
-        self.KeyWorkerTable.delegate = self
-        self.KeyWorkerTable.dataSource = self
         
+        //Fonts
+        TopText.font = _ApplicatoinColours.mediumFont
+        YearLabel.font = _ApplicatoinColours.mediumFont
+        MonthLabel.font = _ApplicatoinColours.mediumFont
+        SelectTheYearLabel.font = _ApplicatoinColours.mediumFont
+        SelectTheMonthLabel.font = _ApplicatoinColours.mediumFont
         
+        TopText.textColor = _ApplicatoinColours.White
+        YearLabel.textColor = _ApplicatoinColours.Black
+        MonthLabel.textColor = _ApplicatoinColours.Black
+        SelectTheYearLabel.textColor = _ApplicatoinColours.White
+        SelectTheMonthLabel.textColor = _ApplicatoinColours.White
+
         
+        Top.backgroundColor = _ApplicatoinColours.Blue
         
-        //Retrieve all children
-        ChildRequests.sharedInstance.GetAllEnrolledChilren(onCompletion: { json in
-            
-            for (index: _, subJson: JSON) in json {
-                
-                let child = BrightStartChild()
-                
-                child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
-                child.ChildId = JSON["ChildId"].stringValue as NSString
-                
-                let dateFormatter = DateFormatter()
-                //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
-                
-                let dateOfBirth = JSON["ChildDOB"].stringValue
-                
-                var newDate = dateFormatter.date(from: dateOfBirth)
-                
-                if(newDate == nil){
-                    
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                    
-                    newDate = dateFormatter.date(from: dateOfBirth)
-                    
-                    if(newDate == nil){
-                        continue
-                    }
-                }
-                
-                child.ChildDOB = newDate!
-                
-                self.numberArray.append(child)
-            }
-            
-            DispatchQueue.main.async(execute: {
-                
-             //   self.numberArray = self.numberArray.reversed()
-                
-                self.KeyWorkerTable.reloadData()
-                //sender?.endRefreshing()
-                
-                //self.indicator.stopAnimating()
-                
-            })
-            
-        })
-        
-        
-        
-        
-        
-        //for index in 1...200 {
-            
-          //  numberArray.add(index)
-            
-       // }
-        
-        Top.backgroundColor = _ApplicatoinColours.White
-        
-        UpperHeading.backgroundColor = _ApplicatoinColours.White
+        UpperHeading.backgroundColor = _ApplicatoinColours.Blue
         
         UpperContent.backgroundColor = _ApplicatoinColours.White
         
-        Bottom.backgroundColor = _ApplicatoinColours.White
+        Middle.backgroundColor = _ApplicatoinColours.White
+        
+        LowerHeading.backgroundColor = _ApplicatoinColours.Blue
+        
+         LowerContent.backgroundColor = _ApplicatoinColours.White
+        
+         Bottom.backgroundColor = _ApplicatoinColours.Blue
         
     }
     
     
     func setupConstraints() {
+        
+        
+        //Middle
+        
+        Middle.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        Middle.centerYAnchor.constraint(
+            equalTo: view.centerYAnchor).isActive = true
+        
+        Middle.widthAnchor.constraint(
+            equalTo: view.widthAnchor).isActive = true
+        
+        //height
+        Middle.heightAnchor.constraint(
+            equalTo: view.heightAnchor, multiplier: 0.01).isActive = true
+        
+        
         
         //Top
         
@@ -139,24 +131,18 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDa
             equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
         
         
-        //Heading label
         
-        MainHeadingLabel.translatesAutoresizingMaskIntoConstraints = false
+        TopText.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        MainHeadingLabel.centerYAnchor.constraint(
+        TopText.centerYAnchor.constraint(
             equalTo: Top.centerYAnchor).isActive = true
         
-        //center
-        MainHeadingLabel.trailingAnchor.constraint(
-            equalTo: Top.trailingAnchor, constant: -15).isActive = true
+        TopText.widthAnchor.constraint(
+            equalTo: Top.widthAnchor, multiplier: 0.80).isActive = true
         
-        MainHeadingLabel.widthAnchor.constraint(
-            equalTo: Top.widthAnchor, multiplier: 0.70).isActive = true
-        
-        MainHeadingLabel.textAlignment = .right
-        
-        MainHeadingLabel.adjustsFontSizeToFitWidth = true
+        TopText.leadingAnchor.constraint(
+            equalTo: Top.leadingAnchor, constant: 15).isActive = true
         
         
         //Upper Heading
@@ -180,23 +166,75 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDa
             equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
         
         
+        //SelectTheYearLabel
         
-        //Name Label
-        
-        SelectLabel.translatesAutoresizingMaskIntoConstraints = false
+        SelectTheYearLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        SelectLabel.centerYAnchor.constraint(
+        SelectTheYearLabel.centerYAnchor.constraint(
             equalTo: UpperHeading.centerYAnchor).isActive = true
         
-        //width
-        SelectLabel.widthAnchor.constraint(
-            equalTo: UpperHeading.widthAnchor).isActive = true
-        
         //left
-        SelectLabel.leadingAnchor.constraint(
-            equalTo: UpperHeading.leadingAnchor, constant: 20 ).isActive = true
+        SelectTheYearLabel.leadingAnchor.constraint(
+            equalTo: UpperHeading.leadingAnchor, constant: 15).isActive = true
         
+        //width
+        SelectTheYearLabel.widthAnchor.constraint(
+            equalTo: UpperHeading.widthAnchor, multiplier: 0.40).isActive = true
+
+       
+
+
+        
+        
+        
+        //Upper Content
+        
+        UpperContent.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        UpperHeading.centerXAnchor.constraint(
+            equalTo: view.centerXAnchor).isActive = true
+        
+        //width
+        UpperContent.widthAnchor.constraint(
+            equalTo: view.widthAnchor).isActive = true
+        
+        //top
+        UpperContent.topAnchor.constraint(
+            equalTo: UpperHeading.bottomAnchor).isActive = true
+        
+        //height
+        UpperContent.bottomAnchor.constraint(
+            equalTo: Middle.topAnchor).isActive = true
+        
+        //Year
+        
+        YearLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        YearLabel.centerYAnchor.constraint(
+            equalTo: UpperContent.centerYAnchor).isActive = true
+        
+        YearLabel.leadingAnchor.constraint(
+            equalTo: UpperContent.leadingAnchor, constant: 15).isActive = true
+        
+        YearLabel.widthAnchor.constraint(
+            equalTo: UpperContent.widthAnchor, multiplier: 0.30).isActive = true
+        
+        
+        //Year Picker
+        YearPicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        YearPicker.centerYAnchor.constraint(
+            equalTo: UpperContent.centerYAnchor).isActive = true
+        
+        YearPicker.trailingAnchor.constraint(
+            equalTo: UpperContent.trailingAnchor, constant: -15).isActive = true
+        
+        YearPicker.widthAnchor.constraint(
+            equalTo: UpperContent.widthAnchor, multiplier: 0.50).isActive = true
         
         
         
@@ -221,29 +259,129 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDa
         Bottom.heightAnchor.constraint(
             equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
         
-        
-        
-        
-        //Upper Content
-        
-        UpperContent.translatesAutoresizingMaskIntoConstraints = false
+        //NextButon
+        NextButton.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        UpperHeading.centerXAnchor.constraint(
+        NextButton.centerYAnchor.constraint(
+            equalTo: LowerContent.centerYAnchor).isActive = true
+        
+        NextButton.leadingAnchor.constraint(
+            equalTo: LowerContent.leadingAnchor).isActive = true
+        
+        //Lower Heading
+        
+        LowerHeading.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        LowerHeading.centerXAnchor.constraint(
             equalTo: view.centerXAnchor).isActive = true
         
         //width
-        UpperContent.widthAnchor.constraint(
+        LowerHeading.widthAnchor.constraint(
             equalTo: view.widthAnchor).isActive = true
         
-        //top
-        UpperContent.topAnchor.constraint(
-            equalTo: UpperHeading.bottomAnchor).isActive = true
+        //bottom
+        LowerHeading.topAnchor.constraint(
+            equalTo: Middle.bottomAnchor).isActive = true
         
         //height
-        UpperContent.bottomAnchor.constraint(
+        LowerHeading.heightAnchor.constraint(
+            equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
+        
+        
+        //SelectTheYearLabel
+        
+        SelectTheMonthLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        SelectTheMonthLabel.centerYAnchor.constraint(
+            equalTo: LowerHeading.centerYAnchor).isActive = true
+        
+        //left
+        SelectTheMonthLabel.leadingAnchor.constraint(
+            equalTo: LowerHeading.leadingAnchor, constant: 15).isActive = true
+        
+        //width
+        SelectTheMonthLabel.widthAnchor.constraint(
+            equalTo: LowerHeading.widthAnchor, multiplier: 0.40).isActive = true
+        
+        
+        //Lower Content
+        
+        LowerContent.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        LowerContent.centerXAnchor.constraint(
+            equalTo: view.centerXAnchor).isActive = true
+        
+        //width
+        LowerContent.widthAnchor.constraint(
+            equalTo: view.widthAnchor).isActive = true
+        
+        //bottom
+        LowerContent.bottomAnchor.constraint(
             equalTo: Bottom.topAnchor).isActive = true
         
+        //top
+        LowerContent.topAnchor.constraint(
+            equalTo: LowerHeading.bottomAnchor).isActive = true
+        
+        
+        //Month
+        
+        MonthLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        MonthLabel.centerYAnchor.constraint(
+            equalTo: LowerContent.centerYAnchor).isActive = true
+        
+        MonthLabel.leadingAnchor.constraint(
+            equalTo: LowerContent.leadingAnchor, constant: 15).isActive = true
+        
+        MonthLabel.widthAnchor.constraint(
+            equalTo: LowerContent.widthAnchor, multiplier: 0.30).isActive = true
+        
+        
+        //Month picker
+        
+        MonthPicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        MonthPicker.centerYAnchor.constraint(
+            equalTo: LowerContent.centerYAnchor).isActive = true
+        
+        //right
+        MonthPicker.trailingAnchor.constraint(
+            equalTo: LowerContent.trailingAnchor, constant: -15).isActive = true
+        
+        //height
+        MonthPicker.heightAnchor.constraint(
+            equalTo: LowerContent.heightAnchor).isActive = true
+        
+        //width
+        MonthPicker.widthAnchor.constraint(
+            equalTo: LowerContent.widthAnchor, multiplier: 0.50).isActive = true
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    //Removes the navigation bar from the top
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        }
+        else
+        {
+            self.navigationController?.setNavigationBarHidden(true, animated: animated);
+        }
         
     }
     
@@ -252,6 +390,45 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
     
+    func NavBarMenuTapped(){
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            //Changes the color of the backgorund within the nav bar.
+            navigationController?.navigationBar.barStyle = UIBarStyle.black
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            
+            //Title color
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            
+            //Back color
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            
+            //Back ground color
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            
+            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            
+            navigationController?.navigationBar.topItem?.title = ""
+            navigationController?.navigationBar.backItem?.title = ""
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
+    }
     
     /*
      // MARK: - Navigation
@@ -262,88 +439,5 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController, UITableViewDa
      // Pass the selected object to the new view controller.
      }
      */
-    
-    
-    
-    
-    func tickClicked(sender: UIButton!)
-    {
-        let value = sender.tag;
-        
-        if(selectedArray.contains( where: { $0 === numberArray[value] } )){
-            //remove
-            selectedArray.remove(at: value)
-        }
-        else
-        {
-            //add
-            selectedArray.append(numberArray[value])
-        }
-      
-        print("Selecetd Array \(selectedArray)")
-        
-        KeyWorkerTable.reloadData()
-        
-    }
-    
-    
-    
-    
-    
-    /////NUMBER OF ROWS
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return numberArray.count;
-        
-    }
-    /////CELL FOR ROW
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        //let contact = numberArray.object(at: indexPath.row)
-        let contact = numberArray[indexPath.row]
-        
-        let cell:ListItemCell = KeyWorkerTable.dequeueReusableCell(withIdentifier: "reuseCell") as! ListItemCell
-        
-        var selectedChild = BrightStartChild()
-        selectedChild = contact 
-        
-        cell.textLabel?.text = String("Number \(contact.ChildFullName)")
-        
-        cell.tickButton.addTarget(self, action:#selector(CreateChild_Quick_3ViewController.tickClicked(sender:)), for: .touchUpInside)
-        
-        cell.tickButton.tag=indexPath.row
-        
-        
-        
-        if(selectedArray.contains( where: { $0 === contact } )){
-        cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
-        }
-        else
-        {
-            cell.tickButton.setBackgroundImage(UIImage(named:"star"), for: UIControlState.normal)
-
-        }
-        
-        
-        //if selectedArray.contains(numberArray.object(at: indexPath.row)) {
-          //  cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
-        //}
-        //else
-        //{
-          //  cell.tickButton.setBackgroundImage(UIImage(named:"star"), for: UIControlState.normal)
-        //}
-        
-        return cell
-    }
-    /////HEIGHT FOR ROW
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat
-    {
-        return 80.0
-    }
-    
-    
-    
-    
     
 }

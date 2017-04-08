@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -27,8 +27,8 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
     
     @IBOutlet weak var KeyWorkerTable: UITableView!
     
-    var numberArray = Array<BrightStartChild>()
-    var selectedArray = Array<BrightStartChild>()
+    var numberArray = Array<WeekDay>()
+    var selectedArray = Array<WeekDay>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,52 +45,47 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
         self.KeyWorkerTable.delegate = self
         self.KeyWorkerTable.dataSource = self
         
-        //Retrieve all children
-        ChildRequests.sharedInstance.GetAllEnrolledChilren(onCompletion: { json in
-            
-            for (index: _, subJson: JSON) in json {
-                
-                let child = BrightStartChild()
-                
-                child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
-                child.ChildId = JSON["ChildId"].stringValue as NSString
-                
-                let dateFormatter = DateFormatter()
-                //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
-                
-                let dateOfBirth = JSON["ChildDOB"].stringValue
-                
-                var newDate = dateFormatter.date(from: dateOfBirth)
-                
-                if(newDate == nil){
-                    
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                    
-                    newDate = dateFormatter.date(from: dateOfBirth)
-                    
-                    if(newDate == nil){
-                        continue
-                    }
-                }
-                
-                child.ChildDOB = newDate!
-                
-                self.numberArray.append(child)
-            }
-            
-            DispatchQueue.main.async(execute: {
-                
-             //   self.numberArray = self.numberArray.reversed()
-                
-                self.KeyWorkerTable.reloadData()
-                //sender?.endRefreshing()
-                
-                //self.indicator.stopAnimating()
-                
-            })
-            
-        })
+        let monday = WeekDay()
+        monday.DayName = "Monday"
+        monday.DayNumber = 1
+        
+        self.numberArray.append(monday)
+        
+        let tuesday = WeekDay()
+        tuesday.DayName = "Tuesday"
+        tuesday.DayNumber = 2
+        
+        self.numberArray.append(tuesday)
+        
+        let wednesday = WeekDay()
+        wednesday.DayName = "Wednesday"
+        wednesday.DayNumber = 3
+        
+        self.numberArray.append(wednesday)
+        
+        let thursday = WeekDay()
+        thursday.DayName = "Thursday"
+        thursday.DayNumber = 4
+        
+        self.numberArray.append(thursday)
+        
+        let friday = WeekDay()
+        friday.DayName = "Friday"
+        friday.DayNumber = 5
+        
+        self.numberArray.append(friday)
+        
+        let saturday = WeekDay()
+        saturday.DayName = "Saturday"
+        saturday.DayNumber = 6
+
+        self.numberArray.append(saturday)
+        
+        let sunday = WeekDay()
+        sunday.DayName = "Sunday"
+        sunday.DayNumber = 7
+        
+        self.numberArray.append(sunday)
         
         Top.backgroundColor = _ApplicatoinColours.White
         
@@ -261,14 +256,14 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
      }
      */
     
-   
+    
     func tickClicked(sender: UIButton!)
     {
         
         let value = sender.tag;
         
         print(value)
-
+        
         
         if(selectedArray.contains( where: { $0 === numberArray[value] } )){
             
@@ -282,7 +277,7 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
             //add
             selectedArray.append(numberArray[value])
         }
-       
+        
         KeyWorkerTable.reloadData()
         
     }
@@ -301,10 +296,10 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
         
         let cell:ListItemCell = KeyWorkerTable.dequeueReusableCell(withIdentifier: "reuseCell") as! ListItemCell
         
-        var selectedChild = BrightStartChild()
-        selectedChild = contact 
+        var selectedChild = WeekDay()
+        selectedChild = contact
         
-        cell.textLabel?.text = contact.ChildFullName as String
+        cell.textLabel?.text = contact.DayName
         
         cell.textLabel?.font = _ApplicatoinColours.sshmediumlFont
         cell.textLabel?.textColor = _ApplicatoinColours.Blue

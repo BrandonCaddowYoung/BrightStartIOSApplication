@@ -156,7 +156,7 @@ class WizardViewController: UIViewController {
               wizardPageViewController.WizardViewControllers = ["CreateChild_Step1", "CreateChild_Step2"]
             }
             else if(WizardPurpose == .SetWeeklyRegisteredHours){
-                wizardPageViewController.WizardViewControllers = ["RegisteredHoursWeekly_Step1", "RegisteredHoursWeekly_Step2"]
+                wizardPageViewController.WizardViewControllers = ["RegisteredHoursWeekly_Step1", "RegisteredHoursWeekly_Step2", "RegisteredHoursWeekly_Step3"]
             }
     
         }

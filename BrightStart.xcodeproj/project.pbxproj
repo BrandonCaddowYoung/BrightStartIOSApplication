@@ -23,12 +23,14 @@
 		7B1575E61E81A139008AB34F /* SingleTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E51E81A139008AB34F /* SingleTemplateViewController.swift */; };
 		7B1575E81E81BED1008AB34F /* ListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E71E81BED1008AB34F /* ListItemCell.swift */; };
 		7B1575EA1E8328DB008AB34F /* WizardPurpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1575E91E8328DB008AB34F /* WizardPurpose.swift */; };
-		7B169CFF1E91635300FD8A38 /* RegisteredHoursWeekly_Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B169CFE1E91635300FD8A38 /* RegisteredHoursWeekly_Step1ViewController.swift */; };
+		7B169CFF1E91635300FD8A38 /* RegisteredHoursWeekly_Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B169CFE1E91635300FD8A38 /* RegisteredHoursWeekly_Step2ViewController.swift */; };
 		7B1772981DEB8065002992C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772701DEB7F8F002992C9 /* Alamofire.framework */; };
-		7B208C231E96DA910039A0A0 /* RegisteredHoursWeekly_Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B208C221E96DA910039A0A0 /* RegisteredHoursWeekly_Step2ViewController.swift */; };
+		7B208C231E96DA910039A0A0 /* RegisteredHoursWeekly_Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B208C221E96DA910039A0A0 /* RegisteredHoursWeekly_Step1ViewController.swift */; };
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
+		7B32E3821E9919F500959375 /* RegisteredHoursWeekly_Step3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32E3811E9919F500959375 /* RegisteredHoursWeekly_Step3ViewController.swift */; };
+		7B32E3841E991DA800959375 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32E3831E991DA800959375 /* WeekDay.swift */; };
 		7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */; };
 		7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */; };
 		7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */; };
@@ -289,13 +291,15 @@
 		7B1575E51E81A139008AB34F /* SingleTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTemplateViewController.swift; sourceTree = "<group>"; };
 		7B1575E71E81BED1008AB34F /* ListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemCell.swift; sourceTree = "<group>"; };
 		7B1575E91E8328DB008AB34F /* WizardPurpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardPurpose.swift; sourceTree = "<group>"; };
-		7B169CFE1E91635300FD8A38 /* RegisteredHoursWeekly_Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursWeekly_Step1ViewController.swift; sourceTree = "<group>"; };
+		7B169CFE1E91635300FD8A38 /* RegisteredHoursWeekly_Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursWeekly_Step2ViewController.swift; sourceTree = "<group>"; };
 		7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
-		7B208C221E96DA910039A0A0 /* RegisteredHoursWeekly_Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursWeekly_Step2ViewController.swift; sourceTree = "<group>"; };
+		7B208C221E96DA910039A0A0 /* RegisteredHoursWeekly_Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursWeekly_Step1ViewController.swift; sourceTree = "<group>"; };
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		7B32E3811E9919F500959375 /* RegisteredHoursWeekly_Step3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursWeekly_Step3ViewController.swift; sourceTree = "<group>"; };
+		7B32E3831E991DA800959375 /* WeekDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 		7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyRequests.swift; sourceTree = "<group>"; };
 		7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyPersonSearchTableViewController.swift; sourceTree = "<group>"; };
 		7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRequests.swift; sourceTree = "<group>"; };
@@ -431,8 +435,9 @@
 		7B169D001E9173A400FD8A38 /* RegisteredHoursWeekly */ = {
 			isa = PBXGroup;
 			children = (
-				7B169CFE1E91635300FD8A38 /* RegisteredHoursWeekly_Step1ViewController.swift */,
-				7B208C221E96DA910039A0A0 /* RegisteredHoursWeekly_Step2ViewController.swift */,
+				7B169CFE1E91635300FD8A38 /* RegisteredHoursWeekly_Step2ViewController.swift */,
+				7B208C221E96DA910039A0A0 /* RegisteredHoursWeekly_Step1ViewController.swift */,
+				7B32E3811E9919F500959375 /* RegisteredHoursWeekly_Step3ViewController.swift */,
 			);
 			name = RegisteredHoursWeekly;
 			sourceTree = "<group>";
@@ -613,6 +618,7 @@
 				7BD0FFE61E4682B400472759 /* AuthyAction.swift */,
 				7BB221F01E4BB75C0069E74D /* RegistrationModel.swift */,
 				7B148C291E599E4C00D309F6 /* RegistrationHours.swift */,
+				7B32E3831E991DA800959375 /* WeekDay.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -812,16 +818,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1071,6 +1077,7 @@
 				7BD0FFE31E43C95300472759 /* AuthyTestViewController.swift in Sources */,
 				7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */,
 				7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */,
+				7B32E3821E9919F500959375 /* RegisteredHoursWeekly_Step3ViewController.swift in Sources */,
 				7BB270C91E7C8CAA0023DF7D /* Authy_SettingsViewController.swift in Sources */,
 				7BB221F11E4BB75C0069E74D /* RegistrationModel.swift in Sources */,
 				7B1575E31E816A98008AB34F /* DoubleTemplateViewController.swift in Sources */,
@@ -1086,7 +1093,7 @@
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,
 				7B1575DD1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift in Sources */,
 				7B8BDBD61E1508B5009F3EAF /* TimeStampsEditorViewController.swift in Sources */,
-				7B169CFF1E91635300FD8A38 /* RegisteredHoursWeekly_Step1ViewController.swift in Sources */,
+				7B169CFF1E91635300FD8A38 /* RegisteredHoursWeekly_Step2ViewController.swift in Sources */,
 				7B8BDBC81E0F0419009F3EAF /* TimeStampsMenuController.swift in Sources */,
 				7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */,
 				7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */,
@@ -1094,6 +1101,7 @@
 				7B1575DB1E806477008AB34F /* WizardViewController.swift in Sources */,
 				7B70F0591E8C2A8600290432 /* SuccessTemplateController.swift in Sources */,
 				7B6A1AED1E85B53700540E0C /* ChildHelperRequests.swift in Sources */,
+				7B32E3841E991DA800959375 /* WeekDay.swift in Sources */,
 				7B1575E61E81A139008AB34F /* SingleTemplateViewController.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				7B1575DF1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift in Sources */,
@@ -1117,7 +1125,7 @@
 				7B8BDBDF1E1572AF009F3EAF /* ChildRequests.swift in Sources */,
 				7B1575E11E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
-				7B208C231E96DA910039A0A0 /* RegisteredHoursWeekly_Step2ViewController.swift in Sources */,
+				7B208C231E96DA910039A0A0 /* RegisteredHoursWeekly_Step1ViewController.swift in Sources */,
 				7B6A1AD41E855B9800540E0C /* ApiInformation.swift in Sources */,
 				7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */,
 				7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */,
