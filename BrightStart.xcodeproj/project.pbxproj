@@ -34,6 +34,7 @@
 		7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */; };
 		7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */; };
 		7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */; };
+		7B6487291E9BF8C90018616D /* RegisreredHoursDayOfWeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6487281E9BF8C80018616D /* RegisreredHoursDayOfWeekTableViewCell.swift */; };
 		7B6A1AD41E855B9800540E0C /* ApiInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6A1AD31E855B9800540E0C /* ApiInformation.swift */; };
 		7B6A1AED1E85B53700540E0C /* ChildHelperRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */; };
 		7B70F0591E8C2A8600290432 /* SuccessTemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B70F0581E8C2A8600290432 /* SuccessTemplateController.swift */; };
@@ -303,6 +304,7 @@
 		7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyRequests.swift; sourceTree = "<group>"; };
 		7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyPersonSearchTableViewController.swift; sourceTree = "<group>"; };
 		7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRequests.swift; sourceTree = "<group>"; };
+		7B6487281E9BF8C80018616D /* RegisreredHoursDayOfWeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisreredHoursDayOfWeekTableViewCell.swift; sourceTree = "<group>"; };
 		7B6A1AD31E855B9800540E0C /* ApiInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiInformation.swift; sourceTree = "<group>"; };
 		7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildHelperRequests.swift; sourceTree = "<group>"; };
 		7B70F0581E8C2A8600290432 /* SuccessTemplateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessTemplateController.swift; sourceTree = "<group>"; };
@@ -563,6 +565,7 @@
 				7B8BDBCE1E12F017009F3EAF /* PersonSearchTableViewCell.swift */,
 				7B8BDBD01E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift */,
 				7B1575E71E81BED1008AB34F /* ListItemCell.swift */,
+				7B6487281E9BF8C80018616D /* RegisreredHoursDayOfWeekTableViewCell.swift */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -818,16 +821,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1073,6 +1076,7 @@
 			files = (
 				7BB2220C1E4CA86E0069E74D /* RegistrationRequests.swift in Sources */,
 				7B8BDBD91E156E03009F3EAF /* BrightStartChild.swift in Sources */,
+				7B6487291E9BF8C90018616D /* RegisreredHoursDayOfWeekTableViewCell.swift in Sources */,
 				7B8BDBCA1E12B5F1009F3EAF /* TimeStampSearchTableViewController.swift in Sources */,
 				7BD0FFE31E43C95300472759 /* AuthyTestViewController.swift in Sources */,
 				7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */,

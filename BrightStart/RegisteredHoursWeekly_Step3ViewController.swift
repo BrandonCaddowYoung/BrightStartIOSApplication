@@ -27,8 +27,8 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
     
     @IBOutlet weak var KeyWorkerTable: UITableView!
     
-    var numberArray = Array<WeekDay>()
-    var selectedArray = Array<WeekDay>()
+    var daysOfTheWeekArray = Array<WeekDay>()
+    var selectedDaysOfTheWeekArray = Array<WeekDay>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,43 +49,43 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         monday.DayName = "Monday"
         monday.DayNumber = 1
         
-        self.numberArray.append(monday)
+        self.daysOfTheWeekArray.append(monday)
         
         let tuesday = WeekDay()
         tuesday.DayName = "Tuesday"
         tuesday.DayNumber = 2
         
-        self.numberArray.append(tuesday)
+        self.daysOfTheWeekArray.append(tuesday)
         
         let wednesday = WeekDay()
         wednesday.DayName = "Wednesday"
         wednesday.DayNumber = 3
         
-        self.numberArray.append(wednesday)
+        self.daysOfTheWeekArray.append(wednesday)
         
         let thursday = WeekDay()
         thursday.DayName = "Thursday"
         thursday.DayNumber = 4
         
-        self.numberArray.append(thursday)
+        self.daysOfTheWeekArray.append(thursday)
         
         let friday = WeekDay()
         friday.DayName = "Friday"
         friday.DayNumber = 5
         
-        self.numberArray.append(friday)
+        self.daysOfTheWeekArray.append(friday)
         
         let saturday = WeekDay()
         saturday.DayName = "Saturday"
         saturday.DayNumber = 6
 
-        self.numberArray.append(saturday)
+        self.daysOfTheWeekArray.append(saturday)
         
         let sunday = WeekDay()
         sunday.DayName = "Sunday"
         sunday.DayNumber = 7
         
-        self.numberArray.append(sunday)
+        self.daysOfTheWeekArray.append(sunday)
         
         Top.backgroundColor = _ApplicatoinColours.White
         
@@ -265,17 +265,17 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         print(value)
         
         
-        if(selectedArray.contains( where: { $0 === numberArray[value] } )){
+        if(selectedDaysOfTheWeekArray.contains( where: { $0 === daysOfTheWeekArray[value] } )){
             
-            let indexOfChild = selectedArray.index{$0 === numberArray[value]}
+            let indexOfChild = selectedDaysOfTheWeekArray.index{$0 === daysOfTheWeekArray[value]}
             
             //remove
-            selectedArray.remove(at: indexOfChild!)
+            selectedDaysOfTheWeekArray.remove(at: indexOfChild!)
         }
         else
         {
             //add
-            selectedArray.append(numberArray[value])
+            selectedDaysOfTheWeekArray.append(daysOfTheWeekArray[value])
         }
         
         KeyWorkerTable.reloadData()
@@ -285,30 +285,37 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
     /////NUMBER OF ROWS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return numberArray.count;
+        return daysOfTheWeekArray.count;
         
     }
     /////CELL FOR ROW
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         //let contact = numberArray.object(at: indexPath.row)
-        let contact = numberArray[indexPath.row]
+        let contact = daysOfTheWeekArray[indexPath.row]
         
-        let cell:ListItemCell = KeyWorkerTable.dequeueReusableCell(withIdentifier: "reuseCell") as! ListItemCell
+        let cell:RegisreredHoursDayOfWeekTableViewCell = KeyWorkerTable.dequeueReusableCell(withIdentifier: "reuseCell") as! RegisreredHoursDayOfWeekTableViewCell
         
         var selectedChild = WeekDay()
         selectedChild = contact
         
-        cell.textLabel?.text = contact.DayName
+        cell.DayOfWeekLabel?.text = contact.DayName
         
-        cell.textLabel?.font = _ApplicatoinColours.sshmediumlFont
-        cell.textLabel?.textColor = _ApplicatoinColours.Blue
+        cell.DayOfWeekLabel?.font = _ApplicatoinColours.largeFont
+        cell.StartLabel?.font = _ApplicatoinColours.mediumFont
+        cell.EndLabel?.font = _ApplicatoinColours.mediumFont
+        
+        cell.DayOfWeekLabel?.textColor = _ApplicatoinColours.Blue
+        
+        cell.StartTimePicker.date = Date().setTime(hour: 08, min: 00, sec: 00)!
+        
+        cell.EndTimePicker.date = Date().setTime(hour: 18, min: 00, sec: 00)!
         
         cell.tickButton.addTarget(self, action:#selector(CreateChild_Quick_3ViewController.tickClicked(sender:)), for: .touchUpInside)
         
         cell.tickButton.tag=indexPath.row
         
-        if(selectedArray.contains( where: { $0 === contact } )){
+        if(selectedDaysOfTheWeekArray.contains( where: { $0 === contact } )){
             cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
         }
         else

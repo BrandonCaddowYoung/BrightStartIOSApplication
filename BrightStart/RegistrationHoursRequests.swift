@@ -114,4 +114,51 @@ class RegistrationHoursRequests: NSObject {
         })
     }
     
+    
+    
+    
+    
+    
+    func SetWeeklyRegisteredHours(targetChildren: [String], chosenYear: String, chosenMonth: String,mondayStartTime : String, mondayEndTime : String,tuesdayStartTime : String, tuesdayEndTime : String,wednesdayStartTime : String, wednesdayEndTime : String, thursdayStartTime : String, thursdayEndTime : String,fridayStartTime : String, fridayEndTime : String, saturdayStartTime : String, saturdayEndTime : String, sundayStartTime : String, sundayEndTime : String, onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+       let parameters =
+            [
+                "children": targetChildren
+        ]
+        
+        
+       // let parameters = [
+         //   "string": "str",
+           // "params": [[
+             //   "param1" : "something",
+               // "param2" : 1,
+                //"param3" : 2,
+               // "param" : false
+                //],[
+                //    "param1" : "something",
+                  //  "param2" : 1,
+                  //  "param3" : 2,
+                  //  "param" : false
+               // ]
+           // ]
+       // ]
+        
+        let route = baseURL + "api/RegisteredHoursLogic/SetWeeklyRegisteredHours?chosenYear=" + "" + "&chosenMonth=" + "&mondayStartTime=" + "" + "&mondayEndTime=" + "" + "&tuesdayStartTime=" +  "" + "&tuesdayEndTime=" +  "" + "&wednesdayStartTime=" + "" + "&wednesdayEndTime=" +  "" + "&thursdayStartTime=" +  "" + "&thursdayEndTime=" + "" + "&fridayStartTime=" +  "" + "&fridayEndTime=" +  "" + "&saturdayStartTime=" +  "" + "&saturdayEndTime=" +  "" + "&sundayStartTime=" + ""  + "&sundayEndTime=" + "" + "&nurserySchoolId=" + nurserySchoolId
+        makeHTTPPost(encode: false, path: route, params: parameters, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
+    }
+    
+    
+    
+    
 }

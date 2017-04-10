@@ -13,6 +13,9 @@ open class WeekDay
     open var DayName: String = ""
     open var DayNumber: Int = 0
     
+    open var StartTime = NSDate()
+    open var EndTime = NSDate()
+    
     init () {
         
     }

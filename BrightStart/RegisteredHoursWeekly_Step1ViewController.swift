@@ -27,8 +27,8 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
     
     @IBOutlet weak var KeyWorkerTable: UITableView!
     
-    var numberArray = Array<BrightStartChild>()
-    var selectedArray = Array<BrightStartChild>()
+    var childrenArray = Array<BrightStartChild>()
+    var selectedChildrenArray = Array<BrightStartChild>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +76,7 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
                 
                 child.ChildDOB = newDate!
                 
-                self.numberArray.append(child)
+                self.childrenArray.append(child)
             }
             
             DispatchQueue.main.async(execute: {
@@ -270,17 +270,17 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
         print(value)
 
         
-        if(selectedArray.contains( where: { $0 === numberArray[value] } )){
+        if(selectedChildrenArray.contains( where: { $0 === childrenArray[value] } )){
             
-            let indexOfChild = selectedArray.index{$0 === numberArray[value]}
+            let indexOfChild = selectedChildrenArray.index{$0 === childrenArray[value]}
             
             //remove
-            selectedArray.remove(at: indexOfChild!)
+            selectedChildrenArray.remove(at: indexOfChild!)
         }
         else
         {
             //add
-            selectedArray.append(numberArray[value])
+            selectedChildrenArray.append(childrenArray[value])
         }
        
         KeyWorkerTable.reloadData()
@@ -290,14 +290,14 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
     /////NUMBER OF ROWS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return numberArray.count;
+        return childrenArray.count;
         
     }
     /////CELL FOR ROW
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         //let contact = numberArray.object(at: indexPath.row)
-        let contact = numberArray[indexPath.row]
+        let contact = childrenArray[indexPath.row]
         
         let cell:ListItemCell = KeyWorkerTable.dequeueReusableCell(withIdentifier: "reuseCell") as! ListItemCell
         
@@ -313,7 +313,7 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
         
         cell.tickButton.tag=indexPath.row
         
-        if(selectedArray.contains( where: { $0 === contact } )){
+        if(selectedChildrenArray.contains( where: { $0 === contact } )){
             cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
         }
         else

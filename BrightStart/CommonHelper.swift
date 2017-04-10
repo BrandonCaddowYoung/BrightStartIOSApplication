@@ -41,6 +41,15 @@ class CommonHelper {
     }
     
     
+    func GetTimeAsStringFromDate(targetDate: Date) -> String
+    {
+        let hour = Calendar.current.component(.hour, from: targetDate)
+        let minute = Calendar.current.component(.minute, from: targetDate)
+        
+        return String(hour) + ":" + String(minute)
+        
+    }
+    
     
     
     
@@ -196,6 +205,21 @@ extension UITextField {
         
         self.attributedPlaceholder = NSAttributedString(string: self.placeholder!, attributes: [NSForegroundColorAttributeName : palceHoldertextColor])
         
+    }
+}
+
+extension Date {
+    public func setTime(hour: Int, min: Int, sec: Int, timeZoneAbbrev: String = "UTC") -> Date? {
+        let x: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
+        let cal = Calendar.current
+        var components = cal.dateComponents(x, from: self)
+        
+        components.timeZone = TimeZone(abbreviation: timeZoneAbbrev)
+        components.hour = hour
+        components.minute = min
+        components.second = sec
+        
+        return cal.date(from: components)
     }
 }
 

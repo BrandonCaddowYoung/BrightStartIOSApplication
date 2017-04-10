@@ -121,6 +121,65 @@ class WizardPageViewController: UIPageViewController {
                 }
                 }
             }
+            
+            
+            
+            
+            
+            if(self.WizardPurpose == .SetWeeklyRegisteredHours)
+            {
+                //loadingSpiiner.show()
+                
+                if let step1 = orderedViewControllers[0] as? RegisteredHoursWeekly_Step1ViewController {
+                    if let step2 = orderedViewControllers[1] as? RegisteredHoursWeekly_Step2ViewController {
+                        if let step3 = orderedViewControllers[1] as? RegisteredHoursWeekly_Step3ViewController {
+                        
+                            var selectedChildArray = [String]()
+                            
+                            for child in step1.selectedChildrenArray {
+                                selectedChildArray.append(child.ChildId as String)
+                            }
+                            
+                            let mondayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[0].StartTime as Date)
+                            let mondayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[0].EndTime as Date)
+                            
+                            let tuesdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[1].StartTime as Date)
+                            let tuesdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[1].EndTime as Date)
+                            
+                            let wednesdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[2].StartTime as Date)
+                            let wednesdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[2].EndTime as Date)
+                            
+                            let thursdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[3].StartTime as Date)
+                            let thursdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[3].EndTime as Date)
+                            
+                            let fridayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[4].StartTime as Date)
+                            let fridayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[4].EndTime as Date)
+                            
+                            let saturdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[5].StartTime as Date)
+                            let saturdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[5].EndTime as Date)
+                            
+                            let sundayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[6].StartTime as Date)
+                            let sundayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[6].EndTime as Date)
+                            
+                        RegistrationHoursRequests.sharedInstance.SetWeeklyRegisteredHours(targetChildren: selectedChildArray, chosenYear: "", chosenMonth: "", mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion:
+                            { json in
+                                
+                                let succ = (json["Success"].stringValue as NSString) as String
+                                
+                                DispatchQueue.main.async(execute: {
+                                   
+                                    //Go to the success page!
+                                    
+                                })
+                        })
+                    }
+                }
+                }
+            }
+            
+            
+            
+            
         }
         
     }
