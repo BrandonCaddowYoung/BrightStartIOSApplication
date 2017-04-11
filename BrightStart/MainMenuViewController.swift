@@ -157,7 +157,7 @@ class MainMenuViewController: UIViewController {
             
             images = [UIImage(named: "Register")!,UIImage(named: "Children")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToSearchPerson", "GoToSearchPerson", "GoToAuthyMenu", "GoToSignIn"]
+            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToRegisteredHoursMenu", "GoToSearchPerson", "GoToAuthyMenu", "GoToSignIn"]
             
             PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.None, PurposeTypes.SignOut]
             
@@ -188,7 +188,7 @@ class MainMenuViewController: UIViewController {
             
         case .RegisteredHours:
             
-            images = [UIImage(named: "PencilTip100")!, UIImage(named: "PencilTip100")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Overtime")!, UIImage(named: "WeekView")!, UIImage(named: "SignOut")!]
             
             segueIdList = ["GoToSearchPerson", "GoToWizard", "GoToSignIn"]
             
@@ -686,6 +686,8 @@ class MainMenuViewController: UIViewController {
                 
             }
         }
+            
+            
         
        else if (segue.identifier == "GoToAuthyAuthenticate") {
             

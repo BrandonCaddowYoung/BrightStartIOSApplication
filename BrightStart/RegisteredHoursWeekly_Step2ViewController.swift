@@ -8,7 +8,11 @@
 
 import UIKit
 
-class RegisteredHoursWeekly_Step2ViewController: UIViewController {
+class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerViewDataSource, UIPickerViewDelegate {
+   
+    
+   
+
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -45,9 +49,24 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController {
     
     @IBOutlet weak var NextButton: UIButton!
     
+    var yearDataSource = [String]();
+    var monothDataSource = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        YearPicker.dataSource = self
+        YearPicker.delegate = self
+        
+        MonthPicker.dataSource = self
+        MonthPicker.delegate = self
+        
+        let date = Date()
+        let calendar = Calendar.current
+        
+        let year = calendar.component(.year, from: date)
+        
+        yearDataSource = [String(year-1), String(year), String(year+1)]
         
         self.edgesForExtendedLayout = []
         
@@ -57,7 +76,6 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController {
         _CommonHelper = CommonHelper()
         
         setupConstraints()
-        
         
         //Fonts
         TopText.font = _ApplicatoinColours.mediumFont
@@ -87,8 +105,39 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController {
         
          Bottom.backgroundColor = _ApplicatoinColours.Blue
         
+        
+        YearPicker.selectRow(1, inComponent: 0, animated: false)
+        
+        let month = calendar.component(.month, from: date)
+        MonthPicker.selectRow(month, inComponent: 0, animated: false)
+
     }
     
+   
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return yearDataSource.count;
+    }
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+   
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        if YearPicker == pickerView {
+            return yearDataSource[row]
+        }
+        if MonthPicker == pickerView {
+            return monothDataSource[row]
+        }
+        
+        return ""
+        
+    }
     
     func setupConstraints() {
         
