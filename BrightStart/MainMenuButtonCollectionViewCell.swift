@@ -8,7 +8,6 @@
 
 import UIKit
 
-//Used to communicate between FoodCollectionViewCell and ViewController
 protocol MainMenuButtonCollectionViewCellDelegate {
     
     func changeColorOfButton(forCell: MainMenuButtonCollectionViewCell)
@@ -21,7 +20,7 @@ protocol MainMenuButtonCollectionViewCellDelegate {
     
     func setTargetPurpose(type: PurposeTypes)
     
-    func showSpinner()
+    
 }
 
 class MainMenuButtonCollectionViewCell: UICollectionViewCell {
@@ -62,6 +61,8 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
        
         setupConstraints()
         
+        
+        
     }
     
     func setDisplayText(newDisplayText: String)
@@ -76,7 +77,7 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
     
     func changeColor() {
         
-        delegate?.showSpinner()
+       // delegate?.showSpinner()
         
         delegate?.setTargetPurpose(type: targetPurpose)
         

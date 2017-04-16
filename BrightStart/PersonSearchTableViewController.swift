@@ -55,63 +55,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         }
     }
     
-    //Removes the navigation bar from the top
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        super.viewWillDisappear(animated)
-        
-        if(!showNavigationBar){
-            self.navigationController?.setNavigationBarHidden(false, animated: animated);
-        }
-        else
-        {
-            self.navigationController?.setNavigationBarHidden(true, animated: animated);
-        }
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        
-        if(!showNavigationBar){
-            self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        }
-        else
-        {
-            //Changes the color of the backgorund within the nav bar.
-            navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
-            
-            //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
-            
-            //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
-            
-            //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
-            
-            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-            
-            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
-            
-            navigationController?.navigationBar.backItem?.title = ""
-            self.navigationItem.title="Search";
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: animated)
-            
-        }
-        
-    }
-    
-    func NavBarMenuTapped(){
-        self.GoToMenuType = .MainMenu
-        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
-    }
+   
 
     
     override func viewDidLoad() {
@@ -591,4 +535,51 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
        
         
     }
+    
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            //Changes the color of the backgorund within the nav bar.
+            navigationController?.navigationBar.barStyle = UIBarStyle.black
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            
+            //Title color
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+            
+            //Back color
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            
+            //Back ground color
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            
+            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            
+            navigationController?.navigationBar.topItem?.title = ""
+            navigationController?.navigationBar.backItem?.title = ""
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
+    }
+    
+    func NavBarMenuTapped(){
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+    }
+    
+    
+    
+    
 }

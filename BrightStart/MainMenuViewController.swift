@@ -33,6 +33,7 @@ enum PurposeTypes: Int {
     
     case RegisterdHours_Set
      case RegisterdHours_SetWeekly
+     case RegisterdHours_RollOver
     case RegisterdHours_Edit
     case RegisteredHours_Delete
     case RegisteredHours_Search
@@ -42,6 +43,7 @@ enum PurposeTypes: Int {
     case TimeStamps_Delete
     case TimeStamps_Search
     case TimeStamps_Missing
+    case TimeStamps_Menu
     
     case Authy_NewUser
     case Authy_Test
@@ -54,7 +56,7 @@ class MainMenuViewController: UIViewController {
     
    var targetPurpose: PurposeTypes!
     
-    var loadingSpiiner: ProgressHUD!
+     var _PopUpAlert: UIAlertController!
     
     var selectedAuhtyId: NSString!
     
@@ -111,11 +113,6 @@ class MainMenuViewController: UIViewController {
         
         loadMenuAssets()
         
-        // Create and add the view to the screen.
-        loadingSpiiner = ProgressHUD(text: "Loading")
-        
-        self.view.addSubview(loadingSpiiner)
-        hideSpinner()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -125,18 +122,6 @@ class MainMenuViewController: UIViewController {
     func fetchAuthyUsersBelongingToChild()
     {
         
-    }
-    
-    func showSpinner()
-    {
-        loadingSpiiner.show()
-    }
-    
-    func hideSpinner()
-    {
-        //if(loadingSpiiner!=nil){
-        loadingSpiiner.hide()
-        //}
     }
     
     func setSelectedAuthyId(authyID: NSString)
@@ -157,9 +142,9 @@ class MainMenuViewController: UIViewController {
             
             images = [UIImage(named: "Register")!,UIImage(named: "Children")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToRegisteredHoursMenu", "GoToSearchPerson", "GoToAuthyMenu", "GoToSignIn"]
+            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToRegisteredHoursMenu", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.None, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Menu, PurposeTypes.SignOut]
             
             DisplayTextList = ["Register",  "Children", "Registered Hours", "Time Stamps", "Auhty", "Sign Out"]
             
@@ -172,13 +157,13 @@ class MainMenuViewController: UIViewController {
             
             //uncomment for missing timestamps, also fill in the rest. The end result actually just returns current timestamps for the day, not missing time stamps!
             
-            images = [UIImage(named: "Edit")!, UIImage(named: "Question")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Calendar")!, UIImage(named: "Question")!, UIImage(named: "SignOut")!]
             
             segueIdList = ["GoToSearchPerson", "GoToDateSelect", "GoToSignIn"]
             
              PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Missing, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Edit", "Missing Time Stamps","Sign Out"]
+            DisplayTextList = ["Calendar", "Missing Time Stamps","Sign Out"]
             
             authyIdList = ["", "","", ""]
                 
@@ -188,15 +173,15 @@ class MainMenuViewController: UIViewController {
             
         case .RegisteredHours:
             
-            images = [UIImage(named: "Overtime")!, UIImage(named: "WeekView")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Calendar")!, UIImage(named: "WeekView")!, UIImage(named: "Overtime")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToSearchPerson", "GoToWizard", "GoToSignIn"]
+            segueIdList = ["GoToSearchPerson", "GoToWizard", "GoToWizard", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.RegisterdHours_Edit, PurposeTypes.RegisterdHours_SetWeekly, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.RegisterdHours_Edit, PurposeTypes.RegisterdHours_SetWeekly, PurposeTypes.RegisterdHours_RollOver, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Edit", "Set Weekly", "Sign Out"]
+            DisplayTextList = ["Calendar", "Set Weekly", "Roll Over", "Sign Out"]
             
-            authyIdList = ["", "", ""]
+            authyIdList = ["", "", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -426,10 +411,7 @@ class MainMenuViewController: UIViewController {
         view.backgroundColor = _ApplicatoinColours.White
         
         setupConstraints()
-        
     }
-    
-    
     
     func setupConstraints()
     {
@@ -752,6 +734,14 @@ class MainMenuViewController: UIViewController {
                     vc.cancelSegue = ""
                 }
             }
+            else if (targetPurpose == PurposeTypes.RegisterdHours_RollOver)
+            {
+                if let vc = segue.destination as? WizardViewController {
+                    vc.WizardPurpose = .RegisteredHours_RollOver
+                    vc.successSegue = ""
+                    vc.cancelSegue = ""
+                }
+            }
         }
         
         
@@ -839,7 +829,7 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     
     override func viewWillAppear(_ animated: Bool) {
         
-        hideSpinner()
+       
 
         super.viewWillAppear(animated)
         
@@ -937,7 +927,6 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
             
         }
     }
-    
 }
 
 extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
@@ -953,20 +942,31 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
     
     func renderMenuAssets(menuType: MenuTypes) {
         
-        selectedMenu = menuType
         
-        loadMenuAssets()
+        self._PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
+        self.present(self._PopUpAlert, animated: true, completion:
+            {
+                
+                self.selectedMenu = menuType
+                
+                self.loadMenuAssets()
+                
+                self.HideShowBackButton()
+                
+                self.SetNavigationBarDetails()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    
+                    self.collectionView.reloadData()
+                    
+                    self._PopUpAlert.dismiss(animated: false, completion:
+                        {
+                            
+                    })
+        }
+        })
         
-        HideShowBackButton()
-        
-       SetNavigationBarDetails()
-    
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.collectionView.reloadData()
-    
-            self.hideSpinner()
-            
         }
        
     }
-}
+

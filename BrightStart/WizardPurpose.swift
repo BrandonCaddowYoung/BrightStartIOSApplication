@@ -13,4 +13,5 @@ enum WizardPurpose: Int {
     case CreateChild
     case EditChild
     case SetWeeklyRegisteredHours
+    case RegisteredHours_RollOver
 }

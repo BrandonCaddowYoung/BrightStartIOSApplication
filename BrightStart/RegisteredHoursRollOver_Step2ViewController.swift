@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerViewDataSource, UIPickerViewDelegate {
+class RegisteredHoursRollOver_Step2ViewController: UIViewController , UIPickerViewDataSource, UIPickerViewDelegate {
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -25,10 +25,6 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
     
     @IBOutlet weak var UpperContent: UIView!
     
-    @IBOutlet weak var YearLabel: UILabel!
-    
-    @IBOutlet weak var YearPicker: UIPickerView!
-    
     @IBOutlet weak var Middle: UIView!
     
     @IBOutlet weak var LowerHeading: UIView!
@@ -37,32 +33,45 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
     
     @IBOutlet weak var LowerContent: UIView!
     
-    @IBOutlet weak var MonthLabel: UILabel!
-    
-    @IBOutlet weak var MonthPicker: UIPickerView!
-    
     @IBOutlet weak var Bottom: UIView!
     
     @IBOutlet weak var NextButton: UIButton!
     
-    var yearDataSource = [String]();
-    var monothDataSource = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+    @IBOutlet weak var TargetYearPicker: UIPickerView!
+    @IBOutlet weak var TargetMonthPicker: UIPickerView!
+    
+    @IBOutlet weak var DestinationYearPicker: UIPickerView!
+    @IBOutlet weak var DestinationMonthPicker: UIPickerView!
+    
+    var targetYearDataSource = [String]();
+    var targetMonothDataSource = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+    var destinationYearDataSource = [String]();
+    var destinationMonothDataSource = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        YearPicker.dataSource = self
-        YearPicker.delegate = self
+        TargetYearPicker.dataSource = self
+        TargetYearPicker.delegate = self
         
-        MonthPicker.dataSource = self
-        MonthPicker.delegate = self
+        TargetMonthPicker.dataSource = self
+        TargetMonthPicker.delegate = self
+        
+        DestinationYearPicker.dataSource = self
+        DestinationYearPicker.delegate = self
+        
+        DestinationMonthPicker.dataSource = self
+        DestinationMonthPicker.delegate = self
         
         let date = Date()
         let calendar = Calendar.current
         
         let year = calendar.component(.year, from: date)
         
-        yearDataSource = [String(year-1), String(year), String(year+1)]
+        targetYearDataSource = [String(year-1), String(year), String(year+1)]
+        destinationYearDataSource = [String(year-1), String(year), String(year+1)]
         
         self.edgesForExtendedLayout = []
         
@@ -75,17 +84,15 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         
         //Fonts
         TopText.font = _ApplicatoinColours.XlargeFont
-        YearLabel.font = _ApplicatoinColours.mediumFont
-        MonthLabel.font = _ApplicatoinColours.mediumFont
+       
         SelectTheYearLabel.font = _ApplicatoinColours.mediumFont
         SelectTheMonthLabel.font = _ApplicatoinColours.mediumFont
         
         TopText.textColor = _ApplicatoinColours.Orange
-        YearLabel.textColor = _ApplicatoinColours.Black
-        MonthLabel.textColor = _ApplicatoinColours.Black
+        
         SelectTheYearLabel.textColor = _ApplicatoinColours.White
         SelectTheMonthLabel.textColor = _ApplicatoinColours.White
-
+        
         TopText.text = "Dates"
         
         Top.backgroundColor = _ApplicatoinColours.Blue
@@ -98,33 +105,39 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         
         LowerHeading.backgroundColor = _ApplicatoinColours.Blue
         
-         LowerContent.backgroundColor = _ApplicatoinColours.White
+        LowerContent.backgroundColor = _ApplicatoinColours.White
         
-         Bottom.backgroundColor = _ApplicatoinColours.Blue
+        Bottom.backgroundColor = _ApplicatoinColours.Blue
         
         //TopText.isHidden = true
         
-        YearPicker.selectRow(1, inComponent: 0, animated: false)
+        //YearPicker.selectRow(1, inComponent: 0, animated: false)
         
-        let month = calendar.component(.month, from: date)
-        MonthPicker.selectRow(month, inComponent: 0, animated: false)
-
+        //let month = calendar.component(.month, from: date)
+        //MonthPicker.selectRow(month, inComponent: 0, animated: false)
+        
     }
     
-   
+    
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        if YearPicker == pickerView {
-            return yearDataSource.count;
+        if TargetYearPicker == pickerView {
+            return targetYearDataSource.count;
         }
-        if MonthPicker == pickerView {
-            return monothDataSource.count;
+        if TargetMonthPicker == pickerView {
+            return targetMonothDataSource.count;
+        }
+        if DestinationYearPicker == pickerView {
+            return destinationYearDataSource.count;
+        }
+        if DestinationMonthPicker == pickerView {
+            return destinationMonothDataSource.count;
         }
         
         return 0
         
     }
-
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -132,38 +145,48 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
-   
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        if YearPicker == pickerView {
-            return yearDataSource[row]
+        if TargetYearPicker == pickerView {
+            return targetYearDataSource[row]
         }
-        if MonthPicker == pickerView {
-            return monothDataSource[row]
+        if TargetMonthPicker == pickerView {
+            return targetMonothDataSource[row]
+        }
+        if DestinationYearPicker == pickerView {
+            return destinationYearDataSource[row]
+        }
+        if DestinationMonthPicker == pickerView {
+           return destinationMonothDataSource[row]
         }
         
         return ""
-        
     }
     
-    var lastSelectedMonth: String = "";
-     var lastSelectedYear: String = "";
+    var lastSelectedTargetYear: String = "";
+    var lastSelectedTargetMonth: String = "";
+    
+    var lastSelectedDestinationYear: String = "";
+    var lastSelectedDestinationMonth: String = "";
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        
-        if YearPicker == pickerView {
-            lastSelectedYear = yearDataSource[row] as String
-
+        if TargetYearPicker == pickerView {
+           lastSelectedTargetYear = targetYearDataSource[row] as String
         }
-        if MonthPicker == pickerView {
-            lastSelectedMonth = monothDataSource[row] as String
+        if TargetMonthPicker == pickerView {
+              lastSelectedTargetMonth = targetMonothDataSource[row] as String
         }
-        
+        if DestinationYearPicker == pickerView {
+              lastSelectedDestinationYear = destinationYearDataSource[row] as String
+        }
+        if DestinationMonthPicker == pickerView {
+             lastSelectedDestinationMonth = destinationMonothDataSource[row] as String
+        }
     }
     
     func setupConstraints() {
-        
         
         //Middle
         
@@ -255,10 +278,10 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         //width
         SelectTheYearLabel.widthAnchor.constraint(
             equalTo: UpperHeading.widthAnchor, multiplier: 0.40).isActive = true
-
-       
-
-
+        
+        
+        
+        
         
         
         
@@ -282,33 +305,33 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         UpperContent.bottomAnchor.constraint(
             equalTo: Middle.topAnchor).isActive = true
         
-        //Year
+        //TARGET YEAR PICKER
         
-        YearLabel.translatesAutoresizingMaskIntoConstraints = false
+        TargetYearPicker.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        YearLabel.centerYAnchor.constraint(
+        TargetYearPicker.centerYAnchor.constraint(
             equalTo: UpperContent.centerYAnchor).isActive = true
         
-        YearLabel.leadingAnchor.constraint(
+        TargetYearPicker.leadingAnchor.constraint(
             equalTo: UpperContent.leadingAnchor, constant: 15).isActive = true
         
-        YearLabel.widthAnchor.constraint(
-            equalTo: UpperContent.widthAnchor, multiplier: 0.30).isActive = true
+        TargetYearPicker.widthAnchor.constraint(
+            equalTo: UpperContent.widthAnchor, multiplier: 0.45).isActive = true
         
         
-        //Year Picker
-        YearPicker.translatesAutoresizingMaskIntoConstraints = false
+        //TARGET MONTH Picker
+        TargetMonthPicker.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        YearPicker.centerYAnchor.constraint(
+        TargetMonthPicker.centerYAnchor.constraint(
             equalTo: UpperContent.centerYAnchor).isActive = true
         
-        YearPicker.trailingAnchor.constraint(
+        TargetMonthPicker.trailingAnchor.constraint(
             equalTo: UpperContent.trailingAnchor, constant: -15).isActive = true
         
-        YearPicker.widthAnchor.constraint(
-            equalTo: UpperContent.widthAnchor, multiplier: 0.50).isActive = true
+        TargetMonthPicker.widthAnchor.constraint(
+            equalTo: UpperContent.widthAnchor, multiplier: 0.45).isActive = true
         
         
         
@@ -404,38 +427,44 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         
         //Month
         
-        MonthLabel.translatesAutoresizingMaskIntoConstraints = false
+        DestinationYearPicker.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        MonthLabel.centerYAnchor.constraint(
+        DestinationYearPicker.centerYAnchor.constraint(
             equalTo: LowerContent.centerYAnchor).isActive = true
         
-        MonthLabel.leadingAnchor.constraint(
+        //right
+        DestinationYearPicker.leadingAnchor.constraint(
             equalTo: LowerContent.leadingAnchor, constant: 15).isActive = true
         
-        MonthLabel.widthAnchor.constraint(
-            equalTo: LowerContent.widthAnchor, multiplier: 0.30).isActive = true
+        //height
+        DestinationYearPicker.heightAnchor.constraint(
+            equalTo: LowerContent.heightAnchor).isActive = true
+        
+        //width
+        DestinationYearPicker.widthAnchor.constraint(
+            equalTo: LowerContent.widthAnchor, multiplier: 0.45).isActive = true
         
         
         //Month picker
         
-        MonthPicker.translatesAutoresizingMaskIntoConstraints = false
+        DestinationMonthPicker.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        MonthPicker.centerYAnchor.constraint(
+        DestinationMonthPicker.centerYAnchor.constraint(
             equalTo: LowerContent.centerYAnchor).isActive = true
         
         //right
-        MonthPicker.trailingAnchor.constraint(
+        DestinationMonthPicker.trailingAnchor.constraint(
             equalTo: LowerContent.trailingAnchor, constant: -15).isActive = true
         
         //height
-        MonthPicker.heightAnchor.constraint(
+        DestinationMonthPicker.heightAnchor.constraint(
             equalTo: LowerContent.heightAnchor).isActive = true
         
         //width
-        MonthPicker.widthAnchor.constraint(
-            equalTo: LowerContent.widthAnchor, multiplier: 0.50).isActive = true
+        DestinationMonthPicker.widthAnchor.constraint(
+            equalTo: LowerContent.widthAnchor, multiplier: 0.45).isActive = true
         
         
         
@@ -445,7 +474,7 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         
     }
     
-   
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

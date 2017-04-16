@@ -158,7 +158,11 @@ class WizardViewController: UIViewController {
             else if(WizardPurpose == .SetWeeklyRegisteredHours){
                 wizardPageViewController.WizardViewControllers = ["RegisteredHoursWeekly_Step1", "RegisteredHoursWeekly_Step2", "RegisteredHoursWeekly_Step3"]
             }
-    
+            else if(WizardPurpose == .RegisteredHours_RollOver){
+                wizardPageViewController.WizardViewControllers = ["RegisteredHoursRollOver_Step1", "RegisteredHoursRollOver_Step2"]
+            }
+            
+            
         }
     }
     

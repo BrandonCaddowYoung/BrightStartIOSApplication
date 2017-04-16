@@ -8,7 +8,9 @@
 
 import UIKit
 
-class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RegHoursWeeklyViewCellDelegate {
+    
+    var showNavigationBar = true
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -25,7 +27,7 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
     
     @IBOutlet weak var Bottom: UIView!
     
-    @IBOutlet weak var KeyWorkerTable: UITableView!
+    @IBOutlet weak var DaysOfTheWeekTable: UITableView!
     
     var daysOfTheWeekArray = Array<WeekDay>()
     var selectedDaysOfTheWeekArray = Array<WeekDay>()
@@ -42,8 +44,8 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         
         setupConstraints()
         
-        self.KeyWorkerTable.delegate = self
-        self.KeyWorkerTable.dataSource = self
+        self.DaysOfTheWeekTable.delegate = self
+        self.DaysOfTheWeekTable.dataSource = self
         
         let monday = WeekDay()
         monday.DayName = "Monday"
@@ -87,13 +89,19 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         
         self.daysOfTheWeekArray.append(sunday)
         
-        Top.backgroundColor = _ApplicatoinColours.White
+        Top.backgroundColor = _ApplicatoinColours.Blue
         
-        UpperHeading.backgroundColor = _ApplicatoinColours.White
+        UpperHeading.backgroundColor = _ApplicatoinColours.Blue
         
         UpperContent.backgroundColor = _ApplicatoinColours.White
         
-        Bottom.backgroundColor = _ApplicatoinColours.White
+        Bottom.backgroundColor = _ApplicatoinColours.Blue
+        
+        MainHeadingLabel.textColor = _ApplicatoinColours.Orange
+         MainHeadingLabel.font = _ApplicatoinColours.XlargeFont
+        
+        SelectLabel.textColor = _ApplicatoinColours.White
+        SelectLabel.font = _ApplicatoinColours.mediumFont
         
     }
     
@@ -220,22 +228,22 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         
         //Table
         
-        KeyWorkerTable.translatesAutoresizingMaskIntoConstraints = false
+        DaysOfTheWeekTable.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        KeyWorkerTable.centerXAnchor.constraint(
+        DaysOfTheWeekTable.centerXAnchor.constraint(
             equalTo: UpperContent.centerXAnchor).isActive = true
         
         //center
-        KeyWorkerTable.centerYAnchor.constraint(
+        DaysOfTheWeekTable.centerYAnchor.constraint(
             equalTo: UpperContent.centerYAnchor).isActive = true
         
         //width
-        KeyWorkerTable.widthAnchor.constraint(
+        DaysOfTheWeekTable.widthAnchor.constraint(
             equalTo: UpperContent.widthAnchor, multiplier: 0.90).isActive = true
         
         //height
-        KeyWorkerTable.heightAnchor.constraint(
+        DaysOfTheWeekTable.heightAnchor.constraint(
             equalTo: UpperContent.heightAnchor).isActive = true
         
     }
@@ -259,11 +267,7 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
     
     func tickClicked(sender: UIButton!)
     {
-        
         let value = sender.tag;
-        
-        print(value)
-        
         
         if(selectedDaysOfTheWeekArray.contains( where: { $0 === daysOfTheWeekArray[value] } )){
             
@@ -278,7 +282,7 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
             selectedDaysOfTheWeekArray.append(daysOfTheWeekArray[value])
         }
         
-        KeyWorkerTable.reloadData()
+        DaysOfTheWeekTable.reloadData()
         
     }
     
@@ -294,7 +298,9 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         //let contact = numberArray.object(at: indexPath.row)
         let contact = daysOfTheWeekArray[indexPath.row]
         
-        let cell:RegisreredHoursDayOfWeekTableViewCell = KeyWorkerTable.dequeueReusableCell(withIdentifier: "reuseCell") as! RegisreredHoursDayOfWeekTableViewCell
+        let cell:RegisreredHoursDayOfWeekTableViewCell = DaysOfTheWeekTable.dequeueReusableCell(withIdentifier: "reuseCell") as! RegisreredHoursDayOfWeekTableViewCell
+        
+        cell.delegate = self
         
         var selectedChild = WeekDay()
         selectedChild = contact
@@ -307,9 +313,7 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         
         cell.DayOfWeekLabel?.textColor = _ApplicatoinColours.Blue
         
-        cell.StartTimePicker.date = Date().setTime(hour: 08, min: 00, sec: 00)!
         
-        cell.EndTimePicker.date = Date().setTime(hour: 18, min: 00, sec: 00)!
         
         cell.tickButton.addTarget(self, action:#selector(CreateChild_Quick_3ViewController.tickClicked(sender:)), for: .touchUpInside)
         
@@ -321,6 +325,11 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         else
         {
             cell.tickButton.setBackgroundImage(UIImage(named:"star"), for: UIControlState.normal)
+            
+            cell.StartTimePicker.date = Date().setTime(hour: 08, min: 00, sec: 00)!
+            
+            cell.EndTimePicker.date = Date().setTime(hour: 18, min: 00, sec: 00)!
+            
         }
         
         cell.tickButton.titleLabel?.text = ""
@@ -334,4 +343,60 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         return 80.0
     }
     
+    func updateStartDate(newDate: Date, dayOfWeek: Int){
+        daysOfTheWeekArray[dayOfWeek-1].StartTime = newDate as NSDate
+        // selectedDaysOfTheWeekArray[dayOfWeek-1].StartTime = newDate as NSDate
+    }
+    
+    func updateEndDate(newDate: Date, dayOfWeek: Int)
+    {
+       daysOfTheWeekArray[dayOfWeek-1].EndTime = newDate as NSDate
+        // selectedDaysOfTheWeekArray[dayOfWeek-1].StartTime = newDate as NSDate
+    }
+    
+    
+   
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if(!showNavigationBar){
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        else
+        {
+            //Changes the color of the backgorund within the nav bar.
+            navigationController?.navigationBar.barStyle = UIBarStyle.black
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            
+            //Title color
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            
+            //Back color
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            
+            //Back ground color
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            
+            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            
+            navigationController?.navigationBar.topItem?.title = ""
+            navigationController?.navigationBar.backItem?.title = ""
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
+    }
+    
+    func NavBarMenuTapped(){
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+    }
+    
 }
+
+
+

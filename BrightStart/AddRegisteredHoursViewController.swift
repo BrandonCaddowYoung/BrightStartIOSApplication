@@ -38,7 +38,8 @@ class AddRegisteredHoursViewController: UIViewController {
     
     @IBOutlet weak var HorizontalDivider: UIView!
     
-    var loadingSpiiner: ProgressHUD!
+    //var loadingSpiiner: ProgressHUD!
+    var _PopUpAlert: UIAlertController!
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -70,12 +71,6 @@ class AddRegisteredHoursViewController: UIViewController {
         
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
-        
-        loadingSpiiner = ProgressHUD(text: "Loading")
-        self.view.addSubview(loadingSpiiner)
-        hideSpinner()
-        
-       // MiddleRightContainer.addSubview(EndDatePicker)
         
         //Stlying save button
         SaveButton.layer.cornerRadius = 5
@@ -136,19 +131,7 @@ class AddRegisteredHoursViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func showSpinner()
-    {
-        loadingSpiiner.show()
-    }
-    
-    func hideSpinner()
-    {
-        //if(loadingSpiiner!=nil){
-        loadingSpiiner.hide()
-        //}
-    }
-
+   
      func setupConstraints() {
     
     //Top
@@ -398,21 +381,31 @@ class AddRegisteredHoursViewController: UIViewController {
         selectedStartTime = StartDatePicker.date as NSDate
         selectedEndTime = EndDatePicker.date as NSDate
 
-        self.showSpinner()
+       
+        _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
+        self.present(_PopUpAlert, animated: true, completion:
+            {
         
-        RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: personId, startTime: selectedStartTime, finishTime: selectedEndTime, onCompletion: { (JSON) in
-            
-            self.hideSpinner()
-            
-            //Always goes back when done but this could be optional?
-            
-            if let nav = self.navigationController {
-                nav.popViewController(animated: true)
-            } else {
-                self.dismiss(animated: true, completion: nil)
-            }
-            
+        
+                RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: self.personId, startTime: self.selectedStartTime, finishTime: self.selectedEndTime, onCompletion: { (JSON) in
+                    
+                    self._PopUpAlert.dismiss(animated: false, completion:
+                       {
+                    
+                        //Always goes back when done but this could be optional?
+                        
+                        if let nav = self.navigationController {
+                            nav.popViewController(animated: true)
+                        } else {
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                        
+                    })
+                    
+                })
+        
         })
+      
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {

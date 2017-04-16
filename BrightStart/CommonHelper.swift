@@ -12,6 +12,68 @@ import UIKit
 class CommonHelper {
     
     
+    
+    func GetMonthAsInt(monthAsString: String) -> Int
+    {
+        
+        switch monthAsString {
+        case "January":
+            return 1;
+        case "Febuary":
+            return 2;
+        case "March":
+            return 3;
+        case "April":
+            return 4;
+        case "May":
+            return 5;
+        case "June":
+            return 6;
+        case "July":
+            return 7;
+        case "August":
+            return 8;
+        case "September":
+            return 9;
+        case "October":
+            return 10;
+        case "November":
+            return 11;
+        case "Decemeber":
+            return 12;
+        default:
+            return -1
+        }
+        
+    
+    }
+    
+    func GetDayAsInt(monthAsString: String) -> Int
+    {
+        
+        switch monthAsString {
+        case "Monday":
+            return 1;
+        case "Tuesday":
+            return 2;
+        case "Wednesday":
+            return 3;
+        case "Thursday":
+            return 4;
+        case "Friday":
+            return 5;
+        case "Saturday":
+            return 6;
+        case "Sunday":
+            return 7;
+        default:
+            return -1
+        }
+        
+        
+    }
+    
+    
     func showOverlayMessage(_ message: String) ->  UIAlertController{
         
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)

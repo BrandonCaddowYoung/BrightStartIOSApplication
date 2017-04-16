@@ -93,20 +93,17 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         super.viewWillAppear(animated)
         
         if(!showNavigationBar){
-            
             self.navigationController?.setNavigationBarHidden(true, animated: animated)
         }
         else
         {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-            
             //Changes the color of the backgorund within the nav bar.
             navigationController?.navigationBar.barStyle = UIBarStyle.black
             navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
             
             //Title color
             let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
             
             //Back color
             navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
@@ -120,13 +117,11 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             
             self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
             
-            navigationController?.navigationBar.topItem?.title = "Time Stamp Search."
-            
-            
+            navigationController?.navigationBar.topItem?.title = ""
             navigationController?.navigationBar.backItem?.title = ""
             
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }
-        
     }
     
     func NavBarMenuTapped(){

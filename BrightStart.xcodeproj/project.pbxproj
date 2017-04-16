@@ -35,6 +35,8 @@
 		7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */; };
 		7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */; };
 		7B6487291E9BF8C90018616D /* RegisreredHoursDayOfWeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6487281E9BF8C80018616D /* RegisreredHoursDayOfWeekTableViewCell.swift */; };
+		7B6487431EA26F600018616D /* RegisteredHoursRollOver_Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6487421EA26F5E0018616D /* RegisteredHoursRollOver_Step1ViewController.swift */; };
+		7B6487451EA270590018616D /* RegisteredHoursRollOver_Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6487441EA270590018616D /* RegisteredHoursRollOver_Step2ViewController.swift */; };
 		7B6A1AD41E855B9800540E0C /* ApiInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6A1AD31E855B9800540E0C /* ApiInformation.swift */; };
 		7B6A1AED1E85B53700540E0C /* ChildHelperRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */; };
 		7B70F0591E8C2A8600290432 /* SuccessTemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B70F0581E8C2A8600290432 /* SuccessTemplateController.swift */; };
@@ -305,6 +307,8 @@
 		7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyPersonSearchTableViewController.swift; sourceTree = "<group>"; };
 		7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRequests.swift; sourceTree = "<group>"; };
 		7B6487281E9BF8C80018616D /* RegisreredHoursDayOfWeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisreredHoursDayOfWeekTableViewCell.swift; sourceTree = "<group>"; };
+		7B6487421EA26F5E0018616D /* RegisteredHoursRollOver_Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursRollOver_Step1ViewController.swift; sourceTree = "<group>"; };
+		7B6487441EA270590018616D /* RegisteredHoursRollOver_Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursRollOver_Step2ViewController.swift; sourceTree = "<group>"; };
 		7B6A1AD31E855B9800540E0C /* ApiInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiInformation.swift; sourceTree = "<group>"; };
 		7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildHelperRequests.swift; sourceTree = "<group>"; };
 		7B70F0581E8C2A8600290432 /* SuccessTemplateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessTemplateController.swift; sourceTree = "<group>"; };
@@ -403,27 +407,6 @@
 			name = Calendar;
 			sourceTree = "<group>";
 		};
-		7B15759F1E805286008AB34F /* PageViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				7B1575B91E805354008AB34F /* PageViewControllers */,
-				7B1575B71E805311008AB34F /* WizardPageViewController.swift */,
-				7B1575DA1E806477008AB34F /* WizardViewController.swift */,
-				7B1575E91E8328DB008AB34F /* WizardPurpose.swift */,
-			);
-			name = PageViewControllers;
-			sourceTree = "<group>";
-		};
-		7B1575B91E805354008AB34F /* PageViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				7B1575DC1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift */,
-				7B1575DE1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift */,
-				7B1575E01E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift */,
-			);
-			name = PageViewControllers;
-			sourceTree = "<group>";
-		};
 		7B1575E41E81A0B9008AB34F /* Templates */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,8 +499,6 @@
 		7B2E88BD1DEF7FA2003F7E45 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7BD0FFC81E43BF0000472759 /* Auhty */,
-				7B8BDBAB1E0E8471009F3EAF /* Menus */,
 				D7EEEDBB1CC2E005001424FE /* NumbersController.swift */,
 				7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */,
 				7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */,
@@ -530,9 +511,33 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		7B4440991EA2D19200959A7E /* Child_QuickCreate */ = {
+			isa = PBXGroup;
+			children = (
+				7B1575DC1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift */,
+				7B1575DE1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift */,
+				7B1575E01E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift */,
+			);
+			name = Child_QuickCreate;
+			sourceTree = "<group>";
+		};
+		7B6487411EA26F1A0018616D /* RegisrtedHours_RollOver */ = {
+			isa = PBXGroup;
+			children = (
+				7B6487421EA26F5E0018616D /* RegisteredHoursRollOver_Step1ViewController.swift */,
+				7B6487441EA270590018616D /* RegisteredHoursRollOver_Step2ViewController.swift */,
+			);
+			name = RegisrtedHours_RollOver;
+			sourceTree = "<group>";
+		};
 		7B70F05A1E8C2EBA00290432 /* Wizard */ = {
 			isa = PBXGroup;
 			children = (
+				7B4440991EA2D19200959A7E /* Child_QuickCreate */,
+				7B1575B71E805311008AB34F /* WizardPageViewController.swift */,
+				7B1575DA1E806477008AB34F /* WizardViewController.swift */,
+				7B1575E91E8328DB008AB34F /* WizardPurpose.swift */,
+				7B6487411EA26F1A0018616D /* RegisrtedHours_RollOver */,
 				7B169D001E9173A400FD8A38 /* RegisteredHoursWeekly */,
 				7B70F05B1E8C2F3500290432 /* WizardSuccessViewController.swift */,
 			);
@@ -603,13 +608,6 @@
 			name = Auhty;
 			sourceTree = "<group>";
 		};
-		D7387E991CAF1A2B00948DE5 /* Child */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Child;
-			sourceTree = "<group>";
-		};
 		D739E8651CC981270084ECE4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,9 +666,10 @@
 		D7F995681C9EF4A1001802EC /* BrightStart */ = {
 			isa = PBXGroup;
 			children = (
+				7B8BDBAB1E0E8471009F3EAF /* Menus */,
+				7BD0FFC81E43BF0000472759 /* Auhty */,
 				7B70F05A1E8C2EBA00290432 /* Wizard */,
 				7B1575E41E81A0B9008AB34F /* Templates */,
-				7B15759F1E805286008AB34F /* PageViewControllers */,
 				7B0257181E4F56F9007FED0C /* Calendar */,
 				7B8BDBD21E12F205009F3EAF /* TablieViews */,
 				7B8BDBCD1E12EFC5009F3EAF /* TableViewCells */,
@@ -679,7 +678,6 @@
 				7B2618281DEE07C4005B4B20 /* HTTP */,
 				D739E8651CC981270084ECE4 /* Models */,
 				D74311461CB39AE600C72655 /* API */,
-				D7387E991CAF1A2B00948DE5 /* Child */,
 				D7F995691C9EF4A1001802EC /* AppDelegate.swift */,
 				D7F9956D1C9EF4A1001802EC /* Main.storyboard */,
 				D7F995701C9EF4A1001802EC /* Assets.xcassets */,
@@ -821,16 +819,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1107,6 +1105,7 @@
 				7B6A1AED1E85B53700540E0C /* ChildHelperRequests.swift in Sources */,
 				7B32E3841E991DA800959375 /* WeekDay.swift in Sources */,
 				7B1575E61E81A139008AB34F /* SingleTemplateViewController.swift in Sources */,
+				7B6487451EA270590018616D /* RegisteredHoursRollOver_Step2ViewController.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				7B1575DF1E807F7C008AB34F /* CreateChild_Quick_2ViewController.swift in Sources */,
 				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,
@@ -1129,6 +1128,7 @@
 				7B8BDBDF1E1572AF009F3EAF /* ChildRequests.swift in Sources */,
 				7B1575E11E807FA1008AB34F /* CreateChild_Quick_3ViewController.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,
+				7B6487431EA26F600018616D /* RegisteredHoursRollOver_Step1ViewController.swift in Sources */,
 				7B208C231E96DA910039A0A0 /* RegisteredHoursWeekly_Step1ViewController.swift in Sources */,
 				7B6A1AD41E855B9800540E0C /* ApiInformation.swift in Sources */,
 				7BD0FFE71E4682B400472759 /* AuthyAction.swift in Sources */,

@@ -237,7 +237,7 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
             
             //Title color
             let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
             
             //Back color
             navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
@@ -251,13 +251,11 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
             
             self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
             
+            navigationController?.navigationBar.topItem?.title = ""
             navigationController?.navigationBar.backItem?.title = ""
             
-            navigationController?.navigationBar.topItem?.title = "Authy Search"
-            
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

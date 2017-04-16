@@ -39,7 +39,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     
     var creatingNew = false
     
-    var loadingSpiiner: ProgressHUD!
+    var _PopUpAlert: UIAlertController!
     
     var childName = ""
     
@@ -119,8 +119,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         startSpinner.hidesWhenStopped = true
         endSpinner.hidesWhenStopped = true
         
-        loadingSpiiner = ProgressHUD(text: "Loading")
-        self.view.addSubview(loadingSpiiner)
         hideSpinner()
         
         addNewButtonStart.isHidden = true
@@ -225,59 +223,53 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
 
     func showSpinner()
     {
-        loadingSpiiner.show()
+       // _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
+       // self.present(_PopUpAlert, animated: true, completion: nil)
+        
     }
     
     func hideSpinner()
     {
-        //if(loadingSpiiner!=nil){
-        loadingSpiiner.hide()
-        //}
+        //self._PopUpAlert.dismiss(animated: false, completion:
+          //  {
+                
+       // })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.calendarView.selectDates([self.lastSelectedDate])
+        super.viewWillAppear(animated)
         
         if(!showNavigationBar){
             self.navigationController?.setNavigationBarHidden(true, animated: animated)
         }
         else
         {
+            //Changes the color of the backgorund within the nav bar.
+            navigationController?.navigationBar.barStyle = UIBarStyle.black
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            
+            //Title color
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+            
+            //Back color
+            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            
+            //Back ground color
+            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
+            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+            
+            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            
+            navigationController?.navigationBar.topItem?.title = ""
+            navigationController?.navigationBar.backItem?.title = ""
+            
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
-            
-        //Changes the color of the backgorund within the nav bar.
-        navigationController?.navigationBar.barStyle = UIBarStyle.black
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
-        
-        //Title color
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
-        
-        //Back color
-        navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
-        
-        //Back ground color
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
-        
-        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-        
-        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-        
-        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
-        
-            
-            if(selectCalendarPurpose == .TimeStamps){
-                navigationController?.navigationBar.topItem?.title = "Time Stamps"
-            }
-            else if(selectCalendarPurpose == .RegistrationHours){
-               navigationController?.navigationBar.topItem?.title = "Registered Hours"
-            }
-            
-        navigationController?.navigationBar.backItem?.title = ""
-            
         }
-        
     }
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplayCell cell: JTAppleDayCellView, date: Date, cellState: CellState) {
@@ -1139,15 +1131,23 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
             
             if(self.selectCalendarPurpose == .RegistrationHours)
             {
-                 self.showSpinner()
+                self._PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
+                self.present(self._PopUpAlert, animated: true, completion:
+                    {
                 
-                RegistrationHoursRequests.sharedInstance.DeleteRegisteredHours(personId: self.childId, dateToDelete: self.lastSelectedDate as NSDate, onCompletion: { (JSON) in
-                    
-                     self.hideSpinner()
-                    
-                    self.calendarView.selectDates([self.lastSelectedDate])
-                    
+                        RegistrationHoursRequests.sharedInstance.DeleteRegisteredHours(personId: self.childId, dateToDelete: self.lastSelectedDate as NSDate, onCompletion: { (JSON) in
+                            
+                            
+                            self._PopUpAlert.dismiss(animated: false, completion:
+                                {
+                                    self.calendarView.selectDates([self.lastSelectedDate])
+                            })
+                            
+                        })
+                
                 })
+
+               
 
             }
             else if(self.selectCalendarPurpose == .TimeStamps)

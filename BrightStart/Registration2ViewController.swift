@@ -10,6 +10,8 @@ import UIKit
 
 class Registration2ViewController: UIViewController , UITextFieldDelegate {
     
+     var _PopUpAlert: UIAlertController!
+    
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
@@ -36,7 +38,7 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
         
         self.hideKeyboardWhenTappedAround()
         
-        registration = RegistrationModel()
+        //registration = RegistrationModel()
         
         super.viewDidLoad()
         
@@ -293,7 +295,12 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
     @IBAction func FinishClicked(_ sender: Any) {
         
       registration.nurserySchoolName = NurseryNameTextField.text!
+        registration.managerName = ManagerNameTextField.text!
+        registration.nurserySchoolPhoneNumber = PhoneNumberTextField.text!
         
+        
+        _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
+        self.present(_PopUpAlert, animated: true, completion: nil)
         
         RegistrationRequests.sharedInstance.CreateNewNurserySchoolFromScratch(nurserySchoolName: registration.nurserySchoolName, managerName: registration.managerName, nurserySchoolPhoneNumber: registration.nurserySchoolPhoneNumber, username: registration.username, password: registration.password, onCompletion: { json in
             
@@ -302,7 +309,13 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
             
             DispatchQueue.main.async(execute: {
                 
-                self.performSegue(withIdentifier: "GoToSignIn", sender: self)
+                
+                self._PopUpAlert.dismiss(animated: false, completion:
+                    {
+                       self.performSegue(withIdentifier: "GoToSignIn", sender: self)
+                })
+                
+                
                 
             })
             

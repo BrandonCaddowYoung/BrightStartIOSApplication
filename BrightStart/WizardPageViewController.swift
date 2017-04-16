@@ -11,7 +11,7 @@ import UIKit
 
 class WizardPageViewController: UIPageViewController {
     
-    var loadingSpiiner: ProgressHUD!
+    var _PopUpAlert: UIAlertController!
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -48,13 +48,6 @@ class WizardPageViewController: UIPageViewController {
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
-        //This needs to be passed in 
-        WizardPurpose = .CreatQuickChild
-        
-        loadingSpiiner = ProgressHUD(text: "Loading")
-        self.view.addSubview(loadingSpiiner)
-        hideSpinner()
-        
         dataSource = self
         delegate = self
         
@@ -64,8 +57,6 @@ class WizardPageViewController: UIPageViewController {
         
         tutorialDelegate?.wizardPageViewController(self,
                                                      didUpdatePageCount: orderedViewControllers.count)
-        
-    
         }
     
     /**
@@ -79,7 +70,10 @@ class WizardPageViewController: UIPageViewController {
         }
         
         if(onLastPage)
-        {
+        {   
+            _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
+            self.present(_PopUpAlert, animated: true, completion: nil)
+            
             var accountId = ""
             
             if(self.WizardPurpose == .CreatQuickChild)
@@ -110,9 +104,10 @@ class WizardPageViewController: UIPageViewController {
                                             
                                             DispatchQueue.main.async(execute: {
                                                 
-                                                //self.hideSpinner()
-                                                
-                                                 self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                                self._PopUpAlert.dismiss(animated: false, completion:
+                                                    {
+                                                        self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                                })
                                                 
                                             })
                                     })
@@ -121,18 +116,12 @@ class WizardPageViewController: UIPageViewController {
                 }
                 }
             }
-            
-            
-            
-            
-            
             if(self.WizardPurpose == .SetWeeklyRegisteredHours)
             {
-                //loadingSpiiner.show()
                 
                 if let step1 = orderedViewControllers[0] as? RegisteredHoursWeekly_Step1ViewController {
                     if let step2 = orderedViewControllers[1] as? RegisteredHoursWeekly_Step2ViewController {
-                        if let step3 = orderedViewControllers[1] as? RegisteredHoursWeekly_Step3ViewController {
+                        if let step3 = orderedViewControllers[2] as? RegisteredHoursWeekly_Step3ViewController {
                         
                             var selectedChildArray = [String]()
                             
@@ -140,56 +129,262 @@ class WizardPageViewController: UIPageViewController {
                                 selectedChildArray.append(child.ChildId as String)
                             }
                             
-                            let mondayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[0].StartTime as Date)
-                            let mondayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[0].EndTime as Date)
+                            //Getting time for Monday
                             
-                            let tuesdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[1].StartTime as Date)
-                            let tuesdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[1].EndTime as Date)
+                            var mondayStartTime = ""
+                            var mondayEndTime = ""
                             
-                            let wednesdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[2].StartTime as Date)
-                            let wednesdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[2].EndTime as Date)
+                            if step3.selectedDaysOfTheWeekArray.contains(where: { $0.DayNumber == 1 }) {
+                                mondayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[0].StartTime as Date)
+                                mondayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[0].EndTime as Date)
+                            }
                             
-                            let thursdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[3].StartTime as Date)
-                            let thursdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[3].EndTime as Date)
+                            //Getting time for Tuesday
                             
-                            let fridayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[4].StartTime as Date)
-                            let fridayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[4].EndTime as Date)
+                            var tuesdayStartTime = ""
+                            var tuesdayEndTime = ""
                             
-                            let saturdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[5].StartTime as Date)
-                            let saturdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[5].EndTime as Date)
+                            if step3.selectedDaysOfTheWeekArray.contains(where: { $0.DayNumber == 2 }) {
+                                tuesdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[1].StartTime as Date)
+                                tuesdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[1].EndTime as Date)
+                            }
                             
-                            let sundayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[6].StartTime as Date)
-                            let sundayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.selectedDaysOfTheWeekArray[6].EndTime as Date)
+                            //Getting time for Wednesday
                             
-                        RegistrationHoursRequests.sharedInstance.SetWeeklyRegisteredHours(targetChildren: selectedChildArray, chosenYear: "", chosenMonth: "", mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion:
-                            { json in
+                            var wednesdayStartTime = ""
+                            var wednesdayEndTime = ""
+                            
+                            if step3.selectedDaysOfTheWeekArray.contains(where: { $0.DayNumber == 3 }) {
+                                wednesdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[2].StartTime as Date)
+                                wednesdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[2].EndTime as Date)
+                            }
+                            
+                            //Getting time for Thursday
+                            
+                            var thursdayStartTime = ""
+                            var thursdayEndTime = ""
+                            
+                            if step3.selectedDaysOfTheWeekArray.contains(where: { $0.DayNumber == 4 }) {
+                                thursdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[3].StartTime as Date)
+                                thursdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[3].EndTime as Date)
+                            }
+                           
+                            //Getting time for Friday
+                            
+                            var fridayStartTime = ""
+                            var fridayEndTime = ""
+                            
+                            if step3.selectedDaysOfTheWeekArray.contains(where: { $0.DayNumber == 5 }) {
+                                fridayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[4].StartTime as Date)
+                                fridayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[4].EndTime as Date)
+                            }
+                            
+                            //Getting time for Saturday
+                            
+                            var saturdayStartTime = ""
+                            var saturdayEndTime = ""
+                            
+                            if step3.selectedDaysOfTheWeekArray.contains(where: { $0.DayNumber == 6 }) {
+                                saturdayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[5].StartTime as Date)
+                                saturdayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[5].EndTime as Date)
+                            }
+                            
+                            //Getting time for Sunday
+                            
+                            var sundayStartTime = ""
+                            var sundayEndTime = ""
+                            
+                            if step3.selectedDaysOfTheWeekArray.contains(where: { $0.DayNumber == 7 }) {
+                                sundayStartTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[6].StartTime as Date)
+                                sundayEndTime = _CommonHelper.GetTimeAsStringFromDate(targetDate: step3.daysOfTheWeekArray[6].EndTime as Date)
+                            }
+                            
+                            let targetYear = step2.lastSelectedYear
+                            let targetMonth = _CommonHelper.GetMonthAsInt(monthAsString: step2.lastSelectedMonth)
+                           
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                       // RegistrationHoursRequests.sharedInstance.SetWeeklyRegisteredHours(targetChildren: selectedChildArray, chosenYear: String(targetYear), chosenMonth: /String(targetMonth), mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion:
+                            //{ json in
                                 
-                                let succ = (json["Success"].stringValue as NSString) as String
+                              //  _ = (json["Success"].stringValue as NSString) as String
+                                
+                               // DispatchQueue.main.async(execute: {
+                                   
+                                 //   self._PopUpAlert.dismiss(animated: false, completion:
+                                   //     {
+                                            //Go to the success page!
+                                     //       self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                   // })
+                                    
+                               // })
+                        // })
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            PerformSetWeeklyRegisteredHoursRecursively(targetChildren: selectedChildArray, chosenYear: String(targetYear), chosenMonth: String(targetMonth), mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion: { json in
                                 
                                 DispatchQueue.main.async(execute: {
-                                   
-                                    //Go to the success page!
+                                    
+                                    self._PopUpAlert.dismiss(animated: false, completion:
+                                        {
+                                            //Go to the success page!
+                                            self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                    })
                                     
                                 })
-                        })
+                            })
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                     }
                 }
                 }
             }
-            
-            
-            
+            if(self.WizardPurpose == .RegisteredHours_RollOver)
+            {
+                if let step1 = orderedViewControllers[0] as? RegisteredHoursRollOver_Step1ViewController {
+                    if let step2 = orderedViewControllers[1] as? RegisteredHoursRollOver_Step2ViewController {
+                        
+                            var selectedChildArray = [String]()
+                            
+                            for child in step1.selectedChildrenArray {
+                                selectedChildArray.append(child.ChildId as String)
+                            }
+                        
+                            let targetYear = step2.lastSelectedTargetYear
+                            let targetMonth = _CommonHelper.GetMonthAsInt(monthAsString: step2.lastSelectedTargetMonth)
+                        
+                        let destinationYear = step2.lastSelectedDestinationYear
+                        let destinationMonth = _CommonHelper.GetMonthAsInt(monthAsString: step2.lastSelectedDestinationMonth)
+                        
+                        PerformRollOverRecursively(targetChildren: selectedChildArray, targetYear: String(targetYear), targetMonth: String(targetMonth), destinationYear: String(destinationYear), destinationMonth: String(destinationMonth),  onCompletion: { json in
+                            
+                            DispatchQueue.main.async(execute: {
+                            
+                                   self._PopUpAlert.dismiss(animated: false, completion:
+                                     {
+                            //Go to the success page!
+                                       self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                               })
+                            
+                             })
+                             })
+                    }
+                }
+            }
             
         }
         
     }
     
-    func hideSpinner()
+    
+    
+    func PerformRollOverRecursively(targetChildren: [String], targetYear: String, targetMonth: String, destinationYear: String, destinationMonth: String, onCompletion: @escaping () -> Void)
     {
-        //if(loadingSpiiner!=nil){
-        loadingSpiiner.hide()
-        //}
+       
+        var childrenList = targetChildren
+        
+        self._PopUpAlert.message = String(childrenList.count) + " more to go!"
+        
+        //Get the last item
+        let lastItem = [childrenList.last]
+        
+        RegistrationHoursRequests.sharedInstance.RollOverRegisteredHours(targetChildren: lastItem as! [String], targetYear: String(targetYear)!, targetMonth: String(targetMonth)!, destinationYear: String(destinationYear)!, destinationMonth: String(destinationMonth)!, onCompletion:
+            { json in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    //Remove the guy we just completed
+                    childrenList.removeLast()
+                    
+                    //Update ui with progress!
+                    //self._PopUpAlert.message = String(childrenList.count) + " more to go!"
+                    
+                    //Check if we are all done!
+                    if(childrenList.count == 0)
+                    {
+                        onCompletion()
+                        
+                    return
+                    }
+                    
+                    //Do the next
+                    self.PerformRollOverRecursively(targetChildren: childrenList, targetYear: targetYear, targetMonth: targetMonth, destinationYear: destinationYear, destinationMonth: destinationMonth, onCompletion: onCompletion)
+                    
+                })
+        })
+        
     }
+    
+    func PerformSetWeeklyRegisteredHoursRecursively(targetChildren: [String], chosenYear: String, chosenMonth: String,mondayStartTime : String, mondayEndTime : String,tuesdayStartTime : String, tuesdayEndTime : String,wednesdayStartTime : String, wednesdayEndTime : String, thursdayStartTime : String, thursdayEndTime : String,fridayStartTime : String, fridayEndTime : String, saturdayStartTime : String, saturdayEndTime : String, sundayStartTime : String, sundayEndTime : String, onCompletion: @escaping () -> Void)
+    {
+        
+        var childrenList = targetChildren
+        
+        self._PopUpAlert.message = String(childrenList.count) + " more to go!"
+        
+        //Get the last item
+        let lastItem = [childrenList.last]
+        
+        RegistrationHoursRequests.sharedInstance.SetWeeklyRegisteredHours(targetChildren: lastItem as! [String], chosenYear: String(chosenYear)!, chosenMonth: String(chosenMonth)!, mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion:
+            { json in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    //Remove the guy we just completed
+                    childrenList.removeLast()
+                    
+                    //Update ui with progress!
+                    //self._PopUpAlert.message = String(childrenList.count) + " more to go!"
+                    
+                    //Check if we are all done!
+                    if(childrenList.count == 0)
+                    {
+                        onCompletion()
+                        
+                        return
+                    }
+                    
+                    //Do the next
+                    self.PerformSetWeeklyRegisteredHoursRecursively(targetChildren: childrenList, chosenYear: String(chosenYear), chosenMonth: String(chosenMonth), mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion: onCompletion)
+                    
+                })
+        })
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     /**
      Scrolls to the view controller at the given index. Automatically calculates
@@ -303,9 +498,6 @@ extension WizardPageViewController: UIPageViewControllerDataSource {
         if(self.Validation(currentIndex: viewControllerIndex) == false)
         {
             //Show error message.
-            
-            
-            
             
             return nil
         }

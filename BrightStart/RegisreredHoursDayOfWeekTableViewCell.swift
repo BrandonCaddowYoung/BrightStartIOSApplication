@@ -8,6 +8,14 @@
 
 import UIKit
 
+protocol RegHoursWeeklyViewCellDelegate {
+    
+    func updateStartDate(newDate: Date, dayOfWeek: Int)
+    
+    func updateEndDate(newDate: Date, dayOfWeek: Int)
+    
+   }
+
 class RegisreredHoursDayOfWeekTableViewCell: UITableViewCell {
     
     var _ApplicatoinColours: ApplicatoinColours!
@@ -27,21 +35,37 @@ class RegisreredHoursDayOfWeekTableViewCell: UITableViewCell {
     
     @IBOutlet weak var EndLabel: UILabel!
     
+    var delegate: RegHoursWeeklyViewCellDelegate? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
+       
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
         StartTimePicker.datePickerMode = UIDatePickerMode.time
+        StartTimePicker.addTarget(self, action: #selector(startDateChanged(_:)), for: .valueChanged)
+        
         
         EndTimePicker.datePickerMode = UIDatePickerMode.time
+        EndTimePicker.addTarget(self, action: #selector(endDatePickerChanged(_:)), for: .valueChanged)
         
         setupConstraints()
+    }
+    
+    func startDateChanged(_ sender: UIDatePicker) {
+        
+        delegate?.updateStartDate(newDate: sender.date, dayOfWeek: _CommonHelper.GetDayAsInt(monthAsString: DayOfWeekLabel.text ?? "?"))
         
     }
+    
+    func endDatePickerChanged(_ sender: UIDatePicker) {
+        
+        delegate?.updateEndDate(newDate: sender.date, dayOfWeek: _CommonHelper.GetDayAsInt(monthAsString: DayOfWeekLabel.text ?? "?"))
+        
+    }
+    
+   
     
     func setupConstraints() {
         

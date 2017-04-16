@@ -166,7 +166,7 @@ func makeHTTPPostRequest(encode: Bool, path: String, onCompletion: @escaping Ser
 /*!
  @brief Performs an HTTP POST request.
  */
-func makeHTTPPost(encode: Bool, path: String, params: Parameters, onCompletion: @escaping ServiceResponse) {
+func makeHTTPPost(encode: Bool, path: String, params: Parameters, encoding: ParameterEncoding, onCompletion: @escaping ServiceResponse) {
     
     let user = ApiInformation.BasicAithUsername
     let password = ApiInformation.BasicAithPassword
@@ -177,7 +177,7 @@ func makeHTTPPost(encode: Bool, path: String, params: Parameters, onCompletion: 
         headers[authorizationHeader.key] = authorizationHeader.value
     }
     
-    Alamofire.request(path, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+    Alamofire.request(path, method: .post, parameters: params, encoding: encoding, headers: headers).responseJSON { response in
         
         switch response.result {
             

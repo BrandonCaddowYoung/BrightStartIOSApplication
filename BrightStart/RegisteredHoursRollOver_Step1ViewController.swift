@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RegisteredHoursRollOver_Step1ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -81,7 +81,7 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
             
             DispatchQueue.main.async(execute: {
                 
-             //   self.numberArray = self.numberArray.reversed()
+                //   self.numberArray = self.numberArray.reversed()
                 
                 self.KeyWorkerTable.reloadData()
                 //sender?.endRefreshing()
@@ -104,7 +104,8 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
         MainHeadingLabel.textColor = _ApplicatoinColours.Orange
         
         MainHeadingLabel.font = _ApplicatoinColours.XlargeFont
-         SelectLabel.font = _ApplicatoinColours.largeFont
+        SelectLabel.font = _ApplicatoinColours.largeFont
+        
         
     }
     
@@ -255,12 +256,27 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-   
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    
     func tickClicked(sender: UIButton!)
     {
         
         let value = sender.tag;
-       
+        
+        print(value)
+        
+        
         if(selectedChildrenArray.contains( where: { $0 === childrenArray[value] } )){
             
             let indexOfChild = selectedChildrenArray.index{$0 === childrenArray[value]}
@@ -273,7 +289,7 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
             //add
             selectedChildrenArray.append(childrenArray[value])
         }
-       
+        
         KeyWorkerTable.reloadData()
         
     }
@@ -293,7 +309,7 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
         let cell:ListItemCell = KeyWorkerTable.dequeueReusableCell(withIdentifier: "reuseCell") as! ListItemCell
         
         var selectedChild = BrightStartChild()
-        selectedChild = contact 
+        selectedChild = contact
         
         cell.textLabel?.text = contact.ChildFullName as String
         
@@ -326,7 +342,7 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
     
     
     
-   
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -368,7 +384,7 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
         self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
-     var showNavigationBar = true
+    var showNavigationBar = true
     
     
     

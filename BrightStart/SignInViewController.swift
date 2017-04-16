@@ -15,8 +15,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     var _PopUpAlert: UIAlertController!
     
-    var loadingSpiiner: ProgressHUD!
-    
     @IBOutlet weak var RememberUsernameLabel: UILabel!
     @IBOutlet weak var RememberUsernameSegment: UISegmentedControl!
     
