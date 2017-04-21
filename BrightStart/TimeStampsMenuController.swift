@@ -64,12 +64,12 @@ class TimeStampsMenuController: MainMenuViewController {
             }
         }
         
-       else if (segue.identifier == "TimeStamps_Missing") {
+       else if (segue.identifier == "TimeStamps_ExtraMinutesFinder") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "TimeStamps_Missing"
+                vc.Purpose = "TimeStamps_ExtraMinutesFinder"
 
                 
             }

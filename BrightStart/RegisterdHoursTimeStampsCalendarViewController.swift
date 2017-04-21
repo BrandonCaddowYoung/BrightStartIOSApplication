@@ -196,12 +196,19 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
              finishLabel.text = "Sign out"
             
         }
-        if(selectCalendarPurpose == .RegistrationHours)
+        else if(selectCalendarPurpose == .RegistrationHours)
         {
             editSegueIdentifier = "GoTotimeStampsEditor"
             
             startLabel.text = "Start"
             finishLabel.text = "Finish"
+        }
+        else if(selectCalendarPurpose == .ExtraMinutesFinder_Date)
+        {
+            
+            LeftTopContainer.isHidden = true
+            RightTopContainer.isHidden = true
+            targetPersonButton.isHidden = true
         }
       
         calendarView.scrollToDate(Date())
@@ -223,17 +230,13 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
 
     func showSpinner()
     {
-       // _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
-       // self.present(_PopUpAlert, animated: true, completion: nil)
+       
         
     }
     
     func hideSpinner()
     {
-        //self._PopUpAlert.dismiss(animated: false, completion:
-          //  {
-                
-       // })
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -347,7 +350,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         {
          self.performSegue(withIdentifier: "TimeStamps_Search", sender: nil)
         }
-        else if(Purpose == "TimeStamps_Missing")
+        else if(Purpose == "TimeStamps_ExtraMinutesFinder")
         {
             self.performSegue(withIdentifier: "GoToSearchPerson_ExtraMinutes", sender: nil)
         }
@@ -367,8 +370,6 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
     func setupConstraints() {
     
         //Top Padding
-        
-       
         
         TopPadding.translatesAutoresizingMaskIntoConstraints = false
         
@@ -972,7 +973,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
-                vc.targetDate = lastSelectedDate
+                vc.targetDate = (lastSelectedDate as NSDate) as Date!
                 
                 vc.Purpose = "GoToSearchPerson_ExtraMinutes"
                 vc.successSegueIdentifier = "GoToTimeStampSearch"

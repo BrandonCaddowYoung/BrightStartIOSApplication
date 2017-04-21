@@ -132,8 +132,26 @@ class WizardViewController: UIViewController {
         if (segue.identifier == "GoToMenu") {
             if let vc = segue.destination as? MainMenuViewController {
                 
-                //In future we should go back to the calendar and select the date, however for now we should just go back to the main menu
+                if(self.wizardPageViewController?.WizardPurpose == .CreatQuickChild)
+                {
                 vc.selectedMenu = .Children
+                }
+                else if(self.wizardPageViewController?.WizardPurpose == .CreateChild)
+                {
+                    vc.selectedMenu = .Children
+                }
+                else if(self.wizardPageViewController?.WizardPurpose == .EditChild)
+                {
+                    vc.selectedMenu = .Children
+                }
+                else if(self.wizardPageViewController?.WizardPurpose == .SetWeeklyRegisteredHours)
+                {
+                    vc.selectedMenu = .RegisteredHours
+                }
+                else if(self.wizardPageViewController?.WizardPurpose == .RegisteredHours_RollOver)
+                {
+                    vc.selectedMenu = .RegisteredHours
+                }
             }
         }
             
@@ -161,8 +179,9 @@ class WizardViewController: UIViewController {
             else if(WizardPurpose == .RegisteredHours_RollOver){
                 wizardPageViewController.WizardViewControllers = ["RegisteredHoursRollOver_Step1", "RegisteredHoursRollOver_Step2"]
             }
-            
-            
+            else if(WizardPurpose == .Billing_CreatingInvoices){
+                wizardPageViewController.WizardViewControllers = ["CreatingInvoices_Step1","CreatingInvoices_Step2", "CreatingInvoices_Step3", "CreatingInvoices_Step4"]
+            }
         }
     }
     
@@ -236,7 +255,34 @@ class WizardViewController: UIViewController {
             navigationController?.navigationBar.topItem?.title = ""
             navigationController?.navigationBar.backItem?.title = ""
             
+            //Hides the back button
+            self.navigationItem.setHidesBackButton(true, animated:true);
+            
+            //Shows the nav bar
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            
+            
+            if(self.wizardPageViewController?.WizardPurpose == .CreatQuickChild)
+            {
+                self.navigationItem.title="Quick Create"
+            }
+            else if(self.wizardPageViewController?.WizardPurpose == .CreateChild)
+            {
+                self.navigationItem.title="Create"
+            }
+            else if(self.wizardPageViewController?.WizardPurpose == .EditChild)
+            {
+                self.navigationItem.title="Edit"
+            }
+            else if(self.wizardPageViewController?.WizardPurpose == .SetWeeklyRegisteredHours)
+            {
+               self.navigationItem.title="Setting Registered Hours"
+            }
+            else if(self.wizardPageViewController?.WizardPurpose == .RegisteredHours_RollOver)
+            {
+                self.navigationItem.title="Roll Over"
+            }
+            
         }
     }
     

@@ -15,6 +15,7 @@ enum MenuTypes: Int {
     case Authy
     case AuthyUsers
     case RegisteredHours
+    case Billing
 }
 
 enum PurposeTypes: Int {
@@ -32,8 +33,8 @@ enum PurposeTypes: Int {
     case Child_Delete
     
     case RegisterdHours_Set
-     case RegisterdHours_SetWeekly
-     case RegisterdHours_RollOver
+    case RegisterdHours_SetWeekly
+    case RegisterdHours_RollOver
     case RegisterdHours_Edit
     case RegisteredHours_Delete
     case RegisteredHours_Search
@@ -43,7 +44,12 @@ enum PurposeTypes: Int {
     case TimeStamps_Delete
     case TimeStamps_Search
     case TimeStamps_Missing
+    case TimeStamps_ExtraMinutesFinder
     case TimeStamps_Menu
+    
+    case Billing_Menu
+    case Billing_CreateInvoice
+    case Billing_ViewInvoice
     
     case Authy_NewUser
     case Authy_Test
@@ -140,15 +146,30 @@ class MainMenuViewController: UIViewController {
             
         case .MainMenu:
             
-            images = [UIImage(named: "Register")!,UIImage(named: "Children")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Register")!,UIImage(named: "Children")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Billing")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToRegisteredHoursMenu", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToSignIn"]
+            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToRegisteredHoursMenu", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToBillingMenu", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Menu, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Menu,PurposeTypes.Billing_Menu, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Register",  "Children", "Registered Hours", "Time Stamps", "Auhty", "Sign Out"]
+            DisplayTextList = ["Register",  "Children", "Registered Hours", "Time Stamps", "Auhty", "Billing", "Sign Out"]
             
-            authyIdList = ["",  "", "", "",  "", ""]
+            authyIdList = ["",  "", "", "",  "", "", ""]
+            
+            showNavigationBar = true
+            ShowNavBar()
+            
+        case .Billing:
+            
+            images = [UIImage(named: "Fantasy100")!, UIImage(named: "Bill")!, UIImage(named: "SignOut")!]
+            
+            segueIdList = ["GoToWizard", "GoToSearchPerson", "GoToSignIn"]
+            
+            PurposeList = [PurposeTypes.Billing_CreateInvoice,PurposeTypes.Billing_ViewInvoice, PurposeTypes.SignOut]
+            
+            DisplayTextList = ["Create Invoices", "View Invoices", "Sign Out"]
+            
+            authyIdList = ["", "","", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -157,13 +178,13 @@ class MainMenuViewController: UIViewController {
             
             //uncomment for missing timestamps, also fill in the rest. The end result actually just returns current timestamps for the day, not missing time stamps!
             
-            images = [UIImage(named: "Calendar")!, UIImage(named: "Question")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Calendar")!, UIImage(named: "Search")!, UIImage(named: "SignOut")!]
             
             segueIdList = ["GoToSearchPerson", "GoToDateSelect", "GoToSignIn"]
             
-             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Missing, PurposeTypes.SignOut]
+             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_ExtraMinutesFinder, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Calendar", "Missing Time Stamps","Sign Out"]
+            DisplayTextList = ["Calendar", "Extra Minutes Finder","Sign Out"]
             
             authyIdList = ["", "","", ""]
                 
@@ -548,8 +569,8 @@ class MainMenuViewController: UIViewController {
             
             if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                 
-                vc.Purpose = "TimeStamps_Missing"
-                vc.selectCalendarPurpose = .DateSelector
+                vc.Purpose = "TimeStamps_ExtraMinutesFinder"
+                vc.selectCalendarPurpose = .ExtraMinutesFinder_Date
                 
                 vc.showNavigationBar = true
             }
@@ -591,12 +612,12 @@ class MainMenuViewController: UIViewController {
             }
             }
             
-            else if(targetPurpose == .TimeStamps_Missing)
+            else if(targetPurpose == .TimeStamps_ExtraMinutesFinder)
             {
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "TimeStamps_Missing"
+                vc.Purpose = "TimeStamps_ExtraMinutesFinder"
                 
                 
             }
@@ -653,6 +674,15 @@ class MainMenuViewController: UIViewController {
                     
                     vc.successSegueIdentifier = "GoToCalendar"
                     vc.Purpose = "RegisteredHours_Missing"
+                }
+            }
+            
+            else if(targetPurpose == .Billing_ViewInvoice)
+            {
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToInvoiceSearch"
+                    vc.Purpose = ""
                 }
             }
             
@@ -718,13 +748,11 @@ class MainMenuViewController: UIViewController {
             
             if(targetPurpose == PurposeTypes.Child_QuickCreate)
             {
-            
                 if let vc = segue.destination as? WizardViewController {
                     vc.WizardPurpose = .CreatQuickChild
                     vc.successSegue = ""
                     vc.cancelSegue = ""
                 }
-                
             }
             else if (targetPurpose == PurposeTypes.RegisterdHours_SetWeekly)
             {
@@ -742,9 +770,16 @@ class MainMenuViewController: UIViewController {
                     vc.cancelSegue = ""
                 }
             }
+            else if (targetPurpose == PurposeTypes.Billing_CreateInvoice)
+            {
+                if let vc = segue.destination as? WizardViewController {
+                    vc.WizardPurpose = .Billing_CreatingInvoices
+                    vc.successSegue = ""
+                    vc.cancelSegue = ""
+                }
+            }
+            
         }
-        
-        
     }
 }
 
@@ -906,25 +941,20 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         self.navigationController?.navigationBar.topItem?.title = " ";
         
                 switch selectedMenu {
-        case .MainMenu:
-            self.navigationItem.title="Menu"
-            //navigationController?.navigationBar.topItem?.title = "Menu"
-        case .TimeStamps:
-            self.navigationItem.title="Time Stamps"
-            //navigationController?.navigationBar.topItem?.title = "Time Stamps"
-        case .RegisteredHours:
-            self.navigationItem.title="Registered Hours"
-            //navigationController?.navigationBar.topItem?.title = "Registered Hours"
-        case .Authy:
-            self.navigationItem.title="Authy"
-            //navigationController?.navigationBar.topItem?.title = "Authy"
-        case .AuthyUsers:
-            self.navigationItem.title="Authy Users"
-            //navigationController?.navigationBar.topItem?.title = "Authy Users"
+                case .MainMenu:
+                    self.navigationItem.title="Menu"
+                case .TimeStamps:
+                    self.navigationItem.title="Time Stamps"
+                case .RegisteredHours:
+                    self.navigationItem.title="Registered Hours"
+                case .Authy:
+                    self.navigationItem.title="Authy"
+                                case .AuthyUsers:
+                    self.navigationItem.title="Authy Users"
                 case .Children:
                     self.navigationItem.title="Children"
-                    //navigationController?.navigationBar.topItem?.title = "Authy Users"
-            
+                default:
+                    ""
         }
     }
 }

@@ -8,9 +8,7 @@
 
 import UIKit
 
-class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RegHoursWeeklyViewCellDelegate {
-    
-    var showNavigationBar = true
+class CreatingInvoices_Step1ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -27,13 +25,10 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
     
     @IBOutlet weak var Bottom: UIView!
     
-    @IBOutlet weak var DaysOfTheWeekTable: UITableView!
+    @IBOutlet weak var KeyWorkerTable: UITableView!
     
-    var defaultStartDate = Date()
-    var defaultEndDate = Date()
-    
-    var daysOfTheWeekArray = Array<WeekDay>()
-    var selectedDaysOfTheWeekArray = Array<WeekDay>()
+    var childrenArray = Array<BrightStartChild>()
+    var selectedChildrenArray = Array<BrightStartChild>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,50 +42,55 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         
         setupConstraints()
         
-        self.DaysOfTheWeekTable.delegate = self
-        self.DaysOfTheWeekTable.dataSource = self
+        self.KeyWorkerTable.delegate = self
+        self.KeyWorkerTable.dataSource = self
         
-        let monday = WeekDay()
-        monday.DayName = "Monday"
-        monday.DayNumber = 1
-        
-        self.daysOfTheWeekArray.append(monday)
-        
-        let tuesday = WeekDay()
-        tuesday.DayName = "Tuesday"
-        tuesday.DayNumber = 2
-        
-        self.daysOfTheWeekArray.append(tuesday)
-        
-        let wednesday = WeekDay()
-        wednesday.DayName = "Wednesday"
-        wednesday.DayNumber = 3
-        
-        self.daysOfTheWeekArray.append(wednesday)
-        
-        let thursday = WeekDay()
-        thursday.DayName = "Thursday"
-        thursday.DayNumber = 4
-        
-        self.daysOfTheWeekArray.append(thursday)
-        
-        let friday = WeekDay()
-        friday.DayName = "Friday"
-        friday.DayNumber = 5
-        
-        self.daysOfTheWeekArray.append(friday)
-        
-        let saturday = WeekDay()
-        saturday.DayName = "Saturday"
-        saturday.DayNumber = 6
-
-        self.daysOfTheWeekArray.append(saturday)
-        
-        let sunday = WeekDay()
-        sunday.DayName = "Sunday"
-        sunday.DayNumber = 7
-        
-        self.daysOfTheWeekArray.append(sunday)
+        //Retrieve all children
+        ChildRequests.sharedInstance.GetAllEnrolledChilren(onCompletion: { json in
+            
+            for (index: _, subJson: JSON) in json {
+                
+                let child = BrightStartChild()
+                
+                child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
+                child.ChildId = JSON["ChildId"].stringValue as NSString
+                
+                let dateFormatter = DateFormatter()
+                //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+                
+                let dateOfBirth = JSON["ChildDOB"].stringValue
+                
+                var newDate = dateFormatter.date(from: dateOfBirth)
+                
+                if(newDate == nil){
+                    
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    
+                    newDate = dateFormatter.date(from: dateOfBirth)
+                    
+                    if(newDate == nil){
+                        continue
+                    }
+                }
+                
+                child.ChildDOB = newDate!
+                
+                self.childrenArray.append(child)
+            }
+            
+            DispatchQueue.main.async(execute: {
+                
+                //   self.numberArray = self.numberArray.reversed()
+                
+                self.KeyWorkerTable.reloadData()
+                //sender?.endRefreshing()
+                
+                //self.indicator.stopAnimating()
+                
+            })
+            
+        })
         
         Top.backgroundColor = _ApplicatoinColours.Blue
         
@@ -100,35 +100,11 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         
         Bottom.backgroundColor = _ApplicatoinColours.Blue
         
-        MainHeadingLabel.textColor = _ApplicatoinColours.Orange
-         MainHeadingLabel.font = _ApplicatoinColours.XlargeFont
-        
         SelectLabel.textColor = _ApplicatoinColours.White
-        SelectLabel.font = _ApplicatoinColours.mediumFont
+        MainHeadingLabel.textColor = _ApplicatoinColours.Orange
         
-         defaultStartDate = Date().setTime(hour: 09, min: 00, sec: 00)!
-         defaultEndDate = Date().setTime(hour: 18, min: 00, sec: 00)!
-        
-        daysOfTheWeekArray[0].StartTime = defaultStartDate as NSDate
-        daysOfTheWeekArray[0].EndTime = defaultEndDate as NSDate
-        
-        daysOfTheWeekArray[1].StartTime = defaultStartDate as NSDate
-        daysOfTheWeekArray[1].EndTime = defaultEndDate as NSDate
-        
-        daysOfTheWeekArray[2].StartTime = defaultStartDate as NSDate
-        daysOfTheWeekArray[2].EndTime = defaultEndDate as NSDate
-        
-        daysOfTheWeekArray[3].StartTime = defaultStartDate as NSDate
-        daysOfTheWeekArray[3].EndTime = defaultEndDate as NSDate
-        
-        daysOfTheWeekArray[4].StartTime = defaultStartDate as NSDate
-        daysOfTheWeekArray[4].EndTime = defaultEndDate as NSDate
-        
-        daysOfTheWeekArray[5].StartTime = defaultStartDate as NSDate
-        daysOfTheWeekArray[5].EndTime = defaultEndDate as NSDate
-        
-        daysOfTheWeekArray[6].StartTime = defaultStartDate as NSDate
-        daysOfTheWeekArray[6].EndTime = defaultEndDate as NSDate
+        MainHeadingLabel.font = _ApplicatoinColours.XlargeFont
+        SelectLabel.font = _ApplicatoinColours.largeFont
         
     }
     
@@ -255,22 +231,22 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         
         //Table
         
-        DaysOfTheWeekTable.translatesAutoresizingMaskIntoConstraints = false
+        KeyWorkerTable.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        DaysOfTheWeekTable.centerXAnchor.constraint(
+        KeyWorkerTable.centerXAnchor.constraint(
             equalTo: UpperContent.centerXAnchor).isActive = true
         
         //center
-        DaysOfTheWeekTable.centerYAnchor.constraint(
+        KeyWorkerTable.centerYAnchor.constraint(
             equalTo: UpperContent.centerYAnchor).isActive = true
         
         //width
-        DaysOfTheWeekTable.widthAnchor.constraint(
+        KeyWorkerTable.widthAnchor.constraint(
             equalTo: UpperContent.widthAnchor, multiplier: 0.90).isActive = true
         
         //height
-        DaysOfTheWeekTable.heightAnchor.constraint(
+        KeyWorkerTable.heightAnchor.constraint(
             equalTo: UpperContent.heightAnchor).isActive = true
         
     }
@@ -280,82 +256,60 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    
     func tickClicked(sender: UIButton!)
     {
+        
         let value = sender.tag;
         
-        if(selectedDaysOfTheWeekArray.contains( where: { $0 === daysOfTheWeekArray[value] } )){
+        if(selectedChildrenArray.contains( where: { $0 === childrenArray[value] } )){
             
-            let indexOfChild = selectedDaysOfTheWeekArray.index{$0 === daysOfTheWeekArray[value]}
+            let indexOfChild = selectedChildrenArray.index{$0 === childrenArray[value]}
             
             //remove
-            selectedDaysOfTheWeekArray.remove(at: indexOfChild!)
+            selectedChildrenArray.remove(at: indexOfChild!)
         }
         else
         {
             //add
-            selectedDaysOfTheWeekArray.append(daysOfTheWeekArray[value])
+            selectedChildrenArray.append(childrenArray[value])
         }
         
-        DaysOfTheWeekTable.reloadData()
+        KeyWorkerTable.reloadData()
         
     }
     
     /////NUMBER OF ROWS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return daysOfTheWeekArray.count;
+        return childrenArray.count;
         
     }
     /////CELL FOR ROW
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let contact = daysOfTheWeekArray[indexPath.row]
+        //let contact = numberArray.object(at: indexPath.row)
+        let contact = childrenArray[indexPath.row]
         
-        let cell:RegisreredHoursDayOfWeekTableViewCell = DaysOfTheWeekTable.dequeueReusableCell(withIdentifier: "reuseCell") as! RegisreredHoursDayOfWeekTableViewCell
+        let cell:ListItemCell = KeyWorkerTable.dequeueReusableCell(withIdentifier: "reuseCell") as! ListItemCell
         
-        cell.delegate = self
-        
-        var selectedChild = WeekDay()
+        var selectedChild = BrightStartChild()
         selectedChild = contact
         
-        cell.DayOfWeekLabel?.text = contact.DayName
+        cell.textLabel?.text = contact.ChildFullName as String
         
-        cell.DayOfWeekLabel?.font = _ApplicatoinColours.largeFont
-        cell.StartLabel?.font = _ApplicatoinColours.mediumFont
-        cell.EndLabel?.font = _ApplicatoinColours.mediumFont
-        
-        cell.DayOfWeekLabel?.textColor = _ApplicatoinColours.Blue
+        cell.textLabel?.font = _ApplicatoinColours.mediumFont
+        cell.textLabel?.textColor = _ApplicatoinColours.Black
         
         cell.tickButton.addTarget(self, action:#selector(CreateChild_Quick_3ViewController.tickClicked(sender:)), for: .touchUpInside)
         
         cell.tickButton.tag=indexPath.row
         
-        if(selectedDaysOfTheWeekArray.contains( where: { $0 === contact } )){
+        if(selectedChildrenArray.contains( where: { $0 === contact } )){
             cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
         }
         else
         {
             cell.tickButton.setBackgroundImage(UIImage(named:"star"), for: UIControlState.normal)
-            
-            cell.StartTimePicker.date = defaultStartDate
-            cell.EndTimePicker.date = defaultEndDate
-            
-            daysOfTheWeekArray[indexPath.row].StartTime = defaultStartDate as NSDate
-            daysOfTheWeekArray[indexPath.row].EndTime = defaultEndDate as NSDate
-            
         }
         
         cell.tickButton.titleLabel?.text = ""
@@ -369,20 +323,4 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         return 80.0
     }
     
-    func updateStartDate(newDate: Date, dayOfWeek: Int){
-        daysOfTheWeekArray[dayOfWeek-1].StartTime = newDate as NSDate
-    }
-    
-    func updateEndDate(newDate: Date, dayOfWeek: Int)
-    {
-       daysOfTheWeekArray[dayOfWeek-1].EndTime = newDate as NSDate
-    }
-    
-    
-   
-   
-    
 }
-
-
-

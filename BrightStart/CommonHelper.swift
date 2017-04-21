@@ -73,6 +73,9 @@ class CommonHelper {
         
     }
     
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
     
     func showOverlayMessage(_ message: String) ->  UIAlertController{
         

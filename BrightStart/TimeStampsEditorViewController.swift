@@ -381,13 +381,13 @@ class TimeStampsEditorViewController: UIViewController {
                 if(self.editType == .Start)
                 {
                     if(noStartTime==false){
-                    self.DateTimePicker.setDate(regHours.StartTime, animated: true)
+                     self.DateTimePicker.setDate(regHours.StartTime, animated: true)
                     }
                 }
                 else if(self.editType == .End)
                 {
                     if(noEndTime==false){
-                     self.DateTimePicker.setDate(regHours.FinishTime, animated: true)
+                      self.DateTimePicker.setDate(regHours.FinishTime, animated: true)
                     }
                 }
                 

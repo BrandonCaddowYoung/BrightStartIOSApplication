@@ -8,8 +8,8 @@
 
 import UIKit
 
-class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDelegate {
-
+class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDelegate {
+    
     var indicator = UIActivityIndicatorView()
     
     func activityIndicator()
@@ -17,17 +17,18 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         indicator = UIActivityIndicatorView(frame: CGRect())
     }
     
-    var SelectedPersonLog: PersonLog!
+    var SelectedInvoice: Invoice!
     
-     var ShouldUseTapToSelect: Bool! = true
+    var ShouldUseTapToSelect: Bool! = false
     
-    var TargetDate: Date!
+     var targetDate: Date!
+    
     var TargetPersonId: NSString!
     var SelectedPersonFullName: NSString!
     
     var OptionText: NSString!
     
-    var timeStamps: [[PersonLog]] = [];
+    var invoices: [[Invoice]] = [];
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
     
@@ -35,7 +36,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     
     func refreshTable()
     {
-        timeStamps.removeAll()
+        invoices.removeAll()
         tableView.reloadData()
         refresh()
     }
@@ -53,15 +54,15 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.indicator.center = self.view.center
         self.view.addSubview(indicator)
         
         indicator.startAnimating()
         indicator.backgroundColor = UIColor.white
         
-        tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight =  500
         
         _CommonHelper = CommonHelper()
         _ApplicatoinColours = ApplicatoinColours()
@@ -69,18 +70,18 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         view.backgroundColor = _ApplicatoinColours.TableBackGround
         
         refresh()
-
+        
     }
     
     //Removes the navigation bar from the top
     override func viewWillDisappear(_ animated: Bool) {
         
         super.viewWillDisappear(animated)
-
+        
         
         if(!showNavigationBar){
             self.navigationController?.setNavigationBarHidden(false, animated: animated);
-                    }
+        }
         else
         {
             self.navigationController?.setNavigationBarHidden(true, animated: animated);
@@ -127,46 +128,56 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     func NavBarMenuTapped(){
         
     }
-
+    
     
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
         
-        self.timeStamps.removeAll();
+        self.invoices.removeAll();
         
-        PersonLogRequests.sharedInstance.GetLogByDateAndId(personId: TargetPersonId as String, targetDate: TargetDate as NSDate, onCompletion: { json in
+        InvoiceRequests.sharedInstance.GetAllInvoicesBelongingToChild(childId: TargetPersonId as String, onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
                 
-                let log = PersonLog()
+                let invoice = Invoice()
                 
-                log.PersonId = JSON["PersonId"].stringValue as NSString
-                log.Id = JSON["Id"].stringValue as NSString
+                invoice.InvoiceId = Int(Float(JSON["InvoiceNumber"].stringValue)!)
+                //invoice.Balance = Float(JSON["Invoice_Balance"].stringValue)!
+                invoice.LateMinutes = Float(JSON["Late_Time_Minutes"].stringValue)!
+                invoice.EarlyMinutes = Float(JSON["Early_Time_Minutes"].stringValue)!
+                invoice.NonRegisteredMinutes = Float(JSON["NonRegistered_Time_Minutes"].stringValue)!
+                invoice.RegisteredMinutes = Float(JSON["Registered_Time_Minutes"].stringValue)!
                 
-                log.Action = JSON["Action"].stringValue as NSString
+                invoice.Total = Float(JSON["InvoiceTotal"].stringValue)!
+                invoice.ChildId = Int(Float(JSON["ChildId"].stringValue)!)
                 
                 let dateFormatter = DateFormatter()
-                
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
                 
-                let timeStamp = JSON["TimeStamp"].stringValue
-                
-                var newDate = dateFormatter.date(from: timeStamp)
-                
-                if(newDate == nil){
-                    
+                let startStamp = JSON["Start_Date"].stringValue
+                var newStart = dateFormatter.date(from: startStamp)
+                if(newStart == nil){
                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                    
-                    newDate = dateFormatter.date(from: timeStamp)
-                    
-                    if(newDate == nil){
-                        continue
+                    newStart = dateFormatter.date(from: startStamp)
+                    if(newStart == nil){
+                    //continue
                     }
                 }
                 
-                log.TimeStamp = newDate!
-               
-                self.timeStamps.insert([log], at: 0)
+                let endStamp = JSON["End_Date"].stringValue
+                var newEnd = dateFormatter.date(from: endStamp)
+                if(newEnd == nil){
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    newEnd = dateFormatter.date(from: endStamp)
+                    if(newEnd == nil){
+                        //continue
+                    }
+                }
+                
+                invoice.Start = newStart!
+                invoice.End = newEnd!
+                
+                self.invoices.insert([invoice], at: 0)
                 
                 self.tableView.reloadData()
                 
@@ -174,7 +185,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             
             DispatchQueue.main.async(execute: {
                 
-                self.timeStamps = self.timeStamps.reversed()
+                self.invoices = self.invoices.reversed()
                 
                 self.tableView.reloadData()
                 sender?.endRefreshing()
@@ -185,25 +196,25 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             
         })
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return timeStamps.count;
+        return invoices.count;
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timeStamps[section].count
+        return invoices[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TimeStamp", for: indexPath) as! TimeStampSearchTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Invoice", for: indexPath) as! InvoiceSearchTableViewCell
         
         let section = (indexPath as NSIndexPath).section;
         let row = (indexPath as NSIndexPath).row;
         
-        if timeStamps.count > section && timeStamps[section].count > row {
-            //print(children[section][row])
-            cell.log = timeStamps[section][row];
+        if invoices.count > section && invoices[section].count > row {
+            
+            cell.invoice = invoices[section][row];
         }
         
         return cell
@@ -212,14 +223,14 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if(ShouldUseTapToSelect==true){
-           
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TimeStamp", for: indexPath) as! TimeStampSearchTableViewCell
-            cell.log = timeStamps[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Invoice", for: indexPath) as! InvoiceSearchTableViewCell
+            cell.invoice = invoices[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
             //Saving the selected log so that when we segue we can call on it!
-            SelectedPersonLog = cell.log
+            SelectedInvoice = cell.invoice
             
-            self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
+            //self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
             
         }
         
@@ -228,33 +239,42 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->
         [UITableViewRowAction]? {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TimeStamp", for: indexPath) as! TimeStampSearchTableViewCell
-            cell.log = timeStamps[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Invoice", for: indexPath) as! InvoiceSearchTableViewCell
+            cell.invoice = invoices[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
             //Saving the selected log so that when we segue we can call on it!
-            SelectedPersonLog = cell.log
-           
-            let delete = UITableViewRowAction(style: .normal, title: "Remove") { (action, indexPath) in
+            SelectedInvoice = cell.invoice
+            
+            let delete = UITableViewRowAction(style: .default, title: "\u{267A}\n Delete") { action, index in
                 
-                PersonLogRequests.sharedInstance.DeletePersonLog(logId: cell.log?.Id as! String, onCompletion:
+                InvoiceRequests.sharedInstance.DeleteInvoice(invoiceId: (cell.invoice?.InvoiceId)!, onCompletion:
                     {_ in
                         
                         self.refresh()
-                        
                 }
                 )
                 
             }
-            delete.backgroundColor = _ApplicatoinColours.Grey
+            delete.backgroundColor = .red
+
             
-            let share = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
-                self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
+            let share = UITableViewRowAction(style: .default, title: "\u{2709}\n e-mail") { action, index in
+
+                BillingRequests.sharedInstance.SendInvoice(invoiceId: (cell.invoice?.InvoiceId)!, onCompletion:
+                    {_ in
+                        
+                        //Show success message!
+                }
+                )
+                
+                
             }
-            share.backgroundColor = _ApplicatoinColours.Orange
+            share.backgroundColor = _ApplicatoinColours.Blue
+            
+            
             
             return [delete, share]
     }
-    
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -270,43 +290,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         
         if (segue.identifier == "GoToTimeStampsEditor") {
             
-            //Settings the menu details.
-            
-            if let vc = segue.destination as? TimeStampsEditorViewController {
-                
-                if(SelectedPersonLog.Action == "Login")
-                {
-                    vc.editType = .Start
-                }
-                else if(SelectedPersonLog.Action == "Logout")
-                {
-                    vc.editType = .Start
-                }
-                
-                vc.EditorMode = .TimeStamps_Edit
-                
-                let dateFormatter = DateFormatter()
-                
-                //Need to make API call to get name here! For now its just the id that is going to go through!
-                  vc.Name = ""
-                
-                vc.PersonId = SelectedPersonLog.PersonId as String
-                
-                vc.Name = SelectedPersonFullName as String!;
-                
-                vc.Action = SelectedPersonLog.Action as String
-                
-                dateFormatter.dateFormat = "dd/MM/yyyy"
-                vc.Date = dateFormatter.string(from: SelectedPersonLog.TimeStamp) as String
-                
-                dateFormatter.dateFormat = "hh:mm:ss"
-                vc.Time = dateFormatter.string(from: SelectedPersonLog.TimeStamp) as String
-                
-                vc.DateAsObject = SelectedPersonLog.TimeStamp
-                    
-                
-            }
-            
+                        
         }
     }
     

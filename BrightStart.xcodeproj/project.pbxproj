@@ -73,6 +73,15 @@
 		7BDEF8171E758D0B0012151B /* AuthyAuthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF8161E758D0A0012151B /* AuthyAuthenticateViewController.swift */; };
 		7BDEF8301E75A62D0012151B /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF82F1E75A62D0012151B /* CircleView.swift */; };
 		7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */; };
+		7BF98D1B1EA94A6200F3D918 /* CreatingInvoices_Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D1A1EA94A6200F3D918 /* CreatingInvoices_Step1ViewController.swift */; };
+		7BF98D1D1EA94A9900F3D918 /* CreatingInvoices_Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D1C1EA94A9900F3D918 /* CreatingInvoices_Step2ViewController.swift */; };
+		7BF98D1F1EA94B2D00F3D918 /* CreatingInvoices_Step3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D1E1EA94B2D00F3D918 /* CreatingInvoices_Step3ViewController.swift */; };
+		7BF98D211EA956D200F3D918 /* CreatingInvoices_Step4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D201EA956D200F3D918 /* CreatingInvoices_Step4ViewController.swift */; };
+		7BF98D231EAA320400F3D918 /* InvoiceSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D221EAA320400F3D918 /* InvoiceSearchTableViewController.swift */; };
+		7BF98D251EAA855600F3D918 /* InvoiceRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D241EAA855500F3D918 /* InvoiceRequests.swift */; };
+		7BF98D271EAA86D100F3D918 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D261EAA86D100F3D918 /* Invoice.swift */; };
+		7BF98D291EAA895000F3D918 /* InvoiceSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D281EAA895000F3D918 /* InvoiceSearchTableViewCell.swift */; };
+		7BF98D2B1EAAC1DA00F3D918 /* sdfdsf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D2A1EAAC1DA00F3D918 /* sdfdsf.swift */; };
 		C53FFE0F4BFF7C5BD7A0E31A /* Pods_BrightStart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5674001169A7EE20DDBCD2 /* Pods_BrightStart.framework */; };
 		D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9A1CAF1A7100948DE5 /* Child.swift */; };
 		D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8661CC981530084ECE4 /* RegisteredCount.swift */; };
@@ -345,6 +354,15 @@
 		7BDEF8161E758D0A0012151B /* AuthyAuthenticateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyAuthenticateViewController.swift; sourceTree = "<group>"; };
 		7BDEF82F1E75A62D0012151B /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
+		7BF98D1A1EA94A6200F3D918 /* CreatingInvoices_Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatingInvoices_Step1ViewController.swift; sourceTree = "<group>"; };
+		7BF98D1C1EA94A9900F3D918 /* CreatingInvoices_Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatingInvoices_Step2ViewController.swift; sourceTree = "<group>"; };
+		7BF98D1E1EA94B2D00F3D918 /* CreatingInvoices_Step3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatingInvoices_Step3ViewController.swift; sourceTree = "<group>"; };
+		7BF98D201EA956D200F3D918 /* CreatingInvoices_Step4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatingInvoices_Step4ViewController.swift; sourceTree = "<group>"; };
+		7BF98D221EAA320400F3D918 /* InvoiceSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceSearchTableViewController.swift; sourceTree = "<group>"; };
+		7BF98D241EAA855500F3D918 /* InvoiceRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceRequests.swift; sourceTree = "<group>"; };
+		7BF98D261EAA86D100F3D918 /* Invoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
+		7BF98D281EAA895000F3D918 /* InvoiceSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceSearchTableViewCell.swift; sourceTree = "<group>"; };
+		7BF98D2A1EAAC1DA00F3D918 /* sdfdsf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sdfdsf.swift; sourceTree = "<group>"; };
 		7F04C0F20972BB0831C45083 /* Pods-BrightStart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrightStart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrightStart/Pods-BrightStart.debug.xcconfig"; sourceTree = "<group>"; };
 		D7387E9A1CAF1A7100948DE5 /* Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
 		D739E8661CC981530084ECE4 /* RegisteredCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCount.swift; sourceTree = "<group>"; };
@@ -533,6 +551,7 @@
 		7B70F05A1E8C2EBA00290432 /* Wizard */ = {
 			isa = PBXGroup;
 			children = (
+				7BF98D021EA94A3800F3D918 /* CreatingInvoices */,
 				7B4440991EA2D19200959A7E /* Child_QuickCreate */,
 				7B1575B71E805311008AB34F /* WizardPageViewController.swift */,
 				7B1575DA1E806477008AB34F /* WizardViewController.swift */,
@@ -571,6 +590,7 @@
 				7B8BDBD01E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift */,
 				7B1575E71E81BED1008AB34F /* ListItemCell.swift */,
 				7B6487281E9BF8C80018616D /* RegisreredHoursDayOfWeekTableViewCell.swift */,
+				7BF98D281EAA895000F3D918 /* InvoiceSearchTableViewCell.swift */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -582,6 +602,7 @@
 				7B8BDBC91E12B5F0009F3EAF /* TimeStampSearchTableViewController.swift */,
 				7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */,
 				7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */,
+				7BF98D221EAA320400F3D918 /* InvoiceSearchTableViewController.swift */,
 			);
 			name = TablieViews;
 			sourceTree = "<group>";
@@ -608,6 +629,17 @@
 			name = Auhty;
 			sourceTree = "<group>";
 		};
+		7BF98D021EA94A3800F3D918 /* CreatingInvoices */ = {
+			isa = PBXGroup;
+			children = (
+				7BF98D1A1EA94A6200F3D918 /* CreatingInvoices_Step1ViewController.swift */,
+				7BF98D1C1EA94A9900F3D918 /* CreatingInvoices_Step2ViewController.swift */,
+				7BF98D1E1EA94B2D00F3D918 /* CreatingInvoices_Step3ViewController.swift */,
+				7BF98D201EA956D200F3D918 /* CreatingInvoices_Step4ViewController.swift */,
+			);
+			name = CreatingInvoices;
+			sourceTree = "<group>";
+		};
 		D739E8651CC981270084ECE4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,6 +652,7 @@
 				7BB221F01E4BB75C0069E74D /* RegistrationModel.swift */,
 				7B148C291E599E4C00D309F6 /* RegistrationHours.swift */,
 				7B32E3831E991DA800959375 /* WeekDay.swift */,
+				7BF98D261EAA86D100F3D918 /* Invoice.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -636,6 +669,8 @@
 				7B6A1AD31E855B9800540E0C /* ApiInformation.swift */,
 				7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */,
 				7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */,
+				7BF98D241EAA855500F3D918 /* InvoiceRequests.swift */,
+				7BF98D2A1EAAC1DA00F3D918 /* sdfdsf.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1073,13 +1108,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BB2220C1E4CA86E0069E74D /* RegistrationRequests.swift in Sources */,
+				7BF98D2B1EAAC1DA00F3D918 /* sdfdsf.swift in Sources */,
 				7B8BDBD91E156E03009F3EAF /* BrightStartChild.swift in Sources */,
 				7B6487291E9BF8C90018616D /* RegisreredHoursDayOfWeekTableViewCell.swift in Sources */,
+				7BF98D1F1EA94B2D00F3D918 /* CreatingInvoices_Step3ViewController.swift in Sources */,
 				7B8BDBCA1E12B5F1009F3EAF /* TimeStampSearchTableViewController.swift in Sources */,
 				7BD0FFE31E43C95300472759 /* AuthyTestViewController.swift in Sources */,
+				7BF98D251EAA855600F3D918 /* InvoiceRequests.swift in Sources */,
 				7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */,
 				7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */,
 				7B32E3821E9919F500959375 /* RegisteredHoursWeekly_Step3ViewController.swift in Sources */,
+				7BF98D231EAA320400F3D918 /* InvoiceSearchTableViewController.swift in Sources */,
 				7BB270C91E7C8CAA0023DF7D /* Authy_SettingsViewController.swift in Sources */,
 				7BB221F11E4BB75C0069E74D /* RegistrationModel.swift in Sources */,
 				7B1575E31E816A98008AB34F /* DoubleTemplateViewController.swift in Sources */,
@@ -1088,11 +1127,15 @@
 				7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */,
 				7B148C2A1E599E4D00D309F6 /* RegistrationHours.swift in Sources */,
 				D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */,
+				7BF98D271EAA86D100F3D918 /* Invoice.swift in Sources */,
+				7BF98D291EAA895000F3D918 /* InvoiceSearchTableViewCell.swift in Sources */,
 				7BD0FFE11E43BF3500472759 /* AuthyNewUserCompleteViewController.swift in Sources */,
 				7B70F05C1E8C2F3500290432 /* WizardSuccessViewController.swift in Sources */,
 				7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */,
 				7BB221D51E4A796B0069E74D /* Registration1ViewController.swift in Sources */,
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,
+				7BF98D1D1EA94A9900F3D918 /* CreatingInvoices_Step2ViewController.swift in Sources */,
+				7BF98D211EA956D200F3D918 /* CreatingInvoices_Step4ViewController.swift in Sources */,
 				7B1575DD1E807F0F008AB34F /* CreateChild_Quick_1ViewController.swift in Sources */,
 				7B8BDBD61E1508B5009F3EAF /* TimeStampsEditorViewController.swift in Sources */,
 				7B169CFF1E91635300FD8A38 /* RegisteredHoursWeekly_Step2ViewController.swift in Sources */,
@@ -1113,6 +1156,7 @@
 				7B148C281E59994F00D309F6 /* RegistrationHoursRequests.swift in Sources */,
 				D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */,
 				7BDEF8171E758D0B0012151B /* AuthyAuthenticateViewController.swift in Sources */,
+				7BF98D1B1EA94A6200F3D918 /* CreatingInvoices_Step1ViewController.swift in Sources */,
 				7BB2220A1E4BB9890069E74D /* Registration2ViewController.swift in Sources */,
 				7B8BDBDD1E156FE1009F3EAF /* PersonLogRequests.swift in Sources */,
 				7B8BDBCC1E12ED9F009F3EAF /* PersonSearchTableViewController.swift in Sources */,

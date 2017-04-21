@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerViewDataSource, UIPickerViewDelegate {
+class CreatingInvoices_Step2ViewController: UIViewController {
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -21,49 +21,32 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
     
     @IBOutlet weak var UpperHeading: UIView!
     
-    @IBOutlet weak var SelectTheYearLabel: UILabel!
+    @IBOutlet weak var TopLabel: UILabel!
     
     @IBOutlet weak var UpperContent: UIView!
     
-    @IBOutlet weak var YearLabel: UILabel!
-    
-    @IBOutlet weak var YearPicker: UIPickerView!
     
     @IBOutlet weak var Middle: UIView!
     
     @IBOutlet weak var LowerHeading: UIView!
     
-    @IBOutlet weak var SelectTheMonthLabel: UILabel!
+    @IBOutlet weak var BottomLabel: UILabel!
     
     @IBOutlet weak var LowerContent: UIView!
     
-    @IBOutlet weak var MonthLabel: UILabel!
     
-    @IBOutlet weak var MonthPicker: UIPickerView!
+    @IBOutlet weak var RegistredHoursStartDate: UIDatePicker!
+    
+    @IBOutlet weak var RegisteredHoursEndDate: UIDatePicker!
+    
     
     @IBOutlet weak var Bottom: UIView!
     
     @IBOutlet weak var NextButton: UIButton!
     
-    var yearDataSource = [String]();
-    var monothDataSource = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        YearPicker.dataSource = self
-        YearPicker.delegate = self
-        
-        MonthPicker.dataSource = self
-        MonthPicker.delegate = self
-        
-        let date = Date()
-        let calendar = Calendar.current
-        
-        let year = calendar.component(.year, from: date)
-        
-        yearDataSource = [String(year-1), String(year), String(year+1)]
-        
+       
         self.edgesForExtendedLayout = []
         
         self.hideKeyboardWhenTappedAround()
@@ -75,17 +58,13 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         
         //Fonts
         TopText.font = _ApplicatoinColours.XlargeFont
-        YearLabel.font = _ApplicatoinColours.mediumFont
-        MonthLabel.font = _ApplicatoinColours.mediumFont
-        SelectTheYearLabel.font = _ApplicatoinColours.mediumFont
-        SelectTheMonthLabel.font = _ApplicatoinColours.mediumFont
+        TopLabel.font = _ApplicatoinColours.mediumFont
+        BottomLabel.font = _ApplicatoinColours.mediumFont
         
         TopText.textColor = _ApplicatoinColours.Orange
-        YearLabel.textColor = _ApplicatoinColours.Black
-        MonthLabel.textColor = _ApplicatoinColours.Black
-        SelectTheYearLabel.textColor = _ApplicatoinColours.White
-        SelectTheMonthLabel.textColor = _ApplicatoinColours.White
-
+        TopLabel.textColor = _ApplicatoinColours.White
+        BottomLabel.textColor = _ApplicatoinColours.White
+        
         TopText.text = "Dates"
         
         Top.backgroundColor = _ApplicatoinColours.Blue
@@ -98,77 +77,29 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         
         LowerHeading.backgroundColor = _ApplicatoinColours.Blue
         
-         LowerContent.backgroundColor = _ApplicatoinColours.White
+        LowerContent.backgroundColor = _ApplicatoinColours.White
         
-         Bottom.backgroundColor = _ApplicatoinColours.Blue
-        
-        //TopText.isHidden = true
-        
-        YearPicker.selectRow(1, inComponent: 0, animated: false)
-        
-      //  lastSelectedYear = 2017
-        
-        let month = calendar.component(.month, from: date)
-        MonthPicker.selectRow(month, inComponent: 0, animated: false)
-        
-        lastSelectedMonth = String(monothDataSource[month])
-        lastSelectedYear = String(yearDataSource[1])
-
-    }
-    
-   
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        if YearPicker == pickerView {
-            return yearDataSource.count;
-        }
-        if MonthPicker == pickerView {
-            return monothDataSource.count;
-        }
-        
-        return 0
-        
-    }
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-   
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if YearPicker == pickerView {
-            return yearDataSource[row]
-        }
-        if MonthPicker == pickerView {
-            return monothDataSource[row]
-        }
-        
-        return ""
+        Bottom.backgroundColor = _ApplicatoinColours.Blue
         
     }
     
-    var lastSelectedMonth: String = "";
-     var lastSelectedYear: String = "";
+    var lastSelectedRegisteredHoursStartDate = Date()
+    var lastSelectedRegisteredHoursEndDate = Date()
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func datePickerChanged(datePicker:UIDatePicker) {
         
-        
-        if YearPicker == pickerView {
-            lastSelectedYear = yearDataSource[row] as String
-
+        if(datePicker == RegistredHoursStartDate)
+        {
+            lastSelectedRegisteredHoursStartDate = datePicker.date
         }
-        if MonthPicker == pickerView {
-            lastSelectedMonth = monothDataSource[row] as String
+        else if(datePicker == RegisteredHoursEndDate)
+        {
+            lastSelectedRegisteredHoursStartDate = datePicker.date
         }
         
     }
     
     func setupConstraints() {
-        
         
         //Middle
         
@@ -184,7 +115,6 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         //height
         Middle.heightAnchor.constraint(
             equalTo: view.heightAnchor, multiplier: 0.01).isActive = true
-        
         
         
         //Top
@@ -247,23 +177,23 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         
         //SelectTheYearLabel
         
-        SelectTheYearLabel.translatesAutoresizingMaskIntoConstraints = false
+        TopLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        SelectTheYearLabel.centerYAnchor.constraint(
+        TopLabel.centerYAnchor.constraint(
             equalTo: UpperHeading.centerYAnchor).isActive = true
         
         //left
-        SelectTheYearLabel.leadingAnchor.constraint(
+        TopLabel.leadingAnchor.constraint(
             equalTo: UpperHeading.leadingAnchor, constant: 15).isActive = true
         
         //width
-        SelectTheYearLabel.widthAnchor.constraint(
-            equalTo: UpperHeading.widthAnchor, multiplier: 0.40).isActive = true
-
-       
-
-
+        TopLabel.widthAnchor.constraint(
+            equalTo: UpperHeading.widthAnchor).isActive = true
+        
+        
+        
+        
         
         
         
@@ -287,36 +217,16 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         UpperContent.bottomAnchor.constraint(
             equalTo: Middle.topAnchor).isActive = true
         
-        //Year
-        
-        YearLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        //center
-        YearLabel.centerYAnchor.constraint(
-            equalTo: UpperContent.centerYAnchor).isActive = true
-        
-        YearLabel.leadingAnchor.constraint(
-            equalTo: UpperContent.leadingAnchor, constant: 15).isActive = true
-        
-        YearLabel.widthAnchor.constraint(
-            equalTo: UpperContent.widthAnchor, multiplier: 0.30).isActive = true
-        
-        
         //Year Picker
-        YearPicker.translatesAutoresizingMaskIntoConstraints = false
+        RegistredHoursStartDate.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        YearPicker.centerYAnchor.constraint(
+        RegistredHoursStartDate.centerYAnchor.constraint(
             equalTo: UpperContent.centerYAnchor).isActive = true
         
-        YearPicker.trailingAnchor.constraint(
-            equalTo: UpperContent.trailingAnchor, constant: -15).isActive = true
-        
-        YearPicker.widthAnchor.constraint(
-            equalTo: UpperContent.widthAnchor, multiplier: 0.50).isActive = true
-        
-        
-        
+        //center
+        RegistredHoursStartDate.centerXAnchor.constraint(
+            equalTo: UpperContent.centerXAnchor).isActive = true
         
         //Bottom
         
@@ -371,19 +281,19 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         
         //SelectTheYearLabel
         
-        SelectTheMonthLabel.translatesAutoresizingMaskIntoConstraints = false
+        BottomLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        SelectTheMonthLabel.centerYAnchor.constraint(
+        BottomLabel.centerYAnchor.constraint(
             equalTo: LowerHeading.centerYAnchor).isActive = true
         
         //left
-        SelectTheMonthLabel.leadingAnchor.constraint(
+        BottomLabel.leadingAnchor.constraint(
             equalTo: LowerHeading.leadingAnchor, constant: 15).isActive = true
         
         //width
-        SelectTheMonthLabel.widthAnchor.constraint(
-            equalTo: LowerHeading.widthAnchor, multiplier: 0.40).isActive = true
+        BottomLabel.widthAnchor.constraint(
+            equalTo: LowerHeading.widthAnchor).isActive = true
         
         
         //Lower Content
@@ -406,42 +316,18 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         LowerContent.topAnchor.constraint(
             equalTo: LowerHeading.bottomAnchor).isActive = true
         
-        
-        //Month
-        
-        MonthLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        //center
-        MonthLabel.centerYAnchor.constraint(
-            equalTo: LowerContent.centerYAnchor).isActive = true
-        
-        MonthLabel.leadingAnchor.constraint(
-            equalTo: LowerContent.leadingAnchor, constant: 15).isActive = true
-        
-        MonthLabel.widthAnchor.constraint(
-            equalTo: LowerContent.widthAnchor, multiplier: 0.30).isActive = true
-        
-        
         //Month picker
         
-        MonthPicker.translatesAutoresizingMaskIntoConstraints = false
+        RegisteredHoursEndDate.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        MonthPicker.centerYAnchor.constraint(
+        RegisteredHoursEndDate.centerYAnchor.constraint(
             equalTo: LowerContent.centerYAnchor).isActive = true
         
-        //right
-        MonthPicker.trailingAnchor.constraint(
-            equalTo: LowerContent.trailingAnchor, constant: -15).isActive = true
-        
-        //height
-        MonthPicker.heightAnchor.constraint(
-            equalTo: LowerContent.heightAnchor).isActive = true
-        
-        //width
-        MonthPicker.widthAnchor.constraint(
-            equalTo: LowerContent.widthAnchor, multiplier: 0.50).isActive = true
-        
+        //center
+        RegisteredHoursEndDate.centerXAnchor.constraint(
+            equalTo: LowerContent.centerXAnchor).isActive = true
+    
     }
     
     override func didReceiveMemoryWarning() {

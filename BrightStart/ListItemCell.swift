@@ -37,10 +37,13 @@ class ListItemCell: UITableViewCell {
             equalTo: self.trailingAnchor).isActive = true
         
         tickButton.widthAnchor.constraint(
-            equalToConstant: 25).isActive = true
+            equalToConstant: 40).isActive = true
         
         tickButton.heightAnchor.constraint(
-            equalToConstant: 25).isActive = true
+            equalToConstant: 40).isActive = true
+        
+        tickButton.centerYAnchor.constraint(
+            equalTo: self.centerYAnchor).isActive = true
         
     }
 

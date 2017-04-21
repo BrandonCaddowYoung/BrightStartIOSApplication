@@ -14,6 +14,7 @@ enum CalendarPurpose: Int {
     case TimeStamps
     case MissingTimeStamps_Person
     case MissingTimeStamps_Date
+    case ExtraMinutesFinder_Date
     case MissingTimeStamps_DateRange
     case DateSelection
     case DateRangeSelection

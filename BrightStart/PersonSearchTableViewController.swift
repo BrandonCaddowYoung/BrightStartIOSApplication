@@ -299,9 +299,27 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     
                 }
         }
+            
+        if (segue.identifier == "GoToInvoiceSearch") {
+        
+            if let vc = segue.destination as? InvoiceSearchTableViewController {
+                vc.TargetPersonId = self.SelectedPersonId
+                vc.SelectedPersonFullName = self.SelectedPersonFullName
+                
+                if(self.OptionText == "Invoice Search.")
+                {
+                    vc.OptionText = "Search"
+                }
+                else
+                {
+                    vc.OptionText = ""
+                }
+                
+            }
+        }
         
         
-        if (segue.identifier! == "GoToCalendar") {
+        else if (segue.identifier! == "GoToCalendar") {
             
             
             if(self.Purpose == "TimeStamps_Edit")
@@ -318,7 +336,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "GoToSearchPerson_ExtraMinutes")
+            else if(self.Purpose == "GoToSearchPerson_ExtraMinutes")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -332,7 +350,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "TimeStamps_Delete")
+            else if(self.Purpose == "TimeStamps_Delete")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -346,7 +364,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "GoToSearchPerson_ExtraMinutes")
+            else if(self.Purpose == "GoToSearchPerson_ExtraMinutes")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -360,7 +378,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "TimeStamps_Delete")
+           else if(self.Purpose == "TimeStamps_Delete")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -374,7 +392,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "TimeStamps_Search")
+           else if(self.Purpose == "TimeStamps_Search")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -387,13 +405,13 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "TimeStamps_Missing")
+           else if(self.Purpose == "TimeStamps_ExtraMinutesFinder")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
                     vc.childId = self.SelectedPersonId as String
                     vc.childName = self.SelectedPersonFullName as String
-                    vc.Purpose = "TimeStamps_Missing"
+                    vc.Purpose = "TimeStamps_ExtraMinutesFinder"
                     vc.selectCalendarPurpose = .MissingTimeStamps_Person
                     
                     vc.showNavigationBar = true
@@ -402,7 +420,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             }
             
             //Do I need this?
-            if(self.Purpose == "RegisteredHours_Edit")
+            else if(self.Purpose == "RegisteredHours_Edit")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -416,7 +434,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "RegisteredHours_ExtraMinutes")
+           else if(self.Purpose == "RegisteredHours_ExtraMinutes")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -430,7 +448,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "RegisteredHours_Delete")
+            else if(self.Purpose == "RegisteredHours_Delete")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -444,7 +462,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "RegisteredHours_ExtraMinutes")
+            else if(self.Purpose == "RegisteredHours_ExtraMinutes")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -458,7 +476,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "RegisteredHours_Delete")
+            else if(self.Purpose == "RegisteredHours_Delete")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -472,7 +490,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "RegisteredHours_Search")
+           else if(self.Purpose == "RegisteredHours_Search")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -486,7 +504,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
             
-            if(self.Purpose == "RegisteredHours_Missing")
+           else if(self.Purpose == "RegisteredHours_Missing")
             {
                 if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                     
@@ -500,7 +518,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
 
-            if (segue.identifier == "GoToMenu") {
+            else if (segue.identifier == "GoToMenu") {
                 
                 
                 if let vc = segue.destination as? MainMenuViewController {
@@ -518,26 +536,9 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     
                 }
                 
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        }
-        
-       
+            }        }
         
     }
-    
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         
