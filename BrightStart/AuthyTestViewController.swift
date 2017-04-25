@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class AuthyTestViewController: UIViewController, UITextFieldDelegate {
 
@@ -186,9 +187,9 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
     {
         if(selectedAuthyAction == .ShouldSignOut){
     
-        let alert = self._CommonHelper.showOverlayMessage("Signing out...")
-            self.present(alert, animated: true, completion:
-                {
+            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+            SVProgressHUD.show()
             
             
                     CommonRequests.sharedInstance.signOut(personId: self.targetChildId as String, timeOfSignOut: Date() as NSDate,
@@ -197,12 +198,11 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
                                                             
                                                             DispatchQueue.main.async(execute: {
                                                                 
-                                                                self.dismiss(animated: false, completion:
-                                                                    {
-                                                                        self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                                }
-                                                                )
-                                                                
+                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                                    
+                                                                    self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                                    
+                                                                } )
                                                                 
                                                                 
                                                                 
@@ -211,30 +211,36 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
                                                             
                     })
             
-            })
+            
         
       
 
         }
         else if(selectedAuthyAction == AuhtyActions.ShouldSignIn){
         
-            let alert = self._CommonHelper.showOverlayMessage("Signing in...")
-            self.present(alert, animated: true, completion: {
+            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+            SVProgressHUD.show()
             
                 CommonRequests.sharedInstance.signIn(personId: self.targetChildId as String, timeOfSignIn: Date() as NSDate,
                                                      onCompletion: {
                                                         DispatchQueue.main.async(execute: {
                                                             
-                                                            self.dismiss(animated: false, completion:
-                                                                {self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                            }
-                                                            )
+                                                            
+                                                            SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                                
+                                                                self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                                
+                                                            } )
+                                                            
+                                                            
+                                                            
                                                             
                                                         })
                 }
                 )
             
-            })
+            
             
            
         

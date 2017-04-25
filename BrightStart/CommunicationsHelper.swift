@@ -197,6 +197,13 @@ func makeHTTPPost(encode: Bool, path: String, params: Parameters, encoding: Para
                 
             }
         }
+        
+        if((response.response) == nil)
+        {
+            //Timeout?
+            
+            onCompletion(nil, nil)
+        }
     }
     
     

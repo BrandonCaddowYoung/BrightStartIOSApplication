@@ -8,10 +8,9 @@
 
 
 import UIKit
+import SVProgressHUD
 
 class WizardPageViewController: UIPageViewController {
-    
-    var _PopUpAlert: UIAlertController!
     
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -71,8 +70,9 @@ class WizardPageViewController: UIPageViewController {
         
         if(onLastPage)
         {   
-            _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
-            self.present(_PopUpAlert, animated: true, completion: nil)
+            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+            SVProgressHUD.show()
             
             var accountId = ""
             
@@ -104,10 +104,15 @@ class WizardPageViewController: UIPageViewController {
                                             
                                             DispatchQueue.main.async(execute: {
                                                 
-                                                self._PopUpAlert.dismiss(animated: false, completion:
-                                                    {
-                                                        self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
-                                                })
+                                                
+                                                
+                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                   self.performSegue(withIdentifier: "GoToSuccess", sender: nil)                                                    
+                                                    
+                                                } )
+                                                
+                                                
+                                              
                                                 
                                             })
                                     })
@@ -116,7 +121,7 @@ class WizardPageViewController: UIPageViewController {
                 }
                 }
             }
-            if(self.WizardPurpose == .SetWeeklyRegisteredHours)
+           else if(self.WizardPurpose == .SetWeeklyRegisteredHours)
             {
                 
                 if let step1 = orderedViewControllers[0] as? RegisteredHoursWeekly_Step1ViewController {
@@ -201,48 +206,16 @@ class WizardPageViewController: UIPageViewController {
                             
                             let targetYear = step2.lastSelectedYear
                             let targetMonth = _CommonHelper.GetMonthAsInt(monthAsString: step2.lastSelectedMonth)
-                           
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                       // RegistrationHoursRequests.sharedInstance.SetWeeklyRegisteredHours(targetChildren: selectedChildArray, chosenYear: String(targetYear), chosenMonth: /String(targetMonth), mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion:
-                            //{ json in
-                                
-                              //  _ = (json["Success"].stringValue as NSString) as String
-                                
-                               // DispatchQueue.main.async(execute: {
-                                   
-                                 //   self._PopUpAlert.dismiss(animated: false, completion:
-                                   //     {
-                                            //Go to the success page!
-                                     //       self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
-                                   // })
-                                    
-                               // })
-                        // })
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+                                                       
                             PerformSetWeeklyRegisteredHoursRecursively(targetChildren: selectedChildArray, chosenYear: String(targetYear), chosenMonth: String(targetMonth), mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion: { json in
                                 
                                 DispatchQueue.main.async(execute: {
                                     
-                                    self._PopUpAlert.dismiss(animated: false, completion:
-                                        {
-                                            //Go to the success page!
-                                            self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
-                                    })
+                                    SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                        self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                        
+                                    } )
+                                    
                                     
                                 })
                             })
@@ -262,7 +235,7 @@ class WizardPageViewController: UIPageViewController {
                 }
                 }
             }
-            if(self.WizardPurpose == .RegisteredHours_RollOver)
+           else if(self.WizardPurpose == .RegisteredHours_RollOver)
             {
                 if let step1 = orderedViewControllers[0] as? RegisteredHoursRollOver_Step1ViewController {
                     if let step2 = orderedViewControllers[1] as? RegisteredHoursRollOver_Step2ViewController {
@@ -283,11 +256,13 @@ class WizardPageViewController: UIPageViewController {
                             
                             DispatchQueue.main.async(execute: {
                             
-                                   self._PopUpAlert.dismiss(animated: false, completion:
-                                     {
-                            //Go to the success page!
-                                       self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
-                               })
+                                
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                    
+                                } )
+
+                            
                             
                              })
                              })
@@ -295,18 +270,96 @@ class WizardPageViewController: UIPageViewController {
                 }
             }
             
+            else if(self.WizardPurpose == .Billing_CreatingInvoices)
+            {
+                if let step1 = orderedViewControllers[0] as? CreatingInvoices_Step1ViewController {
+                    if let step2 = orderedViewControllers[1] as? CreatingInvoices_Step2ViewController {
+                        if let step3 = orderedViewControllers[2] as? CreatingInvoices_Step3ViewController {
+                            if let step4 = orderedViewControllers[3] as? CreatingInvoices_Step4ViewController {
+                                
+                        var selectedChildArray = [String]()
+                        
+                        for child in step1.selectedChildrenArray {
+                            selectedChildArray.append(child.ChildId as String)
+                        }
+                        
+                                let registeredHoursStartDate = step2.lastSelectedRegisteredHoursStartDate
+                                let registeredHoursEndDate = step2.lastSelectedRegisteredHoursEndDate
+                                
+                                let extraHoursStartDate = step3.lastSelectedExtraStartDate
+                                let extraHoursEndDate = step3.lastSelectedExtraEndDate
+                                
+                                let nonRegisteredHoursStartDate = step4.lastSelectedNonRegisteredHoursStartDate
+                                let nonRegisteredHoursEndDate = step4.lastSelectedNonRegisteredHoursEndDate
+                                
+                                var fifteenDaysfromNow: Date {
+                                    return (Calendar.current as NSCalendar).date(byAdding: .day, value: 15, to: Date(), options: [])!
+                                }
+                                
+                        PerformCreatingInvoicesRecursively(targetChildren: selectedChildArray, registeredHoursStartDate: registeredHoursStartDate,registeredHoursEndDate: registeredHoursEndDate,extraHoursStartDate: extraHoursStartDate, extraHoursEndDate: extraHoursEndDate,nonRegisteredHoursStartDate: nonRegisteredHoursStartDate, nonRegisteredHoursEndDate: nonRegisteredHoursEndDate, dueDate: fifteenDaysfromNow, onCompletion: { json in
+                            
+                            DispatchQueue.main.async(execute: {
+                                
+                              
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                    
+                                } )
+
+                            
+                                
+                            })
+                        })
+                    }
+                }
+            }
+                }
+            }
+            
         }
         
     }
     
-    
+    func PerformCreatingInvoicesRecursively(targetChildren: [String], registeredHoursStartDate: Date, registeredHoursEndDate: Date, extraHoursStartDate: Date, extraHoursEndDate: Date,  nonRegisteredHoursStartDate: Date, nonRegisteredHoursEndDate: Date, dueDate: Date, onCompletion: @escaping () -> Void)
+    {
+        
+        var childrenList = targetChildren
+        
+        
+        
+        //Get the last item
+        let lastItem = [childrenList.last]
+        
+        BillingRequests.sharedInstance.CreateInvoices(targetChildren: lastItem as! [String], registeredHoursStartDate: registeredHoursStartDate, registeredHoursEndDate: registeredHoursEndDate, extraHoursStartDate: extraHoursStartDate, extraHoursEndDate: extraHoursEndDate, nonRegisteredHoursStartDate: nonRegisteredHoursStartDate, nonRegisteredHoursEndDate: nonRegisteredHoursEndDate, dueDate: dueDate, onCompletion:
+            { json in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    //Remove the guy we just completed
+                    childrenList.removeLast()
+                    
+                    //Check if we are all done!
+                    if(childrenList.count == 0)
+                    {
+                        onCompletion()
+                        
+                        return
+                    }
+                    
+                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: String(childrenList.count) + " more to go!")
+                    
+                    //Do the next
+                    self.PerformCreatingInvoicesRecursively(targetChildren: childrenList, registeredHoursStartDate: registeredHoursStartDate, registeredHoursEndDate: registeredHoursEndDate,  extraHoursStartDate: extraHoursStartDate, extraHoursEndDate: extraHoursEndDate, nonRegisteredHoursStartDate: nonRegisteredHoursStartDate, nonRegisteredHoursEndDate: nonRegisteredHoursEndDate, dueDate: dueDate, onCompletion: onCompletion)
+                })
+        })
+    }
     
     func PerformRollOverRecursively(targetChildren: [String], targetYear: String, targetMonth: String, destinationYear: String, destinationMonth: String, onCompletion: @escaping () -> Void)
     {
        
         var childrenList = targetChildren
         
-        self._PopUpAlert.message = String(childrenList.count) + " more to go!"
+       
         
         //Get the last item
         let lastItem = [childrenList.last]
@@ -319,9 +372,6 @@ class WizardPageViewController: UIPageViewController {
                     //Remove the guy we just completed
                     childrenList.removeLast()
                     
-                    //Update ui with progress!
-                    //self._PopUpAlert.message = String(childrenList.count) + " more to go!"
-                    
                     //Check if we are all done!
                     if(childrenList.count == 0)
                     {
@@ -329,6 +379,8 @@ class WizardPageViewController: UIPageViewController {
                         
                     return
                     }
+                    
+                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: String(childrenList.count) + " more to go!")
                     
                     //Do the next
                     self.PerformRollOverRecursively(targetChildren: childrenList, targetYear: targetYear, targetMonth: targetMonth, destinationYear: destinationYear, destinationMonth: destinationMonth, onCompletion: onCompletion)
@@ -343,8 +395,6 @@ class WizardPageViewController: UIPageViewController {
         
         var childrenList = targetChildren
         
-        self._PopUpAlert.message = String(childrenList.count) + " more to go!"
-        
         //Get the last item
         let lastItem = [childrenList.last]
         
@@ -356,9 +406,6 @@ class WizardPageViewController: UIPageViewController {
                     //Remove the guy we just completed
                     childrenList.removeLast()
                     
-                    //Update ui with progress!
-                    //self._PopUpAlert.message = String(childrenList.count) + " more to go!"
-                    
                     //Check if we are all done!
                     if(childrenList.count == 0)
                     {
@@ -366,6 +413,8 @@ class WizardPageViewController: UIPageViewController {
                         
                         return
                     }
+                    
+                     self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: String(childrenList.count) + " more to go!")
                     
                     //Do the next
                     self.PerformSetWeeklyRegisteredHoursRecursively(targetChildren: childrenList, chosenYear: String(chosenYear), chosenMonth: String(chosenMonth), mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion: onCompletion)
@@ -597,6 +646,8 @@ extension WizardPageViewController: UIPageViewControllerDelegate {
 
 func prepare(for segue: UIStoryboardSegue, sender: Any!) {
     
+    
+    
     if (segue.identifier == "GoToMenu") {
         
         if let vc = segue.destination as? MainMenuViewController {
@@ -608,12 +659,9 @@ func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         }
         
     }
-    else if (segue.identifier == "GoToSuccess") {
-        if let vc = segue.destination as? WizardSuccessViewController {
-            
-            
-        }
-    }
+    
+    
+    
     
 }
 

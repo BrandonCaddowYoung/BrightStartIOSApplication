@@ -344,11 +344,11 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         cell.tickButton.tag=indexPath.row
         
         if(selectedDaysOfTheWeekArray.contains( where: { $0 === contact } )){
-            cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
+            cell.tickButton.setBackgroundImage(UIImage(named:"Checked"), for: UIControlState.normal)
         }
         else
         {
-            cell.tickButton.setBackgroundImage(UIImage(named:"star"), for: UIControlState.normal)
+            cell.tickButton.setBackgroundImage(UIImage(named:"Unchecked"), for: UIControlState.normal)
             
             cell.StartTimePicker.date = defaultStartDate
             cell.EndTimePicker.date = defaultEndDate

@@ -46,6 +46,22 @@ class InvoiceSearchTableViewCell: UITableViewCell
     @IBOutlet weak var NonRegisteredLabel: UILabel!
     @IBOutlet weak var NonRegisteredAmountLabel: UILabel!
     
+    @IBOutlet weak var BottomContainer: UIView!
+    
+    @IBOutlet weak var LineInnerContainer: UIView!
+    
+    @IBOutlet weak var LineOuterContainer: UIView!
+    
+    @IBOutlet weak var LineContainer: UIView!
+    
+    
+    @IBOutlet weak var InvoiceStartDate: UILabel!
+    
+    @IBOutlet weak var InvoiceEndDate: UILabel!
+    
+    
+    
+    
     override func awakeFromNib() {
         
         _CommonHelper = CommonHelper()
@@ -59,8 +75,15 @@ class InvoiceSearchTableViewCell: UITableViewCell
         SmallBottomLeftContainer.backgroundColor = _ApplicationColours.White
         SmallBottomRightContainer.backgroundColor = _ApplicationColours.White
         
+        BottomContainer.backgroundColor = _ApplicationColours.White
+        
+         //LineOuterContainer.backgroundColor = _ApplicationColours.White
+        
         TotalLabel.font = _ApplicationColours.XlargeFont
         InvoiceNumberLabel.font = _ApplicationColours.mediumFont
+        
+        InvoiceStartDate.font = _ApplicationColours.mediumFont
+        InvoiceEndDate.font = _ApplicationColours.mediumFont
         
         RegisteredAmountLabel.font = _ApplicationColours.mediumFont
         NonRegisteredAmountLabel.font = _ApplicationColours.mediumFont
@@ -85,6 +108,9 @@ class InvoiceSearchTableViewCell: UITableViewCell
         ExtraLabel.textColor = _ApplicationColours.Black
         BalanceLabel.textColor = _ApplicationColours.Black
         
+        InvoiceStartDate.textColor = _ApplicationColours.Black
+        InvoiceEndDate.textColor = _ApplicationColours.Black
+        
     }
     
     func setupConstraints() {
@@ -106,8 +132,8 @@ class InvoiceSearchTableViewCell: UITableViewCell
         LargeLeftContainer.topAnchor.constraint(
             equalTo: contentView.topAnchor).isActive = true
         
-        LargeLeftContainer.bottomAnchor.constraint(
-            equalTo: contentView.bottomAnchor).isActive = true
+        //LargeLeftContainer.bottomAnchor.constraint(
+          //  equalTo: contentView.bottomAnchor).isActive = true
         
         
         //TOTAL LABEL
@@ -134,6 +160,12 @@ class InvoiceSearchTableViewCell: UITableViewCell
         InvoiceNumberLabel.topAnchor.constraint(
             equalTo: LargeLeftContainer.topAnchor, constant: 10).isActive = true
         
+        
+        
+        
+        
+        
+        
         SmallTopLeftContainer.translatesAutoresizingMaskIntoConstraints = false
         
         //left
@@ -142,7 +174,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
         
         //height
         SmallTopLeftContainer.heightAnchor.constraint(
-            equalTo: contentView.heightAnchor, multiplier: 0.50).isActive = true
+            equalToConstant: 75).isActive = true
         
         //width
         SmallTopLeftContainer.widthAnchor.constraint(
@@ -189,7 +221,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
         
         //height
         SmallTopRightContainer.heightAnchor.constraint(
-            equalTo: contentView.heightAnchor, multiplier: 0.50).isActive = true
+            equalToConstant: 75).isActive = true
         
         //width
         SmallTopRightContainer.widthAnchor.constraint(
@@ -235,7 +267,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
         
         //height
         SmallBottomLeftContainer.heightAnchor.constraint(
-            equalTo: contentView.heightAnchor, multiplier: 0.50).isActive = true
+            equalToConstant: 75).isActive = true
         
         //width
         SmallBottomLeftContainer.widthAnchor.constraint(
@@ -284,7 +316,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
         
         //height
         SmallBottomRightContainer.heightAnchor.constraint(
-            equalTo: contentView.heightAnchor, multiplier: 0.50).isActive = true
+            equalToConstant: 75).isActive = true
         
         //width
         SmallBottomRightContainer.widthAnchor.constraint(
@@ -322,21 +354,136 @@ class InvoiceSearchTableViewCell: UITableViewCell
         
         
         
+        BottomContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        //left
+        BottomContainer.trailingAnchor.constraint(
+            equalTo: contentView.trailingAnchor).isActive = true
+        
+        //left
+        BottomContainer.leadingAnchor.constraint(
+            equalTo: contentView.leadingAnchor).isActive = true
+        
+        //height
+        BottomContainer.heightAnchor.constraint(
+            equalToConstant: 50).isActive = true
+        
+        BottomContainer.topAnchor.constraint(
+            equalTo: LargeLeftContainer.bottomAnchor).isActive = true
+        
+        BottomContainer.bottomAnchor.constraint(
+            equalTo: contentView.bottomAnchor).isActive = true
+
+
+
+        
+        
+        
+        LineOuterContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        LineOuterContainer.centerXAnchor.constraint(
+            equalTo: contentView.centerXAnchor).isActive = true
+        
+        //width
+        LineOuterContainer.widthAnchor.constraint(
+            equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
+        
+        //height
+        LineOuterContainer.heightAnchor.constraint(
+            equalTo: BottomContainer.heightAnchor, multiplier: 0.30).isActive = true
+        
+        LineOuterContainer.bottomAnchor.constraint(
+            equalTo: BottomContainer.bottomAnchor, constant: -5).isActive = true
+        
+        
+        
+        
+        
+        
+        
+        
+        LineInnerContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        LineInnerContainer.centerXAnchor.constraint(
+            equalTo: LineOuterContainer.centerXAnchor).isActive = true
+        
+        //center
+        LineInnerContainer.centerYAnchor.constraint(
+            equalTo: LineOuterContainer.centerYAnchor).isActive = true
+        
+        //thicknes
+        
+        //width
+        LineInnerContainer.widthAnchor.constraint(
+            equalTo: LineOuterContainer.widthAnchor, multiplier: 0.98).isActive = true
+        
+        //height
+        LineInnerContainer.heightAnchor.constraint(
+            equalTo: LineOuterContainer.heightAnchor).isActive = true
+        
+        
+        
+        
+        LineContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        //center
+        LineContainer.centerXAnchor.constraint(
+            equalTo: LineOuterContainer.centerXAnchor).isActive = true
+        
+        //center
+        LineContainer.centerYAnchor.constraint(
+            equalTo: LineOuterContainer.centerYAnchor).isActive = true
+        
+        //width
+        LineContainer.widthAnchor.constraint(
+            equalTo: LineOuterContainer.widthAnchor).isActive = true
+        
+        //thicknes
+        
+        //height
+        LineContainer.heightAnchor.constraint(
+            equalToConstant: 3).isActive = true
+        
+        
+        
+        
+        
+        InvoiceStartDate.translatesAutoresizingMaskIntoConstraints = false
+        
+        InvoiceStartDate.leadingAnchor.constraint(
+            equalTo: LineOuterContainer.leadingAnchor).isActive = true
+        
+        InvoiceStartDate.bottomAnchor.constraint(
+            equalTo: LineOuterContainer.topAnchor).isActive = true
+        
+       InvoiceStartDate.textAlignment = .left
+        
+        
+        
+        
+        
+        InvoiceEndDate.translatesAutoresizingMaskIntoConstraints = false
+        
+        InvoiceEndDate.trailingAnchor.constraint(
+            equalTo: LineOuterContainer.trailingAnchor).isActive = true
+        
+        InvoiceEndDate.bottomAnchor.constraint(
+            equalTo: LineOuterContainer.topAnchor).isActive = true
+        
+        InvoiceEndDate.textAlignment = .right
+        
+        
+        
+        
     }
     
-    //func tableView(_ tableView: UITableView, heightForRowAtIndexPath: IndexPath) -> CGFloat
-   // {
-    //    return 500.0;//Choose your custom row height
-   // }
+    
     
     func updateUI() {
         
         self.backgroundColor = _ApplicationColours.TableBackGround
-        
-       // self.titleLabel.textColor = _ApplicationColours.TableTextColor
-       // self.timeLabel.textColor =  _ApplicationColours.TableTextColor
-        
-        //titleLabel?.text = nil
         
         if let invoice = self.invoice
         {
@@ -363,8 +510,13 @@ class InvoiceSearchTableViewCell: UITableViewCell
             (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int(invoice.NonRegisteredMinutes * 60))
             NonRegisteredAmountLabel?.text = String(h) + "H " + String(m) + "M"
             
-            ExtraAmountLabel?.text = String(describing: invoice.EarlyMinutes + invoice.LateMinutes)
-            BalanceAmountLabel?.text = "£0"
+            (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int((invoice.EarlyMinutes + invoice.LateMinutes) * 60))
+            ExtraAmountLabel?.text = String(h) + "H " + String(m) + "M"
+            
+            BalanceAmountLabel?.text = "£0" //Still to do!
+            
+            InvoiceStartDate.text = invoice.Start.ToString()
+             InvoiceEndDate.text = invoice.End.ToString()
             
             // UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
             //UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")

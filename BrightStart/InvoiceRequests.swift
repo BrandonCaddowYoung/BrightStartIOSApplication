@@ -47,7 +47,7 @@ class InvoiceRequests: NSObject {
             nurserySchoolId = id;
         }
         
-        let route = baseURL + "api/InvoiceLogic/DeleteInvoice?InvoiceId=" + String(invoiceId) + "&nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/InvoiceLogic/DeleteInvoiceById?InvoiceId=" + String(invoiceId) + "&nurserySchoolId=" + nurserySchoolId
         makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
                 json, err in

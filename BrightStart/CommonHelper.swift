@@ -8,10 +8,42 @@
 
 import Foundation
 import UIKit
+import SCLAlertView
 
 class CommonHelper {
     
+    var _ApplicatoinColours = ApplicatoinColours()
     
+    func ShowSuccessMessage(title: String, subsTtitle: String)
+    {
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: false
+        )
+        
+        let alert = SCLAlertView(appearance: appearance)
+        
+        alert.showSuccess(title, subTitle: subsTtitle, duration: 2.0, colorStyle: self._ApplicatoinColours.Blue.ToUint())
+        
+    }
+    
+    func ShowErrorMessage(title: String, subsTtitle: String)
+    {
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: false
+        )
+        
+        let alert = SCLAlertView(appearance: appearance)
+        
+        alert.showError(title, subTitle: subsTtitle, duration: 4.0, colorStyle: self._ApplicatoinColours.Red.ToUint())
+        
+    }
     
     func GetMonthAsInt(monthAsString: String) -> Int
     {
@@ -70,6 +102,14 @@ class CommonHelper {
             return -1
         }
         
+        
+    }
+    
+    func DateToEncodedString(targetDate: Date) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
+        return dateFormatter.string(from: targetDate as Date)
         
     }
     
@@ -212,6 +252,11 @@ extension UIView {
                                               attribute: NSLayoutAttribute.trailing,
                                               multiplier: 1, constant: margins))
     }
+    
+    
+  
+    
+    
 }
 
 extension UIImage {
@@ -286,11 +331,46 @@ extension Date {
         
         return cal.date(from: components)
     }
+    
+    
+    public func ToString() -> String{
+    
+        let dateformatter = DateFormatter()
+        
+        dateformatter.dateFormat = "MM/dd/yy"
+        
+        return dateformatter.string(from: self)
+    
+    }
+        
 }
 
 
+extension UIColor {
+
+     public func ToUint() -> UInt{
+
+// read colors to CGFloats and convert and position to proper bit positions in UInt32
+var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        
+if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
     
+    var colorAsUInt : UInt32 = 0
     
+    colorAsUInt += UInt32(red * 255.0) << 16 +
+        UInt32(green * 255.0) << 8 +
+        UInt32(blue * 255.0)
+    
+   return UInt(colorAsUInt)
+    
+        }
+
+        return 0
+
+}
+
+}
+
 
 
 

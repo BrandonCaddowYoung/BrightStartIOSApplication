@@ -8,16 +8,11 @@
 
 import Foundation
 import UIKit
+import DZNEmptyDataSet
+import SVProgressHUD
+import SVProgressHUD
 
-class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
-    
-    var indicator = UIActivityIndicatorView()
-    
-    func activityIndicator()
-    {
-    indicator = UIActivityIndicatorView(frame: CGRect())
-        
-    }
+class ClockingTableViewController: UITableViewController, UITextFieldDelegate , DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var children: [[Child]] = [];
     var _CommonHelper: CommonHelper!
@@ -27,8 +22,6 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     
     var selectedChildId: NSString!
     var selectedAuthyAction = AuhtyActions.ShouldDoNothing
-    
-    //var ClockingTableViewController:Bool! = false
     
     var showNavigationBar:Bool! = false
     
@@ -57,6 +50,10 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
         
         if(!showNavigationBar){
             self.navigationController?.setNavigationBarHidden(false, animated: animated);
+            
+            
+            self.navigationItem.title="Clocking"
+            
         }
         else
         {
@@ -81,15 +78,18 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        
+        self.tableView.tableFooterView = UIView()
        
         _CommonHelper = CommonHelper()
         _ApplicatoinColours = ApplicatoinColours()
         
-        self.indicator.center = self.view.center
-        self.view.addSubview(indicator)
-        
-        indicator.startAnimating()
-        //indicator.backgroundColor = UIColor.white
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -123,9 +123,6 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
-       
-       // let alert = _CommonHelper.showOverlayMessage("Refreshing...")
-       // self.present(alert, animated: true, completion: nil)
         
         self.children.removeAll();
         
@@ -170,8 +167,9 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                     self.tableView.reloadData()
                     sender?.endRefreshing()
                     
-                    self.indicator.stopAnimating()
-                    self.indicator.hidesWhenStopped = true
+                    SVProgressHUD.dismiss(withDelay: 0, completion: {
+                        
+                    })
                     
                 })
             }
@@ -242,15 +240,20 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                 else
                 {
                 
-                    let alert = self._CommonHelper.showOverlayMessage("Signing in...")
-                    self.present(alert, animated: true, completion: nil)
+                    SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+                    SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+                    SVProgressHUD.show()
                     
                     CommonRequests.sharedInstance.signIn(personId: (cell.child?.Id)! as String, timeOfSignIn: Date() as NSDate,
                                                          onCompletion: {
                                                             DispatchQueue.main.async(execute: {
                                                                 self.refreshTable()
                                                                 
-                                                                self.dismiss(animated: false, completion: nil)
+                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                                    
+                                                                    
+                                                                    
+                                                                } )
                                                             })
                     }
                     )
@@ -285,8 +288,9 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                 }
                 else
                 {
-                    let alert = self._CommonHelper.showOverlayMessage("Signing out...")
-                    self.present(alert, animated: true, completion: nil)
+                    SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+                    SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+                    SVProgressHUD.show()
                     
                     CommonRequests.sharedInstance.signOut(personId: (cell.child?.Id)! as String, timeOfSignOut: Date() as NSDate,
                                                           
@@ -295,7 +299,11 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
                                                             DispatchQueue.main.async(execute: {
                                                                 self.refreshTable()
                                                                 
-                                                                self.dismiss(animated: false, completion: nil)
+                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                                    
+                                                                    
+                                                                    
+                                                                } )
                                                                 
                                                             })
                                                             
@@ -359,6 +367,38 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate {
     }
         
     }
+    
+    //So we can stil pull to refresh
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage
+    {
+        return UIImage(named:"Rocket")!
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "We didnt find anything..."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "Go back to the previous screen and try re-searching."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    
     
     
     

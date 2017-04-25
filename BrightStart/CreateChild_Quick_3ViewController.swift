@@ -255,17 +255,17 @@ class CreateChild_Quick_3ViewController: UIViewController, UITableViewDataSource
         cell.tickButton.tag=indexPath.row
         
         if selectedArray .contains(numberArray.object(at: indexPath.row)) {
-            cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
+            cell.tickButton.setBackgroundImage(UIImage(named:"Checked"), for: UIControlState.normal)
         }
         else
         {
-            cell.tickButton.setBackgroundImage(UIImage(named:"star"), for: UIControlState.normal)
+            cell.tickButton.setBackgroundImage(UIImage(named:"Unchecked"), for: UIControlState.normal)
         }
         return cell
     }
     /////HEIGHT FOR ROW
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->CGFloat
     {
         return 80.0
     }

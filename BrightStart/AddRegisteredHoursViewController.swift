@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class AddRegisteredHoursViewController: UIViewController {
 
@@ -381,30 +382,35 @@ class AddRegisteredHoursViewController: UIViewController {
         selectedStartTime = StartDatePicker.date as NSDate
         selectedEndTime = EndDatePicker.date as NSDate
 
-       
-        _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
-        self.present(_PopUpAlert, animated: true, completion:
-            {
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        SVProgressHUD.show()
         
-        
-                RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: self.personId, startTime: self.selectedStartTime, finishTime: self.selectedEndTime, onCompletion: { (JSON) in
+        RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: self.personId, startTime: self.selectedStartTime, finishTime: self.selectedEndTime, onCompletion: { (JSON) in
+            
+            
+            
+            
+            SVProgressHUD.dismiss(withDelay: 1, completion: {
+                
+                self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                
+                //Always goes back when done but this could be optional?
+                
+                if let nav = self.navigationController {
+                    nav.popViewController(animated: true)
+                } else {
                     
-                    self._PopUpAlert.dismiss(animated: false, completion:
-                       {
+                     self.dismiss(animated: true, completion: nil)
                     
-                        //Always goes back when done but this could be optional?
-                        
-                        if let nav = self.navigationController {
-                            nav.popViewController(animated: true)
-                        } else {
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                        
-                    })
-                    
-                })
-        
+                }
+                
+            } )
+            
+            
+            
         })
+        
       
     }
     

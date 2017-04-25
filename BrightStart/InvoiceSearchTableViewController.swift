@@ -7,15 +7,11 @@
 //
 
 import UIKit
+import SCLAlertView
+import DZNEmptyDataSet
+import SVProgressHUD
 
-class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDelegate {
-    
-    var indicator = UIActivityIndicatorView()
-    
-    func activityIndicator()
-    {
-        indicator = UIActivityIndicatorView(frame: CGRect())
-    }
+class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDelegate , DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var SelectedInvoice: Invoice!
     
@@ -55,17 +51,21 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.indicator.center = self.view.center
-        self.view.addSubview(indicator)
+        _CommonHelper = CommonHelper()
+        _ApplicatoinColours = ApplicatoinColours()
+
         
-        indicator.startAnimating()
-        indicator.backgroundColor = UIColor.white
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        
+        self.tableView.tableFooterView = UIView()
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight =  500
-        
-        _CommonHelper = CommonHelper()
-        _ApplicatoinColours = ApplicatoinColours()
         
         view.backgroundColor = _ApplicatoinColours.TableBackGround
         
@@ -190,8 +190,9 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 self.tableView.reloadData()
                 sender?.endRefreshing()
                 
-                self.indicator.stopAnimating()
-                self.indicator.hidesWhenStopped = true
+                SVProgressHUD.dismiss(withDelay: 0, completion: {
+                    
+                })
             })
             
         })
@@ -250,8 +251,11 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 InvoiceRequests.sharedInstance.DeleteInvoice(invoiceId: (cell.invoice?.InvoiceId)!, onCompletion:
                     {_ in
                         
+                        self._CommonHelper.ShowSuccessMessage(title: "All done.", subsTtitle: "Invoice successfully deleted!")
+                        
                         self.refresh()
                 }
+                    
                 )
                 
             }
@@ -263,8 +267,10 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 BillingRequests.sharedInstance.SendInvoice(invoiceId: (cell.invoice?.InvoiceId)!, onCompletion:
                     {_ in
                         
-                        //Show success message!
-                }
+                        self._CommonHelper.ShowSuccessMessage(title: "All done.", subsTtitle: "Invoice successfully sent!")
+                       
+                        
+                        }
                 )
                 
                 
@@ -294,4 +300,33 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
         }
     }
     
+    //So we can stil pull to refresh
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage
+    {
+    return UIImage(named:"Rocket")!
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "We didnt find anything..."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "Go back to the previous screen and try re-searching."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
 }

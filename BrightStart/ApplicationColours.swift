@@ -86,6 +86,7 @@ class ApplicatoinColours {
         Grey = hexStringToUIColor(hex: "#7f909a")
         Orange = hexStringToUIColor(hex: "#ed6639")
         Blue = hexStringToUIColor(hex: "#385b9f")
+        Red = hexStringToUIColor(hex: "#FF0800")
         LightBlue = hexStringToUIColor(hex: "#6889ca")
         
         //GENERAL

@@ -305,22 +305,16 @@ class CreatingInvoices_Step1ViewController: UIViewController, UITableViewDataSou
         cell.tickButton.tag=indexPath.row
         
         if(selectedChildrenArray.contains( where: { $0 === contact } )){
-            cell.tickButton.setBackgroundImage(UIImage(named:"Rocket"), for: UIControlState.normal)
+            cell.tickButton.setBackgroundImage(UIImage(named:"Checked"), for: UIControlState.normal)
         }
         else
         {
-            cell.tickButton.setBackgroundImage(UIImage(named:"star"), for: UIControlState.normal)
+            cell.tickButton.setBackgroundImage(UIImage(named:"Unchecked"), for: UIControlState.normal)
         }
         
         cell.tickButton.titleLabel?.text = ""
         
         return cell
-    }
-    /////HEIGHT FOR ROW
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat
-    {
-        return 80.0
     }
     
 }

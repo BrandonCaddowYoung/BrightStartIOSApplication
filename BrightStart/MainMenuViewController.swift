@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 enum MenuTypes: Int {
     case MainMenu
@@ -152,7 +153,7 @@ class MainMenuViewController: UIViewController {
             
             PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Menu,PurposeTypes.Billing_Menu, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Register",  "Children", "Registered Hours", "Time Stamps", "Auhty", "Billing", "Sign Out"]
+            DisplayTextList = ["register",  "children", "registered hours", "time stamps", "Auhty", "billing", "sign out"]
             
             authyIdList = ["",  "", "", "",  "", "", ""]
             
@@ -271,30 +272,39 @@ class MainMenuViewController: UIViewController {
                                 
                                 if(self.selectedAuthyAction == .ShouldSignOut){
                                     
-                                    let alert = self._CommonHelper.showOverlayMessage("Signing out...")
-                                    self.present(alert, animated: true, completion:
-                                        {
+                                    SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+                                    SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+                                    SVProgressHUD.show()
+                                    
                                             CommonRequests.sharedInstance.signOut(personId: self.childId as String, timeOfSignOut: Date() as NSDate,
                                                                                   
                                                                                   onCompletion: {
                                                                                     
                                                                                     DispatchQueue.main.async(execute: {
                                                                                         
-                                                                                        self.dismiss(animated: false, completion:
-                                                                                            {
-                                                                                                self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                                                        }
-                                                                                        )
+                                                                                        
+                                                                                        SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                                                            
+                                                                                             self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                                                            
+                                                                                            
+                                                                                        } )
+                                                                                        
+                                                                                       
                                                                                         
                                                                                     })
                                                                                     
                                             })
-                                    })
+                                
                                 }
                                 else if(self.selectedAuthyAction == AuhtyActions.ShouldSignIn){
                                     
-                                    let alert = self._CommonHelper.showOverlayMessage("Signing in...")
-                                    self.present(alert, animated: true, completion: {
+                                    
+                                    SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+                                    SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+                                    SVProgressHUD.show()
+                                    
+                                    
                                         
                                         CommonRequests.sharedInstance.signIn(personId: self.childId as String, timeOfSignIn: Date() as NSDate,
                                                                              onCompletion: {
@@ -309,7 +319,7 @@ class MainMenuViewController: UIViewController {
                                         }
                                         )
                                         
-                                    })
+                                    
                                 }
                                 
                                 
@@ -943,6 +953,8 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
                 switch selectedMenu {
                 case .MainMenu:
                     self.navigationItem.title="Menu"
+                case .Billing:
+                    self.navigationItem.title="Billing"
                 case .TimeStamps:
                     self.navigationItem.title="Time Stamps"
                 case .RegisteredHours:
@@ -973,10 +985,10 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
     func renderMenuAssets(menuType: MenuTypes) {
         
         
-        self._PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
-        self.present(self._PopUpAlert, animated: true, completion:
-            {
-                
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        SVProgressHUD.show()
+        
                 self.selectedMenu = menuType
                 
                 self.loadMenuAssets()
@@ -989,14 +1001,16 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
                     
                     self.collectionView.reloadData()
                     
-                    self._PopUpAlert.dismiss(animated: false, completion:
-                        {
-                            
-                    })
+                    SVProgressHUD.dismiss(withDelay: 1, completion: {
+                        
+                       // self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                        
+                        
+                    } )
         }
-        })
+      
         
         }
-       
+    
     }
 

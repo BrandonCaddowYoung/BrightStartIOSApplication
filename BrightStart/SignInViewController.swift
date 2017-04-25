@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SCLAlertView
+import SVProgressHUD
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
 
@@ -110,8 +112,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //We could put the passwod in place if it exists however is a security risk.
         
         #if DEBUG
-            usernameTextField.text = "ascotdaynursery"
-           passwordTextField.text = "ascotdaynursery"
+            usernameTextField.text = "user1"
+           passwordTextField.text = "user1"
         #endif
         
         usernameTextField.font = _ApplicatoinColours.mediumFont
@@ -581,17 +583,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         if nurserySchoolUserName?.isEmpty == true || nurserySchoolPassword?.isEmpty == true {
             
-            //Removing the message we showed the user when they attempted to sign in.
-            self._PopUpAlert.dismiss(animated: false, completion:
-                {
-                    let alert = UIAlertController(title: "Login failed.", message:
-                        "In order to login, you will need to supply both a username and a password.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
-                    
-                    self.present(alert, animated: true, completion: nil)
-      
-            })
+            SVProgressHUD.dismiss(withDelay: 1, completion: {
             
+                 self._CommonHelper.ShowErrorMessage(title: "Oh no, that didnt work.", subsTtitle: "In order to login, you will need to supply both a username and a password.");
+                
+            } )
             
             return
         }
@@ -607,18 +603,21 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                 
                 if nurserySchoolId.isEmpty == false
                 {
+                    //Store the nursery school Id
+                    self.storeNurserySchoolIdWithinDefaults(username: nurserySchoolUserName!, nurserySchoolId: nurserySchoolId)
                     
                     let callActionHandler = { () -> Void in
                         
-                        //Store the nursery school Id
-                        self.storeNurserySchoolIdWithinDefaults(username: nurserySchoolUserName!, nurserySchoolId: nurserySchoolId)
+                      //  self._CommonHelper.ShowSuccessMessage(title: "Great, you're in.", subsTtitle: "Bright Start is ready to go!")
                         
                         self.performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
                         
                     }
                     
-                    //Removing the message we showed the user when they attempted to sign in.
-                    self._PopUpAlert.dismiss(animated: false, completion: callActionHandler)
+                    SVProgressHUD.dismiss(withDelay: 0.5, completion: callActionHandler )
+                    
+                    //Store the nursery school Id
+                    self.storeNurserySchoolIdWithinDefaults(username: nurserySchoolUserName!, nurserySchoolId: nurserySchoolId)
                     
                 }
                 else
@@ -626,17 +625,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     
                 //Notify the user that the given credentials were incorrect.
                     
-                    //Removing the message we showed the user when they attempted to sign in.
-                    self._PopUpAlert.dismiss(animated: false, completion: {
-                        
-                        let alert = UIAlertController(title: "Login failed.", message:
-                        "Invalid credentials were supplied. Please try again making sure both your username and password are spelt correctly.", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
-                        
-                        self.present(alert, animated: true, completion: nil)
-})
+                    SVProgressHUD.dismiss(withDelay: 1, completion: {
                     
-                    
+                       return self._CommonHelper.ShowErrorMessage(title: "Oh no, that didnt work.", subsTtitle: "Make sure you have entered the correct credentials.")
+                        
+                    } )
                     
                 }
                 
@@ -650,11 +643,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
      */
     @IBAction func signInButtonClicked(_ sender: Any) {
         
-        _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
-        self.present(_PopUpAlert, animated: true, completion: nil)
-        
-        //Removing incase the user is trying to switch accounts.
-        //removeStoredNurserySchoolId()
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         
         MoveToNextSceneIfCredentialsAreValid()
         

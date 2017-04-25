@@ -35,9 +35,9 @@ class CreatingInvoices_Step3ViewController: UIViewController {
     @IBOutlet weak var LowerContent: UIView!
     
     
-    @IBOutlet weak var RegistredHoursStartDate: UIDatePicker!
+    @IBOutlet weak var ExtraHoursStartDate: UIDatePicker!
     
-    @IBOutlet weak var RegisteredHoursEndDate: UIDatePicker!
+    @IBOutlet weak var ExtraHoursEndDate: UIDatePicker!
     
     
     @IBOutlet weak var Bottom: UIView!
@@ -81,20 +81,27 @@ class CreatingInvoices_Step3ViewController: UIViewController {
         
         Bottom.backgroundColor = _ApplicatoinColours.Blue
         
+        ExtraHoursStartDate.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        ExtraHoursEndDate.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        
+        
+        ExtraHoursStartDate.datePickerMode = .date
+        ExtraHoursEndDate.datePickerMode = .date
+        
     }
     
-    var lastSelectedRegisteredHoursStartDate = Date()
-    var lastSelectedRegisteredHoursEndDate = Date()
+    var lastSelectedExtraStartDate = Date()
+    var lastSelectedExtraEndDate = Date()
     
-    func datePickerChanged(datePicker:UIDatePicker) {
+    func dateChanged(_ datePicker: UIDatePicker) {
         
-        if(datePicker == RegistredHoursStartDate)
+        if(datePicker == ExtraHoursStartDate)
         {
-            lastSelectedRegisteredHoursStartDate = datePicker.date
+            lastSelectedExtraStartDate = datePicker.date
         }
-        else if(datePicker == RegisteredHoursEndDate)
+        else if(datePicker == ExtraHoursEndDate)
         {
-            lastSelectedRegisteredHoursStartDate = datePicker.date
+            lastSelectedExtraEndDate = datePicker.date
         }
         
     }
@@ -218,14 +225,14 @@ class CreatingInvoices_Step3ViewController: UIViewController {
             equalTo: Middle.topAnchor).isActive = true
         
         //Year Picker
-        RegistredHoursStartDate.translatesAutoresizingMaskIntoConstraints = false
+        ExtraHoursStartDate.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        RegistredHoursStartDate.centerYAnchor.constraint(
+        ExtraHoursStartDate.centerYAnchor.constraint(
             equalTo: UpperContent.centerYAnchor).isActive = true
         
         //center
-        RegistredHoursStartDate.centerXAnchor.constraint(
+        ExtraHoursStartDate.centerXAnchor.constraint(
             equalTo: UpperContent.centerXAnchor).isActive = true
         
         //Bottom
@@ -318,14 +325,14 @@ class CreatingInvoices_Step3ViewController: UIViewController {
         
         //Month picker
         
-        RegisteredHoursEndDate.translatesAutoresizingMaskIntoConstraints = false
+        ExtraHoursEndDate.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        RegisteredHoursEndDate.centerYAnchor.constraint(
+        ExtraHoursEndDate.centerYAnchor.constraint(
             equalTo: LowerContent.centerYAnchor).isActive = true
         
         //center
-        RegisteredHoursEndDate.centerXAnchor.constraint(
+        ExtraHoursEndDate.centerXAnchor.constraint(
             equalTo: LowerContent.centerXAnchor).isActive = true
         
     }

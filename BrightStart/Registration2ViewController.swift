@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class Registration2ViewController: UIViewController , UITextFieldDelegate {
     
@@ -299,8 +300,9 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
         registration.nurserySchoolPhoneNumber = PhoneNumberTextField.text!
         
         
-        _PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
-        self.present(_PopUpAlert, animated: true, completion: nil)
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        SVProgressHUD.show()
         
         RegistrationRequests.sharedInstance.CreateNewNurserySchoolFromScratch(nurserySchoolName: registration.nurserySchoolName, managerName: registration.managerName, nurserySchoolPhoneNumber: registration.nurserySchoolPhoneNumber, username: registration.username, password: registration.password, onCompletion: { json in
             
@@ -310,10 +312,17 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
             DispatchQueue.main.async(execute: {
                 
                 
-                self._PopUpAlert.dismiss(animated: false, completion:
-                    {
-                       self.performSegue(withIdentifier: "GoToSignIn", sender: self)
-                })
+                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                    
+                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                    
+                    self.performSegue(withIdentifier: "GoToSignIn", sender: self)
+                    
+                } )
+                
+                
+                
+               
                 
                 
                 

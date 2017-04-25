@@ -35,9 +35,9 @@ class CreatingInvoices_Step4ViewController: UIViewController {
     @IBOutlet weak var LowerContent: UIView!
     
     
-    @IBOutlet weak var RegistredHoursStartDate: UIDatePicker!
+    @IBOutlet weak var NonRegistredHoursStartDate: UIDatePicker!
     
-    @IBOutlet weak var RegisteredHoursEndDate: UIDatePicker!
+    @IBOutlet weak var NonRegisteredHoursEndDate: UIDatePicker!
     
     
     @IBOutlet weak var Bottom: UIView!
@@ -81,20 +81,28 @@ class CreatingInvoices_Step4ViewController: UIViewController {
         
         Bottom.backgroundColor = _ApplicatoinColours.Blue
         
+        NonRegistredHoursStartDate.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        NonRegisteredHoursEndDate.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        
+        
+        NonRegistredHoursStartDate.datePickerMode = .date
+        NonRegisteredHoursEndDate.datePickerMode = .date
+
+        
     }
     
-    var lastSelectedRegisteredHoursStartDate = Date()
-    var lastSelectedRegisteredHoursEndDate = Date()
+    var lastSelectedNonRegisteredHoursStartDate = Date()
+    var lastSelectedNonRegisteredHoursEndDate = Date()
     
-    func datePickerChanged(datePicker:UIDatePicker) {
+    func dateChanged(_ datePicker: UIDatePicker) {
         
-        if(datePicker == RegistredHoursStartDate)
+        if(datePicker == NonRegistredHoursStartDate)
         {
-            lastSelectedRegisteredHoursStartDate = datePicker.date
+            lastSelectedNonRegisteredHoursStartDate = datePicker.date
         }
-        else if(datePicker == RegisteredHoursEndDate)
+        else if(datePicker == NonRegisteredHoursEndDate)
         {
-            lastSelectedRegisteredHoursStartDate = datePicker.date
+            lastSelectedNonRegisteredHoursEndDate = datePicker.date
         }
         
     }
@@ -218,14 +226,14 @@ class CreatingInvoices_Step4ViewController: UIViewController {
             equalTo: Middle.topAnchor).isActive = true
         
         //Year Picker
-        RegistredHoursStartDate.translatesAutoresizingMaskIntoConstraints = false
+        NonRegistredHoursStartDate.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        RegistredHoursStartDate.centerYAnchor.constraint(
+        NonRegistredHoursStartDate.centerYAnchor.constraint(
             equalTo: UpperContent.centerYAnchor).isActive = true
         
         //center
-        RegistredHoursStartDate.centerXAnchor.constraint(
+        NonRegistredHoursStartDate.centerXAnchor.constraint(
             equalTo: UpperContent.centerXAnchor).isActive = true
         
         //Bottom
@@ -318,14 +326,14 @@ class CreatingInvoices_Step4ViewController: UIViewController {
         
         //Month picker
         
-        RegisteredHoursEndDate.translatesAutoresizingMaskIntoConstraints = false
+        NonRegisteredHoursEndDate.translatesAutoresizingMaskIntoConstraints = false
         
         //center
-        RegisteredHoursEndDate.centerYAnchor.constraint(
+        NonRegisteredHoursEndDate.centerYAnchor.constraint(
             equalTo: LowerContent.centerYAnchor).isActive = true
         
         //center
-        RegisteredHoursEndDate.centerXAnchor.constraint(
+        NonRegisteredHoursEndDate.centerXAnchor.constraint(
             equalTo: LowerContent.centerXAnchor).isActive = true
         
     }

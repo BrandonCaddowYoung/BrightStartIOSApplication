@@ -56,7 +56,7 @@ class WizardViewController: UIViewController {
         NextFinishButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
         
         NextFinishButton.titleLabel?.font = _ApplicatoinColours.buttonFont
-        NextFinishButton.setTitleColor(_ApplicatoinColours.Black, for: .normal)
+        NextFinishButton.setTitleColor(_ApplicatoinColours.Orange, for: .normal)
     }
     
     func setupConstraints() {

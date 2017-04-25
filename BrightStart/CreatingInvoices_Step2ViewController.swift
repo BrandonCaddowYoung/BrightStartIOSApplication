@@ -81,12 +81,18 @@ class CreatingInvoices_Step2ViewController: UIViewController {
         
         Bottom.backgroundColor = _ApplicatoinColours.Blue
         
+       RegistredHoursStartDate.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+       RegisteredHoursEndDate.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        
+        RegistredHoursStartDate.datePickerMode = .date
+        RegisteredHoursEndDate.datePickerMode = .date
+        
     }
     
     var lastSelectedRegisteredHoursStartDate = Date()
     var lastSelectedRegisteredHoursEndDate = Date()
     
-    func datePickerChanged(datePicker:UIDatePicker) {
+    func dateChanged(_ datePicker: UIDatePicker) {
         
         if(datePicker == RegistredHoursStartDate)
         {
@@ -94,11 +100,12 @@ class CreatingInvoices_Step2ViewController: UIViewController {
         }
         else if(datePicker == RegisteredHoursEndDate)
         {
-            lastSelectedRegisteredHoursStartDate = datePicker.date
+            lastSelectedRegisteredHoursEndDate = datePicker.date
         }
+
         
     }
-    
+   
     func setupConstraints() {
         
         //Middle

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
 
@@ -183,45 +184,73 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
     {
         if(selectedAuthyAction == .ShouldSignOut){
             
-            let alert = self._CommonHelper.showOverlayMessage("Signing out...")
-            self.present(alert, animated: true, completion:
-                {
-                    CommonRequests.sharedInstance.signOut(personId: self.targetChildId as String, timeOfSignOut: Date() as NSDate,
-                                                          
-                                                          onCompletion: {
+            
+            
+            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+            SVProgressHUD.show()
+            
+            
+            CommonRequests.sharedInstance.signOut(personId: self.targetChildId as String, timeOfSignOut: Date() as NSDate,
+                                                  
+                                                  onCompletion: {
+                                                    
+                                                    DispatchQueue.main.async(execute: {
+                                                        
+                                                        
+                                                        
+                                                        SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                             
-                                                            DispatchQueue.main.async(execute: {
-                                                                
-                                                                self.dismiss(animated: false, completion:
-                                                                    {
-                                                                        self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                                }
-                                                                )
-                                                            
-                                                            })
-                                                            
-                    })
+                                                            self.performSegue(withIdentifier: "GoToRegister", sender: self)
+
+                                                        } )
+                                                        
+                                                        
+                                                    })
+                                                    
             })
+            
+           
+            
+            
+            
+            
         }
         else if(selectedAuthyAction == AuhtyActions.ShouldSignIn){
             
-            let alert = self._CommonHelper.showOverlayMessage("Signing in...")
-            self.present(alert, animated: true, completion: {
+            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+            SVProgressHUD.show()
+            
+                
+                
                 
                 CommonRequests.sharedInstance.signIn(personId: self.targetChildId as String, timeOfSignIn: Date() as NSDate,
                                                      onCompletion: {
                                                         DispatchQueue.main.async(execute: {
                                                             
-                                                            self.dismiss(animated: false, completion:
-                                                                {self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                            }
-                                                            )
+                                                            
+                                                            
+                                                            SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                                
+                                                                self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                                
+                                                            } )
+                                                            
+                                                            
+                                                            
                                                             
                                                         })
                 }
                 )
+            
                 
-            })
+                
+                
+                
+                
+                
+                
         }
         else if(selectedAuthyAction == AuhtyActions.ShouldDoNothing){
          

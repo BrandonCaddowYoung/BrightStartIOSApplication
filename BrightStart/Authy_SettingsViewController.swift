@@ -369,7 +369,7 @@ class Authy_SettingsViewController: UIViewController {
     {
         //Title color(Center)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
         //Back ground color
         navigationController?.navigationBar.barTintColor = _ApplicatoinColours.White

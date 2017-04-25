@@ -3466,12 +3466,12 @@
                     <connections>
                         <outlet property="Bottom" destination="yWN-bh-iKH" id="qRS-ia-F1a"/>
                         <outlet property="BottomLabel" destination="01O-D7-xO6" id="goW-ws-5uV"/>
+                        <outlet property="ExtraHoursEndDate" destination="37Y-ZZ-TkY" id="Yf4-Vt-BIZ"/>
+                        <outlet property="ExtraHoursStartDate" destination="Nka-om-qfK" id="Isr-FD-Evo"/>
                         <outlet property="LowerContent" destination="uHy-lr-Olj" id="MeP-VT-w6H"/>
                         <outlet property="LowerHeading" destination="Oc2-z1-YB2" id="Nwh-s2-IdM"/>
                         <outlet property="Middle" destination="W7f-Vh-N2u" id="GKs-ry-Zw7"/>
                         <outlet property="NextButton" destination="VUm-yW-S0j" id="dP2-2S-UxA"/>
-                        <outlet property="RegisteredHoursEndDate" destination="37Y-ZZ-TkY" id="YXk-M2-V8a"/>
-                        <outlet property="RegistredHoursStartDate" destination="Nka-om-qfK" id="uES-Rr-wai"/>
                         <outlet property="Top" destination="ZE6-Mq-60I" id="bfM-wG-HUF"/>
                         <outlet property="TopLabel" destination="p36-q5-UYD" id="wNk-MU-ocE"/>
                         <outlet property="TopText" destination="0iM-Da-XwD" id="qmh-Jo-I3e"/>
@@ -3592,8 +3592,8 @@
                         <outlet property="LowerHeading" destination="WC8-dJ-t5l" id="Nah-II-Laj"/>
                         <outlet property="Middle" destination="qhF-bD-3Oo" id="wbK-Lg-MSf"/>
                         <outlet property="NextButton" destination="4Sr-hg-gN7" id="SBO-Dc-UPB"/>
-                        <outlet property="RegisteredHoursEndDate" destination="dL5-KI-Heo" id="Yim-r3-Gqb"/>
-                        <outlet property="RegistredHoursStartDate" destination="mgR-6G-ZVE" id="0Sy-tU-dqK"/>
+                        <outlet property="NonRegisteredHoursEndDate" destination="dL5-KI-Heo" id="MNJ-K8-vtA"/>
+                        <outlet property="NonRegistredHoursStartDate" destination="mgR-6G-ZVE" id="Atg-Ef-MUY"/>
                         <outlet property="Top" destination="dpo-ha-cLW" id="HEb-2z-5Hd"/>
                         <outlet property="TopLabel" destination="ES9-QC-BPu" id="nf7-lD-clf"/>
                         <outlet property="TopText" destination="PSd-4f-P8R" id="xP3-b4-3or"/>
@@ -3609,16 +3609,16 @@
         <scene sceneID="cXV-1m-lUG">
             <objects>
                 <tableViewController id="ejd-QO-eJM" customClass="InvoiceSearchTableViewController" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="500" sectionHeaderHeight="28" sectionFooterHeight="28" id="flr-vt-tn8">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="274" sectionHeaderHeight="28" sectionFooterHeight="28" id="flr-vt-tn8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Invoice" rowHeight="186" id="HNs-bT-IKC" customClass="InvoiceSearchTableViewCell" customModule="BrightStart" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="186"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Invoice" rowHeight="274" id="HNs-bT-IKC" customClass="InvoiceSearchTableViewCell" customModule="BrightStart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="274"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HNs-bT-IKC" id="FCZ-v1-ZR3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="185"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="273"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ps5-y8-yWQ">
@@ -3684,27 +3684,6 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36G-Jp-vcb">
-                                            <rect key="frame" x="16" y="15" width="149" height="158"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="# 1234" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ooq-9T-s4o">
-                                                    <rect key="frame" x="8" y="8" width="56" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TOTAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9a-nf-gNx">
-                                                    <rect key="frame" x="25" y="58" width="99" height="42"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="33"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.44551444499999998" green="0.96862745289999996" blue="0.60209264510000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </view>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e3X-FA-9gq">
                                             <rect key="frame" x="173" y="98" width="93" height="75"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3726,15 +3705,82 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.2588235438" green="0.75686275960000005" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36G-Jp-vcb">
+                                            <rect key="frame" x="16" y="15" width="149" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="# 1234" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ooq-9T-s4o">
+                                                    <rect key="frame" x="8" y="8" width="56" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TOTAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9a-nf-gNx">
+                                                    <rect key="frame" x="25" y="58" width="99" height="42"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="33"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.44551444499999998" green="0.96862745289999996" blue="0.60209264510000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rCK-dq-tYC">
+                                            <rect key="frame" x="16" y="181" width="351" height="84"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hxf-EA-o8c">
+                                                    <rect key="frame" x="50" y="31" width="269" height="39"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h0v-dI-Kl3">
+                                                            <rect key="frame" x="11" y="8" width="253" height="23"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="81a-8b-J43">
+                                                                    <rect key="frame" x="0.0" y="8" width="246" height="5"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" red="0.2392156869" green="0.67450982329999998" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </view>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.2392156869" green="0.67450982329999998" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="END" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKb-nC-ToM">
+                                                    <rect key="frame" x="300" y="5" width="36" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="START" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QB-vF-TWS">
+                                                    <rect key="frame" x="29" y="4" width="54" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.79390401740000005" blue="0.69612836980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="BalanceAmountLabel" destination="Ize-Pk-YVb" id="4hv-hd-aV0"/>
                                     <outlet property="BalanceLabel" destination="dW0-IK-rOz" id="6vL-TK-Zt8"/>
+                                    <outlet property="BottomContainer" destination="rCK-dq-tYC" id="aoO-th-1SH"/>
                                     <outlet property="ExtraAmountLabel" destination="rwU-c6-nYl" id="UAU-BW-cew"/>
                                     <outlet property="ExtraLabel" destination="TIc-a6-D3w" id="5JM-rg-hMo"/>
+                                    <outlet property="InvoiceEndDate" destination="cKb-nC-ToM" id="pxd-sF-FPE"/>
                                     <outlet property="InvoiceNumberLabel" destination="Ooq-9T-s4o" id="rkH-bf-Pu6"/>
+                                    <outlet property="InvoiceStartDate" destination="7QB-vF-TWS" id="Ezi-nh-iqB"/>
                                     <outlet property="LargeLeftContainer" destination="36G-Jp-vcb" id="1q6-NZ-XWO"/>
+                                    <outlet property="LineContainer" destination="81a-8b-J43" id="6oX-gx-Nzh"/>
+                                    <outlet property="LineInnerContainer" destination="h0v-dI-Kl3" id="EiH-51-vNO"/>
+                                    <outlet property="LineOuterContainer" destination="hxf-EA-o8c" id="och-pr-cA7"/>
                                     <outlet property="NonRegisteredAmountLabel" destination="Ko6-m7-0do" id="cpV-89-IdB"/>
                                     <outlet property="NonRegisteredLabel" destination="Hk4-AK-81j" id="Skf-cM-REC"/>
                                     <outlet property="RegisterdLabel" destination="zDX-Os-Wre" id="gbm-IQ-ORq"/>

@@ -41,7 +41,7 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         
         //This is the text under the image within the menu.
         label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        label.textColor = _ApplicatoinColours.Black
+        label.textColor = _ApplicatoinColours.AppledGrey
         label.font = _ApplicatoinColours.MenuFont
         label.adjustsFontSizeToFitWidth = true
         

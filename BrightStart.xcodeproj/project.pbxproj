@@ -81,7 +81,7 @@
 		7BF98D251EAA855600F3D918 /* InvoiceRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D241EAA855500F3D918 /* InvoiceRequests.swift */; };
 		7BF98D271EAA86D100F3D918 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D261EAA86D100F3D918 /* Invoice.swift */; };
 		7BF98D291EAA895000F3D918 /* InvoiceSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D281EAA895000F3D918 /* InvoiceSearchTableViewCell.swift */; };
-		7BF98D2B1EAAC1DA00F3D918 /* sdfdsf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D2A1EAAC1DA00F3D918 /* sdfdsf.swift */; };
+		7BF98D2B1EAAC1DA00F3D918 /* BillingRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF98D2A1EAAC1DA00F3D918 /* BillingRequests.swift */; };
 		C53FFE0F4BFF7C5BD7A0E31A /* Pods_BrightStart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5674001169A7EE20DDBCD2 /* Pods_BrightStart.framework */; };
 		D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7387E9A1CAF1A7100948DE5 /* Child.swift */; };
 		D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D739E8661CC981530084ECE4 /* RegisteredCount.swift */; };
@@ -362,7 +362,7 @@
 		7BF98D241EAA855500F3D918 /* InvoiceRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceRequests.swift; sourceTree = "<group>"; };
 		7BF98D261EAA86D100F3D918 /* Invoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
 		7BF98D281EAA895000F3D918 /* InvoiceSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceSearchTableViewCell.swift; sourceTree = "<group>"; };
-		7BF98D2A1EAAC1DA00F3D918 /* sdfdsf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sdfdsf.swift; sourceTree = "<group>"; };
+		7BF98D2A1EAAC1DA00F3D918 /* BillingRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingRequests.swift; sourceTree = "<group>"; };
 		7F04C0F20972BB0831C45083 /* Pods-BrightStart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrightStart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrightStart/Pods-BrightStart.debug.xcconfig"; sourceTree = "<group>"; };
 		D7387E9A1CAF1A7100948DE5 /* Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
 		D739E8661CC981530084ECE4 /* RegisteredCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredCount.swift; sourceTree = "<group>"; };
@@ -551,7 +551,7 @@
 		7B70F05A1E8C2EBA00290432 /* Wizard */ = {
 			isa = PBXGroup;
 			children = (
-				7BF98D021EA94A3800F3D918 /* CreatingInvoices */,
+				7BF98D021EA94A3800F3D918 /* Creating_Invoices */,
 				7B4440991EA2D19200959A7E /* Child_QuickCreate */,
 				7B1575B71E805311008AB34F /* WizardPageViewController.swift */,
 				7B1575DA1E806477008AB34F /* WizardViewController.swift */,
@@ -629,7 +629,7 @@
 			name = Auhty;
 			sourceTree = "<group>";
 		};
-		7BF98D021EA94A3800F3D918 /* CreatingInvoices */ = {
+		7BF98D021EA94A3800F3D918 /* Creating_Invoices */ = {
 			isa = PBXGroup;
 			children = (
 				7BF98D1A1EA94A6200F3D918 /* CreatingInvoices_Step1ViewController.swift */,
@@ -637,7 +637,7 @@
 				7BF98D1E1EA94B2D00F3D918 /* CreatingInvoices_Step3ViewController.swift */,
 				7BF98D201EA956D200F3D918 /* CreatingInvoices_Step4ViewController.swift */,
 			);
-			name = CreatingInvoices;
+			name = Creating_Invoices;
 			sourceTree = "<group>";
 		};
 		D739E8651CC981270084ECE4 /* Models */ = {
@@ -670,7 +670,7 @@
 				7B6A1AEC1E85B53700540E0C /* ChildHelperRequests.swift */,
 				7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */,
 				7BF98D241EAA855500F3D918 /* InvoiceRequests.swift */,
-				7BF98D2A1EAAC1DA00F3D918 /* sdfdsf.swift */,
+				7BF98D2A1EAAC1DA00F3D918 /* BillingRequests.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1108,7 +1108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BB2220C1E4CA86E0069E74D /* RegistrationRequests.swift in Sources */,
-				7BF98D2B1EAAC1DA00F3D918 /* sdfdsf.swift in Sources */,
+				7BF98D2B1EAAC1DA00F3D918 /* BillingRequests.swift in Sources */,
 				7B8BDBD91E156E03009F3EAF /* BrightStartChild.swift in Sources */,
 				7B6487291E9BF8C90018616D /* RegisreredHoursDayOfWeekTableViewCell.swift in Sources */,
 				7BF98D1F1EA94B2D00F3D918 /* CreatingInvoices_Step3ViewController.swift in Sources */,

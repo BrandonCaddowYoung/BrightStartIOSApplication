@@ -7,16 +7,11 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
+import SVProgressHUD
 
-class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDelegate {
-
-    var indicator = UIActivityIndicatorView()
-    
-    func activityIndicator()
-    {
-        indicator = UIActivityIndicatorView(frame: CGRect())
-    }
-    
+class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+   
     var SelectedPersonLog: PersonLog!
     
      var ShouldUseTapToSelect: Bool! = true
@@ -54,17 +49,23 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.indicator.center = self.view.center
-        self.view.addSubview(indicator)
+        _CommonHelper = CommonHelper()
+        _ApplicatoinColours = ApplicatoinColours()
         
-        indicator.startAnimating()
-        indicator.backgroundColor = UIColor.white
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        
+         self.tableView.tableFooterView = UIView()
+        
+        // A little trick for removing the cell separators
+        self.tableView.tableFooterView = UIView()
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        _CommonHelper = CommonHelper()
-        _ApplicatoinColours = ApplicatoinColours()
         
         view.backgroundColor = _ApplicatoinColours.TableBackGround
         
@@ -119,6 +120,22 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             
             navigationController?.navigationBar.topItem?.title = ""
             navigationController?.navigationBar.backItem?.title = ""
+            
+            
+            
+            
+            self.navigationItem.title="Time Stamp Search"
+            
+            
+          
+            
+            
+            
+            
+            
+            
+            
+            
             
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }
@@ -179,8 +196,9 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
                 self.tableView.reloadData()
                 sender?.endRefreshing()
                 
-                self.indicator.stopAnimating()
-                self.indicator.hidesWhenStopped = true
+                SVProgressHUD.dismiss(withDelay: 0, completion: {
+                    
+                })
             })
             
         })
@@ -261,6 +279,36 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    }
+    
+    //So we can stil pull to refresh
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage
+    {
+        return UIImage(named:"Rocket")!
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "We didnt find anything..."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "Go back to the previous screen and try re-searching."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        return NSAttributedString(string: str, attributes: attrs)
     }
     
     /*!

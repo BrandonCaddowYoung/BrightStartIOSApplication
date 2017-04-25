@@ -9,6 +9,7 @@
 import UIKit
 
 import JTAppleCalendar
+import SVProgressHUD
 
 class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
 
@@ -240,6 +241,8 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        self.calendarView.selectDates([self.lastSelectedDate])
         
         super.viewWillAppear(animated)
         
@@ -1132,21 +1135,27 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
             
             if(self.selectCalendarPurpose == .RegistrationHours)
             {
-                self._PopUpAlert = self._CommonHelper.showOverlayMessage("Loading....")
-                self.present(self._PopUpAlert, animated: true, completion:
-                    {
+                SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+                SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+                SVProgressHUD.show()
                 
                         RegistrationHoursRequests.sharedInstance.DeleteRegisteredHours(personId: self.childId, dateToDelete: self.lastSelectedDate as NSDate, onCompletion: { (JSON) in
                             
                             
-                            self._PopUpAlert.dismiss(animated: false, completion:
-                                {
-                                    self.calendarView.selectDates([self.lastSelectedDate])
-                            })
+                            
+                            SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                
+                                self.calendarView.selectDates([self.lastSelectedDate])
+                                
+                                self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                                
+                                
+                            } )
+                            
                             
                         })
                 
-                })
+                
 
                
 

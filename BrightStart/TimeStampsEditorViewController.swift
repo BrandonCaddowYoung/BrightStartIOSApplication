@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 enum TimeStampEditerType: Int {
     case RegisteredHours_Create
@@ -71,15 +72,22 @@ class TimeStampsEditorViewController: UIViewController {
         
         if(EditorMode == .TimeStamps_Edit){
             
-            let alert = self._CommonHelper.showOverlayMessage("Updating...")
-            self.present(alert, animated: true, completion: nil)
+            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+            SVProgressHUD.show()
             
             CommonRequests.sharedInstance.updateTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate, originalAction: Action!, originalTimeStamp: DateAsObject as NSDate,
                                                           
                                                           onCompletion: {
                                                             
                                                             DispatchQueue.main.async(execute: {
-                                                                self.dismiss(animated: false, completion: {
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                                                                    
                                                                     
                                                                     if(self.goBackOnSuccess){
                                                                         if let nav = self.navigationController {
@@ -96,7 +104,17 @@ class TimeStampsEditorViewController: UIViewController {
                                                                         
                                                                     }
                                                                     
-                                                                })
+                                                                    
+                                                                } )
+                                                                
+                                                                    
+                                                                
+                                                                    
+                                                            
+                                                                
+                                                                
+                                                                
+                                                                
                                                                 
                                                             })
             })
@@ -106,8 +124,9 @@ class TimeStampsEditorViewController: UIViewController {
             
             //Make API call to update time stamp and then return to the time stamps menu.
             
-            let alert = self._CommonHelper.showOverlayMessage("Updating...")
-            self.present(alert, animated: true, completion: nil)
+            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+            SVProgressHUD.show()
             
             //var originalDateValue = NSDate()
             var newStartValue = NSDate()
@@ -126,42 +145,62 @@ class TimeStampsEditorViewController: UIViewController {
             
             RegistrationHoursRequests.sharedInstance.UpdateRegisteredHours(id: registerdHoursId, newStartDate: newStartValue, newEndDate: newEndValue, onCompletion: {_ in
                 
+                
+                
+                
                 DispatchQueue.main.async(execute: {
-                    self.dismiss(animated: false, completion: {
+                    
+                    
+                    SVProgressHUD.dismiss(withDelay: 1, completion: {
                         
-                        
-                        if(self.goBackOnSuccess){
-                            if let nav = self.navigationController {
-                                nav.popViewController(animated: true)
-                            } else {
-                                self.dismiss(animated: true, completion: nil)
-                            }
+                    
+                    
+                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                    
+                    if(self.goBackOnSuccess){
+                        if let nav = self.navigationController {
+                            nav.popViewController(animated: true)
+                        } else {
+                            self.dismiss(animated: true, completion: nil)
                         }
-                        else{
-                            
-                            self.GoToMenuType = .MainMenu
-                            
-                            self.performSegue(withIdentifier: "GoToMenu", sender: nil)
-                        }
+                    }
+                    else{
                         
+                        self.GoToMenuType = .MainMenu
                         
-                    })
+                        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+                    }
+                    
+                    
+                     } )
+                   
+                        
+                    
+                        
+                    
                     
                 })
             })
             
         }else if(EditorMode == .RegisteredHours_Create){
             
-            let alert = self._CommonHelper.showOverlayMessage("Updating...")
-            self.present(alert, animated: true, completion: nil)
+            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+            SVProgressHUD.show()
             
             //Change to to creating registered hours
             RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: PersonId!, startTime: DateTimePicker.date as NSDate, finishTime: DateTimePicker.date as NSDate, onCompletion: {_ in
                 
                 DispatchQueue.main.async(execute: {
-                    self.dismiss(animated: false, completion: {
+                    
+                    
+                    
+                    
+                    
+                    
+                    SVProgressHUD.dismiss(withDelay: 1, completion: {
                         
-                        
+                        self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
                         
                         if(self.goBackOnSuccess){
                             if let nav = self.navigationController {
@@ -178,9 +217,14 @@ class TimeStampsEditorViewController: UIViewController {
                         }
                         
                         
+                    } )
+                    
+                    
+                    
                         
                         
-                    })
+                        
+                
                     
                 })
             })
@@ -188,8 +232,9 @@ class TimeStampsEditorViewController: UIViewController {
         }
         else if(EditorMode == .TimeStamps_Create){
             
-            let alert = self._CommonHelper.showOverlayMessage("Updating...")
-            self.present(alert, animated: true, completion: nil)
+            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+            SVProgressHUD.show()
             
             
             //Change to to creating time stamps
@@ -197,10 +242,15 @@ class TimeStampsEditorViewController: UIViewController {
                                                           onCompletion: {
                                                             
                                                             DispatchQueue.main.async(execute: {
-                                                                self.dismiss(animated: false, completion: {
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                     
-                                                                    
-                                                                    
+                                                                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
                                                                     
                                                                     if(self.goBackOnSuccess){
                                                                         if let nav = self.navigationController {
@@ -218,7 +268,11 @@ class TimeStampsEditorViewController: UIViewController {
                                                                     
                                                                     
                                                                     
-                                                                })
+                                                                } )
+                                                                
+                                                                
+                                                                
+                                                                
                                                                 
                                                             })
             })
@@ -236,16 +290,22 @@ class TimeStampsEditorViewController: UIViewController {
     @IBAction func RemoveStamp(_ sender: Any) {
         
         //Make API call to delete time stamp and then return to the time stamps menu.
-        
-        let alert = self._CommonHelper.showOverlayMessage("Removing...")
-        self.present(alert, animated: true, completion: nil)
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        SVProgressHUD.show()
         
         CommonRequests.sharedInstance.deleteTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate,
                                                       
                                                       onCompletion: {
                                                         
                                                         DispatchQueue.main.async(execute: {
-                                                            self.dismiss(animated: false, completion: {
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                                
+                                                                self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
                                                                 
                                                                 if(self.goBackOnSuccess){
                                                                     if let nav = self.navigationController {
@@ -261,7 +321,10 @@ class TimeStampsEditorViewController: UIViewController {
                                                                     self.performSegue(withIdentifier: "GoToMenu", sender: nil)
                                                                 }
                                                                 
-                                                            })
+                                                                
+                                                            } )
+                                                            
+                                                            
                                                             
                                                         })
         })
@@ -779,7 +842,7 @@ class TimeStampsEditorViewController: UIViewController {
             
             //Title color
             let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
             
             //Back color
             navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange

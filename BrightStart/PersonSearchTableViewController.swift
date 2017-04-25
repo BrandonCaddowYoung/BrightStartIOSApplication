@@ -7,17 +7,12 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
+import SVProgressHUD
 
-class PersonSearchTableViewController:  UITableViewController, UITextFieldDelegate {
-    
-    var indicator = UIActivityIndicatorView()
+class PersonSearchTableViewController:  UITableViewController, UITextFieldDelegate , DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var GoToMenuType: MenuTypes!
-    
-    func activityIndicator()
-    {
-        indicator = UIActivityIndicatorView(frame: CGRect())
-    }
     
     var targetDate: Date!
     
@@ -54,25 +49,24 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             refreshTable(refreshControl)
         }
     }
-    
-   
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.indicator.center = self.view.center
-        self.view.addSubview(indicator)
+        _CommonHelper = CommonHelper()
+        _ApplicatoinColours = ApplicatoinColours()
+
         
-        indicator.startAnimating()
-        indicator.backgroundColor = UIColor.white
-        indicator.hidesWhenStopped = true
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        
+        self.tableView.tableFooterView = UIView()
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        _CommonHelper = CommonHelper()
-        _ApplicatoinColours = ApplicatoinColours()
         
         view.backgroundColor = _ApplicatoinColours.TableBackGround
         
@@ -131,7 +125,9 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     self.tableView.reloadData()
                     sender?.endRefreshing()
                     
-                    self.indicator.stopAnimating()
+                    SVProgressHUD.dismiss(withDelay: 0, completion: {
+                    
+                    })
                     
                     
                 })
@@ -182,7 +178,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     self.tableView.reloadData()
                     sender?.endRefreshing()
                     
-                    self.indicator.stopAnimating()
+                    SVProgressHUD.dismiss(withDelay: 0, completion: {
+                    })
                     
                     
                 })
@@ -572,12 +569,146 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             navigationController?.navigationBar.topItem?.title = ""
             navigationController?.navigationBar.backItem?.title = ""
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            if(self.Purpose == "TimeStamps_Edit")
+            {
+                 self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "GoToSearchPerson_ExtraMinutes")
+            {
+                self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "TimeStamps_Delete")
+            {
+                 self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "GoToSearchPerson_ExtraMinutes")
+            {
+                 self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "TimeStamps_Delete")
+            {
+                self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "TimeStamps_Search")
+            {
+                 self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "TimeStamps_ExtraMinutesFinder")
+            {
+                self.navigationItem.title="Select a child"
+            }
+                
+                //Do I need this?
+            else if(self.Purpose == "RegisteredHours_Edit")
+            {
+                 self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "RegisteredHours_ExtraMinutes")
+            {
+                 self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "RegisteredHours_Delete")
+            {
+                self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "RegisteredHours_ExtraMinutes")
+            {
+                self.navigationItem.title="Extra minutes."
+            }
+                
+            else if(self.Purpose == "RegisteredHours_Delete")
+            {
+                 self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "RegisteredHours_Search")
+            {
+                self.navigationItem.title="Select a child"
+            }
+                
+            else if(self.Purpose == "RegisteredHours_Missing")
+            {
+               self.navigationItem.title="Select a child"
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+         
+            
+            
+            
+            
+            
+            
+            
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }
     }
     
     func NavBarMenuTapped(){
         self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+    }
+    
+    //So we can stil pull to refresh
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage
+    {
+        return UIImage(named:"Rocket")!
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "We didnt find anything..."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let str = "Go back to the previous screen and try re-searching."
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)]
+        return NSAttributedString(string: str, attributes: attrs)
     }
     
     
