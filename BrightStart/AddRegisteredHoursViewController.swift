@@ -76,25 +76,25 @@ class AddRegisteredHoursViewController: UIViewController {
         //Stlying save button
         SaveButton.layer.cornerRadius = 5
         SaveButton.layer.borderWidth = 1
-        SaveButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        SaveButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        SaveButton.layer.borderColor = StyleManager.FontColour().cgColor
+        SaveButton.backgroundColor = StyleManager.buttonBackGround()
         
-        SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        SaveButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
 
         SaveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        MiddleRightContainer.backgroundColor = _ApplicatoinColours.White
-        MiddleLeftContainer.backgroundColor = _ApplicatoinColours.White
-        BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopContainer.backgroundColor = StyleManager.DarkBackground()
+        MiddleRightContainer.backgroundColor = StyleManager.theme2()
+        MiddleLeftContainer.backgroundColor = StyleManager.theme2()
+        BottomContainer.backgroundColor = StyleManager.DarkBackground()
         
-        HorizontalDivider.backgroundColor = _ApplicatoinColours.Orange
+        HorizontalDivider.backgroundColor = StyleManager.theme4()
         
-        NameLabel.textColor = _ApplicatoinColours.White
-        DateLabel.textColor = _ApplicatoinColours.White
+        NameLabel.textColor = StyleManager.theme2()
+        DateLabel.textColor = StyleManager.theme2()
 
-        StartLabel.textColor = _ApplicatoinColours.Orange
-        FinishLabel.textColor = _ApplicatoinColours.Orange
+        StartLabel.textColor = StyleManager.theme4()
+        FinishLabel.textColor = StyleManager.theme4()
         
         setupConstraints()
         
@@ -369,10 +369,10 @@ class AddRegisteredHoursViewController: UIViewController {
         //Stlying save button
         SaveButton.layer.cornerRadius = 5
         SaveButton.layer.borderWidth = 1
-        SaveButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        SaveButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        SaveButton.layer.borderColor = StyleManager.FontColour().cgColor
+        SaveButton.backgroundColor = StyleManager.buttonBackGround()
         
-        SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        SaveButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
         
         SaveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
     }
@@ -464,23 +464,23 @@ class AddRegisteredHoursViewController: UIViewController {
         {
             //Changes the color of the backgorund within the nav bar.
             navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            navigationController?.navigationBar.barTintColor = StyleManager.theme5()
             
             //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
             navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
             
             //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackGround() //Orange
             
             //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround() // Grey
             
             let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
             
             self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
             
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
             
             navigationController?.navigationBar.topItem?.title = "Created Registered Hours."
             

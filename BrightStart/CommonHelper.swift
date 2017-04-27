@@ -26,7 +26,7 @@ class CommonHelper {
         
         let alert = SCLAlertView(appearance: appearance)
         
-        alert.showSuccess(title, subTitle: subsTtitle, duration: 2.0, colorStyle: self._ApplicatoinColours.Blue.ToUint())
+        alert.showSuccess(title, subTitle: subsTtitle, duration: 2.0, colorStyle: StyleManager.theme1().ToUint())
         
     }
     
@@ -41,7 +41,7 @@ class CommonHelper {
         
         let alert = SCLAlertView(appearance: appearance)
         
-        alert.showError(title, subTitle: subsTtitle, duration: 4.0, colorStyle: self._ApplicatoinColours.Red.ToUint())
+        alert.showError(title, subTitle: subsTtitle, duration: 4.0, colorStyle: StyleManager.errorTheme().ToUint())
         
     }
     

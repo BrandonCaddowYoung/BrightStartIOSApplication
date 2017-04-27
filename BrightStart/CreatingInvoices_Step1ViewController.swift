@@ -45,6 +45,8 @@ class CreatingInvoices_Step1ViewController: UIViewController, UITableViewDataSou
         self.KeyWorkerTable.delegate = self
         self.KeyWorkerTable.dataSource = self
         
+        KeyWorkerTable.backgroundColor = StyleManager.theme2()
+        
         //Retrieve all children
         ChildRequests.sharedInstance.GetAllEnrolledChilren(onCompletion: { json in
             
@@ -81,27 +83,23 @@ class CreatingInvoices_Step1ViewController: UIViewController, UITableViewDataSou
             
             DispatchQueue.main.async(execute: {
                 
-                //   self.numberArray = self.numberArray.reversed()
-                
                 self.KeyWorkerTable.reloadData()
-                //sender?.endRefreshing()
                 
-                //self.indicator.stopAnimating()
                 
             })
             
         })
         
-        Top.backgroundColor = _ApplicatoinColours.Blue
+        Top.backgroundColor = StyleManager.theme2()
         
-        UpperHeading.backgroundColor = _ApplicatoinColours.Blue
+        UpperHeading.backgroundColor = StyleManager.theme2()
         
-        UpperContent.backgroundColor = _ApplicatoinColours.White
+        UpperContent.backgroundColor = StyleManager.theme2()
         
-        Bottom.backgroundColor = _ApplicatoinColours.Blue
+        Bottom.backgroundColor = StyleManager.theme1()
         
-        SelectLabel.textColor = _ApplicatoinColours.White
-        MainHeadingLabel.textColor = _ApplicatoinColours.Orange
+        SelectLabel.textColor = StyleManager.theme5()
+        MainHeadingLabel.textColor = StyleManager.theme1()
         
         MainHeadingLabel.font = _ApplicatoinColours.XlargeFont
         SelectLabel.font = _ApplicatoinColours.largeFont
@@ -284,6 +282,13 @@ class CreatingInvoices_Step1ViewController: UIViewController, UITableViewDataSou
         return childrenArray.count;
         
     }
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.backgroundColor = StyleManager.theme2()
+    }
+    
+    
     /////CELL FOR ROW
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
@@ -298,7 +303,7 @@ class CreatingInvoices_Step1ViewController: UIViewController, UITableViewDataSou
         cell.textLabel?.text = contact.ChildFullName as String
         
         cell.textLabel?.font = _ApplicatoinColours.mediumFont
-        cell.textLabel?.textColor = _ApplicatoinColours.Black
+        cell.textLabel?.textColor = StyleManager.theme5()
         
         cell.tickButton.addTarget(self, action:#selector(CreateChild_Quick_3ViewController.tickClicked(sender:)), for: .touchUpInside)
         
@@ -316,5 +321,7 @@ class CreatingInvoices_Step1ViewController: UIViewController, UITableViewDataSou
         
         return cell
     }
+    
+   
     
 }

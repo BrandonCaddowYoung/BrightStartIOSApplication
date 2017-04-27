@@ -55,26 +55,26 @@ class CreateChild_Quick_1ViewController: UIViewController {
         
         setupConstraints()
         
-        Top.backgroundColor = _ApplicatoinColours.BackGroundColour
+        Top.backgroundColor = StyleManager.theme2()
         
-        UpperHeading.backgroundColor = _ApplicatoinColours.White
+        UpperHeading.backgroundColor = StyleManager.theme2()
         
-        UpperContent.backgroundColor = _ApplicatoinColours.White
+        UpperContent.backgroundColor = StyleManager.theme2()
         
-        Middle.backgroundColor = _ApplicatoinColours.White
+        Middle.backgroundColor = StyleManager.theme2()
         
-        LowerHeading.backgroundColor = _ApplicatoinColours.White
+        LowerHeading.backgroundColor = StyleManager.theme2()
         
-        LowerContent.backgroundColor = _ApplicatoinColours.White
+        LowerContent.backgroundColor = StyleManager.theme2()
         
-        Bottom.backgroundColor = _ApplicatoinColours.BackGroundColour
+        Bottom.backgroundColor = StyleManager.theme1()
         
-        //UpperContent.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
-        LowerContent.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
-        UpperHeading.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        //UpperContent.addBottomBorder(color: StyleManager.theme4(), margins: 1)
+        LowerContent.addBottomBorder(color: StyleManager.theme4(), margins: 1)
+        UpperHeading.addTopBorder(color: StyleManager.theme4(), margins: 1)
         
         HeadingLabel.font = _ApplicatoinColours.XlargeFont
-        HeadingLabel.textColor = _ApplicatoinColours.White
+        HeadingLabel.textColor = StyleManager.theme1()
         
         NameLabel.font = _ApplicatoinColours.largeFont
         DateOfBirthLabel.font = _ApplicatoinColours.largeFont
@@ -83,11 +83,11 @@ class CreateChild_Quick_1ViewController: UIViewController {
         MiddleNameTextField.font = _ApplicatoinColours.mediumFont
         LastNameTextField.font = _ApplicatoinColours.mediumFont
         
-         FirstNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+         FirstNameTextField.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
-         MiddleNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+         MiddleNameTextField.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
-         LastNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+         LastNameTextField.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
        
     }
     

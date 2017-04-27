@@ -38,26 +38,26 @@ class AuthyNewUserCompleteViewController: UIViewController {
         //Styling button
         OkButton.layer.cornerRadius = 5
         OkButton.layer.borderWidth = 1
-        OkButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        OkButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
-        OkButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        OkButton.layer.borderColor = StyleManager.FontColour().cgColor
+        OkButton.backgroundColor = StyleManager.buttonBackGround()
+        OkButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
         
          OkButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
         //Styling button
         TestButton.layer.cornerRadius = 5
         TestButton.layer.borderWidth = 1
-        TestButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        TestButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
-        TestButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        TestButton.layer.borderColor = StyleManager.FontColour().cgColor
+        TestButton.backgroundColor = StyleManager.buttonBackGround()
+        TestButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
         
         TestButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = StyleManager.DarkBackground()
         
-        TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        MiddleContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopContainer.backgroundColor = StyleManager.DarkBackground()
+        MiddleContainer.backgroundColor = StyleManager.DarkBackground()
+        BottomContainer.backgroundColor = StyleManager.DarkBackground()
         
         setupConstraints()
         

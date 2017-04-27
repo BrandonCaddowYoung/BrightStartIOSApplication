@@ -195,10 +195,10 @@ class ClockingTableViewCell: UITableViewCell
     
     func updateUI() {
         
-        self.childNameLabel.textColor = _ApplicationColours.TableTextColor
-        self.cellInformationText.textColor = _ApplicationColours.Black
-
-        self.cellDetailsText.textColor = _ApplicationColours.TableTextColor
+        self.childNameLabel.textColor = StyleManager.TableFontColor()
+        self.cellInformationText.textColor = StyleManager.TableFontColor()
+        
+        self.cellDetailsText.textColor = StyleManager.TableFontColor()
        
         childNameLabel?.text = nil
         
@@ -211,8 +211,8 @@ class ClockingTableViewCell: UITableViewCell
             
             if(child.CurrentlySignedIn==true)
             {
-                self.cellImage?.image = UIImage(named: "SwipeLeft")?.maskWithColor(color: _ApplicationColours.White)
-                self.cellImage2?.image = UIImage(named: "SignedIn")?.maskWithColor(color: _ApplicationColours.White)
+                self.cellImage?.image = UIImage(named: "SwipeLeft")?.maskWithColor(color: StyleManager.theme2())
+                self.cellImage2?.image = UIImage(named: "SignedIn")?.maskWithColor(color: StyleManager.theme2())
                 
                 if let savedDate = UserDefaults.standard.object(forKey: "finishTime")  as? Date
                 {
@@ -235,10 +235,10 @@ class ClockingTableViewCell: UITableViewCell
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "No registerd hours."
                         
-                        self.backgroundColor = _ApplicationColours.LightBlue
-                        self.childNameLabel.textColor = _ApplicationColours.White
-                        self.cellInformationText.textColor = _ApplicationColours.Black
-                        self.cellDetailsText.textColor = _ApplicationColours.White
+                        self.backgroundColor = StyleManager.theme1()
+                        self.childNameLabel.textColor = StyleManager.theme2()
+                        self.cellInformationText.textColor = StyleManager.FontColour()
+                        self.cellDetailsText.textColor = StyleManager.theme2()
                         
                     }
                     else if(minutesElapsed > 0 && minutesElapsed < 1440)
@@ -250,10 +250,10 @@ class ClockingTableViewCell: UITableViewCell
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "Late to leave, expected to go home at: " + registeredFinishTime
                         
-                        self.backgroundColor = _ApplicationColours.LightBlue
-                        self.childNameLabel.textColor = _ApplicationColours.White
-                        self.cellInformationText.textColor = _ApplicationColours.Black
-                        self.cellDetailsText.textColor = _ApplicationColours.White
+                        self.backgroundColor = StyleManager.theme1()
+                        self.childNameLabel.textColor = StyleManager.theme2()
+                        self.cellInformationText.textColor = StyleManager.FontColour()
+                        self.cellDetailsText.textColor = StyleManager.theme2()
                         
                     }
                     else{
@@ -265,10 +265,10 @@ class ClockingTableViewCell: UITableViewCell
                         self.cellDetailsText.text = "Signed in"
                         self.cellInformationText.text = "Expected to go home at " + registeredFinishTime
                         
-                        self.backgroundColor = _ApplicationColours.LightBlue
-                        self.childNameLabel.textColor = _ApplicationColours.White
-                        self.cellInformationText.textColor = _ApplicationColours.Black
-                        self.cellDetailsText.textColor = _ApplicationColours.White
+                        self.backgroundColor = StyleManager.theme1()
+                        self.childNameLabel.textColor = StyleManager.theme2()
+                        self.cellInformationText.textColor = StyleManager.FontColour()
+                        self.cellDetailsText.textColor = StyleManager.theme2()
                     }
                 }
             }
@@ -277,8 +277,8 @@ class ClockingTableViewCell: UITableViewCell
                 self.cellImage?.image = UIImage(named: "SwipeLeft")
                 self.cellImage2?.image = UIImage(named: "SignedOut")
 
-               cellImage.image = cellImage.image?.maskWithColor(color: _ApplicationColours.Orange)
-              cellImage2.image = cellImage2.image?.maskWithColor(color: _ApplicationColours.Orange)
+               cellImage.image = cellImage.image?.maskWithColor(color: StyleManager.theme4())
+              cellImage2.image = cellImage2.image?.maskWithColor(color: StyleManager.theme4())
                 
                 self.cellDetailsText.text = ""
                 
@@ -304,10 +304,10 @@ class ClockingTableViewCell: UITableViewCell
                             self.cellDetailsText.text = "Expected in"
                             self.cellInformationText.text = "Expected in " + String(format:"%.0f", abs(minutesElapsed)) + " minutes."
                             
-                            self.backgroundColor = _ApplicationColours.White
-                            self.childNameLabel.textColor = _ApplicationColours.Blue
-                            self.cellInformationText.textColor = _ApplicationColours.Blue
-                            self.cellDetailsText.textColor = _ApplicationColours.Blue
+                            self.backgroundColor = StyleManager.theme2()
+                            self.childNameLabel.textColor = StyleManager.theme1()
+                            self.cellInformationText.textColor = StyleManager.theme1()
+                            self.cellDetailsText.textColor = StyleManager.theme1()
                             
                         }
                         else
@@ -349,10 +349,10 @@ class ClockingTableViewCell: UITableViewCell
                                     self.cellDetailsText.text = "Expected in at " + registeredStartTime
                                     self.cellInformationText.text = String(format:"%.0f", minutesElapsed) + " minutes late."
                                     
-                                    self.backgroundColor = _ApplicationColours.White
-                                    self.childNameLabel.textColor = _ApplicationColours.Blue
-                                    self.cellInformationText.textColor = _ApplicationColours.Blue
-                                    self.cellDetailsText.textColor = _ApplicationColours.Blue
+                                    self.backgroundColor = StyleManager.theme2()
+                                    self.childNameLabel.textColor = StyleManager.theme1()
+                                    self.cellInformationText.textColor = StyleManager.theme1()
+                                    self.cellDetailsText.textColor = StyleManager.theme1()
                                     
                                 }
                                 else
@@ -380,10 +380,10 @@ class ClockingTableViewCell: UITableViewCell
                                     //For now I am just going to assume that the child came in and left, ie has time stamps for today
                                     
                                     //Child is yet to arrive/Child is late to sign in
-                                    self.backgroundColor = _ApplicationColours.White
-                                    self.childNameLabel.textColor = _ApplicationColours.Blue
-                                    self.cellInformationText.textColor = _ApplicationColours.Blue
-                                    self.cellDetailsText.textColor = _ApplicationColours.Blue
+                                    self.backgroundColor = StyleManager.theme2()
+                                    self.childNameLabel.textColor = StyleManager.theme1()
+                                    self.cellInformationText.textColor = StyleManager.theme1()
+                                    self.cellDetailsText.textColor = StyleManager.theme1()
                                     
                                     self.cellDetailsText.text = "Gone home."
                                     self.cellInformationText.text = "Signed out."

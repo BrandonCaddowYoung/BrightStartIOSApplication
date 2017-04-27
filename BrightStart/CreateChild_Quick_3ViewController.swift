@@ -52,13 +52,13 @@ class CreateChild_Quick_3ViewController: UIViewController, UITableViewDataSource
             
         }
         
-        Top.backgroundColor = _ApplicatoinColours.White
+        Top.backgroundColor = StyleManager.theme2()
         
-        UpperHeading.backgroundColor = _ApplicatoinColours.White
+        UpperHeading.backgroundColor = StyleManager.theme2()
         
-        UpperContent.backgroundColor = _ApplicatoinColours.White
+        UpperContent.backgroundColor = StyleManager.theme2()
         
-        Bottom.backgroundColor = _ApplicatoinColours.White
+        Bottom.backgroundColor = StyleManager.theme2()
         
     }
     

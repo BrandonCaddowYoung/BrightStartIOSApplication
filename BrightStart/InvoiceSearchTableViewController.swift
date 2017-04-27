@@ -67,7 +67,7 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight =  500
         
-        view.backgroundColor = _ApplicatoinColours.TableBackGround
+        view.backgroundColor = StyleManager.TableBackGroundColour()
         
         refresh()
         
@@ -89,6 +89,29 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
         
     }
     
+    func SetNavigationBarDetails()
+    {
+        self.navigationController?.navigationBar.topItem?.title = " "
+        
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+        
+        navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackButton()
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
+        
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        //Right button
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
+        
+        self.navigationItem.title="Tnvoice Search"
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -98,28 +121,7 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
         }
         else
         {
-            //Changes the color of the backgorund within the nav bar.
-            navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
-            
-            //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-            
-            //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
-            
-            //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
-            
-            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-            
-            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
-            
-            navigationController?.navigationBar.topItem?.title = ""
-            navigationController?.navigationBar.backItem?.title = ""
+           SetNavigationBarDetails()
             
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }
@@ -275,7 +277,7 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 
                 
             }
-            share.backgroundColor = _ApplicatoinColours.Blue
+            share.backgroundColor = StyleManager.theme1()
             
             
             

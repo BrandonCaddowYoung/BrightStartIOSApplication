@@ -51,6 +51,9 @@ class RegisreredHoursDayOfWeekTableViewCell: UITableViewCell {
         EndTimePicker.addTarget(self, action: #selector(endDatePickerChanged(_:)), for: .valueChanged)
         
         setupConstraints()
+        
+        self.contentView.backgroundColor = StyleManager.theme2()
+        
     }
     
     func startDateChanged(_ sender: UIDatePicker) {

@@ -47,7 +47,7 @@ class AboutViewController: UIViewController {
         
         HeadingLabel.lineBreakMode = .byWordWrapping
         HeadingLabel.numberOfLines = 5
-        HeadingLabel.textColor = _ApplicatoinColours.FontColour
+        HeadingLabel.textColor = StyleManager.FontColour()
         
         HeadingLabel.font = UIFont(name: "Helvetica Neue", size: 21)
         HeadingLabel.font = UIFont.systemFont(ofSize: 21, weight: UIFontWeightThin)
@@ -59,7 +59,7 @@ class AboutViewController: UIViewController {
         
         bodyLabel.lineBreakMode = .byWordWrapping
         bodyLabel.numberOfLines = 5
-        bodyLabel.textColor = _ApplicatoinColours.FontColour
+        bodyLabel.textColor = StyleManager.FontColour()
         
         bodyLabel.font = UIFont(name: "Helvetica Neue", size: 21)
         bodyLabel.font = UIFont.systemFont(ofSize: 21, weight: UIFontWeightThin)
@@ -68,7 +68,7 @@ class AboutViewController: UIViewController {
         
        icons8Button = UIButton(frame: CGRect(x: 20, y: 20, width: 200, height: 60))
         icons8Button.setTitle("Visit icons8.com", for: .normal)
-        icons8Button.backgroundColor = _ApplicatoinColours.BackGroundColour
+        icons8Button.backgroundColor = StyleManager.DarkBackground()
         icons8Button.setTitleColor(UIColor.black, for: .normal)
         icons8Button.addTarget(self, action: #selector(self.GoToIcons8), for: .touchUpInside)
         view.addSubview(icons8Button)
@@ -87,10 +87,10 @@ class AboutViewController: UIViewController {
 
 func setupConstraints()
 {
-    view.backgroundColor = _ApplicatoinColours.BackGroundColour
+    view.backgroundColor = StyleManager.DarkBackground()
     
     LeftSpacer.translatesAutoresizingMaskIntoConstraints = false
-    LeftSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
+    LeftSpacer.backgroundColor = StyleManager.DarkBackground()
     
     //left
     LeftSpacer.leadingAnchor.constraint(
@@ -107,7 +107,7 @@ func setupConstraints()
     
     
         RightSpacer.translatesAutoresizingMaskIntoConstraints = false
-    RightSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
+    RightSpacer.backgroundColor = StyleManager.DarkBackground()
 
     
     //right
@@ -126,7 +126,7 @@ func setupConstraints()
     //Positioning the top spacer
     
         TopSpacer.translatesAutoresizingMaskIntoConstraints = false
-    TopSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
+    TopSpacer.backgroundColor = StyleManager.DarkBackground()
     
     //right
     TopSpacer.trailingAnchor.constraint(
@@ -146,7 +146,7 @@ func setupConstraints()
    //Positioning the bottom spacer
     
     BottomSpacer.translatesAutoresizingMaskIntoConstraints = false
-    BottomSpacer.backgroundColor = _ApplicatoinColours.BackGroundColour
+    BottomSpacer.backgroundColor = StyleManager.DarkBackground()
     //right
     BottomSpacer.trailingAnchor.constraint(
         equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true

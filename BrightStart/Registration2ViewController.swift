@@ -51,16 +51,16 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
         //Styling button
         FinishedButton.layer.cornerRadius = 5
         FinishedButton.layer.borderWidth = 1
-        FinishedButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        FinishedButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
-        FinishedButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        FinishedButton.layer.borderColor = StyleManager.FontColour().cgColor
+        FinishedButton.backgroundColor = StyleManager.buttonBackGround()
+        FinishedButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
         
         FinishedButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        TopContainer.backgroundColor = _ApplicatoinColours.White
-        MiddleContainer.backgroundColor = _ApplicatoinColours.White
-        BottomContainer.backgroundColor = _ApplicatoinColours.White
-        FooterContainer.backgroundColor = _ApplicatoinColours.White
+        TopContainer.backgroundColor = StyleManager.theme2()
+        MiddleContainer.backgroundColor = StyleManager.theme2()
+        BottomContainer.backgroundColor = StyleManager.theme2()
+        FooterContainer.backgroundColor = StyleManager.theme2()
         
         SubHeaderLabl.textAlignment = NSTextAlignment.center;
         SubHeaderLabl.numberOfLines = 0;
@@ -68,15 +68,15 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
         SubHeaderLabl.text = "Just a few more details and you'l be set!";
         
         
-        NurseryNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+        NurseryNameTextField.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
          NurseryNameTextField.delegate = self;
         
-        ManagerNameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+        ManagerNameTextField.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
          ManagerNameTextField.delegate = self;
         
-        PhoneNumberTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+        PhoneNumberTextField.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
          PhoneNumberTextField.delegate = self;
         
@@ -87,17 +87,20 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
     
     func SetNavigationBarDetails()
     {
+        
+        self.navigationController?.navigationBar.topItem?.title = " "
+        
         //No right button
         
         //Changes the color of the backgorund within the nav bar.
         //navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
         
         //Title color(Center)
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.White]
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme2()]
         navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
         
         //Back ground color
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Blue
+        navigationController?.navigationBar.barTintColor = StyleManager.theme1()
         
         self.navigationController?.navigationBar.topItem?.title = " ";
         

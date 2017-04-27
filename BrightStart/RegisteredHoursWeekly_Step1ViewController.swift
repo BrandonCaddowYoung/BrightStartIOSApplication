@@ -92,19 +92,23 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
             
         })
         
-        Top.backgroundColor = _ApplicatoinColours.Blue
+        Top.backgroundColor = StyleManager.theme2()
         
-        UpperHeading.backgroundColor = _ApplicatoinColours.Blue
+        UpperHeading.backgroundColor = StyleManager.theme2()
         
-        UpperContent.backgroundColor = _ApplicatoinColours.White
+        UpperContent.backgroundColor = StyleManager.theme2()
         
-        Bottom.backgroundColor = _ApplicatoinColours.Blue
+        Bottom.backgroundColor = StyleManager.theme1()
         
-        SelectLabel.textColor = _ApplicatoinColours.White
-        MainHeadingLabel.textColor = _ApplicatoinColours.Orange
+        SelectLabel.textColor = StyleManager.theme5()
+        MainHeadingLabel.textColor = StyleManager.theme1()
         
         MainHeadingLabel.font = _ApplicatoinColours.XlargeFont
-         SelectLabel.font = _ApplicatoinColours.largeFont
+        SelectLabel.font = _ApplicatoinColours.largeFont
+        
+        KeyWorkerTable.backgroundColor = StyleManager.theme2()
+        
+        
         
     }
     
@@ -298,7 +302,7 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
         cell.textLabel?.text = contact.ChildFullName as String
         
         cell.textLabel?.font = _ApplicatoinColours.mediumFont
-        cell.textLabel?.textColor = _ApplicatoinColours.Black
+        cell.textLabel?.textColor = StyleManager.theme5()
         
         cell.tickButton.addTarget(self, action:#selector(CreateChild_Quick_3ViewController.tickClicked(sender:)), for: .touchUpInside)
         
@@ -316,11 +320,19 @@ class RegisteredHoursWeekly_Step1ViewController: UIViewController, UITableViewDa
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.backgroundColor = StyleManager.theme2()
+    }
+    
+    
     /////HEIGHT FOR ROW
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat
     {
         return 80.0
     }
+    
+    
     
 }

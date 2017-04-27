@@ -37,6 +37,8 @@ class WizardPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
+        
         for item in WizardViewControllers
         {
             orderedViewControllers.append(self.newWizardViewController(item))
@@ -659,6 +661,16 @@ func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         }
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

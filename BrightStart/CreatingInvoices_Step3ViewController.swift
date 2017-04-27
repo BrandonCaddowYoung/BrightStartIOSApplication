@@ -61,25 +61,25 @@ class CreatingInvoices_Step3ViewController: UIViewController {
         TopLabel.font = _ApplicatoinColours.mediumFont
         BottomLabel.font = _ApplicatoinColours.mediumFont
         
-        TopText.textColor = _ApplicatoinColours.Orange
-        TopLabel.textColor = _ApplicatoinColours.White
-        BottomLabel.textColor = _ApplicatoinColours.White
+        TopText.textColor = StyleManager.theme4()
+        TopLabel.textColor = StyleManager.theme2()
+        BottomLabel.textColor = StyleManager.theme2()
         
         TopText.text = "Dates"
         
-        Top.backgroundColor = _ApplicatoinColours.Blue
+        Top.backgroundColor = StyleManager.theme2()
         
-        UpperHeading.backgroundColor = _ApplicatoinColours.Blue
+        UpperHeading.backgroundColor = StyleManager.theme2()
         
-        UpperContent.backgroundColor = _ApplicatoinColours.White
+        UpperContent.backgroundColor = StyleManager.theme2()
         
-        Middle.backgroundColor = _ApplicatoinColours.White
+        Middle.backgroundColor = StyleManager.theme2()
         
-        LowerHeading.backgroundColor = _ApplicatoinColours.Blue
+        LowerHeading.backgroundColor = StyleManager.theme1()
         
-        LowerContent.backgroundColor = _ApplicatoinColours.White
+        LowerContent.backgroundColor = StyleManager.theme2()
         
-        Bottom.backgroundColor = _ApplicatoinColours.Blue
+        Bottom.backgroundColor = StyleManager.theme1()
         
         ExtraHoursStartDate.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         ExtraHoursEndDate.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)

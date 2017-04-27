@@ -17,10 +17,10 @@ class ApplicatoinColours {
     
     var WebAPIURL = "http://brightstartwebapi126.azurewebsites.net/api";
     
-    var BackGroundColour: UIColor!
+    
     var FontHeadingColour: UIColor!
     var FontColour: UIColor!
-    var LabelColour: UIColor!
+    //var LabelColour: UIColor!
     
     var PlaceholderColor: UIColor!
     
@@ -90,7 +90,7 @@ class ApplicatoinColours {
         LightBlue = hexStringToUIColor(hex: "#6889ca")
         
         //GENERAL
-        BackGroundColour = Blue
+        //BackGroundColour = Blue
         
         //NAVIGATION BAR
         NavigationBarBackGroundColor = White;
@@ -106,7 +106,7 @@ class ApplicatoinColours {
         
         //TEXT
         FontColour = White
-        LabelColour = Black
+       // LabelColour = Black
         FontHeadingColour = White
         
         //UITEXTField

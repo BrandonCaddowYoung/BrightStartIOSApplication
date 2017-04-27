@@ -113,7 +113,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         _CommonHelper = CommonHelper()
         
         NameLabel.text = childName
-        NameLabel.textColor = _ApplicatoinColours.FontColour
+        NameLabel.textColor = StyleManager.FontColour()
         
         NameLabel.font = _ApplicatoinColours.largeFont
         
@@ -158,29 +158,29 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         calendarView.registerCellViewXib(file: "CellView") // Registering your cell is manditory
         calendarView.cellInset = CGPoint(x: 0, y: 0)
         
-        leftContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        rightContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        leftContainer.backgroundColor = StyleManager.DarkBackground()
+        rightContainer.backgroundColor = StyleManager.DarkBackground()
         
         calendarView.backgroundColor = _ApplicatoinColours.CalendarBackGround
         
-        topContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        bottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        topContainer.backgroundColor = StyleManager.DarkBackground()
+        bottomContainer.backgroundColor = StyleManager.DarkBackground()
         
-        LeftTopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        RightTopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        RightTopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        LeftTopContainer.backgroundColor = StyleManager.DarkBackground()
+        RightTopContainer.backgroundColor = StyleManager.DarkBackground()
+        RightTopContainer.backgroundColor = StyleManager.DarkBackground()
         
-        TopPadding.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopPadding.backgroundColor = StyleManager.DarkBackground()
         
-        view.backgroundColor =  _ApplicatoinColours.BackGroundColour
+        view.backgroundColor =  StyleManager.DarkBackground()
         
-        bottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        bottomContainer.backgroundColor = StyleManager.DarkBackground()
         
         startLabel.font = _ApplicatoinColours.mediumFont
         finishLabel.font = _ApplicatoinColours.mediumFont
         
-        startLabel.textColor = _ApplicatoinColours.FontColour
-       finishLabel.textColor = _ApplicatoinColours.FontColour
+        startLabel.textColor = StyleManager.FontColour()
+       finishLabel.textColor = StyleManager.FontColour()
         
         setupConstraints()
         
@@ -214,15 +214,15 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
       
         calendarView.scrollToDate(Date())
         
-        monthLabel.textColor = _ApplicatoinColours.White
-        yearLabel.textColor = _ApplicatoinColours.White
+        monthLabel.textColor = StyleManager.theme2()
+        yearLabel.textColor = StyleManager.theme2()
         
 typeSwitch.tintColor = _ApplicatoinColours.Grey
         
         typeSwitch.isHidden = true
         
-        startTime.textColor = _ApplicatoinColours.White
-        endTime.textColor = _ApplicatoinColours.White
+        startTime.textColor = StyleManager.theme2()
+        endTime.textColor = StyleManager.theme2()
         
         //Finally select the current date
         self.calendarView.selectDates([NSDate() as Date])
@@ -240,6 +240,30 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         
     }
     
+    
+    func SetNavigationBarDetails()
+    {
+        self.navigationController?.navigationBar.topItem?.title = " "
+        
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+        
+        navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackButton()
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
+        
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        //Right button
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
+        
+        //self.navigationItem.title="Time Stamps Editor"
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         self.calendarView.selectDates([self.lastSelectedDate])
@@ -251,28 +275,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         }
         else
         {
-            //Changes the color of the backgorund within the nav bar.
-            navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
-            
-            //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-            
-            //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
-            
-            //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
-            
-            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-            
-            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
-            
-            navigationController?.navigationBar.topItem?.title = ""
-            navigationController?.navigationBar.backItem?.title = ""
+            SetNavigationBarDetails()
             
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }

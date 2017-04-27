@@ -92,18 +92,18 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         
         self.daysOfTheWeekArray.append(sunday)
         
-        Top.backgroundColor = _ApplicatoinColours.Blue
+        Top.backgroundColor = StyleManager.theme2()
         
-        UpperHeading.backgroundColor = _ApplicatoinColours.Blue
+        UpperHeading.backgroundColor = StyleManager.theme2()
         
-        UpperContent.backgroundColor = _ApplicatoinColours.White
+        UpperContent.backgroundColor = StyleManager.theme2()
         
-        Bottom.backgroundColor = _ApplicatoinColours.Blue
+        Bottom.backgroundColor = StyleManager.theme1()
         
-        MainHeadingLabel.textColor = _ApplicatoinColours.Orange
+        MainHeadingLabel.textColor = StyleManager.theme1()
          MainHeadingLabel.font = _ApplicatoinColours.XlargeFont
         
-        SelectLabel.textColor = _ApplicatoinColours.White
+        SelectLabel.textColor = StyleManager.theme5()
         SelectLabel.font = _ApplicatoinColours.mediumFont
         
          defaultStartDate = Date().setTime(hour: 09, min: 00, sec: 00)!
@@ -337,7 +337,7 @@ class RegisteredHoursWeekly_Step3ViewController: UIViewController, UITableViewDa
         cell.StartLabel?.font = _ApplicatoinColours.mediumFont
         cell.EndLabel?.font = _ApplicatoinColours.mediumFont
         
-        cell.DayOfWeekLabel?.textColor = _ApplicatoinColours.Blue
+        cell.DayOfWeekLabel?.textColor = StyleManager.theme1()
         
         cell.tickButton.addTarget(self, action:#selector(CreateChild_Quick_3ViewController.tickClicked(sender:)), for: .touchUpInside)
         

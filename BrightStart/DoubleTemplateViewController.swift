@@ -39,19 +39,19 @@ class DoubleTemplateViewController: UIViewController {
 
         setupConstraints()
         
-        //Top.backgroundColor = _ApplicatoinColours.White
+        //Top.backgroundColor = StyleManager.theme2()
         
-        //UpperHeading.backgroundColor = _ApplicatoinColours.White
+        //UpperHeading.backgroundColor = StyleManager.theme2()
         
-        //UpperContent.backgroundColor = _ApplicatoinColours.White
+        //UpperContent.backgroundColor = StyleManager.theme2()
         
-        //Middle.backgroundColor = _ApplicatoinColours.White
+        //Middle.backgroundColor = StyleManager.theme2()
         
-        //LowerHeading.backgroundColor = _ApplicatoinColours.White
+        //LowerHeading.backgroundColor = StyleManager.theme2()
         
-       // LowerContent.backgroundColor = _ApplicatoinColours.White
+       // LowerContent.backgroundColor = StyleManager.theme2()
         
-        // Bottom.backgroundColor = _ApplicatoinColours.White
+        // Bottom.backgroundColor = StyleManager.theme2()
         
     }
     

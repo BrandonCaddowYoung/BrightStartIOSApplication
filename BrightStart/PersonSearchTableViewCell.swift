@@ -29,10 +29,10 @@ class PersonSearchTableViewCell: UITableViewCell
         
         setupConstraints()
         
-        contentView.backgroundColor = _ApplicationColours.TableBackGround
+        contentView.backgroundColor = StyleManager.TableBackGroundColour()
         
-        childNameLabel.font = _ApplicationColours.largeFont
-        childNameLabel.textColor = _ApplicationColours.TableTextColor
+        childNameLabel.font = _ApplicationColours.mediumFont
+        childNameLabel.textColor = StyleManager.TableViewHeadingFontColour()
 
     }
     
@@ -67,7 +67,7 @@ class PersonSearchTableViewCell: UITableViewCell
     
     func updateUI() {
         
-        self.backgroundColor = _ApplicationColours.BackGroundColour
+        self.backgroundColor = StyleManager.theme1()
         
         childNameLabel?.text = nil
         

@@ -68,18 +68,18 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         //Styling button
         DoneButton.layer.cornerRadius = 5
         DoneButton.layer.borderWidth = 1
-        DoneButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        DoneButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
-        DoneButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        DoneButton.layer.borderColor = StyleManager.FontColour().cgColor
+        DoneButton.backgroundColor = StyleManager.buttonBackGround()
+        DoneButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
 
         DoneButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = StyleManager.DarkBackground()
         
-        TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        TokenContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        MainContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopContainer.backgroundColor = StyleManager.DarkBackground()
+        TokenContainer.backgroundColor = StyleManager.DarkBackground()
+        MainContainer.backgroundColor = StyleManager.DarkBackground()
+        BottomContainer.backgroundColor = StyleManager.DarkBackground()
         
         setupConstraints()
 

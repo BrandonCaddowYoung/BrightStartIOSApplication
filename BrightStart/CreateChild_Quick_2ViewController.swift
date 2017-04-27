@@ -51,39 +51,39 @@
             
             setupConstraints()
             
-            Top.backgroundColor = _ApplicatoinColours.BackGroundColour
+            Top.backgroundColor = StyleManager.DarkBackground()
             
-            UpperHeading.backgroundColor = _ApplicatoinColours.White
+            UpperHeading.backgroundColor = StyleManager.theme2()
             
-            UpperContent.backgroundColor = _ApplicatoinColours.White
+            UpperContent.backgroundColor = StyleManager.theme2()
             
-            Middle.backgroundColor = _ApplicatoinColours.White
+            Middle.backgroundColor = StyleManager.theme2()
             
-            LowerHeading.backgroundColor = _ApplicatoinColours.White
+            LowerHeading.backgroundColor = StyleManager.theme2()
             
-            LowerContent.backgroundColor = _ApplicatoinColours.White
+            LowerContent.backgroundColor = StyleManager.theme2()
             
-            Bottom.backgroundColor = _ApplicatoinColours.BackGroundColour
+            Bottom.backgroundColor = StyleManager.DarkBackground()
             
-            //UpperContent.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
-            LowerContent.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
-            UpperHeading.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
+            //UpperContent.addBottomBorder(color: StyleManager.theme4(), margins: 1)
+            LowerContent.addBottomBorder(color: StyleManager.theme4(), margins: 1)
+            UpperHeading.addTopBorder(color: StyleManager.theme4(), margins: 1)
             
             HeadingLabel.font = _ApplicatoinColours.XlargeFont
-            HeadingLabel.textColor = _ApplicatoinColours.White
+            HeadingLabel.textColor = StyleManager.theme1()
             
             MothersName.font = _ApplicatoinColours.mediumFont
             FathersName.font = _ApplicatoinColours.mediumFont
             MotherEmail.font = _ApplicatoinColours.mediumFont
             FatherEMail.font = _ApplicatoinColours.mediumFont
             
-            MothersName.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+            MothersName.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
             
-            FathersName.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+            FathersName.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
             
-            MotherEmail.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+            MotherEmail.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
             
-            FatherEMail.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+            FatherEMail.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
             
             NamesLabel.font = _ApplicatoinColours.largeFont
             EmailLabel.font = _ApplicatoinColours.largeFont

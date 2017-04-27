@@ -54,7 +54,7 @@ class DateSelectionViewController: UIViewController {
         
         setupConstraints()
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = StyleManager.DarkBackground()
         
         DatePicker.datePickerMode = UIDatePickerMode.date
        
@@ -168,10 +168,10 @@ class DateSelectionViewController: UIViewController {
         //Stlying save button
         SaveButton.layer.cornerRadius = 5
         SaveButton.layer.borderWidth = 1
-        SaveButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        SaveButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        SaveButton.layer.borderColor = StyleManager.FontColour().cgColor
+        SaveButton.backgroundColor = StyleManager.buttonBackGround()
         
-        SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        SaveButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
         
         SaveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
     }

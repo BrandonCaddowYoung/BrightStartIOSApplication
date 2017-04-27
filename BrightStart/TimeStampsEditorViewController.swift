@@ -145,15 +145,9 @@ class TimeStampsEditorViewController: UIViewController {
             
             RegistrationHoursRequests.sharedInstance.UpdateRegisteredHours(id: registerdHoursId, newStartDate: newStartValue, newEndDate: newEndValue, onCompletion: {_ in
                 
-                
-                
-                
                 DispatchQueue.main.async(execute: {
                     
-                    
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
-                        
-                    
                     
                     self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
                     
@@ -171,13 +165,8 @@ class TimeStampsEditorViewController: UIViewController {
                         self.performSegue(withIdentifier: "GoToMenu", sender: nil)
                     }
                     
-                    
                      } )
                    
-                        
-                    
-                        
-                    
                     
                 })
             })
@@ -346,37 +335,37 @@ class TimeStampsEditorViewController: UIViewController {
         
         setupConstraints()
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = StyleManager.DarkBackground()
         
         TargetPersonName.text = Name
         TargetPersonName.font = _ApplicatoinColours.largeFont
-        TargetPersonName.textColor = _ApplicatoinColours.FontColour
+        TargetPersonName.textColor = StyleManager.FontColour()
         
         TargetDate.text = Date
         TargetDate.font = _ApplicatoinColours.largeFont
-        TargetDate.textColor = _ApplicatoinColours.FontColour
+        TargetDate.textColor = StyleManager.FontColour()
         
         TargetCurrentTime.text = Time
         TargetCurrentTime.font = _ApplicatoinColours.largeFont
-        TargetCurrentTime.textColor = _ApplicatoinColours.FontColour
+        TargetCurrentTime.textColor = StyleManager.FontColour()
         
         CurrentTimeLabel.font = _ApplicatoinColours.mediumFont
-        CurrentTimeLabel.textColor = _ApplicatoinColours.Orange
+        CurrentTimeLabel.textColor = StyleManager.theme4()
         
         CurrentDateLabel.font = _ApplicatoinColours.mediumFont
-        CurrentDateLabel.textColor = _ApplicatoinColours.Orange
+        CurrentDateLabel.textColor = StyleManager.theme4()
         
         SetYourNewTimeStampLabel.font = _ApplicatoinColours.mediumFont
-        SetYourNewTimeStampLabel.textColor = _ApplicatoinColours.Blue
+        SetYourNewTimeStampLabel.textColor = StyleManager.theme1()
         
         DateTimePicker.date = DateAsObject
         DateTimePicker.datePickerMode = UIDatePickerMode.time
         
-        HorizontalDivider.backgroundColor = _ApplicatoinColours.Orange
+        HorizontalDivider.backgroundColor = StyleManager.theme4()
         
-        TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        MiddleContainer.backgroundColor = _ApplicatoinColours.White
-        BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopContainer.backgroundColor = StyleManager.DarkBackground()
+        MiddleContainer.backgroundColor = StyleManager.theme2()
+        BottomContainer.backgroundColor = StyleManager.DarkBackground()
         
         if(EditorMode == .RegisteredHours_Create || EditorMode == .TimeStamps_Create ){
             RemoveButton.isHidden = true
@@ -722,7 +711,7 @@ class TimeStampsEditorViewController: UIViewController {
         RemoveButton.layer.cornerRadius = 5
         RemoveButton.layer.borderWidth = 1
         RemoveButton.layer.borderColor = UIColor.red.cgColor
-        RemoveButton.backgroundColor = _ApplicatoinColours.White
+        RemoveButton.backgroundColor = StyleManager.theme2()
        
         RemoveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
@@ -756,10 +745,10 @@ class TimeStampsEditorViewController: UIViewController {
         //Stlying save button
         SaveButton.layer.cornerRadius = 5
         SaveButton.layer.borderWidth = 1
-        SaveButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        SaveButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        SaveButton.layer.borderColor = StyleManager.FontColour().cgColor
+        SaveButton.backgroundColor = StyleManager.buttonBackGround()
         
-        SaveButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        SaveButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
         
         SaveButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
@@ -825,6 +814,29 @@ class TimeStampsEditorViewController: UIViewController {
     }
 
     
+    func SetNavigationBarDetails()
+    {
+        self.navigationController?.navigationBar.topItem?.title = " "
+        
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+        
+        navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackButton()
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
+        
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        //Right button
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
+        
+        self.navigationItem.title="Time Stamps Editor"
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -836,29 +848,7 @@ class TimeStampsEditorViewController: UIViewController {
         {
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
             
-            //Changes the color of the backgorund within the nav bar.
-            navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
-            
-            //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-            
-            //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
-            
-            //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
-            
-            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-            
-            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
-            
-            navigationController?.navigationBar.topItem?.title = "Time Stamp Editor"
-            
-            navigationController?.navigationBar.backItem?.title = ""
+           SetNavigationBarDetails()
             
         }
         

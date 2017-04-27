@@ -44,31 +44,31 @@ class AuthySettingsViewController: UIViewController {
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = StyleManager.DarkBackground()
         
-        TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        MiddleContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        BottomContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopContainer.backgroundColor = StyleManager.DarkBackground()
+        MiddleContainer.backgroundColor = StyleManager.DarkBackground()
+        BottomContainer.backgroundColor = StyleManager.DarkBackground()
         
-        Top.backgroundColor = _ApplicatoinColours.White
-        Top1.backgroundColor = _ApplicatoinColours.BackGroundColour
-        Middle.backgroundColor = _ApplicatoinColours.White
-        Bottom.backgroundColor = _ApplicatoinColours.White
+        Top.backgroundColor = StyleManager.theme2()
+        Top1.backgroundColor = StyleManager.DarkBackground()
+        Middle.backgroundColor = StyleManager.theme2()
+        Bottom.backgroundColor = StyleManager.theme2()
         
         setupConstraints()
         
-        Top.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
-        Top.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        Top.addBottomBorder(color: StyleManager.theme4(), margins: 1)
+        Top.addTopBorder(color: StyleManager.theme4(), margins: 1)
         
-        //Middle.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
-        Middle.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        //Middle.addBottomBorder(color: StyleManager.theme4(), margins: 1)
+        Middle.addTopBorder(color: StyleManager.theme4(), margins: 1)
         
-        Bottom.addBottomBorder(color: _ApplicatoinColours.Orange, margins: 1)
-        Bottom.addTopBorder(color: _ApplicatoinColours.Orange, margins: 1)
+        Bottom.addBottomBorder(color: StyleManager.theme4(), margins: 1)
+        Bottom.addTopBorder(color: StyleManager.theme4(), margins: 1)
         
         ExplinationLabel.lineBreakMode = .byWordWrapping
         ExplinationLabel.numberOfLines = 5
-        ExplinationLabel.textColor = _ApplicatoinColours.FontColour
+        ExplinationLabel.textColor = StyleManager.FontColour()
         
         ExplinationLabel.text = "By using Authy, all registered parents will be required to have their mobiles phones with them when ever they drop off or pick up their children."
         
@@ -421,23 +421,23 @@ class AuthySettingsViewController: UIViewController {
         {
             //Changes the color of the backgorund within the nav bar.
             navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            navigationController?.navigationBar.barTintColor = StyleManager.theme5()
             
             //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
             navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
             
             //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackGround() //Orange
             
             //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround() // Grey
             
             let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
             
             self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
             
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
             
             navigationController?.navigationBar.topItem?.title = ""
             navigationController?.navigationBar.backItem?.title = ""
@@ -449,11 +449,11 @@ class AuthySettingsViewController: UIViewController {
     func SetNaviagationBarDetails()
     {
         //Title color(Center)
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
         navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
         //Back ground color
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.White
+        navigationController?.navigationBar.barTintColor = StyleManager.theme2()
         
         self.navigationController?.navigationBar.topItem?.title = "Authy Settings";
         
@@ -461,7 +461,7 @@ class AuthySettingsViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         
-        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
 
     }
     

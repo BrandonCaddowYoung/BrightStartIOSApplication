@@ -94,7 +94,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        view.backgroundColor = _ApplicatoinColours.TableBackGround
+        view.backgroundColor = StyleManager.TableBackGroundColour()
         
         refresh()
         
@@ -314,7 +314,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
                 
                 
             }
-            signOut.backgroundColor = _ApplicatoinColours.Orange
+            signOut.backgroundColor = StyleManager.theme4()
             
             if(cell.child?.CurrentlySignedIn == true){
                 return [signOut]

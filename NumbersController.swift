@@ -216,7 +216,7 @@ class NumbersController: UIViewController {
         
         //LeftSubView.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         
-        LeftSubView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        LeftSubView.backgroundColor = StyleManager.DarkBackground()
         
 
         
@@ -239,7 +239,7 @@ class NumbersController: UIViewController {
         
        // RightSubView.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
 
-        RightSubView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        RightSubView.backgroundColor = StyleManager.DarkBackground()
         
         
         //Positioning the top left subview
@@ -263,7 +263,7 @@ class NumbersController: UIViewController {
             multiplier: 0.23).isActive = true
         
         //TopLeftView.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-        TopLeftView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopLeftView.backgroundColor = StyleManager.DarkBackground()
         
         
         //Positioning label within top left view
@@ -277,7 +277,7 @@ class NumbersController: UIViewController {
             ).isActive = true
         
         
-        yetToArriveChildren.textColor = _ApplicatoinColours.FontColour
+        yetToArriveChildren.textColor = StyleManager.FontColour()
         
         //right
         TopLeftSpinner.trailingAnchor.constraint(
@@ -297,7 +297,7 @@ class NumbersController: UIViewController {
             equalTo: TopLeftSpinner.centerYAnchor
             ).isActive = true
         
-        YetToArriveLabel.textColor = _ApplicatoinColours.LabelColour
+        YetToArriveLabel.textColor = StyleManager.theme5()
         
         //Positioning the top right subview
         
@@ -320,7 +320,7 @@ class NumbersController: UIViewController {
             multiplier: 0.23).isActive = true
         
        // TopRightView.backgroundColor =  #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-        TopRightView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        TopRightView.backgroundColor = StyleManager.DarkBackground()
         
         
         //Positioning label within top left view
@@ -333,7 +333,7 @@ class NumbersController: UIViewController {
             equalTo: TopRightView.centerYAnchor
             ).isActive = true
         
-           signedInChildren.textColor = _ApplicatoinColours.FontColour
+           signedInChildren.textColor = StyleManager.FontColour()
         
         
         //right
@@ -353,7 +353,7 @@ class NumbersController: UIViewController {
         SignedInLabel.centerYAnchor.constraint(
             equalTo: TopRightSpinner.centerYAnchor).isActive = true
 
-        SignedInLabel.textColor = _ApplicatoinColours.LabelColour
+        SignedInLabel.textColor = StyleManager.theme5()
         
         //Positioning the middle left subview
         
@@ -376,7 +376,7 @@ class NumbersController: UIViewController {
             multiplier: 0.23).isActive = true
         
        // MiddleLeftView.backgroundColor =  #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        MiddleLeftView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        MiddleLeftView.backgroundColor = StyleManager.DarkBackground()
         
         
         //Positioning label within top left view
@@ -390,7 +390,7 @@ class NumbersController: UIViewController {
             ).isActive = true
 
         
-         totalExpectedchildren.textColor = _ApplicatoinColours.FontColour
+         totalExpectedchildren.textColor = StyleManager.FontColour()
         
         //right
         MiddleLeftSpinner.trailingAnchor.constraint(
@@ -408,7 +408,7 @@ class NumbersController: UIViewController {
         TotalLabel.centerYAnchor.constraint(
             equalTo: MiddleLeftSpinner.centerYAnchor).isActive = true
         
-        TotalLabel.textColor = _ApplicatoinColours.LabelColour
+        TotalLabel.textColor = StyleManager.theme5()
         
         //Positioning the middle right subview
        
@@ -431,7 +431,7 @@ class NumbersController: UIViewController {
             multiplier: 0.23).isActive = true
         
        // MiddleRightView.backgroundColor =  #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
-        MiddleRightView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        MiddleRightView.backgroundColor = StyleManager.DarkBackground()
         
         //right
         MiddleRightSpinner.trailingAnchor.constraint(
@@ -441,7 +441,7 @@ class NumbersController: UIViewController {
         MiddleRightSpinner.topAnchor.constraint(
             equalTo: MiddleRightView.topAnchor).isActive = true
         
-         yetToArriveChildren.textColor = _ApplicatoinColours.FontColour
+         yetToArriveChildren.textColor = StyleManager.FontColour()
         
         //Positioning the middle subview
 
@@ -464,7 +464,7 @@ class NumbersController: UIViewController {
             multiplier: 0.11).isActive = true
         
        // MiddleView.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-        MiddleView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        MiddleView.backgroundColor = StyleManager.DarkBackground()
         
         //Positioning the time label
         
@@ -505,7 +505,7 @@ class NumbersController: UIViewController {
             multiplier: 0.23).isActive = true
         
         //BottomLeftView.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
-        BottomLeftView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        BottomLeftView.backgroundColor = StyleManager.DarkBackground()
         
         
         //right
@@ -527,7 +527,7 @@ class NumbersController: UIViewController {
             ).isActive = true
         
         
-        numberOfChilrenAtGivenTime.textColor = _ApplicatoinColours.FontColour
+        numberOfChilrenAtGivenTime.textColor = StyleManager.FontColour()
         
         
         //right
@@ -546,9 +546,9 @@ class NumbersController: UIViewController {
         ChilrenLabel.centerYAnchor.constraint(
             equalTo: BottomLeftSpinner.centerYAnchor).isActive = true
         
-        StaffLabel.textColor = _ApplicatoinColours.LabelColour
+        StaffLabel.textColor = StyleManager.theme5()
         
-        TotalLabel.textColor = _ApplicatoinColours.LabelColour
+        TotalLabel.textColor = StyleManager.theme5()
         
         //Positioning the bottom right subview
         
@@ -567,7 +567,7 @@ class NumbersController: UIViewController {
             equalTo: view.widthAnchor,
             multiplier: 0.40).isActive = true
         
-        BottomRightView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        BottomRightView.backgroundColor = StyleManager.DarkBackground()
         
         //right
         BottomRightView.trailingAnchor.constraint(
@@ -591,7 +591,7 @@ class NumbersController: UIViewController {
             equalTo: BottomRightView.centerYAnchor
             ).isActive = true
         
-        numberOfStaffAtGivenTime.textColor = _ApplicatoinColours.FontColour
+        numberOfStaffAtGivenTime.textColor = StyleManager.FontColour()
         
         
         //right
@@ -611,9 +611,9 @@ class NumbersController: UIViewController {
         StaffLabel.centerYAnchor.constraint(
             equalTo: BottomRightSpinner.centerYAnchor).isActive = true
         
-        StaffLabel.textColor = _ApplicatoinColours.LabelColour
+        StaffLabel.textColor = StyleManager.theme5()
         
-        SignedInLabel.textColor = _ApplicatoinColours.LabelColour
+        SignedInLabel.textColor = StyleManager.theme5()
         
         //Positioning the bottom subview
         
@@ -637,7 +637,7 @@ class NumbersController: UIViewController {
             multiplier: 0.11).isActive = true
 
    //  BottomView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        BottomView.backgroundColor = _ApplicatoinColours.BackGroundColour
+        BottomView.backgroundColor = StyleManager.DarkBackground()
         
         //left
         numbersSlider.leadingAnchor.constraint(
@@ -655,7 +655,7 @@ class NumbersController: UIViewController {
         numbersSlider.bottomAnchor.constraint(
             equalTo: BottomView.bottomAnchor).isActive = true
 
-view.backgroundColor = _ApplicatoinColours.BackGroundColour
+view.backgroundColor = StyleManager.DarkBackground()
         
         
     }

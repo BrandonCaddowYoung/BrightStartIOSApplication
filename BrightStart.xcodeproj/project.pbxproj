@@ -34,6 +34,7 @@
 		7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */; };
 		7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */; };
 		7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */; };
+		7B6414491EAFBC1A00DC2DF5 /* StyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6414481EAFBC1A00DC2DF5 /* StyleManager.swift */; };
 		7B6487291E9BF8C90018616D /* RegisreredHoursDayOfWeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6487281E9BF8C80018616D /* RegisreredHoursDayOfWeekTableViewCell.swift */; };
 		7B6487431EA26F600018616D /* RegisteredHoursRollOver_Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6487421EA26F5E0018616D /* RegisteredHoursRollOver_Step1ViewController.swift */; };
 		7B6487451EA270590018616D /* RegisteredHoursRollOver_Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6487441EA270590018616D /* RegisteredHoursRollOver_Step2ViewController.swift */; };
@@ -315,6 +316,7 @@
 		7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyRequests.swift; sourceTree = "<group>"; };
 		7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyPersonSearchTableViewController.swift; sourceTree = "<group>"; };
 		7B5DB3B11E87BFEF00434F50 /* AccountRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRequests.swift; sourceTree = "<group>"; };
+		7B6414481EAFBC1A00DC2DF5 /* StyleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleManager.swift; sourceTree = "<group>"; };
 		7B6487281E9BF8C80018616D /* RegisreredHoursDayOfWeekTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisreredHoursDayOfWeekTableViewCell.swift; sourceTree = "<group>"; };
 		7B6487421EA26F5E0018616D /* RegisteredHoursRollOver_Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursRollOver_Step1ViewController.swift; sourceTree = "<group>"; };
 		7B6487441EA270590018616D /* RegisteredHoursRollOver_Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredHoursRollOver_Step2ViewController.swift; sourceTree = "<group>"; };
@@ -539,6 +541,14 @@
 			name = Child_QuickCreate;
 			sourceTree = "<group>";
 		};
+		7B6414301EAFBBCA00DC2DF5 /* Chameleon */ = {
+			isa = PBXGroup;
+			children = (
+				7B6414481EAFBC1A00DC2DF5 /* StyleManager.swift */,
+			);
+			name = Chameleon;
+			sourceTree = "<group>";
+		};
 		7B6487411EA26F1A0018616D /* RegisrtedHours_RollOver */ = {
 			isa = PBXGroup;
 			children = (
@@ -701,6 +711,7 @@
 		D7F995681C9EF4A1001802EC /* BrightStart */ = {
 			isa = PBXGroup;
 			children = (
+				7B6414301EAFBBCA00DC2DF5 /* Chameleon */,
 				7B8BDBAB1E0E8471009F3EAF /* Menus */,
 				7BD0FFC81E43BF0000472759 /* Auhty */,
 				7B70F05A1E8C2EBA00290432 /* Wizard */,
@@ -854,16 +865,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1181,6 +1192,7 @@
 				7B1575EA1E8328DB008AB34F /* WizardPurpose.swift in Sources */,
 				7B02571A1E4F5762007FED0C /* CellView.swift in Sources */,
 				7B02571C1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift in Sources */,
+				7B6414491EAFBC1A00DC2DF5 /* StyleManager.swift in Sources */,
 				7B1575E81E81BED1008AB34F /* ListItemCell.swift in Sources */,
 				7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,

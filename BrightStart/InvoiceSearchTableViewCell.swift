@@ -69,15 +69,15 @@ class InvoiceSearchTableViewCell: UITableViewCell
         
         setupConstraints()
         
-        LargeLeftContainer.backgroundColor = _ApplicationColours.White
-        SmallTopLeftContainer.backgroundColor = _ApplicationColours.White
-        SmallTopRightContainer.backgroundColor = _ApplicationColours.White
-        SmallBottomLeftContainer.backgroundColor = _ApplicationColours.White
-        SmallBottomRightContainer.backgroundColor = _ApplicationColours.White
+        LargeLeftContainer.backgroundColor = StyleManager.theme2()
+        SmallTopLeftContainer.backgroundColor = StyleManager.theme2()
+        SmallTopRightContainer.backgroundColor = StyleManager.theme2()
+        SmallBottomLeftContainer.backgroundColor = StyleManager.theme2()
+        SmallBottomRightContainer.backgroundColor = StyleManager.theme2()
         
-        BottomContainer.backgroundColor = _ApplicationColours.White
+        BottomContainer.backgroundColor = StyleManager.theme2()
         
-         //LineOuterContainer.backgroundColor = _ApplicationColours.White
+         //LineOuterContainer.backgroundColor = StyleManager.theme2()
         
         TotalLabel.font = _ApplicationColours.XlargeFont
         InvoiceNumberLabel.font = _ApplicationColours.mediumFont
@@ -95,21 +95,21 @@ class InvoiceSearchTableViewCell: UITableViewCell
         ExtraLabel.font = _ApplicationColours.smallFont
         BalanceLabel.font = _ApplicationColours.smallFont
         
-        TotalLabel.textColor = _ApplicationColours.Black
-        InvoiceNumberLabel.textColor = _ApplicationColours.Black
+        TotalLabel.textColor = StyleManager.FontColour()
+        InvoiceNumberLabel.textColor = StyleManager.FontColour()
         
-        RegisteredAmountLabel.textColor = _ApplicationColours.Black
-        NonRegisteredAmountLabel.textColor = _ApplicationColours.Black
-        ExtraAmountLabel.textColor = _ApplicationColours.Black
-        BalanceAmountLabel.textColor = _ApplicationColours.Black
+        RegisteredAmountLabel.textColor = StyleManager.FontColour()
+        NonRegisteredAmountLabel.textColor = StyleManager.FontColour()
+        ExtraAmountLabel.textColor = StyleManager.FontColour()
+        BalanceAmountLabel.textColor = StyleManager.FontColour()
         
-        RegisterdLabel.textColor = _ApplicationColours.Black
-        NonRegisteredLabel.textColor = _ApplicationColours.Black
-        ExtraLabel.textColor = _ApplicationColours.Black
-        BalanceLabel.textColor = _ApplicationColours.Black
+        RegisterdLabel.textColor = StyleManager.FontColour()
+        NonRegisteredLabel.textColor = StyleManager.FontColour()
+        ExtraLabel.textColor = StyleManager.FontColour()
+        BalanceLabel.textColor = StyleManager.FontColour()
         
-        InvoiceStartDate.textColor = _ApplicationColours.Black
-        InvoiceEndDate.textColor = _ApplicationColours.Black
+        InvoiceStartDate.textColor = StyleManager.FontColour()
+        InvoiceEndDate.textColor = StyleManager.FontColour()
         
     }
     
@@ -483,7 +483,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
     
     func updateUI() {
         
-        self.backgroundColor = _ApplicationColours.TableBackGround
+        self.backgroundColor = StyleManager.theme1()
         
         if let invoice = self.invoice
         {

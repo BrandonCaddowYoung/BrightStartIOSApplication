@@ -28,6 +28,8 @@ class TimeStampSearchTableViewCell: UITableViewCell
         _CommonHelper = CommonHelper()
         _ApplicationColours = ApplicatoinColours()
         
+        contentView.backgroundColor = StyleManager.TableBackGroundColour()
+        
         setupConstraints()
     }
     
@@ -78,10 +80,10 @@ class TimeStampSearchTableViewCell: UITableViewCell
     
     func updateUI() {
         
-        self.backgroundColor = _ApplicationColours.TableBackGround
+        self.backgroundColor = StyleManager.theme1()
         
-        self.titleLabel.textColor = _ApplicationColours.TableTextColor
-        self.timeLabel.textColor =  _ApplicationColours.TableTextColor
+        self.titleLabel.textColor = StyleManager.TableFontColor()
+        self.timeLabel.textColor =  StyleManager.TableFontColor()
         
         //titleLabel?.text = nil
         

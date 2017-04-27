@@ -59,30 +59,30 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         // Do any additional setup after loading the view.
         
-        TokenTextFiled.setBottomBorder(backGroundColor: _ApplicatoinColours.BackGroundColour.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.White, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+        TokenTextFiled.setBottomBorder(backGroundColor: StyleManager.DarkBackground().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme2(), palceHoldertextColor: StyleManager.theme3())
         
         TokenTextFiled.delegate = self;
         
         setupConstraints()
         
-        CenterView.backgroundColor = _ApplicatoinColours.White
+        CenterView.backgroundColor = StyleManager.theme2()
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
-        TopContainer.backgroundColor = _ApplicatoinColours.BackGroundColour
-        BottomContainer .backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = StyleManager.DarkBackground()
+        TopContainer.backgroundColor = StyleManager.DarkBackground()
+        BottomContainer .backgroundColor = StyleManager.DarkBackground()
         
         SecondstoGoLabel.font = _ApplicatoinColours.MassiveFont
         
-        SecondstoGoLabel.textColor = _ApplicatoinColours.Orange
+        SecondstoGoLabel.textColor = StyleManager.theme4()
         
         SecondsToGoLabel2.font = _ApplicatoinColours.sshmediumlFont
-        SecondsToGoLabel2.textColor = _ApplicatoinColours.Black
+        SecondsToGoLabel2.textColor = StyleManager.theme5()
         
         TopLabel.font = _ApplicatoinColours.MenuFont
-        TopLabel.textColor = _ApplicatoinColours.FontColour
+        TopLabel.textColor = StyleManager.FontColour()
         
         DontHaveYourPhoneLabel.font = _ApplicatoinColours.MenuFont
-        DontHaveYourPhoneLabel.textColor = _ApplicatoinColours.FontColour
+        DontHaveYourPhoneLabel.textColor = StyleManager.FontColour()
         
         AuthyRequests.sharedInstance.GetAuhtyUser(auhtyId: targetAuthyId as String, onCompletion:
             { json in
@@ -402,23 +402,23 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         {
             //Changes the color of the backgorund within the nav bar.
             navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            navigationController?.navigationBar.barTintColor = StyleManager.theme5()
             
             //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
             navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
             
             //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackGround() //Orange
             
             //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround() // Grey
             
             let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
             
             self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
             
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
             
             navigationController?.navigationBar.topItem?.title = ""
             navigationController?.navigationBar.backItem?.title = ""
@@ -430,11 +430,11 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
     func SetNaviagationBarDetails()
     {
         //Title color(Center)
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
         navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
         
         //Back ground color
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.White
+        navigationController?.navigationBar.barTintColor = StyleManager.theme2()
         
         self.navigationController?.navigationBar.topItem?.title = "Authy Settings";
         
@@ -442,7 +442,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         
-        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
         
     }
     

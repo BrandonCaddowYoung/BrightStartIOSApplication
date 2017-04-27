@@ -87,26 +87,26 @@ class RegisteredHoursRollOver_Step2ViewController: UIViewController , UIPickerVi
         SelectTheYearLabel.font = _ApplicatoinColours.mediumFont
         SelectTheMonthLabel.font = _ApplicatoinColours.mediumFont
         
-        TopText.textColor = _ApplicatoinColours.Orange
+        TopText.textColor = StyleManager.theme4()
         
-        SelectTheYearLabel.textColor = _ApplicatoinColours.White
-        SelectTheMonthLabel.textColor = _ApplicatoinColours.White
+        SelectTheYearLabel.textColor = StyleManager.theme2()
+        SelectTheMonthLabel.textColor = StyleManager.theme2()
         
         TopText.text = "Dates"
         
-        Top.backgroundColor = _ApplicatoinColours.Blue
+        Top.backgroundColor = StyleManager.theme2()
         
-        UpperHeading.backgroundColor = _ApplicatoinColours.Blue
+        UpperHeading.backgroundColor = StyleManager.theme2()
         
-        UpperContent.backgroundColor = _ApplicatoinColours.White
+        UpperContent.backgroundColor = StyleManager.theme2()
         
-        Middle.backgroundColor = _ApplicatoinColours.White
+        Middle.backgroundColor = StyleManager.theme2()
         
-        LowerHeading.backgroundColor = _ApplicatoinColours.Blue
+        LowerHeading.backgroundColor = StyleManager.theme1()
         
-        LowerContent.backgroundColor = _ApplicatoinColours.White
+        LowerContent.backgroundColor = StyleManager.theme2()
         
-        Bottom.backgroundColor = _ApplicatoinColours.Blue
+        Bottom.backgroundColor = StyleManager.theme1()
         
         TargetYearPicker.selectRow(1, inComponent: 0, animated: false)
         DestinationYearPicker.selectRow(1, inComponent: 0, animated: false)

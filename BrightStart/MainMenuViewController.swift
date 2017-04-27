@@ -63,8 +63,6 @@ class MainMenuViewController: UIViewController {
     
    var targetPurpose: PurposeTypes!
     
-     var _PopUpAlert: UIAlertController!
-    
     var selectedAuhtyId: NSString!
     
     var childId: NSString!
@@ -72,8 +70,7 @@ class MainMenuViewController: UIViewController {
     var authyUsersOnly: Bool! = false
     
     var authyUserList = [AuthyUser]()
-    
-    var _ApplicatoinColours: ApplicatoinColours!
+   
     var _CommonHelper: CommonHelper!
     
     var collectionView: UICollectionView!
@@ -111,7 +108,6 @@ class MainMenuViewController: UIViewController {
 
         self.edgesForExtendedLayout = []
         
-        _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
         setupCollectionView()
@@ -416,17 +412,11 @@ class MainMenuViewController: UIViewController {
         collectionView.contentInset.left = 25
         collectionView.contentInset.right = 25
        
-        collectionView.backgroundColor = _ApplicatoinColours.White
+        collectionView.backgroundColor = StyleManager.theme2()
         collectionView.delegate = self
         collectionView.dataSource = self
         
         collectionView.collectionViewLayout = layout
-        
-        //self.automaticallyAdjustsScrollViewInsets = false
-        //self.collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-        
-        //For some reason above the collectionView there is space, this removes the space.
-       // self.automaticallyAdjustsScrollViewInsets = false
         
         view.addSubview(collectionView)
         
@@ -439,7 +429,7 @@ class MainMenuViewController: UIViewController {
         topThirdViewMiddleSpacer = UIView()
         view.addSubview(topThirdViewMiddleSpacer)
         
-        view.backgroundColor = _ApplicatoinColours.White
+        view.backgroundColor = StyleManager.DarkBackground()
         
         setupConstraints()
     }
@@ -449,7 +439,7 @@ class MainMenuViewController: UIViewController {
        
         //The first view takes up a third of the screen.
         
-        leftSpacer.backgroundColor = _ApplicatoinColours.White
+        leftSpacer.backgroundColor = StyleManager.theme2()
         leftSpacer.translatesAutoresizingMaskIntoConstraints = false
         
         //left
@@ -467,7 +457,7 @@ class MainMenuViewController: UIViewController {
         
         //leftSpacer.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
-        rightSpacer.backgroundColor = _ApplicatoinColours.White
+        rightSpacer.backgroundColor = StyleManager.theme2()
         rightSpacer.translatesAutoresizingMaskIntoConstraints = false
         
         //right
@@ -487,7 +477,7 @@ class MainMenuViewController: UIViewController {
         //rightSpacer.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
         topThirdView.translatesAutoresizingMaskIntoConstraints = false
-        topThirdView.backgroundColor = _ApplicatoinColours.White
+        topThirdView.backgroundColor = StyleManager.theme2()
 
         //left
         topThirdView.leadingAnchor.constraint(
@@ -507,7 +497,7 @@ class MainMenuViewController: UIViewController {
        //topThirdView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         
         topThirdViewTopSpacer.translatesAutoresizingMaskIntoConstraints = false
-        topThirdViewTopSpacer.backgroundColor = _ApplicatoinColours.White
+        topThirdViewTopSpacer.backgroundColor = StyleManager.theme2()
         
         //left
         topThirdViewTopSpacer.leadingAnchor.constraint(
@@ -531,7 +521,7 @@ class MainMenuViewController: UIViewController {
         
         
         topThirdViewMiddleSpacer.translatesAutoresizingMaskIntoConstraints = false
-        topThirdViewMiddleSpacer.backgroundColor = _ApplicatoinColours.White
+        topThirdViewMiddleSpacer.backgroundColor = StyleManager.theme2()
         
         //left
         topThirdViewMiddleSpacer.leadingAnchor.constraint(
@@ -843,7 +833,7 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         
         foodCell.button.setBackgroundImage(tintedImage, for: .normal)
         
-        foodCell.button.tintColor = _ApplicatoinColours.Blue
+        foodCell.button.tintColor = StyleManager.DarkBackground()
         
     }
     
@@ -885,97 +875,71 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     func ShowNavBar()
     {
         if(!showNavigationBar){
-            
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            
         }
         else
         {
-            
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            
-            
             SetNavigationBarDetails()
-            
-        }
-
-    }
-    
-    func HideShowBackButton()
-    {
-        if(shouldHideBackButton){
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.BackGroundColour
-        }
-        else
-        {
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.Orange
         }
     }
+   
     
     func SetNavigationBarDetails()
     {
-        //Changes the color of the backgorund within the nav bar.
-        //navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
-       
+        self.navigationItem.setHidesBackButton(true, animated:true);
+        
+        self.navigationController?.navigationBar.topItem?.title = " "
+        
         //Title color(Center)
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.White]
-        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
-        //Hiding back button
-        
-       HideShowBackButton()
+        navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackButton()
         
         //Back ground color
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Blue
+        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
+        
         
         if(selectedMenu == .MainMenu)
         {
             //When about scren is built, put this in!
-            
-             var rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "About"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "About"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
             
             //Right button
             self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.BackGroundColour
+            self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarBackGround()
             
         }
         else
         {
-            var rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-        
+            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+            
             //Right button
             self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.White
+            self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         }
         
-        self.navigationController?.navigationBar.topItem?.title = " ";
-        
-                switch selectedMenu {
-                case .MainMenu:
-                    self.navigationItem.title="Menu"
-                case .Billing:
-                    self.navigationItem.title="Billing"
-                case .TimeStamps:
-                    self.navigationItem.title="Time Stamps"
-                case .RegisteredHours:
-                    self.navigationItem.title="Registered Hours"
-                case .Authy:
-                    self.navigationItem.title="Authy"
-                                case .AuthyUsers:
-                    self.navigationItem.title="Authy Users"
-                case .Children:
-                    self.navigationItem.title="Children"
-                default:
-                    ""
+        switch selectedMenu {
+        case .MainMenu:
+            self.navigationItem.title="Menu"
+        case .Billing:
+            self.navigationItem.title="Billing"
+        case .TimeStamps:
+            self.navigationItem.title="Time Stamps"
+        case .RegisteredHours:
+            self.navigationItem.title="Registered Hours"
+        case .Authy:
+            self.navigationItem.title="Authy"
+        case .AuthyUsers:
+            self.navigationItem.title="Authy Users"
+        case .Children:
+            self.navigationItem.title="Children"
         }
     }
 }
 
 extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
-    
-    func changeColorOfButton(forCell: MainMenuButtonCollectionViewCell) {
-        //forCell.button.backgroundColor = UIColor.blue
-    }
     
     func performSegue(segueId: String) {
         
@@ -992,9 +956,7 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
                 self.selectedMenu = menuType
                 
                 self.loadMenuAssets()
-                
-                self.HideShowBackButton()
-                
+        
                 self.SetNavigationBarDetails()
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

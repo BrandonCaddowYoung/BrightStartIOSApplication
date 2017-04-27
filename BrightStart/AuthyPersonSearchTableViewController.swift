@@ -67,9 +67,7 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
         tableView.estimatedRowHeight =  tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-       
-        
-        view.backgroundColor = _ApplicatoinColours.TableBackGround
+        tableView.backgroundColor = StyleManager.TableBackGroundColour()
         
         OptionText = "Create"
         
@@ -220,6 +218,28 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
     }
 
     
+    
+    func SetNavigationBarDetails()
+    {
+        self.navigationController?.navigationBar.topItem?.title = " "
+        
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+        
+        navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackButton()
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
+        
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        //Right button
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -229,28 +249,7 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
         }
         else
         {
-            //Changes the color of the backgorund within the nav bar.
-            navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
-            
-            //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-            
-            //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
-            
-            //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
-            
-            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-            
-            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
-            
-            navigationController?.navigationBar.topItem?.title = ""
-            navigationController?.navigationBar.backItem?.title = ""
+            SetNavigationBarDetails()
             
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }

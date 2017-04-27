@@ -12,7 +12,7 @@ import SVProgressHUD
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
 
-    var _ApplicatoinColours: ApplicatoinColours!
+    //var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
     var _PopUpAlert: UIAlertController!
@@ -60,36 +60,36 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //passwordTextField.delegate = self
         //usernameTextField.delegate = self
         
-        _ApplicatoinColours = ApplicatoinColours()
+       // _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
        
-        usernameTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+        usernameTextField.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
         usernameTextField.delegate = self;
         
-        passwordTextField.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+        passwordTextField.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
           passwordTextField.delegate = self;
         
         setupConstraints()
         
-        topView.backgroundColor = _ApplicatoinColours.White
-        middleView.backgroundColor = _ApplicatoinColours.White
-        bottomView.backgroundColor = _ApplicatoinColours.White
+        topView.backgroundColor = StyleManager.theme2()
+        middleView.backgroundColor = StyleManager.theme2()
+        bottomView.backgroundColor = StyleManager.theme2()
        
         //Styling the sign in button
         signInButton.layer.cornerRadius = 5
         signInButton.layer.borderWidth = 1
-        signInButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        signInButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        signInButton.layer.borderColor = StyleManager.FontColour().cgColor
+        signInButton.backgroundColor = StyleManager.buttonBackGround()
         
-        signInButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        signInButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
         
-        signInButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        //signInButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        RememberUsernameSegment.tintColor = _ApplicatoinColours.BackGroundColour
+        RememberUsernameSegment.tintColor = StyleManager.DarkBackground()
         
-        view.backgroundColor = _ApplicatoinColours.BackGroundColour
+        view.backgroundColor = StyleManager.DarkBackground()
        
         //Making the pasword textfield secure
         passwordTextField.isSecureTextEntry = true;
@@ -116,17 +116,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
            passwordTextField.text = "user1"
         #endif
         
-        usernameTextField.font = _ApplicatoinColours.mediumFont
-         passwordTextField.font = _ApplicatoinColours.mediumFont
+       // usernameTextField.font = _ApplicationColours.mediumFont
+         //passwordTextField.font = _ApplicationColours.mediumFont
         
-        SignUpButton.titleLabel!.font = _ApplicatoinColours.sshmediumlFont
-        SignUpButton.setTitleColor(_ApplicatoinColours.Orange, for: .normal)
+        //SignUpButton.titleLabel!.font = FontType.Small
+        SignUpButton.setTitleColor(StyleManager.theme4(), for: .normal)
         
-        signInButton.titleLabel!.font = _ApplicatoinColours.buttonFont
+        //signInButton.titleLabel!.font = _ApplicatoinColours.buttonFont
         
-        spacerMiddleTopView.backgroundColor = _ApplicatoinColours.White
-        spacerMiddleMiddleView.backgroundColor = _ApplicatoinColours.White
-        spacerMiddleBottomView.backgroundColor = _ApplicatoinColours.White
+        spacerMiddleTopView.backgroundColor = StyleManager.theme2()
+        spacerMiddleMiddleView.backgroundColor = StyleManager.theme2()
+        spacerMiddleBottomView.backgroundColor = StyleManager.theme2()
         
         
     }
@@ -235,11 +235,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         FooterView.bottomAnchor.constraint(
             equalTo: bottomView.bottomAnchor).isActive = true
 
-        DontHaveAnAccountLabel.textColor = _ApplicatoinColours.Black
-        DontHaveAnAccountLabel.font = _ApplicatoinColours.sshmediumlFont
+        DontHaveAnAccountLabel.textColor = StyleManager.theme5()
+       // DontHaveAnAccountLabel.font = FontType.Small
         
-        RememberUsernameLabel.textColor = _ApplicatoinColours.Black
-        RememberUsernameLabel.font = _ApplicatoinColours.sshmediumlFont
+        RememberUsernameLabel.textColor = StyleManager.theme5()
+       // RememberUsernameLabel.font = FontType.Small
         
         DontHaveAnAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -673,23 +673,23 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         //Changes the color of the backgorund within the nav bar.
         navigationController?.navigationBar.barStyle = UIBarStyle.black
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+        navigationController?.navigationBar.barTintColor = StyleManager.theme5()
         
         //Title color
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
         navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
         
         //Back color
-        navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+        navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackGround() //Orange
         
         //Back ground color
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround() // Grey
         
         let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
         
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         
-        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
         
         navigationController?.navigationBar.topItem?.title = "Sign in"
         

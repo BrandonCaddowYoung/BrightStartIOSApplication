@@ -34,6 +34,8 @@ class WizardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        SetNavigationBarDetails()
+        
          self.edgesForExtendedLayout = []
         
         _ApplicatoinColours = ApplicatoinColours()
@@ -45,18 +47,18 @@ class WizardViewController: UIViewController {
         
         Top.backgroundColor = .clear
         
-        let image = UIImage.outlinedEllipse(size: CGSize(width: 7.0, height: 7.0), color: _ApplicatoinColours.Orange)
+        let image = UIImage.outlinedEllipse(size: CGSize(width: 7.0, height: 7.0), color: StyleManager.theme4())
         self.pageControl.pageIndicatorTintColor = UIColor.init(patternImage: image!)
         self.pageControl.currentPageIndicatorTintColor = .white
         
         //Stlying save button
         NextFinishButton.layer.cornerRadius = 5
         NextFinishButton.layer.borderWidth = 1
-        NextFinishButton.layer.borderColor = _ApplicatoinColours.White.cgColor
-        NextFinishButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        NextFinishButton.layer.borderColor = StyleManager.theme2().cgColor
+        NextFinishButton.backgroundColor = StyleManager.buttonBackGround()
         
         NextFinishButton.titleLabel?.font = _ApplicatoinColours.buttonFont
-        NextFinishButton.setTitleColor(_ApplicatoinColours.Orange, for: .normal)
+        NextFinishButton.setTitleColor(StyleManager.theme4(), for: .normal)
     }
     
     func setupConstraints() {
@@ -232,56 +234,8 @@ class WizardViewController: UIViewController {
         }
         else
         {
-            //Changes the color of the backgorund within the nav bar.
-            navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
-            
-            //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
-            
-            //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
-            
-            //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
-            
-            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-            
-            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
-            
-            navigationController?.navigationBar.topItem?.title = ""
-            navigationController?.navigationBar.backItem?.title = ""
-            
-            //Hides the back button
-            self.navigationItem.setHidesBackButton(true, animated:true);
-            
             //Shows the nav bar
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
-            
-            
-            if(self.wizardPageViewController?.WizardPurpose == .CreatQuickChild)
-            {
-                self.navigationItem.title="Quick Create"
-            }
-            else if(self.wizardPageViewController?.WizardPurpose == .CreateChild)
-            {
-                self.navigationItem.title="Create"
-            }
-            else if(self.wizardPageViewController?.WizardPurpose == .EditChild)
-            {
-                self.navigationItem.title="Edit"
-            }
-            else if(self.wizardPageViewController?.WizardPurpose == .SetWeeklyRegisteredHours)
-            {
-               self.navigationItem.title="Setting Registered Hours"
-            }
-            else if(self.wizardPageViewController?.WizardPurpose == .RegisteredHours_RollOver)
-            {
-                self.navigationItem.title="Roll Over"
-            }
             
         }
     }
@@ -307,6 +261,51 @@ extension WizardViewController: WizardPageViewControllerDelegate {
             NextFinishButton.setTitle("Next", for: .normal)
         }
     }
+    
+    func SetNavigationBarDetails()
+    {
+        self.navigationItem.setHidesBackButton(true, animated:true);
+        
+        self.navigationController?.navigationBar.topItem?.title = " "
+        
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+        
+        navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackButton()
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
+        
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        //Right button
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
+        
+        if(self.wizardPageViewController?.WizardPurpose == .CreatQuickChild)
+        {
+            self.navigationItem.title="Quick Create"
+        }
+        else if(self.wizardPageViewController?.WizardPurpose == .CreateChild)
+        {
+            self.navigationItem.title="Create"
+        }
+        else if(self.wizardPageViewController?.WizardPurpose == .EditChild)
+        {
+            self.navigationItem.title="Edit"
+        }
+        else if(self.wizardPageViewController?.WizardPurpose == .SetWeeklyRegisteredHours)
+        {
+            self.navigationItem.title="Setting Registered Hours"
+        }
+        else if(self.wizardPageViewController?.WizardPurpose == .RegisteredHours_RollOver)
+        {
+            self.navigationItem.title="Roll Over"
+        }
+        
+    }
+    
 }
 
 /// An extension to `UIImage` for creating images with shapes.

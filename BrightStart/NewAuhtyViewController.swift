@@ -84,23 +84,23 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         {
             //Changes the color of the backgorund within the nav bar.
             navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Black
+            navigationController?.navigationBar.barTintColor = StyleManager.theme5()
             
             //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.Black]
+            let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
             navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
             
             //Back color
-            navigationController?.navigationBar.tintColor = _ApplicatoinColours.NavigationBarBackBackButtonColor //Orange
+            navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackGround() //Orange
             
             //Back ground color
-            navigationController?.navigationBar.barTintColor = _ApplicatoinColours.NavigationBarBackGroundColor // Grey
+            navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround() // Grey
             
             let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
             
             self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
             
-            self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.Black
+            self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
             
             navigationController?.navigationBar.topItem?.title = ""
             navigationController?.navigationBar.backItem?.title = ""
@@ -111,21 +111,23 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
     
     func SetNavigationBarDetails()
     {
+        self.navigationController?.navigationBar.topItem?.title = " "
+        
         //Changes the color of the backgorund within the nav bar.
         //navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
         
         //Title color(Center)
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: _ApplicatoinColours.White]
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme2()]
         navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
         
         //Back ground color
-        navigationController?.navigationBar.barTintColor = _ApplicatoinColours.Blue
+        navigationController?.navigationBar.barTintColor = StyleManager.theme1()
         
         var rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
         
         //Right button
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-        self.navigationItem.rightBarButtonItem?.tintColor = _ApplicatoinColours.White
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme2()
         
         self.navigationController?.navigationBar.topItem?.title = "New Authy User";
         
@@ -153,37 +155,37 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         //Styling button
         SubmitButton.layer.cornerRadius = 5
         SubmitButton.layer.borderWidth = 1
-        SubmitButton.layer.borderColor = _ApplicatoinColours.FontColour.cgColor
-        SubmitButton.backgroundColor = _ApplicatoinColours.ButtonBackGroundColor
+        SubmitButton.layer.borderColor = StyleManager.FontColour().cgColor
+        SubmitButton.backgroundColor = StyleManager.buttonBackGround()
         
-        SubmitButton.setTitleColor(_ApplicatoinColours.ButtonForeGroundColor, for: .normal)
+        SubmitButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
 
         SubmitButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
-        view.backgroundColor = _ApplicatoinColours.White
+        view.backgroundColor = StyleManager.theme2()
         
-        RelationshipTextBox.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+        RelationshipTextBox.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
         RelationshipTextBox.delegate = self;
         
-        NameTextBox.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+        NameTextBox.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
         NameTextBox.delegate = self;
         
-        CountryCodeTextBox.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+        CountryCodeTextBox.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
         CountryCodeTextBox.delegate = self;
         
-         EmailAddresTextBox.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+         EmailAddresTextBox.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
         EmailAddresTextBox.delegate = self;
         
-        MobileNumberTextBox.setBottomBorder(backGroundColor: _ApplicatoinColours.White.cgColor, underlineColor: _ApplicatoinColours.Orange.cgColor, textColor: _ApplicatoinColours.Black, palceHoldertextColor: _ApplicatoinColours.PlaceholderColor)
+        MobileNumberTextBox.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
         MobileNumberTextBox.delegate = self;
         
         HeadingLabel.font = _ApplicatoinColours.largeFont
-        HeadingLabel.textColor = _ApplicatoinColours.White
+        HeadingLabel.textColor = StyleManager.theme1()
         
          setupConstraints()
     
@@ -220,9 +222,9 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         MiddleContainer.translatesAutoresizingMaskIntoConstraints = false
         BottomContainer.translatesAutoresizingMaskIntoConstraints = false
         
-        TopContainer.backgroundColor = _ApplicatoinColours.White
-        MiddleContainer.backgroundColor = _ApplicatoinColours.White
-        BottomContainer.backgroundColor = _ApplicatoinColours.White
+        TopContainer.backgroundColor = StyleManager.theme2()
+        MiddleContainer.backgroundColor = StyleManager.theme2()
+        BottomContainer.backgroundColor = StyleManager.theme2()
         
         NameTextBox.translatesAutoresizingMaskIntoConstraints = false
         RelationshipTextBox.translatesAutoresizingMaskIntoConstraints = false

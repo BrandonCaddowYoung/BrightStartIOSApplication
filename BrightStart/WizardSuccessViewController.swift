@@ -39,19 +39,19 @@ class WizardSuccessViewController: UIViewController {
         
         setupConstraints()
         
-        Top.backgroundColor = _ApplicatoinColours.BackGroundColour
-        UpperHeading.backgroundColor = _ApplicatoinColours.BackGroundColour
-        UpperContent.backgroundColor = _ApplicatoinColours.BackGroundColour
-        Bottom.backgroundColor = _ApplicatoinColours.BackGroundColour
+        Top.backgroundColor = StyleManager.DarkBackground()
+        UpperHeading.backgroundColor = StyleManager.DarkBackground()
+        UpperContent.backgroundColor = StyleManager.DarkBackground()
+        Bottom.backgroundColor = StyleManager.DarkBackground()
        
-        self.SuccessImage?.image = UIImage(named: "Rocket")?.maskWithColor(color: _ApplicatoinColours.White)
+        self.SuccessImage?.image = UIImage(named: "Rocket")?.maskWithColor(color: StyleManager.theme2())
         
         SuccessLabel.text = "That was succesful!!"
         
         SuccessLabel.font = _ApplicatoinColours.largeFont
-        SuccessLabel.textColor = _ApplicatoinColours.White
+        SuccessLabel.textColor = StyleManager.theme2()
        
-        OKButton.setTitleColor(_ApplicatoinColours.Orange, for: UIControlState.normal)
+        OKButton.setTitleColor(StyleManager.theme4(), for: UIControlState.normal)
     }
     
     func setupConstraints() {
