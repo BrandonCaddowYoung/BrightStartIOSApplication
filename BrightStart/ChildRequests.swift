@@ -29,7 +29,7 @@ class ChildRequests: NSObject {
             nurserySchoolId = id;
         }
         
-        let route = baseURL + "api/ChildLogic/GetAllEnrolledChilren?nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/ChildLogic/SelectAllCurrentlyEnrolledChildren?nurserySchoolId=" + nurserySchoolId
         
         makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
@@ -44,7 +44,7 @@ class ChildRequests: NSObject {
     func GetAllChildrenWhoHaveExtraMinutesForGivenDay(targetDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateString = dateFormatter.string(from: targetDate as Date)
 
         let defaults = UserDefaults.standard

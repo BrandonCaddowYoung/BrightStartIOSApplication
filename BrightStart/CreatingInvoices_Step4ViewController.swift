@@ -61,7 +61,7 @@ class CreatingInvoices_Step4ViewController: UIViewController {
         TopLabel.font = _ApplicatoinColours.mediumFont
         BottomLabel.font = _ApplicatoinColours.mediumFont
         
-        TopText.textColor = StyleManager.theme4()
+        TopText.textColor = StyleManager.theme1()
         TopLabel.textColor = StyleManager.theme2()
         BottomLabel.textColor = StyleManager.theme2()
         

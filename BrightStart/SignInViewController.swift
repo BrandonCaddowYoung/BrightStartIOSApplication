@@ -80,7 +80,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //Styling the sign in button
         signInButton.layer.cornerRadius = 5
         signInButton.layer.borderWidth = 1
-        signInButton.layer.borderColor = StyleManager.FontColour().cgColor
+        signInButton.layer.borderColor = StyleManager.theme2().cgColor
         signInButton.backgroundColor = StyleManager.buttonBackGround()
         
         signInButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)

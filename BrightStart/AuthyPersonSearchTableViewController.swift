@@ -238,6 +238,8 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         
+        self.navigationItem.title="Select Child"
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

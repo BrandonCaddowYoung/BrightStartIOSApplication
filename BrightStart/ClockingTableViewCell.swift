@@ -237,7 +237,7 @@ class ClockingTableViewCell: UITableViewCell
                         
                         self.backgroundColor = StyleManager.theme1()
                         self.childNameLabel.textColor = StyleManager.theme2()
-                        self.cellInformationText.textColor = StyleManager.FontColour()
+                        self.cellInformationText.textColor = StyleManager.theme5()
                         self.cellDetailsText.textColor = StyleManager.theme2()
                         
                     }
@@ -252,7 +252,7 @@ class ClockingTableViewCell: UITableViewCell
                         
                         self.backgroundColor = StyleManager.theme1()
                         self.childNameLabel.textColor = StyleManager.theme2()
-                        self.cellInformationText.textColor = StyleManager.FontColour()
+                        self.cellInformationText.textColor = StyleManager.theme5()
                         self.cellDetailsText.textColor = StyleManager.theme2()
                         
                     }
@@ -267,7 +267,7 @@ class ClockingTableViewCell: UITableViewCell
                         
                         self.backgroundColor = StyleManager.theme1()
                         self.childNameLabel.textColor = StyleManager.theme2()
-                        self.cellInformationText.textColor = StyleManager.FontColour()
+                        self.cellInformationText.textColor = StyleManager.theme5()
                         self.cellDetailsText.textColor = StyleManager.theme2()
                     }
                 }
@@ -278,7 +278,8 @@ class ClockingTableViewCell: UITableViewCell
                 self.cellImage2?.image = UIImage(named: "SignedOut")
 
                cellImage.image = cellImage.image?.maskWithColor(color: StyleManager.theme4())
-              cellImage2.image = cellImage2.image?.maskWithColor(color: StyleManager.theme4())
+              
+                cellImage2.image = cellImage2.image?.maskWithColor(color: StyleManager.theme4())
                 
                 self.cellDetailsText.text = ""
                 

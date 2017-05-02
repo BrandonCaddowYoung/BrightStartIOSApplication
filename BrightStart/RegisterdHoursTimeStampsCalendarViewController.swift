@@ -141,7 +141,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         addNewButtonStart.addGestureRecognizer(addNewButtonStartTap)
         
         addNewButtonStart.image = addNewButtonStart.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        addNewButtonStart.tintColor = _ApplicatoinColours.Grey
+        addNewButtonStart.tintColor = StyleManager.theme4()
         
         //Adding click to add new end
         addNewButtonEnd.isUserInteractionEnabled = true;
@@ -149,7 +149,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         addNewButtonEnd.addGestureRecognizer(addNewButtonEndTap)
        
         addNewButtonEnd.image = addNewButtonEnd.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        addNewButtonEnd.tintColor = _ApplicatoinColours.Grey
+        addNewButtonEnd.tintColor = StyleManager.theme4()
         
         calendarView.registerHeaderView(xibFileNames: ["TimeStampsSectionHeaderView", "TimeStampsSectionHeaderView"])
         
@@ -161,7 +161,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         leftContainer.backgroundColor = StyleManager.DarkBackground()
         rightContainer.backgroundColor = StyleManager.DarkBackground()
         
-        calendarView.backgroundColor = _ApplicatoinColours.CalendarBackGround
+        calendarView.backgroundColor = StyleManager.theme2()
         
         topContainer.backgroundColor = StyleManager.DarkBackground()
         bottomContainer.backgroundColor = StyleManager.DarkBackground()
@@ -181,6 +181,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         startLabel.textColor = StyleManager.FontColour()
        finishLabel.textColor = StyleManager.FontColour()
+        
+        targetPersonButton.backgroundColor = StyleManager.theme1()
+        targetPersonButton.tintColor = StyleManager.theme4()
         
         setupConstraints()
         
@@ -217,7 +220,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         monthLabel.textColor = StyleManager.theme2()
         yearLabel.textColor = StyleManager.theme2()
         
-typeSwitch.tintColor = _ApplicatoinColours.Grey
+        typeSwitch.tintColor = StyleManager.theme3()
         
         typeSwitch.isHidden = true
         
@@ -260,7 +263,44 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         
-        //self.navigationItem.title="Time Stamps Editor"
+        if(selectCalendarPurpose == .TimeStamps)
+        {
+            self.navigationItem.title="Time Stamps"
+        }
+        else if(selectCalendarPurpose == .RegistrationHours)
+        {
+            self.navigationItem.title="Registered Hours"
+        }
+        else if(selectCalendarPurpose == .ExtraMinutesFinder_Date)
+        {
+            self.navigationItem.title="Extra Minutes"
+        }
+       else if(selectCalendarPurpose == .DateSelector)
+        {
+            self.navigationItem.title="Date Selection"
+        }
+        else if(selectCalendarPurpose == .MissingTimeStamps_Person)
+        {
+            self.navigationItem.title="Missing Time Stamps"
+        }
+        else if(selectCalendarPurpose == .MissingTimeStamps_Date)
+        {
+            self.navigationItem.title="Missing Time Stamps"
+        }
+        
+        else if(selectCalendarPurpose == .MissingTimeStamps_DateRange)
+        {
+            self.navigationItem.title="Missing Time Stamps"
+        }
+        else if(selectCalendarPurpose == .DateSelection)
+        {
+            self.navigationItem.title="Date Selection"
+        }
+        else if(selectCalendarPurpose == .DateRangeSelection)
+        {
+            self.navigationItem.title = "Date Range Selection"
+        }
+        
         
     }
     
@@ -287,7 +327,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         
         // Setup Cell text
         myCustomCell.dayLabel.text = cellState.text
-        myCustomCell.dayLabel.textColor = _ApplicatoinColours.CalendarHighLightedText
+        myCustomCell.dayLabel.textColor = StyleManager.theme1()
         
         //if(cellState.dateBelongsTo == .thisMonth){
         //myCustomCell.dayLabel.textColor = _ApplicatoinColours.Red
@@ -302,7 +342,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
             myCustomCell.isUserInteractionEnabled = false
         }
         
-        myCustomCell.selectedView.backgroundColor = _ApplicatoinColours.CalendarHighLighted
+        myCustomCell.selectedView.backgroundColor = StyleManager.theme1()
         
         handleCellTextColor(view: cell, cellState: cellState)
         handleCellSelection(view: cell, cellState: cellState)
@@ -713,12 +753,12 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         }
         
         if cellState.isSelected {
-            myCustomCell.dayLabel.textColor = _ApplicatoinColours.CalendarHighLightedText
+            myCustomCell.dayLabel.textColor = StyleManager.theme2()
         } else {
             if cellState.dateBelongsTo == .thisMonth {
-                myCustomCell.dayLabel.textColor = _ApplicatoinColours.CalendarText
+                myCustomCell.dayLabel.textColor = StyleManager.theme1()
             } else {
-                myCustomCell.dayLabel.textColor = _ApplicatoinColours.CalendarBackGround
+                myCustomCell.dayLabel.textColor = StyleManager.theme2()
             }
         }
     }
@@ -800,11 +840,11 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
         headerCell?.backgroundColor = .red
         
         if(hideHeader){
-            headerCell?.title.textColor = _ApplicatoinColours.CalendarBackGround
+            headerCell?.title.textColor = StyleManager.theme2()
         }
         else
         {
-        headerCell?.title.textColor = _ApplicatoinColours.CaelndarHeader
+        headerCell?.title.textColor = StyleManager.theme1()
         }
        
     }
@@ -1150,7 +1190,7 @@ typeSwitch.tintColor = _ApplicatoinColours.Grey
                                 
                                 self.calendarView.selectDates([self.lastSelectedDate])
                                 
-                                self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                                self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
                                 
                                 
                             } )

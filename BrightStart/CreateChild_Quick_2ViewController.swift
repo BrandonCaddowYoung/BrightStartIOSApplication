@@ -51,7 +51,7 @@
             
             setupConstraints()
             
-            Top.backgroundColor = StyleManager.DarkBackground()
+            Top.backgroundColor = StyleManager.theme2()
             
             UpperHeading.backgroundColor = StyleManager.theme2()
             

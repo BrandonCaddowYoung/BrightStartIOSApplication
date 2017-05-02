@@ -80,7 +80,7 @@ class RegisteredHoursWeekly_Step2ViewController: UIViewController , UIPickerView
         SelectTheYearLabel.font = _ApplicatoinColours.mediumFont
         SelectTheMonthLabel.font = _ApplicatoinColours.mediumFont
         
-        TopText.textColor = StyleManager.theme4()
+        TopText.textColor = StyleManager.theme1()
         YearLabel.textColor = StyleManager.theme5()
         MonthLabel.textColor = StyleManager.theme5()
         SelectTheYearLabel.textColor = StyleManager.theme5()

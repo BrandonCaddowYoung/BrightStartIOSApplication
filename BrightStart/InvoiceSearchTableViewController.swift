@@ -108,7 +108,7 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         
-        self.navigationItem.title="Tnvoice Search"
+        self.navigationItem.title="Invoice Search"
         
     }
     

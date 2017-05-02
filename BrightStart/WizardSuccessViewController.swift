@@ -52,6 +52,7 @@ class WizardSuccessViewController: UIViewController {
         SuccessLabel.textColor = StyleManager.theme2()
        
         OKButton.setTitleColor(StyleManager.theme4(), for: UIControlState.normal)
+        OKButton.backgroundColor = StyleManager.theme1()
     }
     
     func setupConstraints() {

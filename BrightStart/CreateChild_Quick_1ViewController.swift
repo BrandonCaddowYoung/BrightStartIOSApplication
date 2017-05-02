@@ -71,7 +71,7 @@ class CreateChild_Quick_1ViewController: UIViewController {
         
         //UpperContent.addBottomBorder(color: StyleManager.theme4(), margins: 1)
         LowerContent.addBottomBorder(color: StyleManager.theme4(), margins: 1)
-        UpperHeading.addTopBorder(color: StyleManager.theme4(), margins: 1)
+        //UpperHeading.addTopBorder(color: StyleManager.theme4(), margins: 1)
         
         HeadingLabel.font = _ApplicatoinColours.XlargeFont
         HeadingLabel.textColor = StyleManager.theme1()

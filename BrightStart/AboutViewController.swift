@@ -47,7 +47,7 @@ class AboutViewController: UIViewController {
         
         HeadingLabel.lineBreakMode = .byWordWrapping
         HeadingLabel.numberOfLines = 5
-        HeadingLabel.textColor = StyleManager.FontColour()
+        HeadingLabel.textColor = StyleManager.theme1()
         
         HeadingLabel.font = UIFont(name: "Helvetica Neue", size: 21)
         HeadingLabel.font = UIFont.systemFont(ofSize: 21, weight: UIFontWeightThin)

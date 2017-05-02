@@ -77,7 +77,9 @@ class InvoiceSearchTableViewCell: UITableViewCell
         
         BottomContainer.backgroundColor = StyleManager.theme2()
         
-         //LineOuterContainer.backgroundColor = StyleManager.theme2()
+        //LineOuterContainer.backgroundColor = StyleManager.theme2()
+        
+        LineInnerContainer.backgroundColor = StyleManager.theme2()
         
         TotalLabel.font = _ApplicationColours.XlargeFont
         InvoiceNumberLabel.font = _ApplicationColours.mediumFont
@@ -95,21 +97,21 @@ class InvoiceSearchTableViewCell: UITableViewCell
         ExtraLabel.font = _ApplicationColours.smallFont
         BalanceLabel.font = _ApplicationColours.smallFont
         
-        TotalLabel.textColor = StyleManager.FontColour()
-        InvoiceNumberLabel.textColor = StyleManager.FontColour()
+        TotalLabel.textColor = StyleManager.theme5()
+        InvoiceNumberLabel.textColor = StyleManager.theme5()
         
-        RegisteredAmountLabel.textColor = StyleManager.FontColour()
-        NonRegisteredAmountLabel.textColor = StyleManager.FontColour()
-        ExtraAmountLabel.textColor = StyleManager.FontColour()
-        BalanceAmountLabel.textColor = StyleManager.FontColour()
+        RegisteredAmountLabel.textColor = StyleManager.theme5()
+        NonRegisteredAmountLabel.textColor = StyleManager.theme5()
+        ExtraAmountLabel.textColor = StyleManager.theme5()
+        BalanceAmountLabel.textColor = StyleManager.theme5()
         
-        RegisterdLabel.textColor = StyleManager.FontColour()
-        NonRegisteredLabel.textColor = StyleManager.FontColour()
-        ExtraLabel.textColor = StyleManager.FontColour()
-        BalanceLabel.textColor = StyleManager.FontColour()
+        RegisterdLabel.textColor = StyleManager.theme5()
+        NonRegisteredLabel.textColor = StyleManager.theme5()
+        ExtraLabel.textColor = StyleManager.theme5()
+        BalanceLabel.textColor = StyleManager.theme5()
         
-        InvoiceStartDate.textColor = StyleManager.FontColour()
-        InvoiceEndDate.textColor = StyleManager.FontColour()
+        InvoiceStartDate.textColor = StyleManager.theme5()
+        InvoiceEndDate.textColor = StyleManager.theme5()
         
     }
     

@@ -602,7 +602,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 
             else if(self.Purpose == "TimeStamps_ExtraMinutesFinder")
             {
-                self.navigationItem.title="Select a child"
+                self.navigationItem.title="Extra minutes"
             }
                 
                 //Do I need this?

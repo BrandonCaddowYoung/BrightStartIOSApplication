@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import DZNEmptyDataSet
 import SVProgressHUD
-import SVProgressHUD
 
 class ClockingTableViewController: UITableViewController, UITextFieldDelegate , DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
@@ -30,6 +29,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
         children.removeAll()
         tableView.reloadData()
         refresh()
+        
     }
     
     func refresh()
@@ -124,6 +124,10 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
         
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+
         self.children.removeAll();
         
             CommonRequests.sharedInstance.getPeople { json in
@@ -191,7 +195,6 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
         let row = (indexPath as NSIndexPath).row;
         
       if children.count > section && children[section].count > row {
-            //print(children[section][row])
             cell.child = children[section][row];
         }
         
@@ -201,10 +204,6 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if(ShouldUseTapToSelect==true){
-            
-             
-            
-            
         }
         
     }
@@ -247,13 +246,9 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
                     CommonRequests.sharedInstance.signIn(personId: (cell.child?.Id)! as String, timeOfSignIn: Date() as NSDate,
                                                          onCompletion: {
                                                             DispatchQueue.main.async(execute: {
-                                                                self.refreshTable()
                                                                 
-                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                    
-                                                                    
-                                                                    
-                                                                } )
+                                                                self.refreshTable()
+                                                              
                                                             })
                     }
                     )
@@ -261,8 +256,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
                 }
                 
             }
-            signIn.backgroundColor = _ApplicatoinColours.LightBlue
-            
+            signIn.backgroundColor = StyleManager.theme1()
             var rowTitle2 = "Sign out " + ((cell.child?.Name)! as String)
             
             if(UIDevice.current.userInterfaceIdiom == .phone){
@@ -298,23 +292,11 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
                                                             
                                                             DispatchQueue.main.async(execute: {
                                                                 self.refreshTable()
-                                                                
-                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                    
-                                                                    
-                                                                    
-                                                                } )
-                                                                
                                                             })
-                                                            
                     })
-                    
                 }
-                
-                
-                
             }
-            signOut.backgroundColor = StyleManager.theme4()
+            signOut.backgroundColor = StyleManager.theme3()
             
             if(cell.child?.CurrentlySignedIn == true){
                 return [signOut]

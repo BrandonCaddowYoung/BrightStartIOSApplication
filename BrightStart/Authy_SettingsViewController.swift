@@ -382,6 +382,8 @@ class Authy_SettingsViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
         
+        self.navigationItem.title="Authy Settings"
+        
     }
     
     func NavBarMenuTapped()

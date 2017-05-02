@@ -44,7 +44,7 @@ enum PurposeTypes: Int {
     case TimeStamps_Edit
     case TimeStamps_Delete
     case TimeStamps_Search
-    case TimeStamps_Missing
+    case TimeStamps_MissingTimeStampsFinder
     case TimeStamps_ExtraMinutesFinder
     case TimeStamps_Menu
     
@@ -175,15 +175,15 @@ class MainMenuViewController: UIViewController {
             
             //uncomment for missing timestamps, also fill in the rest. The end result actually just returns current timestamps for the day, not missing time stamps!
             
-            images = [UIImage(named: "Calendar")!, UIImage(named: "Search")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Calendar")!, UIImage(named: "Search")!, UIImage(named: "Search")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToSearchPerson", "GoToDateSelect", "GoToSignIn"]
+            segueIdList = ["GoToSearchPerson", "GoToDateSelect","GoToDateSelect", "GoToSignIn"]
             
-             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_ExtraMinutesFinder, PurposeTypes.SignOut]
+             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_ExtraMinutesFinder,PurposeTypes.TimeStamps_MissingTimeStampsFinder, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Calendar", "Extra Minutes Finder","Sign Out"]
+            DisplayTextList = ["Calendar", "Extra Minutes Finder", "Missing Time Stamps Finder", "Sign Out"]
             
-            authyIdList = ["", "","", ""]
+            authyIdList = ["", "","", "", ""]
                 
             showNavigationBar = true
             ShowNavBar()
@@ -575,6 +575,19 @@ class MainMenuViewController: UIViewController {
                 vc.showNavigationBar = true
             }
         }
+            
+        else if (segue.identifier == "GoToDateSelect") {
+            
+            if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                
+                vc.Purpose = "TimeStamps_MissingTimeStampsFinder"
+                vc.selectCalendarPurpose = .ExtraMinutesFinder_Date
+                
+                //This is as far as I have got, next I need to be able to select date range from the calendar.
+                
+                vc.showNavigationBar = true
+            }
+        }   
         
         else if (segue.identifier == "GoToSearchPerson") {
             
@@ -963,10 +976,8 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
                     
                     self.collectionView.reloadData()
                     
-                    SVProgressHUD.dismiss(withDelay: 1, completion: {
-                        
-                       // self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                        
+                    SVProgressHUD.dismiss(withDelay: 0.1, completion: {
+                       
                         
                     } )
         }

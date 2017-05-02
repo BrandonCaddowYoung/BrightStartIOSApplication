@@ -462,6 +462,8 @@ class AuthySettingsViewController: UIViewController {
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
+        
+        self.navigationItem.title="Authy Settings"
 
     }
     

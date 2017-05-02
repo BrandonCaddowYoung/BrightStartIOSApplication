@@ -87,7 +87,7 @@ class RegisteredHoursRollOver_Step2ViewController: UIViewController , UIPickerVi
         SelectTheYearLabel.font = _ApplicatoinColours.mediumFont
         SelectTheMonthLabel.font = _ApplicatoinColours.mediumFont
         
-        TopText.textColor = StyleManager.theme4()
+        TopText.textColor = StyleManager.theme1()
         
         SelectTheYearLabel.textColor = StyleManager.theme2()
         SelectTheMonthLabel.textColor = StyleManager.theme2()

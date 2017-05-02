@@ -220,20 +220,7 @@ class WizardPageViewController: UIPageViewController {
                                     
                                     
                                 })
-                            })
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                    }
+                            })                    }
                 }
                 }
             }
@@ -348,7 +335,7 @@ class WizardPageViewController: UIPageViewController {
                         return
                     }
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: String(childrenList.count) + " more to go!")
+                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: String(childrenList.count) + " more to go!")
                     
                     //Do the next
                     self.PerformCreatingInvoicesRecursively(targetChildren: childrenList, registeredHoursStartDate: registeredHoursStartDate, registeredHoursEndDate: registeredHoursEndDate,  extraHoursStartDate: extraHoursStartDate, extraHoursEndDate: extraHoursEndDate, nonRegisteredHoursStartDate: nonRegisteredHoursStartDate, nonRegisteredHoursEndDate: nonRegisteredHoursEndDate, dueDate: dueDate, onCompletion: onCompletion)
@@ -382,7 +369,7 @@ class WizardPageViewController: UIPageViewController {
                     return
                     }
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: String(childrenList.count) + " more to go!")
+                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: String(childrenList.count) + " more to go!")
                     
                     //Do the next
                     self.PerformRollOverRecursively(targetChildren: childrenList, targetYear: targetYear, targetMonth: targetMonth, destinationYear: destinationYear, destinationMonth: destinationMonth, onCompletion: onCompletion)
@@ -416,7 +403,7 @@ class WizardPageViewController: UIPageViewController {
                         return
                     }
                     
-                     self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: String(childrenList.count) + " more to go!")
+                     self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: String(childrenList.count) + " more to go!")
                     
                     //Do the next
                     self.PerformSetWeeklyRegisteredHoursRecursively(targetChildren: childrenList, chosenYear: String(chosenYear), chosenMonth: String(chosenMonth), mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion: onCompletion)
@@ -661,18 +648,6 @@ func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }

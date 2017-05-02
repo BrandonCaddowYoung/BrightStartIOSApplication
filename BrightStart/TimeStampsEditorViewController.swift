@@ -28,8 +28,8 @@ class TimeStampsEditorViewController: UIViewController {
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
     
+    var successIdentifier = ""
     var goBackOnSuccess = false
-    
     var showNavigationBar = true
     
     var Action:String!
@@ -82,12 +82,8 @@ class TimeStampsEditorViewController: UIViewController {
                                                             
                                                             DispatchQueue.main.async(execute: {
                                                                 
-                                                                
-                                                                
-                                                                
                                                                 SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
-                                                                    
+                                                                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
                                                                     
                                                                     if(self.goBackOnSuccess){
                                                                         if let nav = self.navigationController {
@@ -98,24 +94,20 @@ class TimeStampsEditorViewController: UIViewController {
                                                                     }
                                                                     else{
                                                                         
-                                                                        self.GoToMenuType = .MainMenu
+                                                                        if(self.successIdentifier != "")
+                                                                        {
+                                                                            self.performSegue(withIdentifier: self.successIdentifier, sender: nil)
+                                                                        }
+                                                                        else{
                                                                         
+                                                                        self.GoToMenuType = .MainMenu
                                                                         self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+                                                                        
+                                                                        }
                                                                         
                                                                     }
                                                                     
-                                                                    
                                                                 } )
-                                                                
-                                                                    
-                                                                
-                                                                    
-                                                            
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
                                                             })
             })
             
@@ -149,7 +141,7 @@ class TimeStampsEditorViewController: UIViewController {
                     
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
                     
                     if(self.goBackOnSuccess){
                         if let nav = self.navigationController {
@@ -189,7 +181,7 @@ class TimeStampsEditorViewController: UIViewController {
                     
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
                         
-                        self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                        self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
                         
                         if(self.goBackOnSuccess){
                             if let nav = self.navigationController {
@@ -225,51 +217,33 @@ class TimeStampsEditorViewController: UIViewController {
             SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
             SVProgressHUD.show()
             
-            
             //Change to to creating time stamps
             CommonRequests.sharedInstance.createTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate,
                                                           onCompletion: {
                                                             
                                                             DispatchQueue.main.async(execute: {
                                                                 
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
                                                                 SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                     
-                                                                    self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                                                                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
                                                                     
                                                                     if(self.goBackOnSuccess){
+                                                                        
                                                                         if let nav = self.navigationController {
                                                                             nav.popViewController(animated: true)
                                                                         } else {
                                                                             self.dismiss(animated: true, completion: nil)
                                                                         }
+                                                                        
                                                                     }
                                                                     else{
-                                                                        
                                                                         self.GoToMenuType = .MainMenu
-                                                                        
                                                                         self.performSegue(withIdentifier: "GoToMenu", sender: nil)
                                                                     }
                                                                     
-                                                                    
-                                                                    
                                                                 } )
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
                                                             })
             })
-            
-            
-            
-            
-            
         }
 
         
@@ -294,7 +268,7 @@ class TimeStampsEditorViewController: UIViewController {
                                                             
                                                             SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                 
-                                                                self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                                                                self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
                                                                 
                                                                 if(self.goBackOnSuccess){
                                                                     if let nav = self.navigationController {
@@ -783,6 +757,21 @@ class TimeStampsEditorViewController: UIViewController {
             }
             
         }
+        
+        else if (segue.identifier == "GoToExtraMinutesFinder") {
+            
+            if let vc = segue.destination as? PersonSearchTableViewController {
+                
+                vc.targetDate = (DateAsObject as NSDate) as Date!
+                
+                vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+                vc.successSegueIdentifier = "GoToTimeStampSearch"
+                
+            }
+        }
+        
+        
+        
     }
 
     //Removes the navigation bar from the top

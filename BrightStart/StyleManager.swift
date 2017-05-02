@@ -85,7 +85,7 @@ final class StyleManager {
     }
     
     static func FontColour() -> UIColor {
-        return UIColor.flatBlack
+        return UIColor.flatWhite
     }
     
     static func TableFontColor() -> UIColor {

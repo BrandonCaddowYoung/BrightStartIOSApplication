@@ -106,6 +106,8 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
             navigationController?.navigationBar.backItem?.title = ""
             
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            
+            self.navigationItem.title="New Authy User"
         }
     }
     

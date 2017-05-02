@@ -49,7 +49,7 @@ class WizardViewController: UIViewController {
         
         let image = UIImage.outlinedEllipse(size: CGSize(width: 7.0, height: 7.0), color: StyleManager.theme4())
         self.pageControl.pageIndicatorTintColor = UIColor.init(patternImage: image!)
-        self.pageControl.currentPageIndicatorTintColor = .white
+        self.pageControl.currentPageIndicatorTintColor = StyleManager.theme1()
         
         //Stlying save button
         NextFinishButton.layer.cornerRadius = 5

@@ -249,7 +249,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
                 )
                 
             }
-            delete.backgroundColor = _ApplicatoinColours.Grey
+            delete.backgroundColor = StyleManager.theme3()
             
             let share = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
                 self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
@@ -314,10 +314,12 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
                 }
                 else if(SelectedPersonLog.Action == "Logout")
                 {
-                    vc.editType = .Start
+                    vc.editType = .End
                 }
                 
                 vc.EditorMode = .TimeStamps_Edit
+                
+                vc.successIdentifier = "GoToExtraMinutesFinder"
                 
                 let dateFormatter = DateFormatter()
                 

@@ -433,6 +433,7 @@
                         <outlet property="TargetPersonName" destination="CcT-7G-wcF" id="tca-NK-AY3"/>
                         <outlet property="TopContainer" destination="W4q-u2-Eqq" id="cSf-JI-fMi"/>
                         <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMenu" id="ULa-J9-Ttu"/>
+                        <segue destination="JFD-vf-2e8" kind="show" identifier="GoToExtraMinutesFinder" id="2ZH-xg-czw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWA-ah-eRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3821,11 +3822,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2qs-QS-n86"/>
-        <segue reference="604-sb-TVk"/>
-        <segue reference="fQC-lD-NUF"/>
-        <segue reference="FZS-ay-AFf"/>
-        <segue reference="Tyt-3s-Vhf"/>
+        <segue reference="ULa-J9-Ttu"/>
         <segue reference="4jP-f9-54C"/>
+        <segue reference="Tyt-3s-Vhf"/>
+        <segue reference="2ZH-xg-czw"/>
+        <segue reference="FZS-ay-AFf"/>
         <segue reference="Q5J-dV-oJS"/>
         <segue reference="wG7-yc-5Up"/>
         <segue reference="CWW-ID-FRn"/>

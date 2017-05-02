@@ -393,7 +393,7 @@ class AddRegisteredHoursViewController: UIViewController {
             
             SVProgressHUD.dismiss(withDelay: 1, completion: {
                 
-                self._CommonHelper.ShowSuccessMessage(title: "Great, that worked.", subsTtitle: "")
+                self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
                 
                 //Always goes back when done but this could be optional?
                 
