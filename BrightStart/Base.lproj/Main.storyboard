@@ -1146,6 +1146,11 @@
                         <segue destination="Lnz-bY-4jG" kind="show" identifier="GoToAuthyAuthenticate" id="CWW-ID-FRn"/>
                         <segue destination="Knv-uS-3wD" kind="show" identifier="GoToAuthySettings" id="X9c-52-DU2"/>
                         <segue destination="RWf-iR-1kG" kind="show" identifier="GoToWizard" id="9Ph-Vt-qBT"/>
+                        <segue destination="zM4-4Y-bX0" kind="show" identifier="GoToCreateInvoice" id="tfc-GA-h45"/>
+                        <segue destination="RJ8-JQ-n8B" kind="show" identifier="GoToSettingWeeklyRegisterdHours" id="Th0-2f-Oo8"/>
+                        <segue destination="0Ef-LY-2RL" kind="show" identifier="GoToCreateChild" id="1cA-Hy-RQv"/>
+                        <segue destination="Lnw-QT-UeH" kind="show" identifier="GoToQuickCreateChild" id="7Qx-Im-FKp"/>
+                        <segue destination="Pxt-wG-T6I" kind="show" identifier="GoToRollOver" id="zWg-Zh-7Zx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWk-wx-plk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2225,7 +2230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lje-yz-2Df" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-569" y="2551"/>
+            <point key="canvasLocation" x="-559" y="2534"/>
         </scene>
         <!--Create Child Quick2 View Controller-->
         <scene sceneID="BjI-x2-EVP">
@@ -2362,7 +2367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TCI-yi-ezw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="301.60000000000002" y="2550.6746626686659"/>
+            <point key="canvasLocation" x="391" y="2551"/>
         </scene>
         <!--Create Child Quick3 View Controller-->
         <scene sceneID="tx1-p4-9iB">
@@ -3149,6 +3154,29 @@
             </objects>
             <point key="canvasLocation" x="9574" y="-1378"/>
         </scene>
+        <!--Roll Over-->
+        <scene sceneID="2F3-oV-h4K">
+            <objects>
+                <viewController id="ZSU-Jr-u8z" customClass="RollOver" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r3s-FO-ksl"/>
+                        <viewControllerLayoutGuide type="bottom" id="9PE-lf-inb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NnM-FO-KaT" customClass="Roll">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="he2-yE-f6X"/>
+                    <connections>
+                        <segue destination="HqA-Cc-9ge" kind="show" identifier="GoToSuccess" id="O32-SF-SMs"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="dqp-G4-KoA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ufp-SG-kWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5140" y="1692.5037481259371"/>
+        </scene>
         <!--Creating Invoices Step1 View Controller-->
         <scene sceneID="dLF-Ss-jeo">
             <objects>
@@ -3806,7 +3834,107 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zRl-XP-6li" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9573.6000000000004" y="-589.65517241379314"/>
+            <point key="canvasLocation" x="8740" y="-67"/>
+        </scene>
+        <!--Creating Invoices-->
+        <scene sceneID="qrM-rm-FUu">
+            <objects>
+                <viewController id="zM4-4Y-bX0" customClass="CreatingInvoices" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M8t-eE-nPp"/>
+                        <viewControllerLayoutGuide type="bottom" id="E3f-Fv-yY5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VFS-p5-08T" customClass="Roll">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="HqA-Cc-9ge" kind="show" identifier="GoToSuccess" id="CTP-MH-FUr"/>
+                        <segue destination="7jx-4D-Oem" kind="show" id="hIM-uD-QV6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ion-ye-Cfq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5892" y="1692.5037481259371"/>
+        </scene>
+        <!--Setting Weekly Registerd Hours-->
+        <scene sceneID="gAV-xR-zDw">
+            <objects>
+                <viewController id="RJ8-JQ-n8B" customClass="SettingWeeklyRegisterdHours" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ce4-rN-fXc"/>
+                        <viewControllerLayoutGuide type="bottom" id="AKo-Vt-JRw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sli-5V-NXW" customClass="Roll">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="HqA-Cc-9ge" kind="show" identifier="GoToSuccess" id="bhr-uR-R3r"/>
+                        <segue destination="7jx-4D-Oem" kind="show" id="wpu-WM-pB1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Knh-Hg-GOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6640.8000000000002" y="1692.5037481259371"/>
+        </scene>
+        <!--Create Child-->
+        <scene sceneID="6sW-eH-9Lw">
+            <objects>
+                <viewController id="0Ef-LY-2RL" customClass="CreateChild" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RfX-Bo-JXJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="VQd-bc-UGt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pp9-52-T4w" customClass="Roll">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="7jx-4D-Oem" kind="show" id="da7-3d-CDw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fZX-2g-eP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7416.8000000000002" y="1692.5037481259371"/>
+        </scene>
+        <!--Quick Create Child-->
+        <scene sceneID="0Zi-Hq-nhS">
+            <objects>
+                <viewController id="Lnw-QT-UeH" customClass="QuickCreateChild" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VTe-sA-Rif"/>
+                        <viewControllerLayoutGuide type="bottom" id="l8f-ve-KCc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cj2-e6-0W3" customClass="Roll">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="HqA-Cc-9ge" kind="show" identifier="GoToSuccess" id="Tfh-Rh-ahG"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="xpD-Bz-PoY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kiu-y1-MPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8200.7999999999993" y="1692.5037481259371"/>
+        </scene>
+        <!--Roll Over-->
+        <scene sceneID="zbU-n8-dxn">
+            <objects>
+                <viewController storyboardIdentifier="RollOver" id="Pxt-wG-T6I" customClass="RollOver" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="HqA-Cc-9ge" kind="show" identifier="GoToSuccess" id="uvx-7y-5jS"/>
+                        <segue destination="7jx-4D-Oem" kind="show" id="Wd3-R6-BNu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GnE-Ic-weM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4388" y="1693"/>
         </scene>
     </scenes>
     <resources>
@@ -3821,14 +3949,15 @@
         <image name="ic_check" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Q5J-dV-oJS"/>
+        <segue reference="xpD-Bz-PoY"/>
+        <segue reference="wG7-yc-5Up"/>
         <segue reference="2qs-QS-n86"/>
-        <segue reference="ULa-J9-Ttu"/>
+        <segue reference="CWW-ID-FRn"/>
+        <segue reference="uvx-7y-5jS"/>
+        <segue reference="FZS-ay-AFf"/>
+        <segue reference="2ZH-xg-czw"/>
         <segue reference="4jP-f9-54C"/>
         <segue reference="Tyt-3s-Vhf"/>
-        <segue reference="2ZH-xg-czw"/>
-        <segue reference="FZS-ay-AFf"/>
-        <segue reference="Q5J-dV-oJS"/>
-        <segue reference="wG7-yc-5Up"/>
-        <segue reference="CWW-ID-FRn"/>
     </inferredMetricsTieBreakers>
 </document>

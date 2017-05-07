@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SCLAlertView
+import Eureka
 
 class CommonHelper {
     
@@ -112,6 +113,21 @@ class CommonHelper {
         return dateFormatter.string(from: targetDate as Date)
         
     }
+    
+    func GetIdsFromList(selection: SelectableSection<ListCheckRow<BrightStartChild>>) -> Array<String>
+    {
+        let kids = selection.selectedRows().map({$0.value! as BrightStartChild})
+        
+        var idArray = Array<String>()
+        
+        for n in kids {
+            idArray.append(n.ChildId as String)
+        }
+        
+        return idArray
+        
+    }
+    
     
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
@@ -342,7 +358,15 @@ extension Date {
         return dateformatter.string(from: self)
     
     }
-        
+    
+    func startOfMonth() -> Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
+    }
+    
+    func endOfMonth() -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
+    }
+    
 }
 
 

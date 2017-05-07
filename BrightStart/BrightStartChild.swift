@@ -7,10 +7,25 @@
 //
 
 import Foundation
+import Eureka
 
-open class BrightStartChild
+open class BrightStartChild : Comparable
 {
-    open var AccountId: NSString = ""
+  
+    
+    // function for custom operator ==
+    public static func ==(lhs: BrightStartChild, rhs: BrightStartChild) -> Bool {
+        //...
+        return false
+    }
+    // function for custom operator <
+   public static func <(lhs: BrightStartChild, rhs: BrightStartChild) -> Bool {
+        //...
+        return false
+    }
+    
+    
+   open var AccountId: NSString = ""
     open var ChildDOB: Date = Date()
     open var ChildFirstName: NSString = ""
     open var ChildFullName: NSString = ""

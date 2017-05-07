@@ -151,7 +151,7 @@ class MainMenuViewController: UIViewController {
             
             DisplayTextList = ["register",  "children", "registered hours", "time stamps", "Auhty", "billing", "sign out"]
             
-            authyIdList = ["",  "", "", "",  "", "", ""]
+            authyIdList = ["", "", "", "",  "", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -160,7 +160,7 @@ class MainMenuViewController: UIViewController {
             
             images = [UIImage(named: "Fantasy100")!, UIImage(named: "Bill")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToWizard", "GoToSearchPerson", "GoToSignIn"]
+            segueIdList = ["GoToCreateInvoice", "GoToSearchPerson", "GoToSignIn"]
             
             PurposeList = [PurposeTypes.Billing_CreateInvoice,PurposeTypes.Billing_ViewInvoice, PurposeTypes.SignOut]
             
@@ -193,7 +193,7 @@ class MainMenuViewController: UIViewController {
             
             images = [UIImage(named: "Calendar")!, UIImage(named: "WeekView")!, UIImage(named: "Overtime")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToSearchPerson", "GoToWizard", "GoToWizard", "GoToSignIn"]
+            segueIdList = ["GoToSearchPerson", "GoToSettingWeeklyRegisterdHours", "GoToRollOver", "GoToSignIn"]
             
             PurposeList = [PurposeTypes.RegisterdHours_Edit, PurposeTypes.RegisterdHours_SetWeekly, PurposeTypes.RegisterdHours_RollOver, PurposeTypes.SignOut]
             
@@ -206,15 +206,15 @@ class MainMenuViewController: UIViewController {
             
         case .Children:
             
-            images = [UIImage(named: "AddUserMale")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "AddUserMale")!, UIImage(named: "AddUserMale")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToWizard", "GoToSignIn"]
+            segueIdList = ["GoToQuickCreateChild", "GoToCreateChild", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Child_QuickCreate,  PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Child_QuickCreate, PurposeTypes.Child_Create,  PurposeTypes.SignOut]
             
-            DisplayTextList = ["Quick Create", "Sign Out"]
+            DisplayTextList = ["Quick Create","Create", "Sign Out"]
             
-            authyIdList = ["", ""]
+            authyIdList = ["", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -565,6 +565,8 @@ class MainMenuViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
+        
+        
         if (segue.identifier == "GoToDateSelect") {
             
             if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
@@ -601,8 +603,6 @@ class MainMenuViewController: UIViewController {
                     vc.showNavigationBar = true
                 }
             }
-            
-            
             else if(targetPurpose == .TimeStamps_Delete)
             {
                 
@@ -753,45 +753,7 @@ class MainMenuViewController: UIViewController {
             
         }
         else if (segue.identifier == "GoToRegister") {
-           
             //No need to pass anyhting to the regiser.
-            
-        }
-        else if (segue.identifier == "GoToWizard") {
-            
-            if(targetPurpose == PurposeTypes.Child_QuickCreate)
-            {
-                if let vc = segue.destination as? WizardViewController {
-                    vc.WizardPurpose = .CreatQuickChild
-                    vc.successSegue = ""
-                    vc.cancelSegue = ""
-                }
-            }
-            else if (targetPurpose == PurposeTypes.RegisterdHours_SetWeekly)
-            {
-                if let vc = segue.destination as? WizardViewController {
-                    vc.WizardPurpose = .SetWeeklyRegisteredHours
-                    vc.successSegue = ""
-                    vc.cancelSegue = ""
-                }
-            }
-            else if (targetPurpose == PurposeTypes.RegisterdHours_RollOver)
-            {
-                if let vc = segue.destination as? WizardViewController {
-                    vc.WizardPurpose = .RegisteredHours_RollOver
-                    vc.successSegue = ""
-                    vc.cancelSegue = ""
-                }
-            }
-            else if (targetPurpose == PurposeTypes.Billing_CreateInvoice)
-            {
-                if let vc = segue.destination as? WizardViewController {
-                    vc.WizardPurpose = .Billing_CreatingInvoices
-                    vc.successSegue = ""
-                    vc.cancelSegue = ""
-                }
-            }
-            
         }
     }
 }

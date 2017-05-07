@@ -250,8 +250,6 @@ class WizardPageViewController: UIPageViewController {
                                     self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
                                     
                                 } )
-
-                            
                             
                              })
                              })
