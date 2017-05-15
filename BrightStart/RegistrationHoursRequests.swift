@@ -69,7 +69,7 @@ class RegistrationHoursRequests: NSObject {
         })
     }
     
-    func CreateRegisteredHours(personId: String,startTime: NSDate,finishTime: NSDate, onCompletion: @escaping (JSON) -> Void) {
+    func CreateRegisteredHours(personId: String,startTime: Date,finishTime: Date, onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
         
@@ -80,8 +80,8 @@ class RegistrationHoursRequests: NSObject {
         
         let dateFormatter:DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
-        let startTimeInFormat:String = dateFormatter.string(from: startTime as Date)
-        let finishTimeInFormat:String = dateFormatter.string(from: finishTime as Date)
+        let startTimeInFormat:String = dateFormatter.string(from: startTime)
+        let finishTimeInFormat:String = dateFormatter.string(from: finishTime)
         
         let route = baseURL + "api/RegisteredHoursLogic/CreateRegisteredHours2?personId="+personId + "&startTime=" + startTimeInFormat + "&finishTime=" + finishTimeInFormat + "&nurserySchoolId=" + nurserySchoolId
         makeHTTPGetRequest(encode: false, path: route, onCompletion:

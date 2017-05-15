@@ -52,6 +52,8 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .light)
+        
         _CommonHelper = CommonHelper()
         _ApplicatoinColours = ApplicatoinColours()
         
@@ -273,8 +275,8 @@ class AuthyPersonSearchTableViewController:  UITableViewController, UITextFieldD
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? NewAuhtyViewController {
-                vc.selectedChildId = self.SelectedPersonId
+            if let vc = segue.destination as? AuthyParentSignUp {
+                vc.selectedChildId = self.SelectedPersonId as String!
             }
         }
         

@@ -79,6 +79,8 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme1(), andContentStyle: .contrast)
+        
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         

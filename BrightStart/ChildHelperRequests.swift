@@ -17,7 +17,18 @@ class ChildHelperRequests: NSObject {
     let baseURL = ApiInformation.ApiURL
     var nurserySchoolId = "";
    
-    func CreateChild(childFirstName: String, childMiddleName: String,childLastName : String, dob : NSDate, accountId: String, onCompletion: @escaping (JSON) -> Void) {
+    func CreateChild(childFirstName: String, childMiddleName: String,childLastName : String, dob : NSDate, accountId: String,
+                      medicalConditions: String? = "",
+                       gPsDetails: String? = "",
+                        emergencyName: String? = "",
+                          emergencyRelation: String? = "",
+                           emergencyHomeNumber: String? = "",
+                            emergencyMobileNumber: String? = "",
+                             emergencyWorkNumber: String? = "",
+                             keyWorkerId: String? = "",
+                             everNoteAccessToken: String? = "",
+                             otherNotes: String? = "",
+                     onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
         
@@ -38,15 +49,16 @@ class ChildHelperRequests: NSObject {
                     "ChildLastName": childLastName,
                     "ChildDOB": childsDateOfBirth,
                     "ChildFullName": childFirstName + " " + childMiddleName + " " + childLastName,
-                    "MedicalConditions": "",
-                    "GPsDetails": "",
-                    "EmergencyName": "",
-                    "EmergencyRelation": "",
-                    "EmergencyHomeNumber": "",
-                    "EmergencyMobileNumber": "",
-                    "EmergencyWorkNumber": "",
-                    "KeyWorkerId": "",
-                    "EverNoteAccessToken": ""
+                    "MedicalConditions": medicalConditions ?? "",
+                    "GPsDetails": gPsDetails ?? "",
+                    "EmergencyName": emergencyName ?? "",
+                    "EmergencyRelation": emergencyRelation ?? "",
+                    "EmergencyHomeNumber": emergencyHomeNumber ?? "",
+                    "EmergencyMobileNumber": emergencyMobileNumber ?? "",
+                    "EmergencyWorkNumber": emergencyWorkNumber ?? "",
+                    "KeyWorkerId": keyWorkerId ?? "",
+                    "EverNoteAccessToken": everNoteAccessToken ?? "",
+                    "OtherNotes": otherNotes ?? ""
         ]
         
         let route = baseURL + "api/ChildHelperLogic/CreateChildAndOtherNeccesaryObjects?nurserySchoolId=" + nurserySchoolId

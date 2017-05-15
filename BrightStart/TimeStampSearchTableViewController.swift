@@ -49,6 +49,9 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .light)
+        
+        
         _CommonHelper = CommonHelper()
         _ApplicatoinColours = ApplicatoinColours()
         
@@ -130,8 +133,6 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     func NavBarMenuTapped(){
         
     }
-
-    
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
         
@@ -297,6 +298,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         return NSAttributedString(string: str, attributes: attrs)
     }
     
+    
     /*!
      @brief Preparing to segue.
      */
@@ -306,7 +308,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? TimeStampsEditorViewController {
+            if let vc = segue.destination as? EditTimeStamp {
                 
                 if(SelectedPersonLog.Action == "Login")
                 {
@@ -317,7 +319,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
                     vc.editType = .End
                 }
                 
-                vc.EditorMode = .TimeStamps_Edit
+                vc.EditorMode = .Missing_TimeStamps_Edit
                 
                 vc.successIdentifier = "GoToExtraMinutesFinder"
                 

@@ -19,6 +19,9 @@ class RollOver: FormViewController {
         
         super.viewDidLoad()
         
+        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .dark)
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        
         let backTitle = NSLocalizedString("Back", comment: "Back button label")
         self.addBackbutton(title: backTitle)
         
@@ -28,6 +31,9 @@ class RollOver: FormViewController {
         let calendar = Calendar.current
         
         let year = calendar.component(.year, from: date)
+         let month = calendar.component(.month, from: date)
+        
+        let monthArray = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         
         form +++ Section(){ section in
             var header = HeaderFooterView<UILabel>(.class)
@@ -69,8 +75,8 @@ class RollOver: FormViewController {
         
             <<< PickerInlineRow<String>("TargetMonthPicker") {
                 $0.title = "Month"
-                $0.options = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                $0.value = "January"    // initially selected
+                $0.options = monthArray
+                $0.value = monthArray[month-1]    // initially selected
         }
             
             +++ Section("Destination")
@@ -83,9 +89,8 @@ class RollOver: FormViewController {
             
             <<< PickerInlineRow<String>("DestinationMonthPicker") {
                 $0.title = "Month"
-                $0.options = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October",
-                              "November", "December"]
-                $0.value = "January"    // initially selected
+                $0.options = monthArray
+                $0.value = monthArray[month-1]    // initially selected
         }
         
         //Retrieve all children
@@ -124,18 +129,16 @@ class RollOver: FormViewController {
             
             DispatchQueue.main.async(execute: {
                
-                self.form +++
-                    SelectableSection<ListCheckRow<BrightStartChild>>("CHILDREN", selectionType: .multipleSelection){ section in
-                        section.header = HeaderFooterView(title: "Branches")
-                        section.tag = "branch_section"
-                }
-                
-                for option in self.childrenArray {
-                    self.form.last! <<< ListCheckRow<BrightStartChild>(){ listRow in
-                        listRow.title = option.ChildFullName as String
-                        listRow.selectableValue = option
-                        listRow.value = nil
-                    }
+                let fullChildList = Dictionary(keyValuePairs: self.childrenArray.map{($0.ChildId, $0.ChildFullName)})
+                self.form +++ Section("Selected Children")
+                    <<< MultipleSelectorRow<String>("SelectedChildren") { row in
+                        row.title = "Children"
+                        row.options = fullChildList.map { ($0.value as String) }
+                        
+                        }.onPresent { from, to in
+                            to.selectableRowCellUpdate = { cell, row in
+                                cell.backgroundColor = StyleManager.theme2()
+                            }
                 }
                 
                 self.form +++ Section("")
@@ -143,24 +146,28 @@ class RollOver: FormViewController {
                         $0.title = "Perform Roll Over"
                         }.onCellSelection {  cell, row in
                             
-                            let branch_section = self.form.sectionBy(tag: "branch_section") as? SelectableSection<ListCheckRow<BrightStartChild>>
+                            let mulitpleRow: MultipleSelectorRow<String> = self.form.rowBy(tag: "SelectedChildren")!
                             
-                            let ids = self._CommonHelper.GetIdsFromList(selection: branch_section!)
+                            let ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: mulitpleRow.value!)
                             
-                            let targetYear: PickerRow<String>? = self.form.rowBy(tag: "TargetYearPicker")
-                            var targetMonth: PickerRow<String>? = self.form.rowBy(tag: "TargetMonthPicker")
+                            
+                            let targetYear: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetYearPicker")
+                            var targetMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetMonthPicker")
                             
                             let targetMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (targetMonth?.value)!)
-
                             
-                            
-                            let destinationYear: PickerRow<String>? = self.form.rowBy(tag: "DestinationYearPicker")
-                            var destinationMonth: PickerRow<String>? = self.form.rowBy(tag: "DestinationMonthPicker")
+                            let destinationYear: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationYearPicker")
+                            var destinationMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationMonthPicker")
                             
                             let destinationMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (destinationMonth?.value)!)
                             
                             self.RollOver(targetChildren: ids, targetYear: String(describing: (targetYear?.value)!),targetMonth: String(targetMonthAsInt),destinationYear: String(describing: (destinationYear?.value)!),destinationMonth: String(destinationMonthAsInt))
                             
+                        }.cellUpdate
+                        {
+                            cell, row in
+                            cell.backgroundColor = StyleManager.theme1()
+                            cell.textLabel?.textColor = StyleManager.theme2()
                 }
                 
             })

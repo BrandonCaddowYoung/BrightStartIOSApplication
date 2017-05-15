@@ -52,6 +52,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .light)
+        
         _CommonHelper = CommonHelper()
         _ApplicatoinColours = ApplicatoinColours()
         
@@ -273,13 +275,12 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             
             //Settings the menu details.
             
-            
              if let vc = segue.destination as? TimeStampSearchTableViewController {
                 
                     vc.TargetDate = targetDate
                     vc.TargetPersonId = self.SelectedPersonId
                     vc.SelectedPersonFullName = self.SelectedPersonFullName
-                    
+                
                     if(self.OptionText == "Edit time stmaps.")
                     {
                         vc.OptionText = "Edit"

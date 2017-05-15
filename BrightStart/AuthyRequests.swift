@@ -14,8 +14,6 @@ class AuthyRequests: NSObject {
     static let sharedInstance = AuthyRequests()
     let baseURL = ApiInformation.ApiURL
     
-    
-    
     var nurserySchoolId = "";
     
     /*!
@@ -211,7 +209,7 @@ class AuthyRequests: NSObject {
             nurserySchoolId = id;
         }
         
-        let route = baseURL + "api/Authy/GetAuhtyUser?auhtyId=" + auhtyId + "&nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/Authy/GetAuthyUser?authyId=" + auhtyId + "&nurserySchoolId=" + nurserySchoolId
         makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
                 json, err in

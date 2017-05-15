@@ -19,6 +19,9 @@ class CreatingInvoices: FormViewController {
         
         super.viewDidLoad()
         
+        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .dark)
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        
         let backTitle = NSLocalizedString("Back", comment: "Back button label")
         self.addBackbutton(title: backTitle)
         
@@ -130,28 +133,45 @@ class CreatingInvoices: FormViewController {
             
             DispatchQueue.main.async(execute: {
                 
-                self.form +++
-                    SelectableSection<ListCheckRow<BrightStartChild>>("CHILDREN", selectionType: .multipleSelection){ section in
-                        section.header = HeaderFooterView(title: "CHILDREN")
-                        section.tag = "branch_section"
+               // self.form +++
+                //    SelectableSection<ListCheckRow<BrightStartChild>>("CHILDREN", selectionType: .multipleSelection){ section in
+                  //      section.header = HeaderFooterView(title: "CHILDREN")
+                  //      section.tag = "branch_section"
+               // }
+                
+               // for option in self.childrenArray {
+                 //   self.form.last! <<< ListCheckRow<BrightStartChild>(){ listRow in
+                   //     listRow.title = option.ChildFullName as String
+                   //     listRow.selectableValue = option
+                   //     listRow.value = nil
+                  //  }
+               // }
+               
+                let fullChildList = Dictionary(keyValuePairs: self.childrenArray.map{($0.ChildId, $0.ChildFullName)})
+                self.form +++ Section("Selected Children")
+                    <<< MultipleSelectorRow<String>("SelectedChildren") { row in
+                        row.title = "Children"
+                        row.options = fullChildList.map { ($0.value as String) }
+                        
+                        }.onPresent { from, to in
+                            to.selectableRowCellUpdate = { cell, row in
+                                cell.backgroundColor = StyleManager.theme2()
+                            }
                 }
                 
-                for option in self.childrenArray {
-                    self.form.last! <<< ListCheckRow<BrightStartChild>(){ listRow in
-                        listRow.title = option.ChildFullName as String
-                        listRow.selectableValue = option
-                        listRow.value = nil
-                    }
-                }
                 
                 self.form +++ Section("")
                     <<< ButtonRow(){
                         $0.title = "Create Invoices"
                         }.onCellSelection {  cell, row in
                             
-                            let branch_section = self.form.sectionBy(tag: "branch_section") as? SelectableSection<ListCheckRow<BrightStartChild>>
+                            //let branch_section = self.form.sectionBy(tag: "branch_section") as? SelectableSection<ListCheckRow<BrightStartChild>>
                             
-                            let ids = self._CommonHelper.GetIdsFromList(selection: branch_section!)
+                            //let ids = self._CommonHelper.GetIdsFromList(selection: branch_section!)
+                            
+                            let mulitpleRow: MultipleSelectorRow<String> = self.form.rowBy(tag: "SelectedChildren")!
+                            
+                            let ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: mulitpleRow.value!)
                             
                             var row: DateRow? = self.form.rowBy(tag: "RegisterdHourStart")
                             let RegisteredHoursStart = row?.value
@@ -173,6 +193,11 @@ class CreatingInvoices: FormViewController {
                             
                             self.CreateInvoices(targetChildren: ids, registeredHoursStartDate: RegisteredHoursStart!, registeredHoursEndDate: RegisteredHoursEnd!, extraHoursStartDate: ExtraHoursStart!, extraHoursEndDate: ExtraHoursEnd!, nonRegisteredHoursStartDate: NonRegisteredHoursStart!, nonRegisteredHoursEndDate: NonRegisteredHoursEnd!)
                             
+                        }.cellUpdate
+                        {
+                            cell, row in
+                            cell.backgroundColor = StyleManager.theme1()
+                            cell.textLabel?.textColor = StyleManager.theme2()
                 }
                 
             })
@@ -189,7 +214,6 @@ class CreatingInvoices: FormViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         
         SetNavigationBarDetails()
-        
     }
     
     func SetNavigationBarDetails()
@@ -225,10 +249,6 @@ class CreatingInvoices: FormViewController {
         SVProgressHUD.show()
         
         //First lets remove bank holidays for the date periods.
-        
-        
-        
-        
         
         BillingRequests.sharedInstance.RemoveBankHolidayRegisteredHours(registeredHoursStartDate: registeredHoursStartDate, registeredHoursEndDate: registeredHoursEndDate, extraHoursStartDate: extraHoursStartDate, extraHoursEndDate: extraHoursEndDate, nonRegisteredHoursStartDate: nonRegisteredHoursStartDate, nonRegisteredHoursEndDate: nonRegisteredHoursEndDate, onCompletion:
             { json in
@@ -297,4 +317,14 @@ class CreatingInvoices: FormViewController {
     
     
 }
+
+extension Dictionary {
+    public init(keyValuePairs: [(Key, Value)]) {
+        self.init()
+        for pair in keyValuePairs {
+            self[pair.0] = pair.1
+        }
+    }
+}
+
 

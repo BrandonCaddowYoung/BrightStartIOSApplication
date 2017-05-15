@@ -76,7 +76,7 @@ class TimeStampsEditorViewController: UIViewController {
             SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
             SVProgressHUD.show()
             
-            CommonRequests.sharedInstance.updateTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate, originalAction: Action!, originalTimeStamp: DateAsObject as NSDate,
+            CommonRequests.sharedInstance.updateTimeStamp(personId: PersonId!, action: Action!, stamp: (DateTimePicker.date as NSDate) as Date, originalAction: Action!, originalTimeStamp: DateAsObject as NSDate,
                                                           
                                                           onCompletion: {
                                                             
@@ -170,14 +170,9 @@ class TimeStampsEditorViewController: UIViewController {
             SVProgressHUD.show()
             
             //Change to to creating registered hours
-            RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: PersonId!, startTime: DateTimePicker.date as NSDate, finishTime: DateTimePicker.date as NSDate, onCompletion: {_ in
+            RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: PersonId!, startTime: (DateTimePicker.date as NSDate) as Date, finishTime: (DateTimePicker.date as NSDate) as Date, onCompletion: {_ in
                 
                 DispatchQueue.main.async(execute: {
-                    
-                    
-                    
-                    
-                    
                     
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
                         
@@ -199,14 +194,6 @@ class TimeStampsEditorViewController: UIViewController {
                         
                         
                     } )
-                    
-                    
-                    
-                        
-                        
-                        
-                
-                    
                 })
             })
             
@@ -218,7 +205,7 @@ class TimeStampsEditorViewController: UIViewController {
             SVProgressHUD.show()
             
             //Change to to creating time stamps
-            CommonRequests.sharedInstance.createTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate,
+            CommonRequests.sharedInstance.createTimeStamp(personId: PersonId!, action: Action!, stamp: (DateTimePicker.date as NSDate) as Date,
                                                           onCompletion: {
                                                             
                                                             DispatchQueue.main.async(execute: {
@@ -257,7 +244,7 @@ class TimeStampsEditorViewController: UIViewController {
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         SVProgressHUD.show()
         
-        CommonRequests.sharedInstance.deleteTimeStamp(personId: PersonId!, action: Action!, stamp: DateTimePicker.date as NSDate,
+        CommonRequests.sharedInstance.deleteTimeStamp(personId: PersonId!, action: Action!, stamp: (DateTimePicker.date as NSDate) as Date,
                                                       
                                                       onCompletion: {
                                                         

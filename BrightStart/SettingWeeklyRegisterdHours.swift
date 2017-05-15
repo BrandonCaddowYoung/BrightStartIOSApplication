@@ -19,6 +19,9 @@ class SettingWeeklyRegisterdHours: FormViewController {
         
         super.viewDidLoad()
         
+        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .dark)
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        
         let backTitle = NSLocalizedString("Back", comment: "Back button label")
         self.addBackbutton(title: backTitle)
         
@@ -80,7 +83,13 @@ class SettingWeeklyRegisterdHours: FormViewController {
             form +++ Section("")
             <<< SwitchRow("mondaySwitchRowTag"){
                 $0.title = "Monday"
-        }
+                }.cellSetup
+                {
+                    cell,
+                    row in cell.switchControl.onTintColor = StyleManager.theme1()
+                    
+                }
+                
             <<< TimeRow("MondayStart"){
                 
                 $0.hidden = Condition.function(["mondaySwitchRowTag"], { form in
@@ -104,6 +113,10 @@ class SettingWeeklyRegisterdHours: FormViewController {
         form +++ Section("")
             <<< SwitchRow("tuesdaySwitchRowTag"){
                 $0.title = "Tuesday"
+                }.cellSetup
+                {
+                    cell,
+                    row in cell.switchControl.onTintColor = StyleManager.theme1()
             }
             
             <<< TimeRow("TuesdayStart"){
@@ -130,6 +143,10 @@ class SettingWeeklyRegisterdHours: FormViewController {
         form +++ Section("")
             <<< SwitchRow("wednesdaySwitchRowTag"){
                 $0.title = "Wednesday"
+                }.cellSetup
+                {
+                    cell,
+                    row in cell.switchControl.onTintColor = StyleManager.theme1()
             }
             <<< TimeRow("WednesdayStart"){
                 
@@ -157,6 +174,12 @@ class SettingWeeklyRegisterdHours: FormViewController {
             <<< SwitchRow("thursdaySwitchRowTag"){
                 $0.title = "Thursday"
             }
+                .cellSetup
+                {
+                    cell,
+                    row in cell.switchControl.onTintColor = StyleManager.theme1()
+            }
+            
             <<< TimeRow("ThursdayStart"){
                 
                 $0.hidden = Condition.function(["thursdaySwitchRowTag"], { form in
@@ -183,6 +206,12 @@ class SettingWeeklyRegisterdHours: FormViewController {
             <<< SwitchRow("fridaySwitchRowTag"){
                 $0.title = "Friday"
             }
+                .cellSetup
+                {
+                    cell,
+                    row in cell.switchControl.onTintColor = StyleManager.theme1()
+            }
+            
             <<< TimeRow("FridayStart"){
                 
                 $0.hidden = Condition.function(["fridaySwitchRowTag"], { form in
@@ -208,7 +237,12 @@ class SettingWeeklyRegisterdHours: FormViewController {
         form +++ Section("")
             <<< SwitchRow("saturdaySwwitchRowTag"){
                 $0.title = "Saturday"
+                }.cellSetup
+                {
+                    cell,
+                    row in cell.switchControl.onTintColor = StyleManager.theme1()
             }
+            
             <<< TimeRow("SaturdayStart"){
                 
                 $0.hidden = Condition.function(["saturdaySwwitchRowTag"], { form in
@@ -235,7 +269,12 @@ class SettingWeeklyRegisterdHours: FormViewController {
         form +++ Section("")
             <<< SwitchRow("sundaySwitchRowTag"){
                 $0.title = "Sunday"
+                }.cellSetup
+                {
+                    cell,
+                    row in cell.switchControl.onTintColor = StyleManager.theme1()
             }
+            
             <<< TimeRow("SundayStart"){
                 
                 $0.hidden = Condition.function(["sundaySwitchRowTag"], { form in
@@ -293,28 +332,26 @@ class SettingWeeklyRegisterdHours: FormViewController {
             
             DispatchQueue.main.async(execute: {
                 
-                self.form +++
-                    SelectableSection<ListCheckRow<BrightStartChild>>("CHILDREN", selectionType: .multipleSelection){ section in
-                        section.header = HeaderFooterView(title: "Children")
-                        section.tag = "branch_section"
-                }
-                
-                for option in self.childrenArray {
-                    self.form.last! <<< ListCheckRow<BrightStartChild>(){ listRow in
-                        listRow.title = option.ChildFullName as String
-                        listRow.selectableValue = option
-                        listRow.value = nil
-                    }
+                let fullChildList = Dictionary(keyValuePairs: self.childrenArray.map{($0.ChildId, $0.ChildFullName)})
+                self.form +++ Section("Selected Children")
+                    <<< MultipleSelectorRow<String>("SelectedChildren") { row in
+                        row.title = "Children"
+                        row.options = fullChildList.map { ($0.value as String) }
+                        
+                        }.onPresent { from, to in
+                            to.selectableRowCellUpdate = { cell, row in
+                                cell.backgroundColor = StyleManager.theme2()
+                            }
                 }
                 
                 self.form +++ Section("")
                     <<< ButtonRow(){
-                        $0.title = "Create Registerd Hours!"
+                        $0.title = "Create Registerd Hours"
                         }.onCellSelection {  cell, row in
                             
-                            let branch_section = self.form.sectionBy(tag: "branch_section") as? SelectableSection<ListCheckRow<BrightStartChild>>
+                            let mulitpleRow: MultipleSelectorRow<String> = self.form.rowBy(tag: "SelectedChildren")!
                             
-                            let ids = self._CommonHelper.GetIdsFromList(selection: branch_section!)
+                            let ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: mulitpleRow.value!)
                             
                             var switchRow: SwitchRow? = self.form.rowBy(tag: "mondaySwitchRowTag")
                             
@@ -389,6 +426,11 @@ class SettingWeeklyRegisterdHours: FormViewController {
                             
                             self.SetWeeklyRegisterdHours(targetChildren: ids, chosenYear: (year?.value)!, chosenMonth: String(monthAsInt), mondayStartTime: ModayStart, mondayEndTime: ModayEnd, tuesdayStartTime: TuesdayStart, tuesdayEndTime: TuesdayEnd, wednesdayStartTime: WednesdayStart, wednesdayEndTime: WednesdayEnd, thursdayStartTime: ThursdayStart, thursdayEndTime: ThursdayEnd, fridayStartTime: FridayStart, fridayEndTime: FridayEnd, saturdayStartTime: SaturdayStart, saturdayEndTime: SaturdayEnd, sundayStartTime: SundayStart, sundayEndTime: SundayEnd)
                             
+                        }.cellUpdate
+                        {
+                    cell, row in
+                            cell.backgroundColor = StyleManager.theme1()
+                            cell.textLabel?.textColor = StyleManager.theme2()
                 }
                 
             })

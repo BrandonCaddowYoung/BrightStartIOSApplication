@@ -11,8 +11,6 @@ import Eureka
 
 open class BrightStartChild : Comparable
 {
-  
-    
     // function for custom operator ==
     public static func ==(lhs: BrightStartChild, rhs: BrightStartChild) -> Bool {
         //...
@@ -23,7 +21,6 @@ open class BrightStartChild : Comparable
         //...
         return false
     }
-    
     
    open var AccountId: NSString = ""
     open var ChildDOB: Date = Date()

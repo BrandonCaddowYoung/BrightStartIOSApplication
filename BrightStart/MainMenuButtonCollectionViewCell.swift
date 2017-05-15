@@ -95,6 +95,9 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         else if(segueText=="GoToBillingMenu"){
             delegate?.renderMenuAssets(menuType: .Billing)
         }
+        else if(segueText=="GoToSettingsMenu"){
+            delegate?.renderMenuAssets(menuType: .Settings)
+        }   
         else{
             delegate?.performSegue(segueId: segueText)
         }

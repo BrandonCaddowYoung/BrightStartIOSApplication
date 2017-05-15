@@ -19,6 +19,8 @@ class QuickCreateChild: FormViewController {
         
         super.viewDidLoad()
         
+        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .light)
+        
         let backTitle = NSLocalizedString("Back", comment: "Back button label")
         self.addBackbutton(title: backTitle)
         
@@ -55,17 +57,17 @@ class QuickCreateChild: FormViewController {
         
         form +++ Section("Childs information")
             
-            <<< TextRow("FirstName") {
+            <<< NameRow("FirstName") {
                 $0.title = "first name"
                 $0.placeholder = "enter first name."
             }
             
-            <<< TextRow("MiddleName") {
+            <<< NameRow("MiddleName") {
                 $0.title = "middle name"
                 $0.placeholder = "enter middle name."
         }
         
-            <<< TextRow("LastName") {
+            <<< NameRow("LastName") {
                 $0.title = "last name"
                 $0.placeholder = "enter last name."
         }
@@ -77,22 +79,22 @@ class QuickCreateChild: FormViewController {
         
         form +++ Section("Parents information")
             
-            <<< TextRow("MothersName") {
+            <<< NameRow("MothersName") {
                 $0.title = "mothers name"
                 $0.placeholder = "enter mothers name."
             }
             
-            <<< TextRow("MothersEmail") {
+            <<< EmailRow("MothersEmail") {
                 $0.title = "mothers e-mail"
                 $0.placeholder = "enter mothers e-amil."
             }
             
-            <<< TextRow("FathersName") {
+            <<< NameRow("FathersName") {
                 $0.title = "fathers name"
                 $0.placeholder = "enter fathers name."
             }
         
-            <<< TextRow("FathersEmail") {
+            <<< EmailRow("FathersEmail") {
                 $0.title = "fathers e-mail"
                 $0.placeholder = "enter fathers e-amil."
         }
@@ -102,7 +104,7 @@ class QuickCreateChild: FormViewController {
                 $0.title = "Add new child"
                 }.onCellSelection {  cell, row in
                     
-                    var row: TextRow? = self.form.rowBy(tag: "FirstName")
+                    var row: NameRow? = self.form.rowBy(tag: "FirstName")
                     let FirstName = row?.value ?? ""
                     
                     row = self.form.rowBy(tag: "MiddleName")
@@ -111,7 +113,7 @@ class QuickCreateChild: FormViewController {
                     row = self.form.rowBy(tag: "LastName")
                     let LastName = row?.value ?? ""
                     
-                    var dob: DateRow? = self.form.rowBy(tag: "DatOfBirth")
+                    let dob: DateRow? = self.form.rowBy(tag: "DatOfBirth")
                     let DatOfBirth = dob?.value
                     
                     row = self.form.rowBy(tag: "MothersName")
@@ -120,14 +122,19 @@ class QuickCreateChild: FormViewController {
                     row = self.form.rowBy(tag: "FathersName")
                     let FathersName = row?.value ?? ""
                     
-                    row = self.form.rowBy(tag: "MothersEmail")
-                    let MothersEmail = row?.value ?? ""
+                    var emailRow: EmailRow? = self.form.rowBy(tag: "MothersEmail")
+                    let MothersEmail = emailRow?.value ?? ""
                     
-                    row = self.form.rowBy(tag: "FathersEmail")
-                    let FathersEmail = row?.value ?? ""
+                    emailRow = self.form.rowBy(tag: "FathersEmail")
+                    let FathersEmail = emailRow?.value ?? ""
                     
                    self.CreateChild(mothersEmail: MothersEmail, fathersEmail: FathersEmail, mothersName: MothersName, fathersName: FathersName, childFirstName: FirstName, childMiddleName: MiddleName, childLastName: LastName, dob: DatOfBirth!)
                                         
+                }.cellUpdate
+                {
+                    cell, row in
+                    cell.backgroundColor = StyleManager.theme1()
+                    cell.textLabel?.textColor = StyleManager.theme2()
         }
         
         

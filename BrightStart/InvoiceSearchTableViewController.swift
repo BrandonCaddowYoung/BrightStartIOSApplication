@@ -233,8 +233,7 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
             //Saving the selected log so that when we segue we can call on it!
             SelectedInvoice = cell.invoice
             
-            //self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
-            
+           
         }
         
     }
@@ -264,7 +263,7 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
             delete.backgroundColor = .red
 
             
-            let share = UITableViewRowAction(style: .default, title: "\u{2709}\n e-mail") { action, index in
+            let email = UITableViewRowAction(style: .default, title: "\u{2709}\n e-mail") { action, index in
 
                 BillingRequests.sharedInstance.SendInvoice(invoiceId: (cell.invoice?.InvoiceId)!, onCompletion:
                     {_ in
@@ -274,14 +273,21 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                         
                         }
                 )
+            }
+            email.backgroundColor = StyleManager.theme1()
+            
+            
+            let edit = UITableViewRowAction(style: .default, title: "\u{1F4DD}\n edit") { action, index in
+             //Go to edit page
                 
+                self.performSegue(withIdentifier: "GoToEditInvoice", sender: nil)
+ 
                 
             }
-            share.backgroundColor = StyleManager.theme1()
+            edit.backgroundColor = StyleManager.theme1()
             
-            
-            
-            return [delete, share]
+           // return [delete, email]
+            return [edit, delete]
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -297,8 +303,14 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if (segue.identifier == "GoToTimeStampsEditor") {
-            
                         
+        }
+        else if (segue.identifier == "GoToEditInvoice") {
+            
+            if let vc = segue.destination as? Invoice_Edit {
+                vc.invoiceId = String(SelectedInvoice.InvoiceId)
+            }
+            
         }
     }
     

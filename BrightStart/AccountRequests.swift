@@ -17,7 +17,24 @@ class AccountRequests: NSObject {
     let baseURL = ApiInformation.ApiURL
     var nurserySchoolId = "";
    
-    func CreateAccount(mothersEmail: String, fathersEmail: String, mothersName: String, fathersName: String,onCompletion: @escaping (JSON) -> Void) {
+    func CreateAccount(mothersEmail: String, fathersEmail: String, mothersName: String, fathersName: String,
+                       houseNumber: String? = "",
+                       road: String? = "",
+                       town: String? = "",
+                       county: String? = "",
+                       postCode: String? = "",
+                       homePhoneNumber: String? = "",
+                       motherWorkPhoneNumber: String? = "",
+                       fatherWorkPhoneNumber: String? = "",
+                       payPalEmailAddress: String? = "",
+                       motherMobile: String? = "",
+                       fatherMobile: String? = "",
+                       motherOccupation: String? = "",
+                       fatherOccupation: String? = "",
+                       existingAccountBalance: String? = "",
+                       accountDetails: String? = "",
+                       dateOpened: String? = "",
+                    onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
         
@@ -29,27 +46,28 @@ class AccountRequests: NSObject {
         let parameters: Parameters = [
                 "AccountId": "",
                 "AccountName": mothersName + " - " + fathersName,
-                "DateOpened": "",
-                "AccountDetails": "",
-                "HouseNumber": "",
-                "Road": "",
-                "County": "",
-                "PostCode": "",
-                "HomePhoneNumber": "",
-                "MotherWorkPhoneNumber": "",
-                "FatherWorkPhoneNumber": "",
+                "DateOpened": dateOpened ?? "",
+                "AccountDetails": accountDetails ?? "",
+                "HouseNumber": houseNumber ?? "",
+                "Road": road ?? "",
+                "Town": road ?? "",
+                "County": county ?? "",
+                "PostCode": postCode ?? "",
+                "HomePhoneNumber": homePhoneNumber ?? "",
+                "MotherWorkPhoneNumber": motherWorkPhoneNumber ?? "",
+                "FatherWorkPhoneNumber": fatherWorkPhoneNumber ?? "",
                 "MotherBillingEmailAddress": mothersEmail,
                 "FatherBillingEmailAddress": fathersEmail,
-                "PayPalEmailAddress": "",
-                "MotherMobile": "",
-                "FatherMobile": "",
+                "PayPalEmailAddress": payPalEmailAddress ?? "",
+                "MotherMobile": motherMobile ?? "",
+                "FatherMobile": fatherMobile ?? "",
                 "FatherPayPercentage": "50",
                 "MotherPayPercentage": "50",
-                "MotherOccupation": "",
-                "FatherOccupation": "",
+                "MotherOccupation": motherOccupation ?? "",
+                "FatherOccupation": fatherOccupation ?? "",
                 "MotherName": mothersName,
                 "FatherName": fathersName,
-                "ExistingAccountBalance": ""
+                "ExistingAccountBalance": existingAccountBalance ?? "",
         ]
         
         let route = baseURL + "api/AccountLogic/CreateAccount?nurserySchoolId=" + nurserySchoolId

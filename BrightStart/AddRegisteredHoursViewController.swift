@@ -154,7 +154,6 @@ class AddRegisteredHoursViewController: UIViewController {
     TopContainer.heightAnchor.constraint(
     equalTo: view.heightAnchor, multiplier: 0.33).isActive = true
         
-        
         //DateLabel
         
         NameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -386,10 +385,7 @@ class AddRegisteredHoursViewController: UIViewController {
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         SVProgressHUD.show()
         
-        RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: self.personId, startTime: self.selectedStartTime, finishTime: self.selectedEndTime, onCompletion: { (JSON) in
-            
-            
-            
+        RegistrationHoursRequests.sharedInstance.CreateRegisteredHours(personId: self.personId, startTime: self.selectedStartTime as Date, finishTime: self.selectedEndTime as Date, onCompletion: { (JSON) in
             
             SVProgressHUD.dismiss(withDelay: 1, completion: {
                 
@@ -402,16 +398,9 @@ class AddRegisteredHoursViewController: UIViewController {
                 } else {
                     
                      self.dismiss(animated: true, completion: nil)
-                    
                 }
-                
             } )
-            
-            
-            
         })
-        
-      
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {

@@ -516,6 +516,8 @@ class InvoiceSearchTableViewCell: UITableViewCell
             ExtraAmountLabel?.text = String(h) + "H " + String(m) + "M"
             
             BalanceAmountLabel?.text = "£0" //Still to do!
+            BalanceAmountLabel.isHidden = true
+            BalanceLabel.isHidden = true
             
             InvoiceStartDate.text = invoice.Start.ToString()
              InvoiceEndDate.text = invoice.End.ToString()

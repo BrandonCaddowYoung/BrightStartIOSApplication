@@ -17,6 +17,13 @@ enum MenuTypes: Int {
     case AuthyUsers
     case RegisteredHours
     case Billing
+    case Settings
+}
+
+enum EditTimeStampVCPurpose: Int {
+    case edit
+    case delete
+    case view
 }
 
 enum PurposeTypes: Int {
@@ -47,6 +54,9 @@ enum PurposeTypes: Int {
     case TimeStamps_MissingTimeStampsFinder
     case TimeStamps_ExtraMinutesFinder
     case TimeStamps_Menu
+    
+     case Settings_Menu
+    case Settings_Rates
     
     case Billing_Menu
     case Billing_CreateInvoice
@@ -106,6 +116,8 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .light)
+        
         self.edgesForExtendedLayout = []
         
         _CommonHelper = CommonHelper()
@@ -143,15 +155,15 @@ class MainMenuViewController: UIViewController {
             
         case .MainMenu:
             
-            images = [UIImage(named: "Register")!,UIImage(named: "Children")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Billing")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Register")!,UIImage(named: "Children")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Billing")!, UIImage(named: "Settings")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToRegisteredHoursMenu", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToBillingMenu", "GoToSignIn"]
+            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToRegisteredHoursMenu", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToBillingMenu","GoToSettingsMenu", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Menu,PurposeTypes.Billing_Menu, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Menu,PurposeTypes.Billing_Menu, PurposeTypes.Settings_Menu, PurposeTypes.SignOut]
             
-            DisplayTextList = ["register",  "children", "registered hours", "time stamps", "Auhty", "billing", "sign out"]
+            DisplayTextList = ["Register",  "Children", "Registered Hours", "Time Stamps", "Auhty", "Billing", "Settings", "Sign Out"]
             
-            authyIdList = ["", "", "", "",  "", "", ""]
+            authyIdList = ["", "", "", "",  "", "", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -171,19 +183,34 @@ class MainMenuViewController: UIViewController {
             showNavigationBar = true
             ShowNavBar()
             
+        case .Settings:
+            
+            images = [UIImage(named: "Rates")!, UIImage(named: "SignOut")!]
+            
+            segueIdList = ["GoToRates", "GoToSignIn"]
+            
+            PurposeList = [PurposeTypes.Settings_Rates, PurposeTypes.SignOut]
+            
+            DisplayTextList = ["Rates", "Sign Out"]
+            
+            authyIdList = ["", "", ""]
+            
+            showNavigationBar = true
+            ShowNavBar()
+            
         case .TimeStamps:
             
             //uncomment for missing timestamps, also fill in the rest. The end result actually just returns current timestamps for the day, not missing time stamps!
             
             images = [UIImage(named: "Calendar")!, UIImage(named: "Search")!, UIImage(named: "Search")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToSearchPerson", "GoToDateSelect","GoToDateSelect", "GoToSignIn"]
+            segueIdList = ["GoToSearchPerson", "GoToExtraTimeFinder", "GoToMissingTimeStamps", "GoToSignIn"]
             
              PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_ExtraMinutesFinder,PurposeTypes.TimeStamps_MissingTimeStampsFinder, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Calendar", "Extra Minutes Finder", "Missing Time Stamps Finder", "Sign Out"]
+            DisplayTextList = ["Calendar", "Extra Minutes Finder", "Missing Time Stamps", "Sign Out"]
             
-            authyIdList = ["", "","", "", ""]
+            authyIdList = ["", "", "", "", ""]
                 
             showNavigationBar = true
             ShowNavBar()
@@ -565,9 +592,12 @@ class MainMenuViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
+        if (segue.identifier == "GoToRates") {
+            if let vc = segue.destination as? Settings_Billing_Rates {
+            }
+        }
         
-        
-        if (segue.identifier == "GoToDateSelect") {
+        else if (segue.identifier == "GoToDateSelect") {
             
             if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                 
@@ -910,6 +940,7 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
             self.navigationItem.title="Authy Users"
         case .Children:
             self.navigationItem.title="Children"
+        default: break
         }
     }
 }

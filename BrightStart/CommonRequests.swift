@@ -93,7 +93,7 @@ class CommonRequests: NSObject {
     /*!
      @brief Updates a time stamp.
      */
-    func updateTimeStamp(personId: String, action: String, stamp: NSDate, originalAction: String, originalTimeStamp: NSDate, onCompletion: @escaping () -> Void) {
+    func updateTimeStamp(personId: String, action: String, stamp: Date, originalAction: String, originalTimeStamp: NSDate, onCompletion: @escaping () -> Void) {
         
         let defaults = UserDefaults.standard
         
@@ -114,7 +114,7 @@ class CommonRequests: NSObject {
         })
     }
     
-    func createTimeStamp(personId: String, action: String, stamp: NSDate, onCompletion: @escaping () -> Void) {
+    func createTimeStamp(personId: String, action: String, stamp: Date, onCompletion: @escaping () -> Void) {
         
         let defaults = UserDefaults.standard
         
@@ -137,7 +137,7 @@ class CommonRequests: NSObject {
     /*!
      @brief Delete a time stamp.
      */
-    func deleteTimeStamp(personId: String, action: String, stamp: NSDate, onCompletion: @escaping () -> Void) {
+    func deleteTimeStamp(personId: String, action: String, stamp: Date, onCompletion: @escaping () -> Void) {
         
         let defaults = UserDefaults.standard
         
@@ -207,6 +207,33 @@ class CommonRequests: NSObject {
         })
         
     }
+    
+    
+    func GetMissingTimeStamps(start: Date, end: Date, onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let dateFormatter:DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let targetStart:String = dateFormatter.string(from: start)
+        let targetEnd:String = dateFormatter.string(from: end)
+        
+        let route = baseURL + "api/TimeStampCountLogic/GetListOfChildUnMatchedTimeStampsForDateRange?targetStartDate="+targetStart+"&targetEndDate="+targetEnd+"&nurserySchoolId=" + nurserySchoolId
+        
+        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
+            
+            onCompletion(json as JSON)
+            
+        })
+        
+    }
+    
     
     /*!
      @brief Returns the number of children whom have registered hours for any given specific time of any given day.

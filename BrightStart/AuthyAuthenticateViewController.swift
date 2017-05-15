@@ -106,7 +106,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
                 })
                 
         })
-        
+       
         //PhoneNumberLabel.text = targetAuthyUser.PhoneNumber as String
         
         AuthyRequests.sharedInstance.SendOneTouchRequest(authyId: targetAuthyId as String, onCompletion:  { json in

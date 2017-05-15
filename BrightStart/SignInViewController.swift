@@ -52,15 +52,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //view.translatesAutoresizingMaskIntoConstraints = false
+        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .contrast)
         
         self.hideKeyboardWhenTappedAround()
         
-        //We need this so that we can dismess the keyboard on enter.
-        //passwordTextField.delegate = self
-        //usernameTextField.delegate = self
-        
-       // _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
        
         usernameTextField.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
@@ -127,7 +122,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         spacerMiddleTopView.backgroundColor = StyleManager.theme2()
         spacerMiddleMiddleView.backgroundColor = StyleManager.theme2()
         spacerMiddleBottomView.backgroundColor = StyleManager.theme2()
-        
         
     }
     

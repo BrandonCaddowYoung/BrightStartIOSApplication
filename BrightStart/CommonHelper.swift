@@ -129,6 +129,30 @@ class CommonHelper {
     }
     
     
+    
+    
+    
+    
+    
+    
+    func GetKeysFromValues(dictionary: Dictionary<String, String>, selectedArray: Set<String>) -> Array<String>
+    {
+        var selectedKeys = Array<String>()
+        
+        for (key, value) in dictionary {
+            if(selectedArray.contains(value as String))
+            {
+                selectedKeys.append(String(key))
+            }
+        }
+        
+        return selectedKeys
+    }
+    
+    
+    
+    
+    
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
@@ -395,6 +419,11 @@ if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
 
 }
 
+extension Float {
+    init(_ value: String){
+        self = (value as NSString).floatValue
+    }
+}
 
 
 

@@ -15,6 +15,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
 
     //Arguments
     
+    var jumpToDate = Date()
+    var shouldJumpToDate = false
+    
     var numberOfDateTaps = 0;
     
     var showNavigationBar = true
@@ -180,7 +183,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         finishLabel.font = _ApplicatoinColours.mediumFont
         
         startLabel.textColor = StyleManager.FontColour()
-       finishLabel.textColor = StyleManager.FontColour()
+        finishLabel.textColor = StyleManager.FontColour()
         
         targetPersonButton.backgroundColor = StyleManager.theme1()
         targetPersonButton.tintColor = StyleManager.theme4()
@@ -227,8 +230,8 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         startTime.textColor = StyleManager.theme2()
         endTime.textColor = StyleManager.theme2()
         
-        //Finally select the current date
-        self.calendarView.selectDates([NSDate() as Date])
+        
+
         
     }
 
@@ -306,8 +309,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.calendarView.selectDates([self.lastSelectedDate])
-        
         super.viewWillAppear(animated)
         
         if(!showNavigationBar){
@@ -319,6 +320,18 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
         }
+        
+        
+        if(shouldJumpToDate)
+        {self.calendarView.selectDates([jumpToDate])
+            
+            self.lastSelectedDate = jumpToDate
+            
+        }else{
+            //self.calendarView.selectDates([NSDate() as Date])
+            self.calendarView.selectDates([self.lastSelectedDate])
+        }
+        
     }
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplayCell cell: JTAppleDayCellView, date: Date, cellState: CellState) {
@@ -892,14 +905,12 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 else if(selectCalendarPurpose == .RegistrationHours){
                     vc.selectedMenu = .RegisteredHours
                 }
-                
-                
             }
         }
             
         else if (segue.identifier == "GoToRegistrationHoursEditor") {
             
-            if let vc = segue.destination as? AddRegisteredHoursViewController {
+            if let vc = segue.destination as? SettingRegistrationHours {
                 
                 vc.personName = childName
                 vc.personId = childId
@@ -908,14 +919,17 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 dateFormatter.dateFormat = "dd/MM/yyyy"
                 vc.targetDateAsText = dateFormatter.string(from: lastSelectedDate) as String
                 
-                vc.targetDate = lastSelectedDate as NSDate
+                vc.selectedStartTime = lastSelectedDate
+                vc.selectedEndTime = lastSelectedDate
+                
+                vc.targetDate = lastSelectedDate
                 
             }
         }
         
        else if (segue.identifier == "GoTotimeStampsEditor") {
             
-                if let vc = segue.destination as? TimeStampsEditorViewController {
+                if let vc = segue.destination as? EditTimeStamp {
                     
                     if(selectCalendarPurpose == .RegistrationHours)
                     {
@@ -1025,13 +1039,12 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                 vc.successSegueIdentifier = "GoToTimeStampSearch"
                 
             }
-        }
-            
+        }   
         else if (segue.identifier == "GoToEditTimeStampOrRegisteredHoours") {
             
             //Settings the menu details.
             
-            if let vc = segue.destination as? TimeStampsEditorViewController {
+            if let vc = segue.destination as? EditTimeStamp {
                 
                 if(selectCalendarPurpose == .RegistrationHours)
                 {
@@ -1176,15 +1189,13 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
             (alert: UIAlertAction!) -> Void in
             
+            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+            SVProgressHUD.show()
+            
             if(self.selectCalendarPurpose == .RegistrationHours)
             {
-                SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
-                SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
-                SVProgressHUD.show()
-                
                         RegistrationHoursRequests.sharedInstance.DeleteRegisteredHours(personId: self.childId, dateToDelete: self.lastSelectedDate as NSDate, onCompletion: { (JSON) in
-                            
-                            
                             
                             SVProgressHUD.dismiss(withDelay: 1, completion: {
                                 
@@ -1195,13 +1206,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                                 
                             } )
                             
-                            
                         })
-                
-                
-
-               
-
             }
             else if(self.selectCalendarPurpose == .TimeStamps)
             {
@@ -1215,13 +1220,11 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                     targetTimeStampsLogId = self.selectedPersonLogEndId;
                 }
                 
-                self.showSpinner()
-                
                 PersonLogRequests.sharedInstance.DeletePersonLog(logId: targetTimeStampsLogId, onCompletion:
-                {_ in 
-                self.hideSpinner()
-                     self.calendarView.selectDates([self.lastSelectedDate])
-                    
+                {_ in
+                    SVProgressHUD.dismiss(withDelay: 1, completion: {
+                         self.calendarView.selectDates([self.lastSelectedDate])
+                    } )
                 }
                 )
             }
@@ -1271,7 +1274,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         self.childId = self.childId.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        PersonLogRequests.sharedInstance.GetLogins(personId: self.childId as String, targetDate: lastSelectedDate as NSDate, onCompletion: { json in
+        var dateToUse = Date()
+        
+        PersonLogRequests.sharedInstance.GetLogins(personId: self.childId as String, targetDate: self.lastSelectedDate as NSDate, onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
                 
