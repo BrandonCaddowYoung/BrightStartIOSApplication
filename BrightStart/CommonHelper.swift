@@ -15,6 +15,24 @@ class CommonHelper {
     
     var _ApplicatoinColours = ApplicatoinColours()
     
+    func GetDateObjectFromString(dateAsString: String) -> Date
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+        
+        var newStart = dateFormatter.date(from: dateAsString)
+        if(newStart == nil){
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            newStart = dateFormatter.date(from: dateAsString)
+            if(newStart == nil){
+                return Date()
+            }
+        }
+        
+        return newStart!;
+        
+    }
+    
     func ShowSuccessMessage(title: String, subsTtitle: String)
     {
         
@@ -149,13 +167,13 @@ class CommonHelper {
         return selectedKeys
     }
     
-    
-    
-    
-    
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
+    
+    
+    
+    
     
     func showOverlayMessage(_ message: String) ->  UIAlertController{
         
@@ -381,6 +399,16 @@ extension Date {
         
         return dateformatter.string(from: self)
     
+    }
+    
+    public func ToURLString() -> String{
+        
+        let dateFormatter:DateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
+        
+        return dateFormatter.string(from: self)
+        
     }
     
     func startOfMonth() -> Date {

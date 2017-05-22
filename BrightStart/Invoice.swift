@@ -10,26 +10,43 @@ import Foundation
 
 open class Invoice
 {
-    open var InvoiceId: Int = 0
     open var ChildId: Int = 0
     
-    open var Total: Float = 0.0
-    open var Balance: Float = 0.0
+    open var Early_Time_Minutes: Int = 0
+    open var Late_Time_Minutes: Int = 0
+    open var Registered_Time_Minutes: Int = 0
+    open var NonRegistered_Time_Minutes: Int = 0
+   
+    open var InvoiceNumber: Int = 0
+    open var InvoiceTotal: Double = 0
+    open var InvoiceBalance: Double = 0
     
-    open var RegisteredMinutes: Float = 0.0
-    open var NonRegisteredMinutes: Float = 0.0
-    open var LateMinutes: Float = 0.0
-    open var EarlyMinutes: Float = 0.0
+    open var NumberOfBusinessDays: Int = 0
+    open var NumberOfFullDays: Int = 0
+    open var NumberOfFullHalfDays: Int = 0
     
-    open var Start = Date()
-    open var End = Date()
-    open var Issue = Date()
+    open var Notes = String()
     
-    init (id: Int, childId: Int, timeStamp: Date, action: NSString) {
-        self.InvoiceId = id
-        self.ChildId = childId
+    open var DueDate = Date()
+    open var IssueDate = Date()
     
-    }
+    open var Start_Date = Date()
+    open var End_Date = Date()
+    
+    open var NonRegisteredFinishDate = Date()
+    open var NonRegisteredStartDate = Date()
+
+    open var RegisteredFinishDate = Date()
+    open var RegisteredStartDate = Date()
+    
+    open var ExtraFinishDate = Date()
+    open var ExtraStartDate = Date()
+    
+    open var UsingFullTime = Date()
+    open var UsingPartTime = Date()
+   
+    open var EnforceFullTime: Bool = false
+    open var EnforcePartTime:  Bool = false
     
     init (){}
     

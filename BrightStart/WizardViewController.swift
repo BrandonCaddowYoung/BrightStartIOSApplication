@@ -158,7 +158,7 @@ class WizardViewController: UIViewController {
         }
             
         else if (segue.identifier == "GoToSuccess") {
-            if let vc = segue.destination as? WizardSuccessViewController {
+            if segue.destination is WizardSuccessViewController {
                 
                 
             }

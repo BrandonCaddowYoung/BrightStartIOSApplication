@@ -503,24 +503,24 @@ class InvoiceSearchTableViewCell: UITableViewCell
             
            // let dateField = convertedDateString as String
             
-            TotalLabel?.text = "£" + String(describing: invoice.Total)
-            InvoiceNumberLabel?.text = "#" + String(describing: invoice.InvoiceId)
+            TotalLabel?.text = "£" + String(describing: invoice.InvoiceTotal)
+            InvoiceNumberLabel?.text = "#" + String(describing: invoice.InvoiceNumber)
            
-            var (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int(invoice.RegisteredMinutes * 60))
+            var (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int(invoice.Registered_Time_Minutes * 60))
             RegisteredAmountLabel?.text = String(h) + "H " + String(m) + "M"
             
-            (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int(invoice.NonRegisteredMinutes * 60))
+            (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int(invoice.NonRegistered_Time_Minutes * 60))
             NonRegisteredAmountLabel?.text = String(h) + "H " + String(m) + "M"
             
-            (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int((invoice.EarlyMinutes + invoice.LateMinutes) * 60))
+            (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int((invoice.Early_Time_Minutes + invoice.Late_Time_Minutes) * 60))
             ExtraAmountLabel?.text = String(h) + "H " + String(m) + "M"
             
             BalanceAmountLabel?.text = "£0" //Still to do!
             BalanceAmountLabel.isHidden = true
             BalanceLabel.isHidden = true
             
-            InvoiceStartDate.text = invoice.Start.ToString()
-             InvoiceEndDate.text = invoice.End.ToString()
+            InvoiceStartDate.text = invoice.Start_Date.ToString()
+             InvoiceEndDate.text = invoice.End_Date.ToString()
             
             // UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
             //UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")

@@ -120,12 +120,12 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         
         //Title color(Center)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme2()]
-        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
         //Back ground color
         navigationController?.navigationBar.barTintColor = StyleManager.theme1()
         
-        var rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
         
         //Right button
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem

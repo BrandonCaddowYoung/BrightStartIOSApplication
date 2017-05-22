@@ -452,7 +452,7 @@ class EditTimeStamp: FormViewController {
                 $0.title = (EditorMode == .Missing_TimeStamps_Edit || EditorMode == .RegisteredHours_Create || EditorMode == .RegisteredHours_Edit || EditorMode == .TimeStamps_Create || EditorMode == .TimeStamps_Edit) ? "Save" : "Remove"
                 }.onCellSelection {  cell, row in
                     
-                    var row: TimePickerRow? = self.form.rowBy(tag: "TimePicker")
+                    let row: TimePickerRow? = self.form.rowBy(tag: "TimePicker")
                     let selectedTime = row?.value
                     
                     SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)

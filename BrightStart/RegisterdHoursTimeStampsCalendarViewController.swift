@@ -1274,7 +1274,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         
         self.childId = self.childId.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        var dateToUse = Date()
+    //  _se = Date()
         
         PersonLogRequests.sharedInstance.GetLogins(personId: self.childId as String, targetDate: self.lastSelectedDate as NSDate, onCompletion: { json in
             

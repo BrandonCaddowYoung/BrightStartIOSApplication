@@ -89,7 +89,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         //Making the pasword textfield secure
         passwordTextField.isSecureTextEntry = true;
         
-        let defaults = UserDefaults.standard
+        _ = UserDefaults.standard
         
         if(retrieveShouldRememberPassword())
         {
@@ -519,7 +519,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         let defaults = UserDefaults.standard
         defaults.set(String(should), forKey: "ShouldRememberUsername")
         
-        var test = retrieveShouldRememberPassword()
+        _ = retrieveShouldRememberPassword()
         
     }
     
@@ -671,7 +671,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         //Title color
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
-        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
         //Back color
         navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackGround() //Orange

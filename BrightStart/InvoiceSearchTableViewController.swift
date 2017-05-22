@@ -143,41 +143,48 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 
                 let invoice = Invoice()
                 
-                invoice.InvoiceId = Int(Float(JSON["InvoiceNumber"].stringValue)!)
-                //invoice.Balance = Float(JSON["Invoice_Balance"].stringValue)!
-                invoice.LateMinutes = Float(JSON["Late_Time_Minutes"].stringValue)!
-                invoice.EarlyMinutes = Float(JSON["Early_Time_Minutes"].stringValue)!
-                invoice.NonRegisteredMinutes = Float(JSON["NonRegistered_Time_Minutes"].stringValue)!
-                invoice.RegisteredMinutes = Float(JSON["Registered_Time_Minutes"].stringValue)!
+                invoice.ChildId = Int(JSON["ChildId"].stringValue)!
+                invoice.ChildId = Int(Double(JSON["ChildId"].stringValue)!)
+                invoice.Early_Time_Minutes = Int(Double(JSON["Early_Time_Minutes"].stringValue)!)
+              
+                invoice.EnforceFullTime = Bool(JSON["EnforceFullTime"].stringValue)!
                 
-                invoice.Total = Float(JSON["InvoiceTotal"].stringValue)!
-                invoice.ChildId = Int(Float(JSON["ChildId"].stringValue)!)
+                invoice.ExtraStartDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["ExtraStartDate"].stringValue)
+                invoice.ExtraFinishDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["ExtraFinishDate"].stringValue)
+                invoice.IssueDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["IssueDate"].stringValue)
+                invoice.End_Date = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["End_Date"].stringValue)
+                invoice.Start_Date = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["Start_Date"].stringValue)
+                
+                invoice.NonRegisteredStartDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["NonRegisteredStartDate"].stringValue)
+                invoice.NonRegisteredFinishDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["NonRegisteredFinishDate"].stringValue)
+                
+                invoice.RegisteredFinishDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["RegisteredFinishDate"].stringValue)
+                invoice.RegisteredStartDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["RegisteredStartDate"].stringValue)
+               
+                invoice.NonRegistered_Time_Minutes = Int(JSON["NonRegistered_Time_Minutes"].stringValue)!
+                
+                invoice.InvoiceNumber = Int(JSON["InvoiceNumber"].stringValue)!
+                invoice.InvoiceTotal = Double(JSON["InvoiceTotal"].stringValue)!
+                
+                invoice.Late_Time_Minutes = Int(JSON["Late_Time_Minutes"].stringValue)!
+                invoice.Notes = JSON["Notes"].stringValue
+                invoice.NumberOfBusinessDays = Int(Double(JSON["NumberOfBusinessDays"].stringValue)!)
+                invoice.NumberOfFullDays = Int(Double(JSON["NumberOfFullDays"].stringValue)!)
+                invoice.NumberOfFullHalfDays = Int(JSON["NumberOfFullHalfDays"].stringValue)!
+                invoice.Registered_Time_Minutes = Int(JSON["Registered_Time_Minutes"].stringValue)!
+                
+                let test = JSON["Registered_Time_Minutes"].stringValue
+                
+                invoice.Registered_Time_Minutes = Int(Double(test)!)
+                
+                invoice.ChildId = Int(JSON["ChildId"].stringValue)!
+                invoice.InvoiceTotal = Double(JSON["InvoiceTotal"].stringValue)!
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
                 
-                let startStamp = JSON["Start_Date"].stringValue
-                var newStart = dateFormatter.date(from: startStamp)
-                if(newStart == nil){
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                    newStart = dateFormatter.date(from: startStamp)
-                    if(newStart == nil){
-                    //continue
-                    }
-                }
-                
-                let endStamp = JSON["End_Date"].stringValue
-                var newEnd = dateFormatter.date(from: endStamp)
-                if(newEnd == nil){
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                    newEnd = dateFormatter.date(from: endStamp)
-                    if(newEnd == nil){
-                        //continue
-                    }
-                }
-                
-                invoice.Start = newStart!
-                invoice.End = newEnd!
+                invoice.Start_Date = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["Start_Date"].stringValue)
+                invoice.End_Date = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["End_Date"].stringValue)
                 
                 self.invoices.insert([invoice], at: 0)
                 
@@ -249,7 +256,7 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
             
             let delete = UITableViewRowAction(style: .default, title: "\u{267A}\n Delete") { action, index in
                 
-                InvoiceRequests.sharedInstance.DeleteInvoice(invoiceId: (cell.invoice?.InvoiceId)!, onCompletion:
+                InvoiceRequests.sharedInstance.DeleteInvoice(invoiceId: (cell.invoice?.InvoiceNumber)!, onCompletion:
                     {_ in
                         
                         self._CommonHelper.ShowSuccessMessage(title: "All done.", subsTtitle: "Invoice successfully deleted!")
@@ -265,7 +272,7 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
             
             let email = UITableViewRowAction(style: .default, title: "\u{2709}\n e-mail") { action, index in
 
-                BillingRequests.sharedInstance.SendInvoice(invoiceId: (cell.invoice?.InvoiceId)!, onCompletion:
+                BillingRequests.sharedInstance.SendInvoice(invoiceId: (cell.invoice?.InvoiceNumber)!, onCompletion:
                     {_ in
                         
                         self._CommonHelper.ShowSuccessMessage(title: "All done.", subsTtitle: "Invoice successfully sent!")
@@ -288,6 +295,8 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
             
            // return [delete, email]
             return [edit, delete]
+            //return [delete]
+
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -308,7 +317,8 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
         else if (segue.identifier == "GoToEditInvoice") {
             
             if let vc = segue.destination as? Invoice_Edit {
-                vc.invoiceId = String(SelectedInvoice.InvoiceId)
+                //vc.invoiceId = String(SelectedInvoice.InvoiceId)
+                vc.targetInvoice = SelectedInvoice
             }
             
         }

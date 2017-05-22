@@ -28,52 +28,10 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     
     var showNavigationBar: Bool! = true
     
-    func refreshTable()
-    {
-        timeStamps.removeAll()
-        tableView.reloadData()
-        refresh()
-    }
-    
-    func refresh()
-    {
-        if(refreshControl==nil)
-        {
-            refreshControl?.beginRefreshing()
-        }
-        else{
-            refreshTable(refreshControl)
-        }
-    }
-    
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
 
-        setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .light)
-        
-        
-        _CommonHelper = CommonHelper()
-        _ApplicatoinColours = ApplicatoinColours()
-        
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        
-         self.tableView.tableFooterView = UIView()
-        
-        // A little trick for removing the cell separators
-        self.tableView.tableFooterView = UIView()
-        
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
-        
-        tableView.estimatedRowHeight =  tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
-        view.backgroundColor = StyleManager.TableBackGroundColour()
-        
-        refresh()
-
+       
     }
     
     //Removes the navigation bar from the top
@@ -82,52 +40,16 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         super.viewWillDisappear(animated)
 
         
-        if(!showNavigationBar){
-            self.navigationController?.setNavigationBarHidden(false, animated: animated);
-                    }
-        else
-        {
-            self.navigationController?.setNavigationBarHidden(true, animated: animated);
-        }
         
     }
     
-    func SetNavigationBarDetails()
-    {
-        self.navigationController?.navigationBar.topItem?.title = " "
-        
-        //Title color(Center)
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
-        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-        
-        navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackButton()
-        
-        //Back ground color
-        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
-        
-        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-        
-        //Right button
-        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
-        
-      self.navigationItem.title="Time Stamp Search"
     
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         
-        if(!showNavigationBar){
-            self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        }
-        else
-        {
-            SetNavigationBarDetails()
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        }
+       
     }
     
     func NavBarMenuTapped(){
@@ -136,128 +58,33 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
         
-        self.timeStamps.removeAll();
+       
         
-        PersonLogRequests.sharedInstance.GetLogByDateAndId(personId: TargetPersonId as String, targetDate: TargetDate as NSDate, onCompletion: { json in
-            
-            for (index: _, subJson: JSON) in json {
-                
-                let log = PersonLog()
-                
-                log.PersonId = JSON["PersonId"].stringValue as NSString
-                log.Id = JSON["Id"].stringValue as NSString
-                
-                log.Action = JSON["Action"].stringValue as NSString
-                
-                let dateFormatter = DateFormatter()
-                
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
-                
-                let timeStamp = JSON["TimeStamp"].stringValue
-                
-                var newDate = dateFormatter.date(from: timeStamp)
-                
-                if(newDate == nil){
-                    
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                    
-                    newDate = dateFormatter.date(from: timeStamp)
-                    
-                    if(newDate == nil){
-                        continue
-                    }
-                }
-                
-                log.TimeStamp = newDate!
-               
-                self.timeStamps.insert([log], at: 0)
-                
-                self.tableView.reloadData()
-                
-            }
-            
-            DispatchQueue.main.async(execute: {
-                
-                self.timeStamps = self.timeStamps.reversed()
-                
-                self.tableView.reloadData()
-                sender?.endRefreshing()
-                
-                SVProgressHUD.dismiss(withDelay: 0, completion: {
-                    
-                })
-            })
-            
-        })
-    }
+           }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return timeStamps.count;
-    }
+        return 0
+            }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timeStamps[section].count
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TimeStamp", for: indexPath) as! TimeStampSearchTableViewCell
-        
-        let section = (indexPath as NSIndexPath).section;
-        let row = (indexPath as NSIndexPath).row;
-        
-        if timeStamps.count > section && timeStamps[section].count > row {
-            //print(children[section][row])
-            cell.log = timeStamps[section][row];
-        }
-        
-        return cell
+      return nil
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if(ShouldUseTapToSelect==true){
-           
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TimeStamp", for: indexPath) as! TimeStampSearchTableViewCell
-            cell.log = timeStamps[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
-            
-            //Saving the selected log so that when we segue we can call on it!
-            SelectedPersonLog = cell.log
-            
-            self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
-            
-        }
+      
         
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->
         [UITableViewRowAction]? {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TimeStamp", for: indexPath) as! TimeStampSearchTableViewCell
-            cell.log = timeStamps[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
-            
-            //Saving the selected log so that when we segue we can call on it!
-            SelectedPersonLog = cell.log
-           
-            let delete = UITableViewRowAction(style: .normal, title: "Remove") { (action, indexPath) in
-                
-                PersonLogRequests.sharedInstance.DeletePersonLog(logId: cell.log?.Id as! String, onCompletion:
-                    {_ in
-                        
-                        self.refresh()
-                        
-                }
-                )
-                
-            }
-            delete.backgroundColor = StyleManager.theme3()
-            
-            let share = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
-                self.performSegue(withIdentifier: "GoToTimeStampsEditor", sender: nil)
-            }
-            share.backgroundColor = StyleManager.theme4()
-            
-            return [delete, share]
+         
     }
     
     
@@ -307,43 +134,6 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
         if (segue.identifier == "GoToTimeStampsEditor") {
             
             //Settings the menu details.
-            
-            if let vc = segue.destination as? EditTimeStamp {
-                
-                if(SelectedPersonLog.Action == "Login")
-                {
-                    vc.editType = .Start
-                }
-                else if(SelectedPersonLog.Action == "Logout")
-                {
-                    vc.editType = .End
-                }
-                
-                vc.EditorMode = .Missing_TimeStamps_Edit
-                
-                vc.successIdentifier = "GoToExtraMinutesFinder"
-                
-                let dateFormatter = DateFormatter()
-                
-                //Need to make API call to get name here! For now its just the id that is going to go through!
-                  vc.Name = ""
-                
-                vc.PersonId = SelectedPersonLog.PersonId as String
-                
-                vc.Name = SelectedPersonFullName as String!;
-                
-                vc.Action = SelectedPersonLog.Action as String
-                
-                dateFormatter.dateFormat = "dd/MM/yyyy"
-                vc.Date = dateFormatter.string(from: SelectedPersonLog.TimeStamp) as String
-                
-                dateFormatter.dateFormat = "hh:mm:ss"
-                vc.Time = dateFormatter.string(from: SelectedPersonLog.TimeStamp) as String
-                
-                vc.DateAsObject = SelectedPersonLog.TimeStamp
-                    
-                
-            }
             
         }
     }

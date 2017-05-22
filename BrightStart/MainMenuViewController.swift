@@ -593,7 +593,7 @@ class MainMenuViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if (segue.identifier == "GoToRates") {
-            if let vc = segue.destination as? Settings_Billing_Rates {
+            if segue.destination is Settings_Billing_Rates {
             }
         }
         

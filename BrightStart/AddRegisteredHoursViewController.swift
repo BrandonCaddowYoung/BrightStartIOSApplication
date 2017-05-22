@@ -457,7 +457,7 @@ class AddRegisteredHoursViewController: UIViewController {
             
             //Title color
             let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
             
             //Back color
             navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackGround() //Orange
