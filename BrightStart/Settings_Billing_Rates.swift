@@ -248,7 +248,7 @@ class Settings_Billing_Rates: FormViewController {
                         $0.title = "Save changes"
                         }.onCellSelection {  cell, row in
                             
-                            var row: NameRow? = self.form.rowBy(tag: "FirstName")
+                            let row: NameRow? = self.form.rowBy(tag: "FirstName")
                             let FirstName = row?.value ?? ""
                             
                             //Call to save changes!

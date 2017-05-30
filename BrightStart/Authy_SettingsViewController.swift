@@ -333,64 +333,35 @@ class Authy_SettingsViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        if(!showNavigationBar){
-            self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        }
-        else
-        {
-            //Changes the color of the backgorund within the nav bar.
-            navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = StyleManager.theme5()
-            
-            //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-            
-            //Back color
-            navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackGround() //Orange
-            
-            //Back ground color
-            navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround() // Grey
-            
-            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-            
-            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            
-            self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
-            
-            navigationController?.navigationBar.topItem?.title = ""
-            navigationController?.navigationBar.backItem?.title = ""
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        }
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        
+        SetNavigationBarDetails()
+    
     }
     
-    func SetNaviagationBarDetails()
+    func SetNavigationBarDetails()
     {
         //Title color(Center)
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
         navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
+        navigationController?.navigationBar.tintColor = StyleManager.theme4()
+        
         //Back ground color
-        navigationController?.navigationBar.barTintColor = StyleManager.theme2()
+        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
         
-        self.navigationController?.navigationBar.topItem?.title = "Authy Settings";
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
         
-        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-        
+        //Right button
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         
-        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
-        
-        self.navigationItem.title="Authy Settings"
+        self.navigationItem.title = "Authy Settings"
         
     }
     
-    func NavBarMenuTapped()
-    {
-        selectedMenu = .Authy
-        
-        self.performSegue(withIdentifier: "GoToMenu", sender: self)
+    func NavBarMenuTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
 
 
@@ -410,19 +381,22 @@ class Authy_SettingsViewController: UIViewController {
             //Need to get the specific user. so navigate to menu.
             
             if let vc = segue.destination as? MainMenuViewController {
-                
-                if(selectedMenu == .Authy){
+            
+                if(selectedMenu == nil){
+                   vc.selectedMenu = .Authy
+                }
+                else if(selectedMenu == .Authy){
                     vc.selectedMenu = .Authy
                 }
                 else if(selectedMenu == .MainMenu)
                 {
                     vc.selectedMenu = .MainMenu
                 }
-            }
+            
         }
         
     }
-    
+    }
     
     
     @IBAction func UseAuthySwitched(_ sender: Any) {

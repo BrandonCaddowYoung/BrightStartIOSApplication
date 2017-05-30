@@ -233,7 +233,7 @@ class CreateChild: FormViewController {
                     nameRow = self.form.rowBy(tag: "LastName")
                     let LastName = nameRow?.value ?? ""
                     
-                    var dob: DateRow? = self.form.rowBy(tag: "DatOfBirth")
+                    let dob: DateRow? = self.form.rowBy(tag: "DatOfBirth")
                     let DatOfBirth = dob?.value
                     
                     nameRow = self.form.rowBy(tag: "MothersName")

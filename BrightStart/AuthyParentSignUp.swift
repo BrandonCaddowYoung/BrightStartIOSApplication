@@ -31,7 +31,7 @@ class AuthyParentSignUp: FormViewController {
             header.height = { 80.0 }
             header.onSetupView = {view, _ in
                 view.textColor = StyleManager.theme1()
-                view.text = "Welcome!"
+                view.text = "Authy!"
                 view.textAlignment = .center
                 view.font = UIFont(name: "HelveticaNeue-Bold", size: 20.0)!
             }
@@ -44,7 +44,7 @@ class AuthyParentSignUp: FormViewController {
             }
             
             <<< LabelRow("Target"){
-                $0.title = "This feature allows you to quickly add a new child."
+                $0.title = "This feature allows you to assgin a child to a parent for the purpose of second factor(Authy) authentication."
                 $0.cell.textLabel?.numberOfLines = 5
                 //$0.cell.height = { 300 }
         }
@@ -78,7 +78,7 @@ class AuthyParentSignUp: FormViewController {
                         $0.value = 0044
             }
             
-            <<< PhoneRow("Email") {
+            <<< EmailRow("Email") {
                                 $0.title = "email"
                                 $0.placeholder = "enter the adults email address"
         }
@@ -88,16 +88,16 @@ class AuthyParentSignUp: FormViewController {
                 $0.title = "Create new Authy user"
                 }.onCellSelection {  cell, row in
                     
-                    var row: NameRow? = self.form.rowBy(tag: "Name")
+                    let row: NameRow? = self.form.rowBy(tag: "Name")
                     let Name = row?.value ?? ""
                     
-                    var textRow: TextRow? = self.form.rowBy(tag: "Relationship")
+                    let textRow: TextRow? = self.form.rowBy(tag: "Relationship")
                     let Relationship = textRow?.value ?? ""
                     
                     let phoneRow: PhoneRow? = self.form.rowBy(tag: "Mobile")
                     let Mobile = phoneRow?.value
                     
-                    var intRow: IntRow? = self.form.rowBy(tag: "CountryCode")
+                    let intRow: IntRow? = self.form.rowBy(tag: "CountryCode")
                     let CountryCode = intRow?.value
                     
                     let emailRow: EmailRow? = self.form.rowBy(tag: "Email")
@@ -142,8 +142,6 @@ class AuthyParentSignUp: FormViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         
-        
-        
         SetNavigationBarDetails()
         
     }
@@ -165,7 +163,7 @@ class AuthyParentSignUp: FormViewController {
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         
-        self.navigationItem.title = "Quick Create"
+        self.navigationItem.title = "Authy Sign Up"
         
     }
     

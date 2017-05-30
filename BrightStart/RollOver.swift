@@ -152,12 +152,12 @@ class RollOver: FormViewController {
                             
                             
                             let targetYear: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetYearPicker")
-                            var targetMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetMonthPicker")
+                            let targetMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetMonthPicker")
                             
                             let targetMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (targetMonth?.value)!)
                             
                             let destinationYear: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationYearPicker")
-                            var destinationMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationMonthPicker")
+                            let destinationMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationMonthPicker")
                             
                             let destinationMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (destinationMonth?.value)!)
                             

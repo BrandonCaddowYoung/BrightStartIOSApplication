@@ -227,10 +227,6 @@ class AuthyNewUserCompleteViewController: UIViewController {
             }
             
         }
-        
-        
-        
-        
     }
     
     

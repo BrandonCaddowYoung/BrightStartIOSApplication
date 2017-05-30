@@ -143,7 +143,7 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 
                 let invoice = Invoice()
                 
-                invoice.ChildId = Int(JSON["ChildId"].stringValue)!
+//                invoice.ChildId = Int(JSON["ChildId"].stringValue)!
                 invoice.ChildId = Int(Double(JSON["ChildId"].stringValue)!)
                 invoice.Early_Time_Minutes = Int(Double(JSON["Early_Time_Minutes"].stringValue)!)
               
@@ -185,6 +185,9 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 
                 invoice.Start_Date = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["Start_Date"].stringValue)
                 invoice.End_Date = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["End_Date"].stringValue)
+                
+                invoice.UsingPartTime = Bool(JSON["UsingPartTime"].stringValue)!
+                invoice.UsingFullTime = Bool(JSON["UsingFullTime"].stringValue)!
                 
                 self.invoices.insert([invoice], at: 0)
                 
@@ -317,7 +320,6 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
         else if (segue.identifier == "GoToEditInvoice") {
             
             if let vc = segue.destination as? Invoice_Edit {
-                //vc.invoiceId = String(SelectedInvoice.InvoiceId)
                 vc.targetInvoice = SelectedInvoice
             }
             

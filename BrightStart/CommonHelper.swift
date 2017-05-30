@@ -148,11 +148,6 @@ class CommonHelper {
     
     
     
-    
-    
-    
-    
-    
     func GetKeysFromValues(dictionary: Dictionary<String, String>, selectedArray: Set<String>) -> Array<String>
     {
         var selectedKeys = Array<String>()
@@ -406,6 +401,16 @@ extension Date {
         let dateFormatter:DateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "yyyy-MM-dd%20HH:mm:ss"
+        
+        return dateFormatter.string(from: self)
+        
+    }
+    
+    public func ToURLString2() -> String{
+        
+        let dateFormatter:DateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-ddTHH:mm:ss"
         
         return dateFormatter.string(from: self)
         

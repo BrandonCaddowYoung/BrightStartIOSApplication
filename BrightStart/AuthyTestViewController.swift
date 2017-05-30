@@ -11,16 +11,16 @@ import SVProgressHUD
 
 class AuthyTestViewController: UIViewController, UITextFieldDelegate {
 
-    var _ApplicatoinColours: ApplicatoinColours!
-    var _CommonHelper: CommonHelper!
+   // var _ApplicatoinColours: ApplicatoinColours!
+   // var _CommonHelper: CommonHelper!
     
     var shouldPerformCheck = true
     
     var timer = Timer()
     
-    var uuid :NSString!
+   var uuid :NSString!
     
-    var successSegueIdentifier :NSString!
+   var successSegueIdentifier :NSString!
     
     var targetChildId :NSString!
     
@@ -62,8 +62,8 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         
         self.TokeTextBox.delegate = self
         
-        _ApplicatoinColours = ApplicatoinColours()
-        _CommonHelper = CommonHelper()
+       // _ApplicatoinColours = ApplicatoinColours()
+       // _CommonHelper = CommonHelper()
         
         //Styling button
         DoneButton.layer.cornerRadius = 5
@@ -72,7 +72,7 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         DoneButton.backgroundColor = StyleManager.buttonBackGround()
         DoneButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
 
-        DoneButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+      //  DoneButton.titleLabel?.font _ApplicatoinColoursrs.buttonFont
         
         view.backgroundColor = StyleManager.DarkBackground()
         

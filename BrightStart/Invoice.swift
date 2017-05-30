@@ -42,8 +42,8 @@ open class Invoice
     open var ExtraFinishDate = Date()
     open var ExtraStartDate = Date()
     
-    open var UsingFullTime = Date()
-    open var UsingPartTime = Date()
+    open var UsingFullTime: Bool = false
+    open var UsingPartTime: Bool = false
    
     open var EnforceFullTime: Bool = false
     open var EnforcePartTime:  Bool = false

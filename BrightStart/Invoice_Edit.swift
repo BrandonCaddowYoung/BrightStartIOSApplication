@@ -55,12 +55,8 @@ class Invoice_Edit: FormViewController {
             {
                 $0.header = HeaderFooterView<LogoView>(.class)
         }
-       
-        //Retrieve invoice using invoice id.
-        
-       
-                
-                self.form +++ Section("General")
+      
+        self.form +++ Section("General")
                     
                     <<< LabelRow("Name)") {
                         $0.title = "name"
@@ -70,34 +66,32 @@ class Invoice_Edit: FormViewController {
                     <<< LabelRow("InvoiceId)") {
                         $0.title = "invoice id"
                         $0.value = String(self.targetInvoice.InvoiceNumber)
-
                 }
-                
-                self.form +++ Section("Dates")
-                    
-                    <<< DateInlineRow("DateOfIssue)") {
+      
+                +++ Section("Dates")
+                    <<< DateInlineRow("DateOfIssue") {
                         $0.title = "issue date"
-                        $0.value = self.targetInvoice.IssueDate
+                        $0.value = Date(timeIntervalSinceReferenceDate: 0)
                 }
                
-                    <<< DateInlineRow("DueDate)") {
+                    <<< DateInlineRow("DueDate") {
                         $0.title = "due date"
                         $0.value =  Date() //?
                 }
                 
-                    <<< DateInlineRow("StartDate)") {
+                    <<< DateInlineRow("StartDate") {
                         $0.title = "start date"
                         $0.value = self.targetInvoice.Start_Date
                 }
                 
-                    <<< DateInlineRow("EndDate)") {
+                    <<< DateInlineRow("EndDate") {
                         $0.title = "end date"
                         $0.value = self.targetInvoice.End_Date
                 }
                 
                 self.form +++ Section("Balance")
                     
-                    <<< DecimalRow("OriginalInvouceBalance)") {
+                    <<< DecimalRow("OriginalInvouceBalance") {
                         $0.title = "original invoice balance"
                         $0.value = Double(self.targetInvoice.InvoiceTotal)
                         
@@ -108,7 +102,7 @@ class Invoice_Edit: FormViewController {
                         $0.formatter = formatter
                     }
                     
-                    <<< DecimalRow("InvouceBalance)") {
+                    <<< DecimalRow("InvouceBalance") {
                         $0.title = "invoice balance(after payments)"
                         $0.value = Double(self.targetInvoice.InvoiceBalance)
                         
@@ -118,19 +112,19 @@ class Invoice_Edit: FormViewController {
                         formatter.numberStyle = .currency
                         $0.formatter = formatter
                 }
-                
+        
                 self.form +++ Section("Statistics")
                     
-                    <<< IntRow("HalfDays)") {
+                    <<< IntRow("HalfDays") {
                         $0.title = "number of half days"
                         $0.value = self.targetInvoice.NumberOfFullHalfDays
                     }
                     
-                    <<< IntRow("FulDays)") {
+                    <<< IntRow("FullDays") {
                         $0.title = "number of full days"
                         $0.value = self.targetInvoice.NumberOfFullHalfDays
                     }
-                
+        
                 let (regHours,regMins,_) = self._CommonHelper.secondsToHoursMinutesSeconds(seconds: Int(self.targetInvoice.Registered_Time_Minutes * 60))
                 
                     self.form +++ Section("Registerd Time")
@@ -146,7 +140,7 @@ class Invoice_Edit: FormViewController {
                             $0.options = self.minutes
                             $0.value = self.minutes[regMins]
                         }
-                        
+        
                  let (nonRegHours,nonRegMins,_) = self._CommonHelper.secondsToHoursMinutesSeconds(seconds: Int(self.targetInvoice.NonRegistered_Time_Minutes * 60))
                 
                 self.form +++ Section("Non-Registerd Time")
@@ -176,9 +170,9 @@ class Invoice_Edit: FormViewController {
                     <<< PickerInlineRow<String>("EarlyMinutes") {
                         $0.title = "Minutes"
                         $0.options = self.minutes
-                        $0.value = self.minutes[earlyMins]
+                       $0.value = self.minutes[earlyMins]
                     }
-                
+
                   let (lateHours,lateMins,_) = self._CommonHelper.secondsToHoursMinutesSeconds(seconds: Int(self.targetInvoice.Early_Time_Minutes * 60))
                 
                 self.form +++ Section("Late Time")
@@ -186,7 +180,7 @@ class Invoice_Edit: FormViewController {
                     <<< PickerInlineRow<String>("LateHours") {
                         $0.title = "Hours"
                         $0.options = self.hours
-                        $0.value = self.hours[lateHours]
+                       $0.value = self.hours[lateHours]
                     }
                     
                     <<< PickerInlineRow<String>("LateMinutes") {
@@ -194,50 +188,49 @@ class Invoice_Edit: FormViewController {
                         $0.options = self.minutes
                          $0.value = self.minutes[lateMins]
                     }
-                
+        
                      self.form +++ Section("Qualification")
 
-                    <<< IntRow("BusinessDays)") {
+                    <<< IntRow("BusinessDays") {
                         $0.title = "number of business days"
                         $0.value = self.targetInvoice.NumberOfBusinessDays
                     }
                     
-                    <<< IntRow("FullTimeQualificationPoint)") {
+                    <<< IntRow("FullTimeQualificationPoint") {
                         $0.title = "full time qualification point"
                         $0.value = 1
                     }
                     
-                    <<< SwitchRow("QualifcationStatus)") {
+                    <<< SwitchRow("QualifcationStatus") {
                         $0.title = "Full Time"
                         $0.value = true
                 }
                 
-                        <<< SwitchRow("EnforceFullTime)") {
+                        <<< SwitchRow("EnforceFullTime") {
                             $0.title = "enforce full time"
                             $0.value = false
                 }
                 
-                        <<< SwitchRow("EnforcePartTime)") {
+                        <<< SwitchRow("EnforcePartTime") {
                             $0.title = "enfore part time"
                             $0.value = false
                 }
-                
-                self.form +++ Section("")
+        
+                self.form +++ Section("sdfdsf")
                     <<< ButtonRow(){
                         $0.title = "Save changes"
                         }.onCellSelection {  cell, row in
                             
-                            let formvalues = self.form.values()
-                            _ = formvalues["StartDate"]
-                            
+                            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+                            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+                            SVProgressHUD.show()
                             
                             var pickerRow: PickerInlineRow<String>? = self.form.rowBy(tag: "NonRegistrationHours")
                             var intRow: IntRow? = self.form.rowBy(tag: "HalfDays")
-                            var dateInlineRow: DateInlineRow? = self.form.rowBy(tag: "StartDate")
                             
-                            dateInlineRow = self.form.rowBy(tag: "DateOfIssue")
+                            var dateInlineRow: DateInlineRow? = self.form.rowBy(tag: "DateOfIssue")
                             let DateOfIssue = dateInlineRow?.value
-                            
+                          
                             dateInlineRow = self.form.rowBy(tag: "DueDate")
                             let DueDate = dateInlineRow?.value
                             
@@ -258,35 +251,70 @@ class Invoice_Edit: FormViewController {
                             
                             pickerRow = self.form.rowBy(tag: "RegistrationHours")
                             let RegistrationHours = Int((pickerRow?.value)!)
+                            
                             pickerRow = self.form.rowBy(tag: "RegistrationMinutes")
                             let RegistrationMinutes = Int((pickerRow?.value)!)
-                            let RegistrationMins = (RegistrationHours! / 60) + RegistrationMinutes!
+                            let RegistrationMins = (RegistrationHours! * 60) + RegistrationMinutes!
                             
                             pickerRow = self.form.rowBy(tag: "NonRegistrationHours")
                             let NonRegistrationHours = Int((pickerRow?.value)!)
+                            
                             pickerRow = self.form.rowBy(tag: "NonRegistrationMinutes")
                             let NonRegistrationMinutes = Int((pickerRow?.value)!)
-                            let NonRegistrationMins = (NonRegistrationHours! / 60) + NonRegistrationMinutes!
+                            let NonRegistrationMins = (NonRegistrationHours! * 60) + NonRegistrationMinutes!
 
                             pickerRow = self.form.rowBy(tag: "EarlyHours")
                             let EarlyHours = Int((pickerRow?.value)!)
+                            
                             pickerRow = self.form.rowBy(tag: "EarlyMinutes")
                             let EarlyMinutes = Int((pickerRow?.value)!)
-                            let EarlyMins = (EarlyHours! / 60) + EarlyMinutes!
+                            let EarlyMins = (EarlyHours! * 60) + EarlyMinutes!
                             
                             pickerRow = self.form.rowBy(tag: "LateHours")
                             let LateHours = Int((pickerRow?.value)!)
                             pickerRow = self.form.rowBy(tag: "LateMinutes")
                             let LateMinutes = Int((pickerRow?.value)!)
-                            let LateMins = (LateHours! / 60) + LateMinutes!
+                            let LateMins = (LateHours! * 60) + LateMinutes!
 
-                           InvoiceRequests.sharedInstance.UpdateInvoice(invoiceNumber: String(self.targetInvoice.InvoiceNumber), issueDate: DateOfIssue!.ToURLString(), startDate: StartDate!.ToURLString(), endDate: EndDate!.ToURLString(), dueDate: DueDate?.ToURLString(), notes: self.targetInvoice.Notes, childId: String(self.targetInvoice.ChildId), earlyTimeMinutes: String(EarlyMins), lateTimeMinutes: String(LateMins), registeredTimeMinutes: String(RegistrationMins), nonRegisteredTimeMinutes: String(NonRegistrationMins), invoiceTotal: String(self.targetInvoice.InvoiceTotal), enforcePartTime: String(false), enforceFullTime: String(false), registeredStartDate: self.targetInvoice.RegisteredStartDate.ToURLString(), registeredFinishDate: self.targetInvoice.RegisteredFinishDate.ToURLString(), nonRegisteredStartDate: self.targetInvoice.NonRegisteredStartDate.ToURLString(), nonRegisteredFinishDate: self.targetInvoice.NonRegisteredFinishDate.ToURLString(), extraStartDate: self.targetInvoice.ExtraStartDate.ToURLString(), extraFinishDate: self.targetInvoice.ExtraFinishDate.ToURLString(),  numberOfFullDays: String(describing: FullDays), numberOfFullHalfDays: String(describing: HalfDays), usingPartTime: String(describing: self.targetInvoice.UsingPartTime), usingFullTime: String(describing: self.targetInvoice.UsingFullTime), numberOfBusinessDays: String(describing: BusinessDays), onCompletion:
+                            let invoiceNumber = String(self.targetInvoice.InvoiceNumber)
+                            let issueDate = (DateOfIssue?.ToURLString2())!
+                            let startDate = (StartDate?.ToURLString2())!
+                            let endDate = (EndDate?.ToURLString2())!
+                            let dueDate = (DueDate?.ToURLString2())!
+                            let noptes = self.targetInvoice.Notes
+                            let childId = String(self.targetInvoice.ChildId)
+                            let earlyTimeMinutes = String(EarlyMins)
+                            let lateTimeMinutes = String(LateMins)
+                            let registeredTimeMinutes = String(RegistrationMins)
+                            let nonRegisteredTimeMinutes = String(NonRegistrationMins)
+                            let invoiceTotal = String(self.targetInvoice.InvoiceTotal)
+                            let enforcePartTime = String(false)
+                            let enforceFullTime = String(false)
+                            
+                            let registeredStartDate = self.targetInvoice.RegisteredStartDate.ToURLString2()
+                            let registeredFinishDate = self.targetInvoice.RegisteredStartDate.ToURLString2()
+                            
+                            let nonRegisteredStartDate = self.targetInvoice.NonRegisteredStartDate.ToURLString2()
+                            let nonRegisteredFinishDate = self.targetInvoice.RegisteredFinishDate.ToURLString2()
+                            
+                            let extraStartDate = self.targetInvoice.ExtraStartDate.ToURLString2()
+                            let extraFinishDate = self.targetInvoice.ExtraFinishDate.ToURLString2()
+                            
+                            let numberOfFullDays = "\(FullDays!)"
+                            let numberOfFullHalfDays = "\(HalfDays!)"
+                            
+                            let usingPartTime = "\(self.targetInvoice.UsingPartTime)"
+                            let usingFullTime = "\(self.targetInvoice.UsingFullTime)"
+                            
+                            let numberOfBusinessDays = "\(BusinessDays!)"
+                            
+                            InvoiceRequests.sharedInstance.UpdateInvoice(invoiceNumber: invoiceNumber, issueDate: issueDate, startDate: startDate, endDate: endDate, dueDate: dueDate, notes: noptes, childId: childId, earlyTimeMinutes: earlyTimeMinutes, lateTimeMinutes: lateTimeMinutes, registeredTimeMinutes: registeredTimeMinutes, nonRegisteredTimeMinutes: nonRegisteredTimeMinutes, invoiceTotal: invoiceTotal, enforcePartTime: enforcePartTime, enforceFullTime: enforceFullTime, registeredStartDate: registeredStartDate, registeredFinishDate: registeredFinishDate, nonRegisteredStartDate: nonRegisteredStartDate, nonRegisteredFinishDate: nonRegisteredFinishDate, extraStartDate: extraStartDate, extraFinishDate: extraFinishDate,  numberOfFullDays: numberOfFullDays, numberOfFullHalfDays: numberOfFullHalfDays, usingPartTime: usingPartTime, usingFullTime: usingFullTime, numberOfBusinessDays: numberOfBusinessDays, onCompletion:
                                 { json in
                                     
                                 DispatchQueue.main.async(execute: {
                                         
                                         SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                            self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                            self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
                                         })
                                         
                                     })
@@ -305,6 +333,16 @@ class Invoice_Edit: FormViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         SetNavigationBarDetails()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToMainMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                vc.selectedMenu = .Billing
+            }
+        }
     }
     
     func SetNavigationBarDetails()

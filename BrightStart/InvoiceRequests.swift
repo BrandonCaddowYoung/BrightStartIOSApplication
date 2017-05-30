@@ -108,44 +108,41 @@ class InvoiceRequests: NSObject {
             nurserySchoolId = id;
         }
         
-        let parameters: Parameters = [
-            "InvoiceNumber": invoiceNumber,
-            "IssueDate": issueDate ,
-            "Start_Date": startDate ,
-            "End_Date": endDate ,
-            "DueDate": dueDate ?? "",
-            "Notes": notes ?? "",
-            "ChildId": childId ?? "",
-            "Early_Time_Minutes": earlyTimeMinutes ?? "",
-            "Late_Time_Minutes": lateTimeMinutes ?? "",
-            "Registered_Time_Minutes": registeredTimeMinutes ?? "",
-            "NonRegistered_Time_Minutes": nonRegisteredTimeMinutes ?? "",
-            "InvoiceTotal": invoiceTotal,
-            "EnforcePartTime": enforcePartTime,
-            "EnforceFullTime": enforceFullTime ?? "",
-            "RegisteredStartDate": registeredStartDate ?? "",
-            "RegisteredFinishDate": registeredFinishDate ?? "",
-            "NonRegisteredStartDate": nonRegisteredStartDate ?? Date(),
-            "NonRegisteredFinishDate": nonRegisteredFinishDate ?? Date(),
-            "ExtraStartDate": extraStartDate ?? "",
-            "ExtraFinishDate": extraFinishDate ?? "",
-            "NumberOfFullDays": numberOfFullDays ?? Date(),
-            "NumberOfFullHalfDays": numberOfFullHalfDays,
-            "UsingPartTime": usingFullTime ?? "",
-            "UsingFullTime": usingFullTime ?? "",
-            "NumberOfBusinessDays": numberOfBusinessDays ?? "",
-            "NurserySchoolId": nurserySchoolId ,
-            ]
+        var parameters = [String : AnyObject]()
         
-        let route = baseURL + "api/AccountLogic/CreateAccount?nurserySchoolId=" + nurserySchoolId
+         parameters["InvoiceNumber"] = invoiceNumber as AnyObject?
+        parameters["IssueDate"] = issueDate as AnyObject?
+        parameters["Start_Date"] = startDate as AnyObject?
+        parameters["End_Date"] = endDate as AnyObject?
+        parameters["DueDate"] = dueDate as AnyObject?
+        parameters["Notes"] = notes as AnyObject?
+        parameters["ChildId"] = childId as AnyObject?
+        parameters["Early_Time_Minutes"] = earlyTimeMinutes as AnyObject?
+        parameters["Late_Time_Minutes"] = lateTimeMinutes as AnyObject?
+        parameters["Registered_Time_Minutes"] = registeredTimeMinutes as AnyObject?
+        parameters["NonRegistered_Time_Minutes"] = nonRegisteredTimeMinutes as AnyObject?
+        parameters["InvoiceTotal"] = invoiceTotal as AnyObject?
+        parameters["EnforcePartTime"] = enforcePartTime as AnyObject?
+        parameters["EnforceFullTime"] = enforceFullTime as AnyObject?
+        parameters["RegisteredStartDate"] = registeredStartDate as AnyObject?
+        parameters["RegisteredFinishDate"] = registeredFinishDate as AnyObject?
+        parameters["NonRegisteredStartDate"] = nonRegisteredStartDate as AnyObject?
+        parameters["NonRegisteredFinishDate"] = nonRegisteredFinishDate as AnyObject?
+        parameters["ExtraStartDate"] = extraStartDate as AnyObject?
+        parameters["ExtraFinishDate"] = extraFinishDate as AnyObject?
+        parameters["NumberOfFullDays"] = numberOfFullDays as AnyObject?
+         parameters["NumberOfFullHalfDays"] = numberOfFullHalfDays as AnyObject?
+        parameters["UsingPartTime"] = usingPartTime as AnyObject?
+        parameters["UsingFullTime"] = usingFullTime as AnyObject?
+        parameters["NumberOfBusinessDays"] = numberOfBusinessDays as AnyObject?
+        parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
+        
+        let route = baseURL + "api/InvoiceLogic/UpdateInvoice?nurserySchoolId=" + nurserySchoolId
         makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
         })
     }
-
-    
-    
     
 }

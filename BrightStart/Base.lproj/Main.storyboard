@@ -3767,6 +3767,7 @@
                 <viewController id="Pwj-PM-UMF" customClass="AuthyParentSignUp" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="xW4-Ev-DXN" kind="show" identifier="GoToNewUserComplete" id="bOY-4W-vET"/>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="5FT-ES-p07"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMk-6c-FPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3820,6 +3821,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Fb9-Yc-E14"/>
+                    <connections>
+                        <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMainMenu" id="1w7-Dn-cr7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ST4-dy-wOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3838,15 +3842,15 @@
         <image name="ic_check" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dqp-G4-KoA"/>
-        <segue reference="O32-SF-SMs"/>
-        <segue reference="CWW-ID-FRn"/>
-        <segue reference="xMR-cl-oyC"/>
         <segue reference="2qs-QS-n86"/>
+        <segue reference="5FT-ES-p07"/>
         <segue reference="Q5J-dV-oJS"/>
-        <segue reference="Gez-8g-kB0"/>
+        <segue reference="CWW-ID-FRn"/>
         <segue reference="wG7-yc-5Up"/>
-        <segue reference="nI5-tY-Lte"/>
+        <segue reference="xMR-cl-oyC"/>
+        <segue reference="Gez-8g-kB0"/>
         <segue reference="WrM-xj-FNN"/>
+        <segue reference="nI5-tY-Lte"/>
+        <segue reference="O32-SF-SMs"/>
     </inferredMetricsTieBreakers>
 </document>
