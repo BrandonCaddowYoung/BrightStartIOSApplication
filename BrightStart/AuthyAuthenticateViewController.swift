@@ -431,7 +431,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
     {
         //Title color(Center)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
-        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
         //Back ground color
         navigationController?.navigationBar.barTintColor = StyleManager.theme2()
@@ -446,8 +446,9 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    func NavBarMenuTapped(){}
+    func NavBarMenuTapped(){
+    self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+    }
     
     func createOverlay(frame : CGRect, xOffset: CGFloat, yOffset: CGFloat, radius: CGFloat) -> UIView
     {

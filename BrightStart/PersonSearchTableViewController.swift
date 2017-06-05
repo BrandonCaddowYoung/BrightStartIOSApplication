@@ -271,6 +271,30 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
        
+        if (segue.identifier == "GoToMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                if(GoToMenuType == .TimeStamps)
+                {
+                    vc.selectedMenu = .TimeStamps
+                }
+                else if(GoToMenuType == .Billing)
+                {
+                    vc.selectedMenu = .Billing
+                }
+                else if(GoToMenuType == .RegisteredHours)
+                {
+                    vc.selectedMenu = .RegisteredHours
+                }
+                else
+                {
+                    vc.selectedMenu = .MainMenu
+                }
+                
+            }
+        }
+        
         if (segue.identifier == "GoToTimeStampSearch") {
             
             //Settings the menu details.
@@ -515,25 +539,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 }
             }
 
-            else if (segue.identifier == "GoToMenu") {
-                
-                
-                if let vc = segue.destination as? MainMenuViewController {
-                    
-                    if(GoToMenuType == .MainMenu)
-                    {
-                    vc.selectedMenu = .MainMenu
-                    }
-                    
-                    if(GoToMenuType == .TimeStamps)
-                    {
-                        vc.selectedMenu = .TimeStamps
-                    }
-                    
-                    
                 }
-                
-            }        }
         
     }
     

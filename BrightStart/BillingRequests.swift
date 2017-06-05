@@ -75,9 +75,21 @@ class BillingRequests: NSObject {
         
     }
     
-    
-    
-    
-    
+    func IsInvoiceFullTime(invoiceId: String, onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let route = baseURL + "api/BillingLogic/IsInvoiceFullTime?invoiceId=" + invoiceId + "&nurserySchoolId=" + nurserySchoolId
+        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
+    }
     
 }

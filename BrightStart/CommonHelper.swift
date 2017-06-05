@@ -166,10 +166,6 @@ class CommonHelper {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
-    
-    
-    
-    
     func showOverlayMessage(_ message: String) ->  UIAlertController{
         
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -408,11 +404,23 @@ extension Date {
     
     public func ToURLString2() -> String{
         
-        let dateFormatter:DateFormatter = DateFormatter()
+        //let dateFormatter:DateFormatter = DateFormatter()
         
+        //dateFormatter.dateFormat = "yyyy-MM-ddTHH:mm:ss"
+        
+        //let dateAsString = dateFormatter.string(from: self)
+        
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-ddTHH:mm:ss"
-        
         return dateFormatter.string(from: self)
+        
+        
+      //  formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        
+        
+        
+        
+       // return dateAsString
         
     }
     
@@ -458,6 +466,13 @@ extension Float {
     }
 }
 
+extension Double {
+    /// Rounds the double to decimal places value
+    func roundTo(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
 
 
 

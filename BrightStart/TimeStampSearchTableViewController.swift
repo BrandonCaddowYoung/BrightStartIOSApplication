@@ -131,7 +131,7 @@ class TimeStampSearchTableViewController:  UITableViewController, UITextFieldDel
     }
     
     func NavBarMenuTapped(){
-        
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {

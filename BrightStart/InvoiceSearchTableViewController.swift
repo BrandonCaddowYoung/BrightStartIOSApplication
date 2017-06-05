@@ -128,10 +128,36 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
     }
     
     func NavBarMenuTapped(){
-        
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+
+        
+        if (segue.identifier == "GoToTimeStampsEditor") {
+            
+        }
+        else if (segue.identifier == "GoToEditInvoice") {
+            
+            if let vc = segue.destination as? Invoice_Edit {
+                vc.targetInvoice = SelectedInvoice
+                vc.targetChildName = self.SelectedPersonFullName as String
+            }
+            
+        }
+        
+        else if (segue.identifier == "GoToMenu") {
+            
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                vc.selectedMenu = .Billing
+                
+            }
+            
+        }
+        
+    }
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
         
@@ -148,6 +174,9 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 invoice.Early_Time_Minutes = Int(Double(JSON["Early_Time_Minutes"].stringValue)!)
               
                 invoice.EnforceFullTime = Bool(JSON["EnforceFullTime"].stringValue)!
+                
+                invoice.IsFullTime = Bool(JSON["IsFullTime"].stringValue)!
+                invoice.InvoiceBalance = Double(JSON["InvoiceBalance"].stringValue)!
                 
                 invoice.ExtraStartDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["ExtraStartDate"].stringValue)
                 invoice.ExtraFinishDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["ExtraFinishDate"].stringValue)
@@ -250,7 +279,7 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) ->
         [UITableViewRowAction]? {
-            
+           
             let cell = tableView.dequeueReusableCell(withIdentifier: "Invoice", for: indexPath) as! InvoiceSearchTableViewCell
             cell.invoice = invoices[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
@@ -259,46 +288,49 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
             
             let delete = UITableViewRowAction(style: .default, title: "\u{267A}\n Delete") { action, index in
                 
+                SVProgressHUD.show()
+                SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+                SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+                
                 InvoiceRequests.sharedInstance.DeleteInvoice(invoiceId: (cell.invoice?.InvoiceNumber)!, onCompletion:
                     {_ in
                         
-                        self._CommonHelper.ShowSuccessMessage(title: "All done.", subsTtitle: "Invoice successfully deleted!")
+                       
+                        SVProgressHUD.dismiss(withDelay: 1, completion: {
+                            //self._CommonHelper.ShowSuccessMessage(title: "All done.", subsTtitle: "Invoice successfully deleted!")
+                        })
                         
                         self.refresh()
                 }
-                    
                 )
                 
             }
             delete.backgroundColor = .red
-
             
             let email = UITableViewRowAction(style: .default, title: "\u{2709}\n e-mail") { action, index in
 
+                SVProgressHUD.show()
+                SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+                SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+                
                 BillingRequests.sharedInstance.SendInvoice(invoiceId: (cell.invoice?.InvoiceNumber)!, onCompletion:
                     {_ in
                         
-                        self._CommonHelper.ShowSuccessMessage(title: "All done.", subsTtitle: "Invoice successfully sent!")
-                       
+                        SVProgressHUD.dismiss(withDelay: 1, completion: {
+                            self._CommonHelper.ShowSuccessMessage(title: "Invoice sent.", subsTtitle: "")
+                        })
                         
                         }
                 )
             }
             email.backgroundColor = StyleManager.theme1()
             
-            
-            let edit = UITableViewRowAction(style: .default, title: "\u{1F4DD}\n edit") { action, index in
-             //Go to edit page
-                
+            let edit = UITableViewRowAction(style: .default, title: "\u{2710}\n edit") { action, index in
                 self.performSegue(withIdentifier: "GoToEditInvoice", sender: nil)
- 
-                
             }
             edit.backgroundColor = StyleManager.theme1()
             
-           // return [delete, email]
-            return [edit, delete]
-            //return [delete]
+            return [edit, delete, email]
 
     }
     
@@ -307,23 +339,6 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    }
-    
-    /*!
-     @brief Preparing to segue.
-     */
-    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        
-        if (segue.identifier == "GoToTimeStampsEditor") {
-                        
-        }
-        else if (segue.identifier == "GoToEditInvoice") {
-            
-            if let vc = segue.destination as? Invoice_Edit {
-                vc.targetInvoice = SelectedInvoice
-            }
-            
-        }
     }
     
     //So we can stil pull to refresh
@@ -356,3 +371,5 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
         return NSAttributedString(string: str, attributes: attrs)
     }
 }
+
+

@@ -136,7 +136,7 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
     }
     
     func NavBarMenuTapped(){
-       
+       self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

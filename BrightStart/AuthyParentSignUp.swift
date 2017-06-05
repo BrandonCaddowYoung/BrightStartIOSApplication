@@ -107,8 +107,8 @@ class AuthyParentSignUp: FormViewController {
                     SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
                     SVProgressHUD.show()
                     
-                    //Retrieve all children
-                    AuthyRequests.sharedInstance.RegisterUser(email: Email, phoneNumber: Mobile!, countryCode: String(describing: CountryCode), name: Name, relationship: Relationship, childId: self.selectedChildId, onCompletion:  { json in
+                   
+                    AuthyRequests.sharedInstance.RegisterUser(email: Email, phoneNumber: Mobile!, countryCode: String(describing: CountryCode!), name: Name, relationship: Relationship, childId: self.selectedChildId, onCompletion:  { json in
                         
                         //self.createdAuthyId = json.rawString() as NSString!
                         
@@ -131,6 +131,7 @@ class AuthyParentSignUp: FormViewController {
                     cell, row in
                     cell.backgroundColor = StyleManager.theme1()
                     cell.textLabel?.textColor = StyleManager.theme2()
+                    cell.height = { 100 }
         }
         
         

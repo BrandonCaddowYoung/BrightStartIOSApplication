@@ -28,7 +28,7 @@ class AuthyRequests: NSObject {
             nurserySchoolId = id;
         }
         
-        let route = baseURL + "api/Authy/RegisterUser?email=" + email + "&phoneNumber=" + phoneNumber + "&countryCode=" + countryCode + "&name=" + name + "&relationship=" + relationship + "&childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/Authy/RegisterUser?email=" + email + "&phoneNumber=" + phoneNumber + "&countryCode=" + "\(countryCode)" + "&name=" + name + "&relationship=" + relationship + "&childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
         makeHTTPGetRequest(encode: true, path: route, onCompletion:
             {
                 json, err in

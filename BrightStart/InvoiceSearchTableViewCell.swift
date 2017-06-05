@@ -503,7 +503,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
             
            // let dateField = convertedDateString as String
             
-            TotalLabel?.text = "£" + String(describing: invoice.InvoiceTotal)
+            TotalLabel?.text = "£" + String(describing: invoice.InvoiceTotal.roundTo(places: 2))
             InvoiceNumberLabel?.text = "#" + String(describing: invoice.InvoiceNumber)
            
             var (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int(invoice.Registered_Time_Minutes * 60))
@@ -515,15 +515,21 @@ class InvoiceSearchTableViewCell: UITableViewCell
             (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int((invoice.Early_Time_Minutes + invoice.Late_Time_Minutes) * 60))
             ExtraAmountLabel?.text = String(h) + "H " + String(m) + "M"
             
-            BalanceAmountLabel?.text = "£0" //Still to do!
-            BalanceAmountLabel.isHidden = true
-            BalanceLabel.isHidden = true
+            BalanceAmountLabel?.text = "£" + String(describing: invoice.InvoiceBalance.roundTo(places: 2))
+            BalanceAmountLabel.isHidden = false
+            BalanceLabel.isHidden = false
             
             InvoiceStartDate.text = invoice.Start_Date.ToString()
              InvoiceEndDate.text = invoice.End_Date.ToString()
             
             // UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
             //UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")
+            
+            //The words start and end need to go below the dates.
+            LineContainer.isHidden = true
+            LineInnerContainer.isHidden = true
+            LineOuterContainer.isHidden = true
+            
         }
     }
     

@@ -14,8 +14,9 @@ final class StyleManager {
     
     // MARK: - StyleManager
     
+    //This changes everything!!
     static func setUpTheme() {
-        Chameleon.setGlobalThemeUsingPrimaryColor(theme1(), withSecondaryColor: theme2(), usingFontName: "HelveticaNeue-Thin", andContentStyle: content())
+        Chameleon.setGlobalThemeUsingPrimaryColor(theme1(), withSecondaryColor: theme2(), usingFontName: "HelveticaNeue-Light", andContentStyle: content())
     }
     
     // MARK: - Theme

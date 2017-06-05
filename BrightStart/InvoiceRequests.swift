@@ -29,7 +29,7 @@ class InvoiceRequests: NSObject {
             nurserySchoolId = id;
         }
         
-        let route = baseURL + "api/InvoiceLogic/GetAllInvoicesBelongingToChild?childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/BillingLogic/GetAllInvoicesBelongingToChildWithExtra?childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
         makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
                 json, err in

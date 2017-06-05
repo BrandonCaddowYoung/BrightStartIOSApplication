@@ -132,20 +132,6 @@ class CreatingInvoices: FormViewController {
             }
             
             DispatchQueue.main.async(execute: {
-                
-               // self.form +++
-                //    SelectableSection<ListCheckRow<BrightStartChild>>("CHILDREN", selectionType: .multipleSelection){ section in
-                  //      section.header = HeaderFooterView(title: "CHILDREN")
-                  //      section.tag = "branch_section"
-               // }
-                
-               // for option in self.childrenArray {
-                 //   self.form.last! <<< ListCheckRow<BrightStartChild>(){ listRow in
-                   //     listRow.title = option.ChildFullName as String
-                   //     listRow.selectableValue = option
-                   //     listRow.value = nil
-                  //  }
-               // }
                
                 let fullChildList = Dictionary(keyValuePairs: self.childrenArray.map{($0.ChildId, $0.ChildFullName)})
                 self.form +++ Section("Selected Children")
@@ -159,15 +145,10 @@ class CreatingInvoices: FormViewController {
                             }
                 }
                 
-                
                 self.form +++ Section("")
                     <<< ButtonRow(){
                         $0.title = "Create Invoices"
                         }.onCellSelection {  cell, row in
-                            
-                            //let branch_section = self.form.sectionBy(tag: "branch_section") as? SelectableSection<ListCheckRow<BrightStartChild>>
-                            
-                            //let ids = self._CommonHelper.GetIdsFromList(selection: branch_section!)
                             
                             let mulitpleRow: MultipleSelectorRow<String> = self.form.rowBy(tag: "SelectedChildren")!
                             
@@ -198,6 +179,7 @@ class CreatingInvoices: FormViewController {
                             cell, row in
                             cell.backgroundColor = StyleManager.theme1()
                             cell.textLabel?.textColor = StyleManager.theme2()
+                            cell.height = { 100 }
                 }
                 
             })

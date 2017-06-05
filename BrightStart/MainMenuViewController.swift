@@ -630,6 +630,8 @@ class MainMenuViewController: UIViewController {
                     vc.successSegueIdentifier = "GoToCalendar"
                     vc.Purpose = "TimeStamps_Edit"
                     
+                    vc.GoToMenuType = .TimeStamps
+                    
                     vc.showNavigationBar = true
                 }
             }
@@ -640,6 +642,7 @@ class MainMenuViewController: UIViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
                 vc.Purpose = "TimeStamps_Delete"
+                vc.GoToMenuType = .TimeStamps
                 
             }
             }
@@ -651,6 +654,7 @@ class MainMenuViewController: UIViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
                 vc.Purpose = "TimeStamps_Search"
+                vc.GoToMenuType = .TimeStamps
                 
             }
             }
@@ -661,7 +665,7 @@ class MainMenuViewController: UIViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
                 vc.Purpose = "TimeStamps_ExtraMinutesFinder"
-                
+                vc.GoToMenuType = .TimeStamps
                 
             }
             }
@@ -685,6 +689,7 @@ class MainMenuViewController: UIViewController {
                     
                     vc.successSegueIdentifier = "GoToCalendar"
                     vc.Purpose = "RegisteredHours_Edit"
+                    vc.GoToMenuType = .RegisteredHours
                 }
             }
                 
@@ -696,7 +701,7 @@ class MainMenuViewController: UIViewController {
                     
                     vc.successSegueIdentifier = "GoToCalendar"
                     vc.Purpose = "RegisteredHours_Delete"
-                    
+                    vc.GoToMenuType = .RegisteredHours
                 }
             }
                 
@@ -707,6 +712,7 @@ class MainMenuViewController: UIViewController {
                     
                     vc.successSegueIdentifier = "GoToCalendar"
                     vc.Purpose = "RegisteredHours_Search"
+                    vc.GoToMenuType = .RegisteredHours
                     
                 }
             }
@@ -717,6 +723,7 @@ class MainMenuViewController: UIViewController {
                     
                     vc.successSegueIdentifier = "GoToCalendar"
                     vc.Purpose = "RegisteredHours_Missing"
+                    vc.GoToMenuType = .RegisteredHours
                 }
             }
             
@@ -725,6 +732,7 @@ class MainMenuViewController: UIViewController {
                 if let vc = segue.destination as? PersonSearchTableViewController {
                     
                     vc.successSegueIdentifier = "GoToInvoiceSearch"
+                    vc.GoToMenuType = .Billing
                     vc.Purpose = ""
                 }
             }

@@ -698,7 +698,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     func NavBarMenuTapped(){
-        
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
 
    

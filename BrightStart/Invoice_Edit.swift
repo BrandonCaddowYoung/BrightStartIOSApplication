@@ -16,8 +16,8 @@ class Invoice_Edit: FormViewController {
     var minutes = [String]()
     var hours = [String]()
    
+    var targetChildName = String()
     var targetInvoiceId = String()
-    
     var targetInvoice = Invoice()
     
     override func viewDidLoad() {
@@ -60,7 +60,7 @@ class Invoice_Edit: FormViewController {
                     
                     <<< LabelRow("Name)") {
                         $0.title = "name"
-                        $0.value = String(self.targetInvoice.ChildId)
+                        $0.value = String(targetChildName)
                     }
                     
                     <<< LabelRow("InvoiceId)") {
@@ -100,6 +100,7 @@ class Invoice_Edit: FormViewController {
                         formatter.locale = .current
                         formatter.numberStyle = .currency
                         $0.formatter = formatter
+                        $0.disabled = true
                     }
                     
                     <<< DecimalRow("InvouceBalance") {
@@ -111,6 +112,7 @@ class Invoice_Edit: FormViewController {
                         formatter.locale = .current
                         formatter.numberStyle = .currency
                         $0.formatter = formatter
+                        $0.disabled = true
                 }
         
                 self.form +++ Section("Statistics")
@@ -122,7 +124,7 @@ class Invoice_Edit: FormViewController {
                     
                     <<< IntRow("FullDays") {
                         $0.title = "number of full days"
-                        $0.value = self.targetInvoice.NumberOfFullHalfDays
+                        $0.value = self.targetInvoice.NumberOfFullDays
                     }
         
                 let (regHours,regMins,_) = self._CommonHelper.secondsToHoursMinutesSeconds(seconds: Int(self.targetInvoice.Registered_Time_Minutes * 60))
@@ -173,14 +175,14 @@ class Invoice_Edit: FormViewController {
                        $0.value = self.minutes[earlyMins]
                     }
 
-                  let (lateHours,lateMins,_) = self._CommonHelper.secondsToHoursMinutesSeconds(seconds: Int(self.targetInvoice.Early_Time_Minutes * 60))
+                  let (lateHours,lateMins,_) = self._CommonHelper.secondsToHoursMinutesSeconds(seconds: Int(self.targetInvoice.Late_Time_Minutes * 60))
                 
                 self.form +++ Section("Late Time")
                     
                     <<< PickerInlineRow<String>("LateHours") {
                         $0.title = "Hours"
                         $0.options = self.hours
-                       $0.value = self.hours[lateHours]
+                        $0.value = self.hours[lateHours]
                     }
                     
                     <<< PickerInlineRow<String>("LateMinutes") {
@@ -190,22 +192,24 @@ class Invoice_Edit: FormViewController {
                     }
         
                      self.form +++ Section("Qualification")
+                        
+                        <<< LabelRow("BusinessDays)") {
+                            $0.title = "number of business days"
+                            $0.value = String(self.targetInvoice.NumberOfBusinessDays)
+                        }
 
-                    <<< IntRow("BusinessDays") {
-                        $0.title = "number of business days"
-                        $0.value = self.targetInvoice.NumberOfBusinessDays
-                    }
-                    
-                    <<< IntRow("FullTimeQualificationPoint") {
-                        $0.title = "full time qualification point"
-                        $0.value = 1
-                    }
-                    
-                    <<< SwitchRow("QualifcationStatus") {
-                        $0.title = "Full Time"
-                        $0.value = true
-                }
-                
+                        
+                        <<< LabelRow("FullTimeQualificationPoint)") {
+                            $0.title = "full time qualification point"
+                            $0.value = String(self.targetInvoice.NumberOfBusinessDays)
+                        }
+                        
+        
+                        <<< LabelRow("QualifcationStatus)") {
+                            $0.title = "Qualificaiton Status"
+                            $0.value = "Full Time"
+                        }
+                        
                         <<< SwitchRow("EnforceFullTime") {
                             $0.title = "enforce full time"
                             $0.value = false
@@ -216,7 +220,7 @@ class Invoice_Edit: FormViewController {
                             $0.value = false
                 }
         
-                self.form +++ Section("sdfdsf")
+                self.form +++ Section("")
                     <<< ButtonRow(){
                         $0.title = "Save changes"
                         }.onCellSelection {  cell, row in
@@ -245,9 +249,8 @@ class Invoice_Edit: FormViewController {
                             
                             intRow = self.form.rowBy(tag: "FullDays")
                             let FullDays = intRow?.value
-                            
-                            intRow = self.form.rowBy(tag: "BusinessDays")
-                            let BusinessDays = intRow?.value
+                         
+                            let BusinessDays = String(self.targetInvoice.NumberOfBusinessDays)
                             
                             pickerRow = self.form.rowBy(tag: "RegistrationHours")
                             let RegistrationHours = Int((pickerRow?.value)!)
@@ -306,7 +309,7 @@ class Invoice_Edit: FormViewController {
                             let usingPartTime = "\(self.targetInvoice.UsingPartTime)"
                             let usingFullTime = "\(self.targetInvoice.UsingFullTime)"
                             
-                            let numberOfBusinessDays = "\(BusinessDays!)"
+                            let numberOfBusinessDays = "\(BusinessDays)"
                             
                             InvoiceRequests.sharedInstance.UpdateInvoice(invoiceNumber: invoiceNumber, issueDate: issueDate, startDate: startDate, endDate: endDate, dueDate: dueDate, notes: noptes, childId: childId, earlyTimeMinutes: earlyTimeMinutes, lateTimeMinutes: lateTimeMinutes, registeredTimeMinutes: registeredTimeMinutes, nonRegisteredTimeMinutes: nonRegisteredTimeMinutes, invoiceTotal: invoiceTotal, enforcePartTime: enforcePartTime, enforceFullTime: enforceFullTime, registeredStartDate: registeredStartDate, registeredFinishDate: registeredFinishDate, nonRegisteredStartDate: nonRegisteredStartDate, nonRegisteredFinishDate: nonRegisteredFinishDate, extraStartDate: extraStartDate, extraFinishDate: extraFinishDate,  numberOfFullDays: numberOfFullDays, numberOfFullHalfDays: numberOfFullHalfDays, usingPartTime: usingPartTime, usingFullTime: usingFullTime, numberOfBusinessDays: numberOfBusinessDays, onCompletion:
                                 { json in
@@ -326,6 +329,7 @@ class Invoice_Edit: FormViewController {
                             cell, row in
                             cell.backgroundColor = StyleManager.theme1()
                             cell.textLabel?.textColor = StyleManager.theme2()
+                            cell.height = { 100 }
                 }
     }
     
