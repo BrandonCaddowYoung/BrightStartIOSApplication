@@ -289,10 +289,8 @@ class MainMenuViewController: UIViewController {
                         
                         if(self.authyUserList.count == 0)
                         {
-                            
                             if(self.selectedAuthyAction == .ShouldSignIn || self.selectedAuthyAction == .ShouldSignOut)
                             {
-                                
                                 if(self.selectedAuthyAction == .ShouldSignOut){
                                     
                                     SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
@@ -322,40 +320,26 @@ class MainMenuViewController: UIViewController {
                                 }
                                 else if(self.selectedAuthyAction == AuhtyActions.ShouldSignIn){
                                     
-                                    
                                     SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
                                     SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
                                     SVProgressHUD.show()
                                     
+                                    CommonRequests.sharedInstance.signIn(personId: self.childId as String, timeOfSignIn: Date() as NSDate,
+                                                                         onCompletion: {
+                                                                            DispatchQueue.main.async(execute: {
+                                                                                
+                                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                                                    self.performSegue(withIdentifier: "GoToRegister", sender: nil)
+                                                                                } )
+                                                                                
+                                                                                
+                                                                                
+                                                                            })
+                                    }
+                                    )
                                     
-                                        
-                                        CommonRequests.sharedInstance.signIn(personId: self.childId as String, timeOfSignIn: Date() as NSDate,
-                                                                             onCompletion: {
-                                                                                DispatchQueue.main.async(execute: {
-                                                                                    
-                                                                                    self.dismiss(animated: false, completion:
-                                                                                        {self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                                                    }
-                                                                                    )
-                                                                                    
-                                                                                })
-                                        }
-                                        )
-                                        
                                     
                                 }
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
                             }
                             else{
                             
@@ -748,9 +732,7 @@ class MainMenuViewController: UIViewController {
                 vc.selectedMenu = .TimeStamps
                 
             }
-        }
-            
-            
+        }   
         
        else if (segue.identifier == "GoToAuthyAuthenticate") {
             
@@ -872,6 +854,9 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func NavBarMenuTapped(){
+        
+        //There are some exceptions here. For instance if looking at authy users, we should go back to the authy menu.
+        
         renderMenuAssets(menuType: .MainMenu)
     }
     

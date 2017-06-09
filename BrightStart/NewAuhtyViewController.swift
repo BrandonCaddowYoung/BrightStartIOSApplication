@@ -53,9 +53,7 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: "GoToNewUserComplete", sender: self)
                 
             })
-            
         })
-        
     }
     
     /*!
@@ -70,7 +68,7 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
               vc.targetAuthyId = createdAuthyId
                 
             }
-                    }
+    }
     }
     
     override func viewWillAppear(_ animated: Bool) {

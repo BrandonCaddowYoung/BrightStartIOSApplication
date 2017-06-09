@@ -133,11 +133,12 @@ class CreatingInvoices: FormViewController {
             
             DispatchQueue.main.async(execute: {
                
-                let fullChildList = Dictionary(keyValuePairs: self.childrenArray.map{($0.ChildId, $0.ChildFullName)})
+               let fullChildList = Dictionary(keyValuePairs: self.childrenArray.map{($0.ChildId, $0.ChildFullName)})
+                
                 self.form +++ Section("Selected Children")
                     <<< MultipleSelectorRow<String>("SelectedChildren") { row in
                         row.title = "Children"
-                        row.options = fullChildList.map { ($0.value as String) }
+                        row.options = self.childrenArray.map { ($0.ChildFullName as String) }
                         
                         }.onPresent { from, to in
                             to.selectableRowCellUpdate = { cell, row in
@@ -179,7 +180,7 @@ class CreatingInvoices: FormViewController {
                             cell, row in
                             cell.backgroundColor = StyleManager.theme1()
                             cell.textLabel?.textColor = StyleManager.theme2()
-                            cell.height = { 100 }
+                            cell.height = { 70 }
                 }
                 
             })
@@ -220,7 +221,17 @@ class CreatingInvoices: FormViewController {
     }
     
     func NavBarMenuTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                vc.selectedMenu = .Billing
+            }
+        }
     }
     
     func CreateInvoices(targetChildren: [String], registeredHoursStartDate: Date, registeredHoursEndDate: Date, extraHoursStartDate: Date, extraHoursEndDate: Date,  nonRegisteredHoursStartDate: Date, nonRegisteredHoursEndDate: Date)

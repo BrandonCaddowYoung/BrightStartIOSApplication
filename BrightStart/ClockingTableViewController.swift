@@ -29,7 +29,6 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
         children.removeAll()
         tableView.reloadData()
         refresh()
-        
     }
     
     func refresh()
@@ -114,7 +113,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
         
         //Put system password here!
         
-         self.performSegue(withIdentifier: "GoToMainMenu", sender: self)
+         self.performSegue(withIdentifier: "GoToSignIn", sender: self)
     }
     
     @IBOutlet weak var searchTextField: UITextField!{
@@ -338,16 +337,13 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
     
     //Need to get the specific user. so navigate to menu.
     
-    if let vc = segue.destination as? MainMenuViewController {
-    
-    //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
-    
-        vc.selectedMenu = .AuthyUsers
-        vc.childId = selectedChildId
-        vc.authyUsersOnly = true
-        vc.selectedAuthyAction = selectedAuthyAction
-        vc.shouldHideBackButton = false
-    }
+            if let vc = segue.destination as? MainMenuViewController {
+                vc.selectedMenu = .AuthyUsers
+                vc.childId = selectedChildId
+                vc.authyUsersOnly = true
+                vc.selectedAuthyAction = selectedAuthyAction
+                vc.shouldHideBackButton = false
+            }
     }
         
     }

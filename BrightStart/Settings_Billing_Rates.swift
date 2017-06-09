@@ -259,7 +259,7 @@ class Settings_Billing_Rates: FormViewController {
                             cell, row in
                             cell.backgroundColor = StyleManager.theme1()
                             cell.textLabel?.textColor = StyleManager.theme2()
-                            cell.height = { 100 }
+                            cell.height = { 70 }
                 }
 
                 
@@ -281,10 +281,18 @@ class Settings_Billing_Rates: FormViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         
-        
-        
         SetNavigationBarDetails()
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                vc.selectedMenu = .Settings
+            }
+        }
     }
     
     func SetNavigationBarDetails()
@@ -304,12 +312,12 @@ class Settings_Billing_Rates: FormViewController {
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         
-        self.navigationItem.title = "Quick Create"
+        self.navigationItem.title = "Setting Rates"
         
     }
     
     func NavBarMenuTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
 }

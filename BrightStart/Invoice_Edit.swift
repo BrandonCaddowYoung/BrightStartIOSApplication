@@ -207,18 +207,54 @@ class Invoice_Edit: FormViewController {
         
                         <<< LabelRow("QualifcationStatus)") {
                             $0.title = "Qualificaiton Status"
+                            
+                            if(self.targetInvoice.IsFullTime){
                             $0.value = "Full Time"
+                            }
+                            else
+                            {
+                             $0.value = "Part Time"
+                            }
                         }
                         
                         <<< SwitchRow("EnforceFullTime") {
                             $0.title = "enforce full time"
-                            $0.value = false
-                }
+                            $0.value = self.targetInvoice.EnforceFullTime
+                            }.cellSetup
+                            {
+                                cell,
+                                row in cell.switchControl.onTintColor = StyleManager.theme1()
+                                
+                            }.onChange { row in
+                                
+                                if(row.value == true){
+                                
+                                let sRow: SwitchRow? = self.form.rowBy(tag: "EnforcePartTime")
+                                sRow?.value = (row.value ?? false) ? false : true
+                                sRow?.updateCell()
+                                    
+                                }
+                            }
                 
                         <<< SwitchRow("EnforcePartTime") {
-                            $0.title = "enfore part time"
-                            $0.value = false
-                }
+                            $0.title = "enforce part time"
+                            $0.value = self.targetInvoice.EnforcePartTime
+                            }.cellSetup
+                            {
+                                cell,
+                                row in cell.switchControl.onTintColor = StyleManager.theme1()
+                                
+                            }.onChange { row in
+                                
+                                if(row.value == true){
+                                
+                                let sRow: SwitchRow? = self.form.rowBy(tag: "EnforceFullTime")
+                                sRow?.value = (row.value ?? false) ? false : true
+                                sRow?.updateCell()
+                                    
+                                }
+                           }
+        
         
                 self.form +++ Section("")
                     <<< ButtonRow(){
@@ -278,7 +314,13 @@ class Invoice_Edit: FormViewController {
                             pickerRow = self.form.rowBy(tag: "LateMinutes")
                             let LateMinutes = Int((pickerRow?.value)!)
                             let LateMins = (LateHours! * 60) + LateMinutes!
-
+  
+                            var switchRow: SwitchRow? = self.form.rowBy(tag: "EnforceFullTime")
+                            let enforceFullTime = String((switchRow?.value)!)
+                            
+                            switchRow = self.form.rowBy(tag: "EnforcePartTime")
+                            let enforcePartTime = String((switchRow?.value)!)
+                            
                             let invoiceNumber = String(self.targetInvoice.InvoiceNumber)
                             let issueDate = (DateOfIssue?.ToURLString2())!
                             let startDate = (StartDate?.ToURLString2())!
@@ -291,8 +333,6 @@ class Invoice_Edit: FormViewController {
                             let registeredTimeMinutes = String(RegistrationMins)
                             let nonRegisteredTimeMinutes = String(NonRegistrationMins)
                             let invoiceTotal = String(self.targetInvoice.InvoiceTotal)
-                            let enforcePartTime = String(false)
-                            let enforceFullTime = String(false)
                             
                             let registeredStartDate = self.targetInvoice.RegisteredStartDate.ToURLString2()
                             let registeredFinishDate = self.targetInvoice.RegisteredStartDate.ToURLString2()
@@ -329,7 +369,7 @@ class Invoice_Edit: FormViewController {
                             cell, row in
                             cell.backgroundColor = StyleManager.theme1()
                             cell.textLabel?.textColor = StyleManager.theme2()
-                            cell.height = { 100 }
+                            cell.height = { 70 }
                 }
     }
     
@@ -366,7 +406,7 @@ class Invoice_Edit: FormViewController {
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         
-        self.navigationItem.title = "Quick Create"
+        self.navigationItem.title = "Edit Invoice"
     }
     
     func NavBarMenuTapped(_ sender: Any) {

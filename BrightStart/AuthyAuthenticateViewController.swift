@@ -63,9 +63,11 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         TokenTextFiled.delegate = self;
         
+        TokenTextFiled.isHidden = true;
+        
         setupConstraints()
         
-        CenterView.backgroundColor = StyleManager.theme2()
+        CenterView.backgroundColor = StyleManager.theme1()
         
         view.backgroundColor = StyleManager.DarkBackground()
         TopContainer.backgroundColor = StyleManager.DarkBackground()
@@ -83,6 +85,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         DontHaveYourPhoneLabel.font = _ApplicatoinColours.MenuFont
         DontHaveYourPhoneLabel.textColor = StyleManager.FontColour()
+        DontHaveYourPhoneLabel.isHidden = true
         
         AuthyRequests.sharedInstance.GetAuhtyUser(auhtyId: targetAuthyId as String, onCompletion:
             { json in
@@ -100,8 +103,6 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
                 }
                 
                 DispatchQueue.main.async(execute: {
-                    
-                    
                     
                 })
                 
@@ -146,11 +147,17 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
             //self.TickImage.isHidden = false
             
             self.timer.invalidate()
-            //self.WaitingLabel.text = "Sorry you took too long confirming."
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-                self.performSegue(withIdentifier: self.successSegueIdentifier as String, sender: self)
-            })
+            //self.WaitingLabel.text = ""
+            
+           self._CommonHelper.ShowErrorMessage(title: "Sorry", subsTtitle: "You took too long confirming. please try again.")
+            
+             self.performSegue(withIdentifier: self.successSegueIdentifier as String, sender: self)
+            
+           // DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(0), execute: {
+               
+           // })
+            
         }
         
         AuthyRequests.sharedInstance.HasOneTouchBeenApproved(uuid: uuid as String, onCompletion:  { json in
@@ -182,22 +189,21 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
 
     func onSuccss()
     {
+        
+          self._CommonHelper.ShowSuccessMessage(title: "Fantastic!", subsTtitle: "That worked!")
+        
+        
         if(selectedAuthyAction == .ShouldSignOut){
-            
-            
             
             SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
             SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
             SVProgressHUD.show()
-            
             
             CommonRequests.sharedInstance.signOut(personId: self.targetChildId as String, timeOfSignOut: Date() as NSDate,
                                                   
                                                   onCompletion: {
                                                     
                                                     DispatchQueue.main.async(execute: {
-                                                        
-                                                        
                                                         
                                                         SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                             
@@ -209,12 +215,6 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
                                                     })
                                                     
             })
-            
-           
-            
-            
-            
-            
         }
         else if(selectedAuthyAction == AuhtyActions.ShouldSignIn){
             
@@ -222,42 +222,31 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
             SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
             SVProgressHUD.show()
             
-                
-                
-                
                 CommonRequests.sharedInstance.signIn(personId: self.targetChildId as String, timeOfSignIn: Date() as NSDate,
                                                      onCompletion: {
                                                         DispatchQueue.main.async(execute: {
-                                                            
-                                                            
                                                             
                                                             SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                 
                                                                 self.performSegue(withIdentifier: "GoToRegister", sender: self)
                                                                 
                                                             } )
-                                                            
-                                                            
-                                                            
-                                                            
                                                         })
                 }
                 )
-            
-                
-                
-                
-                
-                
-                
-                
         }
         else if(selectedAuthyAction == AuhtyActions.ShouldDoNothing){
          
             SecondstoGoLabel.text = ""
             SecondsToGoLabel2.text = ""
             
-            TopLabel.text = "Fantastic, that worked!"
+           // TopLabel.text = "Fantastic, that worked!"
+            
+             self.performSegue(withIdentifier: self.successSegueIdentifier as String, sender: self)
+            
+            //DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(0), execute: {
+               
+            //})
             
         }
     }
@@ -395,55 +384,28 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         super.viewWillAppear(animated)
         
-        if(!showNavigationBar){
-            self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        }
-        else
-        {
-            //Changes the color of the backgorund within the nav bar.
-            navigationController?.navigationBar.barStyle = UIBarStyle.black
-            navigationController?.navigationBar.barTintColor = StyleManager.theme5()
-            
-            //Title color
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-            
-            //Back color
-            navigationController?.navigationBar.tintColor = StyleManager.NavigationBarBackGround() //Orange
-            
-            //Back ground color
-            navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround() // Grey
-            
-            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-            
-            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            
-            self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
-            
-            navigationController?.navigationBar.topItem?.title = ""
-            navigationController?.navigationBar.backItem?.title = ""
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        }
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        SetNavigationBarDetails()
     }
     
-    func SetNaviagationBarDetails()
+    func SetNavigationBarDetails()
     {
         //Title color(Center)
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme5()]
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
         navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
+        navigationController?.navigationBar.tintColor = StyleManager.theme4()
+        
         //Back ground color
-        navigationController?.navigationBar.barTintColor = StyleManager.theme2()
+        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
         
-        self.navigationController?.navigationBar.topItem?.title = "Authy Settings";
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
         
-        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-        
+        //Right button
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         
-        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
-        
+        self.navigationItem.title = " "
     }
     
     func NavBarMenuTapped(){

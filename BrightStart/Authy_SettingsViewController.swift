@@ -75,6 +75,10 @@ class Authy_SettingsViewController: UIViewController {
         AuthyDescriptionLabel.text = "By using Authy, all registered parents will be required to have their mobiles phones with them when ever they drop off or pick up their children."
 
         
+        OnSignInSwitch.onTintColor = StyleManager.theme1()
+        OnSignOutSwitch.onTintColor = StyleManager.theme1()
+         UseAuthySwitch.onTintColor = StyleManager.theme1()
+        
         let defaults = UserDefaults.standard
         
         let shouldUseAuthy = defaults.bool(forKey: "ShouldUseAuhty")

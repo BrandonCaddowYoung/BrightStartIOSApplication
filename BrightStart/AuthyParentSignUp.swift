@@ -117,9 +117,9 @@ class AuthyParentSignUp: FormViewController {
                         
                         SVProgressHUD.dismiss(withDelay: 1, completion: {
                             
-                            self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                            self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: Name + " has been aded.")
                             
-                            self.performSegue(withIdentifier: "GoToNewUserComplete", sender: self)
+                            self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
                             
                         } )
                         
@@ -131,7 +131,7 @@ class AuthyParentSignUp: FormViewController {
                     cell, row in
                     cell.backgroundColor = StyleManager.theme1()
                     cell.textLabel?.textColor = StyleManager.theme2()
-                    cell.height = { 100 }
+                    cell.height = { 70 }
         }
         
         
@@ -172,7 +172,18 @@ class AuthyParentSignUp: FormViewController {
         self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+      if (segue.identifier == "GoToMainMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                vc.selectedMenu = .Authy
+                
+            }
+            
+        }
+    }
     
 }
 

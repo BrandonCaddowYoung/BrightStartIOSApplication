@@ -121,7 +121,7 @@ class SettingRegistrationHours: FormViewController {
                             cell, row in
                             cell.backgroundColor = StyleManager.theme1()
                             cell.textLabel?.textColor = StyleManager.theme2()
-                            cell.height = { 100 }
+                            cell.height = { 70 }
         }
     
     func viewWillAppear(_ animated: Bool) {

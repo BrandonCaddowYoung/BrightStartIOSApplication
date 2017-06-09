@@ -77,7 +77,7 @@ class ExtraMinutesFinder: FormViewController {
                     cell, row in
                     cell.backgroundColor = StyleManager.theme1()
                     cell.textLabel?.textColor = StyleManager.theme2()
-                    cell.height = { 100 }
+                    cell.height = { 70 }
         }
         
         
@@ -115,7 +115,7 @@ class ExtraMinutesFinder: FormViewController {
     }
     
     func NavBarMenuTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
@@ -130,7 +130,7 @@ class ExtraMinutesFinder: FormViewController {
                 
             }
         }
-        else if (segue.identifier! == "GoToMainMenu") {
+        else if (segue.identifier! == "GoToMenu") {
             
             //Settings the menu details.
             

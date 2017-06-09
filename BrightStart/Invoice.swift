@@ -12,10 +12,10 @@ open class Invoice
 {
     open var ChildId: Int = 0
     
-    open var Early_Time_Minutes: Int = 0
-    open var Late_Time_Minutes: Int = 0
-    open var Registered_Time_Minutes: Int = 0
-    open var NonRegistered_Time_Minutes: Int = 0
+    open var Early_Time_Minutes: Double = 0
+    open var Late_Time_Minutes: Double = 0
+    open var Registered_Time_Minutes: Double = 0
+    open var NonRegistered_Time_Minutes: Double = 0
    
     open var InvoiceNumber: Int = 0
     open var InvoiceTotal: Double = 0

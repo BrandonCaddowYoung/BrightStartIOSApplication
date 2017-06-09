@@ -133,7 +133,7 @@ class RollOver: FormViewController {
                 self.form +++ Section("Selected Children")
                     <<< MultipleSelectorRow<String>("SelectedChildren") { row in
                         row.title = "Children"
-                        row.options = fullChildList.map { ($0.value as String) }
+                        row.options = self.childrenArray.map { ($0.ChildFullName as String) }
                         
                         }.onPresent { from, to in
                             to.selectableRowCellUpdate = { cell, row in
@@ -168,12 +168,24 @@ class RollOver: FormViewController {
                             cell, row in
                             cell.backgroundColor = StyleManager.theme1()
                             cell.textLabel?.textColor = StyleManager.theme2()
-                            cell.height = { 100 }
+                            cell.height = { 70 }
                 }
                 
             })
             
         })
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                vc.selectedMenu = .RegisteredHours
+            }
+            
+        }
         
     }
     
@@ -211,7 +223,7 @@ class RollOver: FormViewController {
     }
   
     func NavBarMenuTapped(_ sender: Any) {
-       self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+       self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
     func RollOver(targetChildren: [String], targetYear: String, targetMonth: String, destinationYear: String, destinationMonth: String)

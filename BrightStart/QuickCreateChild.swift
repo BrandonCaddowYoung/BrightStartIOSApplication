@@ -135,7 +135,7 @@ class QuickCreateChild: FormViewController {
                     cell, row in
                     cell.backgroundColor = StyleManager.theme1()
                     cell.textLabel?.textColor = StyleManager.theme2()
-                    cell.height = { 100 }
+                    cell.height = { 70 }
         }
         
         
@@ -174,8 +174,18 @@ class QuickCreateChild: FormViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                vc.selectedMenu = .Children
+            }
+        }
+    }
+    
     func NavBarMenuTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
     func CreateChild(mothersEmail: String, fathersEmail: String, mothersName: String, fathersName: String,

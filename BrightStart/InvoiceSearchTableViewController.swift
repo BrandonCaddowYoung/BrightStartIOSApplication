@@ -171,9 +171,10 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 
 //                invoice.ChildId = Int(JSON["ChildId"].stringValue)!
                 invoice.ChildId = Int(Double(JSON["ChildId"].stringValue)!)
-                invoice.Early_Time_Minutes = Int(Double(JSON["Early_Time_Minutes"].stringValue)!)
+                invoice.Early_Time_Minutes = Double(JSON["Early_Time_Minutes"].stringValue)!
               
                 invoice.EnforceFullTime = Bool(JSON["EnforceFullTime"].stringValue)!
+                invoice.EnforcePartTime = Bool(JSON["EnforcePartTime"].stringValue)!
                 
                 invoice.IsFullTime = Bool(JSON["IsFullTime"].stringValue)!
                 invoice.InvoiceBalance = Double(JSON["InvoiceBalance"].stringValue)!
@@ -190,22 +191,19 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 invoice.RegisteredFinishDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["RegisteredFinishDate"].stringValue)
                 invoice.RegisteredStartDate = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["RegisteredStartDate"].stringValue)
                
-                invoice.NonRegistered_Time_Minutes = Int(JSON["NonRegistered_Time_Minutes"].stringValue)!
+                invoice.NonRegistered_Time_Minutes = Double(JSON["NonRegistered_Time_Minutes"].stringValue)!
                 
                 invoice.InvoiceNumber = Int(JSON["InvoiceNumber"].stringValue)!
                 invoice.InvoiceTotal = Double(JSON["InvoiceTotal"].stringValue)!
                 
-                invoice.Late_Time_Minutes = Int(JSON["Late_Time_Minutes"].stringValue)!
+                invoice.Late_Time_Minutes = Double(JSON["Late_Time_Minutes"].stringValue)!
                 invoice.Notes = JSON["Notes"].stringValue
                 invoice.NumberOfBusinessDays = Int(Double(JSON["NumberOfBusinessDays"].stringValue)!)
                 invoice.NumberOfFullDays = Int(Double(JSON["NumberOfFullDays"].stringValue)!)
                 invoice.NumberOfFullHalfDays = Int(JSON["NumberOfFullHalfDays"].stringValue)!
-                invoice.Registered_Time_Minutes = Int(JSON["Registered_Time_Minutes"].stringValue)!
                 
-                let test = JSON["Registered_Time_Minutes"].stringValue
-                
-                invoice.Registered_Time_Minutes = Int(Double(test)!)
-                
+                invoice.Registered_Time_Minutes = Double(JSON["Registered_Time_Minutes"].stringValue)!
+               
                 invoice.ChildId = Int(JSON["ChildId"].stringValue)!
                 invoice.InvoiceTotal = Double(JSON["InvoiceTotal"].stringValue)!
                 

@@ -128,7 +128,7 @@ class MissingTimeStampsResults: FormViewController {
                                 cell, row in
                                 cell.backgroundColor = StyleManager.theme1()
                                 cell.textLabel?.textColor = StyleManager.theme2()
-                                cell.height = { 100 }
+                                cell.height = { 70 }
                     }
                 }
                 

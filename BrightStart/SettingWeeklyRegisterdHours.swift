@@ -336,7 +336,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                 self.form +++ Section("Selected Children")
                     <<< MultipleSelectorRow<String>("SelectedChildren") { row in
                         row.title = "Children"
-                        row.options = fullChildList.map { ($0.value as String) }
+                        row.options = self.childrenArray.map { ($0.ChildFullName as String) }
                         
                         }.onPresent { from, to in
                             to.selectableRowCellUpdate = { cell, row in
@@ -431,7 +431,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     cell, row in
                             cell.backgroundColor = StyleManager.theme1()
                             cell.textLabel?.textColor = StyleManager.theme2()
-                            cell.height = { 100 }
+                            cell.height = { 70 }
                 }
                 
             })
@@ -440,18 +440,26 @@ class SettingWeeklyRegisterdHours: FormViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        
-        SetNavigationBarDetails()
+        if (segue.identifier == "GoToMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                vc.selectedMenu = .RegisteredHours
+            }
+            
+        }
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        SetNavigationBarDetails()
+    }
+    
     func NavBarMenuTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
     func SetNavigationBarDetails()

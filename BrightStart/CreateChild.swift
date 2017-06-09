@@ -83,7 +83,7 @@ class CreateChild: FormViewController {
                 $0.placeholder = "enter mothers name."
             }
             
-            <<< NameRow("MothersEmail") {
+            <<< EmailRow("MothersEmail") {
                 $0.title = "mothers e-mail"
                 $0.placeholder = "enter mothers e-amil."
             }
@@ -146,7 +146,7 @@ class CreateChild: FormViewController {
         }
             
             <<< TextRow("PostCode") {
-                $0.title = "psot-code"
+                $0.title = "post-code"
                 $0.placeholder = "enter the post-code."
         }
         
@@ -212,7 +212,7 @@ class CreateChild: FormViewController {
         }
         
         
-        form +++ Section("123445")
+        form +++ Section("")
         
         self.form +++ Section("")
             <<< ButtonRow(){
@@ -255,7 +255,19 @@ class CreateChild: FormViewController {
                     cell, row in
                     cell.backgroundColor = StyleManager.theme1()
                     cell.textLabel?.textColor = StyleManager.theme2()
-                    cell.height = { 100 }
+                    cell.height = { 70 }
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                vc.selectedMenu = .Children
+            }
+            
         }
         
     }
@@ -292,7 +304,7 @@ class CreateChild: FormViewController {
     }
     
     func NavBarMenuTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
     
@@ -392,8 +404,8 @@ class CreateChild: FormViewController {
                     row = self.form.rowBy(tag: "MedicalConditions")
                     let medicalConditions = row?.value ?? ""
                     
-                    row = self.form.rowBy(tag: "GPsDetails")
-                    let gPsDetails = row?.value ?? ""
+                    let tRow: TextRow? = self.form.rowBy(tag: "GPsdetails")
+                    let gPsDetails = tRow?.value ?? ""
                     
                     nameRow = self.form.rowBy(tag: "EmergencyName")!
                     let emergencyName = nameRow.value ?? ""

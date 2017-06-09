@@ -181,16 +181,20 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         numberOfSeconsToWait = numberOfSeconsToWait - 1
         
     }
-
     
     func onSuccss()
     {
-        if(selectedAuthyAction == .ShouldSignOut){
+        
+        if(selectedAuthyAction == .ShouldDoNothing){
+         
+            //Go back to authy menu
+            
+        }
+       else if(selectedAuthyAction == .ShouldSignOut){
     
             SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
             SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
             SVProgressHUD.show()
-            
             
                     CommonRequests.sharedInstance.signOut(personId: self.targetChildId as String, timeOfSignOut: Date() as NSDate,
                                                           
@@ -204,16 +208,9 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
                                                                     
                                                                 } )
                                                                 
-                                                                
-                                                                
-                                                                
                                                             })
                                                             
                     })
-            
-            
-        
-      
 
         }
         else if(selectedAuthyAction == AuhtyActions.ShouldSignIn){
@@ -225,27 +222,15 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
                 CommonRequests.sharedInstance.signIn(personId: self.targetChildId as String, timeOfSignIn: Date() as NSDate,
                                                      onCompletion: {
                                                         DispatchQueue.main.async(execute: {
-                                                            
-                                                            
                                                             SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                 
                                                                 self.performSegue(withIdentifier: "GoToRegister", sender: self)
                                                                 
                                                             } )
-                                                            
-                                                            
-                                                            
-                                                            
                                                         })
                 }
                 )
-            
-            
-            
-           
-        
         }
-    
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
