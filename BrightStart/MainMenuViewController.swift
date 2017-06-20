@@ -57,6 +57,8 @@ enum PurposeTypes: Int {
     
      case Settings_Menu
     case Settings_Rates
+    case Email_Settings
+    case NurseryDetails_Settings
     
     case Billing_Menu
     case Billing_CreateInvoice
@@ -185,15 +187,15 @@ class MainMenuViewController: UIViewController {
             
         case .Settings:
             
-            images = [UIImage(named: "Rates")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Rates")!, UIImage(named: "email-100")!, UIImage(named: "Details-100")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRates", "GoToSignIn"]
+            segueIdList = ["GoToRates", "GoToEmailSettings", "GoToNurseryDetails", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Settings_Rates, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Settings_Rates, PurposeTypes.Email_Settings, PurposeTypes.NurseryDetails_Settings, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Rates", "Sign Out"]
+            DisplayTextList = ["Rates"," Email", "Details", "Sign Out"]
             
-            authyIdList = ["", "", ""]
+            authyIdList = ["", "", "", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -861,9 +863,7 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
        
-
         super.viewWillAppear(animated)
         
         ShowNavBar()

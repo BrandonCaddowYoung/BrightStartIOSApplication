@@ -39,6 +39,11 @@ class NewNurserySignUp: FormViewController {
         }
         
         form +++ Section()
+            {
+                $0.header = HeaderFooterView<LogoView>(.class)
+        }
+        
+        form +++ Section()
             <<< LabelRow("test"){
                 $0.title = "To get started, complete the form below before tapping the button at the bottom of the page."
                 $0.cell.textLabel?.numberOfLines = 6

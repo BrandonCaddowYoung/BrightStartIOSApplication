@@ -26,6 +26,10 @@
 		7B399D821EBF2B8600B4B214 /* SettingRegistrationHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B399D811EBF2B8600B4B214 /* SettingRegistrationHours.swift */; };
 		7B399D851EBF703200B4B214 /* EditTimeStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B399D841EBF703200B4B214 /* EditTimeStamp.swift */; };
 		7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */; };
+		7B4E5A6A1EF26C3400506931 /* Settings_Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E5A691EF26C3400506931 /* Settings_Email.swift */; };
+		7B4E5A6C1EF84F2200506931 /* EmailSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E5A6B1EF84F2200506931 /* EmailSettings.swift */; };
+		7B4E5A6E1EF9C65600506931 /* Settings_NurseryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E5A6D1EF9C65600506931 /* Settings_NurseryDetails.swift */; };
+		7B4E5A701EF9C7F100506931 /* NurseryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E5A6F1EF9C7F100506931 /* NurseryDetails.swift */; };
 		7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */; };
 		7B5CDC6D1EC2EC8B0008E464 /* MissingTimeStampsFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5CDC6C1EC2EC8B0008E464 /* MissingTimeStampsFinder.swift */; };
 		7B5CDC871EC2ECBF0008E464 /* MissingTimeStampsResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5CDC861EC2ECBF0008E464 /* MissingTimeStampsResults.swift */; };
@@ -311,6 +315,10 @@
 		7B399D811EBF2B8600B4B214 /* SettingRegistrationHours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRegistrationHours.swift; sourceTree = "<group>"; };
 		7B399D841EBF703200B4B214 /* EditTimeStamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimeStamp.swift; sourceTree = "<group>"; };
 		7B4CC5D71E3F331300190BFA /* AuthyRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyRequests.swift; sourceTree = "<group>"; };
+		7B4E5A691EF26C3400506931 /* Settings_Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings_Email.swift; sourceTree = "<group>"; };
+		7B4E5A6B1EF84F2200506931 /* EmailSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSettings.swift; sourceTree = "<group>"; };
+		7B4E5A6D1EF9C65600506931 /* Settings_NurseryDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings_NurseryDetails.swift; sourceTree = "<group>"; };
+		7B4E5A6F1EF9C7F100506931 /* NurseryDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NurseryDetails.swift; sourceTree = "<group>"; };
 		7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyPersonSearchTableViewController.swift; sourceTree = "<group>"; };
 		7B5CDC6C1EC2EC8B0008E464 /* MissingTimeStampsFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingTimeStampsFinder.swift; sourceTree = "<group>"; };
 		7B5CDC861EC2ECBF0008E464 /* MissingTimeStampsResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingTimeStampsResults.swift; sourceTree = "<group>"; };
@@ -519,7 +527,6 @@
 				7BE3EDB91EB8F4BA00F1E0BF /* RegisteredHours */,
 				7BF6494B1EBA072E00DDAA29 /* Invoices */,
 				7BF649521EBA614D00DDAA29 /* Children */,
-				7BA59DDF1EC88DFB00FADF32 /* Invoice */,
 				7BC6E8B21EC79DA0001AC325 /* Settings */,
 				7BC6E8AF1EC6F002001AC325 /* Authy */,
 				7BC6E8951EC6EC56001AC325 /* Other */,
@@ -640,16 +647,10 @@
 				7B8BDBDA1E156F47009F3EAF /* PersonLog.swift */,
 				7B5CDC881EC3A5800008E464 /* TimeStampCount.swift */,
 				7BA536561ED2EE6600B35F76 /* Rates.swift */,
+				7B4E5A6B1EF84F2200506931 /* EmailSettings.swift */,
+				7B4E5A6F1EF9C7F100506931 /* NurseryDetails.swift */,
 			);
 			name = BrightStart;
-			sourceTree = "<group>";
-		};
-		7BA59DDF1EC88DFB00FADF32 /* Invoice */ = {
-			isa = PBXGroup;
-			children = (
-				7BA59DE01EC88E2500FADF32 /* Invoice_Edit.swift */,
-			);
-			name = Invoice;
 			sourceTree = "<group>";
 		};
 		7BC6E8951EC6EC56001AC325 /* Other */ = {
@@ -678,6 +679,8 @@
 			isa = PBXGroup;
 			children = (
 				7BC6E8B41EC79DE8001AC325 /* Settings_Billing_Rates.swift */,
+				7B4E5A691EF26C3400506931 /* Settings_Email.swift */,
+				7B4E5A6D1EF9C65600506931 /* Settings_NurseryDetails.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 		7BF6494B1EBA072E00DDAA29 /* Invoices */ = {
 			isa = PBXGroup;
 			children = (
+				7BA59DE01EC88E2500FADF32 /* Invoice_Edit.swift */,
 				7BF6494C1EBA073A00DDAA29 /* Creating */,
 			);
 			name = Invoices;
@@ -962,16 +966,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1254,6 +1258,7 @@
 				7B5CDC871EC2ECBF0008E464 /* MissingTimeStampsResults.swift in Sources */,
 				7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */,
 				7B70F0591E8C2A8600290432 /* SuccessTemplateController.swift in Sources */,
+				7B4E5A6C1EF84F2200506931 /* EmailSettings.swift in Sources */,
 				7B399D851EBF703200B4B214 /* EditTimeStamp.swift in Sources */,
 				7B6A1AED1E85B53700540E0C /* ChildHelperRequests.swift in Sources */,
 				7B32E3841E991DA800959375 /* WeekDay.swift in Sources */,
@@ -1267,6 +1272,7 @@
 				D7F6A4E71CAF2C3000534722 /* SwiftyJSON.swift in Sources */,
 				7BDEF8171E758D0B0012151B /* AuthyAuthenticateViewController.swift in Sources */,
 				7BA59DE11EC88E2500FADF32 /* Invoice_Edit.swift in Sources */,
+				7B4E5A701EF9C7F100506931 /* NurseryDetails.swift in Sources */,
 				7BB2220A1E4BB9890069E74D /* Registration2ViewController.swift in Sources */,
 				7B399D821EBF2B8600B4B214 /* SettingRegistrationHours.swift in Sources */,
 				7B8BDBDD1E156FE1009F3EAF /* PersonLogRequests.swift in Sources */,
@@ -1275,6 +1281,7 @@
 				7B8BDBD11E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift in Sources */,
 				7BC6E8AE1EC6ECA6001AC325 /* NewNurserySignUp.swift in Sources */,
 				7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */,
+				7B4E5A6E1EF9C65600506931 /* Settings_NurseryDetails.swift in Sources */,
 				7BE3EDD31EB8F4FB00F1E0BF /* RollOver.swift in Sources */,
 				7B774FA01E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift in Sources */,
 				7BCAD8131DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift in Sources */,
@@ -1294,6 +1301,7 @@
 				7B02571C1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift in Sources */,
 				7B6414491EAFBC1A00DC2DF5 /* StyleManager.swift in Sources */,
 				7B1575E81E81BED1008AB34F /* ListItemCell.swift in Sources */,
+				7B4E5A6A1EF26C3400506931 /* Settings_Email.swift in Sources */,
 				7B57746D1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift in Sources */,
 				D7F995C61C9EFCE3001802EC /* ClockingTableViewController.swift in Sources */,
 				7BDEF8301E75A62D0012151B /* CircleView.swift in Sources */,

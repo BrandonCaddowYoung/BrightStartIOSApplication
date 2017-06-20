@@ -110,7 +110,7 @@ class InvoiceRequests: NSObject {
         
         var parameters = [String : AnyObject]()
         
-         parameters["InvoiceNumber"] = invoiceNumber as AnyObject?
+        parameters["InvoiceNumber"] = invoiceNumber as AnyObject?
         parameters["IssueDate"] = issueDate as AnyObject?
         parameters["Start_Date"] = startDate as AnyObject?
         parameters["End_Date"] = endDate as AnyObject?
@@ -131,7 +131,7 @@ class InvoiceRequests: NSObject {
         parameters["ExtraStartDate"] = extraStartDate as AnyObject?
         parameters["ExtraFinishDate"] = extraFinishDate as AnyObject?
         parameters["NumberOfFullDays"] = numberOfFullDays as AnyObject?
-         parameters["NumberOfFullHalfDays"] = numberOfFullHalfDays as AnyObject?
+        parameters["NumberOfFullHalfDays"] = numberOfFullHalfDays as AnyObject?
         parameters["UsingPartTime"] = usingPartTime as AnyObject?
         parameters["UsingFullTime"] = usingFullTime as AnyObject?
         parameters["NumberOfBusinessDays"] = numberOfBusinessDays as AnyObject?
