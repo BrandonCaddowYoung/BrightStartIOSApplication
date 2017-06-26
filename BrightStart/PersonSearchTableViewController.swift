@@ -75,7 +75,10 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         
     }
     
+    
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
+        
+//        GoToSearchPerson
         
         self.children.removeAll();
         
@@ -320,7 +323,18 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     
                 }
         }
+        
+        if (segue.identifier == "GoToEditChild") {
             
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? EditChild {
+                
+                vc.targetChildId = self.SelectedPersonId as String!
+                                
+            }
+        }
+        
         if (segue.identifier == "GoToInvoiceSearch") {
         
             if let vc = segue.destination as? InvoiceSearchTableViewController {

@@ -176,7 +176,7 @@ class MainMenuViewController: UIViewController {
             
             segueIdList = ["GoToCreateInvoice", "GoToSearchPerson", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Billing_CreateInvoice,PurposeTypes.Billing_ViewInvoice, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Billing_CreateInvoice, PurposeTypes.Billing_ViewInvoice, PurposeTypes.SignOut]
             
             DisplayTextList = ["Create Invoices", "View Invoices", "Sign Out"]
             
@@ -235,15 +235,15 @@ class MainMenuViewController: UIViewController {
             
         case .Children:
             
-            images = [UIImage(named: "AddUserMale")!, UIImage(named: "AddUserMale")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "AddUserMale")!, UIImage(named: "AddUserMale")!, UIImage(named: "Search")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToQuickCreateChild", "GoToCreateChild", "GoToSignIn"]
+            segueIdList = ["GoToQuickCreateChild", "GoToCreateChild", "GoToSearchPerson", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Child_QuickCreate, PurposeTypes.Child_Create,  PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Child_QuickCreate, PurposeTypes.Child_Create,  PurposeTypes.Child_Edit,  PurposeTypes.SignOut]
             
-            DisplayTextList = ["Quick Create","Create", "Sign Out"]
+            DisplayTextList = ["Quick Create", "Create", "View", "Sign Out"]
             
-            authyIdList = ["", "", ""]
+            authyIdList = ["", "", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -722,6 +722,18 @@ class MainMenuViewController: UIViewController {
                     vc.Purpose = ""
                 }
             }
+            
+            else if(targetPurpose == .Child_Edit)
+            {
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToEditChild"
+                    vc.GoToMenuType = .Children
+                    vc.Purpose = ""
+                }
+            }
+            
+            
             
         }
        

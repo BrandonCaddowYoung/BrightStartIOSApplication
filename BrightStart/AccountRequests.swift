@@ -17,6 +17,24 @@ class AccountRequests: NSObject {
     let baseURL = ApiInformation.ApiURL
     var nurserySchoolId = "";
    
+    func GetAccount(accountId: String, onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let route = baseURL + "api/AccountLogic/GetAccountById?accountId=" + accountId + "&nurserySchoolId=" + nurserySchoolId
+        
+        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
+    }
+    
     func CreateAccount(mothersEmail: String, fathersEmail: String, mothersName: String, fathersName: String,
                        houseNumber: String? = "",
                        road: String? = "",

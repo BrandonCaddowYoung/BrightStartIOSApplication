@@ -62,6 +62,22 @@ class ChildRequests: NSObject {
         })
     }
     
-    
+    func GetChild(childId: String, onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let route = baseURL + "api/ChildLogic/GetChildObjectByChildId?ChildId=" + childId + "&nurserySchoolId=" + nurserySchoolId
+        
+        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
+    }
     
 }

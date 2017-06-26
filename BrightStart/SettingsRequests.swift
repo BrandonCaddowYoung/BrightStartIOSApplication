@@ -232,7 +232,7 @@ class SettingsRequests: NSObject {
             nurserySchoolId = id;
         }
         
-        let route = baseURL + "api/EmailLogic/GetEmailSettings?nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/NurseryDetailsLogic/GetNurseryDetails?nurserySchoolId=" + nurserySchoolId
         makeHTTPGetRequest(encode: false, path: route, onCompletion:
             {
                 json, err in

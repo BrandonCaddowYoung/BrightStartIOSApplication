@@ -45,13 +45,29 @@ class Settings_NurseryDetails: FormViewController {
         
         SettingsRequests.sharedInstance.GetNurserySettings(onCompletion: { json in
             
-            self.emailSettings.Id = (json["Id"].stringValue as NSString) as String
-            self.emailSettings.SMTP = (json["SMTP"].stringValue as NSString) as String
+            self.emailSettings.NurseryName = (json["NurseryName"].stringValue as NSString) as String
+            self.emailSettings.Street = (json["Street"].stringValue as NSString) as String
+            self.emailSettings.County = (json["County"].stringValue as NSString) as String
+            self.emailSettings.Town = (json["Town"].stringValue as NSString) as String
+            self.emailSettings.PhoneNumber = (json["PhoneNumber"].stringValue as NSString) as String
+            self.emailSettings.Website = (json["Website"].stringValue as NSString) as String
             self.emailSettings.EmailAddress = (json["EmailAddress"].stringValue as NSString) as String
-            self.emailSettings.Port = (json["Port"].stringValue as NSString) as String
-            self.emailSettings.PassWord = (json["PassWord"].stringValue as NSString) as String
-            self.emailSettings.Name = (json["Name"].stringValue as NSString) as String
+            self.emailSettings.OwnerName = (json["OwnerName"].stringValue as NSString) as String
+            self.emailSettings.OwnerPhoneNumber = (json["OwnerPhoneNumber"].stringValue as NSString) as String
+            self.emailSettings.ManagerName = (json["ManagerName"].stringValue as NSString) as String
+            self.emailSettings.ManagerPhoneNumber = (json["ManagerPhoneNumber"].stringValue as NSString) as String
+            self.emailSettings.BankAccountName = (json["BankAccountName"].stringValue as NSString) as String
+            self.emailSettings.BankAccountNumber = (json["BankAccountNumber"].stringValue as NSString) as String
+            self.emailSettings.BankAccountSortCode = (json["BankAccountSortCode"].stringValue as NSString) as String
+             self.emailSettings.ChequePayableTo = (json["ChequePayableTo"].stringValue as NSString) as String
+             self.emailSettings.VATNumber = (json["VATNumber"].stringValue as NSString) as String
+             self.emailSettings.PostCode = (json["PostCode"].stringValue as NSString) as String
+             self.emailSettings.PrinterName = (json["PrinterName"].stringValue as NSString) as String
+            self.emailSettings.BillingType = (json["BillingType"].stringValue as NSString) as String
+            self.emailSettings.NurseryScholIdentification = (json["NurseryScholIdentification"].stringValue as NSString) as String
+            self.emailSettings.IsNurserySchoolUsingOnlineVersion = (json["IsNurserySchoolUsingOnlineVersion"].stringValue as NSString) as String
             self.emailSettings.NurserySchoolId = (json["NurserySchoolId"].stringValue as NSString) as String
+            
             
             DispatchQueue.main.async(execute: {
                 
@@ -59,36 +75,36 @@ class Settings_NurseryDetails: FormViewController {
                     
                     <<< NameRow("NurseryName") {
                         $0.title = "Nursery School Name"
-                        $0.value = self.emailSettings.EmailAddress
+                        $0.value = self.emailSettings.NurseryName
                     }
                     
                        self.form +++ Section("Address")
                     
                     <<< TextRow("Street") {
                         $0.title = "Street"
-                        $0.value = self.emailSettings.EmailAddress
+                        $0.value = self.emailSettings.Street
                 }
                 
                     <<< TextRow("Town") {
                         $0.title = "Town"
-                        $0.value = self.emailSettings.EmailAddress
+                        $0.value = self.emailSettings.Town
                 }
                 
                     <<< TextRow("PostCode") {
                         $0.title = "Post Code"
-                        $0.value = self.emailSettings.EmailAddress
+                        $0.value = self.emailSettings.PostCode
                 }
                 
                     <<< PhoneRow("Phone") {
                         $0.title = "Phone"
-                        $0.value = self.emailSettings.EmailAddress
+                        $0.value = self.emailSettings.PhoneNumber
                 }
 
                         self.form +++ Section("Contact")
                         
                     <<< URLRow("Website") {
                         $0.title = "Website URL"
-                        $0.value = URL(string: "http://google.com")
+                        $0.value = URL(string: self.emailSettings.Website)
                 }
                 
                     <<< EmailRow("Email") {
@@ -100,44 +116,44 @@ class Settings_NurseryDetails: FormViewController {
                             
                     <<< NameRow("OwnerName") {
                         $0.title = "Owner Name"
-                        $0.value = self.emailSettings.EmailAddress
+                        $0.value = self.emailSettings.OwnerName
                 }
                     
                     <<< PhoneRow("OwnerPhone") {
                         $0.title = "Owner Phone Number"
-                        $0.value = self.emailSettings.EmailAddress
+                        $0.value = self.emailSettings.OwnerPhoneNumber
                 }
                 
                     <<< NameRow("ManagerName") {
                         $0.title = "Manager Phone Number"
-                        $0.value = self.emailSettings.EmailAddress
+                        $0.value = self.emailSettings.ManagerName
                 }
                 
                     <<< PhoneRow("ManagerPhone") {
                         $0.title = "Manager Phone Number"
-                        $0.value = self.emailSettings.EmailAddress
+                        $0.value = self.emailSettings.ManagerPhoneNumber
                 }
                 
                      self.form +++ Section("Banking Details")
                     
                     <<< IntRow("BankNumber") {
                         $0.title =  "Bank Account Number"
-                        $0.value = 0
+                        $0.value = Int(self.emailSettings.BankAccountNumber)
                 }
                 
                     <<< IntRow("BankSortCode") {
                         $0.title = "Bank Account Sort Code"
-                        $0.value = 0
+                        $0.value = Int(self.emailSettings.BankAccountSortCode)
                 }
                 
                     <<< NameRow("ChequePayableTo") {
                         $0.title = "Cheque Payable To"
-                        $0.value = ""
+                        $0.value = self.emailSettings.ChequePayableTo
                 }
                 
                     <<< NameRow("BankName") {
                         $0.title = "Bank Name"
-                        $0.value = ""
+                        $0.value = self.emailSettings.BankAccountName
                 }
                 
                 self.form +++ Section("")
@@ -162,33 +178,33 @@ class Settings_NurseryDetails: FormViewController {
                             textAreaRow = self.form.rowBy(tag: "ExtraTimeMessage")
                             let ExtraTimeMessage = textAreaRow?.value
                             
-                            SettingsRequests.sharedInstance.UpdateNurserySettings(Id: self.emailSettings.Id, SMTP: self.emailSettings.SMTP, EmailAddress: email!, Port: self.emailSettings.Port, PasssWord: password, Name: self.emailSettings.Name, onCompletion:
-                                { json in
-                                    
-                                    DispatchQueue.main.async(execute: {
-                                        
-                                        SettingsRequests.sharedInstance.UpdateSettings(Name: "EmailBodyText", Value: EmailBody!, onCompletion:
-                                            { json in
-                                                
-                                                DispatchQueue.main.async(execute: {
-                                                    
-                                                    SettingsRequests.sharedInstance.UpdateSettings(Name: "ExtraTimeBreakDownEmailBodyText", Value: ExtraTimeMessage!, onCompletion:
-                                                        { json in
-                                                            
-                                                            DispatchQueue.main.async(execute: {
-                                                                
-                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                    self.performSegue(withIdentifier: "GoToMenu", sender: nil)
-                                                                })
-                                                                
-                                                            })
-                                                    })
-                                                    
-                                                })
-                                        })
-                                        
-                                    })
-                            })
+//                            SettingsRequests.sharedInstance.UpdateNurserySettings(Id: self.emailSettings.Id, SMTP: self.emailSettings.SMTP, EmailAddress: email!, Port: self.emailSettings.Port, PasssWord: password, Name: self.emailSettings.Name, onCompletion:
+//                                { json in
+//                                    
+//                                    DispatchQueue.main.async(execute: {
+//                                        
+//                                        SettingsRequests.sharedInstance.UpdateSettings(Name: "EmailBodyText", Value: EmailBody!, onCompletion:
+//                                            { json in
+//                                                
+//                                                DispatchQueue.main.async(execute: {
+//                                                    
+//                                                    SettingsRequests.sharedInstance.UpdateSettings(Name: "ExtraTimeBreakDownEmailBodyText", Value: ExtraTimeMessage!, onCompletion:
+//                                                        { json in
+//                                                            
+//                                                            DispatchQueue.main.async(execute: {
+//                                                                
+//                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+//                                                                    self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+//                                                                })
+//                                                                
+//                                                            })
+//                                                    })
+//                                                    
+//                                                })
+//                                        })
+//                                        
+//                                    })
+//                            })
                         }.cellUpdate
                         {
                             cell, row in
