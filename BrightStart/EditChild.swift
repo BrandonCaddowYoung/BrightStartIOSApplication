@@ -17,6 +17,7 @@ class EditChild: FormViewController {
     
     var child = BrightStartChild()
      var account = Account()
+     var perstonStatus = PersonStatus()
     
     override func viewDidLoad() {
         
@@ -53,9 +54,7 @@ class EditChild: FormViewController {
             self.child.ChildFirstName = (json["ChildFirstName"].stringValue as NSString)
             self.child.ChildMiddleName = (json["ChildMiddleName"].stringValue as NSString)
             self.child.ChildLastName = (json["ChildLastName"].stringValue as NSString)
-            
             self.child.ChildDOB = self._CommonHelper.GetDateObjectFromString(dateAsString: json["ChildDOB"].stringValue)
-            
             self.child.ChildFullName = (json["ChildFullName"].stringValue as NSString)
             self.child.MedicalConditions = (json["MedicalConditions"].stringValue as NSString)
             self.child.GPsDetails = (json["GPsDetails"].stringValue as NSString)
@@ -75,7 +74,7 @@ class EditChild: FormViewController {
                     <<< NameRow("FirstName") {
                         $0.title = "first name"
                         $0.placeholder = "enter first name."
-                        $0.value = self.child.ChildFullName as String
+                        $0.value = self.child.ChildFirstName as String
                     }
                     
                     <<< NameRow("MiddleName") {
@@ -172,208 +171,186 @@ class EditChild: FormViewController {
                         
                         PersonStatusRequests.sharedInstance.GetStatusById(personStatusId: self.child.ChildId as String, onCompletion: { json in
                             
-                            // let personStatusId = (json["PersonStatusId"].stringValue)
+                             let personStatusId = (json["PersonStatusId"].stringValue)
                             let leaver = (json["Leaver"].stringValue)
-                            // let CurrentlySignedIn = (json["CurrentlySignedIn"].stringValue)
+                            let currentlySignedIn = (json["CurrentlySignedIn"].stringValue)
+                            
+                            self.perstonStatus.PersonStatusId = personStatusId
+                             self.perstonStatus.Leaver = leaver
+                             self.perstonStatus.CurrentlySignedIn = currentlySignedIn
                             
                             DispatchQueue.main.async(execute: {
                                 
                                 self.form +++ Section("Status")
                                     
-                                    <<< SwitchRow("") {
+                                    <<< SwitchRow("Leaver") {
                                         $0.title = "leaver"
                                         $0.value = Bool(leaver)
-                                        
-                                        
-                                        AccountRequests.sharedInstance.GetAccount(accountId: self.child.AccountId as String, onCompletion: { json in
-                                            
-                                            self.account.AccountId = (json["AccountId"].stringValue)
-                                            self.account.AccountName = (json["AccountName"].stringValue)
-                                            self.account.AccountDetails = (json["AccountDetails"].stringValue)
-                                            self.account.HouseNumber = (json["HouseNumber"].stringValue)
-                                            self.account.Road = (json["Road"].stringValue)
-                                            
-                                            self.account.DateOpened = self._CommonHelper.GetDateObjectFromString(dateAsString: json["DateOpened"].stringValue)
-                                            
-                                            self.account.Town = (json["Town"].stringValue)
-                                            self.account.County = (json["County"].stringValue)
-                                            self.account.PostCode = (json["PostCode"].stringValue)
-                                            self.account.HomePhoneNumber = (json["HomePhoneNumber"].stringValue)
-                                            self.account.MotherWorkPhoneNumber = (json["MotherWorkPhoneNumber"].stringValue)
-                                            self.account.FatherWorkPhoneNumber = (json["FatherWorkPhoneNumber"].stringValue )
-                                            self.account.MotherBillingEmailAddress = (json["MotherBillingEmailAddress"].stringValue)
-                                            self.account.FatherBillingEmailAddress = (json["FatherBillingEmailAddress"].stringValue)
-                                            self.account.PayPalEmailAddress = (json["PayPalEmailAddress"].stringValue)
-                                            self.account.MotherMobile = (json["MotherMobile"].stringValue)
-                                            self.account.FatherMobile = (json["FatherMobile"].stringValue)
-                                            
-                                            self.account.FatherPayPercentage = (json["FatherPayPercentage"].stringValue)
-                                            self.account.MotherPayPercentage = (json["MotherPayPercentage"].stringValue)
-                                            self.account.MotherOccupation = (json["MotherOccupation"].stringValue)
-                                            self.account.FatherOccupation = (json["FatherOccupation"].stringValue)
-                                            self.account.FatherName = (json["FatherName"].stringValue)
-                                            self.account.MotherName = (json["MotherName"].stringValue)
-                                            self.account.ExistingAccountBalance = (json["ExistingAccountBalance"].stringValue)
-                                            
-                                            DispatchQueue.main.async(execute: {
-                                                
-                                                self.form +++ Section("Parents information")
-                                                    
-                                                    <<< NameRow("MothersName") {
-                                                        $0.title = "mothers name"
-                                                        $0.placeholder = "enter mothers name."
-                                                        $0.value = self.account.MotherName
-                                                    }
-                                                    
-                                                    <<< EmailRow("MothersEmail") {
-                                                        $0.title = "mothers e-mail"
-                                                        $0.placeholder = "enter mothers e-amil."
-                                                        $0.value = self.account.MotherBillingEmailAddress
-                                                    }
-                                                    
-                                                    <<< PhoneRow("MothersMobile") {
-                                                        $0.title = "mothers mobile"
-                                                        $0.placeholder = "enter mothers mobile."
-                                                        $0.value = self.account.MotherMobile
-                                                    }
-                                                    
-                                                    <<< TextRow("MothersOccupation") {
-                                                        $0.title = "mothers occupation"
-                                                        $0.placeholder = "enter mothers occupation."
-                                                        $0.value = self.account.MotherOccupation
-                                                    }
-                                                    
-                                                    <<< PhoneRow("MothersWork") {
-                                                        $0.title = "mothers work"
-                                                        $0.placeholder = "enter mothers work phone number."
-                                                        $0.value = self.account.MotherWorkPhoneNumber
-                                                    }
-                                                    
-                                                    <<< NameRow("FathersName") {
-                                                        $0.title = "fathers name"
-                                                        $0.placeholder = "enter fathers name."
-                                                        $0.value = self.account.FatherName
-                                                    }
-                                                    
-                                                    <<< EmailRow("FathersEmail") {
-                                                        $0.title = "fathers e-mail"
-                                                        $0.placeholder = "enter fathers e-amil."
-                                                        $0.value = self.account.FatherBillingEmailAddress
-                                                        
-                                                    }
-                                                    
-                                                    <<< PhoneRow("FathersMobile") {
-                                                        $0.title = "fathers mobile"
-                                                        $0.placeholder = "enter fathers mobile."
-                                                        $0.value = self.account.FatherMobile
-                                                        
-                                                    }
-                                                    
-                                                    <<< TextRow("FathersOccupation") {
-                                                        $0.title = "fathers occupation"
-                                                        $0.placeholder = "enter fathers occupation."
-                                                        $0.value = self.account.FatherOccupation
-                                                    }
-                                                    
-                                                    <<< PhoneRow("FathersWork") {
-                                                        $0.title = "fathers work"
-                                                        $0.placeholder = "enter fathers work phone number."
-                                                        $0.value = self.account.FatherWorkPhoneNumber
-                                                }
-                                                
-                                                self.form +++ Section("Address")
-                                                    
-                                                    <<< IntRow("HouseNumber") {
-                                                        $0.title = "house number"
-                                                        $0.placeholder = "enter the house number."
-                                                        $0.value = Int(self.account.FatherBillingEmailAddress)
-                                                    }
-                                                    
-                                                    <<< TextRow("Road") {
-                                                        $0.title = "road"
-                                                        $0.placeholder = "enter the road."
-                                                        $0.value = self.account.Road
-                                                    }
-                                                    
-                                                    <<< TextRow("Town") {
-                                                        $0.title = "town"
-                                                        $0.placeholder = "enter the town."
-                                                        $0.value = self.account.Town
-                                                    }
-                                                    
-                                                    <<< TextRow("PostCode") {
-                                                        $0.title = "post-code"
-                                                        $0.placeholder = "enter the post-code."
-                                                        $0.value = self.account.PostCode
-                                                    }
-                                                    
-                                                    <<< TextRow("County") {
-                                                        $0.title = "county"
-                                                        $0.placeholder = "enter the county."
-                                                        $0.value = self.account.County
-                                                    }
-                                                    
-                                                    <<< PhoneRow("HomePhone") {
-                                                        $0.title = "home phone"
-                                                        $0.placeholder = "enter the home phoe number."
-                                                        $0.value = self.account.HomePhoneNumber
-                                                }
-                                                
-                                                
-                                                self.form +++ Section("")
-                                                    <<< ButtonRow(){
-                                                        $0.title = "Save Changes"
-                                                        }.onCellSelection {  cell, row in
-                                                            
-                                                            //Need to get the rest of the values here!
-                                                            var emailRow: EmailRow? = self.form.rowBy(tag: "FirstName")
-                                                            
-                                                            var nameRow: NameRow? = self.form.rowBy(tag: "FirstName")
-                                                            let FirstName = nameRow?.value ?? ""
-                                                            
-                                                            nameRow = self.form.rowBy(tag: "MiddleName")
-                                                            let MiddleName = nameRow?.value ?? ""
-                                                            
-                                                            nameRow = self.form.rowBy(tag: "LastName")
-                                                            let LastName = nameRow?.value ?? ""
-                                                            
-                                                            let dob: DateRow? = self.form.rowBy(tag: "DatOfBirth")
-                                                            let DatOfBirth = dob?.value
-                                                            
-                                                            nameRow = self.form.rowBy(tag: "MothersName")
-                                                            let MothersName = nameRow?.value ?? ""
-                                                            
-                                                            nameRow = self.form.rowBy(tag: "FathersName")
-                                                            let FathersName = nameRow?.value ?? ""
-                                                            
-                                                            emailRow = self.form.rowBy(tag: "MothersEmail")
-                                                            let MothersEmail = emailRow?.value ?? ""
-                                                            
-                                                            emailRow = self.form.rowBy(tag: "FathersEmail")
-                                                            let FathersEmail = emailRow?.value ?? ""
-                                                            
-                                                            self.UpdateChild(mothersEmail: MothersEmail, fathersEmail: FathersEmail, mothersName: MothersName, fathersName: FathersName, childFirstName: FirstName, childMiddleName: MiddleName, childLastName: LastName, dob: DatOfBirth!)
-                                                        }
-                                                        .cellUpdate
-                                                        {
-                                                            cell, row in
-                                                            cell.backgroundColor = StyleManager.theme1()
-                                                            cell.textLabel?.textColor = StyleManager.theme2()
-                                                            cell.height = { 70 }
-                                                }
-                                            })
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                        })
-                                        
-                                        
-                                        
                                 }
+                                
+                                
+                                AccountRequests.sharedInstance.GetAccount(accountId: self.child.AccountId as String, onCompletion: { json in
+                                    
+                                    self.account.AccountId = (json["AccountId"].stringValue)
+                                    self.account.AccountName = (json["AccountName"].stringValue)
+                                    self.account.AccountDetails = (json["AccountDetails"].stringValue)
+                                    self.account.HouseNumber = (json["HouseNumber"].stringValue)
+                                    self.account.Road = (json["Road"].stringValue)
+                                    
+                                    self.account.DateOpened = self._CommonHelper.GetDateObjectFromString(dateAsString: json["DateOpened"].stringValue)
+                                    
+                                    self.account.Town = (json["Town"].stringValue)
+                                    self.account.County = (json["County"].stringValue)
+                                    self.account.PostCode = (json["PostCode"].stringValue)
+                                    self.account.HomePhoneNumber = (json["HomePhoneNumber"].stringValue)
+                                    self.account.MotherWorkPhoneNumber = (json["MotherWorkPhoneNumber"].stringValue)
+                                    self.account.FatherWorkPhoneNumber = (json["FatherWorkPhoneNumber"].stringValue )
+                                    self.account.MotherBillingEmailAddress = (json["MotherBillingEmailAddress"].stringValue)
+                                    self.account.FatherBillingEmailAddress = (json["FatherBillingEmailAddress"].stringValue)
+                                    self.account.PayPalEmailAddress = (json["PayPalEmailAddress"].stringValue)
+                                    self.account.MotherMobile = (json["MotherMobile"].stringValue)
+                                    self.account.FatherMobile = (json["FatherMobile"].stringValue)
+                                    
+                                    self.account.FatherPayPercentage = (json["FatherPayPercentage"].stringValue)
+                                    self.account.MotherPayPercentage = (json["MotherPayPercentage"].stringValue)
+                                    self.account.MotherOccupation = (json["MotherOccupation"].stringValue)
+                                    self.account.FatherOccupation = (json["FatherOccupation"].stringValue)
+                                    self.account.FatherName = (json["FatherName"].stringValue)
+                                    self.account.MotherName = (json["MotherName"].stringValue)
+                                    self.account.ExistingAccountBalance = (json["ExistingAccountBalance"].stringValue)
+                                    
+                                    DispatchQueue.main.async(execute: {
+                                        
+                                        self.form +++ Section("Parents information")
+                                            
+                                            <<< NameRow("MothersName") {
+                                                $0.title = "mothers name"
+                                                $0.placeholder = "enter mothers name."
+                                                $0.value = self.account.MotherName
+                                            }
+                                            
+                                            <<< EmailRow("MothersEmail") {
+                                                $0.title = "mothers e-mail"
+                                                $0.placeholder = "enter mothers e-amil."
+                                                $0.value = self.account.MotherBillingEmailAddress
+                                            }
+                                            
+                                            <<< PhoneRow("MothersMobile") {
+                                                $0.title = "mothers mobile"
+                                                $0.placeholder = "enter mothers mobile."
+                                                $0.value = self.account.MotherMobile
+                                            }
+                                            
+                                            <<< TextRow("MothersOccupation") {
+                                                $0.title = "mothers occupation"
+                                                $0.placeholder = "enter mothers occupation."
+                                                $0.value = self.account.MotherOccupation
+                                            }
+                                            
+                                            <<< PhoneRow("MothersWork") {
+                                                $0.title = "mothers work"
+                                                $0.placeholder = "enter mothers work phone number."
+                                                $0.value = self.account.MotherWorkPhoneNumber
+                                            }
+                                            
+                                            <<< NameRow("FathersName") {
+                                                $0.title = "fathers name"
+                                                $0.placeholder = "enter fathers name."
+                                                $0.value = self.account.FatherName
+                                            }
+                                            
+                                            <<< EmailRow("FathersEmail") {
+                                                $0.title = "fathers e-mail"
+                                                $0.placeholder = "enter fathers e-amil."
+                                                $0.value = self.account.FatherBillingEmailAddress
+                                                
+                                            }
+                                            
+                                            <<< PhoneRow("FathersMobile") {
+                                                $0.title = "fathers mobile"
+                                                $0.placeholder = "enter fathers mobile."
+                                                $0.value = self.account.FatherMobile
+                                                
+                                            }
+                                            
+                                            <<< TextRow("FathersOccupation") {
+                                                $0.title = "fathers occupation"
+                                                $0.placeholder = "enter fathers occupation."
+                                                $0.value = self.account.FatherOccupation
+                                            }
+                                            
+                                            <<< PhoneRow("FathersWork") {
+                                                $0.title = "fathers work"
+                                                $0.placeholder = "enter fathers work phone number."
+                                                $0.value = self.account.FatherWorkPhoneNumber
+                                        }
+                                        
+                                        self.form +++ Section("Address")
+                                            
+                                            <<< IntRow("HouseNumber") {
+                                                $0.title = "house number"
+                                                $0.placeholder = "enter the house number."
+                                                $0.value = Int(self.account.FatherBillingEmailAddress)
+                                            }
+                                            
+                                            <<< TextRow("Road") {
+                                                $0.title = "road"
+                                                $0.placeholder = "enter the road."
+                                                $0.value = self.account.Road
+                                            }
+                                            
+                                            <<< TextRow("Town") {
+                                                $0.title = "town"
+                                                $0.placeholder = "enter the town."
+                                                $0.value = self.account.Town
+                                            }
+                                            
+                                            <<< TextRow("PostCode") {
+                                                $0.title = "post-code"
+                                                $0.placeholder = "enter the post-code."
+                                                $0.value = self.account.PostCode
+                                            }
+                                            
+                                            <<< TextRow("County") {
+                                                $0.title = "county"
+                                                $0.placeholder = "enter the county."
+                                                $0.value = self.account.County
+                                            }
+                                            
+                                            <<< PhoneRow("HomePhone") {
+                                                $0.title = "home phone"
+                                                $0.placeholder = "enter the home phoe number."
+                                                $0.value = self.account.HomePhoneNumber
+                                        }
+                                        
+                                        
+                                        self.form +++ Section("")
+                                            <<< ButtonRow(){
+                                                $0.title = "Save Changes"
+                                                }.onCellSelection {  cell, row in
+                                                    
+                                                    self.UpdateChild()
+                                                    
+                                                    
+                                                }
+                                                .cellUpdate
+                                                {
+                                                    cell, row in
+                                                    cell.backgroundColor = StyleManager.theme1()
+                                                    cell.textLabel?.textColor = StyleManager.theme2()
+                                                    cell.height = { 70 }
+                                        }
+                                    })
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                })
+                                
+                                
                             }
                                 
                             )})
@@ -394,9 +371,8 @@ class EditChild: FormViewController {
             if let vc = segue.destination as? MainMenuViewController {
                 vc.selectedMenu = .Children
             }
-            
         }
-        
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -435,8 +411,7 @@ class EditChild: FormViewController {
     }
     
     
-    func UpdateChild(mothersEmail: String, fathersEmail: String, mothersName: String, fathersName: String,
-                     childFirstName: String, childMiddleName: String, childLastName: String, dob: Date)
+    func UpdateChild()
     {
         SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
@@ -450,8 +425,24 @@ class EditChild: FormViewController {
         //row = self.form.rowBy(tag: "EverNoteAccessToken")
         //let EverNoteAccessToken = row?.value ?? ""
         
+         var nameRow: NameRow? = self.form.rowBy(tag: "FirstName")
         var row: TextRow? = self.form.rowBy(tag: "FirstName")
         var intRow: IntRow? = self.form.rowBy(tag: "FirstName")
+        
+        //Need to get the rest of the values here!
+        var emailRow: EmailRow? = self.form.rowBy(tag: "FirstName")
+        
+        let FirstName = nameRow?.value ?? ""
+        
+        nameRow = self.form.rowBy(tag: "MiddleName")
+        let MiddleName = nameRow?.value ?? ""
+        
+        nameRow = self.form.rowBy(tag: "LastName")
+        let LastName = nameRow?.value ?? ""
+        
+        let dob: DateRow? = self.form.rowBy(tag: "DatOfBirth")
+        let DatOfBirth = (dob?.value)! as Date
+
         
         intRow = self.form.rowBy(tag: "HouseNumber")
         let houseNumber = String(intRow?.value ?? 0)
@@ -500,16 +491,12 @@ class EditChild: FormViewController {
         
         //row = self.form.rowBy(tag: "dateOpened")
         //let dateOpened = row?.value ?? ""
-        
-        var nameRow: NameRow = self.form.rowBy(tag: "EmergencyName")!
+       
 //        var phoneRow: PhoneRow = self.form.rowBy(tag: "HomePhone")!
 //        var row: TextRow? = self.form.rowBy(tag: "MedicalConditions")
-        
-        
-        
-        
-        nameRow = self.form.rowBy(tag: "EmergencyName")!
-        let emergencyName = nameRow.value ?? ""
+      
+         nameRow = self.form.rowBy(tag: "EmergencyName")
+        let emergencyName = nameRow?.value ?? ""
         
         row = self.form.rowBy(tag: "RelationToChild")
         let emergencyRelation = row?.value ?? ""
@@ -525,35 +512,65 @@ class EditChild: FormViewController {
         
         row = self.form.rowBy(tag: "OtherNotes")
         let otherNotes = row?.value ?? ""
-
         
         row = self.form.rowBy(tag: "MedicalConditions")
         let medicalConditions = row?.value ?? ""
         
         let tRow: TextRow? = self.form.rowBy(tag: "GPsdetails")
         let gPsDetails = tRow?.value ?? ""
+      
+        emailRow = self.form.rowBy(tag: "MothersEmail")
+        let MothersEmail = emailRow?.value ?? ""
         
-        ChildHelperRequests.sharedInstance.UpdateChild(childFirstName: childFirstName, childMiddleName: childMiddleName, childLastName: childLastName, dob: dob as NSDate, accountId: child.AccountId as String, medicalConditions: medicalConditions, gPsDetails: gPsDetails, emergencyName: emergencyName, emergencyRelation: emergencyRelation, emergencyHomeNumber: emergencyHomeNumber, emergencyMobileNumber: emergencyMobileNumber, emergencyWorkNumber: emergencyWorkNumber, keyWorkerId: child.KeyWorkerId as String, everNoteAccessToken: child.EverNoteAccessToken as String, otherNotes: otherNotes, onCompletion:
+        emailRow = self.form.rowBy(tag: "FathersEmail")
+        let FathersEmail = emailRow?.value ?? ""
+        
+        nameRow = self.form.rowBy(tag: "MothersName")
+        let MothersName = nameRow?.value ?? ""
+        
+        nameRow = self.form.rowBy(tag: "FathersName")
+        let FathersName = nameRow?.value ?? ""
+        
+        //Should get hold of new keyworker id here!
+        
+        ChildHelperRequests.sharedInstance.UpdateChild(childId: child.ChildId as String, childFirstName: FirstName, childMiddleName: MiddleName, childLastName: LastName, dob: DatOfBirth as NSDate, accountId: child.AccountId as String, medicalConditions: medicalConditions, gPsDetails: gPsDetails, emergencyName: emergencyName, emergencyRelation: emergencyRelation, emergencyHomeNumber: emergencyHomeNumber, emergencyMobileNumber: emergencyMobileNumber, emergencyWorkNumber: emergencyWorkNumber, keyWorkerId: child.KeyWorkerId as String, everNoteAccessToken: child.EverNoteAccessToken as String, otherNotes: otherNotes, onCompletion:
             { json in
                 
-                let accountId = (json["AccountId"].stringValue as NSString) as String
+               // let accountId = (json["AccountId"].stringValue as NSString) as String
                 
                 DispatchQueue.main.async(execute: {
                     
-                    
-                    ChildHelperRequests.sharedInstance.CreateChild(childFirstName: childFirstName, childMiddleName: childMiddleName, childLastName: childLastName, dob: dob as NSDate, accountId:accountId, medicalConditions: medicalConditions, gPsDetails: gPsDetails, emergencyName: emergencyName, emergencyRelation: emergencyRelation, emergencyHomeNumber: emergencyHomeNumber, emergencyMobileNumber: emergencyMobileNumber, emergencyWorkNumber: emergencyWorkNumber, keyWorkerId: "", everNoteAccessToken: "", otherNotes: otherNotes,onCompletion:
+                    AccountRequests.sharedInstance.UpdateAccount(accountId: self.child.AccountId as String, mothersEmail: MothersEmail, fathersEmail: FathersEmail, mothersName: MothersName, fathersName: FathersName, houseNumber: houseNumber, road: road, town: town, county: county, postCode: postCode, homePhoneNumber: homePhoneNumber, motherWorkPhoneNumber: motherWorkPhoneNumber, fatherWorkPhoneNumber: fatherWorkPhoneNumber, payPalEmailAddress: self.account.PayPalEmailAddress, motherMobile: motherMobile, fatherMobile: fatherMobile, motherOccupation: motherOccupation, fatherOccupation: fatherOccupation, existingAccountBalance: self.account.ExistingAccountBalance, accountDetails: accountDetails, dateOpened: self.account.DateOpened.ToURLString2(), onCompletion:
                         { json in
                             
                             DispatchQueue.main.async(execute: {
                                 
-                                SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                    self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                 let switchRow: SwitchRow? = self.form.rowBy(tag: "Leaver")
+                                let leaver = switchRow?.value
+                                
+                                PersonStatusRequests.sharedInstance.UpdatePersonStatus(personStatusId: self.child.ChildId as String, leaver: String(describing: leaver!), CurrentlySignedIn: self.perstonStatus.CurrentlySignedIn, onCompletion:
+                                    { json in
+                                        
+                                        DispatchQueue.main.async(execute: {
+                                            SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                            })
+                                            
+                                        })
                                 })
+                                
                                 
                             })
                     })
+                    
+                    
                 })
         })
+        
+        
+        
+        
+        
     }
     
 }

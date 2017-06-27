@@ -68,6 +68,7 @@
 		7BB62A551EFFBB26000EFD89 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A541EFFBB26000EFD89 /* Account.swift */; };
 		7BB62A711F01ADDA000EFD89 /* PersonStatusRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A701F01ADDA000EFD89 /* PersonStatusRequests.swift */; };
 		7BB62A8A1F01AEBD000EFD89 /* KeyWorkerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A891F01AEBD000EFD89 /* KeyWorkerGroup.swift */; };
+		7BB62A8C1F02CDE6000EFD89 /* PersonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A8B1F02CDE5000EFD89 /* PersonStatus.swift */; };
 		7BC518221E4324BA00F81374 /* NewAuhtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC518211E4324BA00F81374 /* NewAuhtyViewController.swift */; };
 		7BC6E8AE1EC6ECA6001AC325 /* NewNurserySignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6E8AD1EC6ECA6001AC325 /* NewNurserySignUp.swift */; };
 		7BC6E8B11EC6F061001AC325 /* AuthyParentSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6E8B01EC6F061001AC325 /* AuthyParentSignUp.swift */; };
@@ -361,6 +362,7 @@
 		7BB62A541EFFBB26000EFD89 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7BB62A701F01ADDA000EFD89 /* PersonStatusRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonStatusRequests.swift; sourceTree = "<group>"; };
 		7BB62A891F01AEBD000EFD89 /* KeyWorkerGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyWorkerGroup.swift; sourceTree = "<group>"; };
+		7BB62A8B1F02CDE5000EFD89 /* PersonStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonStatus.swift; sourceTree = "<group>"; };
 		7BC518211E4324BA00F81374 /* NewAuhtyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAuhtyViewController.swift; sourceTree = "<group>"; };
 		7BC6E8AD1EC6ECA6001AC325 /* NewNurserySignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNurserySignUp.swift; sourceTree = "<group>"; };
 		7BC6E8B01EC6F061001AC325 /* AuthyParentSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyParentSignUp.swift; sourceTree = "<group>"; };
@@ -666,6 +668,7 @@
 				7B4E5A6B1EF84F2200506931 /* EmailSettings.swift */,
 				7B4E5A6F1EF9C7F100506931 /* NurseryDetails.swift */,
 				7BB62A541EFFBB26000EFD89 /* Account.swift */,
+				7BB62A8B1F02CDE5000EFD89 /* PersonStatus.swift */,
 			);
 			name = BrightStart;
 			sourceTree = "<group>";
@@ -1269,6 +1272,7 @@
 				7BF98D291EAA895000F3D918 /* InvoiceSearchTableViewCell.swift in Sources */,
 				7BD0FFE11E43BF3500472759 /* AuthyNewUserCompleteViewController.swift in Sources */,
 				7B70F05C1E8C2F3500290432 /* WizardSuccessViewController.swift in Sources */,
+				7BB62A8C1F02CDE6000EFD89 /* PersonStatus.swift in Sources */,
 				7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */,
 				7BB221D51E4A796B0069E74D /* Registration1ViewController.swift in Sources */,
 				D7EEEDBC1CC2E005001424FE /* NumbersController.swift in Sources */,

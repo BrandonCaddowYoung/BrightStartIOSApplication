@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Alamofire
 
 //typealias ServiceResponse = (JSON, NSError?) -> Void
 
@@ -36,6 +36,40 @@ class PersonStatusRequests: NSObject {
                 onCompletion(json as JSON)
         })
     }
+    
+    func UpdatePersonStatus(personStatusId: String, leaver: String, CurrentlySignedIn: String,
+                       onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let parameters: Parameters = [
+            "ChildId": "",
+            ]
+      
+        let route = baseURL + "api/PersonStatusLogic/UpdateStatus?PersonStatusId=" + personStatusId + "&Leaver=" + leaver + "&CurrentlySignedIn=" + CurrentlySignedIn + "&nurserySchoolId= " + nurserySchoolId
+        
+        
+        
+        
+        
+        
+        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
+        
+    }
+
+    
+    
+    
+    
     
 
     

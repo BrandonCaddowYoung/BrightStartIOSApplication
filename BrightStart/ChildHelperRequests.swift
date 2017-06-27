@@ -69,7 +69,7 @@ class ChildHelperRequests: NSObject {
         })
     }
     
-    func UpdateChild(childFirstName: String, childMiddleName: String,childLastName : String, dob : NSDate, accountId: String,
+    func UpdateChild(childId: String, childFirstName: String, childMiddleName: String,childLastName : String, dob : NSDate, accountId: String,
                      medicalConditions: String? = "",
                      gPsDetails: String? = "",
                      emergencyName: String? = "",
@@ -94,7 +94,7 @@ class ChildHelperRequests: NSObject {
         let childsDateOfBirth = dateFormatter.string(from: dob as Date)
         
         let parameters: Parameters = [
-            "ChildId": "",
+            "ChildId": childId,
             "AccountId": accountId,
             "ChildFirstName": childFirstName,
             "ChildMiddleName": childMiddleName,
