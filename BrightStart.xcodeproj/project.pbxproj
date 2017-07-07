@@ -67,8 +67,13 @@
 		7BB270C91E7C8CAA0023DF7D /* Authy_SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB270C81E7C8CA90023DF7D /* Authy_SettingsViewController.swift */; };
 		7BB62A551EFFBB26000EFD89 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A541EFFBB26000EFD89 /* Account.swift */; };
 		7BB62A711F01ADDA000EFD89 /* PersonStatusRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A701F01ADDA000EFD89 /* PersonStatusRequests.swift */; };
-		7BB62A8A1F01AEBD000EFD89 /* KeyWorkerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A891F01AEBD000EFD89 /* KeyWorkerGroup.swift */; };
+		7BB62A8A1F01AEBD000EFD89 /* KeyWorkerGroupRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A891F01AEBD000EFD89 /* KeyWorkerGroupRequests.swift */; };
 		7BB62A8C1F02CDE6000EFD89 /* PersonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A8B1F02CDE5000EFD89 /* PersonStatus.swift */; };
+		7BB62A8F1F03DC21000EFD89 /* EditStaff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A8E1F03DC21000EFD89 /* EditStaff.swift */; };
+		7BB62A911F03DC52000EFD89 /* CreateStaff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A901F03DC52000EFD89 /* CreateStaff.swift */; };
+		7BB62A931F03DD97000EFD89 /* BrightStartStaff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A921F03DD97000EFD89 /* BrightStartStaff.swift */; };
+		7BB62A951F03DF20000EFD89 /* StaffRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A941F03DF20000EFD89 /* StaffRequests.swift */; };
+		7BB62A971F03DFE0000EFD89 /* StaffHelperRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB62A961F03DFE0000EFD89 /* StaffHelperRequests.swift */; };
 		7BC518221E4324BA00F81374 /* NewAuhtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC518211E4324BA00F81374 /* NewAuhtyViewController.swift */; };
 		7BC6E8AE1EC6ECA6001AC325 /* NewNurserySignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6E8AD1EC6ECA6001AC325 /* NewNurserySignUp.swift */; };
 		7BC6E8B11EC6F061001AC325 /* AuthyParentSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC6E8B01EC6F061001AC325 /* AuthyParentSignUp.swift */; };
@@ -85,6 +90,7 @@
 		7BDEF8171E758D0B0012151B /* AuthyAuthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF8161E758D0A0012151B /* AuthyAuthenticateViewController.swift */; };
 		7BDEF8301E75A62D0012151B /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF82F1E75A62D0012151B /* CircleView.swift */; };
 		7BE3EDD31EB8F4FB00F1E0BF /* RollOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE3EDD21EB8F4FB00F1E0BF /* RollOver.swift */; };
+		7BE8BA601F0F862E001FC6AB /* KeyWorkerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE8BA5F1F0F862E001FC6AB /* KeyWorkerGroup.swift */; };
 		7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */; };
 		7BF6494E1EBA076600DDAA29 /* CreatingInvoices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF6494D1EBA076600DDAA29 /* CreatingInvoices.swift */; };
 		7BF649511EBA4AAC00DDAA29 /* SettingWeeklyRegisterdHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF649501EBA4AAC00DDAA29 /* SettingWeeklyRegisterdHours.swift */; };
@@ -361,8 +367,13 @@
 		7BB270C81E7C8CA90023DF7D /* Authy_SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authy_SettingsViewController.swift; sourceTree = "<group>"; };
 		7BB62A541EFFBB26000EFD89 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7BB62A701F01ADDA000EFD89 /* PersonStatusRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonStatusRequests.swift; sourceTree = "<group>"; };
-		7BB62A891F01AEBD000EFD89 /* KeyWorkerGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyWorkerGroup.swift; sourceTree = "<group>"; };
+		7BB62A891F01AEBD000EFD89 /* KeyWorkerGroupRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyWorkerGroupRequests.swift; sourceTree = "<group>"; };
 		7BB62A8B1F02CDE5000EFD89 /* PersonStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonStatus.swift; sourceTree = "<group>"; };
+		7BB62A8E1F03DC21000EFD89 /* EditStaff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStaff.swift; sourceTree = "<group>"; };
+		7BB62A901F03DC52000EFD89 /* CreateStaff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStaff.swift; sourceTree = "<group>"; };
+		7BB62A921F03DD97000EFD89 /* BrightStartStaff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightStartStaff.swift; sourceTree = "<group>"; };
+		7BB62A941F03DF20000EFD89 /* StaffRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffRequests.swift; sourceTree = "<group>"; };
+		7BB62A961F03DFE0000EFD89 /* StaffHelperRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffHelperRequests.swift; sourceTree = "<group>"; };
 		7BC518211E4324BA00F81374 /* NewAuhtyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAuhtyViewController.swift; sourceTree = "<group>"; };
 		7BC6E8AD1EC6ECA6001AC325 /* NewNurserySignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNurserySignUp.swift; sourceTree = "<group>"; };
 		7BC6E8B01EC6F061001AC325 /* AuthyParentSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyParentSignUp.swift; sourceTree = "<group>"; };
@@ -379,6 +390,7 @@
 		7BDEF8161E758D0A0012151B /* AuthyAuthenticateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyAuthenticateViewController.swift; sourceTree = "<group>"; };
 		7BDEF82F1E75A62D0012151B /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		7BE3EDD21EB8F4FB00F1E0BF /* RollOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollOver.swift; sourceTree = "<group>"; };
+		7BE8BA5F1F0F862E001FC6AB /* KeyWorkerGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyWorkerGroup.swift; sourceTree = "<group>"; };
 		7BEAD03B1E1EFDE400DD4DCF /* DateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		7BF6494D1EBA076600DDAA29 /* CreatingInvoices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatingInvoices.swift; sourceTree = "<group>"; };
 		7BF649501EBA4AAC00DDAA29 /* SettingWeeklyRegisterdHours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingWeeklyRegisterdHours.swift; sourceTree = "<group>"; };
@@ -541,6 +553,7 @@
 		7B2E88BD1DEF7FA2003F7E45 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7BB62A8D1F03D87B000EFD89 /* Staff */,
 				7B8BDBAB1E0E8471009F3EAF /* Menus */,
 				7BE3EDB91EB8F4BA00F1E0BF /* RegisteredHours */,
 				7BF6494B1EBA072E00DDAA29 /* Invoices */,
@@ -669,8 +682,19 @@
 				7B4E5A6F1EF9C7F100506931 /* NurseryDetails.swift */,
 				7BB62A541EFFBB26000EFD89 /* Account.swift */,
 				7BB62A8B1F02CDE5000EFD89 /* PersonStatus.swift */,
+				7BB62A921F03DD97000EFD89 /* BrightStartStaff.swift */,
+				7BE8BA5F1F0F862E001FC6AB /* KeyWorkerGroup.swift */,
 			);
 			name = BrightStart;
+			sourceTree = "<group>";
+		};
+		7BB62A8D1F03D87B000EFD89 /* Staff */ = {
+			isa = PBXGroup;
+			children = (
+				7BB62A8E1F03DC21000EFD89 /* EditStaff.swift */,
+				7BB62A901F03DC52000EFD89 /* CreateStaff.swift */,
+			);
+			name = Staff;
 			sourceTree = "<group>";
 		};
 		7BC6E8951EC6EC56001AC325 /* Other */ = {
@@ -805,7 +829,9 @@
 				7BF98D2A1EAAC1DA00F3D918 /* BillingRequests.swift */,
 				7BC6E8B61EC8403A001AC325 /* SettingsRequests.swift */,
 				7BB62A701F01ADDA000EFD89 /* PersonStatusRequests.swift */,
-				7BB62A891F01AEBD000EFD89 /* KeyWorkerGroup.swift */,
+				7BB62A891F01AEBD000EFD89 /* KeyWorkerGroupRequests.swift */,
+				7BB62A941F03DF20000EFD89 /* StaffRequests.swift */,
+				7BB62A961F03DFE0000EFD89 /* StaffHelperRequests.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -989,16 +1015,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1253,20 +1279,23 @@
 				7BF98D251EAA855600F3D918 /* InvoiceRequests.swift in Sources */,
 				7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */,
 				7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */,
-				7BB62A8A1F01AEBD000EFD89 /* KeyWorkerGroup.swift in Sources */,
+				7BB62A8A1F01AEBD000EFD89 /* KeyWorkerGroupRequests.swift in Sources */,
 				7BF98D231EAA320400F3D918 /* InvoiceSearchTableViewController.swift in Sources */,
 				7BB270C91E7C8CAA0023DF7D /* Authy_SettingsViewController.swift in Sources */,
+				7BE8BA601F0F862E001FC6AB /* KeyWorkerGroup.swift in Sources */,
 				7BB221F11E4BB75C0069E74D /* RegistrationModel.swift in Sources */,
 				7BF6494E1EBA076600DDAA29 /* CreatingInvoices.swift in Sources */,
 				7B1575E31E816A98008AB34F /* DoubleTemplateViewController.swift in Sources */,
 				7B03BE211E5CD5C400D61404 /* AddRegisteredHoursViewController.swift in Sources */,
 				7BD0FFEB1E47205100472759 /* AuthySettingsViewController.swift in Sources */,
+				7BB62A931F03DD97000EFD89 /* BrightStartStaff.swift in Sources */,
 				7B5CDC6D1EC2EC8B0008E464 /* MissingTimeStampsFinder.swift in Sources */,
 				7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */,
 				7BF649511EBA4AAC00DDAA29 /* SettingWeeklyRegisterdHours.swift in Sources */,
 				7B148C2A1E599E4D00D309F6 /* RegistrationHours.swift in Sources */,
 				D739E8691CC9829C0084ECE4 /* DayCount.swift in Sources */,
 				7BC6E8B51EC79DE9001AC325 /* Settings_Billing_Rates.swift in Sources */,
+				7BB62A951F03DF20000EFD89 /* StaffRequests.swift in Sources */,
 				7BC6E8B11EC6F061001AC325 /* AuthyParentSignUp.swift in Sources */,
 				7BF98D271EAA86D100F3D918 /* Invoice.swift in Sources */,
 				7BF98D291EAA895000F3D918 /* InvoiceSearchTableViewCell.swift in Sources */,
@@ -1282,6 +1311,7 @@
 				7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */,
 				7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */,
 				7B5CDC871EC2ECBF0008E464 /* MissingTimeStampsResults.swift in Sources */,
+				7BB62A8F1F03DC21000EFD89 /* EditStaff.swift in Sources */,
 				7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */,
 				7B70F0591E8C2A8600290432 /* SuccessTemplateController.swift in Sources */,
 				7B4E5A6C1EF84F2200506931 /* EmailSettings.swift in Sources */,
@@ -1292,6 +1322,7 @@
 				7B5CDC891EC3A5800008E464 /* TimeStampCount.swift in Sources */,
 				D74311481CB39B1900C72655 /* CommonRequests.swift in Sources */,
 				7BF649551EBA748100DDAA29 /* QuickCreateChild.swift in Sources */,
+				7BB62A911F03DC52000EFD89 /* CreateStaff.swift in Sources */,
 				D7F995C81C9EFE30001802EC /* ClockingTableViewCell.swift in Sources */,
 				7BCAD8151DF7617E0056AC9C /* CommonHelper.swift in Sources */,
 				7B148C281E59994F00D309F6 /* RegistrationHoursRequests.swift in Sources */,
@@ -1316,6 +1347,7 @@
 				D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */,
 				7B8BDBDB1E156F47009F3EAF /* PersonLog.swift in Sources */,
 				7B083A5F1EFBF42600E1090A /* EditChild.swift in Sources */,
+				7BB62A971F03DFE0000EFD89 /* StaffHelperRequests.swift in Sources */,
 				D739E8671CC981530084ECE4 /* RegisteredCount.swift in Sources */,
 				7B8BDBDF1E1572AF009F3EAF /* ChildRequests.swift in Sources */,
 				D7387E9B1CAF1A7100948DE5 /* Child.swift in Sources */,

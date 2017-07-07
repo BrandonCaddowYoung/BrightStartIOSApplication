@@ -139,6 +139,64 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             })
             
         }
+        else if(successSegueIdentifier == "GoToEditStaff")
+        {
+            //Get only the children who were late or early.
+            
+            //Retrieve all children
+            StaffRequests.sharedInstance.GetAllStaff(onCompletion:
+                { json in
+                    
+                    for (index: _, subJson: JSON) in json {
+                        
+                        let child = BrightStartChild()
+                        
+                        //Needs to change to person and id
+                        
+                        child.ChildFullName = JSON["FullName"].stringValue as NSString
+                        child.ChildId = JSON["StaffMemberId"].stringValue as NSString
+                        
+                        let dateFormatter = DateFormatter()
+                        //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+                        
+                        let dateOfBirth = JSON["DOB"].stringValue
+                        
+                        var newDate = dateFormatter.date(from: dateOfBirth)
+                        
+                        if(newDate == nil){
+                            
+                            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                            
+                            newDate = dateFormatter.date(from: dateOfBirth)
+                            
+                            if(newDate == nil){
+                                continue
+                            }
+                        }
+                        
+                        child.ChildDOB = newDate!
+                        
+                        self.children.insert([child], at: 0)
+                    }
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.children = self.children.reversed()
+                        
+                        self.tableView.reloadData()
+                        sender?.endRefreshing()
+                        
+                        SVProgressHUD.dismiss(withDelay: 0, completion: {
+                            
+                        })
+                        
+                        
+                    })
+                    
+            })
+            
+        }
         else
         {
             //Retrieve all children
@@ -332,6 +390,16 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 
                 vc.targetChildId = self.SelectedPersonId as String!
                                 
+            }
+        }
+        if (segue.identifier == "GoToEditStaff") {
+            
+            //Settings the menu details.
+            
+            if let vc = segue.destination as? EditStaff {
+                
+                vc.targetStaffId = self.SelectedPersonId as String!
+                
             }
         }
         

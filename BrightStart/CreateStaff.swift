@@ -9,13 +9,13 @@
 import Eureka
 import SVProgressHUD
 
-class CreateChild: FormViewController {
-    
-    var staffArray = Array<BrightStartStaff>()
+class CreateStaff: FormViewController {
     
     var _CommonHelper: CommonHelper!
     
-    var childrenArray = Array<BrightStartChild>()
+    var keyWorkerGroupsArray = Array<KeyWorkerGroup>()
+    
+    var ChildrenArray = Array<BrightStartStaff>()
     
     override func viewDidLoad() {
         
@@ -33,7 +33,7 @@ class CreateChild: FormViewController {
             header.height = { 80.0 }
             header.onSetupView = {view, _ in
                 view.textColor = StyleManager.theme1()
-                view.text = "Adding a new child to Bright Start."
+                view.text = "Adding a new Staff to Bright Start."
                 view.textAlignment = .center
                 view.font = UIFont(name: "HelveticaNeue-Bold", size: 20.0)!
             }
@@ -41,13 +41,13 @@ class CreateChild: FormViewController {
         }
         
         form +++ Section()
-        {
-            $0.header = HeaderFooterView<LogoView>(.class)
-        }
-        
-        <<< LabelRow("Target"){
-                $0.title = "This feature allows you to create a new child."
-            $0.cell.textLabel?.numberOfLines = 5
+            {
+                $0.header = HeaderFooterView<LogoView>(.class)
+            }
+            
+            <<< LabelRow("Target"){
+                $0.title = "This feature allows you to create a new Staff."
+                $0.cell.textLabel?.numberOfLines = 5
         }
         
         form +++ Section("How does it work?")
@@ -56,7 +56,7 @@ class CreateChild: FormViewController {
                 $0.cell.textLabel?.numberOfLines = 6
         }
         
-        form +++ Section("Childs information")
+        form +++ Section("Staffs information")
             
             <<< NameRow("FirstName") {
                 $0.title = "first name"
@@ -85,10 +85,20 @@ class CreateChild: FormViewController {
                 $0.placeholder = "enter mothers name."
             }
             
-            <<< EmailRow("MothersEmail") {
-                $0.title = "mothers e-mail"
-                $0.placeholder = "enter mothers e-amil."
+            
+            
+            <<< EmailRow("Email") {
+                $0.title = "email"
+                $0.placeholder = "enter e-amil."
             }
+            
+            
+            <<< PasswordRow("Password") {
+                $0.title = "password"
+                $0.placeholder = "enter password."
+            }
+            
+            
             
             <<< PhoneRow("MothersMobile") {
                 $0.title = "mothers mobile"
@@ -113,18 +123,18 @@ class CreateChild: FormViewController {
             <<< EmailRow("FathersEmail") {
                 $0.title = "fathers e-mail"
                 $0.placeholder = "enter fathers e-amil."
-        }
-        
+            }
+            
             <<< PhoneRow("FathersMobile") {
                 $0.title = "fathers mobile"
                 $0.placeholder = "enter fathers mobile."
-        }
+            }
             
             <<< TextRow("FathersOccupation") {
                 $0.title = "fathers occupation"
                 $0.placeholder = "enter fathers occupation."
             }
-        
+            
             <<< PhoneRow("FathersWork") {
                 $0.title = "fathers work"
                 $0.placeholder = "enter fathers work phone number."
@@ -135,28 +145,28 @@ class CreateChild: FormViewController {
             <<< IntRow("HouseNumber") {
                 $0.title = "house number"
                 $0.placeholder = "enter the house number."
-        }
-        
+            }
+            
             <<< TextRow("Road") {
                 $0.title = "road"
                 $0.placeholder = "enter the road."
-        }
-        
+            }
+            
             <<< TextRow("Town") {
                 $0.title = "town"
                 $0.placeholder = "enter the town."
-        }
+            }
             
             <<< TextRow("PostCode") {
                 $0.title = "post-code"
                 $0.placeholder = "enter the post-code."
-        }
-        
+            }
+            
             <<< TextRow("County") {
                 $0.title = "county"
                 $0.placeholder = "enter the county."
-        }
-        
+            }
+            
             <<< PhoneRow("HomePhone") {
                 $0.title = "home phone"
                 $0.placeholder = "enter the home phoe number."
@@ -167,17 +177,23 @@ class CreateChild: FormViewController {
             <<< TextRow("MedicalConditions") {
                 $0.title = "medical conditions"
                 $0.placeholder = "enter the medical conditions."
-        }
-        
+            }
+            
             <<< TextRow("GPsdetails") {
                 $0.title = "GP's details"
                 $0.placeholder = "enter the GP's details."
-        }
-        
+            }
+            
             <<< TextRow("OtherNotes") {
                 $0.title = "other notes"
                 $0.placeholder = "enter any other notes."
         }
+        
+            <<< PhoneRow("Mobile") {
+                $0.title = "mobile"
+                $0.placeholder = "enter the mobile number."
+        }
+
         
         form +++ Section("Emergency")
             
@@ -194,15 +210,15 @@ class CreateChild: FormViewController {
             <<< PhoneRow("EmergencyWork") {
                 $0.title = "emergency work"
                 $0.placeholder = "enter the emergency work number."
-        }
-        
+            }
+            
             <<< PhoneRow("EmergencyHome") {
                 $0.title = "emergency home"
                 $0.placeholder = "enter the emergency home number."
-        }
-        
-            <<< TextRow("RelationToChild") {
-                $0.title = "relation to child"
+            }
+            
+            <<< TextRow("RelationToStaff") {
+                $0.title = "relation to Staff"
                 $0.placeholder = "enter the emergency relation."
         }
         
@@ -213,44 +229,66 @@ class CreateChild: FormViewController {
                 $0.placeholder = "Enter any additional details."
         }
         
-        //Retrieve all staff
-        StaffRequests.sharedInstance.GetAllStaff(onCompletion: { json in
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //Retrieve all key worker grops
+        KeyWorkerGroupRequests.sharedInstance.GetAllKeyWorkerGroups(onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {
                 
-                let staffMember = BrightStartStaff()
+                let kwg = KeyWorkerGroup()
                 
-                staffMember.FullName = JSON["FullName"].stringValue as NSString
-                staffMember.StaffMemberId = JSON["StaffMemberId"].stringValue as NSString
+                kwg.Name = (JSON["Name"].stringValue as NSString) as String
+                kwg.KeyWorkerGroupId = (JSON["KeyWorkerGroupId"].stringValue as NSString) as String
                 
-                self.staffArray.append(staffMember)
+                self.keyWorkerGroupsArray.append(kwg)
             }
             
             DispatchQueue.main.async(execute: {
                 
                 self.form +++ Section("Key Worker Group")
                     
-                    <<< PickerInlineRow<BrightStartStaff>("PickStaffMember") {
-                        $0.title = "Key Worker Staff Member"
-                        $0.options = self.staffArray
+                    <<< PickerInlineRow<KeyWorkerGroup>("PickKeyWorkerGroup") {
+                        $0.title = "Key Worker Group"
+                        $0.options = self.keyWorkerGroupsArray
                         
                         $0.displayValueFor = {
                             guard let pv = $0 else{
                                 return nil
                             }
-                            return "\(pv.FullName)"
+                            return "\(pv.Name)"
                         }
                         
-                        //Nothing to begin with!
-                        //$0.value = self.GetStaffById(Id: self.child.KeyWorkerId)
+                        //$0.value = self.GetKeyWorkerGroupById(Id: self.Staff.KeyWorkerGroupId)
                 }
                 
                 
                 
                 self.form +++ Section("")
                     <<< ButtonRow(){
-                        $0.title = "Add new child"
+                        $0.title = "Add new staff member"
                         }.onCellSelection {  cell, row in
+                            
+                            var passwordRow: NameRow? = self.form.rowBy(tag: "Password")
+                            let password = passwordRow?.value
                             
                             //Need to get the rest of the values here!
                             var emailRow: EmailRow? = self.form.rowBy(tag: "FirstName")
@@ -273,13 +311,125 @@ class CreateChild: FormViewController {
                             nameRow = self.form.rowBy(tag: "FathersName")
                             let FathersName = nameRow?.value ?? ""
                             
-                            emailRow = self.form.rowBy(tag: "MothersEmail")
-                            let MothersEmail = emailRow?.value ?? ""
+                            emailRow = self.form.rowBy(tag: "Email")
+                            let email = emailRow?.value ?? ""
                             
                             emailRow = self.form.rowBy(tag: "FathersEmail")
                             let FathersEmail = emailRow?.value ?? ""
                             
-                            self.CreateChild(mothersEmail: MothersEmail, fathersEmail: FathersEmail, mothersName: MothersName, fathersName: FathersName, childFirstName: FirstName, childMiddleName: MiddleName, childLastName: LastName, dob: DatOfBirth!)
+                            
+                            
+                            
+                            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+                            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+                            SVProgressHUD.show()
+                            
+                            //Account below
+                            
+                            //row = self.form.rowBy(tag: "KeyWorkerId")
+                            //let KeyWorkerId = row?.value ?? ""
+                            
+                            //row = self.form.rowBy(tag: "EverNoteAccessToken")
+                            //let EverNoteAccessToken = row?.value ?? ""
+                            
+                            var row: TextRow? = self.form.rowBy(tag: "FirstName")
+                            var intRow: IntRow? = self.form.rowBy(tag: "FirstName")
+                            
+                            intRow = self.form.rowBy(tag: "HouseNumber")
+                            let houseNumber = String(intRow?.value ?? 0)
+                            
+                            row = self.form.rowBy(tag: "Road")
+                            let road = row?.value ?? ""
+                            
+                            row = self.form.rowBy(tag: "Town")
+                            let town = row?.value ?? ""
+                            
+                            row = self.form.rowBy(tag: "County")
+                            let county = row?.value ?? ""
+                            
+                            row = self.form.rowBy(tag: "PostCode")
+                            let postCode = row?.value ?? ""
+                            
+                            var phoneRow: PhoneRow = self.form.rowBy(tag: "HomePhone")!
+                            let homePhoneNumber = phoneRow.value ?? ""
+                            
+                            phoneRow = self.form.rowBy(tag: "MothersWork")!
+                            let motherWorkPhoneNumber = phoneRow.value ?? ""
+                            
+                            phoneRow = self.form.rowBy(tag: "Mobile")!
+                            let mobile = phoneRow.value ?? ""
+                            
+                            phoneRow = self.form.rowBy(tag: "FathersWork")!
+                            let fatherWorkPhoneNumber = phoneRow.value ?? ""
+                            
+                            //  row = self.form.rowBy(tag: "PayPalEmailAddress")
+                            //  let payPalEmailAddress = row?.value ?? ""
+                            
+                            phoneRow = self.form.rowBy(tag: "MothersMobile")!
+                            let motherMobile = phoneRow.value ?? ""
+                            
+                            phoneRow = self.form.rowBy(tag: "FathersMobile")!
+                            let fatherMobile = phoneRow.value ?? ""
+                            
+                            row = self.form.rowBy(tag: "MothersOccupation")
+                            let motherOccupation = row?.value ?? ""
+                            
+                            row = self.form.rowBy(tag: "FathersOccupation")
+                            let fatherOccupation = row?.value ?? ""
+                            
+                            row = self.form.rowBy(tag: "Details")
+                            let accountDetails = row?.value ?? ""
+                            
+                            row = self.form.rowBy(tag: "MedicalConditions")
+                            let medicalConditions = row?.value ?? ""
+                            
+                            let tRow: TextRow? = self.form.rowBy(tag: "GPsdetails")
+                            let gPsDetails = tRow?.value ?? ""
+                            
+                            //nameRow = self.form.rowBy(tag: "EmergencyName")!
+                            //let emergencyName = nameRow.value ?? ""
+                            
+                            row = self.form.rowBy(tag: "RelationToStaff")
+                            let emergencyRelation = row?.value ?? ""
+                            
+                            phoneRow = self.form.rowBy(tag: "EmergencyHome")!
+                            let emergencyHomeNumber = phoneRow.value ?? ""
+                            
+                            phoneRow = self.form.rowBy(tag: "EmergencyWork")!
+                            let emergencyWork = phoneRow.value ?? ""
+                            
+                            
+                            phoneRow = self.form.rowBy(tag: "EmergencyMobile")!
+                            let emergencyMobileNumber = phoneRow.value ?? ""
+                            
+                            phoneRow = self.form.rowBy(tag: "EmergencyWork")!
+                            //let emergencyWorkNumber = phoneRow.value ?? ""
+                            
+                            row = self.form.rowBy(tag: "OtherNotes")
+                            let otherNotes = row?.value ?? ""
+                            
+                            let pickerRow: PickerInlineRow<KeyWorkerGroup>? = self.form.rowBy(tag: "PickKeyWorkerGroup")
+                            
+                            let kwg = pickerRow?.value
+                            
+                            let chosenKeyWorkerGroupId = kwg?.KeyWorkerGroupId;
+                            
+                            
+                            StaffHelperRequests.sharedInstance.CreateStaff(staffMemberId: "", firstName: FirstName, middleName: MiddleName, lastName: LastName, dOB: DatOfBirth!, road: road, county: county, homePhoneNumber: homePhoneNumber, postcode: postCode, mobileNumber: mobile, emailAddress: email, houseNumber: houseNumber, town: town, medicalConditions: medicalConditions, gPsDetails: gPsDetails, otherNotes: otherNotes, emergencyName: emergencyWork, emergencyRelation: emergencyRelation, emergencyHomeNumber: emergencyHomeNumber, emergencyMobileNumber: emergencyMobileNumber, emergencyWorkNumber: emergencyWork, password: password, keyWorkerGroupId: chosenKeyWorkerGroupId, onCompletion:
+                                { json in
+                                    
+                                    DispatchQueue.main.async(execute: {
+                                        
+                                        SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                            self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
+                                        })
+                                        
+                                    })
+                            })
+                            
+                            
+                            
+                            
                         }
                         .cellUpdate
                         {
@@ -295,14 +445,17 @@ class CreateChild: FormViewController {
             
         })
         
-        form +++ Section("")
+        
+        
+        
+        
+        
+        
+        
+        
         
        
         
-    }
-    
-    func GetStaffById(Id: NSString) -> BrightStartStaff?{
-        return self.staffArray.filter({ $0.StaffMemberId == Id }).first
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
@@ -310,7 +463,7 @@ class CreateChild: FormViewController {
         if (segue.identifier == "GoToMenu") {
             
             if let vc = segue.destination as? MainMenuViewController {
-                vc.selectedMenu = .Children
+                vc.selectedMenu = .Staff
             }
             
         }
@@ -353,139 +506,7 @@ class CreateChild: FormViewController {
     }
     
     
-    func CreateChild(mothersEmail: String, fathersEmail: String, mothersName: String, fathersName: String,
-                     childFirstName: String, childMiddleName: String, childLastName: String, dob: Date)
-    {
-        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
-        SVProgressHUD.show()
-        
-        //Account below
-        
-        var row: TextRow? = self.form.rowBy(tag: "FirstName")
-        var intRow: IntRow? = self.form.rowBy(tag: "FirstName")
-        
-        intRow = self.form.rowBy(tag: "HouseNumber")
-        let houseNumber = String(intRow?.value ?? 0)
-        
-        row = self.form.rowBy(tag: "Road")
-        let road = row?.value ?? ""
-        
-        row = self.form.rowBy(tag: "Town")
-        let town = row?.value ?? ""
-        
-        row = self.form.rowBy(tag: "County")
-        let county = row?.value ?? ""
-        
-        row = self.form.rowBy(tag: "PostCode")
-        let postCode = row?.value ?? ""
-        
-        var phoneRow: PhoneRow = self.form.rowBy(tag: "HomePhone")!
-        let homePhoneNumber = phoneRow.value ?? ""
-        
-        phoneRow = self.form.rowBy(tag: "MothersWork")!
-        let motherWorkPhoneNumber = phoneRow.value ?? ""
-        
-        phoneRow = self.form.rowBy(tag: "FathersWork")!
-        let fatherWorkPhoneNumber = phoneRow.value ?? ""
-        
-      //  row = self.form.rowBy(tag: "PayPalEmailAddress")
-      //  let payPalEmailAddress = row?.value ?? ""
-        
-        phoneRow = self.form.rowBy(tag: "MothersMobile")!
-        let motherMobile = phoneRow.value ?? ""
-        
-        phoneRow = self.form.rowBy(tag: "FathersMobile")!
-        let fatherMobile = phoneRow.value ?? ""
-        
-        row = self.form.rowBy(tag: "MothersOccupation")
-        let motherOccupation = row?.value ?? ""
-        
-        row = self.form.rowBy(tag: "FathersOccupation")
-        let fatherOccupation = row?.value ?? ""
-        
-        //row = self.form.rowBy(tag: "existingAccountBalance")
-        //let existingAccountBalance = row?.value ?? ""
-        
-        row = self.form.rowBy(tag: "Details")
-        let accountDetails = row?.value ?? ""
-        
-        //row = self.form.rowBy(tag: "dateOpened")
-        //let dateOpened = row?.value ?? ""
-        
-        AccountRequests.sharedInstance.CreateAccount(mothersEmail: mothersEmail, fathersEmail: fathersEmail, mothersName: mothersName, fathersName: fathersName, houseNumber: houseNumber,
-                                                     road: road,
-                                                     town: town,county: county,
-                                                     postCode: postCode,
-                                                     homePhoneNumber: homePhoneNumber,
-                                                     motherWorkPhoneNumber: motherWorkPhoneNumber,
-                                                     fatherWorkPhoneNumber: fatherWorkPhoneNumber,
-                                                     payPalEmailAddress: fatherWorkPhoneNumber,
-                                                     motherMobile: motherMobile,
-                                                        fatherMobile: fatherMobile,
-                                                        motherOccupation: motherOccupation,
-                                                        fatherOccupation: fatherOccupation,
-                                                        existingAccountBalance: "",
-                                                        accountDetails: accountDetails,
-                                                        dateOpened: "",
-                                                     
-                                                     onCompletion:
-            { json in
-                
-                let accountId = (json["AccountId"].stringValue as NSString) as String
-                
-                DispatchQueue.main.async(execute: {
-                    
-                    var nameRow: NameRow = self.form.rowBy(tag: "EmergencyName")!
-                    var phoneRow: PhoneRow = self.form.rowBy(tag: "HomePhone")!
-                     var row: TextRow? = self.form.rowBy(tag: "MedicalConditions")
-                    
-                    row = self.form.rowBy(tag: "MedicalConditions")
-                    let medicalConditions = row?.value ?? ""
-                    
-                    let tRow: TextRow? = self.form.rowBy(tag: "GPsdetails")
-                    let gPsDetails = tRow?.value ?? ""
-                    
-                    nameRow = self.form.rowBy(tag: "EmergencyName")!
-                    let emergencyName = nameRow.value ?? ""
-                    
-                    row = self.form.rowBy(tag: "RelationToChild")
-                    let emergencyRelation = row?.value ?? ""
-                    
-                    phoneRow = self.form.rowBy(tag: "EmergencyHome")!
-                    let emergencyHomeNumber = phoneRow.value ?? ""
-                    
-                    phoneRow = self.form.rowBy(tag: "EmergencyMobile")!
-                    let emergencyMobileNumber = phoneRow.value ?? ""
-                    
-                    phoneRow = self.form.rowBy(tag: "EmergencyWork")!
-                    let emergencyWorkNumber = phoneRow.value ?? ""
-                    
-                    row = self.form.rowBy(tag: "OtherNotes")
-                    let otherNotes = row?.value ?? ""
-                    
-                    
-                    let pickerRow: PickerInlineRow<BrightStartStaff>? = self.form.rowBy(tag: "PickStaffMember")
-                    
-                    let staffMember = pickerRow?.value
-                    
-                    let chosenStaffMemberId = staffMember?.StaffMemberId;
-                    
-                    
-                    ChildHelperRequests.sharedInstance.CreateChild(childFirstName: childFirstName, childMiddleName: childMiddleName, childLastName: childLastName, dob: dob as NSDate, accountId:accountId, medicalConditions: medicalConditions, gPsDetails: gPsDetails, emergencyName: emergencyName, emergencyRelation: emergencyRelation, emergencyHomeNumber: emergencyHomeNumber, emergencyMobileNumber: emergencyMobileNumber, emergencyWorkNumber: emergencyWorkNumber, keyWorkerId: chosenStaffMemberId as String?, everNoteAccessToken: "", otherNotes: otherNotes,onCompletion:
-                        { json in
-                            
-                            DispatchQueue.main.async(execute: {
-                                
-                                SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                    self.performSegue(withIdentifier: "GoToSuccess", sender: nil)
-                                })
-                                
-                            })
-                    })
-                })
-        })
-    }
+    
     
 }
 

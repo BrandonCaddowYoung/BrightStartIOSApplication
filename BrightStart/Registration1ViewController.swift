@@ -95,7 +95,7 @@ class Registration1ViewController: UIViewController , UITextFieldDelegate {
         
         //Title color(Center)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme2()]
-        navigationController?.navigationBar.titleTextAttributes = titleDict as! [String : Any]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         
         //Back ground color
         navigationController?.navigationBar.barTintColor = StyleManager.theme1()

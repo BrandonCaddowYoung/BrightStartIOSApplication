@@ -155,6 +155,11 @@ class BillingRequests: NSObject {
         parameters["NumberOfBusinessDays"] = numberOfBusinessDays as AnyObject?
         parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
         
+        
+      
+        
+        
+        
         let route = baseURL + "api/BillingLogic/UpdateInvoiceAndRecalculateTotal?nurserySchoolId=" + nurserySchoolId
         makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {

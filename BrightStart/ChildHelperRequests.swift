@@ -41,26 +41,27 @@ class ChildHelperRequests: NSObject {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
         let childsDateOfBirth = dateFormatter.string(from: dob as Date)
         
-        let parameters: Parameters = [
-                    "ChildId": "",
-                    "AccountId": accountId,
-                    "ChildFirstName": childFirstName,
-                    "ChildMiddleName": childMiddleName,
-                    "ChildLastName": childLastName,
-                    "ChildDOB": childsDateOfBirth,
-                    "ChildFullName": childFirstName + " " + childMiddleName + " " + childLastName,
-                    "MedicalConditions": medicalConditions ?? "",
-                    "GPsDetails": gPsDetails ?? "",
-                    "EmergencyName": emergencyName ?? "",
-                    "EmergencyRelation": emergencyRelation ?? "",
-                    "EmergencyHomeNumber": emergencyHomeNumber ?? "",
-                    "EmergencyMobileNumber": emergencyMobileNumber ?? "",
-                    "EmergencyWorkNumber": emergencyWorkNumber ?? "",
-                    "KeyWorkerId": keyWorkerId ?? "",
-                    "EverNoteAccessToken": everNoteAccessToken ?? "",
-                    "OtherNotes": otherNotes ?? ""
-        ]
         
+        var parameters = [String : AnyObject]()
+        
+        parameters["ChildId"] = "" as AnyObject?
+        parameters["AccountId"] = accountId as AnyObject?
+        parameters["ChildFirstName"] = childFirstName as AnyObject?
+        parameters["ChildMiddleName"] = childMiddleName as AnyObject?
+        parameters["ChildLastName"] = childLastName as AnyObject?
+        parameters["ChildDOB"] = childsDateOfBirth as AnyObject?
+        parameters["ChildFullName"] = childFirstName + " " + childMiddleName + " " + childLastName as AnyObject?
+        parameters["MedicalConditions"] = medicalConditions as AnyObject?
+        parameters["GPsDetails"] = gPsDetails as AnyObject?
+        parameters["EmergencyName"] = emergencyName as AnyObject?
+        parameters["EmergencyRelation"] = emergencyRelation as AnyObject?
+        parameters["EmergencyHomeNumber"] = emergencyHomeNumber as AnyObject?
+        parameters["EmergencyMobileNumber"] = emergencyMobileNumber as AnyObject?
+        parameters["EmergencyWorkNumber"] = emergencyWorkNumber as AnyObject?
+        parameters["KeyWorkerId"] = keyWorkerId as AnyObject?
+        parameters["EverNoteAccessToken"] = everNoteAccessToken as AnyObject?
+        parameters["OtherNotes"] = otherNotes as AnyObject?
+    
         let route = baseURL + "api/ChildHelperLogic/CreateChildAndOtherNeccesaryObjects?nurserySchoolId=" + nurserySchoolId
         makeHTTPPost(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
@@ -93,27 +94,29 @@ class ChildHelperRequests: NSObject {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
         let childsDateOfBirth = dateFormatter.string(from: dob as Date)
         
-        let parameters: Parameters = [
-            "ChildId": childId,
-            "AccountId": accountId,
-            "ChildFirstName": childFirstName,
-            "ChildMiddleName": childMiddleName,
-            "ChildLastName": childLastName,
-            "ChildDOB": childsDateOfBirth,
-            "ChildFullName": childFirstName + " " + childMiddleName + " " + childLastName,
-            "MedicalConditions": medicalConditions ?? "",
-            "GPsDetails": gPsDetails ?? "",
-            "EmergencyName": emergencyName ?? "",
-            "EmergencyRelation": emergencyRelation ?? "",
-            "EmergencyHomeNumber": emergencyHomeNumber ?? "",
-            "EmergencyMobileNumber": emergencyMobileNumber ?? "",
-            "EmergencyWorkNumber": emergencyWorkNumber ?? "",
-            "KeyWorkerId": keyWorkerId ?? "",
-            "EverNoteAccessToken": everNoteAccessToken ?? "",
-            "OtherNotes": otherNotes ?? ""
-        ]
         
-        let route = baseURL + "api/ChildLogic/UpdateChild?nurserySchoolId=" + nurserySchoolId
+        
+        var parameters = [String : AnyObject]()
+        
+        parameters["ChildId"] = childId as AnyObject?
+        parameters["AccountId"] = accountId as AnyObject?
+        parameters["ChildFirstName"] = childFirstName as AnyObject?
+        parameters["ChildMiddleName"] = childMiddleName as AnyObject?
+        parameters["ChildLastName"] = childLastName as AnyObject?
+        parameters["ChildDOB"] = childsDateOfBirth as AnyObject?
+        parameters["ChildFullName"] = childFirstName + " " + childMiddleName + " " + childLastName as AnyObject?
+        parameters["MedicalConditions"] = medicalConditions as AnyObject?
+        parameters["GPsDetails"] = gPsDetails as AnyObject?
+        parameters["EmergencyName"] = emergencyName as AnyObject?
+        parameters["EmergencyRelation"] = emergencyRelation as AnyObject?
+        parameters["EmergencyHomeNumber"] = emergencyHomeNumber as AnyObject?
+        parameters["EmergencyMobileNumber"] = emergencyMobileNumber as AnyObject?
+        parameters["EmergencyWorkNumber"] = emergencyWorkNumber as AnyObject?
+        parameters["KeyWorkerId"] = keyWorkerId as AnyObject?
+        parameters["EverNoteAccessToken"] = everNoteAccessToken as AnyObject?
+        parameters["OtherNotes"] = otherNotes as AnyObject?
+
+                let route = baseURL + "api/ChildLogic/UpdateChild?nurserySchoolId=" + nurserySchoolId
         makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in

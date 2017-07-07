@@ -165,18 +165,17 @@ class Settings_NurseryDetails: FormViewController {
                             SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
                             SVProgressHUD.show()
                             
-                            let emailRow: EmailRow? = self.form.rowBy(tag: "email")
-                            let email = emailRow?.value
+                            //let emailRow: EmailRow? = self.form.rowBy(tag: "email")
+                            //let email = emailRow?.value
                             
-                            let passwordRow: PasswordRow? = self.form.rowBy(tag: "password")
-                            let password = passwordRow?.value
+                            //let passwordRow: PasswordRow? = self.form.rowBy(tag: "password")
+                            //let password = passwordRow?.value
                             
-                            var textAreaRow: TextAreaRow? = self.form.rowBy(tag: "EmailBody")
-                            let EmailBody = textAreaRow?.value
+                            //var textAreaRow: TextAreaRow? = self.form.rowBy(tag: "EmailBody")
+                           // let EmailBody = textAreaRow?.value
                             
-                            
-                            textAreaRow = self.form.rowBy(tag: "ExtraTimeMessage")
-                            let ExtraTimeMessage = textAreaRow?.value
+                            //textAreaRow = self.form.rowBy(tag: "ExtraTimeMessage")
+                           // let ExtraTimeMessage = textAreaRow?.value
                             
 //                            SettingsRequests.sharedInstance.UpdateNurserySettings(Id: self.emailSettings.Id, SMTP: self.emailSettings.SMTP, EmailAddress: email!, Port: self.emailSettings.Port, PasssWord: password, Name: self.emailSettings.Name, onCompletion:
 //                                { json in

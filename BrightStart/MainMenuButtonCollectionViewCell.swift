@@ -92,6 +92,9 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         else if(segueText=="GoToChildrenMenu"){
             delegate?.renderMenuAssets(menuType: .Children)
         }
+        else if(segueText=="GoToStaffMenu"){
+            delegate?.renderMenuAssets(menuType: .Staff)
+        }
         else if(segueText=="GoToBillingMenu"){
             delegate?.renderMenuAssets(menuType: .Billing)
         }

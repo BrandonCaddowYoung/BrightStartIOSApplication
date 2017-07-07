@@ -11,6 +11,8 @@ import SVProgressHUD
 
 class EditChild: FormViewController {
     
+    var staffArray = Array<BrightStartStaff>()
+    
     var _CommonHelper: CommonHelper!
    
     var targetChildId: String!
@@ -153,21 +155,13 @@ class EditChild: FormViewController {
                 
                 
                 
-                KeyWorkedGroupRequests.sharedInstance.GetkeyWorkerGroupById(keyWorkerId: self.child.KeyWorkerId as String, onCompletion: { json in
+                KeyWorkerGroupRequests.sharedInstance.GetkeyWorkerGroupById(keyWorkerId: self.child.KeyWorkerId as String, onCompletion: { json in
                     
                     //let keyWorkerGroupId = (json["KeyWorkerGroupId"].stringValue)
                     let keyWorkerName = (json["Name"].stringValue)
                     
                     DispatchQueue.main.async(execute: {
                         
-                        self.form +++ Section("Key Worker Group")
-                            
-                            <<< NameRow("Group") {
-                                $0.title = "Assigned Group"
-                                $0.placeholder = ""
-                                $0.value = keyWorkerName
-                        
-                        }
                         
                         PersonStatusRequests.sharedInstance.GetStatusById(personStatusId: self.child.ChildId as String, onCompletion: { json in
                             
@@ -324,22 +318,79 @@ class EditChild: FormViewController {
                                         }
                                         
                                         
-                                        self.form +++ Section("")
-                                            <<< ButtonRow(){
-                                                $0.title = "Save Changes"
-                                                }.onCellSelection {  cell, row in
-                                                    
-                                                    self.UpdateChild()
-                                                    
-                                                    
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        //Retrieve all staff
+                                        StaffRequests.sharedInstance.GetAllStaff(onCompletion: { json in
+                                            
+                                            for (index: _, subJson: JSON) in json {
+                                                
+                                                let staffMember = BrightStartStaff()
+                                                
+                                                staffMember.FullName = JSON["FullName"].stringValue as NSString
+                                                staffMember.StaffMemberId = JSON["StaffMemberId"].stringValue as NSString
+                                                
+                                                self.staffArray.append(staffMember)
+                                            }
+                                            
+                                            DispatchQueue.main.async(execute: {
+                                                
+                                                self.form +++ Section("Key Worker Group")
+
+                                                    <<< PickerInlineRow<BrightStartStaff>("PickStaffMember") {
+                                                        $0.title = "Key Worker Staff Member"
+                                                        $0.options = self.staffArray
+                                                        
+                                                        $0.displayValueFor = {
+                                                            guard let pv = $0 else{
+                                                                return nil
+                                                            }
+                                                            return "\(pv.FullName)"
+                                                        }
+                                                        
+                                                        $0.value = self.GetStaffById(Id: self.child.KeyWorkerId)
                                                 }
-                                                .cellUpdate
-                                                {
-                                                    cell, row in
-                                                    cell.backgroundColor = StyleManager.theme1()
-                                                    cell.textLabel?.textColor = StyleManager.theme2()
-                                                    cell.height = { 70 }
-                                        }
+                                                
+                                                    
+                                                
+                                                self.form +++ Section("")
+                                                    <<< ButtonRow(){
+                                                        $0.title = "Save Changes"
+                                                        }.onCellSelection {  cell, row in
+                                                            
+                                                            self.UpdateChild()
+                                                            
+                                                            
+                                                        }
+                                                        .cellUpdate
+                                                        {
+                                                            cell, row in
+                                                            cell.backgroundColor = StyleManager.theme1()
+                                                            cell.textLabel?.textColor = StyleManager.theme2()
+                                                            cell.height = { 70 }
+                                                }
+                                                
+                                                
+                                                
+                                            })
+                                            
+                                        })
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                      
                                     })
                                     
                                     
@@ -362,6 +413,10 @@ class EditChild: FormViewController {
            }
                 )
         })
+    }
+    
+    func GetStaffById(Id: NSString) -> BrightStartStaff?{
+        return self.staffArray.filter({ $0.StaffMemberId == Id }).first
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
@@ -418,12 +473,6 @@ class EditChild: FormViewController {
         SVProgressHUD.show()
         
         //Account below
-        
-        //row = self.form.rowBy(tag: "KeyWorkerId")
-        //let KeyWorkerId = row?.value ?? ""
-        
-        //row = self.form.rowBy(tag: "EverNoteAccessToken")
-        //let EverNoteAccessToken = row?.value ?? ""
         
          var nameRow: NameRow? = self.form.rowBy(tag: "FirstName")
         var row: TextRow? = self.form.rowBy(tag: "FirstName")
@@ -489,12 +538,6 @@ class EditChild: FormViewController {
         row = self.form.rowBy(tag: "Details")
         let accountDetails = row?.value ?? ""
         
-        //row = self.form.rowBy(tag: "dateOpened")
-        //let dateOpened = row?.value ?? ""
-       
-//        var phoneRow: PhoneRow = self.form.rowBy(tag: "HomePhone")!
-//        var row: TextRow? = self.form.rowBy(tag: "MedicalConditions")
-      
          nameRow = self.form.rowBy(tag: "EmergencyName")
         let emergencyName = nameRow?.value ?? ""
         
@@ -531,9 +574,15 @@ class EditChild: FormViewController {
         nameRow = self.form.rowBy(tag: "FathersName")
         let FathersName = nameRow?.value ?? ""
         
-        //Should get hold of new keyworker id here!
         
-        ChildHelperRequests.sharedInstance.UpdateChild(childId: child.ChildId as String, childFirstName: FirstName, childMiddleName: MiddleName, childLastName: LastName, dob: DatOfBirth as NSDate, accountId: child.AccountId as String, medicalConditions: medicalConditions, gPsDetails: gPsDetails, emergencyName: emergencyName, emergencyRelation: emergencyRelation, emergencyHomeNumber: emergencyHomeNumber, emergencyMobileNumber: emergencyMobileNumber, emergencyWorkNumber: emergencyWorkNumber, keyWorkerId: child.KeyWorkerId as String, everNoteAccessToken: child.EverNoteAccessToken as String, otherNotes: otherNotes, onCompletion:
+        let pickerRow: PickerInlineRow<BrightStartStaff>? = self.form.rowBy(tag: "PickStaffMember")
+        
+        let staffMember = pickerRow?.value
+        
+        let chosenStaffMemberId = staffMember?.StaffMemberId;
+        
+        
+        ChildHelperRequests.sharedInstance.UpdateChild(childId: child.ChildId as String, childFirstName: FirstName, childMiddleName: MiddleName, childLastName: LastName, dob: DatOfBirth as NSDate, accountId: child.AccountId as String, medicalConditions: medicalConditions, gPsDetails: gPsDetails, emergencyName: emergencyName, emergencyRelation: emergencyRelation, emergencyHomeNumber: emergencyHomeNumber, emergencyMobileNumber: emergencyMobileNumber, emergencyWorkNumber: emergencyWorkNumber, keyWorkerId: chosenStaffMemberId as String?, everNoteAccessToken: child.EverNoteAccessToken as String, otherNotes: otherNotes, onCompletion:
             { json in
                 
                // let accountId = (json["AccountId"].stringValue as NSString) as String

@@ -12,6 +12,7 @@ import SVProgressHUD
 enum MenuTypes: Int {
     case MainMenu
     case Children
+    case Staff
     case TimeStamps
     case Authy
     case AuthyUsers
@@ -31,6 +32,7 @@ enum PurposeTypes: Int {
     case None
     
     case Children
+    case Staff
     case Register
     case information
     case SignOut
@@ -39,6 +41,10 @@ enum PurposeTypes: Int {
     case Child_Create
     case Child_Edit
     case Child_Delete
+    
+    case Staff_Create
+    case Staff_Edit
+    case Staff_Delete
     
     case RegisterdHours_Set
     case RegisterdHours_SetWeekly
@@ -157,15 +163,15 @@ class MainMenuViewController: UIViewController {
             
         case .MainMenu:
             
-            images = [UIImage(named: "Register")!,UIImage(named: "Children")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Billing")!, UIImage(named: "Settings")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Register")!,UIImage(named: "Children")!, UIImage(named: "UserFemale100")!, UIImage(named: "WatchesFrontView100")!, UIImage(named: "TimeCard")!, UIImage(named: "Fingerprint")!, UIImage(named: "Billing")!, UIImage(named: "Settings")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToRegisteredHoursMenu", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToBillingMenu","GoToSettingsMenu", "GoToSignIn"]
+            segueIdList = ["GoToRegister", "GoToChildrenMenu", "GoToStaffMenu","GoToRegisteredHoursMenu", "GoToTimeStampsMenu", "GoToAuthyMenu", "GoToBillingMenu","GoToSettingsMenu", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Menu,PurposeTypes.Billing_Menu, PurposeTypes.Settings_Menu, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Register, PurposeTypes.Children, PurposeTypes.Staff, PurposeTypes.RegisterdHours_Edit, PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_Menu,PurposeTypes.Billing_Menu, PurposeTypes.Settings_Menu, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Register",  "Children", "Registered Hours", "Time Stamps", "Auhty", "Billing", "Settings", "Sign Out"]
+            DisplayTextList = ["Register",  "Children", "Staff", "Registered Hours", "Time Stamps", "Auhty", "Billing", "Settings", "Sign Out"]
             
-            authyIdList = ["", "", "", "",  "", "", "", ""]
+            authyIdList = ["", "", "", "",  "", "", "",  "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -244,6 +250,21 @@ class MainMenuViewController: UIViewController {
             DisplayTextList = ["Quick Create", "Create", "View", "Sign Out"]
             
             authyIdList = ["", "", "", ""]
+            
+            showNavigationBar = true
+            ShowNavBar()
+            
+        case .Staff:
+            
+            images = [UIImage(named: "AddUserMale")!, UIImage(named: "Search")!, UIImage(named: "SignOut")!]
+            
+            segueIdList = ["GoToCreateStaff", "GoToSearchPerson", "GoToSignIn"]
+            
+            PurposeList = [PurposeTypes.Staff_Create,  PurposeTypes.Staff_Edit,  PurposeTypes.SignOut]
+            
+            DisplayTextList = ["Create", "View", "Sign Out"]
+            
+            authyIdList = ["", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -729,6 +750,16 @@ class MainMenuViewController: UIViewController {
                     
                     vc.successSegueIdentifier = "GoToEditChild"
                     vc.GoToMenuType = .Children
+                    vc.Purpose = ""
+                }
+            }
+            
+            else if(targetPurpose == .Staff_Edit)
+            {
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToEditStaff"
+                    vc.GoToMenuType = .Staff
                     vc.Purpose = ""
                 }
             }

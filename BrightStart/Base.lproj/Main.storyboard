@@ -252,6 +252,7 @@
                         <segue destination="7jx-4D-Oem" kind="show" identifier="GoToMenu" id="604-sb-TVk"/>
                         <segue destination="ejd-QO-eJM" kind="show" identifier="GoToInvoiceSearch" id="hWD-dF-1CI"/>
                         <segue destination="eeG-xd-MYZ" kind="show" identifier="GoToEditChild" id="62i-KY-PYw"/>
+                        <segue destination="fYt-Bg-ma9" kind="show" identifier="GoToEditStaff" id="Jlc-tq-VjZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmq-Wu-TCv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1157,6 +1158,7 @@
                         <segue destination="QBr-es-PU8" kind="show" identifier="GoToRates" id="9AC-JB-ckC"/>
                         <segue destination="zbw-9m-37j" kind="show" identifier="GoToEmailSettings" id="zqa-7N-WjM"/>
                         <segue destination="fef-qL-o2u" kind="show" identifier="GoToNurseryDetails" id="5kx-bC-y0E"/>
+                        <segue destination="i8f-ep-2Cs" kind="show" identifier="GoToCreateStaff" id="7WX-93-F6H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWk-wx-plk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2551,14 +2553,14 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </button>
                                                         <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="J3f-1R-LH0">
-                                                            <rect key="frame" x="0.0" y="64" width="111" height="77"/>
+                                                            <rect key="frame" x="-1" y="64" width="112" height="77"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <date key="date" timeIntervalSinceReferenceDate="513539377.02996403">
                                                                 <!--2017-04-10 17:49:37 +0000-->
                                                             </date>
                                                         </datePicker>
                                                         <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="TIb-Cb-dFd">
-                                                            <rect key="frame" x="139" y="64" width="105" height="77"/>
+                                                            <rect key="frame" x="138" y="64" width="104" height="77"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <date key="date" timeIntervalSinceReferenceDate="513539377.02996403">
                                                                 <!--2017-04-10 17:49:37 +0000-->
@@ -3916,7 +3918,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jip-xt-URK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8980" y="1682"/>
+            <point key="canvasLocation" x="9047" y="1670"/>
+        </scene>
+        <!--Edit Staff-->
+        <scene sceneID="KRo-OX-bX7">
+            <objects>
+                <viewController id="fYt-Bg-ma9" customClass="EditStaff" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y99-Zt-JiP"/>
+                        <viewControllerLayoutGuide type="bottom" id="743-E4-ptf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TnC-to-Ptw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="HqA-Cc-9ge" kind="show" identifier="GoToSuccess" id="qFt-fU-Eou"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fb2-9I-PTR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9046" y="2516"/>
+        </scene>
+        <!--Create Staff-->
+        <scene sceneID="nTD-vA-RwO">
+            <objects>
+                <viewController id="i8f-ep-2Cs" customClass="CreateStaff" customModule="BrightStart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="La1-no-jOc"/>
+                        <viewControllerLayoutGuide type="bottom" id="6nI-sf-TDZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R7P-OX-Rg6" customClass="Roll">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="HqA-Cc-9ge" kind="show" identifier="GoToSuccess" id="CA6-qJ-k6y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NPS-J5-TfT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7417" y="2516"/>
         </scene>
     </scenes>
     <resources>
@@ -3931,15 +3975,15 @@
         <image name="ic_check" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xMR-cl-oyC"/>
-        <segue reference="dqp-G4-KoA"/>
-        <segue reference="O32-SF-SMs"/>
         <segue reference="CWW-ID-FRn"/>
-        <segue reference="2qs-QS-n86"/>
-        <segue reference="Q5J-dV-oJS"/>
-        <segue reference="wG7-yc-5Up"/>
+        <segue reference="604-sb-TVk"/>
+        <segue reference="xMR-cl-oyC"/>
         <segue reference="FZS-ay-AFf"/>
         <segue reference="Tyt-3s-Vhf"/>
         <segue reference="WrM-xj-FNN"/>
+        <segue reference="2qs-QS-n86"/>
+        <segue reference="wG7-yc-5Up"/>
+        <segue reference="Q5J-dV-oJS"/>
+        <segue reference="CA6-qJ-k6y"/>
     </inferredMetricsTieBreakers>
 </document>

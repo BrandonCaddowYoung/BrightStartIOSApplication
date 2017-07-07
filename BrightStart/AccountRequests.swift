@@ -61,33 +61,33 @@ class AccountRequests: NSObject {
             nurserySchoolId = id;
         }
         
-        let parameters: Parameters = [
-                "AccountId": "",
-                "AccountName": mothersName + " - " + fathersName,
-                "DateOpened": dateOpened ?? "",
-                "AccountDetails": accountDetails ?? "",
-                "HouseNumber": houseNumber ?? "",
-                "Road": road ?? "",
-                "Town": road ?? "",
-                "County": county ?? "",
-                "PostCode": postCode ?? "",
-                "HomePhoneNumber": homePhoneNumber ?? "",
-                "MotherWorkPhoneNumber": motherWorkPhoneNumber ?? "",
-                "FatherWorkPhoneNumber": fatherWorkPhoneNumber ?? "",
-                "MotherBillingEmailAddress": mothersEmail,
-                "FatherBillingEmailAddress": fathersEmail,
-                "PayPalEmailAddress": payPalEmailAddress ?? "",
-                "MotherMobile": motherMobile ?? "",
-                "FatherMobile": fatherMobile ?? "",
-                "FatherPayPercentage": "50",
-                "MotherPayPercentage": "50",
-                "MotherOccupation": motherOccupation ?? "",
-                "FatherOccupation": fatherOccupation ?? "",
-                "MotherName": mothersName,
-                "FatherName": fathersName,
-                "ExistingAccountBalance": existingAccountBalance ?? "",
-        ]
+        var parameters = [String : AnyObject]()
         
+        parameters["AccountId"] = "" as AnyObject?
+        parameters["AccountName"] = mothersName + " - " + fathersName as AnyObject?
+        parameters["DateOpened"] = dateOpened as AnyObject?
+        parameters["AccountDetails"] = accountDetails as AnyObject?
+        parameters["HouseNumber"] = houseNumber as AnyObject?
+        parameters["Road"] = road as AnyObject?
+        parameters["Town"] = town as AnyObject?
+        parameters["County"] = county as AnyObject?
+        parameters["PostCode"] = postCode as AnyObject?
+        parameters["HomePhoneNumber"] = homePhoneNumber as AnyObject?
+        parameters["MotherWorkPhoneNumber"] = motherWorkPhoneNumber as AnyObject?
+        parameters["FatherWorkPhoneNumber"] = fatherWorkPhoneNumber as AnyObject?
+        parameters["MotherBillingEmailAddress"] = mothersEmail as AnyObject?
+        parameters["FatherBillingEmailAddress"] = fathersEmail as AnyObject?
+        parameters["PayPalEmailAddress"] = payPalEmailAddress as AnyObject?
+        parameters["MotherMobile"] = motherMobile as AnyObject?
+        parameters["FatherMobile"] = fatherMobile as AnyObject?
+        parameters["FatherPayPercentage"] = "50" as AnyObject?
+        parameters["MotherPayPercentage"] = "50" as AnyObject?
+        parameters["MotherOccupation"] = motherOccupation as AnyObject?
+        parameters["FatherOccupation"] = fatherOccupation as AnyObject?
+        parameters["MotherName"] = mothersName as AnyObject?
+        parameters["FatherName"] = fathersName as AnyObject?
+        parameters["ExistingAccountBalance"] = existingAccountBalance as AnyObject?
+ 
         let route = baseURL + "api/AccountLogic/CreateAccount?nurserySchoolId=" + nurserySchoolId
         makeHTTPPost(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
@@ -128,33 +128,62 @@ class AccountRequests: NSObject {
 //        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
 //        let childsDateOfBirth = dateFormatter.string(from: dob as Date)
         
-        let parameters: Parameters = [
-            "AccountId": accountId,
-            "AccountName": mothersName + " - " + fathersName,
-            "DateOpened": dateOpened ?? "",
-            "AccountDetails": accountDetails ?? "",
-            "HouseNumber": houseNumber ?? "",
-            "Road": road ?? "",
-            "Town": road ?? "",
-            "County": county ?? "",
-            "PostCode": postCode ?? "",
-            "HomePhoneNumber": homePhoneNumber ?? "",
-            "MotherWorkPhoneNumber": motherWorkPhoneNumber ?? "",
-            "FatherWorkPhoneNumber": fatherWorkPhoneNumber ?? "",
-            "MotherBillingEmailAddress": mothersEmail,
-            "FatherBillingEmailAddress": fathersEmail,
-            "PayPalEmailAddress": payPalEmailAddress ?? "",
-            "MotherMobile": motherMobile ?? "",
-            "FatherMobile": fatherMobile ?? "",
-            "FatherPayPercentage": "50",
-            "MotherPayPercentage": "50",
-            "MotherOccupation": motherOccupation ?? "",
-            "FatherOccupation": fatherOccupation ?? "",
-            "MotherName": mothersName,
-            "FatherName": fathersName,
-            "ExistingAccountBalance": existingAccountBalance ?? "",
-            ]
         
+        var parameters = [String : AnyObject]()
+        
+        parameters["AccountId"] = "" as AnyObject?
+        parameters["AccountName"] = mothersName + " - " + fathersName as AnyObject?
+        parameters["DateOpened"] = dateOpened as AnyObject?
+        parameters["AccountDetails"] = accountDetails as AnyObject?
+        parameters["HouseNumber"] = houseNumber as AnyObject?
+        parameters["Road"] = road as AnyObject?
+        parameters["Town"] = town as AnyObject?
+        parameters["County"] = county as AnyObject?
+        parameters["PostCode"] = postCode as AnyObject?
+        parameters["HomePhoneNumber"] = homePhoneNumber as AnyObject?
+        parameters["MotherWorkPhoneNumber"] = motherWorkPhoneNumber as AnyObject?
+        parameters["FatherWorkPhoneNumber"] = fatherWorkPhoneNumber as AnyObject?
+        parameters["MotherBillingEmailAddress"] = mothersEmail as AnyObject?
+        parameters["FatherBillingEmailAddress"] = fathersEmail as AnyObject?
+        parameters["PayPalEmailAddress"] = payPalEmailAddress as AnyObject?
+        parameters["MotherMobile"] = motherMobile as AnyObject?
+        parameters["FatherMobile"] = fatherMobile as AnyObject?
+        parameters["FatherPayPercentage"] = "50" as AnyObject?
+        parameters["MotherPayPercentage"] = "50" as AnyObject?
+        parameters["MotherOccupation"] = motherOccupation as AnyObject?
+        parameters["FatherOccupation"] = fatherOccupation as AnyObject?
+        parameters["MotherName"] = mothersName as AnyObject?
+        parameters["FatherName"] = fathersName as AnyObject?
+        parameters["ExistingAccountBalance"] = existingAccountBalance as AnyObject?
+        
+        
+//        let parameters: Parameters = [
+//            "AccountId": accountId,
+//            "AccountName": mothersName + " - " + fathersName,
+//            "DateOpened": dateOpened ?? "",
+//            "AccountDetails": accountDetails ?? "",
+//            "HouseNumber": houseNumber ?? "",
+//            "Road": road ?? "",
+//            "Town": road ?? "",
+//            "County": county ?? "",
+//            "PostCode": postCode ?? "",
+//            "HomePhoneNumber": homePhoneNumber ?? "",
+//            "MotherWorkPhoneNumber": motherWorkPhoneNumber ?? "",
+//            "FatherWorkPhoneNumber": fatherWorkPhoneNumber ?? "",
+//            "MotherBillingEmailAddress": mothersEmail,
+//            "FatherBillingEmailAddress": fathersEmail,
+//            "PayPalEmailAddress": payPalEmailAddress ?? "",
+//            "MotherMobile": motherMobile ?? "",
+//            "FatherMobile": fatherMobile ?? "",
+//            "FatherPayPercentage": "50",
+//            "MotherPayPercentage": "50",
+//            "MotherOccupation": motherOccupation ?? "",
+//            "FatherOccupation": fatherOccupation ?? "",
+//            "MotherName": mothersName,
+//            "FatherName": fathersName,
+//            "ExistingAccountBalance": existingAccountBalance ?? "",
+//            ]
+//        
         let route = baseURL + "api/AccountLogic/UpdateAccount?nurserySchoolId=" + nurserySchoolId
         makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {

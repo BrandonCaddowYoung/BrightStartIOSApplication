@@ -20,7 +20,8 @@ class CreatingInvoices: FormViewController {
         super.viewDidLoad()
         
         setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .dark)
-        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        
+        //UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         
         let backTitle = NSLocalizedString("Back", comment: "Back button label")
         self.addBackbutton(title: backTitle)
