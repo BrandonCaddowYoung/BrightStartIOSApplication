@@ -158,7 +158,7 @@ class EditChild: FormViewController {
                 KeyWorkerGroupRequests.sharedInstance.GetkeyWorkerGroupById(keyWorkerId: self.child.KeyWorkerId as String, onCompletion: { json in
                     
                     //let keyWorkerGroupId = (json["KeyWorkerGroupId"].stringValue)
-                    let keyWorkerName = (json["Name"].stringValue)
+                    //let keyWorkerName = (json["Name"].stringValue)
                     
                     DispatchQueue.main.async(execute: {
                         

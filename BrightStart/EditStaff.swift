@@ -76,7 +76,6 @@ class EditStaff: FormViewController {
             self.Staff.Password = (json["Password"].stringValue as NSString)
             self.Staff.KeyWorkerGroupId = (json["KeyWorkerGroupId"].stringValue as NSString)
             self.Staff.NurserySchoolId = (json["NurserySchoolId"].stringValue as NSString)
-
             
             DispatchQueue.main.async(execute: {
                 
@@ -98,7 +97,6 @@ class EditStaff: FormViewController {
                         $0.title = "last name"
                         $0.placeholder = "enter last name."
                         $0.value = self.Staff.LastName as String
-                        
                     }
                     
                     <<< DateRow("DatOfBirth"){
@@ -135,7 +133,6 @@ class EditStaff: FormViewController {
                         $0.value = self.Staff.HomePhoneNumber as String
                     }
                     
-                    
                     <<< PhoneRow("Mobile") {
                         $0.title =  "mobile"
                         $0.placeholder = "enter the mobile number."
@@ -154,11 +151,6 @@ class EditStaff: FormViewController {
                         $0.value = self.Staff.Password as String
                 }
                 
-                
-                
-                
-                
-                
                 self.form +++ Section("Emergency")
                     
                     <<< NameRow("EmergencyName") {
@@ -174,7 +166,7 @@ class EditStaff: FormViewController {
                     }
                     
                     <<< PhoneRow("EmergencyWork") {
-                        $0.title = "emergency mobile"
+                        $0.title = "emergency work"
                         $0.placeholder = "enter the emergency mobile number."
                         $0.value = self.Staff.EmergencyWorkNumber as String
                     }
@@ -363,8 +355,9 @@ class EditStaff: FormViewController {
         
         var nameRow: NameRow? = self.form.rowBy(tag: "FirstName")
         var row: TextRow? = self.form.rowBy(tag: "FirstName")
+        
         var intRow: IntRow? = self.form.rowBy(tag: "FirstName")
-         var passwordRow: PasswordRow? = self.form.rowBy(tag: "Password")
+         let passwordRow: PasswordRow? = self.form.rowBy(tag: "Password")
         
         let password = passwordRow?.value ?? ""
         
