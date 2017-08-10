@@ -2,17 +2,17 @@
 //  AuthySettingsViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 05/02/2017.
+//  Created by Brandon Young on 05/02/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
 import UIKit
 
 class AuthySettingsViewController: UIViewController {
-
+    
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
-
+    
     var selectedMenu: MenuTypes!
     
     var showNavigationBar = true
@@ -38,7 +38,7 @@ class AuthySettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.edgesForExtendedLayout = []
         
         _ApplicatoinColours = ApplicatoinColours()
@@ -74,38 +74,38 @@ class AuthySettingsViewController: UIViewController {
         
         let defaults = UserDefaults.standard
         
-        let shouldUseAuthy = defaults.bool(forKey: "ShouldUseAuhty") 
+        let shouldUseAuthy = defaults.bool(forKey: "ShouldUseAuhty")
         
-            if(shouldUseAuthy==true)
+        if(shouldUseAuthy==true)
+        {
+            OnSignInSwitch.isEnabled = true
+            OnSignOutSwitch.isEnabled = true
+            
+            OnSignInLabel.isEnabled = true
+            OnSignOutLabel.isEnabled = true
+            
+            let shouldUseAuhtyOnSignIn = defaults.bool(forKey: "ShouldUseAuhtyOnSignIn")
+            
+            if(shouldUseAuhtyOnSignIn == true)
             {
-                OnSignInSwitch.isEnabled = true
-                OnSignOutSwitch.isEnabled = true
+                OnSignInSwitch.setOn(true, animated: true)
+            }
+            else
+            {
+                OnSignInSwitch.setOn(false, animated: true)
+            }
+            
+            let shouldUseAuhtyOnSignOut = defaults.bool(forKey: "ShouldUseAuhtyOnSignOut")
+            
+            if(shouldUseAuhtyOnSignOut==true)
+            {
+                OnSignOutSwitch.setOn(true, animated: true)
                 
-                OnSignInLabel.isEnabled = true
-                OnSignOutLabel.isEnabled = true
-                
-                let shouldUseAuhtyOnSignIn = defaults.bool(forKey: "ShouldUseAuhtyOnSignIn")
-                
-                if(shouldUseAuhtyOnSignIn == true)
-                {
-                   OnSignInSwitch.setOn(true, animated: true)
-                }
-                else
-                {
-                    OnSignInSwitch.setOn(false, animated: true)
-                }
-                
-                 let shouldUseAuhtyOnSignOut = defaults.bool(forKey: "ShouldUseAuhtyOnSignOut")
-                
-                 if(shouldUseAuhtyOnSignOut==true)
-                 {
-                    OnSignOutSwitch.setOn(true, animated: true)
-                    
-                }
-                else
-                {
-                    OnSignOutSwitch.setOn(false, animated: true)
-                }
+            }
+            else
+            {
+                OnSignOutSwitch.setOn(false, animated: true)
+            }
             
         }
         else
@@ -123,7 +123,7 @@ class AuthySettingsViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -136,7 +136,7 @@ class AuthySettingsViewController: UIViewController {
         TopContainer.translatesAutoresizingMaskIntoConstraints = false
         MiddleContainer.translatesAutoresizingMaskIntoConstraints = false
         BottomContainer.translatesAutoresizingMaskIntoConstraints = false
-      
+        
         OnSignInLabel.translatesAutoresizingMaskIntoConstraints = false
         UseAuthyLabel.translatesAutoresizingMaskIntoConstraints = false
         OnSignOutLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +144,7 @@ class AuthySettingsViewController: UIViewController {
         OnSignInSwitch.translatesAutoresizingMaskIntoConstraints = false
         OnSignOutSwitch.translatesAutoresizingMaskIntoConstraints = false
         ExplinationLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         Top.translatesAutoresizingMaskIntoConstraints = false
         Top1.translatesAutoresizingMaskIntoConstraints = false
         Middle.translatesAutoresizingMaskIntoConstraints = false
@@ -217,7 +217,7 @@ class AuthySettingsViewController: UIViewController {
         UseAuthyLabel.centerYAnchor.constraint(
             equalTo: Top.centerYAnchor).isActive = true
         
-       
+        
         //Use Authy Switch
         
         //right
@@ -360,11 +360,11 @@ class AuthySettingsViewController: UIViewController {
             equalTo: view.bottomAnchor).isActive = true
         
     }
-
+    
     
     @IBAction func UseAuthyClicked(_ sender: Any) {
         
-         let defaults = UserDefaults.standard
+        let defaults = UserDefaults.standard
         
         if(self.UseAuthySwitch.isOn)
         {
@@ -375,7 +375,7 @@ class AuthySettingsViewController: UIViewController {
             OnSignOutLabel.isEnabled = true
             
             defaults.set(true, forKey: "ShouldUseAuhty")
-
+            
         }else
         {
             OnSignInSwitch.isEnabled = false
@@ -384,10 +384,10 @@ class AuthySettingsViewController: UIViewController {
             OnSignInLabel.isEnabled = false
             OnSignOutLabel.isEnabled = false
             
-              defaults.set(false, forKey: "ShouldUseAuhty")
-        
+            defaults.set(false, forKey: "ShouldUseAuhty")
+            
             OnSignInSwitch.setOn(false, animated: true)
-                OnSignOutSwitch.setOn(false, animated: true)
+            OnSignOutSwitch.setOn(false, animated: true)
             
             defaults.set(false, forKey: "ShouldUseAuhtyOnSignIn")
             defaults.set(false, forKey: "ShouldUseAuhtyOnSignOut")
@@ -398,14 +398,14 @@ class AuthySettingsViewController: UIViewController {
     
     @IBAction func OnSignInSwitched(_ sender: UISwitch) {
         
-         let defaults = UserDefaults.standard
+        let defaults = UserDefaults.standard
         
         if(self.OnSignInSwitch.isOn)
         {
             defaults.set(true, forKey: "ShouldUseAuhtyOnSignIn")
         }else
         {
-        defaults.set(false, forKey: "ShouldUseAuhtyOnSignIn")
+            defaults.set(false, forKey: "ShouldUseAuhtyOnSignIn")
         }
         
     }
@@ -464,19 +464,19 @@ class AuthySettingsViewController: UIViewController {
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.theme5()
         
         self.navigationItem.title="Authy Settings"
-
+        
     }
     
     func NavBarMenuTapped()
     {
         selectedMenu = .Authy
         
-    self.performSegue(withIdentifier: "GoToMenu", sender: self)
+        self.performSegue(withIdentifier: "GoToMenu", sender: self)
     }
     
     @IBAction func OnSignOutSwitched(_ sender: Any) {
-    
-         let defaults = UserDefaults.standard
+        
+        let defaults = UserDefaults.standard
         
         if(self.OnSignOutSwitch.isOn)
         {
@@ -485,17 +485,17 @@ class AuthySettingsViewController: UIViewController {
         {
             defaults.set(false, forKey: "ShouldUseAuhtyOnSignOut")
         }
-    
+        
     }
     
     
-   
+    
     
     @IBAction func OKClicked(_ sender: Any) {
         
         selectedMenu = .Authy
         
-         self.performSegue(withIdentifier: "GoToMenu", sender: self)
+        self.performSegue(withIdentifier: "GoToMenu", sender: self)
     }
     
     
@@ -511,26 +511,26 @@ class AuthySettingsViewController: UIViewController {
             if let vc = segue.destination as? MainMenuViewController {
                 
                 if(selectedMenu == .Authy){
-                vc.selectedMenu = .Authy
+                    vc.selectedMenu = .Authy
                 }
                 else if(selectedMenu == .MainMenu)
                 {
-                vc.selectedMenu = .MainMenu
+                    vc.selectedMenu = .MainMenu
                 }
             }
         }
         
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -2,7 +2,7 @@
 //  RollOver_Step1.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import SVProgressHUD
 
 class RollOver: FormViewController {
     
-     var _CommonHelper: CommonHelper!
+    var _CommonHelper: CommonHelper!
     
     var childrenArray = Array<BrightStartChild>()
     
@@ -20,7 +20,7 @@ class RollOver: FormViewController {
         super.viewDidLoad()
         
         setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .dark)
-       // UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        // UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         
         let backTitle = NSLocalizedString("Back", comment: "Back button label")
         self.addBackbutton(title: backTitle)
@@ -31,7 +31,7 @@ class RollOver: FormViewController {
         let calendar = Calendar.current
         
         let year = calendar.component(.year, from: date)
-         let month = calendar.component(.month, from: date)
+        let month = calendar.component(.month, from: date)
         
         let monthArray = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         
@@ -40,7 +40,7 @@ class RollOver: FormViewController {
             header.height = { 80.0 }
             header.onSetupView = {view, _ in
                 view.textColor = StyleManager.theme1()
-                view.text = "Rollinver over registered hours."
+                view.text = "Rolling over Registered Hours."
                 view.textAlignment = .center
                 view.font = UIFont(name: "HelveticaNeue-Bold", size: 20.0)!
             }
@@ -52,43 +52,41 @@ class RollOver: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow("123"){
-                $0.title = "This feature allows you to take the registered hours from one month and copy them over to another month."
+            <<< LabelRow(){
+                $0.title = "This feature enables you to take the 'Registered Hours' from one month and copy them over to another month. Bright Start intellegently keeps track of days of the week so you dont even need to look at your calendar."
                 $0.cell.textLabel?.numberOfLines = 5
         }
         
-       
-        
         form +++ Section("How does it work?")
-            <<< LabelRow("test"){
-                $0.title = "To get started, select target month and your destination month."
+            <<< LabelRow(){
+                $0.title = "Its simple, just select the target month and ten your destination month before tapping the button found at the bottom of this page."
                 $0.cell.textLabel?.numberOfLines = 6
         }
         
         form +++ Section("Target")
             
             <<< PickerInlineRow<String>("TargetYearPicker") {
-                $0.title = "Year"
+                $0.title = "year"
                 $0.options = [String(year-1), String(year), String(year+1)]
                 $0.value = String(year)    // initially selected
-        }
-        
+            }
+            
             <<< PickerInlineRow<String>("TargetMonthPicker") {
-                $0.title = "Month"
+                $0.title = "Mmnth"
                 $0.options = monthArray
                 $0.value = monthArray[month-1]    // initially selected
-        }
+            }
             
             +++ Section("Destination")
             
             <<< PickerInlineRow<String>("DestinationYearPicker") {
-                $0.title = "Year"
+                $0.title = "year"
                 $0.options = [String(year-1), String(year), String(year+1)]
                 $0.value = String(year)    // initially selected
             }
             
             <<< PickerInlineRow<String>("DestinationMonthPicker") {
-                $0.title = "Month"
+                $0.title = "month"
                 $0.options = monthArray
                 $0.value = monthArray[month-1]    // initially selected
         }
@@ -128,7 +126,7 @@ class RollOver: FormViewController {
             }
             
             DispatchQueue.main.async(execute: {
-               
+                
                 let fullChildList = Dictionary(keyValuePairs: self.childrenArray.map{($0.ChildId, $0.ChildFullName)})
                 self.form +++ Section("Selected Children")
                     <<< MultipleSelectorRow<String>("SelectedChildren") { row in
@@ -141,7 +139,7 @@ class RollOver: FormViewController {
                             }
                 }
                 
-                self.form +++ Section("")
+                self.form +++ Section()
                     <<< ButtonRow(){
                         $0.title = "Perform Roll Over"
                         }.onCellSelection {  cell, row in
@@ -150,18 +148,30 @@ class RollOver: FormViewController {
                             
                             let ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: mulitpleRow.value!)
                             
-                            
-                            let targetYear: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetYearPicker")
-                            let targetMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetMonthPicker")
-                            
-                            let targetMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (targetMonth?.value)!)
-                            
-                            let destinationYear: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationYearPicker")
-                            let destinationMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationMonthPicker")
-                            
-                            let destinationMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (destinationMonth?.value)!)
-                            
-                            self.RollOver(targetChildren: ids, targetYear: String(describing: (targetYear?.value)!),targetMonth: String(targetMonthAsInt),destinationYear: String(describing: (destinationYear?.value)!),destinationMonth: String(destinationMonthAsInt))
+                            if  ids.count == 0 {
+                                
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    
+                                    self._CommonHelper.ShowErrorMessage(title: "No children selected.", subsTtitle: "In order to continue, atleast one child needs to be selected.");
+                                    
+                                } )
+                            }
+                            else {
+                                
+                                
+                                let targetYear: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetYearPicker")
+                                let targetMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetMonthPicker")
+                                
+                                let targetMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (targetMonth?.value)!)
+                                
+                                let destinationYear: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationYearPicker")
+                                let destinationMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationMonthPicker")
+                                
+                                let destinationMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (destinationMonth?.value)!)
+                                
+                                self.RollOver(targetChildren: ids, targetYear: String(describing: (targetYear?.value)!),targetMonth: String(targetMonthAsInt),destinationYear: String(describing: (destinationYear?.value)!),destinationMonth: String(destinationMonthAsInt))
+                                
+                            }
                             
                         }.cellUpdate
                         {
@@ -190,10 +200,10 @@ class RollOver: FormViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      
+        
         super.viewWillAppear(animated)
         
-       self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         
         
         
@@ -218,12 +228,12 @@ class RollOver: FormViewController {
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         
-         self.navigationItem.title = "Roll Over"
+        self.navigationItem.title = "Roll Over"
         
     }
-  
+    
     func NavBarMenuTapped(_ sender: Any) {
-       self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
     func RollOver(targetChildren: [String], targetYear: String, targetMonth: String, destinationYear: String, destinationMonth: String)
@@ -266,7 +276,7 @@ class RollOver: FormViewController {
                         return
                     }
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: String(childrenList.count) + " more to go!")
+                    self._CommonHelper.ShowSuccessMessage(title: "Registered Hours have been successfully 'Rolled Over'", subsTtitle: String(childrenList.count) + " more to go.")
                     
                     //Do the next
                     self.PerformRollOverRecursively(targetChildren: childrenList, targetYear: targetYear, targetMonth: targetMonth, destinationYear: destinationYear, destinationMonth: destinationMonth, onCompletion: onCompletion)

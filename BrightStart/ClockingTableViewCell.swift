@@ -16,7 +16,7 @@ class ClockingTableViewCell: UITableViewCell
             updateUI()
         }
     }
-   
+    
     var _CommonHelper: CommonHelper!
     var _ApplicationColours: ApplicatoinColours!
     
@@ -45,7 +45,7 @@ class ClockingTableViewCell: UITableViewCell
         childNameLabel.leadingAnchor.constraint(
             equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         
-       //Right is defined below, after the image is in place
+        //Right is defined below, after the image is in place
         
         //top
         childNameLabel.topAnchor.constraint(
@@ -69,13 +69,13 @@ class ClockingTableViewCell: UITableViewCell
         cellImage.heightAnchor.constraint(
             equalToConstant: 50).isActive = true
         
-               //top
+        //top
         cellImage.topAnchor.constraint(
             equalTo: contentView.topAnchor).isActive = true
         
         //cellImage.centerYAnchor.constraint(
-          //  equalTo: contentView.centerYAnchor).isActive = true
-
+        //  equalTo: contentView.centerYAnchor).isActive = true
+        
         
         //right
         childNameLabel.trailingAnchor.constraint(
@@ -95,7 +95,7 @@ class ClockingTableViewCell: UITableViewCell
         
         self.cellImage2?.setContentCompressionResistancePriority(1000, for: UILayoutConstraintAxis.vertical);
         self.cellImage2?.setContentCompressionResistancePriority(1000, for: UILayoutConstraintAxis.horizontal);
-
+        
         cellImage2.widthAnchor.constraint(
             equalToConstant: 50).isActive = true
         
@@ -130,7 +130,7 @@ class ClockingTableViewCell: UITableViewCell
         //right
         cellInformationText.trailingAnchor.constraint(
             equalTo: cellImage.leadingAnchor, constant: -5).isActive = true
-
+        
         
         
         //bottom
@@ -199,12 +199,12 @@ class ClockingTableViewCell: UITableViewCell
         self.cellInformationText.textColor = StyleManager.TableFontColor()
         
         self.cellDetailsText.textColor = StyleManager.TableFontColor()
-       
+        
         childNameLabel?.text = nil
         
-         if let child = self.child
+        if let child = self.child
         {
-            childNameLabel?.text = "\(child.Name)" 
+            childNameLabel?.text = "\(child.Name)"
             
             UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
             UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")
@@ -233,7 +233,7 @@ class ClockingTableViewCell: UITableViewCell
                         
                         //self.takeActionImage?.image = UIImage(named: "star")
                         self.cellDetailsText.text = "Signed in"
-                        self.cellInformationText.text = "No registerd hours."
+                        self.cellInformationText.text = "No Registerd Hours."
                         
                         self.backgroundColor = StyleManager.theme1()
                         self.childNameLabel.textColor = StyleManager.theme2()
@@ -276,9 +276,9 @@ class ClockingTableViewCell: UITableViewCell
             {
                 self.cellImage?.image = UIImage(named: "SwipeLeft")
                 self.cellImage2?.image = UIImage(named: "SignedOut")
-
-               cellImage.image = cellImage.image?.maskWithColor(color: StyleManager.theme4())
-              
+                
+                cellImage.image = cellImage.image?.maskWithColor(color: StyleManager.theme4())
+                
                 cellImage2.image = cellImage2.image?.maskWithColor(color: StyleManager.theme4())
                 
                 self.cellDetailsText.text = ""

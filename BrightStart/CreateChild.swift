@@ -2,7 +2,7 @@
 //  RollOver_Step1.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -41,18 +41,18 @@ class CreateChild: FormViewController {
         }
         
         form +++ Section()
-        {
-            $0.header = HeaderFooterView<LogoView>(.class)
-        }
-        
-        <<< LabelRow("Target"){
-                $0.title = "This feature allows you to create a new child."
-            $0.cell.textLabel?.numberOfLines = 5
+            {
+                $0.header = HeaderFooterView<LogoView>(.class)
+            }
+            
+            <<< LabelRow(){
+                $0.title = "This feature allows you to add a new child to Bright Start."
+                $0.cell.textLabel?.numberOfLines = 5
         }
         
         form +++ Section("How does it work?")
-            <<< LabelRow("test"){
-                $0.title = "Simply complete the form below before clicking the button at the bottom of the page."
+            <<< LabelRow(){
+                $0.title = "Once a child has been added to the system, administrators will be able to take advantage of all the features that Bright Start has to offer. Simply fill out the form below before tapping the button found at the bottom of this page. For a full list of our features, please refer to our website."
                 $0.cell.textLabel?.numberOfLines = 6
         }
         
@@ -61,6 +61,13 @@ class CreateChild: FormViewController {
             <<< NameRow("FirstName") {
                 $0.title = "first name"
                 $0.placeholder = "enter first name."
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< NameRow("MiddleName") {
@@ -71,6 +78,13 @@ class CreateChild: FormViewController {
             <<< NameRow("LastName") {
                 $0.title = "last name"
                 $0.placeholder = "enter last name."
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< DateRow("DatOfBirth"){
@@ -88,6 +102,13 @@ class CreateChild: FormViewController {
             <<< EmailRow("MothersEmail") {
                 $0.title = "mothers e-mail"
                 $0.placeholder = "enter mothers e-amil."
+                $0.add(rule: RuleEmail())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< PhoneRow("MothersMobile") {
@@ -113,18 +134,25 @@ class CreateChild: FormViewController {
             <<< EmailRow("FathersEmail") {
                 $0.title = "fathers e-mail"
                 $0.placeholder = "enter fathers e-amil."
-        }
-        
+                $0.add(rule: RuleEmail())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
+            }
+            
             <<< PhoneRow("FathersMobile") {
                 $0.title = "fathers mobile"
                 $0.placeholder = "enter fathers mobile."
-        }
+            }
             
             <<< TextRow("FathersOccupation") {
                 $0.title = "fathers occupation"
                 $0.placeholder = "enter fathers occupation."
             }
-        
+            
             <<< PhoneRow("FathersWork") {
                 $0.title = "fathers work"
                 $0.placeholder = "enter fathers work phone number."
@@ -135,28 +163,28 @@ class CreateChild: FormViewController {
             <<< IntRow("HouseNumber") {
                 $0.title = "house number"
                 $0.placeholder = "enter the house number."
-        }
-        
+            }
+            
             <<< TextRow("Road") {
                 $0.title = "road"
                 $0.placeholder = "enter the road."
-        }
-        
+            }
+            
             <<< TextRow("Town") {
                 $0.title = "town"
                 $0.placeholder = "enter the town."
-        }
+            }
             
             <<< TextRow("PostCode") {
                 $0.title = "post-code"
                 $0.placeholder = "enter the post-code."
-        }
-        
+            }
+            
             <<< TextRow("County") {
                 $0.title = "county"
                 $0.placeholder = "enter the county."
-        }
-        
+            }
+            
             <<< PhoneRow("HomePhone") {
                 $0.title = "home phone"
                 $0.placeholder = "enter the home phoe number."
@@ -167,13 +195,13 @@ class CreateChild: FormViewController {
             <<< TextRow("MedicalConditions") {
                 $0.title = "medical conditions"
                 $0.placeholder = "enter the medical conditions."
-        }
-        
+            }
+            
             <<< TextRow("GPsdetails") {
                 $0.title = "GP's details"
                 $0.placeholder = "enter the GP's details."
-        }
-        
+            }
+            
             <<< TextRow("OtherNotes") {
                 $0.title = "other notes"
                 $0.placeholder = "enter any other notes."
@@ -194,13 +222,13 @@ class CreateChild: FormViewController {
             <<< PhoneRow("EmergencyWork") {
                 $0.title = "emergency work"
                 $0.placeholder = "enter the emergency work number."
-        }
-        
+            }
+            
             <<< PhoneRow("EmergencyHome") {
                 $0.title = "emergency home"
                 $0.placeholder = "enter the emergency home number."
-        }
-        
+            }
+            
             <<< TextRow("RelationToChild") {
                 $0.title = "relation to child"
                 $0.placeholder = "enter the emergency relation."
@@ -231,7 +259,7 @@ class CreateChild: FormViewController {
                 self.form +++ Section("Key Worker Group")
                     
                     <<< PickerInlineRow<BrightStartStaff>("PickStaffMember") {
-                        $0.title = "Key Worker Staff Member"
+                        $0.title = "key worker staff member"
                         $0.options = self.staffArray
                         
                         $0.displayValueFor = {
@@ -240,16 +268,11 @@ class CreateChild: FormViewController {
                             }
                             return "\(pv.FullName)"
                         }
-                        
-                        //Nothing to begin with!
-                        //$0.value = self.GetStaffById(Id: self.child.KeyWorkerId)
                 }
                 
-                
-                
-                self.form +++ Section("")
+                self.form +++ Section()
                     <<< ButtonRow(){
-                        $0.title = "Add new child"
+                        $0.title = "add new child"
                         }.onCellSelection {  cell, row in
                             
                             //Need to get the rest of the values here!
@@ -279,7 +302,19 @@ class CreateChild: FormViewController {
                             emailRow = self.form.rowBy(tag: "FathersEmail")
                             let FathersEmail = emailRow?.value ?? ""
                             
-                            self.CreateChild(mothersEmail: MothersEmail, fathersEmail: FathersEmail, mothersName: MothersName, fathersName: FathersName, childFirstName: FirstName, childMiddleName: MiddleName, childLastName: LastName, dob: DatOfBirth!)
+                            if  row.section?.form?.validate().count != 0 {
+                                
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    
+                                    self._CommonHelper.ShowErrorMessage(title: "You missed out an important filed.", subsTtitle: "In order to make your changes you will need to ammend the appropriate corrections.");
+                                    
+                                } )
+                            }
+                            else {
+                                self.CreateChild(mothersEmail: MothersEmail, fathersEmail: FathersEmail, mothersName: MothersName, fathersName: FathersName, childFirstName: FirstName, childMiddleName: MiddleName, childLastName: LastName, dob: DatOfBirth!)
+                            }
+                            
+                            
                         }
                         .cellUpdate
                         {
@@ -295,9 +330,7 @@ class CreateChild: FormViewController {
             
         })
         
-        form +++ Section("")
-        
-       
+        form +++ Section()
         
     }
     
@@ -389,8 +422,8 @@ class CreateChild: FormViewController {
         phoneRow = self.form.rowBy(tag: "FathersWork")!
         let fatherWorkPhoneNumber = phoneRow.value ?? ""
         
-      //  row = self.form.rowBy(tag: "PayPalEmailAddress")
-      //  let payPalEmailAddress = row?.value ?? ""
+        //  row = self.form.rowBy(tag: "PayPalEmailAddress")
+        //  let payPalEmailAddress = row?.value ?? ""
         
         phoneRow = self.form.rowBy(tag: "MothersMobile")!
         let motherMobile = phoneRow.value ?? ""
@@ -422,12 +455,12 @@ class CreateChild: FormViewController {
                                                      fatherWorkPhoneNumber: fatherWorkPhoneNumber,
                                                      payPalEmailAddress: fatherWorkPhoneNumber,
                                                      motherMobile: motherMobile,
-                                                        fatherMobile: fatherMobile,
-                                                        motherOccupation: motherOccupation,
-                                                        fatherOccupation: fatherOccupation,
-                                                        existingAccountBalance: "",
-                                                        accountDetails: accountDetails,
-                                                        dateOpened: "",
+                                                     fatherMobile: fatherMobile,
+                                                     motherOccupation: motherOccupation,
+                                                     fatherOccupation: fatherOccupation,
+                                                     existingAccountBalance: "",
+                                                     accountDetails: accountDetails,
+                                                     dateOpened: "",
                                                      
                                                      onCompletion:
             { json in
@@ -438,7 +471,7 @@ class CreateChild: FormViewController {
                     
                     var nameRow: NameRow = self.form.rowBy(tag: "EmergencyName")!
                     var phoneRow: PhoneRow = self.form.rowBy(tag: "HomePhone")!
-                     var row: TextRow? = self.form.rowBy(tag: "MedicalConditions")
+                    var row: TextRow? = self.form.rowBy(tag: "MedicalConditions")
                     
                     row = self.form.rowBy(tag: "MedicalConditions")
                     let medicalConditions = row?.value ?? ""

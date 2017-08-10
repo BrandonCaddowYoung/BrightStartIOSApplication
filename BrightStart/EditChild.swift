@@ -2,7 +2,7 @@
 //  RollOver_Step1.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -14,12 +14,12 @@ class EditChild: FormViewController {
     var staffArray = Array<BrightStartStaff>()
     
     var _CommonHelper: CommonHelper!
-   
+    
     var targetChildId: String!
     
     var child = BrightStartChild()
-     var account = Account()
-     var perstonStatus = PersonStatus()
+    var account = Account()
+    var perstonStatus = PersonStatus()
     
     override func viewDidLoad() {
         
@@ -47,9 +47,9 @@ class EditChild: FormViewController {
         form +++ Section()
             {
                 $0.header = HeaderFooterView<LogoView>(.class)
-            }
+        }
         
-            ChildRequests.sharedInstance.GetChild(childId: targetChildId, onCompletion: { json in
+        ChildRequests.sharedInstance.GetChild(childId: targetChildId, onCompletion: { json in
             
             self.child.ChildId = (json["ChildId"].stringValue as NSString)
             self.child.AccountId = (json["AccountId"].stringValue as NSString)
@@ -68,15 +68,23 @@ class EditChild: FormViewController {
             self.child.EmergencyWorkNumber = (json["EmergencyWorkNumber"].stringValue as NSString)
             self.child.KeyWorkerId = (json["KeyWorkerId"].stringValue as NSString)
             self.child.EverNoteAccessToken = (json["EverNoteAccessToken"].stringValue as NSString)
-           
+            
             DispatchQueue.main.async(execute: {
-     
+                
                 self.form +++ Section("Childs information")
                     
                     <<< NameRow("FirstName") {
                         $0.title = "first name"
                         $0.placeholder = "enter first name."
                         $0.value = self.child.ChildFirstName as String
+                        
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                     }
                     
                     <<< NameRow("MiddleName") {
@@ -89,7 +97,14 @@ class EditChild: FormViewController {
                         $0.title = "last name"
                         $0.placeholder = "enter last name."
                         $0.value = self.child.ChildLastName as String
-
+                        
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                     }
                     
                     <<< DateRow("DatOfBirth"){
@@ -97,6 +112,7 @@ class EditChild: FormViewController {
                         $0.value = Date(timeIntervalSinceReferenceDate: 0)
                         $0.value = self.child.ChildDOB
                 }
+                
                 
                 self.form +++ Section("Mdeical")
                     
@@ -116,7 +132,7 @@ class EditChild: FormViewController {
                         $0.title = "other notes"
                         $0.placeholder = "enter any other notes."
                         $0.value = self.child.OtherNotes as String
-
+                        
                 }
                 
                 self.form +++ Section("Emergency")
@@ -144,16 +160,11 @@ class EditChild: FormViewController {
                         $0.placeholder = "enter the emergency home number."
                         $0.value = self.child.EmergencyHomeNumber as String
                     }
-                    
-                    
                     <<< TextRow("RelationToChild") {
                         $0.title = "relation to child"
                         $0.placeholder = "enter the emergency relation."
                         $0.value = self.child.EmergencyRelation as String
                 }
-                
-                
-                
                 
                 KeyWorkerGroupRequests.sharedInstance.GetkeyWorkerGroupById(keyWorkerId: self.child.KeyWorkerId as String, onCompletion: { json in
                     
@@ -165,13 +176,13 @@ class EditChild: FormViewController {
                         
                         PersonStatusRequests.sharedInstance.GetStatusById(personStatusId: self.child.ChildId as String, onCompletion: { json in
                             
-                             let personStatusId = (json["PersonStatusId"].stringValue)
+                            let personStatusId = (json["PersonStatusId"].stringValue)
                             let leaver = (json["Leaver"].stringValue)
                             let currentlySignedIn = (json["CurrentlySignedIn"].stringValue)
                             
                             self.perstonStatus.PersonStatusId = personStatusId
-                             self.perstonStatus.Leaver = leaver
-                             self.perstonStatus.CurrentlySignedIn = currentlySignedIn
+                            self.perstonStatus.Leaver = leaver
+                            self.perstonStatus.CurrentlySignedIn = currentlySignedIn
                             
                             DispatchQueue.main.async(execute: {
                                 
@@ -227,6 +238,13 @@ class EditChild: FormViewController {
                                                 $0.title = "mothers e-mail"
                                                 $0.placeholder = "enter mothers e-amil."
                                                 $0.value = self.account.MotherBillingEmailAddress
+                                                $0.add(rule: RuleEmail())
+                                                $0.validationOptions = .validatesOnChange
+                                                }
+                                                .cellUpdate { cell, row in
+                                                    if !row.isValid {
+                                                        cell.titleLabel?.textColor = .red
+                                                    }
                                             }
                                             
                                             <<< PhoneRow("MothersMobile") {
@@ -258,6 +276,13 @@ class EditChild: FormViewController {
                                                 $0.placeholder = "enter fathers e-amil."
                                                 $0.value = self.account.FatherBillingEmailAddress
                                                 
+                                                $0.add(rule: RuleEmail())
+                                                $0.validationOptions = .validatesOnChange
+                                                }
+                                                .cellUpdate { cell, row in
+                                                    if !row.isValid {
+                                                        cell.titleLabel?.textColor = .red
+                                                    }
                                             }
                                             
                                             <<< PhoneRow("FathersMobile") {
@@ -284,7 +309,7 @@ class EditChild: FormViewController {
                                             <<< IntRow("HouseNumber") {
                                                 $0.title = "house number"
                                                 $0.placeholder = "enter the house number."
-                                                $0.value = Int(self.account.FatherBillingEmailAddress)
+                                                $0.value = Int(self.account.HouseNumber)
                                             }
                                             
                                             <<< TextRow("Road") {
@@ -317,13 +342,6 @@ class EditChild: FormViewController {
                                                 $0.value = self.account.HomePhoneNumber
                                         }
                                         
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
                                         //Retrieve all staff
                                         StaffRequests.sharedInstance.GetAllStaff(onCompletion: { json in
                                             
@@ -340,9 +358,9 @@ class EditChild: FormViewController {
                                             DispatchQueue.main.async(execute: {
                                                 
                                                 self.form +++ Section("Key Worker Group")
-
+                                                    
                                                     <<< PickerInlineRow<BrightStartStaff>("PickStaffMember") {
-                                                        $0.title = "Key Worker Staff Member"
+                                                        $0.title = "key worker staff member"
                                                         $0.options = self.staffArray
                                                         
                                                         $0.displayValueFor = {
@@ -355,16 +373,11 @@ class EditChild: FormViewController {
                                                         $0.value = self.GetStaffById(Id: self.child.KeyWorkerId)
                                                 }
                                                 
-                                                    
                                                 
-                                                self.form +++ Section("")
+                                                
+                                                self.form +++ Section()
                                                     <<< ButtonRow(){
                                                         $0.title = "Save Changes"
-                                                        }.onCellSelection {  cell, row in
-                                                            
-                                                            self.UpdateChild()
-                                                            
-                                                            
                                                         }
                                                         .cellUpdate
                                                         {
@@ -372,46 +385,36 @@ class EditChild: FormViewController {
                                                             cell.backgroundColor = StyleManager.theme1()
                                                             cell.textLabel?.textColor = StyleManager.theme2()
                                                             cell.height = { 70 }
+                                                        }
+                                                        .onCellSelection { cell, row in
+                                                            if  row.section?.form?.validate().count != 0 {
+                                                                
+                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                                    
+                                                                    self._CommonHelper.ShowErrorMessage(title: "You missed out an important filed.", subsTtitle: "In order to make your changes you will need to ammend the appropriate corrections.");
+                                                                    
+                                                                } )
+                                                                
+                                                                
+                                                            }
+                                                            else {
+                                                                self.UpdateChild()
+                                                            }
                                                 }
-                                                
-                                                
-                                                
                                             })
                                             
                                         })
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                      
                                     })
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
                                 })
-                                
-                                
                             }
-                                
                             )})
                         
                     }
-                    
+                        
                     )})
-             
-           }
-                )
+                
+            }
+            )
         })
     }
     
@@ -427,7 +430,7 @@ class EditChild: FormViewController {
                 vc.selectedMenu = .Children
             }
         }
-    
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -457,7 +460,7 @@ class EditChild: FormViewController {
         self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
         self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
         
-        self.navigationItem.title = "Create"
+        self.navigationItem.title = "Edit"
         
     }
     
@@ -474,7 +477,7 @@ class EditChild: FormViewController {
         
         //Account below
         
-         var nameRow: NameRow? = self.form.rowBy(tag: "FirstName")
+        var nameRow: NameRow? = self.form.rowBy(tag: "FirstName")
         var row: TextRow? = self.form.rowBy(tag: "FirstName")
         var intRow: IntRow? = self.form.rowBy(tag: "FirstName")
         
@@ -491,7 +494,7 @@ class EditChild: FormViewController {
         
         let dob: DateRow? = self.form.rowBy(tag: "DatOfBirth")
         let DatOfBirth = (dob?.value)! as Date
-
+        
         
         intRow = self.form.rowBy(tag: "HouseNumber")
         let houseNumber = String(intRow?.value ?? 0)
@@ -538,7 +541,7 @@ class EditChild: FormViewController {
         row = self.form.rowBy(tag: "Details")
         let accountDetails = row?.value ?? ""
         
-         nameRow = self.form.rowBy(tag: "EmergencyName")
+        nameRow = self.form.rowBy(tag: "EmergencyName")
         let emergencyName = nameRow?.value ?? ""
         
         row = self.form.rowBy(tag: "RelationToChild")
@@ -561,7 +564,7 @@ class EditChild: FormViewController {
         
         let tRow: TextRow? = self.form.rowBy(tag: "GPsdetails")
         let gPsDetails = tRow?.value ?? ""
-      
+        
         emailRow = self.form.rowBy(tag: "MothersEmail")
         let MothersEmail = emailRow?.value ?? ""
         
@@ -574,18 +577,16 @@ class EditChild: FormViewController {
         nameRow = self.form.rowBy(tag: "FathersName")
         let FathersName = nameRow?.value ?? ""
         
-        
         let pickerRow: PickerInlineRow<BrightStartStaff>? = self.form.rowBy(tag: "PickStaffMember")
         
         let staffMember = pickerRow?.value
         
         let chosenStaffMemberId = staffMember?.StaffMemberId;
         
-        
         ChildHelperRequests.sharedInstance.UpdateChild(childId: child.ChildId as String, childFirstName: FirstName, childMiddleName: MiddleName, childLastName: LastName, dob: DatOfBirth as NSDate, accountId: child.AccountId as String, medicalConditions: medicalConditions, gPsDetails: gPsDetails, emergencyName: emergencyName, emergencyRelation: emergencyRelation, emergencyHomeNumber: emergencyHomeNumber, emergencyMobileNumber: emergencyMobileNumber, emergencyWorkNumber: emergencyWorkNumber, keyWorkerId: chosenStaffMemberId as String?, everNoteAccessToken: child.EverNoteAccessToken as String, otherNotes: otherNotes, onCompletion:
             { json in
                 
-               // let accountId = (json["AccountId"].stringValue as NSString) as String
+                // let accountId = (json["AccountId"].stringValue as NSString) as String
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -594,7 +595,7 @@ class EditChild: FormViewController {
                             
                             DispatchQueue.main.async(execute: {
                                 
-                                 let switchRow: SwitchRow? = self.form.rowBy(tag: "Leaver")
+                                let switchRow: SwitchRow? = self.form.rowBy(tag: "Leaver")
                                 let leaver = switchRow?.value
                                 
                                 PersonStatusRequests.sharedInstance.UpdatePersonStatus(personStatusId: self.child.ChildId as String, leaver: String(describing: leaver!), CurrentlySignedIn: self.perstonStatus.CurrentlySignedIn, onCompletion:
@@ -607,7 +608,6 @@ class EditChild: FormViewController {
                                             
                                         })
                                 })
-                                
                                 
                             })
                     })

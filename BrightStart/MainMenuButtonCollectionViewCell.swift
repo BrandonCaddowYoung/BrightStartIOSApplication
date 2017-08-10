@@ -9,12 +9,12 @@
 import UIKit
 
 protocol MainMenuButtonCollectionViewCellDelegate {
-  
+    
     func performSegue(segueId: String)
     
     func renderMenuAssets(menuType: MenuTypes)
     
-     func setSelectedAuthyId(authyID: NSString)
+    func setSelectedAuthyId(authyID: NSString)
     
     func setTargetPurpose(type: PurposeTypes)
     
@@ -22,7 +22,7 @@ protocol MainMenuButtonCollectionViewCellDelegate {
 }
 
 class MainMenuButtonCollectionViewCell: UICollectionViewCell {
- 
+    
     var authyId: String = ""
     var segueText: String = ""
     var targetPurpose: PurposeTypes!
@@ -37,7 +37,7 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
         
         //label.textColor = _ApplicatoinColours.AppledGrey
-       // label.font = _ApplicatoinColours.MenuFont
+        // label.font = _ApplicatoinColours.MenuFont
         
         label.adjustsFontSizeToFitWidth = true
         
@@ -51,10 +51,10 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         
         button.addTarget(self, action: #selector(changeColor), for: .touchUpInside)
         
-       button.backgroundColor = StyleManager.theme2()
+        button.backgroundColor = StyleManager.theme2()
         
         contentView.addSubview(button) //Remember to add ui elements to the content view not the cell iteslf.
-       
+        
         setupConstraints()
         
     }
@@ -100,11 +100,11 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         }
         else if(segueText=="GoToSettingsMenu"){
             delegate?.renderMenuAssets(menuType: .Settings)
-        }   
+        }
         else{
             delegate?.performSegue(segueId: segueText)
         }
-
+        
     }
     
     func setupConstraints()
@@ -130,7 +130,7 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         
         button.centerXAnchor.constraint(
             equalTo: contentView.centerXAnchor).isActive = true
-
+        
         label.centerXAnchor.constraint(
             equalTo: contentView.centerXAnchor).isActive = true
         

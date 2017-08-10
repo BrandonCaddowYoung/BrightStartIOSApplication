@@ -2,7 +2,7 @@
 //  AuthyParentSignUp.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -31,7 +31,7 @@ class AuthyParentSignUp: FormViewController {
             header.height = { 80.0 }
             header.onSetupView = {view, _ in
                 view.textColor = StyleManager.theme1()
-                view.text = "Authy!"
+                view.text = "Authy"
                 view.textAlignment = .center
                 view.font = UIFont(name: "HelveticaNeue-Bold", size: 20.0)!
             }
@@ -43,15 +43,21 @@ class AuthyParentSignUp: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow("Target"){
-                $0.title = "This feature allows you to assgin a child to a parent for the purpose of second factor(Authy) authentication."
+            <<< LabelRow(){
+                $0.title = "This feature allows you to assgin a child to a parent for the purpose of 'Second Factor(Authy) Authentication'."
                 $0.cell.textLabel?.numberOfLines = 5
                 //$0.cell.height = { 300 }
         }
         
+        form +++ Section("What is Second Factor Authentication?")
+            <<< LabelRow(){
+                $0.title = "Second Factor Authentication is a means of verifying a person is who she/he says he/she is. For instance by us sending a message to a persons mobile device who are then able to respond to the prompt allows us to confirm that the person is who she/he says she/he is."
+                $0.cell.textLabel?.numberOfLines = 6
+        }
+        
         form +++ Section("How does it work?")
-            <<< LabelRow("test"){
-                $0.title = "To get started, complete the form below before tapping the button at the bottom of the page."
+            <<< LabelRow(){
+                $0.title = "Once a child has been assigned to a parent. The parent will receive a notification on their mobile device each and every time a their child is signed in and out. Once the given parent clicks the button on the notification to accept that they are infact the person signing our their child, we will proceed to sign their child in or out. Please note that this feature must be turned from within Settings."
                 $0.cell.textLabel?.numberOfLines = 6
         }
         
@@ -60,30 +66,66 @@ class AuthyParentSignUp: FormViewController {
             <<< NameRow("Name") {
                 $0.title = "name"
                 $0.placeholder = "enter the adults name"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< TextRow("Relationship") {
                 $0.title = "relationship"
                 $0.placeholder = "how is this adult related to the child?"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< PhoneRow("Mobile") {
                 $0.title = "mobile"
                 $0.placeholder = "enter the adults phone number"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< IntRow("CountryCode") {
-                        $0.title = "country code"
-                        $0.placeholder = "enter your code e.g 0044"
-                        $0.value = 0044
+                $0.title = "country code"
+                $0.placeholder = "enter your code e.g 0044"
+                $0.value = 0044
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< EmailRow("Email") {
-                                $0.title = "email"
-                                $0.placeholder = "enter the adults email address"
+                $0.title = "email"
+                $0.placeholder = "enter the adults e-mail address"
+                $0.add(rule: RuleEmail())
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
         }
         
-        self.form +++ Section("")
+        self.form +++ Section()
             <<< ButtonRow(){
                 $0.title = "Create new Authy user"
                 }.onCellSelection {  cell, row in
@@ -107,7 +149,7 @@ class AuthyParentSignUp: FormViewController {
                     SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
                     SVProgressHUD.show()
                     
-                   
+                    
                     AuthyRequests.sharedInstance.RegisterUser(email: Email, phoneNumber: Mobile!, countryCode: String(describing: CountryCode!), name: Name, relationship: Relationship, childId: self.selectedChildId, onCompletion:  { json in
                         
                         //self.createdAuthyId = json.rawString() as NSString!
@@ -117,7 +159,7 @@ class AuthyParentSignUp: FormViewController {
                         
                         SVProgressHUD.dismiss(withDelay: 1, completion: {
                             
-                            self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: Name + " has been aded.")
+                            self._CommonHelper.ShowSuccessMessage(title: "New Authy user successfully added.", subsTtitle: Name + " has been aded.")
                             
                             self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
                             
@@ -174,7 +216,7 @@ class AuthyParentSignUp: FormViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-      if (segue.identifier == "GoToMainMenu") {
+        if (segue.identifier == "GoToMainMenu") {
             
             if let vc = segue.destination as? MainMenuViewController {
                 

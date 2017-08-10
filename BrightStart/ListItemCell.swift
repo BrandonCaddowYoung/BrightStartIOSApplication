@@ -2,14 +2,14 @@
 //  ListItemCell.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 21/03/2017.
+//  Created by Brandon Young on 21/03/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
 import UIKit
 
 class ListItemCell: UITableViewCell {
-
+    
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
@@ -22,8 +22,8 @@ class ListItemCell: UITableViewCell {
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
-       setupConstraints()
-
+        setupConstraints()
+        
     }
     
     func setupConstraints() {
@@ -46,11 +46,11 @@ class ListItemCell: UITableViewCell {
             equalTo: self.centerYAnchor).isActive = true
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

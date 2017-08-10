@@ -17,9 +17,6 @@ class InvoiceRequests: NSObject {
     let baseURL = ApiInformation.ApiURL
     var nurserySchoolId = "";
     
-    /*!
-     @brief Retrieves a list of logins.
-     */
     func GetAllInvoicesBelongingToChild(childId: String, onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
@@ -37,7 +34,6 @@ class InvoiceRequests: NSObject {
         })
     }
     
-    //NEED TO CHECK THE DETAILS OF THIS!
     func GetInvoice(invoiceId: String, onCompletion: @escaping (JSON) -> Void) {
         
         let defaults = UserDefaults.standard
@@ -54,7 +50,6 @@ class InvoiceRequests: NSObject {
                 onCompletion(json as JSON)
         })
     }
-    
     
     func DeleteInvoice(invoiceId: Int, onCompletion: @escaping (JSON) -> Void) {
         
@@ -107,15 +102,6 @@ class InvoiceRequests: NSObject {
         {
             nurserySchoolId = id;
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         var parameters = [String : AnyObject]()
         

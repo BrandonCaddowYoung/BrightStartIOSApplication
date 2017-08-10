@@ -2,14 +2,14 @@
 //  NewAuhtyViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/02/2017.
+//  Created by Brandon Young on 02/02/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
 import UIKit
 
 class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
-
+    
     var showNavigationBar = true
     
     var _ApplicatoinColours: ApplicatoinColours!
@@ -43,7 +43,7 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         //Retrieve all children
         AuthyRequests.sharedInstance.RegisterUser(email: EmailAddresTextBox.text!, phoneNumber: MobileNumberTextBox.text!, countryCode: CountryCodeTextBox.text!, name: NameTextBox.text!, relationship: RelationshipTextBox.text!, childId: selectedChildId as String, onCompletion:  { json in
             
-           self.createdAuthyId = json.rawString() as NSString!
+            self.createdAuthyId = json.rawString() as NSString!
             
             //Should get the authy id back from this create call.
             //Pass authy id into the new view incase the user wants to do a test.
@@ -62,13 +62,13 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if (segue.identifier == "GoToNewUserComplete") {
-          
+            
             if let vc = segue.destination as? AuthyNewUserCompleteViewController {
                 
-              vc.targetAuthyId = createdAuthyId
+                vc.targetAuthyId = createdAuthyId
                 
             }
-    }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,9 +113,6 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
     {
         self.navigationController?.navigationBar.topItem?.title = " "
         
-        //Changes the color of the backgorund within the nav bar.
-        //navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
-        
         //Title color(Center)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme2()]
         navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
@@ -134,7 +131,7 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
     }
     
     func NavBarMenuTapped(){
-       self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -144,10 +141,10 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.hideKeyboardWhenTappedAround()
         
-       self.edgesForExtendedLayout = []
+        self.edgesForExtendedLayout = []
         
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
@@ -159,7 +156,7 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         SubmitButton.backgroundColor = StyleManager.buttonBackGround()
         
         SubmitButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
-
+        
         SubmitButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
         view.backgroundColor = StyleManager.theme2()
@@ -176,7 +173,7 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         
         CountryCodeTextBox.delegate = self;
         
-         EmailAddresTextBox.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
+        EmailAddresTextBox.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
         
         EmailAddresTextBox.delegate = self;
         
@@ -187,25 +184,25 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         HeadingLabel.font = _ApplicatoinColours.largeFont
         HeadingLabel.textColor = StyleManager.theme1()
         
-         setupConstraints()
-    
+        setupConstraints()
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     
     /*!
@@ -292,9 +289,6 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
             equalTo: view.heightAnchor,
             multiplier: 0.50).isActive = true
         
-        
-        
-        
         //MobileNumber text box
         
         //X
@@ -311,11 +305,6 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         
         MobileNumberTextBox.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        
-        
-        
-        
-       
         //Relationship text box
         
         //Bottom
@@ -325,7 +314,7 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         //X
         RelationshipTextBox.centerXAnchor.constraint(
             equalTo: MiddleContainer.centerXAnchor).isActive = true
-
+        
         RelationshipTextBox.widthAnchor.constraint(
             equalTo: view.widthAnchor,
             multiplier: 0.70).isActive = true
@@ -333,7 +322,7 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         RelationshipTextBox.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //Country code
-      
+        
         //Top
         CountryCodeTextBox.topAnchor.constraint(
             equalTo: MobileNumberTextBox.bottomAnchor, constant: 10).isActive = true
@@ -363,11 +352,11 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
             multiplier: 0.70).isActive = true
         
         EmailAddresTextBox.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
+        
         
         //Email addres
         
-       
+        
         //bottom
         NameTextBox.bottomAnchor.constraint(
             equalTo: RelationshipTextBox.topAnchor, constant: -10).isActive = true
@@ -381,7 +370,7 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
             multiplier: 0.70).isActive = true
         
         NameTextBox.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
+        
         
         //Bottom
         
@@ -413,9 +402,9 @@ class NewAuhtyViewController: UIViewController, UITextFieldDelegate {
         //X
         SubmitButton.centerXAnchor.constraint(
             equalTo: BottomContainer.centerXAnchor).isActive = true
-
         
         
-      
+        
+        
     }
 }

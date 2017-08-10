@@ -2,7 +2,7 @@
 //  MissingTimeStampsResults.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -50,12 +50,10 @@ class MissingTimeStampsResults: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow("Target"){
-                $0.title = "Here are your results for the following date range. " + startDate.ToString() + " - " + endDate.ToString()
+            <<< LabelRow(){
+                $0.title = "Found below are the results found for the following date range. " + startDate.ToString() + " - " + endDate.ToString()
                 $0.cell.textLabel?.numberOfLines = 5
-                //$0.cell.height = { 300 }
         }
-        
         
         //Retrieve all missing time stamps
         CommonRequests.sharedInstance.GetMissingTimeStamps(start: startDate, end: endDate, onCompletion: { json in
@@ -67,7 +65,7 @@ class MissingTimeStampsResults: FormViewController {
                 count.ChildFullName = JSON["ChildFullName"].stringValue
                 count.ChildId = JSON["ChildId"].stringValue
                 count.NumberOfStamps = Int(JSON["NumberOfStamps"].stringValue)!
-
+                
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
@@ -80,8 +78,8 @@ class MissingTimeStampsResults: FormViewController {
                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                     newDate = dateFormatter.date(from: targetDate)
                     if(newDate == nil){
-                    continue
-                   }
+                        continue
+                    }
                 }
                 
                 count.TargetDate = newDate!
@@ -90,7 +88,7 @@ class MissingTimeStampsResults: FormViewController {
             }
             
             DispatchQueue.main.async(execute: {
-               
+                
                 for count in self.countArray{
                     
                     //ITERATE
@@ -135,7 +133,6 @@ class MissingTimeStampsResults: FormViewController {
             })
             
         })
-
         
         
         
@@ -148,7 +145,8 @@ class MissingTimeStampsResults: FormViewController {
         
         
         
-     
+        
+        
         
         
     }
@@ -194,18 +192,18 @@ class MissingTimeStampsResults: FormViewController {
             
             if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                 
-                    vc.jumpToDate = self.selectedDate
+                vc.jumpToDate = self.selectedDate
                 vc.shouldJumpToDate = true
                 
-                    vc.childId = self.SelectedPersonId as String
-                    vc.childName = self.SelectedPersonFullName as String
-                    vc.Purpose = "TimeStamps_Edit"
-                    vc.selectCalendarPurpose = .TimeStamps
-                    
-                    vc.showNavigationBar = true
-                    
-                }
+                vc.childId = self.SelectedPersonId as String
+                vc.childName = self.SelectedPersonFullName as String
+                vc.Purpose = "TimeStamps_Edit"
+                vc.selectCalendarPurpose = .TimeStamps
+                
+                vc.showNavigationBar = true
+                
             }
+        }
         else if (segue.identifier! == "GoToMainMenu") {
             
             //Settings the menu details.

@@ -382,6 +382,9 @@ extension Date {
     }
     
     
+   
+    
+    
     public func ToString() -> String{
     
         let dateformatter = DateFormatter()
@@ -390,6 +393,16 @@ extension Date {
         
         return dateformatter.string(from: self)
     
+    }
+    
+    public func ToStringYMD() -> String{
+        
+        let dateformatter = DateFormatter()
+        
+        dateformatter.dateFormat = "yyyy/MM/dd"
+        
+        return dateformatter.string(from: self)
+        
     }
     
     public func ToURLString() -> String{
@@ -488,6 +501,12 @@ class LogoView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension Int {
+    var stringValue:String {
+        return "\(self)"
     }
 }
 

@@ -14,7 +14,7 @@ protocol RegHoursWeeklyViewCellDelegate {
     
     func updateEndDate(newDate: Date, dayOfWeek: Int)
     
-   }
+}
 
 class RegisreredHoursDayOfWeekTableViewCell: UITableViewCell {
     
@@ -39,7 +39,7 @@ class RegisreredHoursDayOfWeekTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+        
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
@@ -68,7 +68,7 @@ class RegisreredHoursDayOfWeekTableViewCell: UITableViewCell {
         
     }
     
-   
+    
     
     func setupConstraints() {
         
@@ -143,7 +143,7 @@ class RegisreredHoursDayOfWeekTableViewCell: UITableViewCell {
         
         StartTimePicker.topAnchor.constraint(
             equalTo: StartLabel.bottomAnchor).isActive = true
-
+        
         
         
         
@@ -162,7 +162,7 @@ class RegisreredHoursDayOfWeekTableViewCell: UITableViewCell {
         EndTimePicker.topAnchor.constraint(
             equalTo: StartLabel.bottomAnchor).isActive = true
         
-    
+        
         
         
         

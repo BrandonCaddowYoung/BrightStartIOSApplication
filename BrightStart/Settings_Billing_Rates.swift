@@ -1,8 +1,8 @@
 //
-//  Settings_Billing.swift.swift
+//  Settings_Billing.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -41,10 +41,10 @@ class Settings_Billing_Rates: FormViewController {
         form +++ Section()
             {
                 $0.header = HeaderFooterView<LogoView>(.class)
-            }
+        }
         
         //Go fetcth the rates!
-       
+        
         SettingsRequests.sharedInstance.GetRates(onCompletion: { json in
             
             self.rates.RateId = (json["RateId"].stringValue as NSString).floatValue
@@ -72,8 +72,6 @@ class Settings_Billing_Rates: FormViewController {
                 
                 self.form +++ Section("Extra Time Rates")
                     
-               //3 self.form +++ Section("Statistics")
-                    
                     <<< DecimalRow("FTEarlyRate") {
                         $0.title = "early (ful time)"
                         $0.placeholder = "enter the early rate."
@@ -83,6 +81,13 @@ class Settings_Billing_Rates: FormViewController {
                         formatter.locale = .current
                         formatter.numberStyle = .currency
                         $0.formatter = formatter
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                     }
                     
                     <<< DecimalRow("PTEarlyRate") {
@@ -94,8 +99,15 @@ class Settings_Billing_Rates: FormViewController {
                         formatter.locale = .current
                         formatter.numberStyle = .currency
                         $0.formatter = formatter
-                }
-                
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
+                    }
+                    
                     <<< DecimalRow("FTLateRate") {
                         $0.title = "late (full time)"
                         $0.placeholder = "enter the late rate."
@@ -106,6 +118,13 @@ class Settings_Billing_Rates: FormViewController {
                         formatter.locale = .current
                         formatter.numberStyle = .currency
                         $0.formatter = formatter
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                     }
                     
                     <<< DecimalRow("PTLateRate") {
@@ -118,6 +137,13 @@ class Settings_Billing_Rates: FormViewController {
                         formatter.locale = .current
                         formatter.numberStyle = .currency
                         $0.formatter = formatter
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                 }
                 
                 self.form +++ Section("What is 'Extra Time?")
@@ -139,6 +165,13 @@ class Settings_Billing_Rates: FormViewController {
                         formatter.locale = .current
                         formatter.numberStyle = .currency
                         $0.formatter = formatter
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                     }
                     
                     <<< DecimalRow("PTRegisteredHoursRate") {
@@ -150,8 +183,16 @@ class Settings_Billing_Rates: FormViewController {
                         let formatter = CurrencyFormatter()
                         formatter.locale = .current
                         formatter.numberStyle = .currency
-                        $0.formatter = formatter        }
-                
+                        $0.formatter = formatter
+                        
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
+                }
                 
                 self.form +++ Section("What are 'Registed Hours'?")
                     
@@ -165,7 +206,7 @@ class Settings_Billing_Rates: FormViewController {
                     
                     <<< DecimalRow("FTNonRegisteredHoursRate") {
                         $0.title = "non-registered hours rate (full time)"
-                        $0.placeholder = "enter the non-registerd hours rate."
+                        $0.placeholder = "enter the Non-Registerd Hours rate."
                         $0.value = Double(self.rates.Non_Registered_Hours_FT)
                         
                         $0.useFormatterDuringInput = true
@@ -173,6 +214,13 @@ class Settings_Billing_Rates: FormViewController {
                         formatter.locale = .current
                         formatter.numberStyle = .currency
                         $0.formatter = formatter
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                     }
                     
                     <<< DecimalRow("PTNonRegisteredHoursRate") {
@@ -185,6 +233,13 @@ class Settings_Billing_Rates: FormViewController {
                         formatter.locale = .current
                         formatter.numberStyle = .currency
                         $0.formatter = formatter
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                 }
                 
                 self.form +++ Section("What are 'Non-Registerd Hours'?")
@@ -251,13 +306,20 @@ class Settings_Billing_Rates: FormViewController {
                         $0.cell.textLabel?.numberOfLines = 5
                 }
                 
-                 self.form +++ Section("Qualification")
-                
+                self.form +++ Section("Qualification")
+                    
                     <<< DecimalRow("QualificationPoint") {
                         $0.title = "full time qualification point(hours)"
                         $0.placeholder = "enter the full time qualification point."
                         $0.value = Double(self.rates.Full_Time_Qualifying_Point_Hours)
-                       
+                        
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                 }
                 
                 self.form +++ Section("What is the qualification point?")
@@ -273,14 +335,28 @@ class Settings_Billing_Rates: FormViewController {
                         $0.title = "early grace time(minutes)"
                         $0.placeholder = "enter the early grace time in minutes."
                         $0.value = Double(self.rates.Early_Grace_Minutes)
-                       
-                }
-                
+                        
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
+                    }
+                    
                     <<< DecimalRow("LateGraceMinutes") {
                         $0.title = "late grace time(minutes)"
                         $0.placeholder = "enter the late grace time in minutes."
                         $0.value = Double(self.rates.Late_Grace_Minutes)
                         
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                 }
                 
                 self.form +++ Section("What is Grace time")
@@ -289,7 +365,7 @@ class Settings_Billing_Rates: FormViewController {
                         $0.title = "Grace time is period in which a child can be early or late before penalties apply."
                         $0.cell.textLabel?.numberOfLines = 5
                 }
-                     self.form +++ Section("")
+                self.form +++ Section()
                     <<< ButtonRow(){
                         $0.title = "Save changes"
                         }.onCellSelection {  cell, row in

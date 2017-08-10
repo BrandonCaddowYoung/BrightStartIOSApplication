@@ -1,8 +1,8 @@
 //
-//  MissingTimeStampsFinder.swift.swift
+//  MissingTimeStampsFinder.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -14,7 +14,7 @@ class MissingTimeStampsFinder: FormViewController {
     var _CommonHelper: CommonHelper!
     
     var startDate = Date()
-     var endDate = Date()
+    var endDate = Date()
     
     override func viewDidLoad() {
         
@@ -44,15 +44,15 @@ class MissingTimeStampsFinder: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow("Target"){
-                $0.title = "This feature allows you to quickly search for mising time stamps."
+            <<< LabelRow(){
+                $0.title = "This feature allows you to quickly identify 'Missing Time Stamps'."
                 $0.cell.textLabel?.numberOfLines = 5
                 //$0.cell.height = { 300 }
         }
         
-        form +++ Section("What are missing time stamps?")
-            <<< LabelRow("test"){
-                $0.title = "Missing time stamps occur when a parent forgets to sign a child in or out, leaving just one time stamp for the day. This causes problems when creating invoices as it is impossobile to know when the child was really supposed to be arriving/leaving."
+        form +++ Section("What are 'Missing Time Stamps'?")
+            <<< LabelRow(){
+                $0.title = "Missing Time Stamps occur when a parent forgets to sign a child in or out, leaving just one time stamp for the day. This can cause problems when creating invoices as it is impossobile to know when the child was really supposed to be arriving or leaving."
                 $0.cell.textLabel?.numberOfLines = 6
         }
         
@@ -62,12 +62,12 @@ class MissingTimeStampsFinder: FormViewController {
                 $0.title = "start date"
                 $0.value = Date()
             }
-                    <<< DateRow("EndDate"){
-                        $0.title = "end date"
-                        $0.value = Date()
+            <<< DateRow("EndDate"){
+                $0.title = "end date"
+                $0.value = Date()
         }
         
-        self.form +++ Section("")
+        self.form +++ Section()
             <<< ButtonRow(){
                 $0.title = "Search for missing time stmaps"
                 }.onCellSelection {  cell, row in
@@ -131,8 +131,8 @@ class MissingTimeStampsFinder: FormViewController {
             
             if let vc = segue.destination as? MissingTimeStampsResults {
                 
-               vc.startDate = startDate
-               vc.endDate = endDate
+                vc.startDate = startDate
+                vc.endDate = endDate
                 
             }
         }

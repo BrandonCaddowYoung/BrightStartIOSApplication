@@ -1,8 +1,8 @@
 //
-//  NewNurserySignUp.swift.swift
+//  NewNurserySignUp.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -12,8 +12,6 @@ import SVProgressHUD
 class NewNurserySignUp: FormViewController {
     
     var _CommonHelper: CommonHelper!
-    
-    var childrenArray = Array<BrightStartChild>()
     
     override func viewDidLoad() {
         
@@ -31,7 +29,7 @@ class NewNurserySignUp: FormViewController {
             header.height = { 80.0 }
             header.onSetupView = {view, _ in
                 view.textColor = StyleManager.theme1()
-                view.text = "Welcome!"
+                view.text = "Welcome to Bright Start."
                 view.textAlignment = .center
                 view.font = UIFont(name: "HelveticaNeue-Bold", size: 20.0)!
             }
@@ -44,8 +42,8 @@ class NewNurserySignUp: FormViewController {
         }
         
         form +++ Section()
-            <<< LabelRow("test"){
-                $0.title = "To get started, complete the form below before tapping the button at the bottom of the page."
+            <<< LabelRow("Thanks for choosing Bright Start"){
+                $0.title = "To get going, complete the form below before tapping the button found at the bottom of the page."
                 $0.cell.textLabel?.numberOfLines = 6
         }
         
@@ -54,23 +52,52 @@ class NewNurserySignUp: FormViewController {
             <<< EmailRow("Email") {
                 $0.title = "email"
                 $0.placeholder = "enter an email address."
+                $0.add(rule: RuleEmail())
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< PasswordRow("Password") {
                 $0.title = "password"
                 $0.placeholder = "enter a safe password"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< PasswordRow("ConfirmPassword") {
                 $0.title = "confirm password"
                 $0.placeholder = "confirm your password."
-            }
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
+        }
         
         form +++ Section("Nursery Information")
             
             <<< NameRow("NurseryName") {
                 $0.title = "nursery name"
                 $0.placeholder = "enter nursery name."
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< NameRow("ManagerName") {
@@ -81,9 +108,9 @@ class NewNurserySignUp: FormViewController {
             <<< PhoneRow("NurseryPhoneNumber") {
                 $0.title = "phone number"
                 $0.placeholder = "enter the nursery phone number"
-            }
+        }
         
-        self.form +++ Section("")
+        self.form +++ Section()
             <<< ButtonRow(){
                 $0.title = "Create new account"
                 }.onCellSelection {  cell, row in
@@ -116,7 +143,7 @@ class NewNurserySignUp: FormViewController {
                             
                             SVProgressHUD.dismiss(withDelay: 1, completion: {
                                 
-                                self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                                self._CommonHelper.ShowSuccessMessage(title: "Your account is set up and ready to go.", subsTtitle: "In order to continue, you will need to sign in.")
                                 
                                 self.performSegue(withIdentifier: "GoToSignIn", sender: self)
                                 
@@ -179,7 +206,7 @@ class NewNurserySignUp: FormViewController {
         self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
     }
     
-   
+    
     
 }
 

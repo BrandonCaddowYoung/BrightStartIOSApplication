@@ -2,7 +2,7 @@
 //  DoubleTemplateViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 21/03/2017.
+//  Created by Brandon Young on 21/03/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -46,7 +46,7 @@ class WizardSuccessViewController: UIViewController {
        
         self.SuccessImage?.image = UIImage(named: "Rocket")?.maskWithColor(color: StyleManager.theme2())
         
-        SuccessLabel.text = "That was succesful!!"
+        SuccessLabel.text = "That was succesful."
         
         SuccessLabel.font = _ApplicatoinColours.largeFont
         SuccessLabel.textColor = StyleManager.theme2()

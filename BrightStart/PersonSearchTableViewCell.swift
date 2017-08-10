@@ -33,7 +33,7 @@ class PersonSearchTableViewCell: UITableViewCell
         
         childNameLabel.font = _ApplicationColours.mediumFont
         childNameLabel.textColor = StyleManager.TableViewHeadingFontColour()
-
+        
     }
     
     func setupConstraints() {
@@ -53,7 +53,7 @@ class PersonSearchTableViewCell: UITableViewCell
         //bottom
         childNameLabel.bottomAnchor.constraint(
             equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-
+        
         //right
         childNameLabel.trailingAnchor.constraint(
             equalTo: contentView.trailingAnchor, constant: -5).isActive = true
@@ -77,8 +77,8 @@ class PersonSearchTableViewCell: UITableViewCell
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
-           // birthdayText?.text = dateFormatter.string(from: child.ChildDOB) as String
-           
+            // birthdayText?.text = dateFormatter.string(from: child.ChildDOB) as String
+            
         }
     }
 }

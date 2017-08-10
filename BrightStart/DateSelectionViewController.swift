@@ -205,10 +205,6 @@ class DateSelectionViewController: UIViewController {
         
         if (segue.identifier == "GoToMainMenu") {
             
-            //Settings the menu details.
-            
-            // if let navController = segue.destination as? UINavigationController {
-            
             if let vc = segue.destination as? MainMenuViewController {
                 
                 //TODO: access here chid VC  like childVC.yourTableViewArray = localArrayValue
@@ -216,8 +212,6 @@ class DateSelectionViewController: UIViewController {
                 vc.selectedMenu = .MainMenu
                 
             }
-            
-            
             
         }
         

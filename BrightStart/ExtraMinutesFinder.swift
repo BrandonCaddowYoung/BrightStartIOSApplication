@@ -2,7 +2,7 @@
 //  ExtraMinutesFinder.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -14,7 +14,7 @@ class ExtraMinutesFinder: FormViewController {
     var _CommonHelper: CommonHelper!
     
     var targetDate = Date()
-   
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -43,15 +43,14 @@ class ExtraMinutesFinder: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow("Target"){
-                $0.title = "This feature allows you to quickly search for children who have extra time on a particular date."
+            <<< LabelRow(){
+                $0.title = "This feature allows you to quickly identify children who have accumulated 'Extra Time' for a particular date."
                 $0.cell.textLabel?.numberOfLines = 5
-                //$0.cell.height = { 300 }
         }
         
-        form +++ Section("What is Extra Time?")
-            <<< LabelRow("test"){
-                $0.title = "Extra time occurs when a child is signed out before or after their registered time. At the end of the billing period, this time is accumulated and charged for."
+        form +++ Section("What is 'Extra Time'?")
+            <<< LabelRow(){
+                $0.title = "'Extra Time' occurs when a child is early or late for their pre-defined 'Registered Hours'. When creating invoces, this time is accumulated and charged for accordingly."
                 $0.cell.textLabel?.numberOfLines = 6
         }
         
@@ -60,9 +59,9 @@ class ExtraMinutesFinder: FormViewController {
             <<< DateRow("TargetDate"){
                 $0.title = "target date"
                 $0.value = Date()
-            }
+        }
         
-        self.form +++ Section("")
+        self.form +++ Section()
             <<< ButtonRow(){
                 $0.title = "Search for children wth extra time"
                 }.onCellSelection {  cell, row in

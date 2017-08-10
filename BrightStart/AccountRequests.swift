@@ -124,14 +124,9 @@ class AccountRequests: NSObject {
             nurserySchoolId = id;
         }
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
-//        let childsDateOfBirth = dateFormatter.string(from: dob as Date)
-        
-        
         var parameters = [String : AnyObject]()
         
-        parameters["AccountId"] = "" as AnyObject?
+        parameters["AccountId"] = accountId as AnyObject?
         parameters["AccountName"] = mothersName + " - " + fathersName as AnyObject?
         parameters["DateOpened"] = dateOpened as AnyObject?
         parameters["AccountDetails"] = accountDetails as AnyObject?
@@ -155,35 +150,7 @@ class AccountRequests: NSObject {
         parameters["MotherName"] = mothersName as AnyObject?
         parameters["FatherName"] = fathersName as AnyObject?
         parameters["ExistingAccountBalance"] = existingAccountBalance as AnyObject?
-        
-        
-//        let parameters: Parameters = [
-//            "AccountId": accountId,
-//            "AccountName": mothersName + " - " + fathersName,
-//            "DateOpened": dateOpened ?? "",
-//            "AccountDetails": accountDetails ?? "",
-//            "HouseNumber": houseNumber ?? "",
-//            "Road": road ?? "",
-//            "Town": road ?? "",
-//            "County": county ?? "",
-//            "PostCode": postCode ?? "",
-//            "HomePhoneNumber": homePhoneNumber ?? "",
-//            "MotherWorkPhoneNumber": motherWorkPhoneNumber ?? "",
-//            "FatherWorkPhoneNumber": fatherWorkPhoneNumber ?? "",
-//            "MotherBillingEmailAddress": mothersEmail,
-//            "FatherBillingEmailAddress": fathersEmail,
-//            "PayPalEmailAddress": payPalEmailAddress ?? "",
-//            "MotherMobile": motherMobile ?? "",
-//            "FatherMobile": fatherMobile ?? "",
-//            "FatherPayPercentage": "50",
-//            "MotherPayPercentage": "50",
-//            "MotherOccupation": motherOccupation ?? "",
-//            "FatherOccupation": fatherOccupation ?? "",
-//            "MotherName": mothersName,
-//            "FatherName": fathersName,
-//            "ExistingAccountBalance": existingAccountBalance ?? "",
-//            ]
-//        
+
         let route = baseURL + "api/AccountLogic/UpdateAccount?nurserySchoolId=" + nurserySchoolId
         makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {

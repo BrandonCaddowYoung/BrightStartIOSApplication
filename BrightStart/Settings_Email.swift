@@ -1,8 +1,8 @@
 //
-//  Settings_Email.swift.swift
+//  Settings_Email.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -44,11 +44,11 @@ class Settings_Email: FormViewController {
         }
         
         SettingsRequests.sharedInstance.GetEmailBodyText(onCompletion: { json in
-           
+            
             DispatchQueue.main.async(execute: {
                 self.form +++ Section("Message")
                     <<< TextAreaRow("EmailBody") {
-                        $0.title = "Invoice Email Body"
+                        $0.title = "invoice e-mail body"
                         $0.placeholder = "enter message."
                         $0.cell.textLabel?.numberOfLines = 5
                         $0.value = (json["Value"].stringValue as NSString) as String
@@ -59,11 +59,11 @@ class Settings_Email: FormViewController {
         SettingsRequests.sharedInstance.GetBreakDownText(onCompletion: { json in
             
             DispatchQueue.main.async(execute: {
-             
+                
                 self.form +++ Section("Extra Time Message")
                     
                     <<< TextAreaRow("ExtraTimeMessage") {
-                        $0.title = "Extra Time Message"
+                        $0.title = "extra time message"
                         $0.placeholder = "enter message."
                         $0.cell.textLabel?.numberOfLines = 5
                         $0.value = (json["Value"].stringValue as NSString) as String
@@ -71,7 +71,7 @@ class Settings_Email: FormViewController {
                 
             })
         })
-       
+        
         SettingsRequests.sharedInstance.GetEmailSettings(onCompletion: { json in
             
             self.emailSettings.Id = (json["Id"].stringValue as NSString) as String
@@ -85,20 +85,27 @@ class Settings_Email: FormViewController {
             DispatchQueue.main.async(execute: {
                 
                 self.form +++ Section("e-mail")
-                   
+                    
                     <<< EmailRow("email") {
-                        $0.title = "GMail email address"
-                        $0.placeholder = "enter email."
-                       $0.value = self.emailSettings.EmailAddress
+                        $0.title = "GMail e-mail address"
+                        $0.placeholder = "enter e-mail."
+                        $0.value = self.emailSettings.EmailAddress
+                        $0.add(rule: RuleEmail())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                     }
                     
                     <<< PasswordRow("password") {
                         $0.title = "GMail password"
                         $0.placeholder = "enter password."
                         $0.value = self.emailSettings.PassWord
-                    }
+                }
                 
-                self.form +++ Section("")
+                self.form +++ Section()
                     <<< ButtonRow(){
                         $0.title = "Save changes"
                         }.onCellSelection {  cell, row in

@@ -44,6 +44,23 @@ class RegistrationHoursRequests: NSObject {
         })
     }
     
+    func RemoveAllGetListOfAllRegisteredHours(year: Int, month: Int, day: Int, onCompletion: @escaping (JSON) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "NurserySchoolId")
+        {
+            nurserySchoolId = id;
+        }
+        
+        let route = baseURL + "api/RegisteredHoursLogic/RemoveAllGetListOfAllRegisteredHours?year=" + String(year) + "&month=" + String(month) + "&day=" + String(day) + "&nurserySchoolId=" + nurserySchoolId
+        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+            {
+                json, err in
+                onCompletion(json as JSON)
+        })
+    }
+    
     func UpdateRegisteredHours(id: String, newStartDate: NSDate, newEndDate: NSDate, onCompletion: @escaping (JSON) -> Void) {
         
         let newId = id.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)

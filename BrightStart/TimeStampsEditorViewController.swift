@@ -83,7 +83,7 @@ class TimeStampsEditorViewController: UIViewController {
                                                             DispatchQueue.main.async(execute: {
                                                                 
                                                                 SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                                                                    self._CommonHelper.ShowSuccessMessage(title: "'Time Stamp' succesffuly updated.", subsTtitle: "")
                                                                     
                                                                     if(self.goBackOnSuccess){
                                                                         if let nav = self.navigationController {
@@ -141,7 +141,7 @@ class TimeStampsEditorViewController: UIViewController {
                     
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                    self._CommonHelper.ShowSuccessMessage(title: "'Registered Hours' have been successfully updated.", subsTtitle: "")
                     
                     if(self.goBackOnSuccess){
                         if let nav = self.navigationController {
@@ -176,7 +176,7 @@ class TimeStampsEditorViewController: UIViewController {
                     
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
                         
-                        self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                        self._CommonHelper.ShowSuccessMessage(title: "'Registerred Hours' have been successfully created.", subsTtitle: "")
                         
                         if(self.goBackOnSuccess){
                             if let nav = self.navigationController {
@@ -212,7 +212,7 @@ class TimeStampsEditorViewController: UIViewController {
                                                                 
                                                                 SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                     
-                                                                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                                                                    self._CommonHelper.ShowSuccessMessage(title: "'Time Stamp' successfully created.", subsTtitle: "")
                                                                     
                                                                     if(self.goBackOnSuccess){
                                                                         
@@ -255,7 +255,7 @@ class TimeStampsEditorViewController: UIViewController {
                                                             
                                                             SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                 
-                                                                self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                                                                self._CommonHelper.ShowSuccessMessage(title: "'Time Stamp' successfully removed.", subsTtitle: "")
                                                                 
                                                                 if(self.goBackOnSuccess){
                                                                     if let nav = self.navigationController {

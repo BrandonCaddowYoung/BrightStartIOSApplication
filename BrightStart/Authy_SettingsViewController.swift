@@ -2,14 +2,14 @@
 //  Authy_SettingsViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 17/03/2017.
+//  Created by Brandon Young on 17/03/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
 import UIKit
 
 class Authy_SettingsViewController: UIViewController {
-
+    
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
@@ -40,23 +40,23 @@ class Authy_SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-         self.edgesForExtendedLayout = []
+        
+        self.edgesForExtendedLayout = []
         
         _ApplicatoinColours = ApplicatoinColours()
         _CommonHelper = CommonHelper()
         
         setupConstraints()
         
-         Middle.backgroundColor = StyleManager.DarkBackground()
+        Middle.backgroundColor = StyleManager.DarkBackground()
         
         Middle1.backgroundColor = StyleManager.theme2()
         
-           Middle2.backgroundColor = StyleManager.DarkBackground()
-           Middle3.backgroundColor = StyleManager.theme2()
-           Middle4.backgroundColor = StyleManager.theme2()
+        Middle2.backgroundColor = StyleManager.DarkBackground()
+        Middle3.backgroundColor = StyleManager.theme2()
+        Middle4.backgroundColor = StyleManager.theme2()
         
-           view.backgroundColor = StyleManager.DarkBackground()
+        view.backgroundColor = StyleManager.DarkBackground()
         
         
         Middle1.addBottomBorder(color: StyleManager.theme4(), margins: 1)
@@ -67,17 +67,17 @@ class Authy_SettingsViewController: UIViewController {
         Middle3.addBottomBorder(color: StyleManager.theme4(), margins: 1)
         
         Middle4.addBottomBorder(color: StyleManager.theme4(), margins: 1)
-
+        
         AuthyDescriptionLabel.lineBreakMode = .byWordWrapping
         AuthyDescriptionLabel.numberOfLines = 5
         AuthyDescriptionLabel.textColor = StyleManager.FontColour()
         
         AuthyDescriptionLabel.text = "By using Authy, all registered parents will be required to have their mobiles phones with them when ever they drop off or pick up their children."
-
+        
         
         OnSignInSwitch.onTintColor = StyleManager.theme1()
         OnSignOutSwitch.onTintColor = StyleManager.theme1()
-         UseAuthySwitch.onTintColor = StyleManager.theme1()
+        UseAuthySwitch.onTintColor = StyleManager.theme1()
         
         let defaults = UserDefaults.standard
         
@@ -153,7 +153,7 @@ class Authy_SettingsViewController: UIViewController {
         //center
         Middle.centerXAnchor.constraint(
             equalTo: view.centerXAnchor).isActive = true
-
+        
         Middle.centerYAnchor.constraint(
             equalTo: view.centerYAnchor).isActive = true
         
@@ -191,7 +191,7 @@ class Authy_SettingsViewController: UIViewController {
         UseAuthyLabel.centerYAnchor.constraint(
             equalTo: Middle1.centerYAnchor).isActive = true
         
-
+        
         UseAuthySwitch.translatesAutoresizingMaskIntoConstraints = false
         
         //right
@@ -244,7 +244,7 @@ class Authy_SettingsViewController: UIViewController {
         
         //Middle3
         
-         Middle3.translatesAutoresizingMaskIntoConstraints = false
+        Middle3.translatesAutoresizingMaskIntoConstraints = false
         
         //left
         Middle3.leadingAnchor.constraint(
@@ -273,7 +273,7 @@ class Authy_SettingsViewController: UIViewController {
         OnSignInLabel.centerYAnchor.constraint(
             equalTo: Middle3.centerYAnchor).isActive = true
         
-
+        
         OnSignInSwitch.translatesAutoresizingMaskIntoConstraints = false
         
         //right
@@ -290,7 +290,7 @@ class Authy_SettingsViewController: UIViewController {
         //Middle4
         
         Middle4.translatesAutoresizingMaskIntoConstraints = false
-
+        
         
         //left
         Middle4.leadingAnchor.constraint(
@@ -328,9 +328,9 @@ class Authy_SettingsViewController: UIViewController {
         OnSignOutSwitch.centerYAnchor.constraint(
             equalTo: Middle4.centerYAnchor).isActive = true
         
-
         
-
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -340,7 +340,7 @@ class Authy_SettingsViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         
         SetNavigationBarDetails()
-    
+        
     }
     
     func SetNavigationBarDetails()
@@ -367,14 +367,14 @@ class Authy_SettingsViewController: UIViewController {
     func NavBarMenuTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         
@@ -385,9 +385,9 @@ class Authy_SettingsViewController: UIViewController {
             //Need to get the specific user. so navigate to menu.
             
             if let vc = segue.destination as? MainMenuViewController {
-            
+                
                 if(selectedMenu == nil){
-                   vc.selectedMenu = .Authy
+                    vc.selectedMenu = .Authy
                 }
                 else if(selectedMenu == .Authy){
                     vc.selectedMenu = .Authy
@@ -396,10 +396,10 @@ class Authy_SettingsViewController: UIViewController {
                 {
                     vc.selectedMenu = .MainMenu
                 }
+                
+            }
             
         }
-        
-    }
     }
     
     
@@ -466,19 +466,19 @@ class Authy_SettingsViewController: UIViewController {
             defaults.set(false, forKey: "ShouldUseAuhtyOnSignOut")
         }
         
-
+        
     }
-   
-
+    
+    
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

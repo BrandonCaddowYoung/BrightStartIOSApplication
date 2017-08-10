@@ -36,11 +36,12 @@ enum PurposeTypes: Int {
     case Register
     case information
     case SignOut
-   
+    
     case Child_QuickCreate
     case Child_Create
     case Child_Edit
     case Child_Delete
+     case Child_Birthdays
     
     case Staff_Create
     case Staff_Edit
@@ -61,7 +62,7 @@ enum PurposeTypes: Int {
     case TimeStamps_ExtraMinutesFinder
     case TimeStamps_Menu
     
-     case Settings_Menu
+    case Settings_Menu
     case Settings_Rates
     case Email_Settings
     case NurseryDetails_Settings
@@ -69,6 +70,9 @@ enum PurposeTypes: Int {
     case Billing_Menu
     case Billing_CreateInvoice
     case Billing_ViewInvoice
+    case Billing_MakePayment
+    case Billing_ViewPayment
+    case Billing_BankHolidays
     
     case Authy_NewUser
     case Authy_Test
@@ -79,7 +83,7 @@ class MainMenuViewController: UIViewController {
     
     var shouldHideBackButton = true
     
-   var targetPurpose: PurposeTypes!
+    var targetPurpose: PurposeTypes!
     
     var selectedAuhtyId: NSString!
     
@@ -88,7 +92,7 @@ class MainMenuViewController: UIViewController {
     var authyUsersOnly: Bool! = false
     
     var authyUserList = [AuthyUser]()
-   
+    
     var _CommonHelper: CommonHelper!
     
     var collectionView: UICollectionView!
@@ -107,7 +111,7 @@ class MainMenuViewController: UIViewController {
     var images = [UIImage]()
     
     var DisplayTextList = ["",  "", "", ""]
-
+    
     var PurposeList = [PurposeTypes]()
     
     var segueIdList = ["", "", "", ""]
@@ -123,7 +127,7 @@ class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .light)
         
         self.edgesForExtendedLayout = []
@@ -178,15 +182,15 @@ class MainMenuViewController: UIViewController {
             
         case .Billing:
             
-            images = [UIImage(named: "Fantasy100")!, UIImage(named: "Bill")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Fantasy100")!, UIImage(named: "Bill")!,UIImage(named: "Receive Cash-100")!, UIImage(named: "Coins-100")!, UIImage(named: "Leave-100")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToCreateInvoice", "GoToSearchPerson", "GoToSignIn"]
+            segueIdList = ["GoToCreateInvoice", "GoToSearchPerson","GoToCreatePayment", "GoToSearchPerson", "GoToBankHolidayCalendar", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Billing_CreateInvoice, PurposeTypes.Billing_ViewInvoice, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Billing_CreateInvoice, PurposeTypes.Billing_ViewInvoice,PurposeTypes.Billing_MakePayment, PurposeTypes.Billing_ViewPayment, PurposeTypes.Billing_BankHolidays, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Create Invoices", "View Invoices", "Sign Out"]
+            DisplayTextList = ["Create Invoices", "View Invoices", "Make Payments", "View Payments", "Bank Holidays", "Sign Out"]
             
-            authyIdList = ["", "","", ""]
+            authyIdList = ["", "","", "","", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -214,12 +218,12 @@ class MainMenuViewController: UIViewController {
             
             segueIdList = ["GoToSearchPerson", "GoToExtraTimeFinder", "GoToMissingTimeStamps", "GoToSignIn"]
             
-             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_ExtraMinutesFinder,PurposeTypes.TimeStamps_MissingTimeStampsFinder, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_ExtraMinutesFinder,PurposeTypes.TimeStamps_MissingTimeStampsFinder, PurposeTypes.SignOut]
             
             DisplayTextList = ["Calendar", "Extra Minutes Finder", "Missing Time Stamps", "Sign Out"]
             
             authyIdList = ["", "", "", "", ""]
-                
+            
             showNavigationBar = true
             ShowNavBar()
             
@@ -241,15 +245,15 @@ class MainMenuViewController: UIViewController {
             
         case .Children:
             
-            images = [UIImage(named: "AddUserMale")!, UIImage(named: "AddUserMale")!, UIImage(named: "Search")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "AddUserMale")!, UIImage(named: "AddUserMale")!, UIImage(named: "Search")!, UIImage(named: "Birthday-100")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToQuickCreateChild", "GoToCreateChild", "GoToSearchPerson", "GoToSignIn"]
+            segueIdList = ["GoToQuickCreateChild", "GoToCreateChild", "GoToSearchPerson", "GoToBirthdayCalendar", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Child_QuickCreate, PurposeTypes.Child_Create,  PurposeTypes.Child_Edit,  PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Child_QuickCreate, PurposeTypes.Child_Create,  PurposeTypes.Child_Edit, PurposeTypes.Child_Birthdays, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Quick Create", "Create", "View", "Sign Out"]
+            DisplayTextList = ["Quick Create", "Create", "View", "Birthdays", "Sign Out"]
             
-            authyIdList = ["", "", "", ""]
+            authyIdList = ["", "", "", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
@@ -320,26 +324,26 @@ class MainMenuViewController: UIViewController {
                                     SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
                                     SVProgressHUD.show()
                                     
-                                            CommonRequests.sharedInstance.signOut(personId: self.childId as String, timeOfSignOut: Date() as NSDate,
-                                                                                  
-                                                                                  onCompletion: {
+                                    CommonRequests.sharedInstance.signOut(personId: self.childId as String, timeOfSignOut: Date() as NSDate,
+                                                                          
+                                                                          onCompletion: {
+                                                                            
+                                                                            DispatchQueue.main.async(execute: {
+                                                                                
+                                                                                
+                                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                                     
-                                                                                    DispatchQueue.main.async(execute: {
-                                                                                        
-                                                                                        
-                                                                                        SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                                            
-                                                                                             self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                                                            
-                                                                                            
-                                                                                        } )
-                                                                                        
-                                                                                       
-                                                                                        
-                                                                                    })
+                                                                                    self.performSegue(withIdentifier: "GoToRegister", sender: self)
                                                                                     
-                                            })
-                                
+                                                                                    
+                                                                                } )
+                                                                                
+                                                                                
+                                                                                
+                                                                            })
+                                                                            
+                                    })
+                                    
                                 }
                                 else if(self.selectedAuthyAction == AuhtyActions.ShouldSignIn){
                                     
@@ -365,12 +369,12 @@ class MainMenuViewController: UIViewController {
                                 }
                             }
                             else{
-                            
-                            self.images.append(UIImage(named: "Standing Man")!) //Replace with Plus100
-                            self.segueIdList.append("GoToNewAuthyUser")
-                            self.DisplayTextList.append("New User")
-                            self.authyIdList.append("")
-                            self.PurposeList.append(PurposeTypes.None)
+                                
+                                self.images.append(UIImage(named: "Standing Man")!) //Replace with Plus100
+                                self.segueIdList.append("GoToNewAuthyUser")
+                                self.DisplayTextList.append("New User")
+                                self.authyIdList.append("")
+                                self.PurposeList.append(PurposeTypes.None)
                                 
                             }
                         }
@@ -378,14 +382,14 @@ class MainMenuViewController: UIViewController {
                             
                             //Add all the users
                             
-                        for person in self.authyUserList {
-                            self.images.append(UIImage(named: "UserMale100")!)
-                            self.segueIdList.append("GoToAuthyAuthenticate")
-                            self.DisplayTextList.append(person.Name as String)
-                            self.authyIdList.append(person.AuhtyId as String)
-                            self.PurposeList.append(PurposeTypes.None)
-
-                        }
+                            for person in self.authyUserList {
+                                self.images.append(UIImage(named: "UserMale100")!)
+                                self.segueIdList.append("GoToAuthyAuthenticate")
+                                self.DisplayTextList.append(person.Name as String)
+                                self.authyIdList.append(person.AuhtyId as String)
+                                self.PurposeList.append(PurposeTypes.None)
+                                
+                            }
                         }
                         
                         
@@ -403,13 +407,13 @@ class MainMenuViewController: UIViewController {
                             self.authyIdList.append("")
                             self.authyIdList.append("")
                             
-                           self.PurposeList.append(PurposeTypes.None)
+                            self.PurposeList.append(PurposeTypes.None)
                             
                         }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             self.collectionView.reloadData()
-                           
+                            
                         }
                         
                     })
@@ -417,14 +421,14 @@ class MainMenuViewController: UIViewController {
             })
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
-
+    
     //Initialising a collection view and addit it to the view controllers current view
     func setupCollectionView()
     {
@@ -445,7 +449,7 @@ class MainMenuViewController: UIViewController {
         collectionView.contentInset  = UIEdgeInsets();
         collectionView.contentInset.left = 25
         collectionView.contentInset.right = 25
-       
+        
         collectionView.backgroundColor = StyleManager.theme2()
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -470,7 +474,7 @@ class MainMenuViewController: UIViewController {
     
     func setupConstraints()
     {
-       
+        
         //The first view takes up a third of the screen.
         
         leftSpacer.backgroundColor = StyleManager.theme2()
@@ -512,7 +516,7 @@ class MainMenuViewController: UIViewController {
         
         topThirdView.translatesAutoresizingMaskIntoConstraints = false
         topThirdView.backgroundColor = StyleManager.theme2()
-
+        
         //left
         topThirdView.leadingAnchor.constraint(
             equalTo: leftSpacer.trailingAnchor).isActive = true
@@ -528,7 +532,7 @@ class MainMenuViewController: UIViewController {
             multiplier: 0.10).isActive = true
         
         
-       //topThirdView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        //topThirdView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         
         topThirdViewTopSpacer.translatesAutoresizingMaskIntoConstraints = false
         topThirdViewTopSpacer.backgroundColor = StyleManager.theme2()
@@ -539,7 +543,7 @@ class MainMenuViewController: UIViewController {
         //right
         topThirdViewTopSpacer.trailingAnchor.constraint(
             equalTo: rightSpacer.leadingAnchor).isActive = true
-       
+        
         //top
         topThirdViewTopSpacer.topAnchor .constraint(
             equalTo: topThirdView.topAnchor).isActive = true
@@ -575,7 +579,7 @@ class MainMenuViewController: UIViewController {
         //The second view takes up the remining 66% of the screen
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-                //left
+        //left
         collectionView.leadingAnchor.constraint(
             equalTo: leftSpacer.trailingAnchor).isActive = true
         //right
@@ -603,7 +607,7 @@ class MainMenuViewController: UIViewController {
             if segue.destination is Settings_Billing_Rates {
             }
         }
-        
+            
         else if (segue.identifier == "GoToDateSelect") {
             
             if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
@@ -626,8 +630,8 @@ class MainMenuViewController: UIViewController {
                 
                 vc.showNavigationBar = true
             }
-        }   
-        
+        }
+            
         else if (segue.identifier == "GoToSearchPerson") {
             
             if(targetPurpose == .TimeStamps_Edit)
@@ -645,52 +649,52 @@ class MainMenuViewController: UIViewController {
             else if(targetPurpose == .TimeStamps_Delete)
             {
                 
-            if let vc = segue.destination as? PersonSearchTableViewController {
-                
-                vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "TimeStamps_Delete"
-                vc.GoToMenuType = .TimeStamps
-                
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToCalendar"
+                    vc.Purpose = "TimeStamps_Delete"
+                    vc.GoToMenuType = .TimeStamps
+                    
+                }
             }
-            }
-            
+                
             else if(targetPurpose == .TimeStamps_Search)
             {
-            
-            if let vc = segue.destination as? PersonSearchTableViewController {
                 
-                vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "TimeStamps_Search"
-                vc.GoToMenuType = .TimeStamps
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToCalendar"
+                    vc.Purpose = "TimeStamps_Search"
+                    vc.GoToMenuType = .TimeStamps
+                    
+                }
+            }
                 
-            }
-            }
-            
             else if(targetPurpose == .TimeStamps_ExtraMinutesFinder)
             {
-            if let vc = segue.destination as? PersonSearchTableViewController {
-                
-                vc.successSegueIdentifier = "GoToCalendar"
-                vc.Purpose = "TimeStamps_ExtraMinutesFinder"
-                vc.GoToMenuType = .TimeStamps
-                
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToCalendar"
+                    vc.Purpose = "TimeStamps_ExtraMinutesFinder"
+                    vc.GoToMenuType = .TimeStamps
+                    
+                }
             }
-            }
-            
+                
             else if(targetPurpose == .TimeStamps_Edit)
             {
-            if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
-                
-                vc.selectCalendarPurpose = .TimeStamps
-                
-                vc.Purpose = "GoToSearchPerson_ExtraMinutes"
-                
-                vc.showNavigationBar = true
-                
+                if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
+                    
+                    vc.selectCalendarPurpose = .TimeStamps
+                    
+                    vc.Purpose = "GoToSearchPerson_ExtraMinutes"
+                    
+                    vc.showNavigationBar = true
+                    
+                }
             }
-            }
-            
-           else if(targetPurpose == .RegisterdHours_Edit)
+                
+            else if(targetPurpose == .RegisterdHours_Edit)
             {
                 if let vc = segue.destination as? PersonSearchTableViewController {
                     
@@ -733,7 +737,7 @@ class MainMenuViewController: UIViewController {
                     vc.GoToMenuType = .RegisteredHours
                 }
             }
-            
+                
             else if(targetPurpose == .Billing_ViewInvoice)
             {
                 if let vc = segue.destination as? PersonSearchTableViewController {
@@ -743,7 +747,7 @@ class MainMenuViewController: UIViewController {
                     vc.Purpose = ""
                 }
             }
-            
+                
             else if(targetPurpose == .Child_Edit)
             {
                 if let vc = segue.destination as? PersonSearchTableViewController {
@@ -753,7 +757,7 @@ class MainMenuViewController: UIViewController {
                     vc.Purpose = ""
                 }
             }
-            
+                
             else if(targetPurpose == .Staff_Edit)
             {
                 if let vc = segue.destination as? PersonSearchTableViewController {
@@ -763,12 +767,9 @@ class MainMenuViewController: UIViewController {
                     vc.Purpose = ""
                 }
             }
-            
-            
-            
         }
-       
-       else if (segue.identifier == "GoToTimeStampsMenu") {
+            
+        else if (segue.identifier == "GoToTimeStampsMenu") {
             
             //Settings the menu details.
             
@@ -777,9 +778,9 @@ class MainMenuViewController: UIViewController {
                 vc.selectedMenu = .TimeStamps
                 
             }
-        }   
-        
-       else if (segue.identifier == "GoToAuthyAuthenticate") {
+        }
+            
+        else if (segue.identifier == "GoToAuthyAuthenticate") {
             
             //Settings the menu details.
             
@@ -820,6 +821,7 @@ class MainMenuViewController: UIViewController {
         else if (segue.identifier == "GoToRegister") {
             //No need to pass anyhting to the regiser.
         }
+       
     }
 }
 
@@ -840,8 +842,8 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainMenuButtonCell", for: indexPath) as! MainMenuButtonCollectionViewCell
         
         if(cell.label==nil){
-        cell.awakeFromNib()
-        cell.delegate = self
+            cell.awakeFromNib()
+            cell.delegate = self
         }
         
         cell.setDisplayText(newDisplayText: DisplayTextList[indexPath.row])
@@ -852,14 +854,6 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         
         cell.targetPurpose = PurposeList[indexPath.row]
         
-        //var bcolor : UIColor = UIColor( red: 0.2, green: 0.2, blue:0.2, alpha: 0.3 )
-        
-       // cell.layer.borderColor = bcolor.cgColor
-        //cell.layer.borderWidth = 0.5
-        //cell.layer.cornerRadius = 3
-        
-       // cell.backgroundColor = .white
-        
         return cell
     }
     
@@ -868,7 +862,7 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
         let foodCell = cell as! MainMenuButtonCollectionViewCell
         
         foodCell.button.setBackgroundImage(images[indexPath.row], for: .normal)
-       
+        
         let tintedImage = images[indexPath.row].withRenderingMode(.alwaysTemplate)
         
         foodCell.button.setBackgroundImage(tintedImage, for: .normal)
@@ -885,15 +879,15 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     //Removes the navigation bar from the top
     override func viewWillDisappear(_ animated: Bool) {
         
-         super.viewWillDisappear(animated)
+        super.viewWillDisappear(animated)
         
         if(!showNavigationBar){
             self.navigationController?.setNavigationBarHidden(false, animated: animated);
-           
+            
         }
         else
         {
-         self.navigationController?.setNavigationBarHidden(true, animated: animated);
+            self.navigationController?.setNavigationBarHidden(true, animated: animated);
         }
         
     }
@@ -906,12 +900,12 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
+        
         super.viewWillAppear(animated)
         
         ShowNavBar()
     }
- 
+    
     
     func ShowNavBar()
     {
@@ -924,7 +918,7 @@ extension MainMenuViewController: UICollectionViewDelegate, UICollectionViewData
             SetNavigationBarDetails()
         }
     }
-   
+    
     
     func SetNavigationBarDetails()
     {
@@ -985,7 +979,7 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
     
     func performSegue(segueId: String) {
         
-            self.performSegue(withIdentifier: segueId, sender: self)
+        self.performSegue(withIdentifier: segueId, sender: self)
     }
     
     func renderMenuAssets(menuType: MenuTypes) {
@@ -995,24 +989,21 @@ extension MainMenuViewController: MainMenuButtonCollectionViewCellDelegate {
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         SVProgressHUD.show()
         
-                self.selectedMenu = menuType
-                
-                self.loadMenuAssets()
+        self.selectedMenu = menuType
         
-                self.SetNavigationBarDetails()
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    
-                    self.collectionView.reloadData()
-                    
-                    SVProgressHUD.dismiss(withDelay: 0.1, completion: {
-                       
-                        
-                    } )
-        }
-      
+        self.loadMenuAssets()
         
+        self.SetNavigationBarDetails()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            
+            self.collectionView.reloadData()
+            
+            SVProgressHUD.dismiss(withDelay: 0.1, completion: {
+                
+                
+            } )
         }
-    
     }
+}
 

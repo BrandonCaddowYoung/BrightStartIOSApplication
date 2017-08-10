@@ -2,7 +2,7 @@
 //  AddRegisteredHoursViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 21/02/2017.
+//  Created by Brandon Young on 21/02/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -389,7 +389,7 @@ class AddRegisteredHoursViewController: UIViewController {
             
             SVProgressHUD.dismiss(withDelay: 1, completion: {
                 
-                self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                self._CommonHelper.ShowSuccessMessage(title: "'Registerd Hours' successfully created.", subsTtitle: "")
                 
                 //Always goes back when done but this could be optional?
                 

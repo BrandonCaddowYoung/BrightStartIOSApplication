@@ -2,7 +2,7 @@
 //  Registration2ViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 07/02/2017.
+//  Created by Brandon Young on 07/02/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -65,7 +65,7 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
         SubHeaderLabl.textAlignment = NSTextAlignment.center;
         SubHeaderLabl.numberOfLines = 0;
         SubHeaderLabl.font = UIFont.systemFont(ofSize: 16.0);
-        SubHeaderLabl.text = "Just a few more details and you'l be set!";
+        SubHeaderLabl.text = "Just a few more details and you will be ready to go.";
         
         
         NurseryNameTextField.setBottomBorder(backGroundColor: StyleManager.theme2().cgColor, underlineColor: StyleManager.theme4().cgColor, textColor: StyleManager.theme5(), palceHoldertextColor: StyleManager.theme3())
@@ -314,7 +314,6 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
             
             DispatchQueue.main.async(execute: {
                 
-                
                 SVProgressHUD.dismiss(withDelay: 1, completion: {
                     
                     self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
@@ -322,12 +321,6 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
                     self.performSegue(withIdentifier: "GoToSignIn", sender: self)
                     
                 } )
-                
-                
-                
-               
-                
-                
                 
             })
             

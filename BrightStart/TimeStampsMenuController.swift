@@ -9,7 +9,7 @@
 import UIKit
 
 class TimeStampsMenuController: MainMenuViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,8 +30,8 @@ class TimeStampsMenuController: MainMenuViewController {
                 vc.Purpose = "TimeStamps_Edit"
             }
         }
-        
-       else if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
+            
+        else if (segue.identifier == "GoToSearchPerson_ExtraMinutes") {
             
             if let vc = segue.destination as? RegisterdHoursTimeStampsCalendarViewController {
                 
@@ -43,18 +43,18 @@ class TimeStampsMenuController: MainMenuViewController {
                 
             }
         }
-        
-       else if (segue.identifier == "TimeStamps_Delete") {
+            
+        else if (segue.identifier == "TimeStamps_Delete") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
-                 vc.Purpose = "TimeStamps_Delete"
+                vc.Purpose = "TimeStamps_Delete"
                 
             }
         }
-        
-       else if (segue.identifier == "TimeStamps_Search") {
+            
+        else if (segue.identifier == "TimeStamps_Search") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
@@ -63,19 +63,19 @@ class TimeStampsMenuController: MainMenuViewController {
                 
             }
         }
-        
-       else if (segue.identifier == "TimeStamps_ExtraMinutesFinder") {
+            
+        else if (segue.identifier == "TimeStamps_ExtraMinutesFinder") {
             
             if let vc = segue.destination as? PersonSearchTableViewController {
                 
                 vc.successSegueIdentifier = "GoToCalendar"
                 vc.Purpose = "TimeStamps_ExtraMinutesFinder"
-
+                
                 
             }
         }
-        
-       else if (segue.identifier == "GoToMainMenu") {
+            
+        else if (segue.identifier == "GoToMainMenu") {
             
             //Settings the menu details.
             
@@ -92,8 +92,8 @@ class TimeStampsMenuController: MainMenuViewController {
             
         }
         
-            
-        }
+        
+    }
     
     
 }

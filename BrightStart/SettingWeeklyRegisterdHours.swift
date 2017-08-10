@@ -2,7 +2,7 @@
 //  RollOver_Step1.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
         super.viewDidLoad()
         
         setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .dark)
-       // UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        // UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         
         let backTitle = NSLocalizedString("Back", comment: "Back button label")
         self.addBackbutton(title: backTitle)
@@ -32,7 +32,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
             header.height = { 80.0 }
             header.onSetupView = {view, _ in
                 view.textColor = StyleManager.theme1()
-                view.text = "Setting weekly regisred hours."
+                view.text = "Setting weekly Regisred Hours."
                 view.textAlignment = .center
                 view.font = UIFont(name: "HelveticaNeue-Bold", size: 20.0)!
             }
@@ -44,15 +44,15 @@ class SettingWeeklyRegisterdHours: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow("Target"){
-                $0.title = "This feature allows you set registered hours only a weekly basis."
+            <<< LabelRow(){
+                $0.title = "This feature allows you create 'Registered Hours' only a weekly basis. For example, you could Apply Registered of hours of 08:00 - 16:30 on a Monday and a Friday for multiple children."
                 $0.cell.textLabel?.numberOfLines = 5
         }
         
         
         form +++ Section("How does it work?")
-            <<< LabelRow("test"){
-                $0.title = "To get started, smimply select the appropriate dates for each day of the week. Next select your children before clicking the button at the bottom of the page."
+            <<< LabelRow(){
+                $0.title = "Firstly, select the appropriate dates for each day of the week. Next, select your children before tapping the button at the bottom of the page."
                 $0.cell.textLabel?.numberOfLines = 6
         }
         
@@ -61,42 +61,39 @@ class SettingWeeklyRegisterdHours: FormViewController {
         
         let year = calendar.component(.year, from: date)
         
-                form +++ Section("Select the year")
-                    
-                    <<< PickerInlineRow<String>("YearPicker") {
-                        $0.title = "Year"
-                        $0.options = [String(year-1), String(year), String(year+1)]
-                        $0.value = String(year)    // initially selected
-                    }
-
+        form +++ Section("Select the year")
+            
+            <<< PickerInlineRow<String>("YearPicker") {
+                $0.title = "year"
+                $0.options = [String(year-1), String(year), String(year+1)]
+                $0.value = String(year)    // initially selected
+        }
+        
         form +++ Section("Select the month")
             
-                    <<< PickerInlineRow<String>("MonthPicker") {
-                        $0.title = "Month"
-                        $0.options = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                        $0.value = "January"    // initially selected
-                    }
-                    
+            <<< PickerInlineRow<String>("MonthPicker") {
+                $0.title = "month"
+                $0.options = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                $0.value = "January"    // initially selected
+        }
         
-                
-        
-            form +++ Section("")
+        form +++ Section()
             <<< SwitchRow("mondaySwitchRowTag"){
-                $0.title = "Monday"
+                $0.title = "monday"
                 }.cellSetup
                 {
                     cell,
                     row in cell.switchControl.onTintColor = StyleManager.theme1()
                     
-                }
-                
+            }
+            
             <<< TimeRow("MondayStart"){
                 
                 $0.hidden = Condition.function(["mondaySwitchRowTag"], { form in
                     return !((form.rowBy(tag: "mondaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "Start"
+                $0.title = "start"
                 $0.value = Date().setTime(hour: 08, min: 0, sec: 0)!
             }
             
@@ -106,13 +103,13 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "mondaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "End"
+                $0.title = "end"
                 $0.value = Date().setTime(hour: 18, min: 0, sec: 0)!
         }
         
-        form +++ Section("")
+        form +++ Section()
             <<< SwitchRow("tuesdaySwitchRowTag"){
-                $0.title = "Tuesday"
+                $0.title = "tuesday"
                 }.cellSetup
                 {
                     cell,
@@ -125,7 +122,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "tuesdaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "Start"
+                $0.title = "start"
                 $0.value = Date().setTime(hour: 08, min: 0, sec: 0)!
             }
             
@@ -135,14 +132,14 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "tuesdaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "End"
+                $0.title = "end"
                 $0.value = Date().setTime(hour: 18, min: 0, sec: 0)!
                 
         }
         
-        form +++ Section("")
+        form +++ Section()
             <<< SwitchRow("wednesdaySwitchRowTag"){
-                $0.title = "Wednesday"
+                $0.title = "wednesday"
                 }.cellSetup
                 {
                     cell,
@@ -154,7 +151,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "wednesdaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "Start"
+                $0.title = "start"
                 $0.value = Date().setTime(hour: 08, min: 0, sec: 0)!
                 
             }
@@ -165,15 +162,15 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "wednesdaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "End"
+                $0.title = "end"
                 $0.value = Date().setTime(hour: 18, min: 0, sec: 0)!
                 
         }
         
-        form +++ Section("")
+        form +++ Section()
             <<< SwitchRow("thursdaySwitchRowTag"){
-                $0.title = "Thursday"
-            }
+                $0.title = "thursday"
+                }
                 .cellSetup
                 {
                     cell,
@@ -186,7 +183,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "thursdaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "Start"
+                $0.title = "start"
                 $0.value = Date().setTime(hour: 08, min: 0, sec: 0)!
                 
             }
@@ -197,15 +194,15 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "thursdaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "End"
+                $0.title = "end"
                 $0.value = Date().setTime(hour: 18, min: 0, sec: 0)!
                 
         }
         
-        form +++ Section("")
+        form +++ Section()
             <<< SwitchRow("fridaySwitchRowTag"){
-                $0.title = "Friday"
-            }
+                $0.title = "friday"
+                }
                 .cellSetup
                 {
                     cell,
@@ -218,7 +215,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "fridaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "Start"
+                $0.title = "start"
                 $0.value = Date().setTime(hour: 08, min: 0, sec: 0)!
                 
             }
@@ -229,14 +226,14 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "fridaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "End"
-               $0.value = Date().setTime(hour: 18, min: 0, sec: 0)!
+                $0.title = "end"
+                $0.value = Date().setTime(hour: 18, min: 0, sec: 0)!
                 
         }
         
-        form +++ Section("")
+        form +++ Section()
             <<< SwitchRow("saturdaySwwitchRowTag"){
-                $0.title = "Saturday"
+                $0.title = "saturday"
                 }.cellSetup
                 {
                     cell,
@@ -249,8 +246,8 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "saturdaySwwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "Start"
-               $0.value = Date().setTime(hour: 08, min: 0, sec: 0)!
+                $0.title = "start"
+                $0.value = Date().setTime(hour: 08, min: 0, sec: 0)!
                 
             }
             
@@ -260,15 +257,15 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "saturdaySwwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "End"
+                $0.title = "end"
                 $0.value = Date().setTime(hour: 18, min: 0, sec: 0)!
                 
         }
         
         
-        form +++ Section("")
+        form +++ Section()
             <<< SwitchRow("sundaySwitchRowTag"){
-                $0.title = "Sunday"
+                $0.title = "sunday"
                 }.cellSetup
                 {
                     cell,
@@ -281,8 +278,8 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "sundaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "Start"
-               $0.value = Date().setTime(hour: 08, min: 0, sec: 0)!
+                $0.title = "start"
+                $0.value = Date().setTime(hour: 08, min: 0, sec: 0)!
                 
             }
             
@@ -292,7 +289,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                     return !((form.rowBy(tag: "sundaySwitchRowTag") as? SwitchRow)?.value ?? false)
                 })
                 
-                $0.title = "End"
+                $0.title = "end"
                 $0.value = Date().setTime(hour: 18, min: 0, sec: 0)!
         }
         
@@ -344,14 +341,33 @@ class SettingWeeklyRegisterdHours: FormViewController {
                             }
                 }
                 
-                self.form +++ Section("")
+                self.form +++ Section()
                     <<< ButtonRow(){
                         $0.title = "Create Registerd Hours"
                         }.onCellSelection {  cell, row in
                             
                             let mulitpleRow: MultipleSelectorRow<String> = self.form.rowBy(tag: "SelectedChildren")!
                             
+                            if(mulitpleRow.value == nil)
+                            {
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    
+                                    self._CommonHelper.ShowErrorMessage(title: "No children selected.", subsTtitle: "In order to continue, atleast one child needs to be selected.")
+                                    
+                                } )
+                            }
+                            
                             let ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: mulitpleRow.value!)
+                            
+                            if  ids.count == 0 {
+                                
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    
+                                    self._CommonHelper.ShowErrorMessage(title: "No children selected.", subsTtitle: "In order to continue, atleast one child needs to be selected.")
+                                    
+                                } )
+                            }
+                            else {
                             
                             var switchRow: SwitchRow? = self.form.rowBy(tag: "mondaySwitchRowTag")
                             
@@ -403,7 +419,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                             
                             switchRow = self.form.rowBy(tag: "saturrdaySwitchRowTag")
                             let saturdaySelected = (switchRow?.value == nil) ? false : true
-
+                            
                             row = self.form.rowBy(tag: "SaturdayStart")
                             let SaturdayStart = (saturdaySelected) ? self._CommonHelper.GetTimeAsStringFromDate(targetDate: (row?.value)! as Date) : ""
                             
@@ -412,23 +428,25 @@ class SettingWeeklyRegisterdHours: FormViewController {
                             
                             switchRow = self.form.rowBy(tag: "sundaySwitchRowTag")
                             let sundaySelected = (switchRow?.value == nil) ? false : true
-
+                            
                             row = self.form.rowBy(tag: "SundayStart")
                             let SundayStart = (sundaySelected) ? self._CommonHelper.GetTimeAsStringFromDate(targetDate: (row?.value)! as Date) : ""
                             
                             row = self.form.rowBy(tag: "SundayEnd")
                             let SundayEnd = (sundaySelected) ? self._CommonHelper.GetTimeAsStringFromDate(targetDate: (row?.value)! as Date) : ""
-                           
+                            
                             let year: PickerInlineRow<String>? = self.form.rowBy(tag: "YearPicker")
                             let month: PickerInlineRow<String>? = self.form.rowBy(tag: "MonthPicker")
-                           
+                            
                             let monthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (month?.value)!)
                             
                             self.SetWeeklyRegisterdHours(targetChildren: ids, chosenYear: (year?.value)!, chosenMonth: String(monthAsInt), mondayStartTime: ModayStart, mondayEndTime: ModayEnd, tuesdayStartTime: TuesdayStart, tuesdayEndTime: TuesdayEnd, wednesdayStartTime: WednesdayStart, wednesdayEndTime: WednesdayEnd, thursdayStartTime: ThursdayStart, thursdayEndTime: ThursdayEnd, fridayStartTime: FridayStart, fridayEndTime: FridayEnd, saturdayStartTime: SaturdayStart, saturdayEndTime: SaturdayEnd, sundayStartTime: SundayStart, sundayEndTime: SundayEnd)
+                                
+                            }
                             
                         }.cellUpdate
                         {
-                    cell, row in
+                            cell, row in
                             cell.backgroundColor = StyleManager.theme1()
                             cell.textLabel?.textColor = StyleManager.theme2()
                             cell.height = { 70 }
@@ -529,7 +547,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                         return
                     }
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: String(childrenList.count) + " more to go!")
+                    self._CommonHelper.ShowSuccessMessage(title: "'Registered Hours' have succesfully been created for the chosen week.", subsTtitle: String(childrenList.count) + " more to go.")
                     
                     //Do the next
                     self.PerformSetWeeklyRegisteredHoursRecursively(targetChildren: childrenList, chosenYear: String(chosenYear), chosenMonth: String(chosenMonth), mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion: onCompletion)
@@ -580,7 +598,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                         return
                     }
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: String(childrenList.count) + " more to go!")
+                    self._CommonHelper.ShowSuccessMessage(title: "'Registered Hours' have been successfully 'Rolled Over'.", subsTtitle: String(childrenList.count) + " more to go.")
                     
                     //Do the next
                     self.PerformRollOverRecursively(targetChildren: childrenList, targetYear: targetYear, targetMonth: targetMonth, destinationYear: destinationYear, destinationMonth: destinationMonth, onCompletion: onCompletion)

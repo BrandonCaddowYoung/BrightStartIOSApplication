@@ -2,18 +2,18 @@
 //  AuthyNewUserCompleteViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/02/2017.
+//  Created by Brandon Young on 02/02/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
 import UIKit
 
 class AuthyNewUserCompleteViewController: UIViewController {
-
+    
     var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
     
-     var targetAuthyId :NSString!
+    var targetAuthyId :NSString!
     
     
     @IBOutlet weak var TopContainer: UIView!
@@ -42,7 +42,7 @@ class AuthyNewUserCompleteViewController: UIViewController {
         OkButton.backgroundColor = StyleManager.buttonBackGround()
         OkButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
         
-         OkButton.titleLabel?.font = _ApplicatoinColours.buttonFont
+        OkButton.titleLabel?.font = _ApplicatoinColours.buttonFont
         
         //Styling button
         TestButton.layer.cornerRadius = 5
@@ -63,7 +63,7 @@ class AuthyNewUserCompleteViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -76,10 +76,10 @@ class AuthyNewUserCompleteViewController: UIViewController {
         TopContainer.translatesAutoresizingMaskIntoConstraints = false
         MiddleContainer.translatesAutoresizingMaskIntoConstraints = false
         BottomContainer.translatesAutoresizingMaskIntoConstraints = false
-     
+        
         OkButton.translatesAutoresizingMaskIntoConstraints = false
         TestButton.translatesAutoresizingMaskIntoConstraints = false
-       
+        
         TickImage.translatesAutoresizingMaskIntoConstraints = false
         DoneLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -120,7 +120,7 @@ class AuthyNewUserCompleteViewController: UIViewController {
         MiddleContainer.heightAnchor.constraint(
             equalTo: view.heightAnchor,
             multiplier: 0.60).isActive = true
-
+        
         //Bottom
         
         //left
@@ -149,7 +149,7 @@ class AuthyNewUserCompleteViewController: UIViewController {
         //Y
         TickImage.centerYAnchor.constraint(
             equalTo: MiddleContainer.centerYAnchor).isActive = true
-       
+        
         //Done Label
         
         //top
@@ -172,7 +172,7 @@ class AuthyNewUserCompleteViewController: UIViewController {
             equalTo: TopContainer.centerYAnchor).isActive = true
         
         TestButton.widthAnchor.constraint(
-           equalTo: view.widthAnchor, multiplier: 0.50).isActive = true
+            equalTo: view.widthAnchor, multiplier: 0.50).isActive = true
         
         
         
@@ -230,15 +230,15 @@ class AuthyNewUserCompleteViewController: UIViewController {
     }
     
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

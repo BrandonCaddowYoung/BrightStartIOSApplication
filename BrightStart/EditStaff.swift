@@ -2,7 +2,7 @@
 //  RollOver_Step1.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -85,8 +85,14 @@ class EditStaff: FormViewController {
                         $0.title = "first name"
                         $0.placeholder = "enter first name."
                         $0.value = self.Staff.FirstName as String
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                     }
-                    
                     <<< NameRow("MiddleName") {
                         $0.title = "middle name"
                         $0.placeholder = "enter middle name."
@@ -97,6 +103,13 @@ class EditStaff: FormViewController {
                         $0.title = "last name"
                         $0.placeholder = "enter last name."
                         $0.value = self.Staff.LastName as String
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                     }
                     
                     <<< DateRow("DatOfBirth"){
@@ -137,14 +150,21 @@ class EditStaff: FormViewController {
                         $0.title =  "mobile"
                         $0.placeholder = "enter the mobile number."
                         $0.value = self.Staff.MobileNumber as String
-                }
-                
+                    }
+                    
                     <<< EmailRow("Email") {
                         $0.title =  "email"
                         $0.placeholder = "enter the email"
                         $0.value = self.Staff.EmailAddress as String
-                }
-                
+                        $0.add(rule: RuleEmail())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
+                    }
+                    
                     <<< PasswordRow("Password") {
                         $0.title =  "password"
                         $0.placeholder = "enter the password"
@@ -182,7 +202,7 @@ class EditStaff: FormViewController {
                         $0.title = "relation to Staff"
                         $0.placeholder = "enter the emergency relation."
                         $0.value = self.Staff.EmergencyRelation as String
-                }                
+                }
                 
                 PersonStatusRequests.sharedInstance.GetStatusById(personStatusId: self.Staff.StaffMemberId as String, onCompletion: { json in
                     
@@ -203,16 +223,6 @@ class EditStaff: FormViewController {
                                 $0.value = Bool(leaver)
                         }
                         
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                         //Retrieve all key worker grops
                         KeyWorkerGroupRequests.sharedInstance.GetAllKeyWorkerGroups(onCompletion: { json in
                             
@@ -231,7 +241,7 @@ class EditStaff: FormViewController {
                                 self.form +++ Section("Key Worker Group")
                                     
                                     <<< PickerInlineRow<KeyWorkerGroup>("PickKeyWorkerGroup") {
-                                        $0.title = "Key Worker Group"
+                                        $0.title = "key worker group"
                                         $0.options = self.keyWorkerGroupsArray
                                         
                                         $0.displayValueFor = {
@@ -244,9 +254,7 @@ class EditStaff: FormViewController {
                                         $0.value = self.GetKeyWorkerGroupById(Id: self.Staff.KeyWorkerGroupId)
                                 }
                                 
-                                
-                                
-                                self.form +++ Section("")
+                                self.form +++ Section()
                                     <<< ButtonRow(){
                                         $0.title = "Save Changes"
                                         }.onCellSelection {  cell, row in
@@ -268,23 +276,6 @@ class EditStaff: FormViewController {
                             })
                             
                         })
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                     
-                        
-                        
                     }
                         
                     )})
@@ -357,7 +348,7 @@ class EditStaff: FormViewController {
         var row: TextRow? = self.form.rowBy(tag: "FirstName")
         
         var intRow: IntRow? = self.form.rowBy(tag: "FirstName")
-         let passwordRow: PasswordRow? = self.form.rowBy(tag: "Password")
+        let passwordRow: PasswordRow? = self.form.rowBy(tag: "Password")
         
         let password = passwordRow?.value ?? ""
         
@@ -414,9 +405,6 @@ class EditStaff: FormViewController {
         
         emailRow = self.form.rowBy(tag: "Email")
         let email = emailRow?.value ?? ""
-        
-        
-        
         
         phoneRow = self.form.rowBy(tag: "EmergencyMobile")!
         let emergencyMobile = phoneRow.value ?? ""

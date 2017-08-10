@@ -2,7 +2,7 @@
 //  SettingRegistrationHours.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 07/05/2017.
+//  Created by Brandon Young on 07/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -50,7 +50,7 @@ class EditTimeStamp: FormViewController {
     
     var EditorMode: TimeStampEditerType!
     
-  //  var showNavigationBar = true
+    //  var showNavigationBar = true
     
     var selectedStartTime = NSDate()
     var selectedEndTime = NSDate()
@@ -100,7 +100,7 @@ class EditTimeStamp: FormViewController {
                 
                 if(noStartTime == true && noEndTime == true)
                 {
-                self.noRegisteredHours = true
+                    self.noRegisteredHours = true
                 }
                 
                 //If so default to that date.
@@ -115,7 +115,7 @@ class EditTimeStamp: FormViewController {
                 {
                     if(noEndTime==false){
                         // self.DateTimePicker.setDate(regHours.FinishTime, animated: true)
-                         self.targetRegisteredHours = regHours.FinishTime
+                        self.targetRegisteredHours = regHours.FinishTime
                     }
                 }
                 
@@ -141,7 +141,7 @@ class EditTimeStamp: FormViewController {
                                                             DispatchQueue.main.async(execute: {
                                                                 
                                                                 SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                                                                    self._CommonHelper.ShowSuccessMessage(title: "Timestamp successfully edited.", subsTtitle: "")
                                                                     
                                                                     if(self.goBackOnSuccess == true){
                                                                         if let nav = self.navigationController {
@@ -200,7 +200,7 @@ class EditTimeStamp: FormViewController {
                     
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
                         
-                        self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                        self._CommonHelper.ShowSuccessMessage(title: "Registered hours successfully updated.", subsTtitle: "")
                         
                         if(self.goBackOnSuccess){
                             if let nav = self.navigationController {
@@ -235,7 +235,7 @@ class EditTimeStamp: FormViewController {
                     
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
                         
-                        self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                        self._CommonHelper.ShowSuccessMessage(title: "Registered hours successfully created.", subsTtitle: "")
                         
                         if(self.goBackOnSuccess){
                             if let nav = self.navigationController {
@@ -271,7 +271,7 @@ class EditTimeStamp: FormViewController {
                                                                 
                                                                 SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                     
-                                                                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                                                                    self._CommonHelper.ShowSuccessMessage(title: "Time stamp successfully created.", subsTtitle: "")
                                                                     
                                                                     if(self.goBackOnSuccess){
                                                                         
@@ -312,7 +312,7 @@ class EditTimeStamp: FormViewController {
                                                             
                                                             SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                 
-                                                                self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                                                                self._CommonHelper.ShowSuccessMessage(title: "'Time Stamp' successfully removed.", subsTtitle: "")
                                                                 
                                                                 if(self.goBackOnSuccess){
                                                                     if let nav = self.navigationController {
@@ -341,7 +341,7 @@ class EditTimeStamp: FormViewController {
         
         
     }
-
+    
     
     func NavBarMenuTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
@@ -372,7 +372,7 @@ class EditTimeStamp: FormViewController {
             heading = "Editing Registered Hours"
         }
         else if(self.EditorMode == .Missing_TimeStamps_Edit){
-           heading = "Editing an existing time stamp"
+            heading = "Editing an existing time stamp"
         }
         
         form +++ Section(){ section in
@@ -389,7 +389,7 @@ class EditTimeStamp: FormViewController {
         
         var desctiption = ""
         
-         if(self.EditorMode == .TimeStamps_Create)
+        if(self.EditorMode == .TimeStamps_Create)
         {
             desctiption = "Easily create a new time stamp for " + Name + " by simply selecting a time below before pressing the button to confirm at the bottom of the screen."
         }
@@ -397,11 +397,11 @@ class EditTimeStamp: FormViewController {
             
             desctiption = "Easily edit this time stamp for " + Name + " by simply selecting a new time below before pressing the button to confirm at the bottom of the screen."
         }
-         else if(self.EditorMode == .RegisteredHours_Edit){
+        else if(self.EditorMode == .RegisteredHours_Edit){
             
             desctiption = "Easily edit this registered hour for " + Name + " by simply selecting a new time below before pressing the button to confirm at the bottom of the screen."
         }
-         else if(self.EditorMode == .Missing_TimeStamps_Edit){
+        else if(self.EditorMode == .Missing_TimeStamps_Edit){
             desctiption = "Easily edit this time stamp for " + Name + " by simply selecting a new time below before pressing the button to confirm at the bottom of the screen."
         }
         
@@ -409,44 +409,33 @@ class EditTimeStamp: FormViewController {
             {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
-            <<< LabelRow("Target"){
+            <<< LabelRow(){
                 $0.title = desctiption
                 $0.cell.textLabel?.numberOfLines = 5
         }
         
         form +++ Section("Date")
-            <<< LabelRow("test1"){
-                $0.title = "Date"
+            <<< LabelRow(){
+                $0.title = "date"
                 $0.value = DateAsObject.ToString()
             }
             
-            <<< LabelRow("test2"){
-                $0.title = "Name"
+            <<< LabelRow(){
+                $0.title = "name"
                 $0.value = Name
                 
         }
         
-        
-        //if(EditorMode == .Missing_TimeStamps_Edit || EditorMode == .TimeStamps_Edit){
-          // fetchRegisteredHours()
-        //}
-        
-       // if(EditorMode == .Missing_TimeStamps_Edit || EditorMode == .TimeStamps_Edit && noRegisteredHours == false){
-         //   dateToUse = targetRegisteredHours
-        //}
-        //else
-        //{
         dateToUse = DateAsObject
-        //}
         
         form +++ Section("Select new time stamp")
             
             <<< TimePickerRow("TimePicker") {
-                $0.title = "Start"
+                $0.title = "start"
                 $0.value = dateToUse
         }
         
-        self.form +++ Section("")
+        self.form +++ Section()
             <<< ButtonRow(){
                 
                 $0.title = (EditorMode == .Missing_TimeStamps_Edit || EditorMode == .RegisteredHours_Create || EditorMode == .RegisteredHours_Edit || EditorMode == .TimeStamps_Create || EditorMode == .TimeStamps_Edit) ? "Save" : "Remove"
@@ -463,12 +452,12 @@ class EditTimeStamp: FormViewController {
                     
                     if(self.EditorMode == .RegisteredHours_Create || self.EditorMode == .RegisteredHours_Edit || self.EditorMode == .TimeStamps_Create || self.EditorMode == .TimeStamps_Edit || self.EditorMode == .Missing_TimeStamps_Edit){
                         self.Save(selectedTime: selectedTime!)
-                                           }
+                    }
                     else
                     {
                         self.Remove(selectedTime: selectedTime!)
-
-                       
+                        
+                        
                     }
                 }.cellUpdate
                 {
@@ -479,80 +468,80 @@ class EditTimeStamp: FormViewController {
         }
     }
     
-        override func viewWillAppear(_ animated: Bool) {
-            
-            super.viewWillAppear(animated)
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: animated)
-            
-            SetNavigationBarDetails()
-            
-        }
+    override func viewWillAppear(_ animated: Bool) {
         
+        super.viewWillAppear(animated)
         
-        func SetNavigationBarDetails()
-        {
-            //Title color(Center)
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
-            navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-            
-            navigationController?.navigationBar.tintColor = StyleManager.theme4()
-            
-            //Back ground color
-            navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
-            
-            let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
-            
-            //Right button
-            self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
-            self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
-            
-            if(self.EditorMode == .TimeStamps_Create)
-            {
-                self.navigationItem.title = "Time Stamps"
-            }
-            else if(self.EditorMode == .TimeStamps_Edit){
-                
-                self.navigationItem.title = "Time Stamps"
-            }
-            else if(self.EditorMode == .RegisteredHours_Edit){
-                
-                self.navigationItem.title = "Registered Hours"
-            }
-            else if(self.EditorMode == .Missing_TimeStamps_Edit){
-                
-                self.navigationItem.title = "Time Stamps"
-            }
-            
-        }
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        
+        SetNavigationBarDetails()
+        
+    }
     
-        override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+    
+    func SetNavigationBarDetails()
+    {
+        //Title color(Center)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.NavigationBarText()]
+        navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+        
+        navigationController?.navigationBar.tintColor = StyleManager.theme4()
+        
+        //Back ground color
+        navigationController?.navigationBar.barTintColor = StyleManager.NavigationBarBackGround()
+        
+        let rightUIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Home"), style: .plain, target: self, action: #selector(NavBarMenuTapped))
+        
+        //Right button
+        self.navigationItem.rightBarButtonItem  = rightUIBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = StyleManager.NavigationBarText()
+        
+        if(self.EditorMode == .TimeStamps_Create)
+        {
+            self.navigationItem.title = "Time Stamps"
+        }
+        else if(self.EditorMode == .TimeStamps_Edit){
             
-            if (segue.identifier == "GoToExtraMinutesFinder")
-            {
-                if let vc = segue.destination as? TimeStampSearchTableViewController {
-                    
-                    vc.TargetDate = DateAsObject
-                    vc.TargetPersonId = PersonId as NSString!
-                    vc.SelectedPersonFullName = Name as NSString!
-                    
-                    vc.OptionText = ""
-                }
-                
-            }
-            else if (segue.identifier == "GoToMenu") {
-                
-                if let vc = segue.destination as? MainMenuViewController {
-                    
-                    //In future we should go back to the calendar and select the date, however for now we should just go back to the main menu
-                    
-                    vc.selectedMenu = .RegisteredHours
-                    
-                }
-                
-            }
+            self.navigationItem.title = "Time Stamps"
+        }
+        else if(self.EditorMode == .RegisteredHours_Edit){
+            
+            self.navigationItem.title = "Registered Hours"
+        }
+        else if(self.EditorMode == .Missing_TimeStamps_Edit){
+            
+            self.navigationItem.title = "Time Stamps"
         }
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        
+        if (segue.identifier == "GoToExtraMinutesFinder")
+        {
+            if let vc = segue.destination as? TimeStampSearchTableViewController {
+                
+                vc.TargetDate = DateAsObject
+                vc.TargetPersonId = PersonId as NSString!
+                vc.SelectedPersonFullName = Name as NSString!
+                
+                vc.OptionText = ""
+            }
+            
+        }
+        else if (segue.identifier == "GoToMenu") {
+            
+            if let vc = segue.destination as? MainMenuViewController {
+                
+                //In future we should go back to the calendar and select the date, however for now we should just go back to the main menu
+                
+                vc.selectedMenu = .RegisteredHours
+                
+            }
+            
+        }
+    }
+    
+}
 
 

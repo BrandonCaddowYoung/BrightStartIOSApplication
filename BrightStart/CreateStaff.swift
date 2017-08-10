@@ -2,7 +2,7 @@
 //  RollOver_Step1.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -45,35 +45,49 @@ class CreateStaff: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow("Target"){
-                $0.title = "This feature allows you to create a new Staff."
+            <<< LabelRow(){
+                $0.title = "This feature allows you to add a new staff member to Bright Start."
                 $0.cell.textLabel?.numberOfLines = 5
         }
         
         form +++ Section("How does it work?")
-            <<< LabelRow("test"){
-                $0.title = "Simply complete the form below before clicking the button at the bottom of the page."
+            <<< LabelRow(){
+                $0.title = "Once a staff member has been added to Bright Start, administrators will be able to take advantage of all the features that Bright Start has to offer. Simply fill out the form below before tapping the button found at the bottom of this page."
                 $0.cell.textLabel?.numberOfLines = 6
         }
         
         
-        self.form +++ Section("Genearl")
+        self.form +++ Section("General")
             
             <<< NameRow("FirstName") {
                 $0.title = "first name"
                 $0.placeholder = "enter first name."
-                            }
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
+            }
             
             <<< NameRow("MiddleName") {
                 $0.title = "middle name"
                 $0.placeholder = "enter middle name."
-               
+                
             }
             
             <<< NameRow("LastName") {
                 $0.title = "last name"
                 $0.placeholder = "enter last name."
                 
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< DateRow("DatOfBirth"){
@@ -112,6 +126,13 @@ class CreateStaff: FormViewController {
             <<< EmailRow("Email") {
                 $0.title =  "email"
                 $0.placeholder = "enter the email"
+                $0.add(rule: RuleEmail())
+                $0.validationOptions = .validatesOnChange
+                }
+                .cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
             }
             
             <<< PasswordRow("Password") {
@@ -146,7 +167,6 @@ class CreateStaff: FormViewController {
                 $0.title = "relation to Staff"
                 $0.placeholder = "enter the emergency relation."
         }
-
         
         self.form +++ Section("Status")
             
@@ -173,7 +193,7 @@ class CreateStaff: FormViewController {
                 self.form +++ Section("Key Worker Group")
                     
                     <<< PickerInlineRow<KeyWorkerGroup>("PickKeyWorkerGroup") {
-                        $0.title = "Key Worker Group"
+                        $0.title = "key worker group"
                         $0.options = self.keyWorkerGroupsArray
                         
                         $0.displayValueFor = {
@@ -184,7 +204,7 @@ class CreateStaff: FormViewController {
                         }
                 }
                 
-                self.form +++ Section("")
+                self.form +++ Section()
                     <<< ButtonRow(){
                         $0.title = "Add new staff member"
                         }.onCellSelection {  cell, row in

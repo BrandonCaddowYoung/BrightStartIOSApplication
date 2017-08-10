@@ -1,8 +1,8 @@
 //
-//  Settings_Email.swift.swift
+//  Settings_Email.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/05/2017.
+//  Created by Brandon Young on 02/05/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -59,10 +59,10 @@ class Settings_NurseryDetails: FormViewController {
             self.emailSettings.BankAccountName = (json["BankAccountName"].stringValue as NSString) as String
             self.emailSettings.BankAccountNumber = (json["BankAccountNumber"].stringValue as NSString) as String
             self.emailSettings.BankAccountSortCode = (json["BankAccountSortCode"].stringValue as NSString) as String
-             self.emailSettings.ChequePayableTo = (json["ChequePayableTo"].stringValue as NSString) as String
-             self.emailSettings.VATNumber = (json["VATNumber"].stringValue as NSString) as String
-             self.emailSettings.PostCode = (json["PostCode"].stringValue as NSString) as String
-             self.emailSettings.PrinterName = (json["PrinterName"].stringValue as NSString) as String
+            self.emailSettings.ChequePayableTo = (json["ChequePayableTo"].stringValue as NSString) as String
+            self.emailSettings.VATNumber = (json["VATNumber"].stringValue as NSString) as String
+            self.emailSettings.PostCode = (json["PostCode"].stringValue as NSString) as String
+            self.emailSettings.PrinterName = (json["PrinterName"].stringValue as NSString) as String
             self.emailSettings.BillingType = (json["BillingType"].stringValue as NSString) as String
             self.emailSettings.NurseryScholIdentification = (json["NurseryScholIdentification"].stringValue as NSString) as String
             self.emailSettings.IsNurserySchoolUsingOnlineVersion = (json["IsNurserySchoolUsingOnlineVersion"].stringValue as NSString) as String
@@ -74,136 +74,111 @@ class Settings_NurseryDetails: FormViewController {
                 self.form +++ Section("General Details")
                     
                     <<< NameRow("NurseryName") {
-                        $0.title = "Nursery School Name"
+                        $0.title = "nursery school name"
                         $0.value = self.emailSettings.NurseryName
-                    }
-                    
-                       self.form +++ Section("Address")
+                        $0.add(rule: RuleRequired())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
+                }
+                
+                self.form +++ Section("Address")
                     
                     <<< TextRow("Street") {
-                        $0.title = "Street"
+                        $0.title = "street"
                         $0.value = self.emailSettings.Street
-                }
-                
+                    }
+                    
                     <<< TextRow("Town") {
-                        $0.title = "Town"
+                        $0.title = "town"
                         $0.value = self.emailSettings.Town
-                }
-                
+                    }
+                    
                     <<< TextRow("PostCode") {
-                        $0.title = "Post Code"
+                        $0.title = "post code"
                         $0.value = self.emailSettings.PostCode
-                }
-                
+                    }
+                    
                     <<< PhoneRow("Phone") {
-                        $0.title = "Phone"
+                        $0.title = "phone"
                         $0.value = self.emailSettings.PhoneNumber
                 }
-
-                        self.form +++ Section("Contact")
-                        
-                    <<< URLRow("Website") {
-                        $0.title = "Website URL"
-                        $0.value = URL(string: self.emailSettings.Website)
-                }
                 
+                self.form +++ Section("Contact")
+                    
+                    <<< URLRow("Website") {
+                        $0.title = "website URL"
+                        $0.value = URL(string: self.emailSettings.Website)
+                    }
+                    
                     <<< EmailRow("Email") {
                         $0.title = "e-mail"
                         $0.value = self.emailSettings.EmailAddress
+                        $0.add(rule: RuleEmail())
+                        $0.validationOptions = .validatesOnChange
+                        }
+                        .cellUpdate { cell, row in
+                            if !row.isValid {
+                                cell.titleLabel?.textColor = .red
+                            }
                 }
                 
-                            self.form +++ Section("Personal")
-                            
+                self.form +++ Section("Personal")
+                    
                     <<< NameRow("OwnerName") {
-                        $0.title = "Owner Name"
+                        $0.title = "owner name"
                         $0.value = self.emailSettings.OwnerName
-                }
+                    }
                     
                     <<< PhoneRow("OwnerPhone") {
-                        $0.title = "Owner Phone Number"
+                        $0.title = "owner phone number"
                         $0.value = self.emailSettings.OwnerPhoneNumber
-                }
-                
+                    }
+                    
                     <<< NameRow("ManagerName") {
-                        $0.title = "Manager Phone Number"
+                        $0.title = "manager phone number"
                         $0.value = self.emailSettings.ManagerName
-                }
-                
+                    }
+                    
                     <<< PhoneRow("ManagerPhone") {
-                        $0.title = "Manager Phone Number"
+                        $0.title = "manager phone number"
                         $0.value = self.emailSettings.ManagerPhoneNumber
                 }
                 
-                     self.form +++ Section("Banking Details")
+                self.form +++ Section("Banking Details")
                     
                     <<< IntRow("BankNumber") {
-                        $0.title =  "Bank Account Number"
+                        $0.title =  "bank account number"
                         $0.value = Int(self.emailSettings.BankAccountNumber)
-                }
-                
+                    }
+                    
                     <<< IntRow("BankSortCode") {
-                        $0.title = "Bank Account Sort Code"
+                        $0.title = "bank account sort code"
                         $0.value = Int(self.emailSettings.BankAccountSortCode)
-                }
-                
+                    }
+                    
                     <<< NameRow("ChequePayableTo") {
-                        $0.title = "Cheque Payable To"
+                        $0.title = "cheque payable to"
                         $0.value = self.emailSettings.ChequePayableTo
-                }
-                
+                    }
+                    
                     <<< NameRow("BankName") {
-                        $0.title = "Bank Name"
+                        $0.title = "bank name"
                         $0.value = self.emailSettings.BankAccountName
                 }
                 
-                self.form +++ Section("")
+                self.form +++ Section()
                     <<< ButtonRow(){
                         $0.title = "Save changes"
                         }.onCellSelection {  cell, row in
                             
-                            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
-                            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
-                            SVProgressHUD.show()
+//                            SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+//                            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+//                            SVProgressHUD.show()
                             
-                            //let emailRow: EmailRow? = self.form.rowBy(tag: "email")
-                            //let email = emailRow?.value
-                            
-                            //let passwordRow: PasswordRow? = self.form.rowBy(tag: "password")
-                            //let password = passwordRow?.value
-                            
-                            //var textAreaRow: TextAreaRow? = self.form.rowBy(tag: "EmailBody")
-                           // let EmailBody = textAreaRow?.value
-                            
-                            //textAreaRow = self.form.rowBy(tag: "ExtraTimeMessage")
-                           // let ExtraTimeMessage = textAreaRow?.value
-                            
-//                            SettingsRequests.sharedInstance.UpdateNurserySettings(Id: self.emailSettings.Id, SMTP: self.emailSettings.SMTP, EmailAddress: email!, Port: self.emailSettings.Port, PasssWord: password, Name: self.emailSettings.Name, onCompletion:
-//                                { json in
-//                                    
-//                                    DispatchQueue.main.async(execute: {
-//                                        
-//                                        SettingsRequests.sharedInstance.UpdateSettings(Name: "EmailBodyText", Value: EmailBody!, onCompletion:
-//                                            { json in
-//                                                
-//                                                DispatchQueue.main.async(execute: {
-//                                                    
-//                                                    SettingsRequests.sharedInstance.UpdateSettings(Name: "ExtraTimeBreakDownEmailBodyText", Value: ExtraTimeMessage!, onCompletion:
-//                                                        { json in
-//                                                            
-//                                                            DispatchQueue.main.async(execute: {
-//                                                                
-//                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
-//                                                                    self.performSegue(withIdentifier: "GoToMenu", sender: nil)
-//                                                                })
-//                                                                
-//                                                            })
-//                                                    })
-//                                                    
-//                                                })
-//                                        })
-//                                        
-//                                    })
-//                            })
                         }.cellUpdate
                         {
                             cell, row in

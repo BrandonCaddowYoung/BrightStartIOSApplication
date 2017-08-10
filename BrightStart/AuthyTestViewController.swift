@@ -2,7 +2,7 @@
 //  AuthyTestViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 02/02/2017.
+//  Created by Brandon Young on 02/02/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -10,21 +10,21 @@ import UIKit
 import SVProgressHUD
 
 class AuthyTestViewController: UIViewController, UITextFieldDelegate {
-
-   // var _ApplicatoinColours: ApplicatoinColours!
-   // var _CommonHelper: CommonHelper!
+    
+    // var _ApplicatoinColours: ApplicatoinColours!
+    // var _CommonHelper: CommonHelper!
     
     var shouldPerformCheck = true
     
     var timer = Timer()
     
-   var uuid :NSString!
+    var uuid :NSString!
     
-   var successSegueIdentifier :NSString!
+    var successSegueIdentifier :NSString!
     
     var targetChildId :NSString!
     
-     var targetAuthyId :NSString!
+    var targetAuthyId :NSString!
     var numberOfSeconsToWait: Int!
     
     var selectedAuthyAction = AuhtyActions.ShouldDoNothing
@@ -62,8 +62,8 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         
         self.TokeTextBox.delegate = self
         
-       // _ApplicatoinColours = ApplicatoinColours()
-       // _CommonHelper = CommonHelper()
+        // _ApplicatoinColours = ApplicatoinColours()
+        // _CommonHelper = CommonHelper()
         
         //Styling button
         DoneButton.layer.cornerRadius = 5
@@ -71,8 +71,8 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         DoneButton.layer.borderColor = StyleManager.FontColour().cgColor
         DoneButton.backgroundColor = StyleManager.buttonBackGround()
         DoneButton.setTitleColor(StyleManager.buttonForeGround(), for: .normal)
-
-      //  DoneButton.titleLabel?.font _ApplicatoinColoursrs.buttonFont
+        
+        //  DoneButton.titleLabel?.font _ApplicatoinColoursrs.buttonFont
         
         view.backgroundColor = StyleManager.DarkBackground()
         
@@ -82,7 +82,7 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         BottomContainer.backgroundColor = StyleManager.DarkBackground()
         
         setupConstraints()
-
+        
         // Do any additional setup after loading the view.
         
         AuthyRequests.sharedInstance.GetAuhtyUser(auhtyId: targetAuthyId as String, onCompletion:
@@ -102,14 +102,11 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
                 
                 DispatchQueue.main.async(execute: {
                     
-                   
+                    
                     
                 })
                 
-    })
-        
-    
-    
+        })
         
         PhoneNumberLabel.text = targetAuthyUser.PhoneNumber as String
         
@@ -118,20 +115,20 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         AuthyRequests.sharedInstance.SendOneTouchRequest(authyId: targetAuthyId as String, onCompletion:  { json in
             
             self.uuid = json.rawString() as NSString!
-        
-        DispatchQueue.main.async(execute: {
-        
-             self.Spinner.isHidden = false
-          self.Spinner.startAnimating()
-            self.WaitingLabel.isHidden = false;
-            self.TickImage.isHidden = true
-        
-            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AuthyTestViewController.checkForUsersAcceptance), userInfo: nil, repeats: true)
             
-         })
-        
-         })
+            DispatchQueue.main.async(execute: {
+                
+                self.Spinner.isHidden = false
+                self.Spinner.startAnimating()
+                self.WaitingLabel.isHidden = false;
+                self.TickImage.isHidden = true
+                
+                self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AuthyTestViewController.checkForUsersAcceptance), userInfo: nil, repeats: true)
+                
+            })
             
+        })
+        
         
         
     }
@@ -160,24 +157,24 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
             
             let approved = json.rawString() as NSString!
             
-                DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async(execute: {
+                
+                if(approved=="true")
+                {
+                    self.shouldPerformCheck = false
                     
-                    if(approved=="true")
-                    {
-                        self.shouldPerformCheck = false
-                        
-                        self.Spinner.isHidden = true
-                        self.Spinner.stopAnimating()
-                        self.timer.invalidate()
-                        self.WaitingLabel.text = "Fantastic. That worked."
-                        
-                        self.onSuccss()
-                        
-                    }
+                    self.Spinner.isHidden = true
+                    self.Spinner.stopAnimating()
+                    self.timer.invalidate()
+                    self.WaitingLabel.text = "Fantastic. That worked."
                     
-                })
+                    self.onSuccss()
+                    
+                }
+                
+            })
         })
-    
+        
         numberOfSeconsToWait = numberOfSeconsToWait - 1
         
     }
@@ -186,50 +183,50 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
     {
         
         if(selectedAuthyAction == .ShouldDoNothing){
-         
+            
             //Go back to authy menu
             
         }
-       else if(selectedAuthyAction == .ShouldSignOut){
-    
+        else if(selectedAuthyAction == .ShouldSignOut){
+            
             SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
             SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
             SVProgressHUD.show()
             
-                    CommonRequests.sharedInstance.signOut(personId: self.targetChildId as String, timeOfSignOut: Date() as NSDate,
-                                                          
-                                                          onCompletion: {
+            CommonRequests.sharedInstance.signOut(personId: self.targetChildId as String, timeOfSignOut: Date() as NSDate,
+                                                  
+                                                  onCompletion: {
+                                                    
+                                                    DispatchQueue.main.async(execute: {
+                                                        
+                                                        SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                             
-                                                            DispatchQueue.main.async(execute: {
-                                                                
-                                                                SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                    
-                                                                    self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                                    
-                                                                } )
-                                                                
-                                                            })
+                                                            self.performSegue(withIdentifier: "GoToRegister", sender: self)
                                                             
-                    })
-
+                                                        } )
+                                                        
+                                                    })
+                                                    
+            })
+            
         }
         else if(selectedAuthyAction == AuhtyActions.ShouldSignIn){
-        
+            
             SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
             SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
             SVProgressHUD.show()
             
-                CommonRequests.sharedInstance.signIn(personId: self.targetChildId as String, timeOfSignIn: Date() as NSDate,
-                                                     onCompletion: {
-                                                        DispatchQueue.main.async(execute: {
-                                                            SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                
-                                                                self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                                
-                                                            } )
-                                                        })
-                }
-                )
+            CommonRequests.sharedInstance.signIn(personId: self.targetChildId as String, timeOfSignIn: Date() as NSDate,
+                                                 onCompletion: {
+                                                    DispatchQueue.main.async(execute: {
+                                                        SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                                            
+                                                            self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                            
+                                                        } )
+                                                    })
+            }
+            )
         }
     }
     
@@ -279,7 +276,7 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         TickImage.translatesAutoresizingMaskIntoConstraints = false
         WaitingLabel.translatesAutoresizingMaskIntoConstraints = false
         DoneButton.translatesAutoresizingMaskIntoConstraints = false
-       
+        
         //Top
         
         //left
@@ -336,7 +333,7 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         
         TokeTextBox.widthAnchor.constraint(
             equalTo: TokenContainer.widthAnchor, multiplier: 0.75).isActive = true
-
+        
         
         //Main Container
         
@@ -372,7 +369,7 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         //X
         TickImage.centerXAnchor.constraint(
             equalTo: MainContainer.centerXAnchor).isActive = true
-
+        
         //Top
         WaitingLabel.topAnchor.constraint(
             equalTo: Spinner.bottomAnchor, constant: 10).isActive = true
@@ -398,7 +395,7 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         //right
         BottomContainer.trailingAnchor.constraint(
             equalTo: view.trailingAnchor).isActive = true
-
+        
         
         //Y
         DoneButton.centerYAnchor.constraint(
@@ -424,15 +421,15 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func OKButtonclick(_ sender: Any) {
         self.performSegue(withIdentifier: "GoToMainMenu", sender: self)
-
+        
     }
     
-
+    
     /*!
      @brief Preparing to segue.
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-
+        
         
         if (segue.identifier == "GoToMainMenu") {
             
@@ -451,16 +448,16 @@ class AuthyTestViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-   
+    
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -2,7 +2,7 @@
 //  AuthyRequests.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 30/01/2017.
+//  Created by Brandon Young on 30/01/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 

@@ -8,8 +8,19 @@
 
 import Foundation
 
-open class Invoice
+open class Invoice : Comparable
 {
+    // function for custom operator ==
+    public static func ==(lhs: Invoice, rhs: Invoice) -> Bool {
+        //...
+        return false
+    }
+    // function for custom operator <
+    public static func <(lhs: Invoice, rhs: Invoice) -> Bool {
+        //...
+        return false
+    }
+    
     open var ChildId: Int = 0
     
     open var Early_Time_Minutes: Double = 0

@@ -430,11 +430,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
        // bottomView.backgroundColor = .white
         
-        
-        
-        
-        
-        
         //TOP VIEW
         
         topView.translatesAutoresizingMaskIntoConstraints = false
@@ -577,7 +572,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         if nurserySchoolUserName?.isEmpty == true || nurserySchoolPassword?.isEmpty == true {
             
-            SVProgressHUD.dismiss(withDelay: 1, completion: {
+            SVProgressHUD.dismiss(withDelay: 0.5, completion: {
             
                  self._CommonHelper.ShowErrorMessage(title: "Oh no, that didnt work.", subsTtitle: "In order to login, you will need to supply both a username and a password.");
                 
@@ -602,8 +597,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     
                     let callActionHandler = { () -> Void in
                         
-                      //  self._CommonHelper.ShowSuccessMessage(title: "Great, you're in.", subsTtitle: "Bright Start is ready to go!")
-                        
                         self.performSegue(withIdentifier: "AccessGrantedSegue", sender: self)
                         
                     }
@@ -621,7 +614,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
                     
-                       return self._CommonHelper.ShowErrorMessage(title: "Oh no, that didnt work.", subsTtitle: "Make sure you have entered the correct credentials.")
+                       return self._CommonHelper.ShowErrorMessage(title: "Faild to login.", subsTtitle: "Please try again ensuring you have entered the correct credentials.")
                         
                     } )
                     

@@ -2,7 +2,7 @@
 //  AuthyAuthenticateViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 12/03/2017.
+//  Created by Brandon Young on 12/03/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import UIKit
 import SVProgressHUD
 
 class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
-
-     var showNavigationBar = true
+    
+    var showNavigationBar = true
     
     var shouldPerformCheck = true
     
@@ -29,7 +29,6 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
     var selectedAuthyAction = AuhtyActions.ShouldDoNothing
     
     var targetAuthyUser = AuthyUser()
-
     
     @IBOutlet weak var CenterView: UIView!
     @IBOutlet weak var SecondstoGoLabel: UILabel!
@@ -47,10 +46,10 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         SecondstoGoLabel.text = String(numberOfSeconsToWait)
         
-         self.hideKeyboardWhenTappedAround()
+        self.hideKeyboardWhenTappedAround()
         
         self.edgesForExtendedLayout = []
         
@@ -107,7 +106,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
                 })
                 
         })
-       
+        
         //PhoneNumberLabel.text = targetAuthyUser.PhoneNumber as String
         
         AuthyRequests.sharedInstance.SendOneTouchRequest(authyId: targetAuthyId as String, onCompletion:  { json in
@@ -125,7 +124,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
             })
             
         })
-
+        
         
         
     }
@@ -148,15 +147,9 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
             
             self.timer.invalidate()
             
-            //self.WaitingLabel.text = ""
+            self._CommonHelper.ShowErrorMessage(title: "Authentication failed.", subsTtitle: "You took too long confirming. please try again.")
             
-           self._CommonHelper.ShowErrorMessage(title: "Sorry", subsTtitle: "You took too long confirming. please try again.")
-            
-             self.performSegue(withIdentifier: self.successSegueIdentifier as String, sender: self)
-            
-           // DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(0), execute: {
-               
-           // })
+            self.performSegue(withIdentifier: self.successSegueIdentifier as String, sender: self)
             
         }
         
@@ -186,11 +179,11 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         numberOfSeconsToWait = numberOfSeconsToWait - 1
         
     }
-
+    
     func onSuccss()
     {
         
-          self._CommonHelper.ShowSuccessMessage(title: "Fantastic!", subsTtitle: "That worked!")
+        self._CommonHelper.ShowSuccessMessage(title: "Authentication success.", subsTtitle: "")
         
         
         if(selectedAuthyAction == .ShouldSignOut){
@@ -208,7 +201,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
                                                         SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                             
                                                             self.performSegue(withIdentifier: "GoToRegister", sender: self)
-
+                                                            
                                                         } )
                                                         
                                                         
@@ -222,31 +215,25 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
             SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
             SVProgressHUD.show()
             
-                CommonRequests.sharedInstance.signIn(personId: self.targetChildId as String, timeOfSignIn: Date() as NSDate,
-                                                     onCompletion: {
-                                                        DispatchQueue.main.async(execute: {
+            CommonRequests.sharedInstance.signIn(personId: self.targetChildId as String, timeOfSignIn: Date() as NSDate,
+                                                 onCompletion: {
+                                                    DispatchQueue.main.async(execute: {
+                                                        
+                                                        SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                             
-                                                            SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                
-                                                                self.performSegue(withIdentifier: "GoToRegister", sender: self)
-                                                                
-                                                            } )
-                                                        })
-                }
-                )
+                                                            self.performSegue(withIdentifier: "GoToRegister", sender: self)
+                                                            
+                                                        } )
+                                                    })
+            }
+            )
         }
         else if(selectedAuthyAction == AuhtyActions.ShouldDoNothing){
-         
+            
             SecondstoGoLabel.text = ""
             SecondsToGoLabel2.text = ""
             
-           // TopLabel.text = "Fantastic, that worked!"
-            
-             self.performSegue(withIdentifier: self.successSegueIdentifier as String, sender: self)
-            
-            //DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(0), execute: {
-               
-            //})
+            self.performSegue(withIdentifier: self.successSegueIdentifier as String, sender: self)
             
         }
     }
@@ -262,7 +249,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         CenterView.centerYAnchor.constraint(
             equalTo: view.centerYAnchor).isActive = true
-     
+        
         CenterView.widthAnchor.constraint(
             equalTo: view.widthAnchor,
             multiplier: 0.50).isActive = true
@@ -273,18 +260,18 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         SecondstoGoLabel.translatesAutoresizingMaskIntoConstraints = false
         
-       SecondstoGoLabel.centerXAnchor.constraint(
+        SecondstoGoLabel.centerXAnchor.constraint(
             equalTo: view.centerXAnchor).isActive = true
         
         SecondstoGoLabel.centerYAnchor.constraint(
             equalTo: view.centerYAnchor).isActive = true
-       
+        
         SecondsToGoLabel2.translatesAutoresizingMaskIntoConstraints = false
-       
+        
         SecondsToGoLabel2.centerXAnchor.constraint(
             equalTo: view.centerXAnchor).isActive = true
-
-       SecondsToGoLabel2.topAnchor.constraint(
+        
+        SecondsToGoLabel2.topAnchor.constraint(
             equalTo: SecondstoGoLabel.bottomAnchor).isActive = true
         
         
@@ -296,7 +283,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
             equalTo: view.heightAnchor, multiplier: 0.20).isActive = true
         
         TopContainer.leadingAnchor.constraint(
-        equalTo: view.leadingAnchor).isActive = true
+            equalTo: view.leadingAnchor).isActive = true
         
         TopContainer.trailingAnchor.constraint(
             equalTo: view.trailingAnchor).isActive = true
@@ -333,8 +320,8 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         TopLabel.centerYAnchor.constraint(
             equalTo: TopContainer.centerYAnchor).isActive = true
-
-   
+        
+        
         
         
         TokenTextFiled.translatesAutoresizingMaskIntoConstraints = false
@@ -358,7 +345,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         DontHaveYourPhoneLabel.bottomAnchor.constraint(
             equalTo: view.bottomAnchor).isActive = true
-
+        
         
         
         
@@ -369,16 +356,16 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -409,7 +396,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
     }
     
     func NavBarMenuTapped(){
-    self.performSegue(withIdentifier: "GoToMenu", sender: nil)
+        self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
     
     func createOverlay(frame : CGRect, xOffset: CGFloat, yOffset: CGFloat, radius: CGFloat) -> UIView
@@ -434,6 +421,6 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
         
         return overlayView
     }
-
+    
 }
 

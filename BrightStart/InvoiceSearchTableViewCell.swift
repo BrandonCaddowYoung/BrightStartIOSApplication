@@ -135,7 +135,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
             equalTo: contentView.topAnchor).isActive = true
         
         //LargeLeftContainer.bottomAnchor.constraint(
-          //  equalTo: contentView.bottomAnchor).isActive = true
+        //  equalTo: contentView.bottomAnchor).isActive = true
         
         
         //TOTAL LABEL
@@ -209,12 +209,12 @@ class InvoiceSearchTableViewCell: UITableViewCell
             equalTo: BalanceAmountLabel.bottomAnchor, constant: 4).isActive = true
         
         
-
         
         
         
         
-       
+        
+        
         SmallTopRightContainer.translatesAutoresizingMaskIntoConstraints = false
         
         //left
@@ -233,7 +233,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
         SmallTopRightContainer.topAnchor.constraint(
             equalTo: LargeLeftContainer.topAnchor).isActive = true
         
-
+        
         
         
         RegisteredAmountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -329,7 +329,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
             equalTo: LargeLeftContainer.bottomAnchor).isActive = true
         
         
-       
+        
         
         ExtraAmountLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -375,9 +375,9 @@ class InvoiceSearchTableViewCell: UITableViewCell
         
         BottomContainer.bottomAnchor.constraint(
             equalTo: contentView.bottomAnchor).isActive = true
-
-
-
+        
+        
+        
         
         
         
@@ -460,7 +460,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
         InvoiceStartDate.bottomAnchor.constraint(
             equalTo: LineOuterContainer.topAnchor).isActive = true
         
-       InvoiceStartDate.textAlignment = .left
+        InvoiceStartDate.textAlignment = .left
         
         
         
@@ -499,13 +499,13 @@ class InvoiceSearchTableViewCell: UITableViewCell
             dateFormatter.amSymbol = "AM"
             dateFormatter.pmSymbol = "PM"
             
-           // let convertedDateString = dateFormatter.string(from: invoice.TimeStamp)
+            // let convertedDateString = dateFormatter.string(from: invoice.TimeStamp)
             
-           // let dateField = convertedDateString as String
+            // let dateField = convertedDateString as String
             
             TotalLabel?.text = "£" + String(describing: invoice.InvoiceTotal.roundTo(places: 2))
             InvoiceNumberLabel?.text = "#" + String(describing: invoice.InvoiceNumber)
-           
+            
             var (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int(invoice.Registered_Time_Minutes * 60))
             RegisteredAmountLabel?.text = String(h) + "H " + String(m) + "M"
             
@@ -520,7 +520,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
             BalanceLabel.isHidden = false
             
             InvoiceStartDate.text = invoice.Start_Date.ToString()
-             InvoiceEndDate.text = invoice.End_Date.ToString()
+            InvoiceEndDate.text = invoice.End_Date.ToString()
             
             // UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
             //UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")

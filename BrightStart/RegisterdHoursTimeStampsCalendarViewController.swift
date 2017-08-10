@@ -2,7 +2,7 @@
 //  RegisteredHoursViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 11/02/2017.
+//  Created by Brandon Young on 11/02/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -342,6 +342,9 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
         myCustomCell.dayLabel.text = cellState.text
         myCustomCell.dayLabel.textColor = StyleManager.theme1()
         
+        //myCustomCell.dayLabel.text = "test"
+        //myCustomCell.dayLabel.textColor = .black
+        
         //if(cellState.dateBelongsTo == .thisMonth){
         //myCustomCell.dayLabel.textColor = _ApplicatoinColours.Red
           //  }
@@ -355,7 +358,49 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             myCustomCell.isUserInteractionEnabled = false
         }
         
+        //For a round blue background
         myCustomCell.selectedView.backgroundColor = StyleManager.theme1()
+        
+        //for an image as a background!
+//        UIGraphicsBeginImageContext(myCustomCell.selectedView.frame.size);
+//        var image = UIImage(named: "star")
+//        image?.draw(in: myCustomCell.selectedView.bounds)
+//        image = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext()
+//        myCustomCell.selectedView.backgroundColor = UIColor(patternImage: image!)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MMMM"
+//        let nameOfMonth = dateFormatter.string(from: date)
+        
+        if cellState.dateBelongsTo == .thisMonth {
+//        if nameOfMonth == "July" {
+            
+//            print(date)
+//            
+//            UIGraphicsBeginImageContext(myCustomCell.frame.size);
+//            var image = UIImage(named: "star")
+//            image?.draw(in: myCustomCell.bounds)
+//            image = UIGraphicsGetImageFromCurrentImageContext();
+//            UIGraphicsEndImageContext()
+//            myCustomCell.backgroundColor = UIColor(patternImage: image!)
+            
+//        }
+        }
+        
+        
+        
         
         handleCellTextColor(view: cell, cellState: cellState)
         handleCellSelection(view: cell, cellState: cellState)
@@ -769,11 +814,30 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             myCustomCell.dayLabel.textColor = StyleManager.theme2()
         } else {
             if cellState.dateBelongsTo == .thisMonth {
+                
+//                UIGraphicsBeginImageContext(myCustomCell.frame.size);
+//                            var image = UIImage(named: "star")
+//                            image?.draw(in: myCustomCell.bounds)
+//                            image = UIGraphicsGetImageFromCurrentImageContext();
+//                            UIGraphicsEndImageContext()
+//                            myCustomCell.backgroundColor = UIColor(patternImage: image!)
+                
+                
                 myCustomCell.dayLabel.textColor = StyleManager.theme1()
             } else {
                 myCustomCell.dayLabel.textColor = StyleManager.theme2()
             }
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     // Function to handle the calendar selection
@@ -1095,14 +1159,6 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
             }
         }
         
-       
-        
-        
-        
-        
-        
-        
-        
     }
     
     func addNewButtonStartClicked(sender: UITapGestureRecognizer) {
@@ -1201,7 +1257,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                                 
                                 self.calendarView.selectDates([self.lastSelectedDate])
                                 
-                                self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                                self._CommonHelper.ShowSuccessMessage(title: "'Registered Hours' succesfully removed.", subsTtitle: "")
                                 
                                 
                             } )

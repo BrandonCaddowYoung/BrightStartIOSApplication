@@ -2,7 +2,7 @@
 //  WeekDay.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 08/04/2017.
+//  Created by Brandon Young on 08/04/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 

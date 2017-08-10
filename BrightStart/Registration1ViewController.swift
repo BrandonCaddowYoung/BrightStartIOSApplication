@@ -2,7 +2,7 @@
 //  Registration1ViewController.swift
 //  BrightStart
 //
-//  Created by Colleen Caddow on 07/02/2017.
+//  Created by Brandon Young on 07/02/2017.
 //  Copyright © 2017 dev. All rights reserved.
 //
 
@@ -89,9 +89,6 @@ class Registration1ViewController: UIViewController , UITextFieldDelegate {
         self.navigationController?.navigationBar.topItem?.title = " "
         
         //No right button
-        
-        //Changes the color of the backgorund within the nav bar.
-        //navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
         
         //Title color(Center)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: StyleManager.theme2()]
