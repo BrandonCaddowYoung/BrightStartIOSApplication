@@ -111,7 +111,7 @@ class BirthdayCalendarViewController: UIViewController, UITableViewDataSource, U
             
             DispatchQueue.main.async(execute: {
                 
-                let fullChildList = Dictionary(keyValuePairs: self.childrenArray.map{($0.ChildId, $0.ChildFullName)})
+                //let fullChildList = Dictionary(keyValuePairs: self.childrenArray.map{($0.ChildId, $0.ChildFullName)})
                 
                 SVProgressHUD.dismiss(withDelay: 1, completion: {
                     self.calendar.reloadData()

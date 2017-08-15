@@ -767,6 +767,15 @@ class MainMenuViewController: UIViewController {
                     vc.Purpose = ""
                 }
             }
+            else if(targetPurpose == .Billing_ViewPayment)
+            {
+                if let vc = segue.destination as? PersonSearchTableViewController {
+                    
+                    vc.successSegueIdentifier = "GoToPaymentSearch"
+                    vc.GoToMenuType = .Staff
+                    vc.Purpose = ""
+                }
+            }
         }
             
         else if (segue.identifier == "GoToTimeStampsMenu") {

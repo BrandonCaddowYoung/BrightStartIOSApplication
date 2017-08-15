@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class InvoiceSearchTableViewCell: UITableViewCell
+class PaymentSearchTableViewCell: UITableViewCell
 {
-    var invoice: Invoice? {
+    var Payment: FinancialTransaction? {
         didSet {
             updateUI()
         }
@@ -24,7 +24,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
     
     @IBOutlet weak var TotalLabel: UILabel!
     
-    @IBOutlet weak var InvoiceNumberLabel: UILabel!
+    @IBOutlet weak var PaymentNumberLabel: UILabel!
     
     @IBOutlet weak var SmallTopLeftContainer: UIView!
     
@@ -54,9 +54,9 @@ class InvoiceSearchTableViewCell: UITableViewCell
     
     @IBOutlet weak var LineContainer: UIView!
     
-    @IBOutlet weak var InvoiceStartDate: UILabel!
+    @IBOutlet weak var PaymentStartDate: UILabel!
     
-    @IBOutlet weak var InvoiceEndDate: UILabel!
+    @IBOutlet weak var PaymentEndDate: UILabel!
     
     override func awakeFromNib() {
         
@@ -78,10 +78,10 @@ class InvoiceSearchTableViewCell: UITableViewCell
         LineInnerContainer.backgroundColor = StyleManager.theme2()
         
         TotalLabel.font = _ApplicationColours.XlargeFont
-        InvoiceNumberLabel.font = _ApplicationColours.mediumFont
+        PaymentNumberLabel.font = _ApplicationColours.mediumFont
         
-        InvoiceStartDate.font = _ApplicationColours.mediumFont
-        InvoiceEndDate.font = _ApplicationColours.mediumFont
+        PaymentStartDate.font = _ApplicationColours.mediumFont
+        PaymentEndDate.font = _ApplicationColours.mediumFont
         
         RegisteredAmountLabel.font = _ApplicationColours.mediumFont
         NonRegisteredAmountLabel.font = _ApplicationColours.mediumFont
@@ -94,7 +94,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
         BalanceLabel.font = _ApplicationColours.smallFont
         
         TotalLabel.textColor = StyleManager.theme5()
-        InvoiceNumberLabel.textColor = StyleManager.theme5()
+        PaymentNumberLabel.textColor = StyleManager.theme5()
         
         RegisteredAmountLabel.textColor = StyleManager.theme5()
         NonRegisteredAmountLabel.textColor = StyleManager.theme5()
@@ -106,8 +106,8 @@ class InvoiceSearchTableViewCell: UITableViewCell
         ExtraLabel.textColor = StyleManager.theme5()
         BalanceLabel.textColor = StyleManager.theme5()
         
-        InvoiceStartDate.textColor = StyleManager.theme5()
-        InvoiceEndDate.textColor = StyleManager.theme5()
+        PaymentStartDate.textColor = StyleManager.theme5()
+        PaymentEndDate.textColor = StyleManager.theme5()
         
     }
     
@@ -146,16 +146,16 @@ class InvoiceSearchTableViewCell: UITableViewCell
         TotalLabel.centerXAnchor.constraint(
             equalTo: LargeLeftContainer.centerXAnchor).isActive = true
         
-        //INVOICE NUMBER LABEL
+        //Payment NUMBER LABEL
         
-        InvoiceNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        PaymentNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //left
-        InvoiceNumberLabel.leadingAnchor.constraint(
+        PaymentNumberLabel.leadingAnchor.constraint(
             equalTo: LargeLeftContainer.leadingAnchor, constant: 10).isActive = true
         
         //left
-        InvoiceNumberLabel.topAnchor.constraint(
+        PaymentNumberLabel.topAnchor.constraint(
             equalTo: LargeLeftContainer.topAnchor, constant: 10).isActive = true
         
         
@@ -448,29 +448,29 @@ class InvoiceSearchTableViewCell: UITableViewCell
         
         
         
-        InvoiceStartDate.translatesAutoresizingMaskIntoConstraints = false
+        PaymentStartDate.translatesAutoresizingMaskIntoConstraints = false
         
-        InvoiceStartDate.leadingAnchor.constraint(
+        PaymentStartDate.leadingAnchor.constraint(
             equalTo: LineOuterContainer.leadingAnchor).isActive = true
         
-        InvoiceStartDate.bottomAnchor.constraint(
+        PaymentStartDate.bottomAnchor.constraint(
             equalTo: LineOuterContainer.topAnchor).isActive = true
         
-        InvoiceStartDate.textAlignment = .left
+        PaymentStartDate.textAlignment = .left
         
         
         
         
         
-        InvoiceEndDate.translatesAutoresizingMaskIntoConstraints = false
+        PaymentEndDate.translatesAutoresizingMaskIntoConstraints = false
         
-        InvoiceEndDate.trailingAnchor.constraint(
+        PaymentEndDate.trailingAnchor.constraint(
             equalTo: LineOuterContainer.trailingAnchor).isActive = true
         
-        InvoiceEndDate.bottomAnchor.constraint(
+        PaymentEndDate.bottomAnchor.constraint(
             equalTo: LineOuterContainer.topAnchor).isActive = true
         
-        InvoiceEndDate.textAlignment = .right
+        PaymentEndDate.textAlignment = .right
         
         
         
@@ -483,7 +483,7 @@ class InvoiceSearchTableViewCell: UITableViewCell
         
         self.backgroundColor = StyleManager.theme1()
         
-        if let invoice = self.invoice
+        if let Payment = self.Payment
         {
             let dateFormatter = DateFormatter()
             
@@ -495,28 +495,19 @@ class InvoiceSearchTableViewCell: UITableViewCell
             dateFormatter.amSymbol = "AM"
             dateFormatter.pmSymbol = "PM"
             
-            // let convertedDateString = dateFormatter.string(from: invoice.TimeStamp)
+            // let convertedDateString = dateFormatter.string(from: Payment.TimeStamp)
             
             // let dateField = convertedDateString as String
             
-            TotalLabel?.text = "£" + String(describing: invoice.InvoiceTotal.roundTo(places: 2))
-            InvoiceNumberLabel?.text = "#" + String(describing: invoice.InvoiceNumber)
+            TotalLabel?.text = "£" + String(describing: Payment.TransactionAmount.roundTo(places: 2))
+            PaymentNumberLabel?.text = "#" + String(describing: Payment.TransactionId)
             
-            var (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int(invoice.Registered_Time_Minutes * 60))
-            RegisteredAmountLabel?.text = String(h) + "H " + String(m) + "M"
-            
-            (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int(invoice.NonRegistered_Time_Minutes * 60))
-            NonRegisteredAmountLabel?.text = String(h) + "H " + String(m) + "M"
-            
-            (h, m, s) = _CommonHelper.secondsToHoursMinutesSeconds (seconds: Int((invoice.Early_Time_Minutes + invoice.Late_Time_Minutes) * 60))
-            ExtraAmountLabel?.text = String(h) + "H " + String(m) + "M"
-            
-            BalanceAmountLabel?.text = "£" + String(describing: invoice.InvoiceBalance.roundTo(places: 2))
+            BalanceAmountLabel?.text = "£" + String(describing: Payment.TransactionAmount.roundTo(places: 2))
             BalanceAmountLabel.isHidden = false
             BalanceLabel.isHidden = false
             
-            InvoiceStartDate.text = invoice.Start_Date.ToString()
-            InvoiceEndDate.text = invoice.End_Date.ToString()
+            PaymentStartDate.text = Payment.DatePaymentHitAccount.ToString()
+            PaymentEndDate.text = Payment.TransactionDate.ToString()
             
             // UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
             //UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")

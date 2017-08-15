@@ -293,7 +293,7 @@ class CreatePayment: FormViewController {
                     
                     <<< DecimalRow("Amount") {
                         $0.title = "Amount"
-                        $0.placeholder = "enter the full day rate."
+                        $0.placeholder = "enter the transaction amount."
                         $0.value = Double(0.0)
                         
                         $0.useFormatterDuringInput = true
@@ -326,7 +326,7 @@ class CreatePayment: FormViewController {
                             
                             let decimalRow: DecimalRow? = self.form.rowBy(tag: "Amount")
                             let amount = decimalRow?.value ?? 0.00
-                            let voucher: PickerInlineRow<String>? = self.form.rowBy(tag: "PickVoucher")
+                            //let voucher: PickerInlineRow<String>? = self.form.rowBy(tag: "PickVoucher")
                             
                             let paymentMethod: PickerInlineRow<String>? = self.form.rowBy(tag: "PickPaymentMethod")
                             

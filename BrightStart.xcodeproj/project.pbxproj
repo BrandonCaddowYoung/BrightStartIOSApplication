@@ -56,6 +56,10 @@
 		7B8BDBDB1E156F47009F3EAF /* PersonLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBDA1E156F47009F3EAF /* PersonLog.swift */; };
 		7B8BDBDD1E156FE1009F3EAF /* PersonLogRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBDC1E156FE1009F3EAF /* PersonLogRequests.swift */; };
 		7B8BDBDF1E1572AF009F3EAF /* ChildRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BDBDE1E1572AF009F3EAF /* ChildRequests.swift */; };
+		7B8BE7931F408C7F002C969A /* PaymentSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BE7921F408C7F002C969A /* PaymentSearchTableViewController.swift */; };
+		7B8BE7AC1F408D10002C969A /* FinancialTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BE7AB1F408D10002C969A /* FinancialTransaction.swift */; };
+		7B8BE7AE1F408E8F002C969A /* Payment_Edit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BE7AD1F408E8F002C969A /* Payment_Edit.swift */; };
+		7B8BE7B01F4091FC002C969A /* PaymentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BE7AF1F4091FC002C969A /* PaymentSearchTableViewCell.swift */; };
 		7B99CDC31DFB6F21007EF4FC /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */; };
 		7B99CDC51DFDA6F4007EF4FC /* ApplicationColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99CDC41DFDA6F4007EF4FC /* ApplicationColours.swift */; };
 		7BA450DD1F372E4300F6908C /* BirthdayCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA450DC1F372E4300F6908C /* BirthdayCalendar.swift */; };
@@ -366,6 +370,10 @@
 		7B8BDBDA1E156F47009F3EAF /* PersonLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonLog.swift; sourceTree = "<group>"; };
 		7B8BDBDC1E156FE1009F3EAF /* PersonLogRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonLogRequests.swift; sourceTree = "<group>"; };
 		7B8BDBDE1E1572AF009F3EAF /* ChildRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildRequests.swift; sourceTree = "<group>"; };
+		7B8BE7921F408C7F002C969A /* PaymentSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentSearchTableViewController.swift; sourceTree = "<group>"; };
+		7B8BE7AB1F408D10002C969A /* FinancialTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinancialTransaction.swift; sourceTree = "<group>"; };
+		7B8BE7AD1F408E8F002C969A /* Payment_Edit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payment_Edit.swift; sourceTree = "<group>"; };
+		7B8BE7AF1F4091FC002C969A /* PaymentSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentSearchTableViewCell.swift; sourceTree = "<group>"; };
 		7B99CDC21DFB6F21007EF4FC /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		7B99CDC41DFDA6F4007EF4FC /* ApplicationColours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationColours.swift; sourceTree = "<group>"; };
 		7BA450DC1F372E4300F6908C /* BirthdayCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthdayCalendar.swift; sourceTree = "<group>"; };
@@ -654,6 +662,7 @@
 				7B1575E71E81BED1008AB34F /* ListItemCell.swift */,
 				7B6487281E9BF8C80018616D /* RegisreredHoursDayOfWeekTableViewCell.swift */,
 				7BF98D281EAA895000F3D918 /* InvoiceSearchTableViewCell.swift */,
+				7B8BE7AF1F4091FC002C969A /* PaymentSearchTableViewCell.swift */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -666,6 +675,7 @@
 				7B8BDBCB1E12ED9F009F3EAF /* PersonSearchTableViewController.swift */,
 				7B57746C1E428F8C006AE378 /* AuthyPersonSearchTableViewController.swift */,
 				7BF98D221EAA320400F3D918 /* InvoiceSearchTableViewController.swift */,
+				7B8BE7921F408C7F002C969A /* PaymentSearchTableViewController.swift */,
 			);
 			name = TablieViews;
 			sourceTree = "<group>";
@@ -684,6 +694,7 @@
 				7BB62A921F03DD97000EFD89 /* BrightStartStaff.swift */,
 				7BE8BA5F1F0F862E001FC6AB /* KeyWorkerGroup.swift */,
 				7BD4DED51F33C0A800434EB7 /* NurseryEvent.swift */,
+				7B8BE7AB1F408D10002C969A /* FinancialTransaction.swift */,
 			);
 			name = BrightStart;
 			sourceTree = "<group>";
@@ -716,6 +727,7 @@
 			isa = PBXGroup;
 			children = (
 				7BC1BC3F1F39E99800010568 /* CreatePayment.swift */,
+				7B8BE7AD1F408E8F002C969A /* Payment_Edit.swift */,
 			);
 			name = Payments;
 			sourceTree = "<group>";
@@ -1021,16 +1033,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
-					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
+					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
 					ProductGroup = 7B17727E1DEB7FAF002992C9 /* Products */;
 					ProjectRef = 7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = 7B1772651DEB7F8F002992C9 /* Products */;
-					ProjectRef = 7B1772641DEB7F8F002992C9 /* Alamofire.xcodeproj */;
+					ProductGroup = 7B17724C1DEB7F86002992C9 /* Products */;
+					ProjectRef = 7B17724B1DEB7F86002992C9 /* Alamofire.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1285,6 +1297,7 @@
 				7BD0FFE31E43C95300472759 /* AuthyTestViewController.swift in Sources */,
 				7BF98D251EAA855600F3D918 /* InvoiceRequests.swift in Sources */,
 				7BCAD8111DF613360056AC9C /* MainMenuViewController.swift in Sources */,
+				7B8BE7B01F4091FC002C969A /* PaymentSearchTableViewCell.swift in Sources */,
 				7B5DB3B21E87BFEF00434F50 /* AccountRequests.swift in Sources */,
 				7BB62A8A1F01AEBD000EFD89 /* KeyWorkerGroupRequests.swift in Sources */,
 				7BF98D231EAA320400F3D918 /* InvoiceSearchTableViewController.swift in Sources */,
@@ -1322,6 +1335,7 @@
 				7B4CC5D81E3F331300190BFA /* AuthyRequests.swift in Sources */,
 				7BEAD03C1E1EFDE500DD4DCF /* DateSelectionViewController.swift in Sources */,
 				7B5CDC871EC2ECBF0008E464 /* MissingTimeStampsResults.swift in Sources */,
+				7B8BE7AE1F408E8F002C969A /* Payment_Edit.swift in Sources */,
 				7BB62A8F1F03DC21000EFD89 /* EditStaff.swift in Sources */,
 				7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */,
 				7B70F0591E8C2A8600290432 /* SuccessTemplateController.swift in Sources */,
@@ -1349,6 +1363,7 @@
 				7BD0FFE51E44787600472759 /* AuthyUser.swift in Sources */,
 				7B8BDBD11E12F10C009F3EAF /* TimeStampSearchTableViewCell.swift in Sources */,
 				7BC6E8AE1EC6ECA6001AC325 /* NewNurserySignUp.swift in Sources */,
+				7B8BE7AC1F408D10002C969A /* FinancialTransaction.swift in Sources */,
 				7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */,
 				7BC1BC441F3B86AC00010568 /* FinancialTransactionRequests.swift in Sources */,
 				7BC1BC421F3A4D0100010568 /* VoucherRequests.swift in Sources */,
@@ -1358,6 +1373,7 @@
 				7B774FA01E4FC9D300ECDF66 /* TimeStampsSectionHeader.swift in Sources */,
 				7BB62A711F01ADDA000EFD89 /* PersonStatusRequests.swift in Sources */,
 				7BCAD8131DF61A600056AC9C /* MainMenuButtonCollectionViewCell.swift in Sources */,
+				7B8BE7931F408C7F002C969A /* PaymentSearchTableViewController.swift in Sources */,
 				7B8BDBCF1E12F017009F3EAF /* PersonSearchTableViewCell.swift in Sources */,
 				D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */,
 				7BC1BC401F39E99800010568 /* CreatePayment.swift in Sources */,

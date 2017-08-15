@@ -22,6 +22,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     
     var SelectedPersonFullName: NSString!
     var SelectedPersonId: NSString!
+    var SelectedAccountId: String = ""
     
      var Purpose: NSString!
     var OptionText: NSString!
@@ -97,6 +98,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     
                     child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
                     child.ChildId = JSON["ChildId"].stringValue as NSString
+                     child.AccountId = JSON["AccountId"].stringValue as NSString
                     
                     let dateFormatter = DateFormatter()
                     //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -155,6 +157,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                         
                         child.ChildFullName = JSON["FullName"].stringValue as NSString
                         child.ChildId = JSON["StaffMemberId"].stringValue as NSString
+                        child.AccountId = JSON["AccountId"].stringValue as NSString
+                        
                         
                         let dateFormatter = DateFormatter()
                         //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -208,6 +212,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     
                     child.ChildFullName = JSON["ChildFullName"].stringValue as NSString
                     child.ChildId = JSON["ChildId"].stringValue as NSString
+                    child.AccountId = JSON["AccountId"].stringValue as NSString
                     
                     let dateFormatter = DateFormatter()
                     //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -285,6 +290,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             
             self.SelectedPersonId = ((cell.child?.ChildId)! as String as String as NSString!)
             
+            self.SelectedAccountId = cell.child?.AccountId as! String
+            
             self.SelectedPersonFullName = ((cell.child?.ChildFullName)! as String as String as NSString!)
             
             self.performSegue(withIdentifier: successSegueIdentifier, sender: nil)
@@ -308,6 +315,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             let findTimeStamps = UITableViewRowAction(style: .normal, title: rowTitle as String?) { action, index in
                 
                 self.SelectedPersonId = ((cell.child?.ChildId)! as String as String as NSString!)
+                
+                self.SelectedAccountId = cell.child?.AccountId as! String
                 
                 self.SelectedPersonFullName = ((cell.child?.ChildFullName)! as String as String as NSString!)
 
@@ -410,6 +419,23 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                 vc.SelectedPersonFullName = self.SelectedPersonFullName
                 
                 if(self.OptionText == "Invoice Search.")
+                {
+                    vc.OptionText = "Search"
+                }
+                else
+                {
+                    vc.OptionText = ""
+                }
+                
+            }
+        }
+        if (segue.identifier == "GoToPaymentSearch") {
+            
+            if let vc = segue.destination as? PaymentSearchTableViewController {
+                vc.TargetAccountId = self.SelectedAccountId
+                vc.SelectedPersonFullName = self.SelectedPersonFullName
+                
+                if(self.OptionText == "Payment Search.")
                 {
                     vc.OptionText = "Search"
                 }
