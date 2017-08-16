@@ -133,7 +133,7 @@ class Payment_Edit: FormViewController {
                     
                     let TransactionType = transactionType
                     let TransactionComment = transactionComment
-                    let Amount = amount
+                   
                     let DateFundsReceived = dateFundsReceived?.ToURLString2()
                     
                     FinancialTransactionRequests.sharedInstance.UpdatePayment(
@@ -141,7 +141,7 @@ class Payment_Edit: FormViewController {
                         accountId: self.targetPayment.AccountId,
                         invoiceNumber: self.targetPayment.InvoiceNumber,
                         transactionDate: self.targetPayment.TransactionDate.ToURLString2(),
-                        transactionAmount: String(describing: Amount),
+                        transactionAmount: amount?.toString(),
                         transactionType: TransactionType,
                         transactionComment: TransactionComment,
                         datePaymentHitAccount: DateFundsReceived,

@@ -772,7 +772,7 @@ class MainMenuViewController: UIViewController {
                 if let vc = segue.destination as? PersonSearchTableViewController {
                     
                     vc.successSegueIdentifier = "GoToPaymentSearch"
-                    vc.GoToMenuType = .Staff
+                    vc.GoToMenuType = .Billing
                     vc.Purpose = ""
                 }
             }

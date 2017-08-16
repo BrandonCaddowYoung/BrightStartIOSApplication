@@ -169,12 +169,12 @@ class InvoiceSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 
                 let invoice = Invoice()
                 
-//                invoice.ChildId = Int(JSON["ChildId"].stringValue)!
-                invoice.ChildId = Int(Double(JSON["ChildId"].stringValue)!)
-                invoice.Early_Time_Minutes = Double(JSON["Early_Time_Minutes"].stringValue)!
+//              invoice.ChildId = Int(JSON["ChildId"].stringValue)!
+                invoice.ChildId = JSON["ChildId"].intValue
+                invoice.Early_Time_Minutes = JSON["Early_Time_Minutes"].doubleValue
               
-                invoice.EnforceFullTime = Bool(JSON["EnforceFullTime"].stringValue)!
-                invoice.EnforcePartTime = Bool(JSON["EnforcePartTime"].stringValue)!
+                invoice.EnforceFullTime = JSON["EnforceFullTime"].boolValue
+                invoice.EnforcePartTime = JSON["EnforcePartTime"].boolValue
                 
                 invoice.IsFullTime = Bool(JSON["IsFullTime"].stringValue)!
                 invoice.InvoiceBalance = Double(JSON["InvoiceBalance"].stringValue)!

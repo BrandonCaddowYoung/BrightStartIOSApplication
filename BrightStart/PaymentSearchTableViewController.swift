@@ -173,8 +173,9 @@ class PaymentSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 Payment.AccountId = JSON["AccountId"].stringValue
                 
                 Payment.InvoiceNumber = JSON["InvoiceNumber"].stringValue
+               
+                Payment.TransactionAmount = JSON["TransactionAmount"].doubleValue
                 
-                Payment.TransactionAmount = Double(JSON["TransactionAmount"].stringValue)!
                 Payment.TransactionType = JSON["TransactionType"].stringValue
                 
                 Payment.DatePaymentHitAccount = self._CommonHelper.GetDateObjectFromString(dateAsString: JSON["DatePaymentHitAccount"].stringValue)
