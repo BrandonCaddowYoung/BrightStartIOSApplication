@@ -4144,7 +4144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Invoice" rowHeight="274" id="7AQ-T9-JPz" customClass="InvoiceSearchTableViewCell" customModule="BrightStart" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Payment" rowHeight="274" id="7AQ-T9-JPz" customClass="PaymentSearchTableViewCell" customModule="BrightStart" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="274"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7AQ-T9-JPz" id="BVk-WK-idf">
@@ -4259,41 +4259,6 @@
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fzp-lx-vDA">
                                             <rect key="frame" x="16" y="181" width="351" height="84"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Pm-qj-ehB">
-                                                    <rect key="frame" x="50" y="31" width="269" height="39"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b7g-ei-qHU">
-                                                            <rect key="frame" x="11" y="8" width="253" height="23"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <subviews>
-                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jH5-KA-6IH">
-                                                                    <rect key="frame" x="0.0" y="8" width="246" height="5"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <color key="backgroundColor" red="0.2392156869" green="0.67450982329999998" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </view>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" red="0.2392156869" green="0.67450982329999998" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="END" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ryf-s7-X0W">
-                                                    <rect key="frame" x="300" y="5" width="36" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="START" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwD-b5-sfm">
-                                                    <rect key="frame" x="29" y="4" width="54" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" red="1" green="0.79390401740000005" blue="0.69612836980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                     </subviews>
@@ -4304,15 +4269,10 @@
                                     <outlet property="BottomContainer" destination="Fzp-lx-vDA" id="FFB-5v-EdK"/>
                                     <outlet property="ExtraAmountLabel" destination="kZo-li-Vsw" id="GX9-29-cTl"/>
                                     <outlet property="ExtraLabel" destination="V1L-Q0-xAr" id="hd5-Za-IyN"/>
-                                    <outlet property="InvoiceEndDate" destination="Ryf-s7-X0W" id="li0-A1-6ay"/>
-                                    <outlet property="InvoiceNumberLabel" destination="Kg4-kX-5jo" id="0j3-fj-CeF"/>
-                                    <outlet property="InvoiceStartDate" destination="AwD-b5-sfm" id="pbc-RM-opE"/>
-                                    <outlet property="LargeLeftContainer" destination="AkL-iS-K6g" id="IZ0-bN-pk7"/>
-                                    <outlet property="LineContainer" destination="jH5-KA-6IH" id="PVw-xd-NRN"/>
-                                    <outlet property="LineInnerContainer" destination="b7g-ei-qHU" id="Qsf-rp-ed7"/>
-                                    <outlet property="LineOuterContainer" destination="2Pm-qj-ehB" id="ncv-gK-A8w"/>
-                                    <outlet property="NonRegisteredAmountLabel" destination="T6O-Vr-WxH" id="aDf-Af-pCY"/>
-                                    <outlet property="NonRegisteredLabel" destination="hqd-nX-RrA" id="yWu-Ok-JIZ"/>
+                                    <outlet property="LargeLeftContainer" destination="AkL-iS-K6g" id="Eg5-eU-GEh"/>
+                                    <outlet property="NonRegisteredAmountLabel" destination="T6O-Vr-WxH" id="CT8-dq-FRa"/>
+                                    <outlet property="NonRegisteredLabel" destination="hqd-nX-RrA" id="zzV-Zq-3v9"/>
+                                    <outlet property="PaymentNumberLabel" destination="Kg4-kX-5jo" id="r55-ca-GKb"/>
                                     <outlet property="RegisterdLabel" destination="9sK-52-l1f" id="vsu-Yw-uxv"/>
                                     <outlet property="RegisteredAmountLabel" destination="MX2-q9-R7N" id="xcV-Pz-AkR"/>
                                     <outlet property="SmallBottomLeftContainer" destination="egJ-dE-qol" id="SdU-Yy-GA6"/>
@@ -4381,7 +4341,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xMR-cl-oyC"/>
-        <segue reference="w9n-P4-Qa9"/>
+        <segue reference="604-sb-TVk"/>
         <segue reference="Q5J-dV-oJS"/>
         <segue reference="2qs-QS-n86"/>
         <segue reference="wG7-yc-5Up"/>

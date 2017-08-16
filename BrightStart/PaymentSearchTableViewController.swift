@@ -149,15 +149,12 @@ class PaymentSearchTableViewController:  UITableViewController, UITextFieldDeleg
             
         else if (segue.identifier == "GoToMenu") {
             
-            
             if let vc = segue.destination as? MainMenuViewController {
                 
                 vc.selectedMenu = .Billing
                 
             }
-            
         }
-        
     }
     
     @IBAction func refreshTable(_ sender: UIRefreshControl?) {
@@ -169,6 +166,8 @@ class PaymentSearchTableViewController:  UITableViewController, UITextFieldDeleg
             for (index: _, subJson: JSON) in json {
                 
                 let Payment = FinancialTransaction()
+                
+                Payment.TransactionComment = JSON["TransactionComment"].stringValue
                 
                 Payment.TransactionId = JSON["TransactionId"].stringValue
                 Payment.AccountId = JSON["AccountId"].stringValue
@@ -236,7 +235,6 @@ class PaymentSearchTableViewController:  UITableViewController, UITextFieldDeleg
             //Saving the selected log so that when we segue we can call on it!
             SelectedPayment = cell.Payment
             
-            
         }
         
     }
@@ -259,7 +257,6 @@ class PaymentSearchTableViewController:  UITableViewController, UITextFieldDeleg
                 FinancialTransactionRequests.sharedInstance.DeletePayment(PaymentId: (cell.Payment?.TransactionId)!, onCompletion:
                     {_ in
                         
-                        
                         SVProgressHUD.dismiss(withDelay: 1, completion: {
                             //self._CommonHelper.ShowSuccessMessage(title: "All done.", subsTtitle: "Payment successfully deleted!")
                         })
@@ -271,31 +268,12 @@ class PaymentSearchTableViewController:  UITableViewController, UITextFieldDeleg
             }
             delete.backgroundColor = .red
             
-            let email = UITableViewRowAction(style: .default, title: "\u{2709}\n e-mail") { action, index in
-                
-                SVProgressHUD.show()
-                SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
-                SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
-                
-               // BillingRequests.sharedInstance.SendPayment(PaymentId: (cell.Payment?.PaymentNumber)!, onCompletion:
-                  //  {_ in
-                        
-                     //   SVProgressHUD.dismiss(withDelay: 1, completion: {
-                   //         self._CommonHelper.ShowSuccessMessage(title: "Payment succesfully sent.", subsTtitle: "")
-                 //       })
-                        
-               // }
-                    
-                //)
-            }
-            email.backgroundColor = StyleManager.theme1()
-            
             let edit = UITableViewRowAction(style: .default, title: "\u{2710}\n edit") { action, index in
                 self.performSegue(withIdentifier: "GoToEditPayment", sender: nil)
             }
             edit.backgroundColor = StyleManager.theme1()
             
-            return [edit, delete, email]
+            return [edit, delete]
             
     }
     

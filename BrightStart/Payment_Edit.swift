@@ -58,9 +58,14 @@ class Payment_Edit: FormViewController {
         
         self.form +++ Section("General")
             
+            <<< LabelRow("ChildName") {
+                $0.title = "Child Name"
+                $0.value = String(targetChildName)
+            }
+            
             <<< LabelRow("TransactionId") {
                 $0.title = "Transaction Id"
-                $0.value = String(targetChildName)
+                $0.value = targetPayment.TransactionId
             }
             
             //EDITBALE ///////////
@@ -68,18 +73,18 @@ class Payment_Edit: FormViewController {
             
             <<< TextRow("TransactionType") {
                 $0.title = "Transaction Type"
-                $0.value = ""
+                $0.value = targetPayment.TransactionType
             }
             
             <<< TextRow("TransactionComment") {
                 $0.title = "Comment"
-                $0.value = ""
+                $0.value = targetPayment.TransactionComment
             }
             
             <<< DecimalRow("Amount") {
                 $0.title = "Amount"
                 $0.placeholder = "enter the transaction amount."
-                $0.value = Double(0.0)
+                $0.value = targetPayment.TransactionAmount
                 
                 $0.useFormatterDuringInput = true
                 let formatter = CurrencyFormatter()
@@ -95,18 +100,9 @@ class Payment_Edit: FormViewController {
             
             //NO LONGER ENDITBLE ///////////
             
-            <<< LabelRow("AccountName") {
-                $0.title = "Account Name"
-                $0.value = ""
-            }
-            
             <<< LabelRow("InvoiceNumber") {
                 $0.title = "invoice number"
-                $0.value = ""
-            }
-            <<< LabelRow("AccountBalance") {
-                $0.title = "AccountBalance"
-                $0.value = ""
+                $0.value = targetPayment.InvoiceNumber
             }
         
         self.form +++ Section()
@@ -123,9 +119,6 @@ class Payment_Edit: FormViewController {
                     var decimalRow: DecimalRow? = self.form.rowBy(tag: "TransactionId")
                     var dateInlineRow: DateInlineRow? = self.form.rowBy(tag: "DateFundsReceived")
                     
-                    labelRow = self.form.rowBy(tag: "TransactionId")
-                    let transactionId = labelRow?.value
-                    
                     textRow = self.form.rowBy(tag: "TransactionType")
                     let transactionType = textRow?.value
                     
@@ -138,44 +131,31 @@ class Payment_Edit: FormViewController {
                     dateInlineRow = self.form.rowBy(tag: "DateFundsReceived")
                     let dateFundsReceived = dateInlineRow?.value
                     
-                    labelRow = self.form.rowBy(tag: "AccountName")
-                    let accountName = labelRow?.value
-                    
-                    labelRow = self.form.rowBy(tag: "InvoiceNumber")
-                    let invoiceNumber = labelRow?.value
-                    
-                    labelRow = self.form.rowBy(tag: "AccountBalance")
-                    let accountBalance = labelRow?.value
-                    
-                    let TransactionId = "\(transactionId)"
-                    let TransactionType = "\(transactionType)"
-                    let TransactionComment = "\(transactionComment)"
-                    let Amount = "\(amount)"
+                    let TransactionType = transactionType
+                    let TransactionComment = transactionComment
+                    let Amount = amount
                     let DateFundsReceived = dateFundsReceived?.ToURLString2()
-                    let AccountName = "\(accountName)"
-                    let InvoiceNumber = "\(invoiceNumber)"
-                    let AccountBalance = "\(accountBalance)"
                     
-                    print(TransactionId)
-                    print(TransactionType)
-                    print(TransactionComment)
-                    print(Amount)
-                    print(DateFundsReceived ?? "")
-                    print(AccountName)
-                    print(InvoiceNumber)
-                    print(AccountBalance)
-                    
-                   // BillingRequests.sharedInstance.UpdateInvoiceAndRecalculateTotal(invoiceNumber: PaymentNumber, issueDate: issueDate, startDate: startDate, endDate: endDate, dueDate: dueDate, notes: noptes, childId: childId, earlyTimeMinutes: earlyTimeMinutes, lateTimeMinutes: lateTimeMinutes, registeredTimeMinutes: registeredTimeMinutes, nonRegisteredTimeMinutes: nonRegisteredTimeMinutes, invoiceTotal: PaymentTotal, enforcePartTime: enforcePartTime, enforceFullTime: enforceFullTime, registeredStartDate: registeredStartDate, registeredFinishDate: registeredFinishDate, nonRegisteredStartDate: nonRegisteredStartDate, nonRegisteredFinishDate: nonRegisteredFinishDate, extraStartDate: extraStartDate, extraFinishDate: extraFinishDate,  numberOfFullDays: numberOfFullDays, numberOfFullHalfDays: numberOfFullHalfDays, usingPartTime: usingPartTime, usingFullTime: usingFullTime, numberOfBusinessDays: numberOfBusinessDays, onCompletion:
-                       // { json in
+                    FinancialTransactionRequests.sharedInstance.UpdatePayment(
+                        transactionId: self.targetPayment.TransactionId,
+                        accountId: self.targetPayment.AccountId,
+                        invoiceNumber: self.targetPayment.InvoiceNumber,
+                        transactionDate: self.targetPayment.TransactionDate.ToURLString2(),
+                        transactionAmount: String(describing: Amount),
+                        transactionType: TransactionType,
+                        transactionComment: TransactionComment,
+                        datePaymentHitAccount: DateFundsReceived,
+                        onCompletion:
+                        { json in
                             
-                         //   DispatchQueue.main.async(execute: {
+                            DispatchQueue.main.async(execute: {
                                 
-                           //     SVProgressHUD.dismiss(withDelay: 1, completion: {
-                             //       self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
-                               // })
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
+                                })
                                 
-                          //  })
-                   // })
+                            })
+                    })
                     
                     
                 }.cellUpdate

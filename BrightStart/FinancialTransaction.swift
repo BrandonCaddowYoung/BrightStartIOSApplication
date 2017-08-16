@@ -21,6 +21,7 @@ open class FinancialTransaction : Comparable
         return false
     }
     
+    open var TransactionComment = String()
     open var TransactionId = String()
     open var AccountId = String()
     open var InvoiceNumber = String()

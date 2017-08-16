@@ -48,16 +48,6 @@ class PaymentSearchTableViewCell: UITableViewCell
     
     @IBOutlet weak var BottomContainer: UIView!
     
-    @IBOutlet weak var LineInnerContainer: UIView!
-    
-    @IBOutlet weak var LineOuterContainer: UIView!
-    
-    @IBOutlet weak var LineContainer: UIView!
-    
-    @IBOutlet weak var PaymentStartDate: UILabel!
-    
-    @IBOutlet weak var PaymentEndDate: UILabel!
-    
     override func awakeFromNib() {
         
         _CommonHelper = CommonHelper()
@@ -73,20 +63,13 @@ class PaymentSearchTableViewCell: UITableViewCell
         
         BottomContainer.backgroundColor = StyleManager.theme2()
         
-        //LineOuterContainer.backgroundColor = StyleManager.theme2()
-        
-        LineInnerContainer.backgroundColor = StyleManager.theme2()
-        
         TotalLabel.font = _ApplicationColours.XlargeFont
         PaymentNumberLabel.font = _ApplicationColours.mediumFont
         
-        PaymentStartDate.font = _ApplicationColours.mediumFont
-        PaymentEndDate.font = _ApplicationColours.mediumFont
-        
-        RegisteredAmountLabel.font = _ApplicationColours.mediumFont
-        NonRegisteredAmountLabel.font = _ApplicationColours.mediumFont
-        ExtraAmountLabel.font = _ApplicationColours.mediumFont
-        BalanceAmountLabel.font = _ApplicationColours.mediumFont
+        RegisteredAmountLabel.font = _ApplicationColours.sshmediumlFont
+        NonRegisteredAmountLabel.font = _ApplicationColours.sshmediumlFont
+        ExtraAmountLabel.font = _ApplicationColours.sshmediumlFont
+        BalanceAmountLabel.font = _ApplicationColours.sshmediumlFont
         
         RegisterdLabel.font = _ApplicationColours.smallFont
         NonRegisteredLabel.font = _ApplicationColours.smallFont
@@ -105,9 +88,6 @@ class PaymentSearchTableViewCell: UITableViewCell
         NonRegisteredLabel.textColor = StyleManager.theme5()
         ExtraLabel.textColor = StyleManager.theme5()
         BalanceLabel.textColor = StyleManager.theme5()
-        
-        PaymentStartDate.textColor = StyleManager.theme5()
-        PaymentEndDate.textColor = StyleManager.theme5()
         
     }
     
@@ -372,112 +352,7 @@ class PaymentSearchTableViewCell: UITableViewCell
         BottomContainer.bottomAnchor.constraint(
             equalTo: contentView.bottomAnchor).isActive = true
         
-        
-        
-        
-        
-        
-        LineOuterContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-        //center
-        LineOuterContainer.centerXAnchor.constraint(
-            equalTo: contentView.centerXAnchor).isActive = true
-        
-        //width
-        LineOuterContainer.widthAnchor.constraint(
-            equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
-        
-        //height
-        LineOuterContainer.heightAnchor.constraint(
-            equalTo: BottomContainer.heightAnchor, multiplier: 0.30).isActive = true
-        
-        LineOuterContainer.bottomAnchor.constraint(
-            equalTo: BottomContainer.bottomAnchor, constant: -5).isActive = true
-        
-        
-        
-        
-        
-        
-        
-        
-        LineInnerContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-        //center
-        LineInnerContainer.centerXAnchor.constraint(
-            equalTo: LineOuterContainer.centerXAnchor).isActive = true
-        
-        //center
-        LineInnerContainer.centerYAnchor.constraint(
-            equalTo: LineOuterContainer.centerYAnchor).isActive = true
-        
-        //thicknes
-        
-        //width
-        LineInnerContainer.widthAnchor.constraint(
-            equalTo: LineOuterContainer.widthAnchor, multiplier: 0.98).isActive = true
-        
-        //height
-        LineInnerContainer.heightAnchor.constraint(
-            equalTo: LineOuterContainer.heightAnchor).isActive = true
-        
-        
-        
-        
-        LineContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-        //center
-        LineContainer.centerXAnchor.constraint(
-            equalTo: LineOuterContainer.centerXAnchor).isActive = true
-        
-        //center
-        LineContainer.centerYAnchor.constraint(
-            equalTo: LineOuterContainer.centerYAnchor).isActive = true
-        
-        //width
-        LineContainer.widthAnchor.constraint(
-            equalTo: LineOuterContainer.widthAnchor).isActive = true
-        
-        //thicknes
-        
-        //height
-        LineContainer.heightAnchor.constraint(
-            equalToConstant: 3).isActive = true
-        
-        
-        
-        
-        
-        PaymentStartDate.translatesAutoresizingMaskIntoConstraints = false
-        
-        PaymentStartDate.leadingAnchor.constraint(
-            equalTo: LineOuterContainer.leadingAnchor).isActive = true
-        
-        PaymentStartDate.bottomAnchor.constraint(
-            equalTo: LineOuterContainer.topAnchor).isActive = true
-        
-        PaymentStartDate.textAlignment = .left
-        
-        
-        
-        
-        
-        PaymentEndDate.translatesAutoresizingMaskIntoConstraints = false
-        
-        PaymentEndDate.trailingAnchor.constraint(
-            equalTo: LineOuterContainer.trailingAnchor).isActive = true
-        
-        PaymentEndDate.bottomAnchor.constraint(
-            equalTo: LineOuterContainer.topAnchor).isActive = true
-        
-        PaymentEndDate.textAlignment = .right
-        
-        
-        
-        
     }
-    
-    
     
     func updateUI() {
         
@@ -495,27 +370,24 @@ class PaymentSearchTableViewCell: UITableViewCell
             dateFormatter.amSymbol = "AM"
             dateFormatter.pmSymbol = "PM"
             
-            // let convertedDateString = dateFormatter.string(from: Payment.TimeStamp)
-            
-            // let dateField = convertedDateString as String
-            
             TotalLabel?.text = "£" + String(describing: Payment.TransactionAmount.roundTo(places: 2))
             PaymentNumberLabel?.text = "#" + String(describing: Payment.TransactionId)
             
-            BalanceAmountLabel?.text = "£" + String(describing: Payment.TransactionAmount.roundTo(places: 2))
+            BalanceAmountLabel?.text = Payment.TransactionType
+            RegisteredAmountLabel?.text = Payment.InvoiceNumber
+            
+            NonRegisteredAmountLabel?.text = Payment.AccountId
+            NonRegisteredLabel?.text = "CHILD"
+            
+            ExtraAmountLabel?.text = Payment.DatePaymentHitAccount.ToStringYMD()
+            
             BalanceAmountLabel.isHidden = false
             BalanceLabel.isHidden = false
             
-            PaymentStartDate.text = Payment.DatePaymentHitAccount.ToString()
-            PaymentEndDate.text = Payment.TransactionDate.ToString()
             
-            // UserDefaults.standard.set(child.RegisteredFinishTime, forKey: "finishTime")
-            //UserDefaults.standard.set(child.RegisteredStartTime, forKey: "dateKey")
-            
-            //The words start and end need to go below the dates.
-            LineContainer.isHidden = true
-            LineInnerContainer.isHidden = true
-            LineOuterContainer.isHidden = true
+            RegisteredAmountLabel.isHidden = false
+            NonRegisteredAmountLabel.isHidden = false
+           
             
         }
     }
