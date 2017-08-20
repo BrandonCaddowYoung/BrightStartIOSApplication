@@ -43,17 +43,17 @@ class QuickCreateChild: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature allows you to quickly add a new child to Bright Start."
-                $0.cell.textLabel?.numberOfLines = 5
-                //$0.cell.height = { 300 }
-        }
-        
-        form +++ Section("How does it work?")
-            <<< LabelRow(){
-                $0.title = "Simply complete the form below before tapping the button at the bottom of the page."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
+//            <<< LabelRow(){
+//                $0.title = "This feature allows you to quickly add a new child to Bright Start."
+//                $0.cell.textLabel?.numberOfLines = 5
+//                //$0.cell.height = { 300 }
+//        }
+//        
+//        form +++ Section("How does it work?")
+//            <<< LabelRow(){
+//                $0.title = "Simply complete the form below before tapping the button at the bottom of the page."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
         
         form +++ Section("Childs information")
             
@@ -172,11 +172,6 @@ class QuickCreateChild: FormViewController {
                     else {
                         self.CreateChild(mothersEmail: MothersEmail, fathersEmail: FathersEmail, mothersName: MothersName, fathersName: FathersName, childFirstName: FirstName, childMiddleName: MiddleName, childLastName: LastName, dob: DatOfBirth!)
                     }
-                    
-                    
-                    
-                    
-                    
                     
                 }
                 .cellUpdate

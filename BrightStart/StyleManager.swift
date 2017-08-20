@@ -30,7 +30,7 @@ final class StyleManager {
     }
     
     static func theme3() -> UIColor {
-        return UIColor.flatGray
+        return UIColor.gray
     }
     
     static func theme4() -> UIColor {

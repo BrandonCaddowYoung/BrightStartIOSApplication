@@ -12,6 +12,7 @@
 		7B02571C1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B02571B1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift */; };
 		7B03BE211E5CD5C400D61404 /* AddRegisteredHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B03BE201E5CD5C400D61404 /* AddRegisteredHoursViewController.swift */; };
 		7B083A5F1EFBF42600E1090A /* EditChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B083A5E1EFBF42600E1090A /* EditChild.swift */; };
+		7B1399D51F48337700565763 /* AuthyOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1399D41F48337600565763 /* AuthyOptions.swift */; };
 		7B148C261E578B0300D309F6 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C251E578B0000D309F6 /* ProgressHUD.swift */; };
 		7B148C281E59994F00D309F6 /* RegistrationHoursRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */; };
 		7B148C2A1E599E4D00D309F6 /* RegistrationHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B148C291E599E4C00D309F6 /* RegistrationHours.swift */; };
@@ -23,6 +24,7 @@
 		7B2618271DEDB942005B4B20 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1772571DEB7F86002992C9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
+		7B324B231F48E2D3008E98C0 /* ODTouchIDProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B324B221F48E2D3008E98C0 /* ODTouchIDProtocol.swift */; };
 		7B32E3841E991DA800959375 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32E3831E991DA800959375 /* WeekDay.swift */; };
 		7B399D821EBF2B8600B4B214 /* SettingRegistrationHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B399D811EBF2B8600B4B214 /* SettingRegistrationHours.swift */; };
 		7B399D851EBF703200B4B214 /* EditTimeStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B399D841EBF703200B4B214 /* EditTimeStamp.swift */; };
@@ -325,6 +327,7 @@
 		7B02571B1E4F5919007FED0C /* RegisterdHoursTimeStampsCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterdHoursTimeStampsCalendarViewController.swift; sourceTree = "<group>"; };
 		7B03BE201E5CD5C400D61404 /* AddRegisteredHoursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRegisteredHoursViewController.swift; sourceTree = "<group>"; };
 		7B083A5E1EFBF42600E1090A /* EditChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditChild.swift; sourceTree = "<group>"; };
+		7B1399D41F48337600565763 /* AuthyOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthyOptions.swift; sourceTree = "<group>"; };
 		7B148C251E578B0000D309F6 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		7B148C271E59994F00D309F6 /* RegistrationHoursRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationHoursRequests.swift; sourceTree = "<group>"; };
 		7B148C291E599E4C00D309F6 /* RegistrationHours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationHours.swift; sourceTree = "<group>"; };
@@ -337,6 +340,7 @@
 		7B17727D1DEB7FAF002992C9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		7B324B221F48E2D3008E98C0 /* ODTouchIDProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ODTouchIDProtocol.swift; sourceTree = "<group>"; };
 		7B32E3831E991DA800959375 /* WeekDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 		7B399D811EBF2B8600B4B214 /* SettingRegistrationHours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRegistrationHours.swift; sourceTree = "<group>"; };
 		7B399D841EBF703200B4B214 /* EditTimeStamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimeStamp.swift; sourceTree = "<group>"; };
@@ -590,6 +594,14 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		7B324B0A1F48E297008E98C0 /* ODTouchID */ = {
+			isa = PBXGroup;
+			children = (
+				7B324B221F48E2D3008E98C0 /* ODTouchIDProtocol.swift */,
+			);
+			name = ODTouchID;
+			sourceTree = "<group>";
+		};
 		7B399D691EBF2B1200B4B214 /* Registration Hours */ = {
 			isa = PBXGroup;
 			children = (
@@ -751,6 +763,7 @@
 				7BDEF8161E758D0A0012151B /* AuthyAuthenticateViewController.swift */,
 				7BB270C81E7C8CA90023DF7D /* Authy_SettingsViewController.swift */,
 				7BC6E8B01EC6F061001AC325 /* AuthyParentSignUp.swift */,
+				7B1399D41F48337600565763 /* AuthyOptions.swift */,
 			);
 			name = Authy;
 			sourceTree = "<group>";
@@ -763,13 +776,6 @@
 				7B4E5A6D1EF9C65600506931 /* Settings_NurseryDetails.swift */,
 			);
 			name = Settings;
-			sourceTree = "<group>";
-		};
-		7BD0FFC81E43BF0000472759 /* Auhty */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Auhty;
 			sourceTree = "<group>";
 		};
 		7BD4DEB71F335BB100434EB7 /* FSCalendar */ = {
@@ -880,8 +886,8 @@
 		D7F995681C9EF4A1001802EC /* BrightStart */ = {
 			isa = PBXGroup;
 			children = (
+				7B324B0A1F48E297008E98C0 /* ODTouchID */,
 				7B6414301EAFBBCA00DC2DF5 /* Chameleon */,
-				7BD0FFC81E43BF0000472759 /* Auhty */,
 				7B70F05A1E8C2EBA00290432 /* Wizard */,
 				7B1575E41E81A0B9008AB34F /* Templates */,
 				7B0257181E4F56F9007FED0C /* Calendar */,
@@ -1312,6 +1318,7 @@
 				7B5CDC6D1EC2EC8B0008E464 /* MissingTimeStampsFinder.swift in Sources */,
 				7BD4DED21F335D8C00434EB7 /* CalendarConfigViewController.swift in Sources */,
 				7BD4DED61F33C0A800434EB7 /* NurseryEvent.swift in Sources */,
+				7B1399D51F48337700565763 /* AuthyOptions.swift in Sources */,
 				7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */,
 				7BF649511EBA4AAC00DDAA29 /* SettingWeeklyRegisterdHours.swift in Sources */,
 				7B148C2A1E599E4D00D309F6 /* RegistrationHours.swift in Sources */,
@@ -1338,6 +1345,7 @@
 				7B8BE7AE1F408E8F002C969A /* Payment_Edit.swift in Sources */,
 				7BB62A8F1F03DC21000EFD89 /* EditStaff.swift in Sources */,
 				7B774FA21E4FD47700ECDF66 /* CalendarPurpose.swift in Sources */,
+				7B324B231F48E2D3008E98C0 /* ODTouchIDProtocol.swift in Sources */,
 				7B70F0591E8C2A8600290432 /* SuccessTemplateController.swift in Sources */,
 				7B4E5A6C1EF84F2200506931 /* EmailSettings.swift in Sources */,
 				7B399D851EBF703200B4B214 /* EditTimeStamp.swift in Sources */,

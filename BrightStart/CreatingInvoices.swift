@@ -45,16 +45,16 @@ class CreatingInvoices: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature allows you to create Invoices for both individual or multplie children."
-                $0.cell.textLabel?.numberOfLines = 5
-        }
-        
-        form +++ Section("How does it work?")
-            <<< LabelRow(){
-                $0.title = "To get going, simply select the appropriate dates using the fields below. Lastly, select your children before tapping the button at the bottom of the page. All created invoices can be found within the 'Billing' menu under the 'View Invoices' menu."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
+//            <<< LabelRow(){
+//                $0.title = "This feature allows you to create Invoices for both individual or multplie children."
+//                $0.cell.textLabel?.numberOfLines = 5
+//        }
+//        
+//        form +++ Section("How does it work?")
+//            <<< LabelRow(){
+//                $0.title = "To get going, simply select the appropriate dates using the fields below. Lastly, select your children before tapping the button at the bottom of the page. All created invoices can be found within the 'Billing' menu under the 'View Invoices' menu."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
         
         form +++ Section("Registered Hours Date Range")
             
@@ -151,9 +151,81 @@ class CreatingInvoices: FormViewController {
                         $0.title = "Create Invoices"
                         }.onCellSelection {  cell, row in
                             
+                            var row: DateRow? = self.form.rowBy(tag: "RegisterdHourStart")
+                            let RegisteredHoursStart = row?.value
+                            
+                            row = self.form.rowBy(tag: "RegisteredHoursEnd")
+                            let RegisteredHoursEnd = row?.value
+                            
+                            if self._CommonHelper.IsStartDateAfterEndDate(startYear: (RegisteredHoursStart?.year)!,
+                                                                          startMonth: (RegisteredHoursStart?.month)!,
+                                                                          startDay: (RegisteredHoursStart?.day)!,
+                                                                          endYear: (RegisteredHoursEnd?.year)!,
+                                                                          endMonth: (RegisteredHoursEnd?.month)!,
+                                                                          endDay: (RegisteredHoursEnd?.day)!)
+                            {
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    
+                                    self._CommonHelper.ShowErrorMessage(title: "Sorry", subsTtitle: "The Registered Hours dates you chose do not make sense. Please ensuare that the start date is before the end date.");
+                                    
+                                } )
+                                
+                                return
+                            }
+                            
+                            row = self.form.rowBy(tag: "NonRegisterdHourStart")
+                            let NonRegisteredHoursStart = row?.value
+                            
+                            row = self.form.rowBy(tag: "NonRegisteredHoursEnd")
+                            let NonRegisteredHoursEnd = row?.value
+                            
+                            if self._CommonHelper.IsStartDateAfterEndDate(startYear: (NonRegisteredHoursStart?.year)!,
+                                                                          startMonth: (NonRegisteredHoursStart?.month)!,
+                                                                          startDay: (NonRegisteredHoursStart?.day)!,
+                                                                          endYear: (NonRegisteredHoursEnd?.year)!,
+                                                                          endMonth: (NonRegisteredHoursEnd?.month)!,
+                                                                          endDay: (NonRegisteredHoursEnd?.day)!)
+                            {
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    
+                                    self._CommonHelper.ShowErrorMessage(title: "Sorry", subsTtitle: "The Non Registered Hours dates you chose do not make sense. Please ensuare that the start date is before the end date.");
+                                    
+                                } )
+                                
+                                return
+                            }
+                            
+                            row = self.form.rowBy(tag: "ExtraHourStart")
+                            let ExtraHoursStart = row?.value
+                            
+                            row = self.form.rowBy(tag: "ExtraHoursEnd")
+                            let ExtraHoursEnd = row?.value
+                            
+                            if self._CommonHelper.IsStartDateAfterEndDate(startYear: (ExtraHoursStart?.year)!,
+                                                                          startMonth: (ExtraHoursStart?.month)!,
+                                                                          startDay: (ExtraHoursStart?.day)!,
+                                                                          endYear: (ExtraHoursEnd?.year)!,
+                                                                          endMonth: (ExtraHoursEnd?.month)!,
+                                                                          endDay: (ExtraHoursEnd?.day)!)                            {
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    
+                                    self._CommonHelper.ShowErrorMessage(title: "Sorry", subsTtitle: "The Non Registered Hours dates you chose do not make sense. Please ensuare that the start date is before the end date.");
+                                    
+                                } )
+                                
+                                return
+                            }
+                            
+                            
                             let mulitpleRow: MultipleSelectorRow<String> = self.form.rowBy(tag: "SelectedChildren")!
                             
-                            let ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: mulitpleRow.value!)
+                            let idRows = mulitpleRow.value
+                            
+                            var ids = Array<String>()
+                            
+                            if idRows != nil {
+                                ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: idRows!)
+                            }
                             
                             if  ids.count == 0 {
                                 
@@ -164,27 +236,8 @@ class CreatingInvoices: FormViewController {
                                 } )
                             }
                             else {
-                                
-                            var row: DateRow? = self.form.rowBy(tag: "RegisterdHourStart")
-                            let RegisteredHoursStart = row?.value
-                            
-                            row = self.form.rowBy(tag: "RegisteredHoursEnd")
-                            let RegisteredHoursEnd = row?.value
-                            
-                            row = self.form.rowBy(tag: "NonRegisterdHourStart")
-                            let NonRegisteredHoursStart = row?.value
-                            
-                            row = self.form.rowBy(tag: "NonRegisteredHoursEnd")
-                            let NonRegisteredHoursEnd = row?.value
-                            
-                            row = self.form.rowBy(tag: "ExtraHourStart")
-                            let ExtraHoursStart = row?.value
-                            
-                            row = self.form.rowBy(tag: "ExtraHoursEnd")
-                            let ExtraHoursEnd = row?.value
                             
                             self.CreateInvoices(targetChildren: ids, registeredHoursStartDate: RegisteredHoursStart!, registeredHoursEndDate: RegisteredHoursEnd!, extraHoursStartDate: ExtraHoursStart!, extraHoursEndDate: ExtraHoursEnd!, nonRegisteredHoursStartDate: NonRegisteredHoursStart!, nonRegisteredHoursEndDate: NonRegisteredHoursEnd!)
-                                
                             }
                             
                         }
@@ -307,7 +360,7 @@ class CreatingInvoices: FormViewController {
                         return
                     }
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "Invoice successfully created.", subsTtitle: String(childrenList.count) + " more to go.")
+                    self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "Invoice successfully created. " + String(childrenList.count) + " more to go.")
                     
                     //Do the next
                     self.PerformCreatingInvoicesRecursively(targetChildren: childrenList, registeredHoursStartDate: registeredHoursStartDate, registeredHoursEndDate: registeredHoursEndDate,  extraHoursStartDate: extraHoursStartDate, extraHoursEndDate: extraHoursEndDate, nonRegisteredHoursStartDate: nonRegisteredHoursStartDate, nonRegisteredHoursEndDate: nonRegisteredHoursEndDate, dueDate: dueDate, onCompletion: onCompletion)

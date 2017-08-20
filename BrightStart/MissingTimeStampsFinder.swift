@@ -44,17 +44,17 @@ class MissingTimeStampsFinder: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature allows you to quickly identify 'Missing Time Stamps'."
-                $0.cell.textLabel?.numberOfLines = 5
-                //$0.cell.height = { 300 }
-        }
-        
-        form +++ Section("What are 'Missing Time Stamps'?")
-            <<< LabelRow(){
-                $0.title = "Missing Time Stamps occur when a parent forgets to sign a child in or out, leaving just one time stamp for the day. This can cause problems when creating invoices as it is impossobile to know when the child was really supposed to be arriving or leaving."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
+//            <<< LabelRow(){
+//                $0.title = "This feature allows you to quickly identify 'Missing Time Stamps'."
+//                $0.cell.textLabel?.numberOfLines = 5
+//                //$0.cell.height = { 300 }
+//        }
+//        
+//        form +++ Section("What are 'Missing Time Stamps'?")
+//            <<< LabelRow(){
+//                $0.title = "Missing Time Stamps occur when a parent forgets to sign a child in or out, leaving just one time stamp for the day. This can cause problems when creating invoices as it is impossobile to know when the child was really supposed to be arriving or leaving."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
         
         form +++ Section("Date range")
             
@@ -64,7 +64,7 @@ class MissingTimeStampsFinder: FormViewController {
             }
             <<< DateRow("EndDate"){
                 $0.title = "end date"
-                $0.value = Date()
+                $0.value = Date().addDays(10)
         }
         
         self.form +++ Section()
@@ -78,6 +78,25 @@ class MissingTimeStampsFinder: FormViewController {
                     let end: DateRow? = self.form.rowBy(tag: "EndDate")
                     self.endDate = (end?.value)!
                     
+                    
+                    if self._CommonHelper.IsStartDateAfterEndDate(startYear: (self.startDate.year),
+                                                                  startMonth: (self.startDate.month),
+                                                                  startDay: (self.startDate.day),
+                                                                  endYear: (self.endDate.year),
+                                                                  endMonth: (self.endDate.month),
+                                                                  endDay: (self.endDate.day))                            {
+                        SVProgressHUD.dismiss(withDelay: 1, completion: {
+                            
+                            self._CommonHelper.ShowErrorMessage(title: "Sorry", subsTtitle: "Please ensuare that the start date is before the end date.");
+                            
+                        } )
+                        
+                        return
+                    }
+
+                    
+                    
+                    
                     self.performSegue(withIdentifier: "GoToMissingTimeStampsResults", sender: self)
                 }.cellUpdate
                 {
@@ -86,7 +105,6 @@ class MissingTimeStampsFinder: FormViewController {
                     cell.textLabel?.textColor = StyleManager.theme2()
                     cell.height = { 70 }
         }
-        
         
     }
     

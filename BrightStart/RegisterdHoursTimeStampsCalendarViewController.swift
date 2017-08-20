@@ -1257,7 +1257,7 @@ class RegisterdHoursTimeStampsCalendarViewController: UIViewController {
                                 
                                 self.calendarView.selectDates([self.lastSelectedDate])
                                 
-                                self._CommonHelper.ShowSuccessMessage(title: "'Registered Hours' succesfully removed.", subsTtitle: "")
+                                self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "'Registered Hours' succesfully removed.")
                                 
                                 
                             } )

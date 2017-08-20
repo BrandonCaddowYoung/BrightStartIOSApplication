@@ -55,10 +55,10 @@ class SettingRegistrationHours: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature allows you to create 'Registered Hours' for " + personName + ". To get going, simply select a start time and end time using the fields below before pressing the button found at the bottom of the page."
-                $0.cell.textLabel?.numberOfLines = 5
-        }
+//            <<< LabelRow(){
+//                $0.title = "This feature allows you to create 'Registered Hours' for " + personName + ". To get going, simply select a start time and end time using the fields below before pressing the button found at the bottom of the page."
+//                $0.cell.textLabel?.numberOfLines = 5
+//        }
         
         form +++ Section("Date")
             <<< LabelRow(){
@@ -104,7 +104,7 @@ class SettingRegistrationHours: FormViewController {
                         
                         SVProgressHUD.dismiss(withDelay: 1, completion: {
                             
-                            self._CommonHelper.ShowSuccessMessage(title: "'Registered Hours' have been successfully created.", subsTtitle: "")
+                            self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "'Registered Hours' have been successfully created.")
                             
                             //Always goes back when done but this could be optional?
                             

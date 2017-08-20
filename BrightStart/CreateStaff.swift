@@ -45,16 +45,16 @@ class CreateStaff: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature allows you to add a new staff member to Bright Start."
-                $0.cell.textLabel?.numberOfLines = 5
-        }
-        
-        form +++ Section("How does it work?")
-            <<< LabelRow(){
-                $0.title = "Once a staff member has been added to Bright Start, administrators will be able to take advantage of all the features that Bright Start has to offer. Simply fill out the form below before tapping the button found at the bottom of this page."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
+//            <<< LabelRow(){
+//                $0.title = "This feature allows you to add a new staff member to Bright Start."
+//                $0.cell.textLabel?.numberOfLines = 5
+//        }
+//        
+//        form +++ Section("How does it work?")
+//            <<< LabelRow(){
+//                $0.title = "Once a staff member has been added to Bright Start, administrators will be able to take advantage of all the features that Bright Start has to offer. Simply fill out the form below before tapping the button found at the bottom of this page."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
         
         
         self.form +++ Section("General")

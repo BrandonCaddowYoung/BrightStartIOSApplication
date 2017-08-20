@@ -45,16 +45,16 @@ class CreateChild: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature allows you to add a new child to Bright Start."
-                $0.cell.textLabel?.numberOfLines = 5
-        }
-        
-        form +++ Section("How does it work?")
-            <<< LabelRow(){
-                $0.title = "Once a child has been added to the system, administrators will be able to take advantage of all the features that Bright Start has to offer. Simply fill out the form below before tapping the button found at the bottom of this page. For a full list of our features, please refer to our website."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
+//            <<< LabelRow(){
+//                $0.title = "This feature allows you to add a new child to Bright Start."
+//                $0.cell.textLabel?.numberOfLines = 5
+//        }
+//        
+//        form +++ Section("How does it work?")
+//            <<< LabelRow(){
+//                $0.title = "Once a child has been added to the system, administrators will be able to take advantage of all the features that Bright Start has to offer. Simply fill out the form below before tapping the button found at the bottom of this page. For a full list of our features, please refer to our website."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
         
         form +++ Section("Childs information")
             

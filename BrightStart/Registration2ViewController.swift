@@ -316,7 +316,7 @@ class Registration2ViewController: UIViewController , UITextFieldDelegate {
                 
                 SVProgressHUD.dismiss(withDelay: 1, completion: {
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "All done!", subsTtitle: "")
+                    self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "")
                     
                     self.performSegue(withIdentifier: "GoToSignIn", sender: self)
                     

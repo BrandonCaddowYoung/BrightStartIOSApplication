@@ -52,17 +52,17 @@ class RollOver: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature enables you to take the 'Registered Hours' from one month and copy them over to another month. Bright Start intellegently keeps track of days of the week so you dont even need to look at your calendar."
-                $0.cell.textLabel?.numberOfLines = 5
-        }
-        
-        form +++ Section("How does it work?")
-            <<< LabelRow(){
-                $0.title = "Its simple, just select the target month and ten your destination month before tapping the button found at the bottom of this page."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
-        
+//            <<< LabelRow(){
+//                $0.title = "This feature enables you to take the 'Registered Hours' from one month and copy them over to another month. Bright Start intellegently keeps track of days of the week so you dont even need to look at your calendar."
+//                $0.cell.textLabel?.numberOfLines = 5
+//        }
+//        
+//        form +++ Section("How does it work?")
+//            <<< LabelRow(){
+//                $0.title = "Its simple, just select the target month and ten your destination month before tapping the button found at the bottom of this page."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
+//        
         form +++ Section("Target")
             
             <<< PickerInlineRow<String>("TargetYearPicker") {
@@ -72,7 +72,7 @@ class RollOver: FormViewController {
             }
             
             <<< PickerInlineRow<String>("TargetMonthPicker") {
-                $0.title = "Mmnth"
+                $0.title = "month"
                 $0.options = monthArray
                 $0.value = monthArray[month-1]    // initially selected
             }
@@ -144,11 +144,29 @@ class RollOver: FormViewController {
                         $0.title = "Perform Roll Over"
                         }.onCellSelection {  cell, row in
                             
+                            let targetYear: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetYearPicker")
+                            let targetMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetMonthPicker")
+                            
+                            let targetMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (targetMonth?.value)!)
+                           // let targetYearAsInt = Int((targetYear?.value)!)
+                            
+                            let destinationYear: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationYearPicker")
+                            let destinationMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationMonthPicker")
+                            
+                            let destinationMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (destinationMonth?.value)!)
+                          //  let destinationYearAsInt = Int((destinationYear?.value!)!)
+                            
                             let mulitpleRow: MultipleSelectorRow<String> = self.form.rowBy(tag: "SelectedChildren")!
                             
-                            let ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: mulitpleRow.value!)
+                            let idRows = mulitpleRow.value
                             
-                            if  ids.count == 0 {
+                            var ids = Array<String>()
+                            
+                            if idRows != nil {
+                                ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: idRows!)
+                            }
+                            
+                            if ids.count == 0 {
                                 
                                 SVProgressHUD.dismiss(withDelay: 1, completion: {
                                     
@@ -156,18 +174,21 @@ class RollOver: FormViewController {
                                     
                                 } )
                             }
+                            else if self._CommonHelper.IsStartDateAfterEndDate(startYear: Int((targetYear?.value)!)!,
+                                                                               startMonth: targetMonthAsInt,
+                                                                               endYear: Int((destinationYear?.value)!)!,
+                                                                               endMonth: destinationMonthAsInt) {
+                                
+                                SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                    
+                                    self._CommonHelper.ShowErrorMessage(title: "Sorry", subsTtitle: "You can only roll over Registered Hours forward in time.");
+                                    
+                                } )
+                            }
                             else {
                                 
                                 
-                                let targetYear: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetYearPicker")
-                                let targetMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "TargetMonthPicker")
                                 
-                                let targetMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (targetMonth?.value)!)
-                                
-                                let destinationYear: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationYearPicker")
-                                let destinationMonth: PickerInlineRow<String>? = self.form.rowBy(tag: "DestinationMonthPicker")
-                                
-                                let destinationMonthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (destinationMonth?.value)!)
                                 
                                 self.RollOver(targetChildren: ids, targetYear: String(describing: (targetYear?.value)!),targetMonth: String(targetMonthAsInt),destinationYear: String(describing: (destinationYear?.value)!),destinationMonth: String(destinationMonthAsInt))
                                 
@@ -186,6 +207,27 @@ class RollOver: FormViewController {
         })
         
     }
+    
+    func isStartDateAfterEndDate(StartYear: String, StartMonth: String, EndYear: String, EndMonth: String) -> Bool
+    {
+        let startYear = Int(StartYear)
+        let startMonth = Int(StartMonth)
+        let endYear = Int(EndYear)
+        let endMonth = Int(EndMonth)
+        
+        if(startYear! > endYear!) {
+            return true
+        }
+        
+        if(startYear! == endYear!) {
+            if(startMonth! > endMonth!) {
+                return true
+            }
+        }
+    
+        return false
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
@@ -276,7 +318,7 @@ class RollOver: FormViewController {
                         return
                     }
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "Registered Hours have been successfully 'Rolled Over'", subsTtitle: String(childrenList.count) + " more to go.")
+                    self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "Registered Hours have been successfully 'Rolled Over' " + String(childrenList.count) + " more to go.")
                     
                     //Do the next
                     self.PerformRollOverRecursively(targetChildren: childrenList, targetYear: targetYear, targetMonth: targetMonth, destinationYear: destinationYear, destinationMonth: destinationMonth, onCompletion: onCompletion)

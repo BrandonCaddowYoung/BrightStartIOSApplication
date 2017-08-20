@@ -54,17 +54,17 @@ class CreatePayment: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature allows you to add a payment to Bright Start."
-                $0.cell.textLabel?.numberOfLines = 5
-        }
-        
-        form +++ Section("How does it work?")
-            <<< LabelRow(){
-                $0.title = "Simply complete the form below before submitting the payment using the button found at the bottom of the page."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
-       
+//            <<< LabelRow(){
+//                $0.title = "This feature allows you to add a payment to Bright Start."
+//                $0.cell.textLabel?.numberOfLines = 5
+//        }
+//        
+//        form +++ Section("How does it work?")
+//            <<< LabelRow(){
+//                $0.title = "Simply complete the form below before submitting the payment using the button found at the bottom of the page."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
+//       
         VoucherRequests.sharedInstance.GetAllVouchersForComboBox(onCompletion: { json in
             
             for (index: _, subJson: JSON) in json {

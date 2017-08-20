@@ -44,17 +44,17 @@ class SettingWeeklyRegisterdHours: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature allows you create 'Registered Hours' only a weekly basis. For example, you could Apply Registered of hours of 08:00 - 16:30 on a Monday and a Friday for multiple children."
-                $0.cell.textLabel?.numberOfLines = 5
-        }
-        
-        
-        form +++ Section("How does it work?")
-            <<< LabelRow(){
-                $0.title = "Firstly, select the appropriate dates for each day of the week. Next, select your children before tapping the button at the bottom of the page."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
+//            <<< LabelRow(){
+//                $0.title = "This feature allows you create 'Registered Hours' only a weekly basis. For example, you could Apply Registered of hours of 08:00 - 16:30 on a Monday and a Friday for multiple children."
+//                $0.cell.textLabel?.numberOfLines = 5
+//        }
+//        
+//        
+//        form +++ Section("How does it work?")
+//            <<< LabelRow(){
+//                $0.title = "Firstly, select the appropriate dates for each day of the week. Next, select your children before tapping the button at the bottom of the page."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
         
         let date = Date()
         let calendar = Calendar.current
@@ -357,7 +357,13 @@ class SettingWeeklyRegisterdHours: FormViewController {
                                 } )
                             }
                             
-                            let ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: mulitpleRow.value!)
+                            let idRows = mulitpleRow.value
+                            
+                            var ids = Array<String>()
+                            
+                            if idRows != nil {
+                                ids = self._CommonHelper.GetKeysFromValues(dictionary: fullChildList as Dictionary<String, String>, selectedArray: idRows!)
+                            }
                             
                             if  ids.count == 0 {
                                 
@@ -368,7 +374,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                                 } )
                             }
                             else {
-                            
+                               
                             var switchRow: SwitchRow? = self.form.rowBy(tag: "mondaySwitchRowTag")
                             
                             var row: TimeRow? = self.form.rowBy(tag: "MondayStart")
@@ -440,6 +446,17 @@ class SettingWeeklyRegisterdHours: FormViewController {
                             
                             let monthAsInt = self._CommonHelper.GetMonthAsInt(monthAsString: (month?.value)!)
                             
+                                if(mondaySelected == false && tuesdaySelected == false && wednesdaySelected == false && thurdaySelected == false && fridaySelected == false && saturdaySelected == false && sundaySelected == false)
+                                {
+                                    SVProgressHUD.dismiss(withDelay: 1, completion: {
+                                        
+                                        self._CommonHelper.ShowErrorMessage(title: "Sorry.", subsTtitle: "You must select atleast one day of the week to continue.")
+                                        
+                                    } )
+                                    
+                                    return;
+                                }
+                                
                             self.SetWeeklyRegisterdHours(targetChildren: ids, chosenYear: (year?.value)!, chosenMonth: String(monthAsInt), mondayStartTime: ModayStart, mondayEndTime: ModayEnd, tuesdayStartTime: TuesdayStart, tuesdayEndTime: TuesdayEnd, wednesdayStartTime: WednesdayStart, wednesdayEndTime: WednesdayEnd, thursdayStartTime: ThursdayStart, thursdayEndTime: ThursdayEnd, fridayStartTime: FridayStart, fridayEndTime: FridayEnd, saturdayStartTime: SaturdayStart, saturdayEndTime: SaturdayEnd, sundayStartTime: SundayStart, sundayEndTime: SundayEnd)
                                 
                             }
@@ -547,7 +564,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                         return
                     }
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "'Registered Hours' have succesfully been created for the chosen week.", subsTtitle: String(childrenList.count) + " more to go.")
+                    self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "'Registered Hours' have succesfully been created for the chosen week. " + String(childrenList.count) + " more to go.")
                     
                     //Do the next
                     self.PerformSetWeeklyRegisteredHoursRecursively(targetChildren: childrenList, chosenYear: String(chosenYear), chosenMonth: String(chosenMonth), mondayStartTime: mondayStartTime, mondayEndTime: mondayEndTime, tuesdayStartTime: tuesdayStartTime, tuesdayEndTime: tuesdayEndTime, wednesdayStartTime: wednesdayStartTime, wednesdayEndTime: wednesdayEndTime, thursdayStartTime: thursdayStartTime, thursdayEndTime: thursdayEndTime, fridayStartTime: fridayStartTime, fridayEndTime: fridayEndTime, saturdayStartTime: saturdayStartTime, saturdayEndTime: saturdayEndTime, sundayStartTime: sundayStartTime, sundayEndTime: sundayEndTime, onCompletion: onCompletion)
@@ -598,7 +615,7 @@ class SettingWeeklyRegisterdHours: FormViewController {
                         return
                     }
                     
-                    self._CommonHelper.ShowSuccessMessage(title: "'Registered Hours' have been successfully 'Rolled Over'.", subsTtitle: String(childrenList.count) + " more to go.")
+                    self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle:"'Registered Hours' have been successfully 'Rolled Over'. " +  String(childrenList.count) + " more to go.")
                     
                     //Do the next
                     self.PerformRollOverRecursively(targetChildren: childrenList, targetYear: targetYear, targetMonth: targetMonth, destinationYear: destinationYear, destinationMonth: destinationMonth, onCompletion: onCompletion)

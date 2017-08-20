@@ -134,9 +134,6 @@ class BirthdayCalendarViewController: UIViewController, UITableViewDataSource, U
         let scopeGesture = UIPanGestureRecognizer(target: self.calendar, action: #selector(self.calendar.handleScopeGesture(_:)))
         self.calendar.addGestureRecognizer(scopeGesture)
         
-        // For UITest
-        //self.calendar.accessibilityIdentifier = "calendar"
-        
     }
     
     // MARK:- FSCalendarDataSource
@@ -167,27 +164,28 @@ class BirthdayCalendarViewController: UIViewController, UITableViewDataSource, U
     
     func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
         
-        if(CheckIfBirthdayExists(date: date) == false){
-            return nil
+        if(RetrieveBirhtdaysForGivenDate(date: date).count == 0)
+        {
+            return nil;
         }
         
-        var targetImage: UIImage? = nil
+//        if(CheckIfBirthdayExists(date: date) == false){
+//            return nil
+//        }
         
-        targetImage = UIImage(named: "Party Baloon-25")!
-        
-        return targetImage
+        return UIImage(named: "Party Baloon-25")!
         
     }
     
     // MARK:- FSCalendarDelegate
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        print("change page to \(self.formatter.string(from: calendar.currentPage))")
+       // print("change page to \(self.formatter.string(from: calendar.currentPage))")
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
-        print("calendar did select date \(self.formatter.string(from: date))")
+       // print("calendar did select date \(self.formatter.string(from: date))")
         
         childrenWithBirthdaysToday = RetrieveBirhtdaysForGivenDate(date: date)
         tableView.reloadData()

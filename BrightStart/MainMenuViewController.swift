@@ -220,7 +220,7 @@ class MainMenuViewController: UIViewController {
             
             PurposeList = [PurposeTypes.TimeStamps_Edit, PurposeTypes.TimeStamps_ExtraMinutesFinder,PurposeTypes.TimeStamps_MissingTimeStampsFinder, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Calendar", "Extra Minutes Finder", "Missing Time Stamps", "Sign Out"]
+            DisplayTextList = ["Calendar", "Extra Minutes Finder", "Odd Time Stamps", "Sign Out"]
             
             authyIdList = ["", "", "", "", ""]
             

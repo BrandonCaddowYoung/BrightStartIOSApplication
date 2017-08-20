@@ -9,8 +9,10 @@
 import UIKit
 import SCLAlertView
 import SVProgressHUD
+import LocalAuthentication
+import ODTouchID
 
-class SignInViewController: UIViewController, UITextFieldDelegate {
+class SignInViewController: UIViewController, ODTouchIDProtocol, UITextFieldDelegate {
 
     //var _ApplicatoinColours: ApplicatoinColours!
     var _CommonHelper: CommonHelper!
@@ -51,7 +53,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setThemeUsingPrimaryColor(StyleManager.theme2(), withSecondaryColor: StyleManager.theme2(), andContentStyle: .contrast)
         
         self.hideKeyboardWhenTappedAround()
@@ -103,7 +105,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         //Check for existing username.
         
-        
         //We could put the passwod in place if it exists however is a security risk.
         
         #if DEBUG
@@ -123,6 +124,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         spacerMiddleMiddleView.backgroundColor = StyleManager.theme2()
         spacerMiddleBottomView.backgroundColor = StyleManager.theme2()
         
+      // self.storeUsingOneTouch(usingOneTouch: false)
+        
+        if(hasUserBeenAskedAboutTouchId() == true && retrieveUsingTouchId() == true)
+        {
+            //Go ahead and give the user a prompt.
+            
+            ODTouchID.StartODTouchID(messageOnAuth: "Use your fingerprint to sign in.", fallbackTitle: "Fallback", delegate: self as ODTouchIDProtocol)
+        }
     }
     
     
@@ -166,12 +175,36 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    func hasUserBeenAskedAboutTouchId() -> Bool
+    {
+        let defaults = UserDefaults.standard
+        
+        if defaults.string(forKey: "UsingTouchId") != nil
+        {
+            return true
+        }
+        
+        return false
+    }
+    
+    func retrieveUsingTouchId() -> Bool
+    {
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "UsingTouchId")
+        {
+            return Int(id)!.boolValue
+        }
+        
+        return false
+    }
+    
     /*!
      @brief Removes the NurserySchoolId from the defaults.
      */
     func removeStoredNurserySchoolId()
     {
-        storeNurserySchoolIdWithinDefaults(username: "",nurserySchoolId: "")
+        storeNurserySchoolIdWithinDefaults(username: "",nurserySchoolId: "", usingTouchId: nil, password: nil)
     }
 
     /*!
@@ -487,11 +520,22 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     /*!
      @brief Stores the given Username and NurserySchoolId within the defaults so they can be used later when making API calls.
      */
-    func storeNurserySchoolIdWithinDefaults(username: String, nurserySchoolId: String)
+    func storeNurserySchoolIdWithinDefaults(username: String, nurserySchoolId: String, usingTouchId: Bool?, password: String?)
     {
         let defaults = UserDefaults.standard
         defaults.set(nurserySchoolId, forKey: "NurserySchoolId")
         defaults.set(username, forKey: "NurserySchoolUserName")
+        
+        if(usingTouchId != nil)
+        {
+        defaults.set(usingTouchId, forKey: "UsingTouchId")
+        }
+        
+        if(password != nil)
+        {
+            defaults.set(password, forKey: "NurserySchoolPassword")
+        }
+        
     }
     
     func storeUserName(userName: String)
@@ -499,10 +543,34 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         UserDefaults.standard.set(userName, forKey: "NurserySchoolUserName")
     }
     
+    func storePassword(password: String)
+    {
+        UserDefaults.standard.set(password, forKey: "NurserySchoolPassword")
+    }
+    
+    func storeUsingOneTouch(usingOneTouch: Bool)
+    {
+        UserDefaults.standard.set(usingOneTouch, forKey: "UsingTouchId")
+    }
+    
+    func removeUsingOneTouch()
+    {
+      UserDefaults.standard.removeObject(forKey: "UsingTouchId")
+    }
+    
     func retrieveUserName() -> String
     {
         if let userName = UserDefaults.standard.string(forKey: "NurserySchoolUserName") {
             return userName
+        }
+        
+        return ""
+    }
+    
+    func retrievePassword() -> String
+    {
+        if let pword = UserDefaults.standard.string(forKey: "NurserySchoolPassword") {
+            return pword
         }
         
         return ""
@@ -565,12 +633,22 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     /*!
      @brief If the credentials withi the text fields are valid, will move to the next secene.
      */
-    func MoveToNextSceneIfCredentialsAreValid()
+    func MoveToNextSceneIfCredentialsAreValid(password: String?)
     {
         let nurserySchoolUserName = usernameTextField.text
-        let nurserySchoolPassword = passwordTextField.text
         
-        if nurserySchoolUserName?.isEmpty == true || nurserySchoolPassword?.isEmpty == true {
+        var nurserySchoolPassword =  ""
+        
+        if(password==nil)
+        {
+            nurserySchoolPassword = passwordTextField.text!
+        }
+        else
+        {
+            nurserySchoolPassword = password!
+        }
+        
+        if nurserySchoolUserName?.isEmpty == true || nurserySchoolPassword.isEmpty == true {
             
             SVProgressHUD.dismiss(withDelay: 0.5, completion: {
             
@@ -581,10 +659,25 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        if(self.hasUserBeenAskedAboutTouchId() == true && password == nil)
+        {
+           //Check if the username and password has changed. If it has, then remove the bool
+            
+            //let existingPassword = self.retrievePassword()
+            let existingUsername = self.retrieveUserName()
+            
+            if(nurserySchoolUserName != existingUsername)
+            {
+                //OK either the username or password has changed. lets
+                //Remove this.
+                self.removeUsingOneTouch()
+            }
+        }
+        
         //Make api call to check if credentials are valid.
         var nurserySchoolId = ""
         
-        CommonRequests.sharedInstance.RetrieveNurserySchoolId(userName: nurserySchoolUserName!, passWord: nurserySchoolPassword!, onCompletion: { json in
+        CommonRequests.sharedInstance.RetrieveNurserySchoolId(userName: nurserySchoolUserName!, passWord: nurserySchoolPassword, onCompletion: { json in
             
             nurserySchoolId = json.rawString()!
             
@@ -592,8 +685,36 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                 
                 if nurserySchoolId.isEmpty == false
                 {
+                    if(self.hasUserBeenAskedAboutTouchId() == false)
+                    {
+                        //Since we have established that the user has provided the correct password, we should ask the user if they wish to use the fingerprint in the future.
+                        
+                        let appearance = SCLAlertView.SCLAppearance(
+                            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+                            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+                            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+                            showCloseButton: false
+                        )
+                        
+                        let alertView = SCLAlertView(appearance: appearance)
+                        
+                        alertView.addButton("NO")
+                        {
+                            self.storeUsingOneTouch(usingOneTouch: false)
+                        }
+                        alertView.addButton("YES") {
+                           self.storeUsingOneTouch(usingOneTouch: true)
+                        }
+                        
+                        //Store the password whether or not we choose to use it.
+                        self.storePassword(password: nurserySchoolPassword)
+                        
+                        alertView.showSuccess("Quick Question", subTitle: "In the future, would you like to rather sign in using your finger print?")
+                        
+                    }
+                    
                     //Store the nursery school Id
-                    self.storeNurserySchoolIdWithinDefaults(username: nurserySchoolUserName!, nurserySchoolId: nurserySchoolId)
+                    self.storeNurserySchoolIdWithinDefaults(username: nurserySchoolUserName!, nurserySchoolId: nurserySchoolId, usingTouchId: nil, password: nil)
                     
                     let callActionHandler = { () -> Void in
                         
@@ -604,7 +725,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     SVProgressHUD.dismiss(withDelay: 0.5, completion: callActionHandler )
                     
                     //Store the nursery school Id
-                    self.storeNurserySchoolIdWithinDefaults(username: nurserySchoolUserName!, nurserySchoolId: nurserySchoolId)
+                    self.storeNurserySchoolIdWithinDefaults(username: nurserySchoolUserName!, nurserySchoolId: nurserySchoolId, usingTouchId: nil, password: nurserySchoolPassword)
                     
                 }
                 else
@@ -634,7 +755,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         
-        MoveToNextSceneIfCredentialsAreValid()
+        MoveToNextSceneIfCredentialsAreValid(password: nil)
         
     }
     
@@ -693,6 +814,75 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     func NavBarMenuTapped(){
         self.performSegue(withIdentifier: "GoToMenu", sender: nil)
     }
+    
+    
+    
+    
+    
+    func ODTouchIDAuthorizeSuccess() {
+        print("verify succeeded")
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        
+        //Get password from cahce.
+        
+        let password = retrievePassword()
+        
+        MoveToNextSceneIfCredentialsAreValid(password: password)
+        
+    }
+    
+    func ODTouchIDAuthorizeFail() {
+        print("verify failed")
+    }
+    
+    func ODTouchIDUserCancelled() {
+        print("Cancelled")
+    }
+    
+    func ODTouchIDUserChooseFallBack(){
+        print("UserChooseFallBack")
+    }
+    
+    func ODTouchIDSystemTerminate(){
+        print("SystemTerminate")
+    }
+    
+    func ODTouchIDNoPassword(){
+        print("No password")
+    }
+    
+    func ODTouchIDNotAvailable(){
+        print("Touch ID not available")
+    }
+    
+    func ODTouchIDNoFingerPrint(){
+        print("No Finger Print in system")
+    }
+    
+    func ODTouchIDDeviceNotSupportTouchID(){
+        print("Device don't SupportTouchID")
+    }
+    
+    func ODTouchIDDeviceIsSimulator(){
+        print("Device is simulator, please use real phone to test")
+    }
+    
+    //Only available in iOS 9 or higher
+    func ODTouchIDAppCancelled(){
+        print("Touch ID cancelled, this only available in iOS9 or higher")
+    }
+    
+    func ODTouchIDInvalidContext(){
+        print("Invalid context")
+    }
+    
+    func ODTouchIDTouchIDLockout(){
+        print("TouchID lockout")
+    }
+
 
    
 

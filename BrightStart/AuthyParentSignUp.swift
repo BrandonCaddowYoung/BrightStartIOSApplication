@@ -43,23 +43,23 @@ class AuthyParentSignUp: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature allows you to assgin a child to a parent for the purpose of 'Second Factor(Authy) Authentication'."
-                $0.cell.textLabel?.numberOfLines = 5
-                //$0.cell.height = { 300 }
-        }
-        
-        form +++ Section("What is Second Factor Authentication?")
-            <<< LabelRow(){
-                $0.title = "Second Factor Authentication is a means of verifying a person is who she/he says he/she is. For instance by us sending a message to a persons mobile device who are then able to respond to the prompt allows us to confirm that the person is who she/he says she/he is."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
-        
-        form +++ Section("How does it work?")
-            <<< LabelRow(){
-                $0.title = "Once a child has been assigned to a parent. The parent will receive a notification on their mobile device each and every time a their child is signed in and out. Once the given parent clicks the button on the notification to accept that they are infact the person signing our their child, we will proceed to sign their child in or out. Please note that this feature must be turned from within Settings."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
+//            <<< LabelRow(){
+//                $0.title = "This feature allows you to assgin a child to a parent for the purpose of 'Second Factor(Authy) Authentication'."
+//                $0.cell.textLabel?.numberOfLines = 5
+//                //$0.cell.height = { 300 }
+//        }
+//        
+//        form +++ Section("What is Second Factor Authentication?")
+//            <<< LabelRow(){
+//                $0.title = "Second Factor Authentication is a means of verifying a person is who she/he says he/she is. For instance by us sending a message to a persons mobile device who are then able to respond to the prompt allows us to confirm that the person is who she/he says she/he is."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
+//        
+//        form +++ Section("How does it work?")
+//            <<< LabelRow(){
+//                $0.title = "Once a child has been assigned to a parent. The parent will receive a notification on their mobile device each and every time a their child is signed in and out. Once the given parent clicks the button on the notification to accept that they are infact the person signing our their child, we will proceed to sign their child in or out. Please note that this feature must be turned from within Settings."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
         
         form +++ Section("Information")
             
@@ -159,7 +159,7 @@ class AuthyParentSignUp: FormViewController {
                         
                         SVProgressHUD.dismiss(withDelay: 1, completion: {
                             
-                            self._CommonHelper.ShowSuccessMessage(title: "New Authy user successfully added.", subsTtitle: Name + " has been aded.")
+                            self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "New Authy user successfully added.")
                             
                             self.performSegue(withIdentifier: "GoToMainMenu", sender: nil)
                             

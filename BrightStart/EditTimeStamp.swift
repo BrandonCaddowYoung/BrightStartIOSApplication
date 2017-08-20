@@ -141,7 +141,7 @@ class EditTimeStamp: FormViewController {
                                                             DispatchQueue.main.async(execute: {
                                                                 
                                                                 SVProgressHUD.dismiss(withDelay: 1, completion: {
-                                                                    self._CommonHelper.ShowSuccessMessage(title: "Timestamp successfully edited.", subsTtitle: "")
+                                                                    self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "Timestamp successfully edited.")
                                                                     
                                                                     if(self.goBackOnSuccess == true){
                                                                         if let nav = self.navigationController {
@@ -200,7 +200,7 @@ class EditTimeStamp: FormViewController {
                     
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
                         
-                        self._CommonHelper.ShowSuccessMessage(title: "Registered hours successfully updated.", subsTtitle: "")
+                        self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "Registered hours successfully updated.")
                         
                         if(self.goBackOnSuccess){
                             if let nav = self.navigationController {
@@ -235,7 +235,7 @@ class EditTimeStamp: FormViewController {
                     
                     SVProgressHUD.dismiss(withDelay: 1, completion: {
                         
-                        self._CommonHelper.ShowSuccessMessage(title: "Registered hours successfully created.", subsTtitle: "")
+                        self._CommonHelper.ShowSuccessMessage(title:"Success", subsTtitle: "Registered hours successfully created.")
                         
                         if(self.goBackOnSuccess){
                             if let nav = self.navigationController {
@@ -271,7 +271,7 @@ class EditTimeStamp: FormViewController {
                                                                 
                                                                 SVProgressHUD.dismiss(withDelay: 1, completion: {
                                                                     
-                                                                    self._CommonHelper.ShowSuccessMessage(title: "Time stamp successfully created.", subsTtitle: "")
+                                                                    self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "Time stamp successfully created.")
                                                                     
                                                                     if(self.goBackOnSuccess){
                                                                         

@@ -183,7 +183,7 @@ class AuthyAuthenticateViewController: UIViewController, UITextFieldDelegate {
     func onSuccss()
     {
         
-        self._CommonHelper.ShowSuccessMessage(title: "Authentication success.", subsTtitle: "")
+        self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle:  "Authentication success.")
         
         
         if(selectedAuthyAction == .ShouldSignOut){

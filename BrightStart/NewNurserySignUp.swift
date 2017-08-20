@@ -143,7 +143,7 @@ class NewNurserySignUp: FormViewController {
                             
                             SVProgressHUD.dismiss(withDelay: 1, completion: {
                                 
-                                self._CommonHelper.ShowSuccessMessage(title: "Your account is set up and ready to go.", subsTtitle: "In order to continue, you will need to sign in.")
+                                self._CommonHelper.ShowSuccessMessage(title: "Success", subsTtitle: "Your account is set up and ready to go." + " In order to continue, you will need to sign in with the credentials you just entered.")
                                 
                                 self.performSegue(withIdentifier: "GoToSignIn", sender: self)
                                 
@@ -152,10 +152,6 @@ class NewNurserySignUp: FormViewController {
                         })
                         
                     })
-                    
-                    
-                    
-                    
                     
                     
                 }.cellUpdate

@@ -43,16 +43,16 @@ class ExtraMinutesFinder: FormViewController {
                 $0.header = HeaderFooterView<LogoView>(.class)
             }
             
-            <<< LabelRow(){
-                $0.title = "This feature allows you to quickly identify children who have accumulated 'Extra Time' for a particular date."
-                $0.cell.textLabel?.numberOfLines = 5
-        }
-        
-        form +++ Section("What is 'Extra Time'?")
-            <<< LabelRow(){
-                $0.title = "'Extra Time' occurs when a child is early or late for their pre-defined 'Registered Hours'. When creating invoces, this time is accumulated and charged for accordingly."
-                $0.cell.textLabel?.numberOfLines = 6
-        }
+//            <<< LabelRow(){
+//                $0.title = "This feature allows you to quickly identify children who have accumulated 'Extra Time' for a particular date."
+//                $0.cell.textLabel?.numberOfLines = 5
+//        }
+//        
+//        form +++ Section("What is 'Extra Time'?")
+//            <<< LabelRow(){
+//                $0.title = "'Extra Time' occurs when a child is early or late for their pre-defined 'Registered Hours'. When creating invoces, this time is accumulated and charged for accordingly."
+//                $0.cell.textLabel?.numberOfLines = 6
+//        }
         
         form +++ Section("Date range")
             

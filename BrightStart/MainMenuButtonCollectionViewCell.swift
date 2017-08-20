@@ -23,6 +23,8 @@ protocol MainMenuButtonCollectionViewCellDelegate {
 
 class MainMenuButtonCollectionViewCell: UICollectionViewCell {
     
+    var _ApplicatoinColours: ApplicatoinColours!
+    
     var authyId: String = ""
     var segueText: String = ""
     var targetPurpose: PurposeTypes!
@@ -33,10 +35,13 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         
+         _ApplicatoinColours = ApplicatoinColours()
+        
         //This is the text under the image within the menu.
         label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
         
-        //label.textColor = _ApplicatoinColours.AppledGrey
+        //button text
+        label.textColor = StyleManager.theme3()
         // label.font = _ApplicatoinColours.MenuFont
         
         label.adjustsFontSizeToFitWidth = true
@@ -51,6 +56,7 @@ class MainMenuButtonCollectionViewCell: UICollectionViewCell {
         
         button.addTarget(self, action: #selector(changeColor), for: .touchUpInside)
         
+        //Button background
         button.backgroundColor = StyleManager.theme2()
         
         contentView.addSubview(button) //Remember to add ui elements to the content view not the cell iteslf.
