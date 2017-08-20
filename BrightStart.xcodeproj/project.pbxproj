@@ -25,6 +25,7 @@
 		7B26182A1DEE07FA005B4B20 /* CommunicationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */; };
 		7B2E88C21DF2C8C4003F7E45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */; };
 		7B324B231F48E2D3008E98C0 /* ODTouchIDProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B324B221F48E2D3008E98C0 /* ODTouchIDProtocol.swift */; };
+		7B324B251F4A1E4E008E98C0 /* Settings_TouchId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B324B241F4A1E4E008E98C0 /* Settings_TouchId.swift */; };
 		7B32E3841E991DA800959375 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B32E3831E991DA800959375 /* WeekDay.swift */; };
 		7B399D821EBF2B8600B4B214 /* SettingRegistrationHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B399D811EBF2B8600B4B214 /* SettingRegistrationHours.swift */; };
 		7B399D851EBF703200B4B214 /* EditTimeStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B399D841EBF703200B4B214 /* EditTimeStamp.swift */; };
@@ -341,6 +342,7 @@
 		7B2618291DEE07FA005B4B20 /* CommunicationsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationsHelper.swift; sourceTree = "<group>"; };
 		7B2E88C11DF2C8C4003F7E45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7B324B221F48E2D3008E98C0 /* ODTouchIDProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ODTouchIDProtocol.swift; sourceTree = "<group>"; };
+		7B324B241F4A1E4E008E98C0 /* Settings_TouchId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings_TouchId.swift; sourceTree = "<group>"; };
 		7B32E3831E991DA800959375 /* WeekDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 		7B399D811EBF2B8600B4B214 /* SettingRegistrationHours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRegistrationHours.swift; sourceTree = "<group>"; };
 		7B399D841EBF703200B4B214 /* EditTimeStamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimeStamp.swift; sourceTree = "<group>"; };
@@ -774,6 +776,7 @@
 				7BC6E8B41EC79DE8001AC325 /* Settings_Billing_Rates.swift */,
 				7B4E5A691EF26C3400506931 /* Settings_Email.swift */,
 				7B4E5A6D1EF9C65600506931 /* Settings_NurseryDetails.swift */,
+				7B324B241F4A1E4E008E98C0 /* Settings_TouchId.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1385,6 +1388,7 @@
 				7B8BDBCF1E12F017009F3EAF /* PersonSearchTableViewCell.swift in Sources */,
 				D7F9956A1C9EF4A1001802EC /* AppDelegate.swift in Sources */,
 				7BC1BC401F39E99800010568 /* CreatePayment.swift in Sources */,
+				7B324B251F4A1E4E008E98C0 /* Settings_TouchId.swift in Sources */,
 				7B8BDBDB1E156F47009F3EAF /* PersonLog.swift in Sources */,
 				7B083A5F1EFBF42600E1090A /* EditChild.swift in Sources */,
 				7BB62A971F03DFE0000EFD89 /* StaffHelperRequests.swift in Sources */,

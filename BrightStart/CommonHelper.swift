@@ -10,10 +10,36 @@ import Foundation
 import UIKit
 import SCLAlertView
 import Eureka
+import LocalAuthentication
 
 class CommonHelper {
     
     var _ApplicatoinColours = ApplicatoinColours()
+    
+    func retrieveUsingTouchId() -> Bool
+    {
+        let defaults = UserDefaults.standard
+        
+        if let id = defaults.string(forKey: "UsingTouchId")
+        {
+            return Int(id)!.boolValue
+        }
+        
+        return false
+    }
+    
+    func isDeviceTouchIdEnabled() -> Bool
+    {
+        var authError : NSError?
+        if LAContext().canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+            // do your thing dependent on touch id being useable on the device
+            
+            return true;
+            
+        }
+        
+        return false
+    }
     
     func GetDateObjectFromString(dateAsString: String) -> Date
     {

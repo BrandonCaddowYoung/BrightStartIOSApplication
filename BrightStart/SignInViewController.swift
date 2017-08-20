@@ -126,11 +126,14 @@ class SignInViewController: UIViewController, ODTouchIDProtocol, UITextFieldDele
         
       // self.storeUsingOneTouch(usingOneTouch: false)
         
-        if(hasUserBeenAskedAboutTouchId() == true && retrieveUsingTouchId() == true)
+        if(hasUserBeenAskedAboutTouchId() == true && _CommonHelper.retrieveUsingTouchId() == true)
         {
             //Go ahead and give the user a prompt.
-            
-            ODTouchID.StartODTouchID(messageOnAuth: "Use your fingerprint to sign in.", fallbackTitle: "Fallback", delegate: self as ODTouchIDProtocol)
+            if(_CommonHelper.isDeviceTouchIdEnabled() == true)
+            {
+             ODTouchID.StartODTouchID(messageOnAuth: "Use your fingerprint to sign in.", fallbackTitle: "Fallback", delegate: self as ODTouchIDProtocol)
+            }
+           
         }
     }
     
@@ -187,17 +190,7 @@ class SignInViewController: UIViewController, ODTouchIDProtocol, UITextFieldDele
         return false
     }
     
-    func retrieveUsingTouchId() -> Bool
-    {
-        let defaults = UserDefaults.standard
-        
-        if let id = defaults.string(forKey: "UsingTouchId")
-        {
-            return Int(id)!.boolValue
-        }
-        
-        return false
-    }
+    
     
     /*!
      @brief Removes the NurserySchoolId from the defaults.

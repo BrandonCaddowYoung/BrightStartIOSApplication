@@ -66,6 +66,7 @@ enum PurposeTypes: Int {
     case Settings_Rates
     case Email_Settings
     case NurseryDetails_Settings
+     case NurseryDetails_TouchId
     
     case Billing_Menu
     case Billing_CreateInvoice
@@ -197,15 +198,15 @@ class MainMenuViewController: UIViewController {
             
         case .Settings:
             
-            images = [UIImage(named: "Rates")!, UIImage(named: "email-100")!, UIImage(named: "Details-100")!, UIImage(named: "SignOut")!]
+            images = [UIImage(named: "Rates")!, UIImage(named: "email-100")!, UIImage(named: "Details-100")!, UIImage(named: "Fingerprint")!, UIImage(named: "SignOut")!]
             
-            segueIdList = ["GoToRates", "GoToEmailSettings", "GoToNurseryDetails", "GoToSignIn"]
+            segueIdList = ["GoToRates", "GoToEmailSettings", "GoToNurseryDetails","GoToTouchIdSettings", "GoToSignIn"]
             
-            PurposeList = [PurposeTypes.Settings_Rates, PurposeTypes.Email_Settings, PurposeTypes.NurseryDetails_Settings, PurposeTypes.SignOut]
+            PurposeList = [PurposeTypes.Settings_Rates, PurposeTypes.Email_Settings, PurposeTypes.NurseryDetails_Settings, PurposeTypes.NurseryDetails_TouchId, PurposeTypes.SignOut]
             
-            DisplayTextList = ["Rates"," Email", "Details", "Sign Out"]
+            DisplayTextList = ["Rates"," Email", "Details", "TouchId", "Sign Out"]
             
-            authyIdList = ["", "", "", "", ""]
+            authyIdList = ["", "", "", "", "", ""]
             
             showNavigationBar = true
             ShowNavBar()
