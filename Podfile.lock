@@ -1,0 +1,67 @@
+PODS:
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - DZNEmptyDataSet (1.8.1)
+  - Eureka (4.3.0)
+  - FSCalendar (2.8.0)
+  - JTAppleCalendar (6.1.6)
+  - ODTouchID (1.0.3)
+  - SCLAlertView (0.8)
+  - SnapKit (3.2.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftChart (1.0.1)
+
+DEPENDENCIES:
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - DZNEmptyDataSet
+  - Eureka (from `https://github.com/xmartlabs/Eureka.git`, tag `master`)
+  - FSCalendar
+  - JTAppleCalendar (~> 6.0)
+  - ODTouchID (~> 1.0)
+  - SCLAlertView
+  - SnapKit (~> 3.2.0)
+  - SVProgressHUD
+  - SwiftChart
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DZNEmptyDataSet
+    - FSCalendar
+    - JTAppleCalendar
+    - ODTouchID
+    - SCLAlertView
+    - SnapKit
+    - SVProgressHUD
+    - SwiftChart
+
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+  Eureka:
+    :git: https://github.com/xmartlabs/Eureka.git
+    :tag: master
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
+  Eureka:
+    :git: https://github.com/xmartlabs/Eureka.git
+    :tag: master
+
+SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  Eureka: e2dd50c3d6e07d2d2501d4141e903ec64fa3724e
+  FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
+  JTAppleCalendar: 560fb46421880f53ad54123295072de24bca2b18
+  ODTouchID: 730c9765fd4f656b935163f116f9e8e62423f7a0
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftChart: ba767a678d568a5ee22d419e146a0582865e1aff
+
+PODFILE CHECKSUM: 043a3d4b9d2fb48e70de4be72cc95733574ffbd4
+
+COCOAPODS: 1.5.3

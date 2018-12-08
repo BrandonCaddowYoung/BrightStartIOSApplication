@@ -1,0 +1,6 @@
+framework module ODTouchID {
+  umbrella header "ODTouchID-umbrella.h"
+
+  export *
+  module * { export * }
+}

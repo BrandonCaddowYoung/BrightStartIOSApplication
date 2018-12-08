@@ -1,0 +1,67 @@
+132.4ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:56:19	@objc override func viewDidLoad()
+76.6ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:95:10	@objc func SetNavigationBarDetails()
+41.1ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/RegisreredHoursDayOfWeekTableViewCell.swift:59:10	@objc func startDateChanged(_ sender: UIDatePicker)
+39.1ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:47:17	@objc public func isNilOrEmpty(string: NSString?) -> Bool
+38.3ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:141:144	(closure)
+37.3ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:89:13	(closure)
+33.2ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/BillingRequests.swift:60:10	@objc func CreateInvoices(targetChildren: [String], registeredHoursStartDate: Date, registeredHoursEndDate: Date, extraHoursStartDate: Date, extraHoursEndDate: Date, nonRegisteredHoursStartDate: Date, nonRegisteredHoursEndDate: Date, dueDate: Date, onCompletion: @escaping () -> Void)
+25.9ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:139:10	@objc func checkForUsersAcceptance()
+23.6ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:38:10	@objc func refresh()
+23.6ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:202:19	@objc override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+22.2ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/RegisreredHoursDayOfWeekTableViewCell.swift:73:10	@objc func setupConstraints()
+21.9ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:186:10	@objc func onSuccss()
+18.5ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:49:19	@objc override func viewDidLoad()
+18.1ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:282:10	@objc func setupConstraints()
+16.9ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:305:19	@objc override func prepare(for segue: UIStoryboardSegue, sender: Any!)
+16.2ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/BillingRequests.swift:23:10	func SendInvoice(invoiceId: Int, onCompletion: @escaping (JSON) -> Void)
+15.8ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:159:99	(closure)
+15.2ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:163:51	(closure)
+12.5ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:289:10	@objc func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+12.1ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:233:19	@objc override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
+11.8ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/RegistrationRequests.swift:21:10	func CreateNewNurserySchoolFromScratch(nurserySchoolName: String, managerName: String, nurserySchoolPhoneNumber: String, username: String, password: String, onCompletion: @escaping (JSON) -> Void)
+9.5ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/InvoiceRequests.swift:23:10	func GetAllInvoicesBelongingToChild(childId: String, onCompletion: @escaping (JSON) -> Void)
+9.2ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:217:19	@objc override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+9.1ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:198:19	@objc override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+9.0ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:449:19	@objc override func prepare(for segue: UIStoryboardSegue, sender: Any!)
+7.2ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:118:107	(closure)
+6.3ms	<invalid loc>	get {}
+5.4ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/BillingRequests.swift:42:10	func RemoveBankHolidayRegisteredHours(registeredHoursStartDate: Date, registeredHoursEndDate: Date, extraHoursStartDate: Date, extraHoursEndDate: Date, nonRegisteredHoursStartDate: Date, nonRegisteredHoursEndDate: Date, onCompletion: @escaping (JSON) -> Void)
+5.1ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:80:19	@objc override func viewWillDisappear(_ animated: Bool)
+5.0ms	<invalid loc>	get {}
+3.9ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:122:43	(closure)
+2.9ms	<invalid loc>	get {}
+2.8ms	<invalid loc>	get {}
+2.6ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:260:10	@objc func performAction()
+2.4ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:179:47	(closure)
+2.1ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/InvoiceRequests.swift:41:10	func GetInvoice(invoiceId: String, onCompletion: @escaping (JSON) -> Void)
+2.1ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:262:127	(closure)
+2.0ms	<invalid loc>	get {}
+1.8ms	<invalid loc>	get {}
+1.8ms	<invalid loc>	get {}
+1.8ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/AuthyTestViewController.swift:266:47	(closure)
+1.2ms	<invalid loc>	get {}
+1.1ms	<invalid loc>	init?(rawValue: Int)
+1.1ms	<invalid loc>	init()
+1.1ms	<invalid loc>	get {}
+1.1ms	<invalid loc>	get {}
+1.1ms	<invalid loc>	get {}
+1.1ms	<invalid loc>	get {}
+1.1ms	<invalid loc>	get {}
+1.1ms	/Users/colleencaddow/Desktop/BrightStart/BrightStart/TimeStampSearchTableViewController.swift:295:10	@objc func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+1.0ms	<invalid loc>	init()
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
+1.0ms	<invalid loc>	get {}
