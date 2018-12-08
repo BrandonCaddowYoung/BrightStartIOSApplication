@@ -71,7 +71,7 @@ class CommonHelper {
         
         let alert = SCLAlertView(appearance: appearance)
         
-        alert.showSuccess(title, subTitle: subsTtitle, duration: 2.0, colorStyle: StyleManager.theme1().ToUint())
+        alert.showSuccess(title, subTitle: subsTtitle, closeButtonTitle: "test", colorStyle: StyleManager.theme1().ToUint())
         
     }
     
@@ -86,7 +86,7 @@ class CommonHelper {
         
         let alert = SCLAlertView(appearance: appearance)
         
-        alert.showError(title, subTitle: subsTtitle, duration: 4.0, colorStyle: StyleManager.errorTheme().ToUint())
+        alert.showError(title, subTitle: subsTtitle, closeButtonTitle: "test", colorStyle: StyleManager.errorTheme().ToUint())
         
     }
     

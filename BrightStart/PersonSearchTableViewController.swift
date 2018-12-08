@@ -29,13 +29,13 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
     
     var successSegueIdentifier = ""
     
-    var children: [[BrightStartChild]] = [];
+    var childrens: [[BrightStartChild]] = [];
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
     
     func refreshTable()
     {
-        children.removeAll()
+        childrens.removeAll()
         tableView.reloadData()
         refresh()
     }
@@ -81,7 +81,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         
 //        GoToSearchPerson
         
-        self.children.removeAll();
+        self.childrens.removeAll();
         
         if(successSegueIdentifier == "GoToTimeStampSearch" && Purpose=="GoToSearchPerson_ExtraMinutes")
         {
@@ -121,12 +121,12 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     
                     child.ChildDOB = newDate!
                     
-                    self.children.insert([child], at: 0)
+                    self.childrens.insert([child], at: 0)
                 }
                 
                 DispatchQueue.main.async(execute: {
                     
-                    self.children = self.children.reversed()
+                    self.childrens = self.childrens.reversed()
                     
                     self.tableView.reloadData()
                     sender?.endRefreshing()
@@ -181,12 +181,12 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                         
                         child.ChildDOB = newDate!
                         
-                        self.children.insert([child], at: 0)
+                        self.childrens.insert([child], at: 0)
                     }
                     
                     DispatchQueue.main.async(execute: {
                         
-                        self.children = self.children.reversed()
+                        self.childrens = self.childrens.reversed()
                         
                         self.tableView.reloadData()
                         sender?.endRefreshing()
@@ -235,12 +235,12 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
                     
                     child.ChildDOB = newDate!
                     
-                    self.children.insert([child], at: 0)
+                    self.childrens.insert([child], at: 0)
                 }
                 
                 DispatchQueue.main.async(execute: {
                     
-                    self.children = self.children.reversed()
+                    self.childrens = self.childrens.reversed()
                     
                     self.tableView.reloadData()
                     sender?.endRefreshing()
@@ -260,11 +260,11 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
   
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return children.count;
+        return childrens.count;
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return children[section].count
+        return childrens[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -274,8 +274,8 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         let section = (indexPath as NSIndexPath).section;
         let row = (indexPath as NSIndexPath).row;
         
-        if children.count > section && children[section].count > row {
-            cell.child = children[section][row];
+        if childrens.count > section && childrens[section].count > row {
+            cell.child = childrens[section][row];
         }
         
         return cell
@@ -286,7 +286,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
         if(ShouldUseTapToSelect==true){
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "BrightStartChild", for: indexPath) as! PersonSearchTableViewCell
-            cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
+            cell.child = childrens[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
             self.SelectedPersonId = ((cell.child?.ChildId)! as String as String as NSString!)
             
@@ -308,7 +308,7 @@ class PersonSearchTableViewController:  UITableViewController, UITextFieldDelega
             }
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "BrightStartChild", for: indexPath) as! PersonSearchTableViewCell
-            cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
+            cell.child = childrens[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
             let rowTitle = OptionText
             

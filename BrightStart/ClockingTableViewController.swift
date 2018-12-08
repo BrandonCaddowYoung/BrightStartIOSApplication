@@ -13,7 +13,7 @@ import SVProgressHUD
 
 class ClockingTableViewController: UITableViewController, UITextFieldDelegate , DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
-    var children: [[Child]] = [];
+    var childrens: [[Child]] = [];
     var _CommonHelper: CommonHelper!
     var _ApplicatoinColours: ApplicatoinColours!
     
@@ -26,7 +26,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
     
     func refreshTable()
     {
-        children.removeAll()
+        childrens.removeAll()
         tableView.reloadData()
         refresh()
     }
@@ -129,7 +129,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
         SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
 
-        self.children.removeAll();
+        self.childrens.removeAll();
         
             CommonRequests.sharedInstance.getPeople { json in
                 
@@ -159,7 +159,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
                     
                     let child = Child(name: name as NSString, id: id as NSString,  currentlySignedIn: currentlySignedIn,startTime: start!, endTime: end!);
                     
-                    self.children.insert([child], at: 0)
+                    self.childrens.insert([child], at: 0)
                     
                     self.tableView.reloadData()
                     
@@ -167,7 +167,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
                 
                 DispatchQueue.main.async(execute: {
                     
-                    self.children = self.children.reversed()
+                    self.childrens = self.childrens.reversed()
                     
                     self.tableView.reloadData()
                     sender?.endRefreshing()
@@ -181,11 +181,11 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return children.count;
+        return childrens.count;
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return children[section].count
+        return childrens[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -195,8 +195,8 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
         let section = (indexPath as NSIndexPath).section;
         let row = (indexPath as NSIndexPath).row;
         
-      if children.count > section && children[section].count > row {
-            cell.child = children[section][row];
+      if childrens.count > section && childrens[section].count > row {
+            cell.child = childrens[section][row];
         }
         
         return cell
@@ -213,7 +213,7 @@ class ClockingTableViewController: UITableViewController, UITextFieldDelegate , 
         [UITableViewRowAction]? {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "Child", for: indexPath) as! ClockingTableViewCell
-            cell.child = children[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
+            cell.child = childrens[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row];
             
             var rowTitle = "Sign in " + ((cell.child?.Name)! as String)
            
