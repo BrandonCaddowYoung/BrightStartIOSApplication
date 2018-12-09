@@ -16,6 +16,8 @@ class CommonHelper {
     
     var _ApplicatoinColours = ApplicatoinColours()
     
+    var timeoutValue: TimeInterval = 5.0
+    
     func retrieveUsingTouchId() -> Bool
     {
         let defaults = UserDefaults.standard
@@ -69,9 +71,12 @@ class CommonHelper {
             showCloseButton: false
         )
         
+        let timeoutAction: SCLAlertView.SCLTimeoutConfiguration.ActionType = {
+        }
+        
         let alert = SCLAlertView(appearance: appearance)
         
-        alert.showSuccess(title, subTitle: subsTtitle, closeButtonTitle: "test", colorStyle: StyleManager.theme1().ToUint())
+        alert.showSuccess(title, subTitle: subsTtitle, closeButtonTitle: "test", timeout: SCLAlertView.SCLTimeoutConfiguration(timeoutValue: timeoutValue, timeoutAction: timeoutAction), colorStyle: StyleManager.theme1().ToUint())
         
     }
     
@@ -86,7 +91,10 @@ class CommonHelper {
         
         let alert = SCLAlertView(appearance: appearance)
         
-        alert.showError(title, subTitle: subsTtitle, closeButtonTitle: "test", colorStyle: StyleManager.errorTheme().ToUint())
+        let timeoutAction: SCLAlertView.SCLTimeoutConfiguration.ActionType = {
+        }
+        
+        alert.showError(title, subTitle: subsTtitle, closeButtonTitle: "test", timeout: SCLAlertView.SCLTimeoutConfiguration(timeoutValue: timeoutValue, timeoutAction: timeoutAction),colorStyle: StyleManager.errorTheme().ToUint())
         
     }
     
