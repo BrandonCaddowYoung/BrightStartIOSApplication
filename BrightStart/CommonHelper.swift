@@ -160,7 +160,7 @@ class CommonHelper {
             return 10;
         case "November":
             return 11;
-        case "Decemeber":
+        case "December":
             return 12;
         default:
             return -1
