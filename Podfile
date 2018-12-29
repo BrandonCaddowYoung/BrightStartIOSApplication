@@ -26,4 +26,8 @@ pod 'SnapKit', '~> 3.2.0'
 
 pod 'SwiftChart'
 
+pod 'p2.OAuth2'
+
+pod 'AppAuth'
+
 end

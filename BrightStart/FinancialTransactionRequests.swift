@@ -39,7 +39,7 @@ class FinancialTransactionRequests: NSObject {
         parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
         
         let route = baseURL + "api/financialTransactionsLogic/CreateFinancialTransaction?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPost(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .post, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -56,7 +56,7 @@ class FinancialTransactionRequests: NSObject {
         }
         
         let route = baseURL + "api/financialTransactionsLogic/GetListOfAllTransactionsBelongingToAccount?accountId=" + accountId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -73,7 +73,7 @@ class FinancialTransactionRequests: NSObject {
         }
         
         let route = baseURL + "api/PaymentLogic/GetPayment?PaymentId=" + PaymentId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -90,7 +90,7 @@ class FinancialTransactionRequests: NSObject {
         }
         
         let route = baseURL + "api/financialTransactionsLogic/DeleteFinancialTransaction?FinancialTransactionId=" + PaymentId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPDeleteRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .delete, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -130,7 +130,7 @@ class FinancialTransactionRequests: NSObject {
         parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
         
         let route = baseURL + "api/financialTransactionsLogic/UpdateFinancialTransaction?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

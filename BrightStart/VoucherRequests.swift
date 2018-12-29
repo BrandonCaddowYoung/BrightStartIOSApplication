@@ -28,7 +28,7 @@ class VoucherRequests: NSObject {
         
         let route = baseURL + "api/VoucherLogic/GetAllVouchersForComboBox?nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

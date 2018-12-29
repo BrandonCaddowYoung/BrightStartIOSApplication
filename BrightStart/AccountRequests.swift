@@ -28,7 +28,7 @@ class AccountRequests: NSObject {
         
         let route = baseURL + "api/AccountLogic/GetAccountById?accountId=" + accountId + "&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -89,7 +89,7 @@ class AccountRequests: NSObject {
         parameters["ExistingAccountBalance"] = existingAccountBalance as AnyObject?
  
         let route = baseURL + "api/AccountLogic/CreateAccount?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPost(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .post, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -152,7 +152,7 @@ class AccountRequests: NSObject {
         parameters["ExistingAccountBalance"] = existingAccountBalance as AnyObject?
 
         let route = baseURL + "api/AccountLogic/UpdateAccount?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

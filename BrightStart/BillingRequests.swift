@@ -30,7 +30,7 @@ class BillingRequests: NSObject {
         }
         
         let route = baseURL + "api/EmailLogic/SendInvoiceInEmail?invoiceId=" + String(invoiceId) + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -50,7 +50,7 @@ class BillingRequests: NSObject {
         
         let route = baseURL + "api/BillingLogic/RemoveRegisteredHours?regiistrationHoursFrom=" + _CommonHelper.DateToEncodedString(targetDate: registeredHoursStartDate) + "&registatoinHoursTo=" + _CommonHelper.DateToEncodedString(targetDate: registeredHoursEndDate) + "&nonRegiistrationHoursFrom=" + _CommonHelper.DateToEncodedString(targetDate: nonRegisteredHoursStartDate) + "&nonRegistatoinHoursTo=" + _CommonHelper.DateToEncodedString(targetDate: nonRegisteredHoursEndDate) + "&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -68,7 +68,7 @@ class BillingRequests: NSObject {
         
          let route = baseURL + "api/BillingLogic/CreateInvoices?regiistrationHoursFrom=" + _CommonHelper.DateToEncodedString(targetDate: registeredHoursStartDate) + "&registatoinHoursTo=" + _CommonHelper.DateToEncodedString(targetDate: registeredHoursEndDate) + "&nonRegiistrationHoursFrom=" + _CommonHelper.DateToEncodedString(targetDate: nonRegisteredHoursStartDate) + "&nonRegistatoinHoursTo=" + _CommonHelper.DateToEncodedString(targetDate: nonRegisteredHoursEndDate) + "&extraHoursFrom=" + _CommonHelper.DateToEncodedString(targetDate: extraHoursStartDate) + "&extraHoursTo=" + _CommonHelper.DateToEncodedString(targetDate: extraHoursEndDate) + "&dueDate=" + _CommonHelper.DateToEncodedString(targetDate: dueDate) + "&enforcePartTime=false&enforceFullTime=false&shouldEmail=false&removeBankHolRegHours=false&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPPost(encode: false, path: route, params: targetChildren.asParameters(), encoding: ArrayEncoding(), onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .post, params: targetChildren.asParameters(), encoding: ArrayEncoding(), onCompletion:
             {_,_ in
                 onCompletion()
         })
@@ -85,7 +85,7 @@ class BillingRequests: NSObject {
         }
         
         let route = baseURL + "api/BillingLogic/IsInvoiceFullTime?invoiceId=" + invoiceId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -161,7 +161,7 @@ class BillingRequests: NSObject {
         
         
         let route = baseURL + "api/BillingLogic/UpdateInvoiceAndRecalculateTotal?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

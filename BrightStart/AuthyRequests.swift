@@ -29,7 +29,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/RegisterUser?email=" + email + "&phoneNumber=" + phoneNumber + "&countryCode=" + "\(countryCode)" + "&name=" + name + "&relationship=" + relationship + "&childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: true, path: route, onCompletion:
+        makeHTTPRequest(encode: true, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -49,7 +49,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/ValidateToken?auhtyId=" + auhtyId + "&token=" + token + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route,method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -69,7 +69,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/SendOneTouchRequest?authyId=" + authyId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route,method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -89,7 +89,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/DisableChildForAuthy?authyId=" + authyId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route,method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -110,7 +110,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/EnableChildForAuthy?authyId=" + authyId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -130,7 +130,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/HasOneTouchBeenApproved?uuid=" + uuid + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -150,7 +150,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/GetAllAuthyUsersForChild?childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -170,7 +170,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/GetAllDisabledAuthyUsers?childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -190,7 +190,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/GetAllEnabledAuthyUsers?childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -210,7 +210,7 @@ class AuthyRequests: NSObject {
         }
         
         let route = baseURL + "api/Authy/GetAuthyUser?authyId=" + auhtyId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

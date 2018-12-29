@@ -36,7 +36,7 @@ class CommonRequests: NSObject {
         //Change the following stored procedure to return the last login and logout.
         
         let route = baseURL + "api/FilteredChildLogic/SelectAllChildrenForFrontPage?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -61,7 +61,7 @@ class CommonRequests: NSObject {
         
         let route = baseURL + "api/GeneralHelper/SignPersonIn?personId="+personId+"&targetStamp="+dateString+"&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion: { json, err in
             onCompletion()
         })
         
@@ -85,7 +85,7 @@ class CommonRequests: NSObject {
         
         let route = baseURL + "api/GeneralHelper/SignPersonOut?personId="+personId+"&targetStamp="+dateString+"&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion: { json, err in
             onCompletion()
         })
     }
@@ -109,7 +109,7 @@ class CommonRequests: NSObject {
         
         let route = baseURL + "api/PersonLogLogic/UpdatePersonLog?personId="+personId+"&action="+action+"&stamp=" + stampAsString + "&Original_Action="+originalAction+"&Original_Timestamp="+originalTimeStampAsString+"&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPPutRequest(encode: false, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion: { json, err in
             onCompletion()
         })
     }
@@ -129,7 +129,7 @@ class CommonRequests: NSObject {
         
         let route = baseURL + "api/PersonLogLogic/CreatePersonLog?ChildId="+personId+"&Action="+action+"&TimeStamp=" + stampAsString + "&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPPostRequest(encode: false, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: false, path: route, method: .post, onCompletion: { json, err in
             onCompletion()
         })
     }
@@ -152,7 +152,7 @@ class CommonRequests: NSObject {
         
         let route = baseURL + "api/PersonLogLogic/DeletePersonLog?personId=" + personId + "&action=" + action + "&stamp=" + stampAsString + "&Original_Action=" + action + "&Original_Timestamp=" + stampAsString + "&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPDeleteRequest(encode: false, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: false, path: route, method: .delete, onCompletion: { json, err in
             onCompletion()
         })
     }
@@ -176,7 +176,7 @@ class CommonRequests: NSObject {
         
         let route = baseURL + "api/DayCountLogic/SelectChildrenCountsForTargetDate?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: true, path: route, method: .get, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
         
@@ -200,7 +200,7 @@ class CommonRequests: NSObject {
         
         let route = baseURL + "api/DayCountLogic/SelectStaffCountsForTargetDate?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: true, path: route,  method: .get, onCompletion: { json, err in
             
             onCompletion(json as JSON)
             
@@ -226,7 +226,7 @@ class CommonRequests: NSObject {
         
         let route = baseURL + "api/TimeStampCountLogic/GetListOfChildUnMatchedTimeStampsForDateRange?targetStartDate="+targetStart+"&targetEndDate="+targetEnd+"&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: true, path: route, method: .get, onCompletion: { json, err in
             
             onCompletion(json as JSON)
             
@@ -252,7 +252,7 @@ class CommonRequests: NSObject {
         let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
         
         let route = baseURL + "api/RegisteredCountLogic/GetNumberOfChildrenWithRegisteredHoursAtSpecificTime?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: true, path: route,method: .get, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
@@ -275,7 +275,7 @@ class CommonRequests: NSObject {
         let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
         
         let route = baseURL + "api/RegisteredCountLogic/GetNumberOfStaffWithRegisteredHoursAtSpecificTime?targetDate="+DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: true, path: route,method: .get, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
@@ -297,7 +297,7 @@ class CommonRequests: NSObject {
         
         let route = baseURL + "api/RegisteredCountLogic/GetNumberOfChildrenWithRegisteredHoursForEntireDay?year="+year+"&month="+month+"&day=" + day + "&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: true, path: route, method: .get, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
         
@@ -321,7 +321,7 @@ class CommonRequests: NSObject {
         let route = baseURL + "api/RegisteredCountLogic/GetNumberOfStaffWithRegisteredHoursForEntireDay?year="+year+"&month="+month+"&day=" + day + "&nurserySchoolId=" + nurserySchoolId
         
         
-        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: true, path: route, method: .get, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
         
@@ -334,7 +334,7 @@ class CommonRequests: NSObject {
         
         let route = baseURL + "api/OnlineLoginDetailsLogic/ValidateCreds?userName="+userName+"&password="+passWord
         
-        makeHTTPGetRequest(encode: true, path: route, onCompletion: { json, err in
+        makeHTTPRequest(encode: true, path: route, method: .get, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
         

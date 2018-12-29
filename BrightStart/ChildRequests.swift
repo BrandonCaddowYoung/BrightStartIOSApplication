@@ -22,16 +22,22 @@ class ChildRequests: NSObject {
      */
     func GetAllEnrolledChilren(onCompletion: @escaping (JSON) -> Void) {
         
+        //UserDefaults.standard.synchronize()
+        
         let defaults = UserDefaults.standard
+        
+        print(defaults)
+        
+        let test = UserDefaults.standard.string(forKey: "NurserySchoolId") ?? ""
         
         if let id = defaults.string(forKey: "NurserySchoolId")
         {
             nurserySchoolId = id;
         }
         
-        let route = baseURL + "api/ChildLogic/SelectAllCurrentlyEnrolledChildren?nurserySchoolId=" + nurserySchoolId
+        let route = baseURL + "api/ChildLogic/SelectAllCurrentlyEnrolledChildren?nurserySchoolId=" + test
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -55,7 +61,7 @@ class ChildRequests: NSObject {
         }
         
         let route = baseURL + "api/BillingLogic/GetAllChildrenWhoHaveExtraMinutesForGivenDay?targetDate=" + dateString + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -73,7 +79,7 @@ class ChildRequests: NSObject {
         
         let route = baseURL + "api/ChildLogic/GetChildObjectByChildId?ChildId=" + childId + "&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

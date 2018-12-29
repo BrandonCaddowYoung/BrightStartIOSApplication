@@ -83,7 +83,7 @@ class StaffHelperRequests: NSObject {
         parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
       
         let route = baseURL + "api/StaffMemberLogic/CreateStaffMember?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPost(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .post, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -156,7 +156,7 @@ class StaffHelperRequests: NSObject {
         parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
         
         let route = baseURL + "api/StaffMemberLogic/UpdateStaffMember?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put,  params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

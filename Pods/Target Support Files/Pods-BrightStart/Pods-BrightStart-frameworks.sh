@@ -143,6 +143,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework"
@@ -153,8 +154,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework"
@@ -165,6 +168,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

@@ -37,7 +37,7 @@ class RegistrationHoursRequests: NSObject {
         let DateInFormat:String = dateFormatter.string(from: DateTime as Date)
         
         let route = baseURL + "api/RegisteredHoursLogic/GetRegisterdHoursyDateAndID?personId="+id + "&DateTime=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -54,7 +54,7 @@ class RegistrationHoursRequests: NSObject {
         }
         
         let route = baseURL + "api/RegisteredHoursLogic/RemoveAllGetListOfAllRegisteredHours?year=" + String(year) + "&month=" + String(month) + "&day=" + String(day) + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -79,7 +79,7 @@ class RegistrationHoursRequests: NSObject {
         let endDateInFormat:String = dateFormatter.string(from: newEndDate as Date)
         
         let route = baseURL + "api/RegisteredHoursLogic/UpdateRegisteredHours?id="+newId + "&newStartDate=" + startDateInFormat + "&newEndDate=" + endDateInFormat + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -101,7 +101,7 @@ class RegistrationHoursRequests: NSObject {
         let finishTimeInFormat:String = dateFormatter.string(from: finishTime)
         
         let route = baseURL + "api/RegisteredHoursLogic/CreateRegisteredHours2?personId="+personId + "&startTime=" + startTimeInFormat + "&finishTime=" + finishTimeInFormat + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -122,7 +122,7 @@ class RegistrationHoursRequests: NSObject {
         let DateInFormat:String = dateFormatter.string(from: dateToDelete as Date)
         
         let route = baseURL + "api/RegisteredHoursLogic/DeleteRegisteredHours?personId="+personId + "&dateToDelete=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPDeleteRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .delete,  onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -139,7 +139,7 @@ class RegistrationHoursRequests: NSObject {
         }
        
         let route = baseURL + "api/RegisteredHoursLogic/SetWeeklyRegisteredHours?chosenYear=" + chosenYear + "&chosenMonth=" + chosenMonth + "&mondayStartTime=" + mondayStartTime + "&mondayEndTime=" + mondayEndTime + "&tuesdayStartTime=" +  tuesdayStartTime + "&tuesdayEndTime=" +  tuesdayEndTime + "&wednesdayStartTime=" + wednesdayStartTime + "&wednesdayEndTime=" +  wednesdayEndTime + "&thursdayStartTime=" +  thursdayStartTime + "&thursdayEndTime=" + thursdayEndTime + "&fridayStartTime=" +  fridayStartTime + "&fridayEndTime=" +  fridayEndTime + "&saturdayStartTime=" +  saturdayStartTime + "&saturdayEndTime=" +  saturdayEndTime + "&sundayStartTime=" + sundayStartTime  + "&sundayEndTime=" + sundayEndTime + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPPost(encode: false, path: route, params: targetChildren.asParameters(), encoding: ArrayEncoding(), onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .post,  params: targetChildren.asParameters(), encoding: ArrayEncoding(), onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -156,7 +156,7 @@ class RegistrationHoursRequests: NSObject {
         }
        
         let route = baseURL + "api/RegisteredHoursLogic/RollOver?targetYear=" + targetYear + "&targetMonth=" + targetMonth + "&destinationYear=" + destinationYear + "&destinationMonth=" + destinationMonth + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPPost(encode: false, path: route, params: targetChildren.asParameters(), encoding: ArrayEncoding(), onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .post, params: targetChildren.asParameters(), encoding: ArrayEncoding(), onCompletion:
             {_,_ in 
                 onCompletion()
         })

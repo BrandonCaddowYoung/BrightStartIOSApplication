@@ -30,7 +30,7 @@ class PersonStatusRequests: NSObject {
         }
         
         let route = baseURL + "api/PersonStatusLogic/GetStatusById?PersonStatusId="+id + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -58,7 +58,7 @@ class PersonStatusRequests: NSObject {
         
         
         
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

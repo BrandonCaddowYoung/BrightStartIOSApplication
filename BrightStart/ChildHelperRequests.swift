@@ -63,7 +63,7 @@ class ChildHelperRequests: NSObject {
         parameters["OtherNotes"] = otherNotes as AnyObject?
     
         let route = baseURL + "api/ChildHelperLogic/CreateChildAndOtherNeccesaryObjects?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPost(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .post, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -117,7 +117,7 @@ class ChildHelperRequests: NSObject {
         parameters["OtherNotes"] = otherNotes as AnyObject?
 
                 let route = baseURL + "api/ChildLogic/UpdateChild?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

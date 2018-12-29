@@ -28,7 +28,7 @@ class EventRequests: NSObject {
         
         let route = baseURL + "api/CalendarEventLogic/GetListOfCalednarEvents?nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -70,7 +70,7 @@ class EventRequests: NSObject {
         parameters["EventText"] = text as AnyObject?
         
         let route = baseURL + "api/CalendarEventLogic/CreateCalendarEvent?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPost(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route,method: .post, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -89,7 +89,7 @@ class EventRequests: NSObject {
         
         let route = baseURL + "api/CalendarEventLogic/DeleteCalendarEventById?id=" + id + "&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

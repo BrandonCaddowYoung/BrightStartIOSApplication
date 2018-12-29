@@ -30,7 +30,7 @@ class KeyWorkerGroupRequests: NSObject {
         }
         
         let route = baseURL + "api/KeyWorkerGroupLogic/GetkeyWorkerGroupById?keyWorkerId="+keyWorkerId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -49,7 +49,7 @@ class KeyWorkerGroupRequests: NSObject {
         
         let route = baseURL + "api/KeyWorkerGroupLogic/getListOfKeyWorkerGroups?nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

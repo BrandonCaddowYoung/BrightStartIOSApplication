@@ -27,7 +27,7 @@ class InvoiceRequests: NSObject {
         }
         
         let route = baseURL + "api/BillingLogic/GetAllInvoicesBelongingToChildWithExtra?childId=" + childId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -44,7 +44,7 @@ class InvoiceRequests: NSObject {
         }
         
         let route = baseURL + "api/InvoiceLogic/GetInvoice?invoiceId=" + invoiceId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -61,7 +61,7 @@ class InvoiceRequests: NSObject {
         }
         
         let route = baseURL + "api/InvoiceLogic/DeleteInvoiceById?InvoiceId=" + String(invoiceId) + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -133,7 +133,7 @@ class InvoiceRequests: NSObject {
         parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
         
         let route = baseURL + "api/InvoiceLogic/UpdateInvoice?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

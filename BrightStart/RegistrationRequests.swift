@@ -28,7 +28,7 @@ class RegistrationRequests: NSObject {
         }
         
         let route = baseURL + "api/NewNurserySchool/CreateNewNurserySchoolFromScratch?nurserySchoolName=" + nurserySchoolName + "&managerName=" + managerName + "&nurserySchoolPhoneNumber=" + nurserySchoolPhoneNumber + "&username=" + username + "&password=" + password
-        makeHTTPGetRequest(encode: true, path: route, onCompletion:
+        makeHTTPRequest(encode: true, path: route,method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

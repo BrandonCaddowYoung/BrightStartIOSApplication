@@ -27,7 +27,7 @@ class SettingsRequests: NSObject {
         }
         
         let route = baseURL + "api/RatesLogic/GetAllRates?nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -90,7 +90,7 @@ class SettingsRequests: NSObject {
         parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
         
         let route = baseURL + "api/RatesLogic/UpdateRate?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -107,7 +107,7 @@ class SettingsRequests: NSObject {
         }
         
         let route = baseURL + "api/EmailLogic/GetEmailSettings?nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -140,7 +140,7 @@ class SettingsRequests: NSObject {
         parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
         
         let route = baseURL + "api/EmailLogic/UpdateEmail?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -157,7 +157,7 @@ class SettingsRequests: NSObject {
         }
         
         let route = baseURL + "api/SettingsLogic/GetSettingByName?settingsName=ExtraTimeBreakDownEmailBodyText&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -174,7 +174,7 @@ class SettingsRequests: NSObject {
         }
         
         let route = baseURL + "api/SettingsLogic/GetSettingByName?settingsName=ShouldSendExtraMinutesBreakDownWithEmail&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -191,7 +191,7 @@ class SettingsRequests: NSObject {
         }
         
         let route = baseURL + "api/SettingsLogic/GetSettingByName?settingsName=EmailBodyText&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -216,7 +216,7 @@ class SettingsRequests: NSObject {
                parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
         
         let route = baseURL + "api/SettingsLogic/UpdateSettings?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -233,7 +233,7 @@ class SettingsRequests: NSObject {
         }
         
         let route = baseURL + "api/NurseryDetailsLogic/GetNurseryDetails?nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -266,7 +266,7 @@ class SettingsRequests: NSObject {
         parameters["NurserySchoolId"] = nurserySchoolId as AnyObject?
         
         let route = baseURL + "api/EmailLogic/UpdateEmail?nurserySchoolId=" + nurserySchoolId
-        makeHTTPPut(encode: false, path: route, params: parameters, encoding: JSONEncoding.default, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .put, params: parameters, encoding: JSONEncoding.default, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

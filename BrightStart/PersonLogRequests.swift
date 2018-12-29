@@ -37,7 +37,7 @@ class PersonLogRequests: NSObject {
         let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
        
         let route = baseURL + "api/PersonLogLogic/GetLogByDateAndId?personId="+id + "&stamp=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -59,7 +59,7 @@ class PersonLogRequests: NSObject {
         let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
         
         let route = baseURL + "api/PersonLogLogic/GetLoginLogsByDateAndId?personId="+personId + "&stamp=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -80,7 +80,7 @@ class PersonLogRequests: NSObject {
         let DateInFormat:String = dateFormatter.string(from: targetDate as Date)
         
         let route = baseURL + "api/PersonLogLogic/GetLogoutLogsByDateAnId?personId="+personId + "&stamp=" + DateInFormat+"&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -97,7 +97,7 @@ class PersonLogRequests: NSObject {
         }
        
         let route = baseURL + "api/PersonLogLogic/DeleteLogsById?Id=" + logId + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)

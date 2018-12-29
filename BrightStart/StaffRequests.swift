@@ -29,7 +29,7 @@ class StaffRequests: NSObject {
         
         let route = baseURL + "api/StaffMemberLogic/GetAllStaffMembers?nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -53,7 +53,7 @@ class StaffRequests: NSObject {
         }
         
         let route = baseURL + "api/BillingLogic/GetAllStaffrenWhoHaveExtraMinutesForGivenDay?targetDate=" + dateString + "&nurserySchoolId=" + nurserySchoolId
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
@@ -72,7 +72,7 @@ class StaffRequests: NSObject {
      
         let route = baseURL + "api/StaffMemberLogic/GetStaffMemerObjectByStaffMemberId?StaffMemberId=" + StaffId + "&nurserySchoolId=" + nurserySchoolId
         
-        makeHTTPGetRequest(encode: false, path: route, onCompletion:
+        makeHTTPRequest(encode: false, path: route, method: .get, onCompletion:
             {
                 json, err in
                 onCompletion(json as JSON)
