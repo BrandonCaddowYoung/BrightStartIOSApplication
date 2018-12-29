@@ -30,4 +30,6 @@ pod 'p2.OAuth2'
 
 pod 'AppAuth'
 
+pod 'Alamofire'
+
 end
